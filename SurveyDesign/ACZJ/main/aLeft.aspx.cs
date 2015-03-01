@@ -34,11 +34,11 @@ public partial class Admin_main_aLeft : System.Web.UI.Page
             this.YDW.Text = "<div class='o_menu'><a id='a155' class='o_m01_1' href='"+sUrl+"' target='_top'><span>返回原单位</span></a></div>";
             this.dv1.Visible = false;
             this.dv2.Visible = false;
-            this.dv3.Visible = false;
-            this.dv4.Visible = false;
-            this.dv5.Visible = false;
-            this.dv6.Visible = false;
-            this.dv7.Visible = false;
+            //this.dv3.Visible = false;
+            //this.dv4.Visible = false;
+            //this.dv5.Visible = false;
+           // this.dv6.Visible = false;
+           // this.dv7.Visible = false;
         }
 
         
