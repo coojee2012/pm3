@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>EntityCenter</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Approve.EntityCenter</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="EaAcceptBook.cs" />
+    <Compile Include="EaAppAcceptBook.cs" />
+    <Compile Include="EaAppActionRecord.cs" />
+    <Compile Include="EaAppBackIdea.cs" />
+    <Compile Include="EaAppBatchNo.cs" />
+    <Compile Include="EaAppPrintIc.cs" />
+    <Compile Include="EaAppProcessComplaint.cs" />
+    <Compile Include="EaAppProcessPublic.cs" />
+    <Compile Include="EaBatchNo.cs" />
+    <Compile Include="EaCheck.cs" />
+    <Compile Include="EaManageType.cs" />
+    <Compile Include="EaNo.cs" />
+    <Compile Include="EaOnLine.cs" />
+    <Compile Include="EaOnLineRe.cs" />
+    <Compile Include="EaPrintRecord.cs" />
+    <Compile Include="EaProcess.cs" />
+    <Compile Include="EaProcessInstance.cs" />
+    <Compile Include="EaProcessInstanceBackup.cs" />
+    <Compile Include="EaProcessRecord.cs" />
+    <Compile Include="EaProcessRecordBackup.cs" />
+    <Compile Include="EaQuailAppList.cs" />
+    <Compile Include="EaQualiCondition.cs" />
+    <Compile Include="EaQualiConditionData.cs" />
+    <Compile Include="EaQualiConditionOther.cs" />
+    <Compile Include="EaQualiLevel.cs" />
+    <Compile Include="EaQualiType.cs" />
+    <Compile Include="EaSubFlow.cs" />
+    <Compile Include="EbBadAction.cs" />
+    <Compile Include="EbBadActionCode.cs" />
+    <Compile Include="EbBankAccount.cs" />
+    <Compile Include="EbBaseInfo.cs" />
+    <Compile Include="EbBaseInfoOther.cs" />
+    <Compile Include="EbCheckParameter.cs" />
+    <Compile Include="EbCompact.cs" />
+    <Compile Include="EbCreditLevel.cs" />
+    <Compile Include="EbDesignReport.cs" />
+    <Compile Include="EbDevice.cs" />
+    <Compile Include="EbFinance.cs" />
+    <Compile Include="EbPrjFile.cs" />
+    <Compile Include="EbQualiCerti.cs" />
+    <Compile Include="EbQualiCertiTrade.cs" />
+    <Compile Include="EData.cs" />
+    <Compile Include="EeBadAction.cs" />
+    <Compile Include="EeBaseinfo.cs" />
+    <Compile Include="EeCerti.cs" />
+    <Compile Include="EeGoodAction.cs" />
+    <Compile Include="EEnterpriseBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EManageCheck.cs" />
+    <Compile Include="EnCol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnComment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EnEntList.cs" />
+    <Compile Include="EnRecUnit.cs" />
+    <Compile Include="EnTitle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EOASMSList.cs" />
+    <Compile Include="EPPeopleName.cs" />
+    <Compile Include="EPrjBaseInfo.cs" />
+    <Compile Include="EPrjBaseInfoList.cs" />
+    <Compile Include="EPrjCerti.cs" />
+    <Compile Include="EPrjEnt.cs" />
+    <Compile Include="EPText.cs" />
+    <Compile Include="EPWorkList.cs" />
+    <Compile Include="EsManageDeptInfo.cs" />
+    <Compile Include="EsPrjList.cs" />
+    <Compile Include="EsUserInfo.cs" />
+    <Compile Include="EwLink.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ENTITYBASE\EntityBase.csproj">
+      <Project>{A5676341-D5C3-456F-943E-14D7D8F45883}</Project>
+      <Name>EntityBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,429 @@
+﻿body
+{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 12px;
+	width: 100%;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*banner部分*/
+.banner
+{
+	height: 150px;
+	width: 960px;
+	background-image: url( "../image/qymh.jpg" );
+}
+/*banner部分*/
+.banner1
+{
+	height: 150px;
+	width: 960px;
+	background-image: url( "../image/glmh.jpg" );
+}
+.top_1
+{
+	height: 29px;
+	width: 960px;
+	background-image: url( "../image/top-1px.jpg" );
+	background-repeat: repeat-x;
+	border-bottom: solid 1px #ababab;
+}
+.top_pic
+{
+	float: left;
+	height: 15px;
+	width: 15px;
+	margin-left: 19px;
+	margin-top: 8px;
+	background-image: url( "../image/top_pic1.jpg" );
+}
+.top_font
+{
+	font-size: 12px;
+	color: #757e7b;
+	line-height: 30px;
+}
+.top_2
+{
+	float: left;
+	margin-left: 4px;
+}
+.top_3
+{
+	float: left;
+	margin-left: 45px;
+}
+.top_4
+{
+	float: left;
+	margin-left: 3px;
+}
+.top_5
+{
+	float: left;
+	margin-left: 48px;
+	margin-top: 8px;
+	height: 14px;
+	width: 14px;
+	background-image: url( "../image/top_pic2.jpg" );
+}
+
+/*栏目*/
+.total
+{
+	width: 959px;
+	height: 389px;
+	margin-top: 7px;
+}
+.total_le
+{
+	width: 259px;
+	height: 229px;
+	float: left;
+	border-bottom: solid 1px #cccccc;
+	border-right: solid 1px #cccccc;
+}
+.blue_t
+{
+	float: left;
+	width: 98px;
+	height: 29px;
+	background-image: url( "../image/blue.jpg" );
+}
+.menu
+{
+	float: left;
+	margin-left: 16px;
+	line-height: 29px;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: bold;
+}
+.blue_l
+{
+	float: left;
+	height: 25px;
+	background-image: url( "../image/blue_1px.jpg" );
+	border: solid 1px #ffffff;
+}
+.menu_L
+{
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	float: left;
+	height: 27px;
+	width: 161px;
+}
+.menu_M
+{
+	float: left;
+	margin: 1px 1px 1px 0px;
+	height: 25px;
+	width: 160px;
+	background-image: url( "../image/blue_1px.jpg" );
+	background-repeat: repeat-x;
+}
+.tree
+{
+	height: 182px;
+	width: 232px;
+	margin-left: 10px;
+	margin-top: 8px;
+}
+.point
+{
+	height: 25px;
+	width: 232px;
+	border-bottom: dotted 1px #6c6c6c;
+}
+.inside_font
+{
+	float: left;
+	font-size: 12px;
+	color: #595959;
+	line-height: 25px;
+}
+.inside_font a
+{
+	text-decoration: none;
+	color: #595959;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+.plant
+{
+	height: 104px;
+	width: 412px;
+	margin-top: 8px;
+	margin-left: 10px;
+}
+.span
+{
+	height: 25px;
+	width: 412px;
+	border-bottom: dotted 1px #6c6c6c;
+}
+.brown
+{
+	float: left;
+	font-size: 12px;
+	color: #da7a30;
+}
+.detail
+{
+	float: right;
+	margin-right: 8px;
+	line-height: 25px;
+	color: #1a89f4;
+	font-size: 12px;
+	text-decoration: underline;
+}
+.menu_font
+{
+	float: right;
+	margin-right: 10px;
+	font-size: 12px;
+	color: #0273eb;
+	line-height: 25px;
+}
+.middle_menu
+{
+	float: left;
+	margin-left: 7px;
+	height: 229px;
+	width: 444px;
+	border-bottom: solid 1px #cccccc;
+	border-right: solid 1px #cccccc;
+}
+.middle_menu_L
+{
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	float: left;
+	height: 27px;
+	width: 346px;
+}
+.middle_menu_M
+{
+	float: left;
+	margin: 1px 1px 1px 0px;
+	height: 25px;
+	width: 346px;
+	background-image: url( "../image/blue_1px.jpg" );
+	background-repeat: repeat-x;
+}
+.pic_link
+{
+	height: 189px;
+	width: 432px;
+	background-repeat: no-repeat;
+	background-image: url( "../image/menu_big.jpg" );
+}
+.cCursor
+{
+	cursor: pointer;
+}
+.menu_R
+{
+	float: left;
+	margin-left: 6px;
+	height: 388px;
+	width: 239px;
+	border-bottom: solid 1px #cccccc;
+	border-right: solid 1px #cccccc;
+}
+.blue_long
+{
+	float: left;
+	width: 124px;
+	height: 29px;
+	background-image: url( "../image/blue_long.jpg" );
+}
+.menu2_R
+{
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	float: left;
+	height: 27px;
+	width: 115px;
+}
+.middle_menu_R
+{
+	float: left;
+	margin: 1px 1px 1px 0px;
+	height: 25px;
+	width: 115px;
+	background-image: url( "../image/blue_1px.jpg" );
+	background-repeat: repeat-x;
+}
+.long_1px
+{
+	height: 359px;
+	width: 238px;
+	background-image: url( "../image/cloud.jpg" );
+	background-repeat: no-repeat;
+}
+.down
+{
+	float: left;
+	margin-top: 7px;
+	width: 259px;
+	height: 151px;
+	border-bottom: solid 1px #cccccc;
+	border-right: solid 1px #cccccc;
+}
+.blue_longer
+{
+	float: left;
+	width: 138px;
+	height: 29px;
+	background-image: url( "../image/blue_longer.jpg" );
+}
+.middle_menu_LR
+{
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	float: left;
+	height: 27px;
+	width: 121px;
+}
+.middle_menu_LM
+{
+	float: left;
+	margin: 1px 1px 1px 0px;
+	height: 25px;
+	width: 120px;
+	background-image: url( '../image/blue_1px.jpg' );
+	background-repeat: repeat-x;
+}
+.log
+{
+	float: left;
+	margin-left: 7px;
+	margin-top: 7px;
+	height: 151px;
+	width: 444px;
+	border-bottom: solid 1px #cccccc;
+	border-right: solid 1px #cccccc;
+}
+.sin
+{
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	float: left;
+	height: 27px;
+	width: 346px;
+}
+.cos
+{
+	float: left;
+	margin: 1px 1px 1px 0px;
+	height: 25px;
+	width: 345px;
+	background-image: url( "../image/blue_1px.jpg" );
+	background-repeat: repeat-x;
+}
+.tan
+{
+	float: left;
+	margin-left: 18px;
+	margin-top: 16px;
+	height: 166px;
+	width: 202px;
+}
+.tan a
+{	
+	margin-top: 5px;
+	display:block;
+}
+.tan a img
+{	
+	border:0px;
+}
+
+.tan_sgqy
+{
+	height: 34px;
+	width: 202px;
+	background-image: url( "../image/sgqy.jpg" );
+	background-repeat: no-repeat;
+}
+.tan_slry
+{
+	margin-top: 10px;
+	height: 34px;
+	width: 202px;
+	background-image: url( "../image/slry.jpg" );
+	background-repeat: no-repeat;
+}
+.tan_zlaq
+{
+	margin-top: 10px;
+	height: 34px;
+	width: 202px;
+	background-image: url( "../image/zlaq.jpg" );
+	background-repeat: no-repeat;
+}
+.tan_gcjs
+{
+	margin-top: 10px;
+	height: 34px;
+	width: 202px;
+	background-image: url( "../image/gcjs.jpg" );
+	background-repeat: no-repeat;
+}
+.cot
+{
+	float: left;
+	margin-top: 13px;
+	margin-left: 7px;
+	width: 239px;
+	height: 97px;
+}
+.cot_gcjs
+{
+	float: left;
+	height: 97px;
+	width: 80px;
+}
+.cot_xgmm
+{
+	float: left;
+	margin-left: 9px;
+	height: 97px;
+	width: 66px;
+}
+.cot_zxfw
+{
+	float: left;
+	margin-left: 17px;
+	height: 97px;
+	width: 67px;
+}
+
+/*最下边*/
+.bottom
+{
+	margin-top: 7px;
+	width: 959px;
+	height: 74px;
+	background-image: url( "../image/bottom_1px.jpg" );
+	background-repeat: repeat-x;
+}
+.bottom_font
+{
+	padding-top: 17px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 12px;
+	color: #ffffff;
+}
+
+

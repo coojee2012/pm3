@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s0="http://www.bjca.org.cn/encodedTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.bjca.org.cn/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.bjca.org.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.bjca.org.cn/encodedTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <s:complexType name="CCertUserInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TradeGuid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="RuleSn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="UserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="CommonName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="PaperType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="PaperID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ProvinceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="LocalityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="UnitName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="DepartmentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="PostalAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="AgentMan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TelephoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="E_mail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="MobileTelephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="InsuranceNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="IcregistCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="LeagalPerson" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TaxRegisterID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue6" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue7" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue8" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue9" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendValue10" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="Envsn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TransName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TransTel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TransEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TransMobile" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TransPertype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TransPaperID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="TradeTime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute wsdl:arrayType="s:string[]" ref="soapenc:arrayType" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CredentialSoapHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="PassWord" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CertRequestReceiveSoapIn">
+    <wsdl:part name="userinfo" type="s0:CCertUserInfo" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertRequestReceiveSoapOut">
+    <wsdl:part name="CertRequestReceiveResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertRequestReceiveCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CertRequest_NetGen_BJCASoapIn">
+    <wsdl:part name="strPhoneNumber" type="s:string" />
+    <wsdl:part name="strUserCode" type="s:string" />
+    <wsdl:part name="UserP10" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertRequest_NetGen_BJCASoapOut">
+    <wsdl:part name="CertRequest_NetGen_BJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertRequest_NetGen_BJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CertUpdateRequest_NetGen_BJCASoapIn">
+    <wsdl:part name="strOldEnvsn" type="s:string" />
+    <wsdl:part name="UserP10" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertUpdateRequest_NetGen_BJCASoapOut">
+    <wsdl:part name="CertUpdateRequest_NetGen_BJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertUpdateRequest_NetGen_BJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CertResignRequest_NetGen_BJCASoapIn">
+    <wsdl:part name="strPhoneNumber" type="s:string" />
+    <wsdl:part name="strUserCode" type="s:string" />
+    <wsdl:part name="UserP10" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertResignRequest_NetGen_BJCASoapOut">
+    <wsdl:part name="CertResignRequest_NetGen_BJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertResignRequest_NetGen_BJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCert_NetGen_BJCASoapIn">
+    <wsdl:part name="strEnvsn" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCert_NetGen_BJCASoapOut">
+    <wsdl:part name="GetUserCert_NetGen_BJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCert_NetGen_BJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CertRequest_BJCA_TDXSoapIn">
+    <wsdl:part name="userinfo" type="s0:CCertUserInfo" />
+    <wsdl:part name="UserP10" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertRequest_BJCA_TDXSoapOut">
+    <wsdl:part name="CertRequest_BJCA_TDXResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertRequest_BJCA_TDXCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CertResignRequest_BJCA_TDXSoapIn">
+    <wsdl:part name="RulesSn" type="s:string" />
+    <wsdl:part name="strOldEnvsn" type="s:string" />
+    <wsdl:part name="UserP10" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertResignRequest_BJCA_TDXSoapOut">
+    <wsdl:part name="CertResignRequest_BJCA_TDXResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertResignRequest_BJCA_TDXCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CertUpdateRequest_BJCA_TDXSoapIn">
+    <wsdl:part name="RulesSn" type="s:string" />
+    <wsdl:part name="strOldEnvsn" type="s:string" />
+    <wsdl:part name="UserP10" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CertUpdateRequest_BJCA_TDXSoapOut">
+    <wsdl:part name="CertUpdateRequest_BJCA_TDXResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="CertUpdateRequest_BJCA_TDXCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCert_BJCA_TDXSoapIn">
+    <wsdl:part name="strEnvsn" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCert_BJCA_TDXSoapOut">
+    <wsdl:part name="GetUserCert_BJCA_TDXResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCert_BJCA_TDXCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="RevokeUserCert_BJCA_TDXSoapIn">
+    <wsdl:part name="userinfo" type="s0:CCertUserInfo" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RevokeUserCert_BJCA_TDXSoapOut">
+    <wsdl:part name="RevokeUserCert_BJCA_TDXResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="RevokeUserCert_BJCA_TDXCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDeviceBJCASoapIn">
+    <wsdl:part name="strEnvsn" type="s:string" />
+    <wsdl:part name="strDeviceId" type="s:string" />
+    <wsdl:part name="strKeySn" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDeviceBJCASoapOut">
+    <wsdl:part name="SetUserDeviceBJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDeviceBJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEnvsnCodeBJCASoapIn">
+    <wsdl:part name="strEnvsn" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEnvsnCodeBJCASoapOut">
+    <wsdl:part name="GetEnvsnCodeBJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetEnvsnCodeBJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCertStatusBJCASoapIn">
+    <wsdl:part name="strEnvsn" type="s:string" />
+    <wsdl:part name="strSignValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCertStatusBJCASoapOut">
+    <wsdl:part name="GetCertStatusBJCAResult" type="s0:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetCertStatusBJCACredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="BJCACertRequestSoapIn">
+    <wsdl:part name="strCertRequest" type="s:string" />
+    <wsdl:part name="strSigndata" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BJCACertRequestSoapOut">
+    <wsdl:part name="BJCACertRequestResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BJCACertRequestCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="BJCACertRequest_UserInfoSoapIn">
+    <wsdl:part name="strCertRequest" type="s:string" />
+    <wsdl:part name="strSigndata" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BJCACertRequest_UserInfoSoapOut">
+    <wsdl:part name="BJCACertRequest_UserInfoResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BJCACertRequest_UserInfoCredentialSoapHeader">
+    <wsdl:part name="CredentialSoapHeader" type="s0:CredentialSoapHeader" />
+  </wsdl:message>
+  <wsdl:portType name="BjcaCertServiceSoap">
+    <wsdl:operation name="CertRequestReceive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request Cert From BJCA.</wsdl:documentation>
+      <wsdl:input message="tns:CertRequestReceiveSoapIn" />
+      <wsdl:output message="tns:CertRequestReceiveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertRequest_NetGen_BJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CertRequest_NetGen_BJCA.</wsdl:documentation>
+      <wsdl:input message="tns:CertRequest_NetGen_BJCASoapIn" />
+      <wsdl:output message="tns:CertRequest_NetGen_BJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertUpdateRequest_NetGen_BJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CertUpdateRequest_NetGen_BJCA.</wsdl:documentation>
+      <wsdl:input message="tns:CertUpdateRequest_NetGen_BJCASoapIn" />
+      <wsdl:output message="tns:CertUpdateRequest_NetGen_BJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertResignRequest_NetGen_BJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CertUpdateRequest_NetGen_BJCA.</wsdl:documentation>
+      <wsdl:input message="tns:CertResignRequest_NetGen_BJCASoapIn" />
+      <wsdl:output message="tns:CertResignRequest_NetGen_BJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCert_NetGen_BJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetUserCert_NetGen_BJCA</wsdl:documentation>
+      <wsdl:input message="tns:GetUserCert_NetGen_BJCASoapIn" />
+      <wsdl:output message="tns:GetUserCert_NetGen_BJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertRequest_BJCA_TDX">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CertRequest_BJCA_TDX.</wsdl:documentation>
+      <wsdl:input message="tns:CertRequest_BJCA_TDXSoapIn" />
+      <wsdl:output message="tns:CertRequest_BJCA_TDXSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertResignRequest_BJCA_TDX">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CertResignRequest_BJCA_TDX.</wsdl:documentation>
+      <wsdl:input message="tns:CertResignRequest_BJCA_TDXSoapIn" />
+      <wsdl:output message="tns:CertResignRequest_BJCA_TDXSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertUpdateRequest_BJCA_TDX">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CertUpdateRequest_BJCA_TDX.</wsdl:documentation>
+      <wsdl:input message="tns:CertUpdateRequest_BJCA_TDXSoapIn" />
+      <wsdl:output message="tns:CertUpdateRequest_BJCA_TDXSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCert_BJCA_TDX">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetUserCert_BJCA_TDX</wsdl:documentation>
+      <wsdl:input message="tns:GetUserCert_BJCA_TDXSoapIn" />
+      <wsdl:output message="tns:GetUserCert_BJCA_TDXSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeUserCert_BJCA_TDX">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RevokeUserCert_BJCA_TDX</wsdl:documentation>
+      <wsdl:input message="tns:RevokeUserCert_BJCA_TDXSoapIn" />
+      <wsdl:output message="tns:RevokeUserCert_BJCA_TDXSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserDeviceBJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">SetUserDeviceBJCA</wsdl:documentation>
+      <wsdl:input message="tns:SetUserDeviceBJCASoapIn" />
+      <wsdl:output message="tns:SetUserDeviceBJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEnvsnCodeBJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetEnvsnCodeBJCA</wsdl:documentation>
+      <wsdl:input message="tns:GetEnvsnCodeBJCASoapIn" />
+      <wsdl:output message="tns:GetEnvsnCodeBJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertStatusBJCA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GetCertStatusBJCA</wsdl:documentation>
+      <wsdl:input message="tns:GetCertStatusBJCASoapIn" />
+      <wsdl:output message="tns:GetCertStatusBJCASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BJCACertRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BJCACertRequest</wsdl:documentation>
+      <wsdl:input message="tns:BJCACertRequestSoapIn" />
+      <wsdl:output message="tns:BJCACertRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BJCACertRequest_UserInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">BJCACertRequest_UserInfo</wsdl:documentation>
+      <wsdl:input message="tns:BJCACertRequest_UserInfoSoapIn" />
+      <wsdl:output message="tns:BJCACertRequest_UserInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BjcaCertServiceSoap" type="tns:BjcaCertServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CertRequestReceive">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertRequestReceive" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertRequestReceiveCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertRequest_NetGen_BJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertRequest_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertRequest_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertUpdateRequest_NetGen_BJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertUpdateRequest_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertUpdateRequest_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertResignRequest_NetGen_BJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertResignRequest_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertResignRequest_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCert_NetGen_BJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/GetUserCert_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:GetUserCert_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertRequest_BJCA_TDX">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertRequest_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertRequest_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertResignRequest_BJCA_TDX">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertResignRequest_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertResignRequest_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertUpdateRequest_BJCA_TDX">
+      <soap:operation soapAction="http://www.bjca.org.cn/CertUpdateRequest_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:CertUpdateRequest_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCert_BJCA_TDX">
+      <soap:operation soapAction="http://www.bjca.org.cn/GetUserCert_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:GetUserCert_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeUserCert_BJCA_TDX">
+      <soap:operation soapAction="http://www.bjca.org.cn/RevokeUserCert_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:RevokeUserCert_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserDeviceBJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/SetUserDeviceBJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:SetUserDeviceBJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEnvsnCodeBJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/GetEnvsnCodeBJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:GetEnvsnCodeBJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertStatusBJCA">
+      <soap:operation soapAction="http://www.bjca.org.cn/GetCertStatusBJCA" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:GetCertStatusBJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BJCACertRequest">
+      <soap:operation soapAction="http://www.bjca.org.cn/BJCACertRequest" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:BJCACertRequestCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BJCACertRequest_UserInfo">
+      <soap:operation soapAction="http://www.bjca.org.cn/BJCACertRequest_UserInfo" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:header message="tns:BJCACertRequest_UserInfoCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BjcaCertServiceSoap12" type="tns:BjcaCertServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CertRequestReceive">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertRequestReceive" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertRequestReceiveCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertRequest_NetGen_BJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertRequest_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertRequest_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertUpdateRequest_NetGen_BJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertUpdateRequest_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertUpdateRequest_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertResignRequest_NetGen_BJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertResignRequest_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertResignRequest_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCert_NetGen_BJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/GetUserCert_NetGen_BJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:GetUserCert_NetGen_BJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertRequest_BJCA_TDX">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertRequest_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertRequest_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertResignRequest_BJCA_TDX">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertResignRequest_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertResignRequest_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertUpdateRequest_BJCA_TDX">
+      <soap12:operation soapAction="http://www.bjca.org.cn/CertUpdateRequest_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:CertUpdateRequest_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCert_BJCA_TDX">
+      <soap12:operation soapAction="http://www.bjca.org.cn/GetUserCert_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:GetUserCert_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeUserCert_BJCA_TDX">
+      <soap12:operation soapAction="http://www.bjca.org.cn/RevokeUserCert_BJCA_TDX" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:RevokeUserCert_BJCA_TDXCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserDeviceBJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/SetUserDeviceBJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:SetUserDeviceBJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEnvsnCodeBJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/GetEnvsnCodeBJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:GetEnvsnCodeBJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertStatusBJCA">
+      <soap12:operation soapAction="http://www.bjca.org.cn/GetCertStatusBJCA" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:GetCertStatusBJCACredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BJCACertRequest">
+      <soap12:operation soapAction="http://www.bjca.org.cn/BJCACertRequest" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:BJCACertRequestCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BJCACertRequest_UserInfo">
+      <soap12:operation soapAction="http://www.bjca.org.cn/BJCACertRequest_UserInfo" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+        <soap12:header message="tns:BJCACertRequest_UserInfoCredentialSoapHeader" part="CredentialSoapHeader" use="encoded" encodingStyle="http://www.w3.org/2003/05/soap-encoding" namespace="http://www.bjca.org.cn/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="encoded" namespace="http://www.bjca.org.cn/SU" encodingStyle="http://www.w3.org/2003/05/soap-encoding" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BjcaCertService">
+    <wsdl:port name="BjcaCertServiceSoap" binding="tns:BjcaCertServiceSoap">
+      <soap:address location="http://userweb.bjca.org.cn/bjcacertservice/BJCAService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BjcaCertServiceSoap12" binding="tns:BjcaCertServiceSoap12">
+      <soap12:address location="http://userweb.bjca.org.cn/bjcacertservice/BJCAService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

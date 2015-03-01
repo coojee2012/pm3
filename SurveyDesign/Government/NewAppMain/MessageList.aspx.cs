@@ -1,0 +1,186 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Text;
+using Approve.RuleCenter;
+using Approve.Common;
+using Approve.EntityBase;
+
+public partial class Admin_main_MessageList : adminBasePage
+{
+    RCenter rc = new RCenter();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+           
+            this.btnDel.Attributes.Add("onclick", "return confirm('确认要删除么?')");
+            ControlBind();
+            ShowInfo();
+        }
+
+    }
+    private void ControlBind()
+    {
+        string fType = Request["ftype"];
+        if (fType == null || fType == "")
+        {
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.Append(" fid in (select fid from CF_Sys_Tree where FLevel=1 and fisdeleted=0 and ftype=" + fType + " and fnumber ='100') ");
+
+        sb.Append(" or fid in (select tt.fid from CF_Sys_Tree t,CF_Sys_Tree tt where t.fnumber=tt.fparent and ");
+        sb.Append(" t.FLevel=1 and t.fisdeleted=0 ");
+        sb.Append(" and tt.FLevel=2 and tt.fisdeleted=0 and tt.ftype=" + fType + " and t.fnumber = '100') ");
+        sb.Append(" or fid in (select t.fid from CF_Sys_Tree t,CF_Sys_Tree tt where t.fnumber=tt.fparent and ");
+        sb.Append(" t.FLevel=1 and t.fisdeleted=0 ");
+        sb.Append(" and tt.FLevel=2 and tt.fisdeleted=0 and tt.ftype=" + fType + " and tt.fnumber = '100001') ");
+
+        sb.Append(" or fid in (select ttt.fid from CF_Sys_Tree t,CF_Sys_Tree tt,CF_Sys_Tree ttt where t.fnumber=tt.fparent and tt.fnumber=ttt.fparent and ");
+        sb.Append(" t.FLevel=1 and t.fisdeleted=0 ");
+        sb.Append(" and tt.FLevel=2 and tt.fisdeleted=0 ");
+        sb.Append(" and ttt.FLevel=3 and ttt.fisdeleted=0 and ttt.ftype=" + fType + " and tt.fnumber = '100001') ");
+        sb.Append(" or fid in (select tt.fid from CF_Sys_Tree t,CF_Sys_Tree tt,CF_Sys_Tree ttt where t.fnumber=tt.fparent and tt.fnumber=ttt.fparent and ");
+        sb.Append(" t.FLevel=1 and t.fisdeleted=0 ");
+        sb.Append(" and tt.FLevel=2 and tt.fisdeleted=0 ");
+        sb.Append(" and ttt.FLevel=3 and ttt.fisdeleted=0 and ttt.ftype=" + fType + " and tt.fnumber = '100001') ");
+        sb.Append(" or fid in (select t.fid from CF_Sys_Tree t,CF_Sys_Tree tt,CF_Sys_Tree ttt where t.fnumber=tt.fparent and tt.fnumber=ttt.fparent and ");
+        sb.Append(" t.FLevel=1 and t.fisdeleted=0 ");
+        sb.Append(" and tt.FLevel=2 and tt.fisdeleted=0 ");
+        sb.Append(" and ttt.FLevel=3 and ttt.fisdeleted=0 and ttt.ftype=" + fType + " and tt.fnumber = '100001')  ");
+        sb.Append("  ");
+     
+        DataTable dt = rc.GetTable(EntityTypeEnum.EsTree, "FName,FNumber,forder,flevel,fparent", sb.ToString()); 
+        DataRow[] rows = dt.Select("flevel=1", "forder");
+        for (int i = 0; i < rows.Length; i++)
+        {
+            this.drop_FCol.Items.Add(new ListItem(rows[i]["FName"].ToString(), rows[i]["FNumber"].ToString()));
+            DataRow[] sRows = dt.Select("flevel=2 and fparent='" + rows[i]["FNumber"].ToString() + "'", "forder");
+            for (int j = 0; j < sRows.Length; j++)
+            {
+                this.drop_FCol.Items.Add(new ListItem("+--" + sRows[j]["FName"].ToString(), sRows[j]["FNumber"].ToString()));
+                DataRow[] sSRows = dt.Select("flevel=3 and fparent='" + sRows[j]["FNumber"].ToString() + "'", "forder");
+                for (int k = 0; k < sSRows.Length; k++)
+                {
+                    this.drop_FCol.Items.Add(new ListItem("+----" + sSRows[k]["FName"].ToString(), sSRows[k]["FNumber"].ToString()));
+                }
+            }
+        }
+        this.drop_FCol.Items.Insert(0, new ListItem("请选择", ""));
+    }
+    private string GetCon()
+    {
+        StringBuilder sb = new StringBuilder();
+        if (this.text_FName.Text != "")
+        {
+            sb.Append(" and nt.fname like '%");
+            sb.Append(this.text_FName.Text + "%' ");
+        }
+        if (this.drop_FCol.SelectedValue != "")
+        {
+            sb.Append(" and nt.fid in (");
+            sb.Append("select fnewsid from cf_news_col where FColNumber='" + this.drop_FCol.SelectedValue + "' ) ");
+        }
+        else
+        {
+            sb.Append(" and nt.fid in (");
+            sb.Append(" select fnewsid from cf_news_col where FColNumber in  ");
+            sb.Append(" (select fnumber from cf_sys_tree where fparent='100' and fisdeleted=0))");
+        }
+        return sb.ToString();
+
+    }
+    private void ShowInfo()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(" select nt.fid,nt.FName,nt.FCount,nt.FPubTime,nt.FOrder,nt.FState, ");
+        sb.Append(" (select count(1) from CF_News_RecUnit where FNewsId=nt.fid) fpubcount");
+        sb.Append(" from CF_News_Title nt where 1=1");
+        sb.Append(GetCon());
+        sb.Append(" order by nt.forder,nt.fpubtime desc");
+        this.Pager1.sql = sb.ToString();
+        this.Pager1.className = "RCenter";
+        this.Pager1.sql = sb.ToString();
+        this.Pager1.pagecount = 20;
+        this.Pager1.controltopage = "News_List";
+        this.Pager1.controltype = "DataGrid";
+        this.Pager1.dataBind();
+    }
+    protected void News_List_ItemDataBound(object sender, DataGridItemEventArgs e)
+    {
+        if (e.Item.ItemIndex > -1)
+        {
+            string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
+            string fState = e.Item.Cells[e.Item.Cells.Count - 2].Text;
+            e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
+            CheckBox IsPub = (CheckBox)e.Item.Cells[e.Item.Cells.Count - 8].Controls[1];
+            if (fState == "1")
+            {
+                IsPub.Checked = true;
+            }
+            else
+            {
+                IsPub.Checked = false;
+            }
+            e.Item.Cells[5].Text = rc.GetNewsCol(fid);
+
+            e.Item.Cells[2].Text = "<a href='#' class='link3' onclick=\"showApproveWindow('NewsAdd.aspx?fid=" + fid + "',896,856);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[e.Item.Cells.Count - 4].Text = "<a href='#' class='link3' onclick=\"showApproveWindow('EntList.aspx?fnewsid=" + fid + "&ftype=" + Request["ftype"] + "',680,680);\">" + e.Item.Cells[e.Item.Cells.Count - 4].Text + "</a>";
+            e.Item.Cells[e.Item.Cells.Count - 5].Text = "<a href='#' class='link3' onclick=\"showApproveWindow('newPubTree.aspx?fnewsid=" + fid + "&ftype=" + Request["ftype"] + "',250,600);\">发布栏目</a>";
+        }
+    }
+    protected void News_List_ItemCommand(object source, DataGridCommandEventArgs e)
+    {
+        if (e.Item.ItemIndex > -1)
+        {
+            pageTool tool = new pageTool(this.Page);
+            string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
+            string fSate = "0";
+            string fOrder = "0";
+            if (e.CommandName == "Save")
+            {
+                CheckBox IsPub = (CheckBox)e.Item.Cells[e.Item.Cells.Count - 8].Controls[1];
+                TextBox Forder = (TextBox)e.Item.Cells[e.Item.Cells.Count - 7].Controls[1];
+                if (IsPub.Checked == true)
+                {
+                    fSate = "1";
+                }
+                if (Forder.Text != "")
+                {
+                    fOrder = Forder.Text;
+                }
+            }
+            if (rc.PExcute("update CF_News_Title set fstate=" + fSate + ",forder=" + fOrder + " where fid='" + fid + "'"))
+            {
+                tool.showMessage("保存成功");
+                ShowInfo();
+            }
+            else
+            {
+                tool.showMessage("保存失败");
+            }
+        }
+    }
+    protected void btnQuery_Click(object sender, EventArgs e)
+    {
+        ShowInfo();
+    }
+    protected void btnReload_Click(object sender, EventArgs e)
+    {
+        ShowInfo();
+    }
+    protected void btnDel_Click(object sender, EventArgs e)
+    {
+        pageTool tool = new pageTool(this.Page);
+        tool.DelInfoFromGrid(this.News_List, EntityTypeEnum.EnTitle, "RCenter", "DelNews");
+        ShowInfo();
+    }
+}

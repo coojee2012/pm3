@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53FCE8E4-268C-4020-AD94-11196A5A0BFA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EgovaBLL</RootNamespace>
+    <AssemblyName>EgovaBLL</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EgovaLog.cs" />
+    <Compile Include="MyPageTool.cs" />
+    <Compile Include="SConvert.cs" />
+    <Compile Include="WFApp.cs" />
+    <Compile Include="WorkFlowApp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="WYApp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EgovaDAO\EgovaDAO.csproj">
+      <Project>{4010bcec-4eea-4c77-9184-72b1af975f9d}</Project>
+      <Name>EgovaDAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middle\Entity\ENTITYBASE\EntityBase.csproj">
+      <Project>{a5676341-d5c3-456f-943e-14d7d8f45883}</Project>
+      <Name>EntityBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middle\Entity\EntityCenter\EntityCenter.csproj">
+      <Project>{70f3229c-33c9-4a5e-8ccf-c9c223ac218f}</Project>
+      <Name>EntityCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middle\Entity\EntityQuali\EntityQuali.csproj">
+      <Project>{77356ec7-801d-4826-bafe-de0e2e537776}</Project>
+      <Name>EntityQuali</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middle\RuleBase\RuleBase.csproj">
+      <Project>{71adb301-fd30-46d8-be51-6b4eb7f954af}</Project>
+      <Name>RuleBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middle\Rule\RuleAppCode\RuleAppCode.csproj">
+      <Project>{11ddcd5c-5b5f-4658-a174-8dbe255df4d8}</Project>
+      <Name>RuleAppCode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Middle\Rule\RuleCenter\RuleCenter.csproj">
+      <Project>{1a9a9632-151f-411f-9b65-95ef20b7230e}</Project>
+      <Name>RuleCenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /y $(TargetDir)$(TargetFileName)  $(SolutionDir)\SurveyDesign\bin</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

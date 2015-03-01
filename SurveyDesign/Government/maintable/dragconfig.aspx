@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dragconfig.aspx.cs" Inherits="Government_maintable_dragconfig" %>

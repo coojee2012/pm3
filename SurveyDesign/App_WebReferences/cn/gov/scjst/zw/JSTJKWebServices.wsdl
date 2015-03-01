@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetDataS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datasrc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="whereif" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTABLE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="whereif" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LX" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DataSrcName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTABLEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTABLEResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableForPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="T_TABLE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="whereif" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LX" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BH" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="currentpage" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pagesize" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableForPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableForPageResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pagecount" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Rows" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTABLE_NEW">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="T_TABLE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="whereif" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LX" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BH" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTABLE_NEWResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTABLE_NEWResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSrc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="JKMC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSrcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSrcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJkInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJkInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJkInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJkBInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJkBInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJkBInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJBInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJBInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJBInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCHECKCONN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KEYVALUE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCHECKCONNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCHECKCONNResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckZh">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_src" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckZhResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckZhResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSrcForXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataSrcForXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataSrcForXmlResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableForXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Where" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LX" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Datasrc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableForXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableForXmlResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReadXmlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDataSSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataS" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTABLESoapIn">
+    <wsdl:part name="parameters" element="tns:GetTABLE" />
+  </wsdl:message>
+  <wsdl:message name="GetTABLESoapOut">
+    <wsdl:part name="parameters" element="tns:GetTABLEResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableForPageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableForPage" />
+  </wsdl:message>
+  <wsdl:message name="GetTableForPageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableForPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTABLE_NEWSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTABLE_NEW" />
+  </wsdl:message>
+  <wsdl:message name="GetTABLE_NEWSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTABLE_NEWResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSrcSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSrc" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSrcSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSrcResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJkInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJkInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetJkInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJkInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJkBInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJkBInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetJkBInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJkBInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJBInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJBInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetJBInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJBInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCHECKCONNSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCHECKCONN" />
+  </wsdl:message>
+  <wsdl:message name="GetCHECKCONNSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCHECKCONNResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckZhSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckZh" />
+  </wsdl:message>
+  <wsdl:message name="CheckZhSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckZhResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSrcForXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataSrcForXml" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSrcForXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataSrcForXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableForXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableForXml" />
+  </wsdl:message>
+  <wsdl:message name="GetTableForXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableForXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReadXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:ReadXml" />
+  </wsdl:message>
+  <wsdl:message name="ReadXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:ReadXmlResponse" />
+  </wsdl:message>
+  <wsdl:portType name="JSTJKWebServiceSoap">
+    <wsdl:operation name="GetDataS">
+      <wsdl:input message="tns:GetDataSSoapIn" />
+      <wsdl:output message="tns:GetDataSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTABLE">
+      <wsdl:input message="tns:GetTABLESoapIn" />
+      <wsdl:output message="tns:GetTABLESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableForPage">
+      <wsdl:input message="tns:GetTableForPageSoapIn" />
+      <wsdl:output message="tns:GetTableForPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTABLE_NEW">
+      <wsdl:input message="tns:GetTABLE_NEWSoapIn" />
+      <wsdl:output message="tns:GetTABLE_NEWSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSrc">
+      <wsdl:input message="tns:GetDataSrcSoapIn" />
+      <wsdl:output message="tns:GetDataSrcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJkInfo">
+      <wsdl:input message="tns:GetJkInfoSoapIn" />
+      <wsdl:output message="tns:GetJkInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJkBInfo">
+      <wsdl:input message="tns:GetJkBInfoSoapIn" />
+      <wsdl:output message="tns:GetJkBInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJBInfo">
+      <wsdl:input message="tns:GetJBInfoSoapIn" />
+      <wsdl:output message="tns:GetJBInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCHECKCONN">
+      <wsdl:input message="tns:GetCHECKCONNSoapIn" />
+      <wsdl:output message="tns:GetCHECKCONNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckZh">
+      <wsdl:input message="tns:CheckZhSoapIn" />
+      <wsdl:output message="tns:CheckZhSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSrcForXml">
+      <wsdl:input message="tns:GetDataSrcForXmlSoapIn" />
+      <wsdl:output message="tns:GetDataSrcForXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableForXml">
+      <wsdl:input message="tns:GetTableForXmlSoapIn" />
+      <wsdl:output message="tns:GetTableForXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXml">
+      <wsdl:input message="tns:ReadXmlSoapIn" />
+      <wsdl:output message="tns:ReadXmlSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JSTJKWebServiceSoap" type="tns:JSTJKWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataS">
+      <soap:operation soapAction="http://tempuri.org/GetDataS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTABLE">
+      <soap:operation soapAction="http://tempuri.org/GetTABLE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableForPage">
+      <soap:operation soapAction="http://tempuri.org/GetTableForPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTABLE_NEW">
+      <soap:operation soapAction="http://tempuri.org/GetTABLE_NEW" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSrc">
+      <soap:operation soapAction="http://tempuri.org/GetDataSrc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJkInfo">
+      <soap:operation soapAction="http://tempuri.org/GetJkInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJkBInfo">
+      <soap:operation soapAction="http://tempuri.org/GetJkBInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJBInfo">
+      <soap:operation soapAction="http://tempuri.org/GetJBInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCHECKCONN">
+      <soap:operation soapAction="http://tempuri.org/GetCHECKCONN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckZh">
+      <soap:operation soapAction="http://tempuri.org/CheckZh" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSrcForXml">
+      <soap:operation soapAction="http://tempuri.org/GetDataSrcForXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableForXml">
+      <soap:operation soapAction="http://tempuri.org/GetTableForXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXml">
+      <soap:operation soapAction="http://tempuri.org/ReadXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JSTJKWebServiceSoap12" type="tns:JSTJKWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataS">
+      <soap12:operation soapAction="http://tempuri.org/GetDataS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTABLE">
+      <soap12:operation soapAction="http://tempuri.org/GetTABLE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableForPage">
+      <soap12:operation soapAction="http://tempuri.org/GetTableForPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTABLE_NEW">
+      <soap12:operation soapAction="http://tempuri.org/GetTABLE_NEW" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSrc">
+      <soap12:operation soapAction="http://tempuri.org/GetDataSrc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJkInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetJkInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJkBInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetJkBInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJBInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetJBInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCHECKCONN">
+      <soap12:operation soapAction="http://tempuri.org/GetCHECKCONN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckZh">
+      <soap12:operation soapAction="http://tempuri.org/CheckZh" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataSrcForXml">
+      <soap12:operation soapAction="http://tempuri.org/GetDataSrcForXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableForXml">
+      <soap12:operation soapAction="http://tempuri.org/GetTableForXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXml">
+      <soap12:operation soapAction="http://tempuri.org/ReadXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JSTJKWebService">
+    <wsdl:port name="JSTJKWebServiceSoap" binding="tns:JSTJKWebServiceSoap">
+      <soap:address location="http://zw.scjst.gov.cn:88/jstjkwebservice/JSTJKWebServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JSTJKWebServiceSoap12" binding="tns:JSTJKWebServiceSoap12">
+      <soap12:address location="http://zw.scjst.gov.cn:88/jstjkwebservice/JSTJKWebServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

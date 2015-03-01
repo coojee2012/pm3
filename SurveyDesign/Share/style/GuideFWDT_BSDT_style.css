@@ -1,0 +1,40 @@
+﻿BODY {PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #0085c2; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px}
+IMG {BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none}
+UL {PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px}
+LI {PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px}
+#DT_bg {POSITION: absolute; MARGIN: -305px 0px 0px -480px; WIDTH: 960px; BACKGROUND: url(../image/DT_bg.png) no-repeat; HEIGHT: 610px; TOP: 50%; LEFT: 50%}
+#zsp {POSITION: absolute; MARGIN-TOP: 158px; WIDTH: 84px; HEIGHT: 126px; MARGIN-LEFT: -303px}
+#zspbg {Z-INDEX: 100; POSITION: absolute; FILTER: Alpha(Opacity=50); BACKGROUND-COLOR: #000000; MARGIN-TOP: 5px; WIDTH: 950px; HEIGHT: 600px; VISIBILITY: hidden; MARGIN-LEFT: -303px}
+#zspover {Z-INDEX: 200; POSITION: absolute; MARGIN-TOP: 159px; WIDTH: 109px; HEIGHT: 125px; VISIBILITY: hidden; MARGIN-LEFT: -303px}
+#menu {MARGIN-TOP: 163px; MARGIN-LEFT: 308px}
+.imcm .imsc {POSITION: relative}
+.imcm .imsubc {POSITION: absolute; VISIBILITY: hidden}
+.imcm LI {FLOAT: left}
+.imcm UL UL LI {FLOAT: none !important}
+.imcm A {POSITION: relative; DISPLAY: block}
+#imenus0 LI UL {BORDER-BOTTOM: #004b78 1px solid; BORDER-LEFT: #004b78 1px solid; BACKGROUND-COLOR: #004b78; BORDER-TOP: #004b78 1px solid; BORDER-RIGHT: #004b78 1px solid}
+#imenus0 LI .nav {TEXT-ALIGN: center; PADDING-BOTTOM: 0px; LINE-HEIGHT: 27px; PADDING-LEFT: 0px;  PADDING-RIGHT: 0px; FONT-FAMILY: Verdana, "微软雅黑", "宋体"; COLOR: #ffffff; FONT-SIZE: 14px; FONT-WEIGHT: bold; MARGIN-RIGHT: 43px; margin-left:-19px; margin-top:-3px; TEXT-DECORATION: none; PADDING-TOP: 0px}
+#imenus0 LI .nav:hover {BACKGROUND-IMAGE: url(../image/menu_bg_over.gif); BACKGROUND-REPEAT:repeat-x; COLOR: #ffffff; TEXT-DECORATION: none}
+#imenus0 LI LI {BORDER-BOTTOM: #004b78 1px solid; BORDER-LEFT: #004b78 1px solid; BACKGROUND: url(../image/list_dot.gif) #00a8e5 no-repeat 100% 50%; BORDER-RIGHT: #004b78 1px solid}
+#imenus0 LI LI .submenuTitle {BORDER-BOTTOM: #004b78 1px solid; TEXT-ALIGN: center; PADDING-BOTTOM: 3px; LINE-HEIGHT: 16px; BACKGROUND-COLOR: #008ccd; WIDTH: 190px; DISPLAY: block; FONT-FAMILY: Verdana, "微软雅黑", "宋体"; COLOR: #ffff00; FONT-SIZE: 12px; BORDER-TOP: #004b78 1px solid; FONT-WEIGHT: bold; TEXT-DECORATION: none; PADDING-TOP: 5px}
+#imenus0 LI LI .submenu1 {PADDING-BOTTOM: 3px; LINE-HEIGHT: 16px; PADDING-LEFT: 24px; WIDTH: 156px; PADDING-RIGHT: 10px; DISPLAY: block; FONT-FAMILY: Verdana, "微软雅黑", "宋体"; BACKGROUND: url(../image/list_icon.gif) no-repeat 6px 7px; COLOR: #ffffff; FONT-SIZE: 12px; TEXT-DECORATION: none; PADDING-TOP: 5px}
+#imenus0 LI LI .submenu1:hover {BACKGROUND-COLOR: #004b78; TEXT-DECORATION: none}
+#imenus0 LI LI UL {BORDER-BOTTOM: #004b78 1px solid; BORDER-LEFT: #004b78 1px solid; BACKGROUND-COLOR: #004b78; BORDER-TOP: #004b78 2px solid; BORDER-RIGHT: #004b78 1px solid}
+#imenus0 LI LI LI {BACKGROUND-IMAGE: none; BORDER-BOTTOM: #004b78 1px solid; BORDER-LEFT: #004b78 1px solid; BACKGROUND-COLOR: #00bdf2; BORDER-RIGHT: #004b78 1px solid}
+#imenus0 LI LI LI .submenu2 {PADDING-BOTTOM: 3px; LINE-HEIGHT: 16px; PADDING-LEFT: 24px; WIDTH: 156px; PADDING-RIGHT: 5px; DISPLAY: block; FONT-FAMILY: Verdana, "微软雅黑", "宋体"; BACKGROUND: url(../image/list_icon.gif) no-repeat 6px 7px; COLOR: #ffffff; FONT-SIZE: 12px; TEXT-DECORATION: none; PADDING-TOP: 5px}
+#imenus0 LI LI LI .submenu2:hover {BACKGROUND-COLOR: #004b78; TEXT-DECORATION: none}
+#imenus0 LI LI LI .submenu2 SPAN {FONT-FAMILY: Verdana, "微软雅黑", "宋体"; COLOR: #ffff00; FONT-SIZE: 12px; FONT-WEIGHT: bold}
+#BS {POSITION: absolute; MARGIN: -305px 0px 0px -480px; WIDTH: 960px; HEIGHT: 610px; TOP: 50%; LEFT: 50%}
+#CJ {POSITION: absolute; WIDTH: 960px; HEIGHT: 610px}
+#BStitle {Z-INDEX: 10; POSITION: absolute; MARGIN: 192px auto auto 290px; TEXT-DECORATION: none}
+#BStitle H3 {PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px; PADDING-LEFT: 10px; WIDTH: 380px; PADDING-RIGHT: 10px; FONT-FAMILY: Verdana, "微软雅黑", "宋体"; COLOR: #ffffff; FONT-SIZE: 14px; FONT-WEIGHT: bold; TEXT-DECORATION: none; PADDING-TOP: 0px}
+#BS_zspover {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 115px; VISIBILITY: hidden; MARGIN-LEFT: 5px}
+#BS_zspbg {Z-INDEX: 40; POSITION: absolute; FILTER: Alpha(Opacity=50); BACKGROUND-COLOR: #000000; MARGIN-TOP: 5px; WIDTH: 950px; HEIGHT: 600px; VISIBILITY: hidden; MARGIN-LEFT: 5px}
+#BS_bljg {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 172px; WIDTH: 73px; HEIGHT: 112px; VISIBILITY: hidden; MARGIN-LEFT: 179px}
+#BS_bszn {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 172px; WIDTH: 73px; HEIGHT: 112px; VISIBILITY: hidden; MARGIN-LEFT: 727px}
+#BS_bgxz {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 271px; WIDTH: 81px; HEIGHT: 197px; VISIBILITY: hidden; MARGIN-LEFT: 101px}
+#BS_zxsq {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 278px; WIDTH: 61px; HEIGHT: 160px; VISIBILITY: hidden; MARGIN-LEFT: 208px}
+#BS_ztcx {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 299px; WIDTH: 150px; HEIGHT: 151px; VISIBILITY: hidden; MARGIN-LEFT: 266px}
+#BS_jgfk {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 299px; WIDTH: 150px; HEIGHT: 151px; VISIBILITY: hidden; MARGIN-LEFT: 416px}
+#BS_bmwd {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 299px; WIDTH: 151px; HEIGHT: 151px; VISIBILITY: hidden; MARGIN-LEFT: 566px}
+#BS_flfg {Z-INDEX: 50; POSITION: absolute; MARGIN-TOP: 271px; WIDTH: 101px; HEIGHT: 193px; VISIBILITY: hidden; MARGIN-LEFT: 762px}

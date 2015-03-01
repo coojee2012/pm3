@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>                                       
+ <data_type>xml</data_type>                     
+ <pie>                                          
+   <x>400</x>                                   
+   <y>120</y>                                   
+   <radius>100</radius>                         
+   <inner_radius>30</inner_radius>               
+   <height>10</height>                           
+   <angle>35</angle>                             
+   <alpha>90</alpha>
+ </pie>                                         
+ <animation>                                    
+   <start_time>1</start_time>                   
+   <start_radius>100%</start_radius>
+   <start_effect>strong</start_effect>          
+   <pull_out_time>1</pull_out_time>           
+ </animation>                                   
+ <data_labels>                                  
+   <radius>20</radius>                          
+   <text_size>12</text_size>
+   <text_color>#000000</text_color>             
+   <line_color>#000000</line_color>
+   <show><![CDATA[{title}{percents}%]]></show>
+   <hide_labels_percent>0</hide_labels_percent>
+ </data_labels>                                 
+                                                  
+ <decimals_separator>.</decimals_separator>
+
+ <legend>                                       
+   <enabled>true</enabled>                      
+   <x>20</x>                                    
+   <y>20</y>                                    
+   <width>350</width>                           
+   <max_columns>1</max_columns>                 
+   <color>#FFFFFF</color>                       
+   <text_color>#000000</text_color>             
+   <text_size>12</text_size>                    
+   <spacing>2</spacing>                         
+   <margins/>                          
+   <align>left</align>                          
+   <key>                                        
+	 <size>16</size>                            
+	 <border_color/>              
+   </key>                                       
+   <values>                                     
+	 <enabled>true</enabled>                    
+	 <width/>                            
+	 <text><![CDATA[{value}]]></text>                  
+   </values>                                    
+ </legend>                                      
+</settings>

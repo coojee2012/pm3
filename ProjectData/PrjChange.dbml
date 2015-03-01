@@ -1,0 +1,1300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="BaseProjectInformation" EntityNamespace="ProjectData.ChangeDB" Class="PrjChangeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.11\sql2005;Initial Catalog=BaseProjectInformation;Persist Security Info=True;User ID=sa" SettingsObjectName="ProjectData.Properties.Settings" SettingsPropertyName="BaseProjectInformationConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CH_Construct_ChangeRecord" Member="CH_Construct_ChangeRecord">
+    <Type Name="CH_Construct_ChangeRecord">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FChangeContent" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FCertiPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDeferTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOldName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FOldBaseInfoName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FNewBaseInfoname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FOldBaseName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FNewBaseName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FChanageName" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FNewName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Construct_UserInfo" Member="CH_Construct_UserInfo">
+    <Type Name="CH_Construct_UserInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpCode" Type="System.String" DbType="Char(18)" CanBeNull="true" />
+      <Column Name="FBaseInfoID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FSex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPersonTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBirthDay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FGraduateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FGraduateSchool" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSpecialty" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FIDCardTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FCall" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FTEL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FDegreeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="funit" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FCerLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrintNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FRegisterNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FPubDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEmail" Type="System.String" DbType="VarChar(68)" CanBeNull="true" />
+      <Column Name="FCerContent" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FGetDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_BadAction" Member="CH_Emp_BadAction">
+    <Type Name="CH_Emp_BadAction">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FFact" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FProjectAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAppTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_BaseInfo" Member="CH_Emp_BaseInfo">
+    <Type Name="CH_Emp_BaseInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FSex" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="FPersonTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBirthDay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FGraduateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FGraduateSchool" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSpecialty" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FIDCardTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FCall" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FTEL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FDegreeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="funit" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FEmail" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FWorkSpecialId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FSafetyNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FIsSafety" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FRState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FWState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_BaseInfoOther" Member="CH_Emp_BaseInfoOther">
+    <Type Name="CH_Emp_BaseInfoOther">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FSystemCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FPostCode" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FIsSafety" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FNation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRegisfNation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSafetyNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FRState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FBEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPubDeptName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_ConstinueStudy" Member="CH_Emp_ConstinueStudy">
+    <Type Name="CH_Emp_ConstinueStudy">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FStudyTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FContent" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_CreditRating" Member="CH_Emp_CreditRating">
+    <Type Name="CH_Emp_CreditRating">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FSource" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAcquisitionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTxt1" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt2" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt3" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt4" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt5" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt6" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt7" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt8" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FDate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFloat1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_GoodAction" Member="CH_Emp_GoodAction">
+    <Type Name="CH_Emp_GoodAction">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FAccpetTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDesc" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FLevel" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_Ini" Member="CH_Emp_Ini">
+    <Type Name="CH_Emp_Ini">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSpecialtyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSpecialtyName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBz" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FSex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBirthDay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FApprovalTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPubDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FBaseName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_RegistSpecial" Member="CH_Emp_RegistSpecial">
+    <Type Name="CH_Emp_RegistSpecial">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FSpecialTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSpecialNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FGetTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FGetDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppLevelId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPrime" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FReMark" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_ApplyEmployee" Member="CH_Ent_ApplyEmployee">
+    <Type Name="CH_Ent_ApplyEmployee">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPersonTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSpecialId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_BackupCerti" Member="CH_Ent_BackupCerti">
+    <Type Name="CH_Ent_BackupCerti">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FIsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_BadAction" Member="CH_Ent_BadAction">
+    <Type Name="CH_Ent_BadAction">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FProjectId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FProjectName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FRegionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FScore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFact" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FRule" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FWay" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FHTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDeptIdName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FAppDeptName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_BadActionCode" Member="CH_Ent_BadActionCode">
+    <Type Name="CH_Ent_BadActionCode">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FACtionId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FActionCode" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FACtionCodeId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FACtionDesc" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FScore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_BaseinfoChange" Member="CH_Ent_BaseinfoChange">
+    <Type Name="CH_Ent_BaseinfoChange">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FOldEntName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FOldAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FOldRegistAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FOldEntCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOldRegistFund" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FOldRegistFundUnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOldLicence" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FOldEntTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOldJuridical" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FOldJuridicalFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FOldJuridicalTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOldManager" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FOldManagerFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FOldManagerTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOldTechnic" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FOldTechnicFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FOldTechnicTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FChangeTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FNewEntName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FNewAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FNewRegistAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FNewEntCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FNewRegistFund" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FNewRegistFundUnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FNewLicence" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FNewEntTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FNewJuridical" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FNewJuridicalFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FNewJuridicalTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FNewManager" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FNewManagerFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FNewManagerTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FNewTechnic" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FNewTechnicFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FNewTechnicTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_BaseInfoOther" Member="CH_Ent_BaseInfoOther">
+    <Type Name="CH_Ent_BaseInfoOther">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FEntType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FWorkAddress" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FManager" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="FDesc" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FAppPerson" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FAppTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FPostCode" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="FFLicence" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FCertiLevel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FOtherCerti" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_CreditRating" Member="CH_Ent_CreditRating">
+    <Type Name="CH_Ent_CreditRating">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FEvaluationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEvaluationDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTrustworthy" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FOther" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FSource" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAcquisitionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTxt1" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt2" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt3" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt4" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt5" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt6" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt7" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FTxt8" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FDate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFloat1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_Device" Member="CH_Ent_Device">
+    <Type Name="CH_Ent_Device">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FDeviceCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FModel" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FTypeId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTech" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FPower" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FUnit" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="FOldValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FNowValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FIsSelf" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_GoodAchieve" Member="CH_Ent_GoodAchieve">
+    <Type Name="CH_Ent_GoodAchieve">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FProjectId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLevel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FFinishTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOperDeptName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FMemo" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_GoodAction" Member="CH_Ent_GoodAction">
+    <Type Name="CH_Ent_GoodAction">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FProjectId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FProjectName" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FFileNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FGetDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDesc" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FScore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FPDeptId" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDeptId" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FDeptIdName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_Leader" Member="CH_Ent_Leader">
+    <Type Name="CH_Ent_Leader">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPersonTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FSex" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="FBirthDay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDegreeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FGraduateSchool" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSpecialty" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FGraduateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FWorkYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FCall" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FAward" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FBad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FIDCardTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FIsSafety" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FSafetyNo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FGetTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_QualiCerti" Member="CH_Ent_QualiCerti">
+    <Type Name="CH_Ent_QualiCerti">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FCertiType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAppDeptName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FLevelName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FContent" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="FIsValid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsTemp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FEntAddress" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FEntCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEntRegistFund" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FEntFundType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntLicence" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="FEntTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntJuridical" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FEntJuridicalFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FEntJuridicalTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntManager" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FEntManagerFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FEntManagerTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntTechnic" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FEntTechnicFunction" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FEntTechnicTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_QualiCertiTrade" Member="CH_Ent_QualiCertiTrade">
+    <Type Name="CH_Ent_QualiCertiTrade">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FCertiId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FListId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FListName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTypeName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FLevelId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FLevelName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLeadId" Type="System.String" DbType="VarChar(360)" CanBeNull="true" />
+      <Column Name="FLeadName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsBase" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAppDeptName" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FAppTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCancelDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsTemp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FContent" Type="System.String" DbType="VarChar(1500)" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_SafetyCerti" Member="CH_Ent_SafetyCerti">
+    <Type Name="CH_Ent_SafetyCerti">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAppDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAppDeptName" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="FAppDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsValid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAllowRange" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FCopyNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FEntAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FEntTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntManager" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_BaseInfo" Member="CH_Prj_BaseInfo">
+    <Type Name="CH_Prj_BaseInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjNo" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="FPrjName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FAddressDept" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FAllAddress" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FArea" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FUnit1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSize" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FUnit2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FNature" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FBNature" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FAccord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FNowNature" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLandPrpy" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FLandPrpy1" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FLandStatus" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsOver" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOverTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Certi" Member="CH_Prj_Certi">
+    <Type Name="CH_Prj_Certi">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPriItem" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FSize" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FUnit1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FArea" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FUnit2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAccord" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FNature" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FNatureName" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="FBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FContPrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="FBuildNo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBuildName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FDesNo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FDesName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FCstrNo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCstrName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FSpervNo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FSpervName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FAttachment" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FText" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FText1" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FText2" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FText3" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDeptName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FOpenDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Change" Member="CH_Prj_Change">
+    <Type Name="CH_Prj_Change">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItemName" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FTxt7" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FTxt2" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FTxt3" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FTxt4" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FTxt5" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FTxt6" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FChangeNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTxt1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FChangeTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FMoney" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FMoneyUnit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FContent1" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="FFileNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FAppTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FPubDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_ContRemark" Member="CH_Prj_ContRemark">
+    <Type Name="CH_Prj_ContRemark">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FItemId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPartyAA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FPartyA" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPartyB" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FContent1" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FContDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FQualStand" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FContPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FSignDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSize" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FBMan" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FContent2" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FContNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FRemarkNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FDept" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FMan" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FFillMan" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FPrjBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPrjEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FText1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FText2" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Data" Member="CH_Prj_Data">
+    <Type Name="CH_Prj_Data">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPriItemId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTxt1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt3" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTXt4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt5" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt6" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt7" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FFloat1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FInt1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FInt2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FInt3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate3" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate4" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate5" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate6" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDate7" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTxt10" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FTxt11" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FTxt12" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FDeptName" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTxt8" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt9" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt13" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_DocuInfo" Member="CH_Prj_DocuInfo">
+    <Type Name="CH_Prj_DocuInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FProcId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FDeptName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFileNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FResult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FContent" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FPubDept" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Emp" Member="CH_Prj_Emp">
+    <Type Name="CH_Prj_Emp">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItem" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FEntId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FSex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPersonTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIDCardTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FDegreeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCall" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTechId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FFunction" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="FMajor" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FEmpBaseInfo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FDataFrom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Ent" Member="CH_Prj_Ent">
+    <Type Name="CH_Prj_Ent">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FProcId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FEntType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDataFrom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCertiId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_ExPrLand" Member="CH_Prj_ExPrLand">
+    <Type Name="CH_Prj_ExPrLand">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FItemName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FManager" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FArea" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FPubMedia" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FPubTime1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FWorkMethod" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FMoney" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FPubDept" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FPubTime2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_File" Member="CH_Prj_File">
+    <Type Name="CH_Prj_File">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FProcId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FManageType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrjListId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_FileOther" Member="CH_Prj_FileOther">
+    <Type Name="CH_Prj_FileOther">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjFileId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FFileName" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FFileType" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FFilePath" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FSize" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Notice" Member="CH_Prj_Notice">
+    <Type Name="CH_Prj_Notice">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItem" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBuildNo" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FMethod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FStrutType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FUnit1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTitle" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FContent" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FMDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FRound" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FOpenDate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOpenDate2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFillMan" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FFillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_TendReco" Member="CH_Prj_TendReco">
+    <Type Name="CH_Prj_TendReco">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItem" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FTendersNo" Type="System.Data.Linq.Binary" DbType="VarBinary(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FTPrjName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="FTName" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FManager" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAgencyORG" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPrjContent" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FSize" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FUnit1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FLinkMan" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Column Name="FMethod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FContrtPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FUnit2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTNature" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSignDate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FSignDate2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFillMan" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="FFillDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FPubMedia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FPubDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FAppMedia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FApPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FResultMedia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FResultTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPubDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_Text" Member="CH_Prj_Text">
+    <Type Name="CH_Prj_Text">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSubmitTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FContent" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="FStage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_PrjItem_BaseInfo" Member="CH_PrjItem_BaseInfo">
+    <Type Name="CH_PrjItem_BaseInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBackupId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItemNo" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="FPrjItemName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAddressDept" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FAddressFull" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FMoney" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FMoneyUnit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOldMoney" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FOldMoneyUnit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FFIleName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSize" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FUnit1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FStruType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubBag" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FMDTime" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndDAte" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FFromMoney" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_NoticeEntList" Member="CH_Prj_NoticeEntList">
+    <Type Name="CH_Prj_NoticeEntList">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FNoticeId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FEntId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Prj_ProcInfo" Member="CH_Prj_ProcInfo">
+    <Type Name="CH_Prj_ProcInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPrjId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPriItemName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FSubmitDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCertiNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FSpceArea" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FBuildArea" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FCubgRatio" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FBuildHeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FGrebltRation" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FComment" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FUp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDown" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FTxt1" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTxt2" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTxt3" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTxt4" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTxt5" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTxt6" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FTxt7" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FFloat1" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FFloat4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FTxt8" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FTxt9" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FTxt10" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FTxt11" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="FTxt12" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Emp_RegistResume" Member="CH_Emp_RegistResume">
+    <Type Name="CH_Emp_RegistResume">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEmpId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FBaseInfoName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FDuty" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FBaseInfoId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FWorkContent" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="FApprovePerson" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FApproveTel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="FBeginTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FEndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPosition" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Change_List" Member="CH_Change_List">
+    <Type Name="CH_Change_List">
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FChangeType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Pub_Text" Member="CH_Pub_Text">
+    <Type Name="CH_Pub_Text">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FContent" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FTIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FISDELETED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CH_Ent_BaseInfo" Member="CH_Ent_BaseInfo">
+    <Type Name="CH_Ent_BaseInfo">
+      <Column Name="FKID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FChangeID" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FEntCode" Type="System.String" DbType="Char(12) NOT NULL" CanBeNull="false" />
+      <Column Name="FJuridcialCode" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FOtherName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FTradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FSubjectionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FManageDeptName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FUpDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBankName" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="FLicence" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FRegistFund" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FRegistFundUnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FEntCreateFileNo" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="FEntTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRegistDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRegistAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FRegistPostCode" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FPostcode" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="FLinkMan" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FMobile" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FFax" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FUrl" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FEmail" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FEntCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRegistDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FApproveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreditLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCreditScore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FSystemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FState" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPublish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPub" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubDepartment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubManageDeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FPubOperator" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FPubTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

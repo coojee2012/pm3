@@ -1,0 +1,256 @@
+@color 3e  
+@echo 此功能是批量清理images、script、style这些目录。
+@set /p choice=是否开始清理？键入 Y ,回车后开始清理
+@set choice=%choice:~0,1%
+@if /I "%choice%"=="Y" goto start
+@if /I "%choice%"=="y" goto start
+@goto cancel
+:start
+@echo 正在清理
+rmdir Admin\images /s /q
+rmdir Admin\script /s /q
+rmdir Admin\style /s /q
+rmdir Admin\tempimages /s /q
+rmdir Admin\jxImages /s /q
+rmdir Admin\gzimage /s /q
+
+rmdir AllInOneEntApp\images /s /q
+rmdir AllInOneEntApp\script /s /q
+rmdir AllInOneEntApp\style /s /q
+rmdir AllInOneEntApp\tempimages /s /q
+rmdir AllInOneEntApp\jxImages /s /q
+rmdir AllInOneEntApp\gzimage /s /q
+
+
+rmdir CostEntPrint\images /s /q
+rmdir CostEntPrint\style /s /q
+
+rmdir EnergyEntApp\images /s /q
+rmdir EnergyEntApp\script /s /q
+rmdir EnergyEntApp\style /s /q
+rmdir EnergyEntApp\tempimages /s /q
+rmdir EnergyEntApp\jxImages /s /q
+rmdir EnergyEntApp\gzimage /s /q
+
+rmdir EnergyEntPrint\images /s /q
+rmdir EnergyEntPrint\style /s /q
+
+rmdir EvaluateEntApp\images /s /q
+rmdir EvaluateEntApp\script /s /q
+rmdir EvaluateEntApp\style /s /q
+rmdir EvaluateEntApp\tempimages /s /q
+rmdir EvaluateEntApp\jxImages /s /q
+rmdir EvaluateEntApp\gzimage /s /q
+
+rmdir EvaluateEntprint\images /s /q
+rmdir EvaluateEntprint\style /s /q
+
+rmdir ApproveWeb\images /s /q
+rmdir ApproveWeb\script /s /q
+rmdir ApproveWeb\style /s /q
+rmdir ApproveWeb\tempimages /s /q
+rmdir ApproveWeb\WebImage /s /q
+rmdir ApproveWeb\imghall /s /q
+rmdir ApproveWeb\jxImages /s /q
+rmdir Common\script /s /q
+
+rmdir cstPer\images /s /q
+rmdir cstPer\script /s /q
+rmdir cstPer\style /s /q
+
+rmdir DateSelect /s /q
+
+rmdir EntAppQuaPrint\images /s /q
+rmdir EntAppQuaPrint\script /s /q
+rmdir EntAppQuaPrint\style /s /q
+
+rmdir EntApprove\images /s /q
+rmdir EntApprove\script /s /q
+rmdir EntApprove\style /s /q
+rmdir EntApprove\jxImages /s /q
+rmdir EntApprove\gzimage /s /q
+
+rmdir EntOut\jxImages /s /q
+rmdir EntOut\gzimage /s /q
+rmdir EntOut\images /s /q
+rmdir EntOut\script /s /q
+rmdir EntOut\style /s /q
+
+
+rmdir eWebEditor  /s /q
+
+rmdir Government\cimages /s /q
+rmdir Government\images /s /q
+rmdir Government\script /s /q
+rmdir Government\style /s /q
+rmdir Government\tempimages /s /q
+rmdir Government\jxImages /s /q
+rmdir Government\gzimage /s /q
+
+
+
+rmdir Kcsj\images /s /q
+rmdir Kcsj\script /s /q
+rmdir Kcsj\style /s /q
+
+
+rmdir PbasEntApp\images /s /q
+rmdir PbasEntApp\script /s /q
+rmdir PbasEntApp\style /s /q
+
+rmdir PbasEntPrint\images /s /q
+rmdir PbasEntPrint\style /s /q
+
+rmdir PropertyEntApp\images /s /q
+rmdir PropertyEntApp\script /s /q
+rmdir PropertyEntApp\style /s /q
+rmdir PropertyEntApp\jxImages /s /q
+rmdir PropertyEntApp\gzimage /s /q
+
+rmdir PropertyEntPrint\images /s /q
+rmdir PropertyEntPrint\style /s /q
+
+rmdir QuaEnt\images /s /q
+rmdir QuaEnt\script /s /q
+rmdir QuaEnt\style /s /q
+
+rmdir webEdit /s /q
+
+rmdir script /s /q
+rmdir style /s /q
+
+rmdir SupEntApp\images /s /q
+rmdir SupEntApp\script /s /q
+rmdir SupEntApp\style /s /q
+rmdir SupEntApp\gzimage /s /q
+
+rmdir SupEntPrint\images /s /q
+rmdir SupEntPrint\style /s /q
+
+rmdir RemoveEntApp\images /s /q
+rmdir RemoveEntApp\script /s /q
+rmdir RemoveEntApp\style /s /q
+rmdir RemoveEntApp\gzimage /s /q
+
+rmdir RemoveEntPrint\images /s /q
+rmdir RemoveEntPrint\style /s /q
+
+rmdir UrbanAndTownPanning\images /s /q
+rmdir UrbanAndTownPanning\script /s /q
+rmdir UrbanAndTownPanning\style /s /q
+rmdir UrbanAndTownPanning\gzimage /s /q
+
+rmdir RemoveEntPrint\images /s /q
+rmdir RemoveEntPrint\style /s /q
+
+rmdir upload /s /q
+
+rmdir doc /s /q
+rmdir PrintActiveX /s /q
+rmdir Payment\FusionCharts /s /q
+
+rmdir Ylgl\gzimages /s /q
+rmdir Ylgl\images /s /q
+rmdir Ylgl\script /s /q
+rmdir Ylgl\style /s /q
+rmdir Ylgl\jxImages /s /q
+
+rmdir PrjManage\images /s /q
+rmdir PrjManage\script /s /q
+rmdir PrjManage\style /s /q
+rmdir PrjManage\scscript /s /q
+rmdir PrjManage\scstyle /s /q
+
+rmdir PrjManage\ConstructionBackup\images /s /q
+rmdir PrjManage\ConstructionBackup\script /s /q
+rmdir PrjManage\ConstructionBackup\style /s /q
+
+rmdir PrjManage\ConstructionBackupPrint\images /s /q
+rmdir PrjManage\ConstructionBackupPrint\style /s /q
+
+rmdir PrjManage\ConstructionBegin\images /s /q
+rmdir PrjManage\ConstructionBegin\script /s /q
+rmdir PrjManage\ConstructionBegin\style /s /q
+
+rmdir PrjManage\ConstructionBeginPrint\images /s /q
+rmdir PrjManage\ConstructionBeginPrint\style /s /q
+
+rmdir PrjManage\ConstructionBuBan\images /s /q
+rmdir PrjManage\ConstructionBuBan\script /s /q
+rmdir PrjManage\ConstructionBuBan\style /s /q
+
+rmdir PrjManage\ConstructionBuBanPrint\images /s /q
+rmdir PrjManage\ConstructionBuBanPrint\style /s /q
+
+rmdir PrjManage\ConstructionChange\images /s /q
+rmdir PrjManage\ConstructionChange\script /s /q
+rmdir PrjManage\ConstructionChange\style /s /q
+
+rmdir PrjManage\ConstructionChangePrint\images /s /q
+rmdir PrjManage\ConstructionChangePrint\style /s /q
+
+rmdir PrjManage\ConstructionDeferPrint\images /s /q
+rmdir PrjManage\ConstructionDeferPrint\style /s /q
+
+rmdir PrjManage\ConstructionLicence\images /s /q
+rmdir PrjManage\ConstructionLicence\style /s /q
+rmdir PrjManage\ConstructionLicence\script /s /q
+
+rmdir PrjManage\ConstructionLicenceprint\images /s /q
+rmdir PrjManage\ConstructionLicenceprint\style /s /q
+
+rmdir PrjManage\ConstructionStop\images /s /q
+rmdir PrjManage\ConstructionStop\style /s /q
+rmdir PrjManage\ConstructionStop\script /s /q
+
+rmdir PrjManage\ConstructionStop2\images /s /q
+rmdir PrjManage\ConstructionStop2\style /s /q
+rmdir PrjManage\ConstructionStop2\script /s /q
+
+rmdir PrjManage\ConstructionStopPrint\images /s /q
+rmdir PrjManage\ConstructionStopPrint\style /s /q
+
+rmdir PrjManage\ConstructionStopPrint2\images /s /q
+rmdir PrjManage\ConstructionStopPrint2\style /s /q
+
+rmdir image /s /q
+rmdir Skin /s /q
+rmdir tiny_mce /s /q
+rmdir Payment/images /s /q
+rmdir Payment/script /s /q
+rmdir Payment/style /s /q
+rmdir zDialogNew /s /q
+rmdir Share/image /s /q
+rmdir Share/style /s /q
+rmdir Share/style /s /q
+del *.exe /f /q /s
+del *.cab /f /q /s
+
+del bin\*.pdb /f /q
+
+del MSSCCPRJ.SCC /f /q /s
+
+del *.doc /f /q /s
+
+
+del  printProblem.doc /f /q
+del  RoleInputData.aspx /f /q
+del  web.config /f /q
+del  System.config /f /q
+del  UpgradeLog.XML /f /q
+del  MCreditSC.sln /f /q
+del  MCredit.suo /f /q
+del  MCreditGZ.suo /f /q
+del  PrecompiledApp.config /f /q
+del  MCreditSC.vssscc /f /q
+del  MCreditSC.vsscc /f /q
+del  publish.htm /f /q
+del  Licenses.ini /f /q
+del  清理.bat  /f /q
+@goto end
+:cancel
+@echo 命令取消了
+@pause
+:end
+@echo 终于完成了
+@pause

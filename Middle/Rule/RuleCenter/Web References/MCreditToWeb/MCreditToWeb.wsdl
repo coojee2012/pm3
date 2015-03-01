@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.gzjs.gov.cn/MCreditToWeb" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.gzjs.gov.cn/MCreditToWeb" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.gzjs.gov.cn/MCreditToWeb">
+      <s:element name="SaveData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="DType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveDataResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="YWLSH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SJBBH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SPBZH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSaveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsSaveResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SaveDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveData" />
+  </wsdl:message>
+  <wsdl:message name="SaveDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsSaveSoapIn">
+    <wsdl:part name="parameters" element="tns:IsSave" />
+  </wsdl:message>
+  <wsdl:message name="IsSaveSoapOut">
+    <wsdl:part name="parameters" element="tns:IsSaveResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MCreditToWebSoap">
+    <wsdl:operation name="SaveData">
+      <wsdl:input message="tns:SaveDataSoapIn" />
+      <wsdl:output message="tns:SaveDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSave">
+      <wsdl:input message="tns:IsSaveSoapIn" />
+      <wsdl:output message="tns:IsSaveSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MCreditToWebSoap" type="tns:MCreditToWebSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveData">
+      <soap:operation soapAction="http://www.gzjs.gov.cn/MCreditToWeb/SaveData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSave">
+      <soap:operation soapAction="http://www.gzjs.gov.cn/MCreditToWeb/IsSave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MCreditToWebSoap12" type="tns:MCreditToWebSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveData">
+      <soap12:operation soapAction="http://www.gzjs.gov.cn/MCreditToWeb/SaveData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSave">
+      <soap12:operation soapAction="http://www.gzjs.gov.cn/MCreditToWeb/IsSave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MCreditToWeb">
+    <wsdl:port name="MCreditToWebSoap" binding="tns:MCreditToWebSoap">
+      <soap:address location="http://192.168.201.17/web/MCreditToWeb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MCreditToWebSoap12" binding="tns:MCreditToWebSoap12">
+      <soap12:address location="http://192.168.201.17/web/MCreditToWeb.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

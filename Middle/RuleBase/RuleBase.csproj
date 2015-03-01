@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>RuleBase</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="EntityBase">
+      <HintPath>..\..\Entity\ENTITYBASE\bin\EntityBase.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityCenter">
+      <HintPath>..\..\Entity\EntityCenter\bin\EntityCenter.dll</HintPath>
+    </Reference>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Approve\RuleBase\IRBase.cs" />
+    <Compile Include="Approve\PersistBase\IPBaseQuery.cs" />
+    <Compile Include="Approve\PersistBase\DataLog.cs" />
+    <Compile Include="Approve\PersistBase\LogType.cs" />
+    <Compile Include="Approve\PersistBase\LogSort.cs" />
+    <Compile Include="Approve\PersistBase\PBaseQuery.cs" />
+    <Compile Include="Approve\PersistBase\IPBaseUpdate.cs" />
+    <Compile Include="Approve\PersistBase\IPBase.cs" />
+    <Compile Include="Approve\PersistBase\PBase.cs" />
+    <Compile Include="Approve\PersistBase\CacheBase.cs" />
+    <Compile Include="Approve\PersistBase\SqlOptTypeEnum.cs" />
+    <Compile Include="Approve\PersistBase\IBaseTools.cs" />
+    <Compile Include="HardDiskVal.cs" />
+    <Compile Include="Approve\RuleBase\RuntimeRegistryLicense.cs" />
+    <Compile Include="Approve\PersistBase\ICommand.cs" />
+    <Compile Include="Approve\PersistBase\Command.cs" />
+    <Compile Include="Approve\PersistBase\PBaseUpdate.cs" />
+    <Compile Include="Approve\RuleBase\MyLicenseProvider.cs" />
+    <Compile Include="Approve\RuleBase\LicenseResult.cs" />
+    <Compile Include="Approve\RuleBase\LicenseTools.cs" />
+    <Compile Include="Approve\PersistBase\DatabaseTypeEnum.cs" />
+    <Compile Include="Approve\PersistBase\SqlResultEnum.cs" />
+    <Compile Include="Approve\PersistBase\IConnection.cs" />
+    <Compile Include="Approve\RuleBase\RBase.cs" />
+    <Compile Include="Approve\PersistBase\Connection.cs" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\EntitySys\EntitySys.csproj">
+      <Project>{3e783f57-1e18-4a68-801e-fd0af7ac44ba}</Project>
+      <Name>EntitySys</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /y $(TargetDir)*.*  $(SolutionDir)\SurveyDesign\bin</PostBuildEvent>
+  </PropertyGroup>
+</Project>

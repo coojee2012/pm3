@@ -1,0 +1,203 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<HEAD>
+<TITLE></TITLE>
+<META NAME="Author" CONTENT="FengChun(f15_nsm@hotmail.com)">
+<META NAME="Keywords" CONTENT="WebFlow">
+<META NAME="Description" CONTENT="">
+<link href="inc/style.css" type=text/css rel=stylesheet>		
+
+<script language=jscript src="inc/contextMenu/context.js"></script>
+<script language=jscript src="inc/webflow.js"></script>
+<script language=jscript src="inc/function.js"></script>
+<script language=jscript src="inc/shiftlang.js"></script>
+<script language=jscript src="inc/movestep.js"></script>
+
+<SCRIPT LANGUAGE="JScript">
+<!--
+//自动取得浏览器语言
+var LANG = navigator.browserLanguage;
+if (LANG.indexOf('en') > -1){
+    LANG = 'en';
+}
+if (LANG.indexOf('zh') > -1){
+    LANG = 'zh';
+}
+
+function saveToXML(){
+  if(document.all.FlowXML.value=='') {
+	   alert('请先创建新流程！\n\nPlease create a new flow at first!');
+	   return;
+  }
+  var path = document.location.pathname;
+  path = path.slice(1,path.lastIndexOf('\\'));
+
+  var xmlDoc = new ActiveXObject('MSXML2.DOMDocument');
+  xmlDoc.async = false;
+  xmlDoc.loadXML(document.all.FlowXML.value);
+  var xmlRoot = xmlDoc.documentElement;
+  var Flow = xmlRoot.getElementsByTagName("FlowConfig").item(0);
+  filename = Flow.getElementsByTagName("BaseProperties").item(0).getAttribute("flowId")+'.xml';
+
+  if(confirm('保存流程文件为 '+filename+' ？\n\nSave this flow to the file "'+filename+'"?')){
+    try{
+	  var fso = new ActiveXObject("Scripting.FileSystemObject");
+      var f = fso.CreateTextFile(path+'/flows/'+filename);
+	  var XMLHEAD = '<?xml version="1.0" encoding="GBK"?>';
+      f.WriteLine(XMLHEAD+FlowXML.value);
+      f.Close();
+	}catch(e){
+	  alert('文件保存失败！请先检查: '+path+'/flows/ 是否存在！\n\nSave file fail! Please check the directory "'+path+'/flows/" if be exist!');
+	}
+  }
+}
+
+function loadXMLDoc(url) {
+    var xmlhttp;
+    var txt, xx, x, i;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+ 
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var xmlRoot =xmlhttp.responseXML.documentElement
+            FlowXML.value = xmlRoot.xml;
+            drawTreeView();
+        }
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+function loadFromXML(){
+  filename = getSelectValue(flowList)
+  if (filename==''){
+    alert('请先选择要导入的流程！');
+	return;
+  }
+
+  var xmlDoc = new ActiveXObject('MSXML2.DOMDocument');
+  xmlDoc.async = false;
+  var flag = xmlDoc.load('flows/'+filename);
+  if (!flag) {
+    alert('文件导入失败！请先检查: flows/'+filename+' 是否存在！\n\nLoad file fail! Please check the file "flows/'+filename+'" if be exist!');return;
+  }
+  var xmlRoot = xmlDoc.documentElement;  
+  FlowXML.value = xmlRoot.xml;
+  drawTreeView();
+}
+
+function rights(){
+  var dialogRights = window.showModalDialog("_rights.html", window, "dialogWidth:373px; dialogHeight:460px; center:yes; help:no; resizable:no; status:no") ;	
+}
+
+function about(){
+  var dialogAbout = window.showModalDialog("_about.html", window, "dialogWidth:460px; dialogHeight:373px; center:yes; help:no; resizable:no; status:no") ;
+}
+//-->
+</SCRIPT>
+<STYLE>
+v\:* { Behavior: url(#default#VML) }
+</STYLE>
+</HEAD>
+
+<BODY onload='shiftLanguage(LANG,"main");document.title+=" Build "+document.lastModified;' oncontextmenu="cleancontextMenu();return false;" scroll="auto">
+<TABLE border=0 cellspacing="0" cellpadding="0">
+<TR style="display:none;">
+	<TD valign=top><font size=6><font style="color:blue">W</font><font style="color:red">e</font><font style="color:green">b</font><font style="color:olive">F</font><font style="color:navy">l</font><font style="color:orange">o</font><font style="color:purple">w</font></font></TD>
+	<TD valign=top><font size=5 style="color:blue"><sup>&reg</sup></font>&nbsp;</TD>
+	<TD valign=middle nowrap><font size=6 style="color:green">2005</font>&nbsp;&nbsp;<font size=4 style="color:blue"><span id=topText></span></font></TD>
+	<TD valign=bottom align=right width="100%">&nbsp;&nbsp;<font size=3 style="color:blue"><A HREF="#" onclick='LANG="zh";shiftLanguage("zh","main");'>中文</A>|<A HREF="#" onclick='LANG="en";shiftLanguage("en","main");'>English</A></font>&nbsp;</TD>
+</TR>
+</TABLE>
+<INPUT TYPE="hidden" name=FlowXML onpropertychange='if(AUTODRAW) redrawVML();'>
+<TABLE border=1>
+<TR>
+	<TD width="170" valign=top>
+	<TABLE width="100%" height=500 cellspacing="0" cellpadding="0" class="panel_style">
+	<TR height=20>
+	<TD width=20 background=""></TD><TD width="" background="#1FACDA"><div id=treeText><font color="#FFFFFF">流程导航视图</font> </div></TD>
+	</TR>
+	<TR height=1>
+	<TD colspan=2 class="panel_line"></TD>
+	</TR>
+	<TR>
+	<TD colspan=2 height="100%" bgcolor=white>
+	<table width="" height="" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+       <td height="5" colspan=3>
+    </tr>
+	<tr>
+       <td width="0"></td>
+	   <td valign=top align=left height="450"><iframe id=treeview src="_flowtree.html" frameborder=0 width="100%" height="100%"></iframe><div></div><BR></td>
+	   <td width="0"></td>
+    </tr>
+	</table>
+	</TD>
+	</TR>
+	<TR height=1>
+	<TD colspan=2 class="panel_line"></TD>
+	</TR>
+	<TR height=22>
+	<TD colspan=2 align=right>
+	<TABLE>
+	<TR>
+		<TD>&nbsp;</TD>
+		<TD><INPUT id="btnNewFlow" TYPE="image" SRC="inc/images/newflow.gif" title="创建新流程" onclick='newFlow()' onfocus='this.blur()'></TD>
+		<TD>&nbsp;</TD>
+		<TD><INPUT id="btnEditFlow" TYPE="image" SRC="inc/images/editflow.gif" title="修改流程" onclick='editFlow()' onfocus='this.blur()'></TD>
+		<TD>&nbsp;</TD>
+		<TD><INPUT id="btnSaveFlow" TYPE="image" SRC="inc/images/saveflow.gif" title="导出流程" onclick='saveToXML()' onfocus='this.blur()'></TD>
+		<TD>&nbsp;</TD>
+		<TD><INPUT id="btnAbout" TYPE="image" SRC="inc/images/Q&A.gif" title="关于" onclick='about()' onfocus='this.blur()'></TD>
+		<TD></TD>
+	</TR>
+	</TABLE>
+	</TD>	
+	</TR>
+	</TABLE>
+	</TD>
+	<TD width=8></TD>
+	<TD width="700" height="500" style="background-color:#FFFFFF; text-align:center;">
+	
+	<TABLE cellspacing="0" cellpadding="0" class="panel_style">
+	<TR>
+	<TD style="colspan=2 width:700px height:500px;" onclick="cleancontextMenu();return false;" oncontextmenu='flowContextMenu();return false;' valign=top align=center>
+    <v:group ID="FlowVML"  style="left:193;top:56;width:800px;height:500px;position:absolute;" coordsize="2000,2000">
+	</v:group>
+	
+	</TD>
+	</TR>			
+	</TABLE>
+	</TD>
+</TR>
+</TABLE>
+
+<TABLE>
+<TR>
+	<TD><span id=loadText>从"flows/"目录下导入：</span><SELECT NAME="flowList" class=txtput>
+</SELECT> <INPUT id=btnLoadFlow TYPE="image" SRC="inc/images/loadflow.gif" title="导入流程" onclick='loadFromXML()' onfocus='this.blur()'></TD>
+</TR>
+</TABLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+    function getRequest(strHref, strName) {
+        var intPos = strHref.indexOf("?");
+        var strRight = strHref.substr(intPos + 1);
+        var arrTmp = strRight.split("&");
+        for (var i = 0; i < arrTmp.length; i++) {
+            var arrTemp = arrTmp[i].split("=");
+            if (arrTemp[0].toUpperCase() == strName.toUpperCase())
+                return arrTemp[1];
+        }
+        return "";
+    }
+
+    loadXMLDoc("webflow.aspx?e=" + Math.random() + getRequest(location.href, "fid"));
+//rights();
+//-->
+</SCRIPT>
+</BODY>
+</HTML>

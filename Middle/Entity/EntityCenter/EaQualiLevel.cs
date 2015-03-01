@@ -1,0 +1,36 @@
+using System;
+using System.Collections;
+using Approve.EntityBase;
+using System.Data;
+
+namespace Approve.EntityCenter
+{ 
+    [Serializable]
+    public class EaQualiLevel : EEnterpriseBase
+    {
+        public EaQualiLevel()
+            : base()
+        {
+            m_EntityType = EntityTypeEnum.EaQualiLevel;
+        }
+
+        public EaQualiLevel(IDictionary iDictionary)
+            : base(iDictionary)
+        {
+            m_EntityType = EntityTypeEnum.EaQualiLevel;
+        }
+
+
+        public EaQualiLevel(DataRow dr)
+            : base(dr)
+        {
+            m_EntityType = EntityTypeEnum.EaQualiLevel;
+        }
+
+        public EaQualiLevel(DataRow dr, IDictionary rel)
+            : base(dr, rel)
+        {
+            m_EntityType = EntityTypeEnum.EaQualiLevel;
+        }
+    }
+}

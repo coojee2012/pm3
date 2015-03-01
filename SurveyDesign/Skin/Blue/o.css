@@ -1,0 +1,175 @@
+﻿/*日历*/
+/*边框*/
+.day_div { border: 1px solid #D5D5D5; }
+/*大框*/
+.day_table { border: 1px solid #FFFFFF; }
+
+/*头部月份*/
+.day_Title { background: url(image/day_title.gif) repeat-x; border-bottom: 1px solid #FFFFFF; }
+.day_Title td { height: 29px; padding: 0px; color: #555555; font-weight: bold; }
+/*上月*/
+.day_m_last { text-align: center; }
+
+/*星期*/
+.day_Week, .days_week { background: url(image/day_week.gif) repeat-x; border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF; height: 25px; line-height: 25px; color: #3988B3; font-weight: bold; }
+.days_week { height: 20px; line-height: 20px; border: 1px solid #C1DDF5; }
+
+/*日期格子*/
+.day_day, .days_day, .day_other, .days_other { border: 1px solid #FFFFFF; cursor: pointer; vertical-align: top; background: #E1FFFF; }
+.day_day:hover, .days_day:hover { background: #9BC7EE url(image/day_b3.gif) no-repeat; }
+.day_day:hover span, .days_day:hover span { color: #257CD9; }
+.day_day:hover s, .day_day:hover i, .day_day:hover b, .day_day:hover tt, .days_day:hover s, .days_day:hover i, .days_day:hover b, .days_day:hover tt { color: #FFFFFF; }
+
+.day_day div, .day_other div { height: 32px; }
+.days_day div, .days_other div { height: 25px; }
+.day_day tt, .day_day b, .days_day tt, .days_day b, .day_other tt, .day_other b, .days_other tt, .days_other b { display: block; float: right; height: 32px; line-height: 32px; font-size: 20px; font-weight: bold; text-align: right; padding-right: 20px; }
+.days_day tt, .days_day b, .days_other tt, .days_other b { font-size: 14px; height: 25px; line-height: 25px; padding-right: 4px; }
+.day_day b { color: #296EB1; }
+/*农历和日期说明*/
+.day_day i, .day_day s, .days_day i, .days_day s, .day_other i, .day_other s, .days_other i, .days_other s { display: block; color: #999999; line-height: 20px; padding-left: 6px; padding-right: 6px; font-size: 12px; text-decoration: none; text-align: left; font-style: normal; line-height: 16px; }
+.day_day s, .days_day s, .day_other s, .days_other s { text-align: right; }
+
+
+/*日期类型(放假、特殊、今天等)*/
+.day_day span, .days_day span, .day_other span, .days_other span { display: block; line-height: 14px; float: left; height: 14px; width: 29px; margin-left: 1px; margin-top: 1px; text-align: center; }
+
+/*不是本月的日期*/
+.day_other, .days_other { filter: alpha(opacity=40); -moz-opacity: 0.4; -khtml-opacity: 0.4; opacity: 0.4; }
+
+/*放假*/
+.day_b1 { background: #E2EEFC url(image/day_b1.gif) no-repeat; }
+.day_b1 span { background: url(image/day_s1.gif) no-repeat; color: #3687B2; }
+
+/*特殊日*/
+.day_b2 { background: #E6E6E4 url(image/day_b2.gif) no-repeat; }
+.day_b2 span { background: url(image/day_s2.gif) no-repeat; color: #7B7B7B; }
+/*有内容*/
+.day_content { background: #D9D53E; }
+.day_content s { color: #333333; }
+
+
+/*今天*/
+.day_b3 { background: #9BC7EE url(image/day_b3.gif) no-repeat; }
+.day_b3 span { background: url(image/day_s3.gif) no-repeat; color: #257CD9; }
+.day_b3 s, .day_b3 i, .day_b3 b, .day_b3 tt { color: #FFFFFF; }
+
+/*上月下月按钮*/
+.month_last, .month_next { display: block; margin-top: 4px; width: 14px; height: 14px; text-decoration: none; }
+.month_last { background: url(image/month_last.gif) no-repeat; }
+.month_next { background: url(image/month_next.gif) no-repeat; }
+.month_title { display: block; height: 24px; width: 80px; text-align: center; line-height: 24px; color: #000000; }
+.month_day { display: block; margin-top: 3px; height: 20px; line-height: 20px; background: url(image/month_day.gif) 20px 3px no-repeat; padding-left: 40px; }
+.month_day a { color: #000000; text-decoration: none; }
+
+.month_day a tt { color: #7E0E0D; }
+.month_day a:hover { text-decoration: underline; }
+
+/*列表样式。*/
+.i_t01
+{
+	border: 1px solid #D3D5D4;
+}
+.i_t01 td
+{ 
+	border: 1px solid #D3D5D4;	
+	padding:0px 3px;
+}
+.i_t01_h
+{
+	height: 24px;
+	line-height: 24px;
+	color: #494748;
+	font-weight: bold;
+	border: 1px solid #D3D5D4;
+	background: url(image/i_top2.jpg) 0px 2px repeat-x;
+	text-align:center;
+}
+.i_t01_i
+{
+	height: 30px;
+	line-height: 30px;
+	color: #000000;
+	border: 1px solid #D3D5D4;
+	text-align:center;
+}
+.i_t01_i_h
+{
+	height: 30px;
+	line-height: 30px;
+	color: #000000;
+	border: 1px solid #D3D5D4;
+	background: #F0F0F0;
+	text-align:center;
+}
+.i_t01_i_h a,.i_t01_i_h a
+{
+	color: #0065FF;
+	text-decoration:underline;
+}
+.i_t01_i_h a:hover,.i_t01_i_h a:hover
+{
+	color: #FF0000;
+	text-decoration:underline;
+}
+/*办公桌面首页面样式1*/
+/*框头*/
+.i_top { height: 27px; background: url(image/i_top.jpg) 0px -27px repeat-x; }
+.i_top i { display: block; float: left; width: 38px; height: 27px; background: url(image/i_top.jpg) 0px 0px no-repeat; }
+.i_top b { display: block; float: right; width: 6px; height: 27px; background: url(image/i_top.jpg) top right no-repeat; }
+.i_top span { display: block; float: left; height: 20px; padding-top: 7px; padding-left: 2px; padding-right: 18px; background: url(image/i_top_w.jpg) top right no-repeat; line-height: 20px; color: #FFFFFF; font-weight: bold; }
+/*框尾*/
+.i_bot { height: 4px; background: url(image/i_top.jpg) left bottom repeat-x; font: 0px; line-height: 0px; }
+.i_bot i { display: block; float: left; width: 6px; height: 4px; background: url(image/i_top.jpg) left -54px no-repeat; font: 0px; line-height: 0px; }
+.i_bot b { display: block; float: right; width: 6px; height: 4px; background: url(image/i_top.jpg) right -54px no-repeat; font: 0px; line-height: 0px; }
+/*框中*/
+.i_main { border-left: 1px solid #D3D5D4; border-right: 1px solid #D3D5D4; padding: 3px 6px; }
+.i_main_div { border: 1px solid #D3D5D4; }
+
+
+/*办公桌面首页面样式1*/
+/*框头*/
+.i_top2 { height: 30px; background: url(image/i_top2.gif) no-repeat; line-height: 30px; padding-left: 43px; font-size: 14px; font-weight: bold; color: #FFFFFF; }
+/*框中*/
+.i_main2 { border-left: 1px solid #1A7DFE; border-right: 1px solid #1A7DFE; border-bottom: 1px solid #1A7DFE; padding: 3px; }
+.i_main2 ul { margin: 0px 7px; padding-top: 4px; }
+.i_main ul li, .i_main2 ul li { height: 28px; background: #FFFFFF; vertical-align: bottom; padding: 0px; margin: 0px; border-bottom: 1px dotted #c6c6c6; }
+.i_main ul li b, .i_main2 ul li b { display: block; float: left; height: 28px; width: 25px; background: url(image/li2.gif) 8px 12px no-repeat; }
+.i_main ul li a, .i_main2 ul li a { display: block; float: left; height: 14px; line-height: 14px; padding-top: 10px; color: #000000; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; outline: none; }
+.i_main ul li a:hover, .i_main2 ul li a:hover { color: #FF0000; }
+.i_main ul li u, .i_main2 ul li u { display: block; float: right; height: 14px; line-height: 14px; padding-top: 10px; color: #6D6D6D; text-decoration: none; }
+
+/*自定义板块列表*/
+.mytable_list { margin: 4px 10px; height: 18px; }
+.mytable_list span { display: block; height: 20px; float: left; }
+.mytable_list i /*小图标1*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico.jpg) left center no-repeat; }
+.mytable_list b /*小图标2*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/menu-parent.gif) left center no-repeat; }
+.mytable_list tt /*小图标3*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico2.gif) left center no-repeat; }
+.mytable_list s /*小图标4*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico3.gif) left center no-repeat; }
+.mytable_list u /*小图标5*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico4.gif) left center no-repeat; }
+
+/*自定义板块列表*/
+.mytable_list { margin: 4px 10px; height: 18px; }
+.mytable_list span { display: block; height: 20px; float: left; }
+.mytable_list i /*小图标1*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico.jpg) left center no-repeat; }
+.mytable_list b /*小图标2*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/menu-parent.gif) left center no-repeat; }
+.mytable_list tt /*小图标3*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico2.gif) left center no-repeat; }
+.mytable_list s /*小图标4*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico3.gif) left center no-repeat; }
+.mytable_list u /*小图标5*/ { display: block; height: 20px; width: 14px; float: left; background: url(image/new_ico4.gif) left center no-repeat; }
+
+        #UpdateProgress1
+        {
+            filter: alpha(opacity=60); /* IE */
+            -moz-opacity: 0.6; /* Moz + FF */
+            opacity: 0.6;
+            background-color: #878787;
+            left: 0px;
+            right: 0px;
+            position: absolute;
+            z-index: 10000px;
+            width: 200px;
+            height: 200px;
+       background-image: url(../../image/load2.gif);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BusinessXML.aspx.cs" Inherits="Government_statis_BusinessXML" %>
