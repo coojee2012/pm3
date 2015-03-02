@@ -7,3 +7,5 @@
 Middle/Entity/EntityQuali/EntityQuali.dll
 *.suo
 *.suo
+/UnitTestProject1
+*.pdb
