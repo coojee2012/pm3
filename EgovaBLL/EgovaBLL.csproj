@@ -39,7 +39,7 @@
       <HintPath>..\dll\EntityBase.dll</HintPath>
     </Reference>
     <Reference Include="Log4netLibrary">
-      <HintPath>..\dll\Log4netLibrary.dll</HintPath>
+      <HintPath>..\Log4netLibrary\bin\Debug\Log4netLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
