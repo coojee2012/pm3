@@ -65,7 +65,9 @@
                 <td class="t_r" style="padding-right: 10px;">
                     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" class="m_btn_w2" />
                     <input id="btnBack" class="m_btn_w2" onclick="window.close();" type="button" value="返回" />
+                    <!--
                     <asp:Button ID="btnQuery" Style="display: none;" runat="server" Text="刷新" OnClick="btnQuery_Click" class="m_btn_w2" />
+                    -->
                 </td>
                 <td class="m_bar_r"></td>
             </tr>

@@ -139,7 +139,8 @@
                 <td class="t_r" style="padding-right: 10px;">
                     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" class="m_btn_w2" />
                     <input id="btnBack" class="m_btn_w2" onclick="window.close();" type="button" value="返回" />
-                    <asp:Button ID="btnQuery" Style="display: none;" runat="server" Text="刷新" OnClick="btnQuery_Click" class="m_btn_w2" />
+                 <!--   <asp:Button ID="btnQuery" Style="display: none;" runat="server" Text="刷新" OnClick="btnQuery_Click" class="m_btn_w2" />  事件未找到，暂时屏蔽 by psq 20150302 -->
+                    <asp:Button ID="btnQuery" Style="display: none;" runat="server" Text="刷新"  class="m_btn_w2" />
                 </td>
                 <td class="m_bar_r"></td>
             </tr>
@@ -193,7 +194,8 @@
             <tr>
                 <td class="t_r t_bg">经济类型：</td>
                 <td>
-                    <asp:DropDownList ID="t_JJTypeID" Width="120px" CssClass="m_txt" runat="server" OnSelectedIndexChanged="t_FListName_SelectedIndexChanged" AutoPostBack="True">
+                    <!-- <asp:DropDownList ID="t_JJTypeID" Width="120px" CssClass="m_txt" runat="server" OnSelectedIndexChanged="t_FListName_SelectedIndexChanged" AutoPostBack="True"> 事件未找到，暂时屏蔽  20150302 by psq-->
+                        <asp:DropDownList ID="DropDownList1" Width="120px" CssClass="m_txt" runat="server"  AutoPostBack="True">
                         <asp:ListItem>--请选择--</asp:ListItem>
                         <asp:ListItem>房屋建筑工程</asp:ListItem>
                         <asp:ListItem>土木工程</asp:ListItem>
