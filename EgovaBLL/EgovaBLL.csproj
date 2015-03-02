@@ -38,6 +38,9 @@
     <Reference Include="EntityBase">
       <HintPath>..\dll\EntityBase.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\dll\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Log4netLibrary">
       <HintPath>..\Log4netLibrary\bin\Debug\Log4netLibrary.dll</HintPath>
     </Reference>
