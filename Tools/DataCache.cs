@@ -18,6 +18,7 @@ namespace Tools
         {
             System.Web.Caching.Cache objCache = HttpRuntime.Cache;
             return objCache[CacheKey];
+            //test
         }
 
         /// <summary>
