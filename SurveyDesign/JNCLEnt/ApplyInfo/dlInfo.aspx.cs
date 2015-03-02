@@ -71,4 +71,8 @@ public partial class JNCLEnt_ApplyInfo_dlInfo : System.Web.UI.Page
         else
         { tool.showMessage("保存失败"); }
     }
+    protected void btnQuery_Click(object sender, EventArgs e)
+    {
+        showInfo();
+    }
 }
