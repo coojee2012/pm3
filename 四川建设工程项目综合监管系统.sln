@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityBase", "Middle\Entity\ENTITYBASE\EntityBase.csproj", "{A5676341-D5C3-456F-943E-14D7D8F45883}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityCenter", "Middle\Entity\EntityCenter\EntityCenter.csproj", "{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}"
@@ -70,7 +68,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SurveyDesign", "SurveyDesig
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "42082"
-		SlnRelativePath = "SurveyDesign\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{2B282B04-64B5-4966-879D-E89DC79B5C84}"
+	ProjectSection(SolutionItems) = preProject
+		dll\AspNetPager.dll = dll\AspNetPager.dll
+		dll\BarCode.dll = dll\BarCode.dll
+		dll\Encrypt.dll = dll\Encrypt.dll
+		dll\EntityBase.dll = dll\EntityBase.dll
+		dll\Ext.Net.dll = dll\Ext.Net.dll
+		dll\Ext.Net.Utilities.dll = dll\Ext.Net.Utilities.dll
+		dll\Interop.BCACOMLib.dll = dll\Interop.BCACOMLib.dll
+		dll\log4net.dll = dll\log4net.dll
+		dll\Log4netLibrary.dll = dll\Log4netLibrary.dll
+		dll\Seaskyer.dll = dll\Seaskyer.dll
+		dll\Seaskyer.WebApp.Utility.dll = dll\Seaskyer.WebApp.Utility.dll
 	EndProjectSection
 EndProject
 Global
