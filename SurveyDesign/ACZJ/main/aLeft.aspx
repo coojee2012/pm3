@@ -136,7 +136,7 @@
                         <div id="dv1" runat="server" class="o_menu" style="display: none;">
                             <a id="a1" class="o_m01_1" href='../main/zWXTS.aspx' style="cursor: pointer" target="main"><span>温馨提示</span></a>
                         </div>
-                        <div class="o_menu" id="dv2">
+                        <div class="o_menu" id="dv2" runat="server">
                             <a id="a12" class="o_m01_1" target="main"><span>安全自检</span></a>
                             <div class="o_smenu">
                                 <a id="a41" class="o_m02_1" href='safeSelfAssessment.aspx' target="main"><span>安全自评</span></a>

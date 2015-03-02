@@ -93,6 +93,7 @@ public partial class JNCLEnt_ApplyInfo_Report : System.Web.UI.Page
             tool.showMessage("该业务数据有误，请重新申请！");
             return;
         }
+        
         if (ra.EntStartProcessKCSJ(appList.FBaseinfoId, fAppId, appList.FYear.ToString(), DateTime.Now.Month.ToString(), "220", fDeptNumber, t_FUpDeptName.SelectedValue, sl))
         {
             Session["FIsApprove"] = 1;

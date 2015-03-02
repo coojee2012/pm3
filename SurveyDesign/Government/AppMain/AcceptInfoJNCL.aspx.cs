@@ -395,6 +395,34 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
     }
 
     #region 上报流程
+    #region 初次加载版本库，修复报错添加的空
+    protected void btnSee_Click(object sender, EventArgs e)
+    { 
+    
+    }
+    protected void DG_List_ItemDataBound(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnQuery_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void dgSQinfo_ItemDataBound(object sender, EventArgs e)
+    {
+
+    }
+    protected void dResult_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnBackNext_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
+    #endregion
     private void ReportProcess()
     {
         save();
@@ -411,7 +439,7 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
             sl[0].Add("FResult", Er.FResult);
         else if (t_ftype.Value == "1")
             sl[0].Add("FResult", dResult.SelectedValue.Trim());
-        else sl[0].Add("FResult", dAudit.SelectedValue.Trim());
+        //else sl[0].Add("FResult", dAudit.SelectedValue.Trim());
         sl[0].Add("FUserId", this.Session["DFUserId"].ToString());
         EaProcessInstance epi = (EaProcessInstance)rc.GetEBase(EntityTypeEnum.EaProcessInstance, "FReportDate", "fid='" + t_FProcessInstanceID.Value + "'");
         DateTime fReportTime = epi.FReportDate;
@@ -517,7 +545,7 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
                         sl2.Clear();
                         sl2.Add("FID", fnewId);
                         sl2.Add("FMeasure", 3);//标识为打回到上一步状态
-                        sl2.Add("FAppPerson", t_Auditer.Text);
+                       // sl2.Add("FAppPerson", t_Auditer.Text);
                         sl2.Add("FIdea", "打回");
                         arrEn.Add(EntityTypeEnum.EaProcessRecord);
                         arrSl.Add(sl2);
