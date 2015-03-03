@@ -66,5 +66,38 @@ namespace EgovaDAO.Properties {
                 return ((string)(this["dbCenterConnectionString3"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.16.0.115;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=T" +
+            "rue;User ID=jkc115;Password=jkc115")]
+        public string JST_XZSPBaseInfoConnectionString {
+            get {
+                return ((string)(this["JST_XZSPBaseInfoConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.101.9\\MSSQLSERVER08;Initial Catalog=dbCenter_sc;Persist Secur" +
+            "ity Info=True;User ID=sa;Password=sql2008")]
+        public string dbCenter_scConnectionString {
+            get {
+                return ((string)(this["dbCenter_scConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.101.9\\MSSQLSERVER08;Initial Catalog=JST_XZSPBaseInfo;Persist " +
+            "Security Info=True;User ID=sa;Password=sql2008")]
+        public string JST_XZSPBaseInfoConnectionString1 {
+            get {
+                return ((string)(this["JST_XZSPBaseInfoConnectionString1"]));
+            }
+        }
     }
 }

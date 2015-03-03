@@ -97,10 +97,10 @@
             </asp:BoundColumn>
             <asp:BoundColumn DataField="AZDW" HeaderText="安装单位">
                 <ItemStyle Wrap="false" />
-            </asp:BoundColumn>
-            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
+            </asp:BoundColumn>           
             <asp:BoundColumn DataField="FSBId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FAppId" Visible="False"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
     <div style="padding-left: 1%">

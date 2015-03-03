@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" />
 <head id="Head1" runat="server">
-    <title>四川省工法企业信息系统--工法单位版</title>
+    <title>四川省建筑节能和绿色建材管理信息系统</title>
 
     <script src="../../script/jquery.js" type="text/javascript"></script>
 
@@ -13,12 +13,16 @@
 
         window.onbeforeunload = function() { EntWinUnloadEvent("Auto", ""); }
     </script>
-
 </head>
+
+    <%
+        string YWBM = Request.QueryString["YWBM"];
+        var param = "?YWBM=" + YWBM;
+    %>
 <frameset rows="98,*,29" border="0">
   <frame name="top" src="atop.aspx?fbid=<%=Request.QueryString["fbid"] %>" scrolling="no" noresize>
   <frameset cols="191,*" id="trleft" border=0 frameborder=no framespacing="0">
-	<frame name="left" src="aleft.aspx" scrolling="no" noresize>
+	<frame name="left" src="aleft.aspx<%=param %>" scrolling="no" noresize>
  	<frame name="main" src="blank.aspx" scrolling="auto">
   </frameset>
   <frame name="bottom" src="bottom.aspx" scrolling="no" noresize>

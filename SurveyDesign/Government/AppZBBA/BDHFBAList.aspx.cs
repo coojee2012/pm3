@@ -16,6 +16,8 @@ using Approve.EntityCenter;
 using Approve.RuleApp;
 using System.Drawing;
 using ProjectData;
+using EgovaDAO;
+using System.Linq;
 
 public partial class Government_AppZBBA_BDHFBAList : govBasePage
 {
@@ -29,7 +31,7 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
         if (!Page.IsPostBack)
         {
             base.Page_Load(sender, e);
-         //   ControlBind();
+            ControlBind();
             ShowInfo();
             //ShowPostion();
 
@@ -47,8 +49,21 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
 
     private void ControlBind()
     {
-        
+        //招标方式
+        DataTable dt = rc.getDicTbByFNumber("112206");
+        ddlZBFS.DataSource = dt;
+        ddlZBFS.DataTextField = "FName";
+        ddlZBFS.DataValueField = "FNumber";
+        ddlZBFS.DataBind();
+        ddlZBFS.Items.Insert(0, new ListItem("--全部--", ""));
 
+        //招标类别
+        dt = rc.getDicTbByFNumber("112208");
+        ddlZBLB.DataSource = dt;
+        ddlZBLB.DataTextField = "FName";
+        ddlZBLB.DataValueField = "FNumber";
+        ddlZBLB.DataBind();
+        ddlZBLB.Items.Insert(0, new ListItem("--全部--", ""));
     }
 
     private string getCondi()
@@ -77,6 +92,14 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
                     break;
             }
         }
+        if (this.ddlZBFS.SelectedIndex > 0)
+        {
+            sb.Append(" and (qa.ZBFS = '" + ddlZBFS.SelectedValue + "')");
+        }
+        if (this.ddlZBLB.SelectedIndex > 0)
+        {
+            sb.Append(" and (qa.ZBLB = '" + ddlZBLB.SelectedValue + "')");
+        }
         if (sb.Length > 0)
         {
             return sb.ToString();
@@ -91,7 +114,7 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.ProjectName,qa.ZBBM,qa.ZGYSFS,qa.ZBLB,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.ProjectName,qa.ZBBM,qa.ZGYSFS,qa.ZBLB,qa.ZBFS,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未审核' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '未通过' when 6 then case er.FResult when 1 then '通过' when 3 then '不通过' end end as FStatedesc,");
@@ -107,7 +130,7 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
         sb.Append(getCondi());
         //下面的查询备份表
         sb.Append(" union all ");
-        sb.Append(" select qa.ProjectName,qa.ZBBM,qa.ZGYSFS,qa.ZBLB,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.ProjectName,qa.ZBBM,qa.ZGYSFS,qa.ZBLB,qa.ZBFS,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未审核' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '未通过' when 6 then case er.FResult when 1 then '通过' when 3 then '不通过' end end as FStatedesc,");
@@ -150,6 +173,7 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
 
     protected void JustAppInfo_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
+        EgovaDB dbContext = new EgovaDB();
         if (e.Item.ItemIndex > -1)
         {
             string FLinkId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FLinkId"));
@@ -158,7 +182,10 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
             string ferId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FprId"));
             string fBaseInfoId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FBaseInfoId"));
             string fMeasure = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FMeasure"));
-            
+            string ZBFS = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "ZBFS"));
+            string ZBLB = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "ZBLB"));
+            string ZGYSFS = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "ZGYSFS"));
+
             CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
             box.Attributes["id"] = "span" + box.ClientID;
             box.Attributes["name"] = FLinkId;
@@ -168,6 +195,10 @@ public partial class Government_AppZBBA_BDHFBAList : govBasePage
             box.Attributes["fBaseInfoId"] = fBaseInfoId;
             box.Attributes["fMeasure"] = fMeasure;
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
+            e.Item.Cells[4].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(ZBLB)).Select(d => d.FName).FirstOrDefault();
+            e.Item.Cells[5].Text = "已划分" + EConvert.ToInt(rc.GetSignValue("select count(*) from TC_BDHF_BD where FAppId = '" + FLinkId + "'")) + "个标段";
+            e.Item.Cells[6].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(ZBFS)).Select(d => d.FName).FirstOrDefault();
+            e.Item.Cells[7].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(ZGYSFS)).Select(d => d.FName).FirstOrDefault();
         }
     }
 

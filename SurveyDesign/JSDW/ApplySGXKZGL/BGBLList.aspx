@@ -27,7 +27,7 @@
             }
         }
         function checkInfo(obj) {
-            if ($("#txtFPrjName").val() == '') {
+            if ($("#t_FPrjItemName").val() == '') {
                 alert('请先选择项目！');
                 return false;
             }

@@ -21,8 +21,24 @@
             
 
         });
+        function selEmp(obj,tagId) {
+            var qybm = document.getElementById("t_FEntId").value;
+            var url = "../project/EmpListSel.aspx";
+            url += "?qybm=" + qybm;
+            var pid = showWinByReturn( url, 800, 500);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
         function checkInfo() {
             return AutoCheckInfo();
+        }
+        function alert1() {
+            alert('项目负责人只能添加一位');
+        }
+        function alert2() {
+            alert('人员不允许重复添加');
         }
     </script>
     <base target="_self">
@@ -36,7 +52,8 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden"  runat="server" ID="t_FAppId" value="" />
-        <input type="hidden"  runat="server" ID="txtFId" value="" />
+        
+        <input type="hidden"  runat="server" ID="h_selEmpId" value="" />
         <input type="hidden"  runat="server" ID="t_FEntId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
@@ -69,6 +86,7 @@
                          <ContentTemplate>
                         <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                             OnClientClick="return checkInfo();" />  
+                             <input type="hidden"  runat="server" ID="txtFId" value="" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                
                     <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
@@ -82,11 +100,13 @@
                 <td class="t_r t_bg">
                     人员类型：
                 </td>
-                <td colspan="1">
+                <td colspan="3">
                     <asp:DropDownList ID="t_EmpType" runat="server" Width="203px" CssClass="m_txt">
                         
                     </asp:DropDownList>
                     <tt>*</tt>
+                                    <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'h_selEmpId');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmp_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
             </tr>
             <tr>
@@ -94,14 +114,14 @@
                     姓名：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     身份证号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FIdCard" onblur="CheckSFZHM(this);" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
+                    <asp:TextBox ID="t_FIdCard" onblur="CheckSFZHM(this);" runat="server" CssClass="m_txt" Width="200px"  Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -163,7 +183,7 @@
                     证书编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -178,7 +198,7 @@
                     注册编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZCBH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_ZCBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>          
             <tr>
@@ -192,7 +212,7 @@
                     注册日期：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZCRQ" runat="server" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_ZCRQ" runat="server" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
             </tr>
                    

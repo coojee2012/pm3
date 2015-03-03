@@ -143,7 +143,6 @@ public partial class Government_ProcessManager_ProcessRedrectList : Page
         sb.Append(" where 1=1 ");
         sb.Append(GetCon());
         sb.Append(" order by FReportDate desc ");
-
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "JustAppInfo_List";

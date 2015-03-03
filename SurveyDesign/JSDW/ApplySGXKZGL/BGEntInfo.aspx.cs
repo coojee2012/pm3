@@ -19,7 +19,6 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         if (!IsPostBack)
         {
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            t_FPrjItemId.Value = EConvert.ToString(Session["FPrjItemId"]);
             t_FEntType.Value = EConvert.ToString(Request["FEntType"]);
             txtFId.Value = EConvert.ToString(Request["FId"]);
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
@@ -43,21 +42,30 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         TC_PrjItem_Ent ent = null;
         if (t_FEntType.Value == "2")
         {
-            ent = dbContext.TC_PrjItem_Ent.Where(t => t.FPrjItemId == t_FPrjItemId.Value && t.FEntType.Equals(t_FEntType.Value)).FirstOrDefault();
+            ent = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == t_FAppId.Value && t.FEntType.Equals(t_FEntType.Value)).FirstOrDefault();
             
         }
         else
         {
             ent = dbContext.TC_PrjItem_Ent.Where(t => t.FId == txtFId.Value).FirstOrDefault();
         }
-
+        if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
+        }
         if (ent != null)
         {
             pageTool tool = new pageTool(this.Page, "t_");
             tool.fillPageControl(ent);
             txtFId.Value = ent.FId;
+            h_selEntId.Value = ent.QYID;
         }
-        
+        TC_SGXKZ_BGPrjInfo sp = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == t_FAppId.Value).FirstOrDefault();
+        t_FPrjItemId.Value = sp.FPrjItemId;
 
     }
     //显示
@@ -92,9 +100,9 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         switch (id)
         {
             default:
-                return "项目经理";
+                return "项目负责人";
             case "1":
-                return "项目经理";
+                return "项目负责人";
             case "2":
                 return "项目技术负责人";
             case "3":
@@ -104,7 +112,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             case "5":
                 return "质量员";
             case "6":
-                return "专职安全员";
+                return "安全员";
             case "7":
                 return "材料员";
             case "8":
@@ -130,7 +138,24 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
         EgovaDB dbContext = new EgovaDB();
-        var v = dbContext.TC_PrjItem_Emp.Where(t => t.FPrjItemId == t_FPrjItemId.Value && t.FEntId == hf_FId.Value);
+        TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == t_FAppId.Value).FirstOrDefault();
+        TC_SGXKZ_PrjInfo p = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sbg.FPrjInfoId).FirstOrDefault();
+        var v = from t in dbContext.TC_PrjItem_Emp
+                where (t.FAppId == t_FAppId.Value ||t.FAppId == p.FAppId)  && t.FEntId == h_selEntId.Value
+                orderby t.FId
+                select new
+                {
+                    t.FHumanName,
+                    t.ZCZY,
+                    EmpTypeStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(t.EmpType)).Select(d => d.FName).FirstOrDefault(),
+                    t.ZCRQ,
+                    t.ZCBH,
+                    t.FId,
+                    t.FAppId,
+                    t.FEntId,
+                    t.FPrjItemId,
+                    t.FPrjId
+                };
         dg_List.DataSource = v;
         dg_List.DataBind();
     }
@@ -144,11 +169,18 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         if (!string.IsNullOrEmpty(fId))
         {
             ent = dbContext.TC_PrjItem_Ent.Where(t => t.FId == fId).FirstOrDefault();
+            if (h_selEntId.Value != ent.QYID)
+            {
+                var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == ent.QYID);
+                dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
+                
+            }
         }
         else
         {
             fId = Guid.NewGuid().ToString();
             ent.FId = fId;
+            ent.QYID = h_selEntId.Value;
             ent.FAppId = t_FAppId.Value;
             ent.FPrjItemId = t_FPrjItemId.Value;
             ent.FEntType = EConvert.ToInt(t_FEntType.Value);
@@ -161,11 +193,13 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
 		txtFId.Value = fId;
+        
         if (string.IsNullOrEmpty(fOldId))
         {
             updateYQBG(fId);
         }
         ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        showEmpList();
     }
 
     private void updateYQBG(string FId)
@@ -236,12 +270,53 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             string fEntId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FEntId"));
             string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
             string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('BGEmpInfo.aspx?FId=" + fId + "&fAppId=" + fAppId + "&fEntId=" + fEntId + "&fPrjItemId=" + fPrjItemId + "&fprjId=" + fPrjId + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('BGEmpInfo.aspx?FId=" + fId + "&FAppId=" + fAppId + "&FEntId=" + fEntId + "&FPrjItemId=" + fPrjItemId + "&FprjId=" + fPrjId + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
+        
+    }
+
+    private void selEnt()
+    {
+        string selEntId = h_selEntId.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+        if (v != null)
+        {
+            t_QYID.Value = v.QYBM;
+            t_FName.Text = v.QYMC;
+            t_FAddress.Text = v.QYXXDZ;
+            t_FLegalPerson.Text = v.FRDB;
+            t_FLinkMan.Text = v.LXR;
+            t_FMobile.Text = v.FRDBSJH;
+            t_FTel.Text = v.LXDH;
+            t_FOrgCode.Text = v.JGDM;
+        }
+        
+
+        var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+        if (v1 != null)
+            t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
+
+        if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
+        }
 
     }
+    protected void btnAddEnt_Click(object sender, EventArgs e)
+    {
+        selEnt();
+    }
+   
+
+  
+
 }

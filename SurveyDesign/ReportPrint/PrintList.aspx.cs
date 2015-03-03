@@ -516,6 +516,73 @@ public partial class ReportPrint_PrintList : System.Web.UI.Page
             case "22001":
                 DefaultUrl = @"http://172.16.0.111:7001/WebReport/ReportServer?reportlet=XZSP_SQB22001.cpt&YWBM=" + this.Session["FAppId"].ToString();
                 break;
+            //竣工验收备案(房建)
+            case "7070":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=JGYS_BAS_FJ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //竣工验收备案(市政)
+            case "7080":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=JGYS_BAS_SZ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //选址意见书(房建)
+            case "4050":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_XZYJS_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //选址意见书(市政)
+            case "4060":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_XZYJS_SZ_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //选址意见书 受理通知书
+            case "405001":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_XZYJS_SL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break; //选址意见书 不受理通知书
+            case "405002":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_XZYJS_BSL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //用地规划(房建)
+            case "5050":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_YDGHXK_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //用地规划(市政)
+            case "5060":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_YDGHXK_SZ_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //用地规划 受理通知书
+            case "505001":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_YDGHXK_SL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //用地规划 不受理通知书
+            case "505002":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_YDGHXK_BSL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //工程规划(房建)
+            case "6060":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_GCGHXK_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //工程规划(市政)
+            case "6070":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_GCGHXK_SZ_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //工程规划 受理通知书
+            case "606001":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_GCGHXK_SL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //工程规划 不受理通知书
+            case "606002":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=YSLZ_GCGHXK_BSL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //项目报建
+            case "8080":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=XM_XMBJ_SQ.cpt&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //项目报建 受理通知书
+            case "808001":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=XMBJ_SL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
+            //项目报建 不受理通知书
+            case "808002":
+                DefaultUrl = @"http://172.16.0.115:8081/WebReport/ReportServer?reportlet=XMBJ_BSL.cpt&op=write&YWBM=" + Request.QueryString["YWBM"];
+                break;
         }
     }
 }

@@ -101,7 +101,7 @@ public partial class Government_AppZBBA_ZBYSWJBAList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.BATime,qa.ProjectName,qa.BDBM,qa.BDMC,qa.CS,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.BATime,qa.ProjectName,qa.BDBM,qa.BDMC,'第'+qa.CS+'次招标' as CSStr,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未审核' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '未通过' when 6 then case er.FResult when 1 then '通过' when 3 then '不通过' end end as FStatedesc,");
@@ -116,13 +116,13 @@ public partial class Government_AppZBBA_ZBYSWJBAList : govBasePage
         sb.Append(getCondi());
         //下面的查询备份表
         sb.Append(" union all ");
-        sb.Append(" select qa.BATime,qa.ProjectName,qa.BDBM,qa.BDMC,qa.CS,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.BATime,qa.ProjectName,qa.BDBM,qa.BDMC,'第'+qa.CS+'次招标' as CSStr,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未审核' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '未通过' when 6 then case er.FResult when 1 then '通过' when 3 then '不通过' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, TC_YSWJ_Record qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");
+        sb.Append(" where ep.fId = er.FProcessInstanceID ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");

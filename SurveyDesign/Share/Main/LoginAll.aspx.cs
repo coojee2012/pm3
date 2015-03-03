@@ -56,17 +56,11 @@ public partial class Share_Main_LoginAll : System.Web.UI.Page
                 FPassWord = SecurityEncryption.DESEncrypt(FPassWord);
 
                 //增加同步用户名密码 ljr 2014-11-25
-                string pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.cf_sys_user where FName='" + FName + "' ");
-                string table = "user";
-                if (string.IsNullOrEmpty(pass))
-                {
-                    pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.CF_Sys_UserRight where FName='" + FName + "' ");
-                    table = "right";
-                }
+                string pass = sh.GetSignValue("select FPassWord from LINKER_95.dbCenterSC.dbo.cf_sys_user where FName='" + FName + "' ");
                 if (!string.IsNullOrEmpty(pass))
                 {
                     pass = Encrypt.MiscClass.decode(pass); pass = SecurityEncryption.DESEncrypt(pass);
-                    string synchronous = " exec JKC_PRO_Synchronous '" + FName + "',0,'" + pass + "','" + table + "' ";
+                    string synchronous = " exec JKC_PRO_Synchronous '" + FName + "',0,'" + pass + "' ";
                     sh.PExcute(synchronous);
                 }
 
@@ -82,14 +76,6 @@ public partial class Share_Main_LoginAll : System.Web.UI.Page
                 DataTable dt = sh.GetTable(sb.ToString(), sh.ConvertParameters(sl));
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    //此项目平台同步到JKCWFDB_WORK_NJS  ljr 2015-1-17
-                    if (string.IsNullOrEmpty(pass))
-                    {
-                        FPassWord = SecurityEncryption.DESDecrypt(FPassWord); FPassWord = Encrypt.MiscClass.encode(FPassWord);
-                        string sql = " exec JKC_PRO_SynchronousNJS  '" + dt.Rows[0]["FId"].ToString() + "','" + pass + "' ";
-                        sh.PExcute(sql);
-                    }
-
                     string UserID = dt.Rows[0]["FID"].ToString();
 
                     Session["CreateID"] = UserID;
@@ -128,20 +114,13 @@ public partial class Share_Main_LoginAll : System.Web.UI.Page
                 string UserID = dt.Rows[0]["FID"].ToString();
                 if (!string.IsNullOrEmpty(UserID))
                 {
-                    //增加同步用户名密码 ljr 2014-11-26
-                    string pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.cf_sys_user where FName='"
-                        + sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
-                    string table = "user";
-                    if (string.IsNullOrEmpty(pass))
-                    {
-                        pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.CF_Sys_UserRight where FName='" +
-                             sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
-                        table = "right";
-                    }
+                    //增加同步用户名密码 ljr 2014-11-25
+                    string pass = sh.GetSignValue("select FPassWord from LINKER_95.dbCenterSC.dbo.cf_sys_user where FName='"
+                        + sh.GetSignValue("select FName from from CF_Sys_User where FID='" + UserID) + "' ");
                     if (!string.IsNullOrEmpty(pass))
                     {
                         pass = Encrypt.MiscClass.decode(pass); pass = SecurityEncryption.DESEncrypt(pass);
-                        string synchronous = "exec JKC_PRO_Synchronous '" + dt.Rows[0]["FID"] + "',1,'" + pass + "','" + table + "' ";
+                        string synchronous = "exec JKC_PRO_Synchronous '" + UserID + "',1,'" + pass + "' ";
                         sh.PExcute(synchronous);
                     }
 

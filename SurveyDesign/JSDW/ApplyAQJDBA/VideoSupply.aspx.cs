@@ -31,6 +31,7 @@ public partial class JSDW_ApplyAQJDBA_VideoSupply : System.Web.UI.Page
     private void ShowTitle()
     {
         var v = from t in dbContext.TC_AJBA_VideoSupply
+                where t.FAppId == ViewState["FAppId"]
                 orderby t.FId
                 select new
                 {

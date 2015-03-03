@@ -24,14 +24,55 @@
             return AutoCheckInfo();
         }
         function addEmp() {
-            var fid = document.getElementById("txtFId").value;
+            var fid = document.getElementById("h_selEntId").value;
             var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             if (fid == null || fid == '') {
                 alert('请先保存上方的企业信息！');
                 return;
             }
             showAddWindow('BGEmpInfo.aspx?FEntId=' + fid +
-                 '&FPrjItemId=' + FPrjItemId, 900, 500);
+                 '&FPrjItemId=' + FPrjItemId, 1000, 600);
+        }
+		function showTr1() {
+            $("td[name=td1]").show();
+            $("tr[name=tr1]").show();
+            $("td[name=td2]").hide();
+        }
+        function showTr2() {
+            $("td[name=td1]").hide();
+            $("tr[name=tr1]").hide();
+            $("td[name=td2]").show();
+        }
+        function selEnt(obj, tagId) {
+            var type = document.getElementById("t_FEntType").value;
+            var qylx = "101";
+            switch (type) {
+                case "2":
+                    qylx = "101";
+                    break;
+                case "3":
+                    qylx = "101";
+                    break;
+                case "4":
+                    qylx = "101";
+                    break;
+                case "5":
+                    qylx = "155";
+                    break;
+                case "6":
+                    qylx = "155";
+                    break;
+                case "7":
+                    qylx = "125";
+                    break;
+            }
+            var url = "../project/EntListSel.aspx";
+            url += "?qylx=" + qylx;
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            }
         }
     </script>
 
@@ -48,11 +89,7 @@
     
     <form id="form1" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-         <input type="hidden"  runat="server" ID="t_FEntType" value="0" />
-        <input type="hidden"  runat="server" ID="t_FAppId" value="" />
-        <input type="hidden"   runat="server" ID="hf_FId" value="" />
-        <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
-        <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
+         
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv"> 
@@ -90,6 +127,8 @@
                             <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                                     OnClientClick="return checkInfo();" />
                             <input id="txtFId" type="hidden" runat="server" />
+                            <input id="t_QYID" type="hidden" runat="server" />
+                            <input type="hidden"  runat="server" ID="h_selEntId" value="" />
                         </ContentTemplate>
                     </asp:UpdatePanel>                  
                     
@@ -104,13 +143,15 @@
                     单位名称：
                 </td>
                 <td colspan="1" width="45%">
-                    <asp:TextBox ID="t_FName" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_FName" runat="server" CssClass="m_txt" Width="195px" MaxLength="40" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
+                                    <asp:Button ID="btnAddEnt" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'h_selEntId');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
                 <td class="t_r t_bg" width="14%">
                     单位地址：
                 </td>
-                <td colspan="1">
+                <td colspan="2">
                     <asp:TextBox ID="t_FAddress" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>
                 </td>
             </tr>
@@ -119,13 +160,13 @@
                     法定代表人：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FLegalPerson" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_FLegalPerson" runat="server" CssClass="m_txt" Width="195px" MaxLength="40" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     联系人：
                 </td>
-                <td colspan="1">
+                <td colspan="2">
                     <asp:TextBox ID="t_FLinkMan" runat="server" CssClass="m_txt" Width="195px" MaxLength="30"></asp:TextBox>
                 </td>
             </tr>
@@ -139,13 +180,16 @@
                 <td class="t_r t_bg">
                     联系电话：
                 </td>
-                <td colspan="1">
+                <td colspan="2">
                     <asp:TextBox ID="t_FTel" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>
-                <td class="t_r t_bg">
+                <td name="td1" class="t_r t_bg">
                     主项资质：
+                </td>
+                <td name="td2" class="t_r t_bg">
+                    资质项：
                 </td>
                 <td  >
                     <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
@@ -155,16 +199,16 @@
                     组织机构代码：
                 </td>
                 <td  >
-                    <asp:TextBox ID="t_FOrgCode" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_FOrgCode" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
             
-            <tr>
+            <tr name="tr1">
                 <td class="t_r t_bg">
                    增项资质：
                 </td>
-                <td colspan="3">
+                <td colspan="4">
                     
                     <asp:TextBox ID="t_oZXZZ" runat="server" CssClass="m_txt" 
                         Width="95%" Height="40px" MaxLength="20" TextMode="MultiLine"></asp:TextBox>
@@ -176,7 +220,7 @@
                 <td class="t_r t_bg">
                     备注：
                 </td>
-                <td colspan="3">
+                <td colspan="4">
                     
                     <asp:TextBox ID="t_Remark" runat="server" CssClass="m_txt" 
                         Width="95%" Height="40px" MaxLength="20" TextMode="MultiLine"></asp:TextBox>
@@ -232,10 +276,10 @@
                 <asp:BoundColumn HeaderText="注册专业" DataField="ZCZY">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="人员类型" DataField="EmpType">
+                <asp:BoundColumn HeaderText="人员类型" DataField="EmpTypeStr">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="发证日期" DataField="ZCRQ">
+                <asp:BoundColumn HeaderText="发证日期" DataField="ZCRQ" DataFormatString="{0:d}">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="注册编号" DataField="ZCBH">
@@ -261,6 +305,12 @@
     <input id="t_Province" type="hidden" runat="server" />
     <input id="t_City" type="hidden" runat="server" />
     <input id="t_County" type="hidden" runat="server" />
+    <input type="hidden"  runat="server" ID="t_FEntType" value="0" />
+    <input type="hidden"  runat="server" ID="t_FAppId" />
+    <input id="hf_FId" type="hidden" runat="server" />
+    <input type="hidden"  runat="server" ID="t_FPrjId" />
+    <input type="hidden"  runat="server" ID="t_FPrjItemId" />
+    
     </div>
      
     

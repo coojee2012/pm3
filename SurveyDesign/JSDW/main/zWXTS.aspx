@@ -151,7 +151,7 @@
                             </asp:TemplateColumn>
                             <asp:BoundColumn DataField="FReportDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="提交时间">
                             </asp:BoundColumn>
-                            <asp:BoundColumn DataField="FState" HeaderText="状态"></asp:BoundColumn>
+                            <asp:BoundColumn DataField="FState" HeaderText="状态" Visible="false"></asp:BoundColumn>
                             <asp:BoundColumn DataField="FState" HeaderText="办理结果"></asp:BoundColumn>
                             <asp:TemplateColumn HeaderText="操作" Visible="false">
                                 <HeaderStyle Width="60" />

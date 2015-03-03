@@ -24,14 +24,17 @@
         });
 
     </script>
+    <style>
+    .top_back02 { background-color: #FFFFFF; height: 67px; width: 100%;background: url(atopGLDW.png); }
 
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div class="top_back02">
         <div id="div_BG" runat="server" class="top_backimg02GF">
             <div class="top_r">
-                <div class="top_menu" id="adminTd1" runat="server">
+                <div class="top_menu" id="adminTd1" runat="server" style="background: url(atop01.jpg) no-repeat;">
                     <div>
                         <a class="top_btn" href="#" id="lit_back" runat="server"  onclick='EntWinUnloadEvent("Enforce", "1");' target="_parent">
                             <img alt="返回主页" src="../../image/top_btn12.gif" /><br />

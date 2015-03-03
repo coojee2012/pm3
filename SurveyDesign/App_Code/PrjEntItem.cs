@@ -75,5 +75,38 @@ public class PrjEntItem
         }
         return true;
     }
-
+    public static Dictionary<string, string> DicGCLB {
+        get {
+            string sql = @"select FName,Fnumber,FCnumber from CF_Sys_Dic where FparentId='20001'"; //获取工程类型
+            RCenter rc = new RCenter();
+            DataTable table = rc.GetTable(sql);
+            Dictionary<string, string> dicGCLB = new Dictionary<string, string>();
+            if (table != null && table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    dicGCLB.Add(row["FCnumber"].ToString(), row["FName"].ToString());
+                }
+            }
+            return dicGCLB;
+        }
+    }
+    public static Dictionary<string, string> DicGCLBBM
+    {
+        get
+        {
+            string sql = @"select Fnumber,FCnumber from CF_Sys_Dic where FparentId='20001'"; //获取工程类型
+            RCenter rc = new RCenter();
+            DataTable table = rc.GetTable(sql);
+            Dictionary<string, string> dicGCLB = new Dictionary<string, string>();
+            if (table != null && table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    dicGCLB.Add(row["FCnumber"].ToString(), row["Fnumber"].ToString());
+                }
+            }
+            return dicGCLB;
+        }
+    }
 }

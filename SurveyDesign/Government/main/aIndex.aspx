@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE7,IE=8,IE=9,IE=10" />
-    <title>四川省勘察设计科技信息系统-管理版</title>
+    <title>四川省建设工程监管综合管理信息系统</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 

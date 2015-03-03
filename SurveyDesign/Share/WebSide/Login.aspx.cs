@@ -16,10 +16,10 @@ using ProjectData;
 public partial class Share_WebSide_Login : System.Web.UI.Page
 {
     /*
-    * 统一认证登陆页面，  
-    * 只验证主帐户（cf_sys_user表）
-    * 企业和管理部门都能从这登陆
-    */
+   * 统一认证登陆页面，  
+   * 只验证主帐户（cf_sys_user表）
+   * 企业和管理部门都能从这登陆
+   */
     Share sh = new Share();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -92,6 +92,22 @@ public partial class Share_WebSide_Login : System.Web.UI.Page
                 string FPassWord = C_FPwd.Text; //密码
                 FPassWord = SecurityEncryption.DESEncrypt(FPassWord);
 
+                //增加同步用户名密码 ljr 2015-1-6
+                string pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.cf_sys_user where FName='" + FName + "' ",WebHelper.XZSP_DataBase));
+                string table = "user";
+                if (string.IsNullOrEmpty(pass))
+                {
+                    pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.CF_Sys_UserRight where FName='" + FName + "' ",WebHelper.XZSP_DataBase));
+                    table = "right";
+                }
+                if (!string.IsNullOrEmpty(pass))
+                {
+                    pass = Encrypt.MiscClass.decode(pass); pass = SecurityEncryption.DESEncrypt(pass);
+                    string synchronous = " exec JKC_PRO_Synchronous '" + FName + "',0,'" + pass + "','" + table + "' ";
+                    sh.PExcute(synchronous);
+                }
+
+
                 SortedList sl = new SortedList();
                 sl.Add("FName", FName);
                 sl.Add("FPassWord", FPassWord);
@@ -102,6 +118,14 @@ public partial class Share_WebSide_Login : System.Web.UI.Page
                 DataTable dt = sh.GetTable(sb.ToString(), sh.ConvertParameters(sl));
                 if (dt != null && dt.Rows.Count > 0)//先验证是否是主帐户登陆。
                 {
+                    //此项目平台同步到JKCWFDB_WORK_NJS  ljr 2015-1-17
+                    if (string.IsNullOrEmpty(pass))
+                    {
+                        FPassWord = SecurityEncryption.DESDecrypt(FPassWord); FPassWord = Encrypt.MiscClass.encode(FPassWord);
+                        string sql = " exec JKC_PRO_SynchronousNJS  '" + dt.Rows[0]["FID"].ToString() + "','" + pass + "' ";
+                        sh.PExcute(sql);
+                    }
+
                     if (dt.Rows[0]["FState"].ToString() == "0")
                     {
                         str = "您的用户已被注销，请和管理员联系。";
@@ -171,6 +195,23 @@ public partial class Share_WebSide_Login : System.Web.UI.Page
                         }
                         else
                         {
+                            //增加同步用户名密码 ljr 2014-11-25
+                            string pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.cf_sys_user where FName='", WebHelper.XZSP_DataBase)
+                                + sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
+                            string table = "user";
+                            if (string.IsNullOrEmpty(pass))
+                            {
+                                pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.CF_Sys_UserRight where FName='", WebHelper.XZSP_DataBase) +
+                                     sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
+                                table = "right";
+                            }
+                            if (!string.IsNullOrEmpty(pass))
+                            {
+                                pass = Encrypt.MiscClass.decode(pass); pass = SecurityEncryption.DESEncrypt(pass);
+                                string synchronous = "exec JKC_PRO_Synchronous '" + dt.Rows[0]["FID"] + "',1,'" + pass + "','" + table + "' ";
+                                sh.PExcute(synchronous);
+                            }
+
                             //登陆
                             LOGIN(dt.Rows[0]["FType"].ToString(), dt.Rows[0]["FCompany"].ToString(), dt.Rows[0]["FID"].ToString());
                         }
@@ -236,7 +277,7 @@ public partial class Share_WebSide_Login : System.Web.UI.Page
         {
             DateTime time = DateTime.Now.AddHours(1);
             string key = SecurityEncryption.DesEncrypt(UserId + "|" + SecurityEncryption.ConvertDateTimeInt(time), "32165498");
-            string sUrl = "../../ApproveWeb/main/LockCheck.aspx?key=" + HttpUtility.UrlEncode(key, Encoding.UTF8);
+            string sUrl = "../../ApproveWeb/main/LockCheckAll.aspx?key=" + HttpUtility.UrlEncode(key, Encoding.UTF8);
             this.Response.Redirect(sUrl);
         }
         else

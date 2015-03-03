@@ -51,12 +51,25 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
                     
                 }
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                //tool1.ExecuteScript("btnEnable();");
+                ClientScript.RegisterStartupScript(this.GetType(), "hideBtn", "<script>hideBtn();</script>");
+            }
         }
     }
     void BindControl()
     {
         //招标方式
         DataTable dt = rc.getDicTbByFNumber("112206");
+        t_ZBFS.DataSource = dt;
+        t_ZBFS.DataTextField = "FName";
+        t_ZBFS.DataValueField = "FNumber";
+        t_ZBFS.DataBind();
+
+        //招标计价方式
+        dt = rc.getDicTbByFNumber("112214");
         t_ZBJJFS.DataSource = dt;
         t_ZBJJFS.DataTextField = "FName";
         t_ZBJJFS.DataValueField = "FNumber";
@@ -76,13 +89,19 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
         t_ZBLB.DataValueField = "FNumber";
         t_ZBLB.DataBind();
 
-        //招标范围
-        dt = rc.getDicTbByFNumber("112205");
-        t_ZBFW.DataSource = dt;
-        t_ZBFW.DataTextField = "FName";
-        t_ZBFW.DataValueField = "FNumber";
-        t_ZBFW.DataBind();
+        ////招标范围
+        //dt = rc.getDicTbByFNumber("112205");
+        //t_ZBFW.DataSource = dt;
+        //t_ZBFW.DataTextField = "FName";
+        //t_ZBFW.DataValueField = "FNumber";
+        //t_ZBFW.DataBind();
 
+        //招标备案名称
+        dt = rc.getDicTbByFNumber("112213");
+        t_ZBBAMC.DataSource = dt;
+        t_ZBBAMC.DataTextField = "FName";
+        t_ZBBAMC.DataValueField = "FNumber";
+        t_ZBBAMC.DataBind();
     }
     //显示
     private void showInfo()
@@ -95,6 +114,7 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
             tool.fillPageControl(prj);
             ViewState["HFBD"] = prj.HFBD;
             Session["FAppId"] = prj.FAppId;
+            setCheckBoxList(prj.SGXCQK, t_SGXCQK, "", null, "");
             if (true == prj.HFBD)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "showTa", "<script>showTa();</script>");
@@ -122,6 +142,7 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
             
         }
         Emp = tool.getPageValue(Emp);
+        Emp.SGXCQK = getCheckBoxList(t_SGXCQK);
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
         txtFId.Value = fId;
@@ -147,7 +168,10 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
             t.BDMC,
             t.BDSM,
             t.FId,
-            t.ZBBM
+            t.ZBBM,
+            t.QYZZDJ,
+            t.QYZZDJDJ,
+            t.QYZZDJXL
         }).ToList();
         Pager1.RecordCount = App.Count();
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
@@ -179,15 +203,58 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
     {
         if (e.Item.ItemIndex > -1)
         {
+            EgovaDB dbContext = new EgovaDB();
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
+            string QYZZDJ = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "QYZZDJ"));
+            //string QYZZDJDJ = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "QYZZDJDJ"));
+            //string QYZZDJXL = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "QYZZDJXL"));
+            string ZBBM = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "ZBBM"));
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('BDInfo.aspx?fid=" + fid +  "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[5].Text = QYZZDJ;
+            //e.Item.Cells[5].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJ)).Select(d => d.FName).FirstOrDefault()
+            //    + dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJXL)).Select(d => d.FName).FirstOrDefault() +
+            //    dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJDJ)).Select(d => d.FName).FirstOrDefault();
+            e.Item.Cells[6].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(ZBBM)).Select(d => d.FName).FirstOrDefault();
         }
     }
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
         ShowPrjItemInfo();
+    }
+    private string getCheckBoxList(CheckBoxList cbl)
+    {
+        string ids = "";
+        for (int i = 0; i < cbl.Items.Count; i++)
+        {//读取CheckBoxList 选中的值,保存起来             { 
+            if (cbl.Items[i].Selected)
+            {
+                ids += cbl.Items[i].Value + ",";
+            }
+        }
+        return ids.Substring(0, ids.Length - 1 > 0 ? ids.Length - 1 : 0);
+    }
+    private void setCheckBoxList(string idStr, CheckBoxList cbl, string txtNameStr, TextBox txtName, string remarks)
+    {
+        if (idStr != "" && idStr != null)
+        {
+            for (int i = 0; i < idStr.Split(',').Length; i++)
+            {//给CheckBoxList选中的复选框 赋值                  { 
+                for (int j = 0; j < cbl.Items.Count; j++)
+                {
+                    if (idStr.Split(',')[i] == cbl.Items[j].Value)
+                    {
+                        cbl.Items[j].Selected = true;
+                    }
+                }
+            }
+            if (remarks != "")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), txtNameStr, "<script>show" + txtNameStr + "();</script>");
+                txtName.Text = remarks;
+            }
+        }
     }
     protected void t_HFBD_SelectedIndexChanged(object sender, EventArgs e)
     {

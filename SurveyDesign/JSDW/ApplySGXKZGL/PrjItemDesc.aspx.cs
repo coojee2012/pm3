@@ -77,12 +77,13 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
     //显示
     private void showInfo()
     {
-
+        EgovaDB dbContext = new EgovaDB();
         TC_SGXKZ_PrjInfo emp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
         if (emp != null)
         {
             TC_PrjItem_Info pi = dbContext.TC_PrjItem_Info.Where(t => t.FId == emp.FPrjItemId).FirstOrDefault();
             TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == pi.FPrjId).FirstOrDefault();
+            CF_App_List a = dbContext.CF_App_List.Where(t => t.FId == hf_FAppId.Value).FirstOrDefault();
             //工程用途
             if (p.ProjectType == "2000101")
             {
@@ -115,6 +116,41 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
             t_ProjectUse.Text = p.ProjectUse;
             t_BuildType.Text = p.ConstrType;
             t_ConstrType.Text = pi.ConstrType;
+
+            if (!string.IsNullOrEmpty(emp.LXDH))
+            {
+                t_LXDH.Text = emp.LXDH;
+            }
+            else
+            {
+                t_LXDH.Text = p.Mobile;
+            }
+            if (!string.IsNullOrEmpty(emp.JSDWDZ))
+            {
+                t_JSDWDZ.Text = emp.JSDWDZ;
+            }
+            else
+            {
+                t_JSDWDZ.Text = p.JSDWDZ;
+            }
+            if (!string.IsNullOrEmpty(emp.FDDBR))
+            {
+                t_FDDBR.Text = emp.FDDBR;
+            }
+            else
+            {
+                t_FDDBR.Text = p.JSDWFR;
+            }
+            if (!string.IsNullOrEmpty(emp.Address))
+            {
+                t_Address.Text = emp.Address;
+            }
+            else
+            {
+                t_Address.Text = p.Address;
+            }
+
+
             if (!string.IsNullOrEmpty(emp.ConstrScale))
             {
                 t_ConstrScale.Text = emp.ConstrScale;
@@ -122,6 +158,15 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
             else
             {
                 t_ConstrScale.Text = p.ConstrScale;
+            }
+            //业务已经办结且通过，报建时间等于申报时间
+            if (a.FState != null && a.FState == 6 && !string.IsNullOrEmpty(a.FResult) && a.FResult == "1")
+            {
+                t_ProjectTime.Text = emp.ReportTime.Value.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                t_ProjectTime.Text = emp.ProjectTime.Value.ToString("yyyy-MM-dd");
             }
             t_ProjectNo.Value = p.ProjectNo;
             t_PrjItemId.Value = pi.FId;

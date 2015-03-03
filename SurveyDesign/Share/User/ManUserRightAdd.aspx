@@ -45,14 +45,12 @@
         });
         function CheckInfo(obj) {//验证
             if (AutoCheckInfo()) {
-                if ($(":checkbox[id*=txtFMenuRoleId]:checked").length > 0) {
+                // if ($(":checkbox[id*=txtFMenuRoleId]:checked").length > 0) {
+                
                     obj.disabled = true;
                     obj.value = "保存中..";
                     __doPostBack(obj.id, '');
                     return true;
-                }
-                else
-                    alert("请选择菜单角色!");
             }
             return false;
         }
@@ -76,6 +74,14 @@
             }
 
         }
+        function Authority() {
+            if ($.trim($("#Hid_RightId").val()).length > 0) {
+                var url = "../../UserAuthority.aspx?userId=" + $("#hfUserId").val() + "&SystemId=" + $("#t_FSystemId").val();
+                showAddWindow(url, 800, 500);
+            }
+            else
+                alert("请先添加用户");
+        }
     </script>
 
     <script type="text/vbscript">Function  ToHex(str)  ToHex= Hex(str)  End function</script>
@@ -84,6 +90,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:HiddenField ID="hfUserId" runat="server" />
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="5">
@@ -274,7 +281,8 @@
                 菜单角色：
             </td>
             <td class="m_txt_M">
-                <asp:Repeater ID="rpMenuRoleId" runat="server" OnItemDataBound="rpMenuRoleId_OnItemDataBound">
+                <input type="button" value="分配权限" onclick="Authority()" class="m_btn_w4" />
+               <%-- <asp:Repeater ID="rpMenuRoleId" runat="server" OnItemDataBound="rpMenuRoleId_OnItemDataBound">
                     <ItemTemplate>
                         <asp:Label ID="ltTitle" runat="server" Text='<%#Eval("FSystemId") %>' ForeColor="Red"></asp:Label>
                         <br />
@@ -283,7 +291,7 @@
                         </asp:CheckBoxList>
                         <br />
                     </ItemTemplate>
-                </asp:Repeater>
+                </asp:Repeater>--%>
                 <tt>*</tt>
             </td>
         </tr>

@@ -47,49 +47,26 @@ public partial class Government_AppAQJDBA_Query : govBasePage
 
     private void ControlBind()
     {
+        //工程类别
+        DataTable dt = rc.getDicTbByFNumber("20001");
+        t_PrjItemType.DataSource = dt;
+        t_PrjItemType.DataTextField = "FName";
+        t_PrjItemType.DataValueField = "FNumber";
+        t_PrjItemType.DataBind();
+
         StringBuilder sb = new StringBuilder();
         sb.Append(" select fdesc,fnumber from cf_sys_systemname ");
         sb.Append(" where fisdeleted=0 ");
         sb.Append(" and fnumber=1122 ");//施工许可证的权限  
-        DataTable dt = rc.GetTable(sb.ToString());
+        dt = rc.GetTable(sb.ToString());
         if (dt == null || dt.Rows.Count == 0)
         {
             Response.Write("<center><font style='font-size:12px' color='red'>对不起,您没有该系统的接见权限!</font></center>");
             Response.End();
             return;
         }
-        this.dbSystemId.DataSource = dt;
-        this.dbSystemId.DataTextField = "FDesc";
-        this.dbSystemId.DataValueField = "FNumber";
-        this.dbSystemId.DataBind(); 
 
-        //ShowBatnNo();
-
-
-        //sb.Remove(0, sb.Length);
-
-        //string fDefaultManageDept = Session["DFId"].ToString();
-        //dt = rc.getAllupDeptId(fDefaultManageDept, 0, 3);
-        //DataRow[] row = dt.Select();
-        //if (row != null && row.Length > 0)
-        //{
-        //    for (int i = 0; i < row.Length; i++)
-        //    {
-        //        dt.Rows.Remove(row[i]);
-        //    }
-        //}
-
-        //dbFManageDeptId.DataSource = dt;
-        //dbFManageDeptId.DataTextField = "FName";
-        //dbFManageDeptId.DataValueField = "FNumber";
-        //dbFManageDeptId.DataBind();
-        //dbFManageDeptId.Items.Insert(0, new ListItem("--请选择--", ""));
-
-        //dbFManageDeptId.SelectedIndex = dbFManageDeptId.Items.IndexOf(dbFManageDeptId.Items.FindByValue(Session["DFId"].ToString()));
-        //if (EConvert.ToInt(this.Session["DFLevel"]) > 1)
-        //{
-        //    dbFManageDeptId.Enabled = false;
-        //}
+      
 
     }
 
@@ -104,50 +81,31 @@ public partial class Government_AppAQJDBA_Query : govBasePage
         {
             sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
+        if (this.govd_FRegistDeptId.FNumber != null)
+        {
+            sb.Append(" and dbo.isSuperDept(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+        }
+        if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
+        {
+            sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
+        }
         if (this.txtRecordNo.Text.Trim() != "" && this.txtRecordNo.Text.Trim() != null)
         {
-            sb.Append(" and qa.RecordNo like '%" + this.txtRecordNo.Text.Trim() + "%' ");
+           // sb.Append(" and qa.RecordNo like '%" + this.txtRecordNo.Text.Trim() + "%' ");
+        }
+        if (this.t_PrjItemType.SelectedValue.Trim() != "" && this.t_PrjItemType.SelectedValue.Trim() != null)
+        {
+            sb.Append(" and qa.PrjItemType like '%" + this.t_PrjItemType.SelectedValue.Trim() + "%' ");
         }
         if (this.txtSDate.Text.Trim() != "" && this.txtSDate.Text.Trim() != null)
         {
-            sb.Append(" and ep.FReportDate >='" + this.txtSDate.Text.Trim() + "' ");
-    //        sb.Append(" and DATEDIFF(day,'2008-12-29','2008-12-30') ");
+            sb.Append(" and ep.FReportDate >='" + this.txtSDate.Text.Trim() + " 00:00:00"+"' ");
         }
         if (this.txtEDate.Text.Trim() != "" && this.txtEDate.Text.Trim() != null)
         {
-            sb.Append(" and ep.FReportDate  <='" + this.txtEDate.Text.Trim() + "' ");
-        }
-        //if (dbFBatchNoId.SelectedValue != "")
-        //{
-        //    sb.Append(" and ep.fid in ");
-        //    sb.Append(" (select FAppId from CF_App_AppBatchNo t1 ");
-        //    sb.Append(" where t1.fappid= ep.fid ')");
-        //}
-
-
-        if (ddlState.SelectedValue != "-1")
-        {
-            switch (ddlState.SelectedValue.Trim())
-            {
-                case "0": //待接件
-                    sb.Append(" and er.FMeasure=0 ");
-                    break;
-                case "1": //准予受理
-                    sb.Append(" and (er.FMeasure=5 and er.FResult=1) ");
-                    break;
-                case "3": //不准予受理
-                    sb.Append(" and (ep.fstate=6 and er.FResult=3) ");
-                    break;
-                case "5": //打回企业,重新上报
-                    sb.Append(" and (ep.fstate=2) ");
-                    break;
-            }
+            sb.Append(" and ep.FReportDate  <='" + this.txtEDate.Text.Trim() + " 23:59:59" + "' ");
         }
 
-        if (dbSystemId.SelectedValue != "")
-        {
-            sb.Append(" and ep.fsystemid='" + this.dbSystemId.SelectedValue.Trim() + "'");
-        }
 
         if (sb.Length > 0)
         {
@@ -163,24 +121,38 @@ public partial class Government_AppAQJDBA_Query : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.ProjectName,qa.PrjItemName,qa.RecordNo,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case ep.fState when 1 then '上报审批中' when 2 then '打回企业' when 3 then '打回下级' ");
-        sb.Append(" when 5 then '未审批证书' when 6 then '审批完成' end as FStatedesc,");
+        sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
+        sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
+        sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
-        sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, TC_QA_Record qa");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");
-      //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
+        sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, V_SGXKZ_YW qa, CF_APP_LIST ap");
+        sb.Append(" where ep.fId = er.FProcessInstanceID  ");
+        //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
+        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
+        sb.Append(" and ep.FLinkId = ap.FId ");
+        sb.Append(getCondi());
+        //下面的查询备份表
+        sb.Append(" union all ");
+        sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
+        sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
+        sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
+        sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
+        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
+        sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, V_SGXKZ_YW qa, CF_APP_LIST ap");
+        sb.Append(" where ep.fId = er.FProcessInstanceID  ");
+        //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
+        sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
+        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
+        sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
         sb.AppendLine(" ) ttt where 1=1 ");
 
-        //if (!string.IsNullOrEmpty(t_FInt3.SelectedValue))
-        //{
-        //    sb.Append(" and FInt3='" + t_FInt3.SelectedValue + "' ");
-        //}
 
         sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
 

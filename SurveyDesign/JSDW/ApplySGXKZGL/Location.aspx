@@ -34,6 +34,66 @@
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
             //  alert('dd')
         }
+        function showTr1() {
+            $("tr[name=tr1]").show();
+            //$(".cc1").removeAttr("disabled");
+            $(".cc1").attr("disabled", true);
+            //$("input").removeAttr("disabled");
+            $("#btnAdd").attr("disabled", true);
+            $("#btnDel").attr("disabled", true);
+            $("#btnReload").attr("disabled", true);
+            //$("#t_Scale").removeAttr("disabled");
+            $("#t_Scale").attr("disabled", true);
+            //$("#t_ProjectBasis").removeAttr("disabled");
+            $("#t_ProjectBasis").attr("disabled", true);
+            //$("#btnSave").removeAttr("disabled");
+        }
+        function hideTr1() {
+            $("tr[name=tr1]").hide();
+            $("tt[name=tt_t1]").empty();
+            $("tt[name=tt_t1]").each(function () {
+                var t = $(this).html();
+                $(this).replaceWith(t);
+            });
+            $(".cc1").removeAttr("disabled");
+            $("#btnAdd").removeAttr("disabled");
+            $("#btnDel").removeAttr("disabled");
+            $("#btnReload").removeAttr("disabled");
+            $("#t_Scale").removeAttr("disabled");
+            $("#t_ProjectBasis").removeAttr("disabled");
+            //$("#btnSave").removeAttr("disabled");
+        }
+        function change(value) {
+            if (value == "1") {
+                $("tr[name=tr1]").hide();
+                $("tt[name=tt_t1]").empty();
+                $("tt[name=tt_t1]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
+                });
+                $(".cc1").removeAttr("disabled");
+                $("#btnAdd").removeAttr("disabled");
+                $("#btnDel").removeAttr("disabled");
+                $("#btnReload").removeAttr("disabled");
+                $("#t_Scale").removeAttr("disabled");
+                $("#t_ProjectBasis").removeAttr("disabled");
+                //$("#btnSave").removeAttr("disabled");
+            }
+            else {
+                $("tr[name=tr1]").show();
+                $(".cc1").attr("disabled", true);
+                //$("input").removeAttr("disabled");
+                $("#btnAdd").attr("disabled", true);
+                $("#btnDel").attr("disabled", true);
+                $("#btnReload").attr("disabled", true);
+                //$("#t_Scale").removeAttr("disabled");
+                $("#t_Scale").attr("disabled", true);
+                //$("#t_ProjectBasis").removeAttr("disabled");
+                $("#t_ProjectBasis").attr("disabled", true);
+                //$("#btnSave").removeAttr("disabled");
+            }
+        }
+
     </script>
 
     <style type="text/css">
@@ -66,28 +126,49 @@
     <table id="table1" class="m_table" width="98%" align="center">
         <tr>
             <td class="t_l t_bg" colspan="4">
-                <h3>选址意见书信息</h3>                     是否需要办理<asp:CheckBox ID="cb" runat="server" />
+                <h3>选址意见书信息</h3> 
             </td>
         </tr>
+        <!--<tr>
+            <td class="t_r t_bg" style="width:18.8%;">
+                办理选项：
+            </td>
+            <td colspan="1" style="width:29%;">
+                <asp:DropDownList ID="t_BL" class="cc2" runat="server" CssClass="m_txt" onchange="change(this.value)" Width="60%">
+                    <asp:ListItem Value="1">补填</asp:ListItem>
+                    <asp:ListItem Value="0">不需要办理</asp:ListItem>
+                    <asp:ListItem Value="2">以后补办</asp:ListItem>
+                    
+                </asp:DropDownList>
+            </td>
+            
+        </tr>
+        <tr name="tr1">
+            <td class="t_r t_bg">
+                理由： </td>
+            <td colspan="3">
+                <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
+            </td>
+        </tr>-->
         <tr>
             <td class="t_r t_bg" style="width:18.8%;">
                 项目名称：
             </td>
             <td colspan="1" style="width:29%;">
-                <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="60%" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="60%" Enabled="false"></asp:TextBox>
                 <input id="txtFId" type="hidden" runat="server" />
             </td>
             <td class="t_r t_bg" style="width:12.8%;">
                 建设单位： </td>
             <td>
-                <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="44%" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="44%" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr >
             <td class="t_r t_bg">
                 项目拟选位置： </td>
             <td colspan="3">
-                <asp:TextBox ID="t_LocationAddress" runat="server" CssClass="m_txt" Width="73%"></asp:TextBox>
+                <asp:TextBox ID="t_LocationAddress" class="cc1" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
             </td>          
         </tr>
         <tr>
@@ -95,19 +176,19 @@
                 拟用地面积：
             </td>
             <td colspan="1" style="width:29%;">
-                <asp:TextBox ID="t_Area" onblur="isFloat(this)" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>（m2）
+                <asp:TextBox ID="t_Area" class="cc1" onblur="isFloat(this)" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>（m2）
             </td>
             <td class="t_r t_bg">
                 选址意见书证书编号： </td>
             <td colspan="1">
-                <asp:TextBox ID="t_XZYJSZSBH" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
+                <asp:TextBox ID="t_XZYJSZSBH" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="t_r t_bg">
                 拟建设规模： </td>
             <td colspan="3">
-                <asp:TextBox ID="t_Scale" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="73%"></asp:TextBox>
+                <asp:TextBox ID="t_Scale" class="cc1" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
             </td>
             
         </tr>
@@ -115,21 +196,29 @@
             <td class="t_r t_bg">
                 建设项目依据：</td>
             <td colspan="3">
-               <asp:TextBox ID="t_ProjectBasis" Height="35px" TextMode="MultiLine" onblur="checkLength(this,1000,'建设项目依据');" runat="server" CssClass="m_txt" Width="73%"></asp:TextBox>&nbsp;</td>
+               <asp:TextBox ID="t_ProjectBasis" class="cc1" Height="35px" TextMode="MultiLine" onblur="checkLength(this,1000,'建设项目依据');" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="t_r t_bg">
+                用地批准手续：</td>
+            <td colspan="3">
+               <asp:TextBox ID="t_YDPZSX" class="cc1" Height="35px" TextMode="MultiLine" onblur="checkLength(this,1000,'用地批准手续');" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt>*</tt>&nbsp;</td>
         </tr>
         <tr>
             <td class="t_r t_bg" style="width:18.8%;">
                 发证日期：
             </td>
             <td colspan="1" style="width:29%;">
-                <asp:TextBox ID="t_CreateTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>
+                <asp:TextBox ID="t_CreateTime" class="cc1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>
             </td>
             <td class="t_r t_bg">
                 核发机关： </td>
             <td>
-                <asp:TextBox ID="t_HFJG" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
+                <asp:TextBox ID="t_HFJG" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
             </td>
         </tr>
+        
+        
     </table>
         <table width="98%" align="center" class="m_bar">
             <tr>
@@ -140,9 +229,9 @@
                 </td>
                 <td class="t_r">
                     <input type="button" id="btnAdd" runat="server" value="新增" class="m_btn_w2" onclick="addPrjItem();" />
-                    <asp:Button ID="btnDel" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
+                    <asp:Button ID="btnDel" class="cc1" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btnDel_Click" />
-                    <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click" />
+                    <asp:Button ID="btnReload" class="cc1" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click" />
                 </td>
                 <td class="m_bar_r">
                 </td>

@@ -69,11 +69,12 @@ public partial class JSDW_ApplyAQJDBA_LiftList : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('List.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('Lift.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void btnDel_Click(object sender, EventArgs e)
     {
+        EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_AJBA_QZSB, tool_Deleting);
         ShowTitle();
@@ -81,8 +82,9 @@ public partial class JSDW_ApplyAQJDBA_LiftList : System.Web.UI.Page
     //设备删除
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
     {
-        if (dbContext != null)
+        if (context != null)
         {
+            EgovaDB dbContext = (EgovaDB)context;
             var para = dbContext.TC_AJBA_QZSB.Where(t => FIdList.ToArray().Contains(t.FId));
             dbContext.TC_AJBA_QZSB.DeleteAllOnSubmit(para);
         }

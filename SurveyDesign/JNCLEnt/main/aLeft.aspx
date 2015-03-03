@@ -142,7 +142,7 @@
                         <div id="dv3" runat="server" class="o_menu">
                             <a id="a2" class="o_m01_1" target="main"><span>信息管理</span></a>
                             <div class="o_smenu">
-                                <a id="a21" class="o_m02_1" href='../mangeInfo/produceEntInfo.aspx' target="main"><span>生产企业基本信息</span></a>
+                               <%-- <a id="a21" class="o_m02_1" href='../mangeInfo/produceEntInfo.aspx' target="main"><span>生产企业基本信息</span></a>
                                 <div class="o_smenu2">
                                 </div>
                                 <a id="a22" class="o_m02_1" href='../mangeInfo/entJJ.aspx' target="main"><span>企业简介</span></a>
@@ -153,8 +153,8 @@
                                 </div>
                                 <a id="a6" class="o_m02_1" href='../mangeInfo/equipmentListJC.aspx' target="main"><span>主要检测设备</span></a>
                                 <div class="o_smenu2">
-                                </div>
-                                <a id="a7" class="o_m02_1" href='../mangeInfo/productList.aspx' target="main"><span>已备案材料和产品</span></a>
+                                </div>--%>
+                                <a id="a7" class="o_m02_1" href='../mangeInfo/productList.aspx' target="main"><span>绿色建材标识产品</span></a>
                                 <div class="o_smenu2">
                                 </div>
                             </div>
@@ -166,12 +166,12 @@
                             <a id="a4" class="o_m01_1" href='../appmain/PrjRegistListBG.aspx' target="main"><span>设计变更</span></a>
                         </div>
                         <div class="o_menu" id="dv8">
-                            <a id="a12" class="o_m01_1" target="main"><span>节能材料</span></a>
+                            <a id="a12" class="o_m01_1" target="main"><span>绿色建材</span></a>
                             <div class="o_smenu">
-                                <a id="a41" class="o_m02_1" href='firstBA.aspx' target="main"><span>首次备案</span></a>
+                                <a id="a41" class="o_m02_1" href='../Manage/FirstApply.aspx' target="main"><span>首次申请</span></a>
                                 <div class="o_smenu2">
                                 </div>
-                                <a id="a42" class="o_m02_1" href='#' target="main"><span>备案续期</span></a>
+                                <a id="a42" class="o_m02_1" href='../Manage/ReViewApply.aspx' target="main"><span>复核申请</span></a>
                                 <div class="o_smenu2">
                                 </div>
                             </div>

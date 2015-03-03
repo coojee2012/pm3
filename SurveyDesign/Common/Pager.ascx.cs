@@ -390,6 +390,10 @@ namespace Approve.Common
                         return new OA();
                     case "dbJST":
                         return new RCenter("dbJST");
+                    case "JST_XZSPBaseInfo":
+                        return new RCenter("JST_XZSPBaseInfo");
+                    case "XM_BaseInfo":
+                        return new RCenter("XM_BaseInfo");
                     default:
                         return new RCenter();
                 }

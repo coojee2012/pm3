@@ -18,6 +18,7 @@ public partial class JSDW_ApplyZBBA_FBInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            ViewState["FID"] = Request.QueryString["fid"];
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                 TC_PBBG_FBYY pb = dbContext.TC_PBBG_FBYY.Where(t => t.FId == Convert.ToString(Request.QueryString["fid"])).FirstOrDefault();
@@ -34,13 +35,18 @@ public partial class JSDW_ApplyZBBA_FBInfo : System.Web.UI.Page
                 ViewState["FAppId"] = Request.QueryString["fAppId"];
                 ViewState["BDId"] = Request.QueryString["BDId"];
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
+            }
         }
     }
 
     //保存
     private void saveInfo()
     {
-        string fId = Request.QueryString["fid"];
+        string fId = EConvert.ToString(ViewState["FID"]);
         TC_PBBG_FBYY Emp = new TC_PBBG_FBYY();
         if (!string.IsNullOrEmpty(fId))
         {
@@ -54,6 +60,7 @@ public partial class JSDW_ApplyZBBA_FBInfo : System.Web.UI.Page
             Emp.BDId = EConvert.ToString(ViewState["BDId"]);
             Emp.FLinkId = EConvert.ToString(ViewState["FLinkId"]);
             Emp.FAppId = EConvert.ToString(ViewState["FAppId"]);
+            Emp.QYId = t_QYId.Value;
             dbContext.TC_PBBG_FBYY.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
@@ -72,9 +79,10 @@ public partial class JSDW_ApplyZBBA_FBInfo : System.Web.UI.Page
     }
     protected void btnSel_Click(object sender, EventArgs e)
     {
-        var result = (from t in dbContext.TC_PBBG_BMQY
-                      where t.FId == this.t_BMId.Value
+        var result = (from t in dbContext.TC_PBBG_TBQY
+                      where t.FId == this.t_FBId.Value
                       select t).SingleOrDefault();
         t_TBR.Text = result.QYMC;
+        t_QYId.Value = result.QYId;
     }
 }

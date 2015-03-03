@@ -88,7 +88,7 @@
                                                     </td>
                                                     <td  rowspan="3" style="text-align: center; padding-right: 10px">
                                                         <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" OnClick="btnQuery_Click" />
-                                                        <asp:Button ID="btnPup" runat="server" CssClass="m_btn_w12" OnClick="btn_Click" Text="新增质量监督备案"></asp:Button>
+                                                        <asp:Button ID="btnPup" runat="server" CssClass="m_btn_w12" OnClick="btn_Click" Text="新增安全监督备案"></asp:Button>
                                                     </td>
                                                 </tr>
                                                 <tr style ="height:30px;">               

@@ -21,10 +21,15 @@
             }
             showAddWindow(url + "?FAppId=" + fid + "&type=1001", 550, 400);
         }
+        function Insert() {
+            var url = "editEquipmentJC.aspx?YWBM=" + $("#hfYWBM").val();
+            showAddWindow(url, 800, 400);
+        }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:HiddenField ID="hfYWBM" runat="server" />
         <table width="98%" align="center" class="m_title">
             <tr>
                 <th colspan="5">主要检测设备
@@ -35,8 +40,9 @@
             <tr>
                 <td class="m_bar_l"></td>
                 <td class="t_r" style="padding-right: 10px;">
-                    <input id="Submit1" type="button" value="新增" onclick="showAddWindow('editEquipmentJC.aspx?', 800, 400);"
-                        runat="server" class="m_btn_w2" />
+                   <%-- <input id="Submit1" type="button" value="新增" onclick="Insert()"
+                        runat="server" class="m_btn_w2" />--%>
+                     <asp:Button ID="btnAdd" runat="server" Text="新增" OnClientClick="Insert();return false;" class="m_btn_w2" />
                     &nbsp;<asp:Button ID="btnDel" runat="server" Text="删除" OnClick="btnDel_Click" class="m_btn_w2" />
                     &nbsp;<asp:Button ID="btnQuery" runat="server" Text="刷新" OnClick="btnQuery_Click" class="m_btn_w2" />
                 </td>
@@ -64,7 +70,7 @@
                 <asp:BoundColumn DataField="SBMC" HeaderText="设备名称" HeaderStyle-Width="100px">
                     <ItemStyle HorizontalAlign="Left" />
                 </asp:BoundColumn>
-                <asp:BoundColumn DataField="XH" HeaderText="型号/产地/出厂日期" HeaderStyle-Width="100px">
+                <asp:BoundColumn DataField="XH" HeaderText="型号/产地/出厂日期" HeaderStyle-Width="130px">
                     <ItemStyle HorizontalAlign="Left" />
                     <ItemStyle CssClass="t_l" Wrap="false" />
                 </asp:BoundColumn>

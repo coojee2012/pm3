@@ -38,6 +38,20 @@ public partial class JSDW_ApplySGXKZGL_PrjItemDescForYQ : System.Web.UI.Page
         t_ConstrType.DataValueField = "FNumber";
         t_ConstrType.DataBind();
         t_ConstrType.Items.Insert(0, new ListItem("--请选择--", ""));
+
+        //工程类别
+        dt = rc.getDicTbByFNumber("20001");
+        t_PrjItemType.DataSource = dt;
+        t_PrjItemType.DataTextField = "FName";
+        t_PrjItemType.DataValueField = "FNumber";
+        t_PrjItemType.DataBind();
+
+        //币种
+        dt = rc.getDicTbByFNumber("112211");
+        t_Currency.DataSource = dt;
+        t_Currency.DataTextField = "FName";
+        t_Currency.DataValueField = "FNumber";
+        t_Currency.DataBind();
     }
     //显示
     private void showInfo()

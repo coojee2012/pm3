@@ -21,7 +21,17 @@
 
         });
         function checkInfo() {
-            return AutoCheckInfo();
+            var value = document.getElementById("t_BL").value;
+            if (value == "1") {
+                return AutoCheckInfo();
+            } else {
+                var ly = document.getElementById("t_YL").value;
+                if (ly == null || ly == '') {
+                    alert('必须填写理由！');
+                    return;
+                }
+            }
+            
         }
         function addPrjItem() {
             var fid = document.getElementById("txtFId").value;
@@ -33,6 +43,62 @@
             }
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
             //  alert('dd')
+        }
+        function showTr1() {
+            $("tr[name=tr1]").show();
+            $("#btnAdd").attr("disabled", true);
+            $("#btnDel").attr("disabled", true);
+            $("#btnReload").attr("disabled", true);
+            $("#t_Area").attr("disabled", true);
+            $("#t_ConstrScale").attr("disabled", true);
+            $("#t_Span").attr("disabled", true);
+            $("#t_Others").attr("disabled", true);
+            $("#t_GCGHXKZBH").attr("disabled", true);
+            $("#t_CreateTime").attr("disabled", true);
+            $("#t_HFJG").attr("disabled", true);
+        }
+        function hideTr1() {
+            $("tr[name=tr1]").hide();
+            $("#btnAdd").removeAttr("disabled");
+            $("#btnDel").removeAttr("disabled");
+            $("#btnReload").removeAttr("disabled");
+            $("#t_Area").removeAttr("disabled");
+            $("#t_ConstrScale").removeAttr("disabled");
+            $("#t_Span").removeAttr("disabled");
+            $("#t_Others").removeAttr("disabled");
+            $("#t_GCGHXKZBH").removeAttr("disabled");
+            $("#t_CreateTime").removeAttr("disabled");
+            $("#t_HFJG").removeAttr("disabled");
+        }
+        function change(value) {
+            if (value == "1") {
+                $("tr[name=tr1]").hide();
+                $("#btnAdd").removeAttr("disabled");
+                $("#btnDel").removeAttr("disabled");
+                $("#btnReload").removeAttr("disabled");
+                $("#t_Area").removeAttr("disabled");
+                $("#t_ConstrScale").removeAttr("disabled");
+                $("#t_Span").removeAttr("disabled");
+                $("#t_Others").removeAttr("disabled");
+                $("#t_GCGHXKZBH").removeAttr("disabled");
+                $("#t_CreateTime").removeAttr("disabled");
+                $("#t_HFJG").removeAttr("disabled");
+            }
+            else {
+                $("tr[name=tr1]").show();
+                //$("input").removeAttr("disabled");
+                $("#btnAdd").attr("disabled", true);
+                $("#btnDel").attr("disabled", true);
+                $("#btnReload").attr("disabled", true);
+                $("#t_Area").attr("disabled", true);
+                $("#t_ConstrScale").attr("disabled", true);
+                $("#t_Span").attr("disabled", true);
+                $("#t_Others").attr("disabled", true);
+                $("#t_GCGHXKZBH").attr("disabled", true);
+                $("#t_CreateTime").attr("disabled", true);
+                $("#t_HFJG").attr("disabled", true);
+                
+            }
         }
     </script>
 
@@ -71,23 +137,44 @@
         </tr>
         <tr>
             <td class="t_r t_bg" style="width:18.8%;">
+                办理选项：
+            </td>
+            <td colspan="1" style="width:29%;">
+                <asp:DropDownList ID="t_BL" class="cc2" runat="server" CssClass="m_txt" onchange="change(this.value)" Width="60%">
+                    <asp:ListItem Value="1">补填</asp:ListItem>
+                    <asp:ListItem Value="0">不需要办理</asp:ListItem>
+                    <asp:ListItem Value="2">以后补办</asp:ListItem>
+                    
+                </asp:DropDownList>
+            </td>
+            
+        </tr>
+        <tr name="tr1">
+            <td class="t_r t_bg">
+                理由： </td>
+            <td colspan="3">
+                <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r t_bg" style="width:18.8%;">
                 项目名称：
             </td>
             <td colspan="1" style="width:29%;">
-                <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="60%" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="60%" Enabled="false"></asp:TextBox>
                 <input id="txtFId" type="hidden" runat="server" />
             </td>
             <td class="t_r t_bg" style="width:12.8%;">
                 建设单位： </td>
             <td>
-                <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="44%" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="44%" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr >
             <td class="t_r t_bg">
                 建设地址： </td>
             <td colspan="3">
-                <asp:TextBox ID="t_Address" runat="server" CssClass="m_txt" Width="73%" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="t_Address" runat="server" CssClass="m_txt" Width="72.2%" Enabled="false"></asp:TextBox>
             </td>          
         </tr>
         <tr>
@@ -103,7 +190,7 @@
             <td class="t_r t_bg">
                 建设规模： </td>
             <td colspan="3">
-                <asp:TextBox ID="t_ConstrScale" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="73%" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="t_ConstrScale" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -117,14 +204,14 @@
                 其他：
             </td>
             <td colspan="1">
-                <asp:TextBox ID="t_Others" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
+                <asp:TextBox ID="t_Others" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="t_r t_bg">
                 工程规划许可证编号： </td>
             <td colspan="3">
-                <asp:TextBox ID="t_GCGHXKZBH" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox><tt>*</tt>
+                <asp:TextBox ID="t_GCGHXKZBH" class="cc1" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox><tt name="tt_t2">*</tt>
             </td>
         </tr>
         <tr>
@@ -132,12 +219,12 @@
                 发证日期：
             </td>
             <td colspan="1" style="width:29%;">
-                <asp:TextBox ID="t_CreateTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>
+                <asp:TextBox ID="t_CreateTime" class="cc1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>
             </td>
             <td class="t_r t_bg">
                 核发机关： </td>
             <td>
-                <asp:TextBox ID="t_HFJG" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
+                <asp:TextBox ID="t_HFJG" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
             </td>
         </tr>
         

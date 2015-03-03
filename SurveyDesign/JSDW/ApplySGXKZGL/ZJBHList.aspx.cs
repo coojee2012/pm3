@@ -77,7 +77,7 @@ public partial class JSDW_ApplySGXKZGL_ZJBHList : System.Web.UI.Page
         {
             fId = Guid.NewGuid().ToString();
             qa.FId = fId;
-            qa.FprjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
+            qa.FPrjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
             qa.FAppId = EConvert.ToString(ViewState["FAppId"]);
             dbContext.TC_SGXKZ_ZJBH.InsertOnSubmit(qa);
         }

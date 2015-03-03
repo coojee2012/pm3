@@ -369,6 +369,10 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
                     flag = true;
                 }
             }
+            else
+            {
+                flag = true;
+            }
         }
         else if (prj.PrjItemType == "2000102")//市政设施
         {
@@ -404,6 +408,10 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
                 {
                     flag = true;
                 }
+            }
+            else
+            {
+                flag = true;
             }
         }
         return flag;

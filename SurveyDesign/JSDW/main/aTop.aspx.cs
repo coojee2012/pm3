@@ -16,6 +16,7 @@ public partial class Admin_main_aTop : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            hfCurrentTime.Value = DateTime.Now.ToString();
             showInfo();
             a5.Visible = EConvert.ToInt(Session["FromMKey"]) == 1;//主账户可返回
         }
@@ -24,10 +25,10 @@ public partial class Admin_main_aTop : System.Web.UI.Page
     {
         ProjectDB db = new ProjectDB();
         liter_FBaseName.Text = CurrentEntUser.EntName;
-        li_UserType.Text = " 用户类型：" + db.getSystemName(CurrentEntUser.SystemId);
+       // li_UserType.Text = " 用户类型：" + db.getSystemName(CurrentEntUser.SystemId);
 
 
-        lDate.Text = "今天是：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Now) + " " + DateTime.Now.DayOfWeek.ToString();
+       // lDate.Text = "今天是：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Now) + " " + DateTime.Now.DayOfWeek.ToString();
         lLockInfo.Text += "" + "<a href='../../helpDoc/四川省勘察设计科技管理信息平台-建设单位用户操作手册.pdf' target='_blank' >操作说明下载</a>";
 
 

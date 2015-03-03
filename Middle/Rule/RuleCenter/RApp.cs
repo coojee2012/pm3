@@ -1987,15 +1987,16 @@ namespace Approve.RuleApp
             sb.Append("insert into cf_App_ProcessInstanceBackup(FID, FIsDeleted, FTime, FCreateTime, FBaseInfoID, FEntName, FEmpId, FEmpName, FLinkId, FState, FIsBase, FIsTemp, FListId, FTypeId, FLevelId, FLeadId, FLeadName, FAppLevel, FProcessId, FSubFlowId, FManageDeptId, FManageTypeId, FResult, FYear, FMonth, FSubmitDate, FReportDate, FCurStepID, FRoleId, FBeginRoleId, FDefineDay, FAppState, FBackIdea, FSystemId, FIsNew, FSeeState, fseetime, FPlanTime, FFactTime, FBarCode, FReportCount) ");
             sb.Append("select  FID, FIsDeleted, FTime, FCreateTime, FBaseInfoID, FEntName, FEmpId, FEmpName, FLinkId, FState, FIsBase, FIsTemp, FListId, FTypeId, FLevelId, FLeadId, FLeadName, FAppLevel, FProcessId, FSubFlowId, FManageDeptId, FManageTypeId, FResult, FYear, FMonth, FSubmitDate, FReportDate, FCurStepID, FRoleId, FBeginRoleId, FDefineDay, FAppState, FBackIdea, FSystemId, FIsNew, FSeeState, fseetime, FPlanTime, FFactTime, FBarCode, FReportCount  from cf_App_ProcessInstance where fid in (" + sPIDs.ToString() + ");");
 
-            sb.Append("delete from cf_App_ProcessInstance where fid in (" + sPIDs.ToString() + ");");
+            //sb.Append("delete from cf_App_ProcessInstance where fid in (" + sPIDs.ToString() + ");"); //2014-1-16 不予受理不删除信息
 
             sb.Append("insert into cf_App_ProcessRecordBackup(FID, FTime, FIsDeleted, FProcessInstanceID, FLinkId, FSubFlowId, FMeasure, FResult, FIdea, FAppPerson, FCompany, FFunction, FManageDeptId, FAppTime, FReportTime, FUserId, FWaiteTime, FDefineDay, FRoleId, FLevel, FOrder, FRoleDesc, FTypeId, FIsQuali, FIsPrint, FCreateTime, FPersonnel, FPerformance, FUpDeptLevel, FReportCount) ");
             sb.Append("select  FID, FTime, FIsDeleted, FProcessInstanceID, FLinkId, FSubFlowId, FMeasure, FResult, FIdea, FAppPerson, FCompany, FFunction, FManageDeptId, FAppTime, FReportTime, FUserId, FWaiteTime, FDefineDay, FRoleId, FLevel, FOrder, FRoleDesc, FTypeId, FIsQuali, FIsPrint, FCreateTime, FPersonnel, FPerformance, FUpDeptLevel, FReportCount from cf_App_ProcessRecord where ");
             sb.Append(" FProcessInstanceID in (" + sPIDs.ToString() + ");");
-            sb.Append("delete from cf_App_ProcessRecord where ");
-            sb.Append(" FProcessInstanceID in (" + sPIDs.ToString() + ");");
+            //sb.Append("delete from cf_App_ProcessRecord where ");
+            //sb.Append(" FProcessInstanceID in (" + sPIDs.ToString() + ");");//2014-1-16 不予受理不删除信息
             rCenter.PExcute(sb.ToString(), true);
         }
+        
         #endregion
 
         #region  得到上报部门

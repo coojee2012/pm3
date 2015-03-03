@@ -183,7 +183,6 @@ public partial class EntSelf_MainSelf_zWXTS : System.Web.UI.Page
     {
         ProjectDB db = new ProjectDB();
         string FBaseinfoID = CurrentEntUser.EntId;
-
         var v = from t in db.CF_App_List
                 where (t.FBaseinfoId == FBaseinfoID || t.FToBaseinfoId == FBaseinfoID)
                       && t.FManageTypeId != 28001 //排除合同备案见证的，它在这里和合同备案勘察是一个业务

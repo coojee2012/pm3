@@ -69,7 +69,7 @@ public partial class JSDW_ApplyAQJDBA_ProtectList : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('Person.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('Protect.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void btnDel_Click(object sender, EventArgs e)

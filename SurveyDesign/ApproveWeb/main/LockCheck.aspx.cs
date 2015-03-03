@@ -420,8 +420,8 @@ public partial class ApproveWeb_Main_LockCheck : System.Web.UI.Page
             case "220"://工法系统
                 str = "~/GFEnt/main/Index.aspx";
                 break;
-            case"144"://物业项目
-                str = "~/WYDW/main/Index.aspx";
+            case "222"://节能材料系统
+                str = "~/JNCLEnt/main/Index.aspx";
                 break;
             default:
                 str = "";

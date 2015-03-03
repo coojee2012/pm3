@@ -186,7 +186,7 @@ public partial class Government_AppZBBA_AuditInfo : System.Web.UI.Page
        {
            WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
+           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');window.returnValue='1';", true);
        }
        catch (Exception ee)
        {
@@ -208,7 +208,7 @@ public partial class Government_AppZBBA_AuditInfo : System.Web.UI.Page
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');window.returnValue='1';", true);
            }
            else
            {
@@ -236,7 +236,7 @@ public partial class Government_AppZBBA_AuditInfo : System.Web.UI.Page
                       t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                WFApp.EndApp(t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId, sIdea);
                DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('操作成功');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('操作成功');window.returnValue='1';", true);
            }
            else
            {
@@ -263,7 +263,7 @@ public partial class Government_AppZBBA_AuditInfo : System.Web.UI.Page
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                        t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('回退到建设单位成功');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('回退到建设单位成功');window.returnValue='1';", true);
            }
            else
            {

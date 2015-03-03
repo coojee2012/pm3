@@ -90,6 +90,21 @@
             </tr>
         </table>
         <table class="m_table" width="95%" align="center">
+             <tr>
+                <td class="t_r t_bg" >
+                    记录时间：
+                </td>
+                <td colspan="1">
+                    <asp:TextBox ID="t_JLSJ" runat="server"  onfocus="WdatePicker()" CssClass="m_txt" Width="200px" MaxLength="30" ></asp:TextBox>
+                </td>
+                <td class="t_r t_bg" >
+                    记录人：
+                </td>
+                <td colspan="1">
+                    <asp:TextBox ID="t_JLR" runat="server" CssClass="m_txt" Width="200px" MaxLength="30" ></asp:TextBox>
+                </td>
+                
+            </tr>
             <tr>
                 <td class="t_r t_bg" >
                     踏勘时间：
@@ -120,6 +135,15 @@
                 </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_TKQK" runat="server" CssClass="m_txt" Width="98%" MaxLength="30" Height="48px" ></asp:TextBox>
+                </td>
+                
+            </tr>
+             <tr>
+                <td class="t_r t_bg" >
+                    备注：
+                </td>
+                <td colspan="3">
+                    <asp:TextBox ID="t_BZ" runat="server" CssClass="m_txt" Width="98%" MaxLength="30" Height="48px" ></asp:TextBox>
                 </td>
                 
             </tr>

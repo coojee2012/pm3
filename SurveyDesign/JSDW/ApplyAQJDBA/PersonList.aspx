@@ -101,10 +101,11 @@
             <asp:BoundColumn DataField="ZHUCZSH" HeaderText="注册证书号">
                 <ItemStyle Wrap="false" />
             </asp:BoundColumn>
-            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FHumanId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="XMZW" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FAppId" Visible="False"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
+            
         </Columns>
     </asp:DataGrid>
     <div style="padding-left: 1%">

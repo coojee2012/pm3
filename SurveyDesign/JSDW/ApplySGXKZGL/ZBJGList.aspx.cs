@@ -17,17 +17,72 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            if (!string.IsNullOrEmpty(EConvert.ToString(Session["FAppId"])))
+            BindControl();
+            
+            if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
-                ViewState["FAppId"] = EConvert.ToString(Session["FAppId"]);
+                ViewState["FID"] = Request.QueryString["fid"];
+                TC_SGXKZ_ZBJG sp = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FId == EConvert.ToString(ViewState["FID"])).FirstOrDefault();
+                pageTool tool = new pageTool(this.Page, "t_");
+                tool.fillPageControl(sp);
+                txtFId.Value = Request.QueryString["fid"];
+                if (!string.IsNullOrEmpty(sp.JLZBLX) && (sp.JLZBLX == "11220801" || sp.JLZBLX == "11220802"))
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>hideTr1();</script>");
+                }
             }
-            ShowTitle();
+            else
+            {
+                ViewState["FAppId"] = EConvert.ToString(Request["FAppId"]);
+                ShowTitle();
+            }
+            //ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool1.ExecuteScript("btnEnable();");
             }
         }
+    }
+
+    void BindControl()
+    {
+        //招标类型
+        DataTable dt = rc.getDicTbByFNumber("112208");
+        t_JLZBLX.DataSource = dt;
+        t_JLZBLX.DataTextField = "FName";
+        t_JLZBLX.DataValueField = "FNumber";
+        t_JLZBLX.DataBind();
+        //t_SGZBLX.DataSource = dt;
+        //t_SGZBLX.DataTextField = "FName";
+        //t_SGZBLX.DataValueField = "FNumber";
+        //t_SGZBLX.DataBind();
+
+        //招标方式
+        dt = rc.getDicTbByFNumber("112206");
+        t_JLZBFS.DataSource = dt;
+        t_JLZBFS.DataTextField = "FName";
+        t_JLZBFS.DataValueField = "FNumber";
+        t_JLZBFS.DataBind();
+        //t_SGZBFS.DataSource = dt;
+        //t_SGZBFS.DataTextField = "FName";
+        //t_SGZBFS.DataValueField = "FNumber";
+        //t_SGZBFS.DataBind();
+
+        //证件类型
+        dt = rc.getDicTbByFNumber("112203");
+        t_JLGCSZJLX.DataSource = dt;
+        t_JLGCSZJLX.DataTextField = "FName";
+        t_JLGCSZJLX.DataValueField = "FNumber";
+        t_JLGCSZJLX.DataBind();
+        //t_SGXMJLZJLX.DataSource = dt;
+        //t_SGXMJLZJLX.DataTextField = "FName";
+        //t_SGXMJLZJLX.DataValueField = "FNumber";
+        //t_SGXMJLZJLX.DataBind();
     }
 
     private void ShowTitle()
@@ -42,22 +97,10 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         t_ConstrScale.Text = qa.ConstrScale;
         TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
         t_ProjectNo.Text = p.ProjectNo;
-        TC_SGXKZ_ZBJG sp = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
-        if (sp != null)
-        {
-            txtFId.Value = sp.FId;
-            //txtKCId.Value = sp.KCId;
-            //txtSJId.Value = sp.SJId;
-            txtJLId.Value = sp.JLId;
-            txtSGId.Value = sp.SGId;
-            ShowFile(sp.KCId,"KC");
-            ShowFile(sp.KCId, "SJ");
-            ShowFile(sp.KCId, "JL");
-            ShowFile(sp.KCId, "SG");
-        }
+        
 
-        pageTool tool = new pageTool(this.Page, "t_");
-        tool.fillPageControl(sp);
+        //pageTool tool = new pageTool(this.Page, "t_");
+        //tool.fillPageControl(sp);
     }
 
     private void ShowFile(string FId, string name)
@@ -90,13 +133,13 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             dg_ListJL.DataBind();
             PagerJL.Visible = (PagerJL.RecordCount > PagerJL.PageSize);
         }
-        else if (name == "SG")
-        {
-            PagerSG.RecordCount = App.Count();
-            dg_ListSG.DataSource = App.Skip((PagerSG.CurrentPageIndex - 1) * PagerSG.PageSize).Take(PagerSG.PageSize);
-            dg_ListSG.DataBind();
-            PagerSG.Visible = (PagerSG.RecordCount > PagerSG.PageSize);
-        }
+        //else if (name == "SG")
+        //{
+        //    PagerSG.RecordCount = App.Count();
+        //    dg_ListSG.DataSource = App.Skip((PagerSG.CurrentPageIndex - 1) * PagerSG.PageSize).Take(PagerSG.PageSize);
+        //    dg_ListSG.DataBind();
+        //    PagerSG.Visible = (PagerSG.RecordCount > PagerSG.PageSize);
+        //}
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -104,8 +147,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         string fId = txtFId.Value;
         //string KCId = txtKCId.Value;
         //string SJId = txtSJId.Value;
-        string JLId = txtJLId.Value;
-        string SGId = txtSGId.Value;
+        //string JLId = txtJLId.Value;
+        //string SGId = txtSGId.Value;
         TC_SGXKZ_ZBJG qa = new TC_SGXKZ_ZBJG();
         pageTool tool = new pageTool(this.Page);
         if (!string.IsNullOrEmpty(fId))
@@ -117,13 +160,13 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             fId = Guid.NewGuid().ToString();
             //KCId = Guid.NewGuid().ToString();
             //SJId = Guid.NewGuid().ToString();
-            JLId = Guid.NewGuid().ToString();
-            SGId = Guid.NewGuid().ToString();
+            //JLId = Guid.NewGuid().ToString();
+            //SGId = Guid.NewGuid().ToString();
             qa.FId = fId;
             //qa.KCId = KCId;
             //qa.SJId = SJId;
-            qa.JLId = JLId;
-            qa.SGId = SGId;
+            //qa.JLId = JLId;
+            //qa.SGId = SGId;
             qa.FprjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
             qa.FAppId = EConvert.ToString(ViewState["FAppId"]);
             dbContext.TC_SGXKZ_ZBJG.InsertOnSubmit(qa);
@@ -133,10 +176,11 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         txtFId.Value = fId;
         //txtKCId.Value = KCId;
         //txtSJId.Value = SJId;
-        txtJLId.Value = JLId;
-        txtSGId.Value = SGId;
-        //  showPrjData();
-        tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
+        //txtJLId.Value = JLId;
+        //txtSGId.Value = SGId;
+        //ShowTitle();
+        ShowFile(t_JLId.Value, "JL");
+        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     }
     //protected void btnReload_ClickKC(object sender, EventArgs e)
     //{
@@ -148,12 +192,12 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     //}
     protected void btnReload_ClickJL(object sender, EventArgs e)
     {
-        ShowFile(txtJLId.Value, "JL");
+        ShowFile(t_JLId.Value, "JL");
     }
-    protected void btnReload_ClickSG(object sender, EventArgs e)
-    {
-        ShowFile(txtSGId.Value, "SG");
-    }
+    //protected void btnReload_ClickSG(object sender, EventArgs e)
+    //{
+    //    ShowFile(txtSGId.Value, "SG");
+    //}
     //protected void App_List_ItemDataBoundKC(object sender, DataGridItemEventArgs e)
     //{
     //    if (e.Item.ItemIndex > -1)
@@ -181,15 +225,15 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('File.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
-    protected void App_List_ItemDataBoundSG(object sender, DataGridItemEventArgs e)
-    {
-        if (e.Item.ItemIndex > -1)
-        {
-            e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerSG.PageSize * (this.PagerSG.CurrentPageIndex - 1)).ToString();
-            string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('File.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
-        }
-    }
+    //protected void App_List_ItemDataBoundSG(object sender, DataGridItemEventArgs e)
+    //{
+    //    if (e.Item.ItemIndex > -1)
+    //    {
+    //        e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerSG.PageSize * (this.PagerSG.CurrentPageIndex - 1)).ToString();
+    //        string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
+    //        e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('File.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+    //    }
+    //}
     //protected void btnDel_ClickKC(object sender, EventArgs e)
     //{
     //    pageTool tool = new pageTool(this.Page);
@@ -206,14 +250,14 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     {
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_ListJL, dbContext.TC_SGXKZ_File, tool_Deleting);
-        ShowFile(txtJLId.Value, "JL");
+        ShowFile(t_JLId.Value, "JL");
     }
-    protected void btnDel_ClickSG(object sender, EventArgs e)
-    {
-        pageTool tool = new pageTool(this.Page);
-        tool.DelInfoFromGrid(dg_ListSG, dbContext.TC_SGXKZ_File, tool_Deleting);
-        ShowFile(txtSGId.Value, "SG");
-    }
+    //protected void btnDel_ClickSG(object sender, EventArgs e)
+    //{
+    //    pageTool tool = new pageTool(this.Page);
+    //    tool.DelInfoFromGrid(dg_ListSG, dbContext.TC_SGXKZ_File, tool_Deleting);
+    //    ShowFile(txtSGId.Value, "SG");
+    //}
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
     {
         dbContext = new EgovaDB();
@@ -236,11 +280,92 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     protected void Pager_PageChangingJL(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         PagerJL.CurrentPageIndex = e.NewPageIndex;
-        ShowFile(txtJLId.Value, "JL");
+        ShowFile(t_JLId.Value, "JL");
     }
-    protected void Pager_PageChangingSG(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
+    //protected void Pager_PageChangingSG(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
+    //{
+    //    PagerSG.CurrentPageIndex = e.NewPageIndex;
+    //    ShowFile(txtSGId.Value, "SG");
+    //}
+    protected void btnAddEntSC_Click(object sender, EventArgs e)
     {
-        PagerSG.CurrentPageIndex = e.NewPageIndex;
-        ShowFile(txtSGId.Value, "SG");
+        //中标单位
+        selEnt("SC");
+    }
+    protected void btnAddEntSG_Click(object sender, EventArgs e)
+    {
+        //代理单位
+        selEnt("SG");
+    }
+    protected void btnAddEntSJ_Click(object sender, EventArgs e)
+    {
+        //中标单位人员
+        selEnt("SJ");
+    }
+    private void selEnt(string type)
+    {
+        if (type == "SC")
+        {
+            string selEntId = t_JLId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v != null)
+            {
+                t_JLZBDW.Text = v.QYMC;
+                t_JLZBDWZZJGDM.Text = v.JGDM;
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+                if (v1 != null)
+                {
+                    t_JLZBQYZZDJ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
+                    t_JLZBQYZZZSH.Text = v1.ZSBH;
+                }
+            }
+            
+
+        }
+        else if (type == "SG")
+        {
+            string selEntId = t_JLId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v != null)
+            {
+                t_ZBDLDWMC.Text = v.QYMC;
+                t_ZBDLDWZZJGDM.Text = v.JGDM;
+            }
+            
+        }
+        else if (type == "SJ")
+        {
+            string selEmpId = t_SJId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            if (v != null)
+            {
+                t_JLGCS.Text = v.XM;
+                t_JLGCSZJHM.Text = v.SFZH;
+            }
+            
+        }
+        if (!string.IsNullOrEmpty(t_BL.SelectedValue))
+        {
+            if (t_BL.SelectedValue != "1")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+            }
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+        }
+    }
+    protected void btn1_Click(object sender, EventArgs e)
+    {
+        pageTool tool = new pageTool(this.Page);
+        tool.showMessage("alert('保存成功');");
     }
 }

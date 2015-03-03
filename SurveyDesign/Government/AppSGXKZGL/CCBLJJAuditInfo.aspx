@@ -249,7 +249,7 @@
                 <asp:BoundColumn HeaderText="收证人" DataField="SZR">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="接收时间" DataField="FAcceptTime">
+                <asp:BoundColumn HeaderText="接收时间" DataField="FAcceptTime" DataFormatString="{0:yyyy-MM-dd}">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="存放位置" DataField="FLocation">
@@ -329,9 +329,11 @@
                     &nbsp;&nbsp;<asp:Button ID="bthEndApp" runat="server" Text="不予受理" class="m_btn_w6" OnClick="bthEndApp_Click"/>
             &nbsp;&nbsp;<asp:Button ID="btnBackToEnt" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                 Text="退回建设单位"  OnClick="btnBackToEnt_Click" />
+            &nbsp;&nbsp;<asp:Button ID="btnLockCheck" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
+                Text="锁定人员核查"   />
                 </ContentTemplate>
             </asp:UpdatePanel>
-           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />
+           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = '1'; window.close(); " />
         </div>
  
         <input id="t_fLinkId" runat="server" type="hidden" />

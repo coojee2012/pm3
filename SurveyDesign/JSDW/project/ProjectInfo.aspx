@@ -22,10 +22,29 @@
             
         });
         function checkInfo() {
+            
+            var projectNo = document.getElementById("t_ProjectNo").value;
+            if (projectNo == null || projectNo == '') {
+                var p = document.getElementById("txtProjectNo").value;
+                var t = document.getElementById("t_ProjectType").value;
+                var fNo = '';
+                if (t == '2000101') {
+                    fNo = '01';
+                }
+                else if (t == '2000102') {
+                    fNo = '02';
+                }
+                else {
+                    fNo = '99';
+                }
+                var n = p.substring(0, 12) + fNo + p.substring(14, 16);
+                $("#t_ProjectNo").val(n);
+            }
             return AutoCheckInfo();
+            
         }
         function addPrjItem() {
-            var fid = document.getElementById("txtFId").value;;
+            var fid = document.getElementById("txtFId").value;
             if (fid == null || fid == '') {
                 alert('请先保存上方的工程项目信息！');
                 return;
@@ -36,13 +55,14 @@
         function openLink() {
             var fid = document.getElementById("txtFId").value;
             var projectName = document.getElementById("t_ProjectName").value;
-            
+            projectName = encodeURI(projectName, 'utf-8');
+            projectName = encodeURI(projectName, 'utf-8');
             if (fid == null || fid == '') {
                 alert('请先保存上方的工程项目信息！');
                 return;
             }
             var url = document.getElementById("txtUrl").value;
-            showAddWindow(url + "projectID=" + fid + "&projectName=" + projectName, 800, 550);
+            showAddWindow(url + "projectID=" + fid + "&projectName=" + projectName, 1600, 800);
             
         }
     </script>
@@ -59,7 +79,7 @@
       <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="100">
             <ProgressTemplate>
-                <div class="modalDiv"> 
+                <div class="modalDiv" style="display:none;"> 
                 <div style="position:absolute;left:40%;top:50%;background-color:peru;border:solid 3px red;">
                     <table  align="center">
                     <tr>
@@ -103,9 +123,11 @@
                         <ContentTemplate>
                             <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                                     OnClientClick="return checkInfo();" />
-                            
+                            <input id="txtFId" type="hidden" runat="server" />
                         </ContentTemplate>
                     </asp:UpdatePanel>    
+                            <asp:Button ID="btnRefresh" runat="server" Text="同步到标准库"  CssClass="m_btn_w6"
+                                onclick="btnRefresh_Click" />
                     <input type="button" id="btnLink" runat="server" value="定位" class="m_btn_w2" onclick="openLink();" />              
                     <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
                 </td>
@@ -127,6 +149,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ProjectNo" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ToolTip="系统自动生成"></asp:TextBox>
+                    <input id="txtProjectNo" type="hidden" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -157,7 +180,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_JSDWDM" runat="server" CssClass="m_txt" Width="195px" ReadOnly="true"></asp:TextBox>
-                    <tt>*</tt>
+                    
                 </td>
             </tr>
             <tr>
@@ -167,13 +190,19 @@
                 <td colspan="1">
                     <asp:TextBox ID="t_JSDWDZ" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 </td>
+                <td class="t_r t_bg">
+                    建设单位法人：
+                </td>
+                <td>
+                    <asp:TextBox ID="t_JSDWFR" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
                     联系人：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_Contacts" runat="server" CssClass="m_txt" MaxLength="10" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_Contacts" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     联系人手机：
@@ -207,14 +236,14 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ProjectNumber" runat="server" CssClass="m_txt" 
-                        Width="200px" MaxLength="20"></asp:TextBox><tt>*</tt>
+                        Width="200px"></asp:TextBox><tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     立项时间：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ProjectTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt"
-                        MaxLength="20" Width="195px"></asp:TextBox>
+                        MaxLength="20" Width="200px"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -224,14 +253,14 @@
                 </td>
                 <td colspan="1">
                       <asp:TextBox ID="t_Area" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                        MaxLength="20" Width="195px"></asp:TextBox><tt>*</tt>
+                        MaxLength="20" Width="200px"></asp:TextBox><tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     投资规模：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_Investment" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                        MaxLength="20" Width="195px"></asp:TextBox>(万元) <tt>*</tt>
+                        MaxLength="20" Width="200px"></asp:TextBox>(万元) <tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -396,7 +425,7 @@
     <input id="t_Province" type="hidden" runat="server" />
     <input id="t_City" type="hidden" runat="server" />
     <input id="t_County" type="hidden" runat="server" />
-    <input id="txtFId" type="hidden" runat="server" />
+    
     <input id="txtUrl" type="hidden" runat="server" />
     </div>
      

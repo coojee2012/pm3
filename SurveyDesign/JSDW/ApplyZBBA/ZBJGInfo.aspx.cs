@@ -18,6 +18,7 @@ public partial class JSDW_ApplyZBBA_ZBJGINFO : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            BindContent();
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                 ViewState["FID"] = Request.QueryString["fid"];
@@ -37,13 +38,28 @@ public partial class JSDW_ApplyZBBA_ZBJGINFO : System.Web.UI.Page
                     tool.fillPageControl(jsdw);
                     ViewState["FID"] = jsdw.FId;
                     ViewState["FAppId"] = jsdw.FAppId;
+                    ViewState["BDId"] = jsdw.BDId;
                     txtFId.Value = jsdw.FId;
                     ShowFile(txtFId.Value);
                 }
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
+            }
         }
     }
+    private void BindContent()
+    {
 
+        //中标结果
+        DataTable dt = rc.getDicTbByFNumber("112219");
+        t_ZBJG.DataSource = dt;
+        t_ZBJG.DataTextField = "FName";
+        t_ZBJG.DataValueField = "FNumber";
+        t_ZBJG.DataBind();
+    }
     private void ShowTitle()
     {
         EgovaDB dbContext = new EgovaDB();
@@ -54,6 +70,7 @@ public partial class JSDW_ApplyZBBA_ZBJGINFO : System.Web.UI.Page
         Session["FAppId"] = qa.FAppId;
         ViewState["FAppId"] = qa.FAppId;
         ViewState["FPrjId"] = qa.FPrjId;
+        ViewState["BDId"] = qa.BDId;
         ShowFile(txtFId.Value);
     }
 
@@ -123,5 +140,13 @@ public partial class JSDW_ApplyZBBA_ZBJGINFO : System.Web.UI.Page
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
         ShowFile(txtFId.Value);
+    }
+
+    protected void btnSel_Click(object sender, EventArgs e)
+    {
+        var result = (from t in dbContext.TC_PBBG_ZBHXR
+                      where t.QYId == this.t_QYId.Value
+                      select t).SingleOrDefault();
+        t_ZHONGBR.Text = result.HXRMC;
     }
 }

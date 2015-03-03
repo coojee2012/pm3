@@ -51,7 +51,7 @@
                     <input id="Button3" type="reset" value="重置" class="m_btn_w2 bnts_left10" />
                 </td>
             </tr>
-            <tr style="display: none;">
+            <tr>
                 <td class="t_r">用户名：
                 </td>
                 <td>

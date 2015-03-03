@@ -219,6 +219,7 @@
                                 <asp:TextBox ID="t_FPrjItemName" runat="server" CssClass="m_txt" ReadOnly="true" Width="300px" MaxLength="30"></asp:TextBox>
                                 <input id="t_FProjectName" type="hidden" runat="server" />
                                 <input id="t_JSDW" type="hidden" runat="server" />
+                                <input id="t_AddressDept" type="hidden" runat="server" />
                                 <input id="t_FPriItemId" type="hidden" runat="server" />
                                 <input id="t_FPrjId" type="hidden" runat="server" />
                                 <input id="t_OldFAppId" type="hidden" runat="server" />

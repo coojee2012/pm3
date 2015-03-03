@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BDSel.aspx.cs" Inherits="JSDW_ApplyZBBA_BDSel" %>
 
-<%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
+<%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -38,9 +38,18 @@
             <td colspan="1" class="t_r">
                 标段名称
             </td>
-            <td colspan="4" class="t_l">
-                <asp:TextBox ID="t_FName" runat="server" CssClass="m_txt" Width="250px" 
-                    MaxLength="30"></asp:TextBox>
+            <td colspan="1">
+                <asp:TextBox ID="t_FName" runat="server" CssClass="m_txt" Width="150px" 
+                    ></asp:TextBox>
+            </td>
+            <td colspan="1" class="t_r">
+                标段编码
+            </td>
+            <td colspan="1">
+                <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="150px" 
+                    ></asp:TextBox>
+            </td>
+            <td>
                 <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" OnClick="btnReload_Click" />
                 <input type="button" id="Button1" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
             </td>
@@ -70,18 +79,14 @@
             <asp:BoundColumn DataField="BDMC" HeaderText="标段名称"></asp:BoundColumn>
             <asp:BoundColumn DataField="BDBM" HeaderText="标段编码"></asp:BoundColumn>
             <asp:BoundColumn DataField="BDSM" HeaderText="标段说明"></asp:BoundColumn>
+            <asp:BoundColumn HeaderText="招标方式"></asp:BoundColumn>
+            <asp:BoundColumn HeaderText="工程资质"></asp:BoundColumn>
             <asp:ButtonColumn HeaderText="选择" CommandName="Sel"></asp:ButtonColumn>
             <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
-    <div style="padding-left: 1%">
-        <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
-            CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
-            CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" LayoutType="Table"
-            NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
-            PageIndexBoxType="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
-            ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到">
-        </webdiyer:AspNetPager>
+    <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
+        <uc1:pager ID="Pager1" runat="server"></uc1:pager>
     </div>
     </form>
 </body>

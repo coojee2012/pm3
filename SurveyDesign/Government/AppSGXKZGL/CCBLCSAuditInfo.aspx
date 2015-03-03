@@ -71,7 +71,7 @@
                 上报日期：
             </td>
             <td>
-                <asp:TextBox ID="t_RecordNo" Enabled="false" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="t_ReportTime" Enabled="false" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -177,7 +177,7 @@
                 <asp:BoundColumn HeaderText="记录人" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="记录时间" >
+                <asp:BoundColumn HeaderText="记录时间" DataFormatString="{0:yyyy-MM-dd}" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="附件">
@@ -245,7 +245,7 @@
                 <asp:BoundColumn HeaderText="收证人" DataField="SZR">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="接收时间" DataField="FAcceptTime">
+                <asp:BoundColumn HeaderText="接收时间" DataField="FAcceptTime" DataFormatString="{0:yyyy-MM-dd}">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="存放位置" DataField="FLocation">
@@ -332,16 +332,18 @@
             </tr>
             <tr>
                 <td class="t_r">施工许可证补办
+                    <input id="s_FId" runat="server" type="hidden" />
+                    <input id="s_FPrjItemId" runat="server" type="hidden" />
                 </td>
                 <td>
-                    <asp:DropDownList ID="dResult0" runat="server" CssClass="m_txt" Width="201px">
+                    <asp:DropDownList ID="s_SGXKZBB" runat="server" CssClass="m_txt" Width="201px">
                         <asp:ListItem Text="否" Value="0"></asp:ListItem>
                         <asp:ListItem Text="是" Value="1"></asp:ListItem>
                     </asp:DropDownList>
                 </td>
                 <td class="t_r">发布</td>
                 <td>
-                    <asp:DropDownList ID="dResult1" runat="server" CssClass="m_txt" Width="201px">
+                    <asp:DropDownList ID="s_FPublish" runat="server" CssClass="m_txt" Width="201px">
                         <asp:ListItem Text="否" Value="0"></asp:ListItem>
                         <asp:ListItem Text="是" Value="1"></asp:ListItem>
                     </asp:DropDownList>
@@ -416,9 +418,11 @@
                     &nbsp;&nbsp;<asp:Button ID="bthEndApp" runat="server" Text="不通过" class="m_btn_w6" OnClick="bthEndApp_Click"/>
             &nbsp;&nbsp;<asp:Button ID="btnBackToEnt" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                 Text="退回建设单位" OnClick="btnBackToEnt_Click" />
+                &nbsp;&nbsp;<asp:Button ID="btnLockHuman" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
+                Text="锁定人员核查" OnClick="btnLockHuman_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />
+           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = '1'; window.close(); " />
         </div>
  
         <input id="t_fLinkId" runat="server" type="hidden" />

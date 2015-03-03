@@ -41,6 +41,11 @@ public partial class JSDW_ApplyZBBA_ZBYS : System.Web.UI.Page
                     ShowFile(txtFId.Value);
                 }
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
+            }
         }
     }
 

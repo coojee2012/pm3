@@ -98,8 +98,8 @@
             <asp:BoundColumn DataField="Remark" HeaderText="备注">
                 <ItemStyle Wrap="false" />
             </asp:BoundColumn>
-            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FAppId" Visible="False"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
     <div style="padding-left: 1%">

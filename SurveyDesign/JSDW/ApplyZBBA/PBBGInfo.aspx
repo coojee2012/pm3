@@ -22,16 +22,22 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+        function hideBtn() {
+            $("#Button1").hide();
+            $("#Button4").hide();
+            $("#Button7").hide();
+        }
         function addPrjItemBM() {
             var fid = document.getElementById("txtFId").value;
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
             var BDId = '<%=ViewState["BDId"] %>';
+            var btnReload = document.getElementById('btnSearch');
             if (fid == null || fid == '') {
                 alert('请先保存上方信息！');
                 return;
             }
-            showAddWindow('BMInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550);
+            showAddWindow('BMInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, btnReload);
             //  alert('dd')
         }
         function addPrjItemTB() {
@@ -39,11 +45,12 @@
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
             var BDId = '<%=ViewState["BDId"] %>';
+            var Button3 = document.getElementById('Button3');
             if (fid == null || fid == '') {
                 alert('请先保存上方信息！');
                 return;
             }
-            showAddWindow('TBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550);
+            showAddWindow('TBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button3);
             //  alert('dd')
         }
         function addPrjItemFB() {
@@ -51,11 +58,12 @@
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
             var BDId = '<%=ViewState["BDId"] %>';
+            var Button9 = document.getElementById('Button9');
             if (fid == null || fid == '') {
                 alert('请先保存上方信息！');
                 return;
             }
-            showAddWindow('FBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550);
+            showAddWindow('FBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button9);
             //  alert('dd')
         }
         function addPrjItemHXR() {
@@ -63,11 +71,12 @@
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
             var BDId = '<%=ViewState["BDId"] %>';
+            var Button6 = document.getElementById('Button6');
             if (fid == null || fid == '') {
                 alert('请先保存上方信息！');
                 return;
             }
-            showAddWindow('HXRInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550);
+            showAddWindow('HXRInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button6);
             //  alert('dd')
         }
     </script>
@@ -112,7 +121,7 @@
                             OnClientClick="return checkInfo();" />  
                         </ContentTemplate>
                     </asp:UpdatePanel>                
-                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
+
                 </td>
                 <td class="m_bar_r">
                 </td>
@@ -124,7 +133,7 @@
                     招标次数：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    第<asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="30px"></asp:TextBox>次招标<tt>*</tt>
                     <input id="txtFId" type="hidden" runat="server" />
                 </td>
             </tr>
@@ -133,13 +142,13 @@
                     标段编码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     标段名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -147,7 +156,7 @@
                     标段项目名称：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 
             </tr> 
@@ -156,7 +165,7 @@
                     中标结果：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZBJG" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:DropDownList ID="t_ZBJG" runat="server" CssClass="m_txt" Width="203px"></asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
                     招标备案号：
@@ -302,6 +311,12 @@
                 <asp:BoundColumn HeaderText="联系电话" DataField="LXDH">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="投标价" DataField="TBJ">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="评标价" DataField="PBJ">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="投标文件递交时间" DataField="TBTime" DataFormatString="{0:d}">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
@@ -321,8 +336,22 @@
             <tr>
                 <td class="m_bar_l">
                 </td>
+                <td style="font-size:20px;">
+                    评标结果公示
+                </td>
+                <td class="t_r">
+                    
+                </td>
+                <td class="m_bar_r">
+                </td>
+            </tr>
+        </table>
+        <table width="98%" align="center" class="m_bar">
+            <tr>
+                <td class="m_bar_l">
+                </td>
                 <td>
-                    中标候选人
+                    中标候选人排序名单
                 </td>
                 <td class="t_r">
                     <input type="button" id="Button4" runat="server" value="新增" class="m_btn_w2" onclick="addPrjItemHXR();" />
@@ -334,6 +363,7 @@
                 </td>
             </tr>
         </table>
+        
         <asp:DataGrid ID="dg_ListHXR" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBoundHXR" Style="margin-top: 6px;
             margin-bottom: 1px;" Width="98%">
@@ -349,10 +379,10 @@
                         <asp:CheckBox ID="CheckItem" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:BoundColumn HeaderText="序号">
-                    <HeaderStyle Width="30px" />
+                <asp:BoundColumn HeaderText="排序">
+                    <HeaderStyle Width="50px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="候选人名称" DataField="HXRMC">
+                <asp:BoundColumn HeaderText="中标人" DataField="HXRMC">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="评标价" DataField="PBJ">
@@ -362,6 +392,18 @@
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="项目负责人姓名" DataField="FZRXM">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="注册证书号" DataField="ZCZSH">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="职称" DataField="ZC">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="职称专业" DataField="ZCZY">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="职称证号" DataField="ZCZH">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>

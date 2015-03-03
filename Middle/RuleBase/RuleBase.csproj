@@ -33,10 +33,16 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="EntityBase">
+      <HintPath>..\..\Entity\ENTITYBASE\bin\EntityBase.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityCenter">
+      <HintPath>..\..\Entity\EntityCenter\bin\EntityCenter.dll</HintPath>
+    </Reference>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Approve\RuleBase\IRBase.cs" />
@@ -67,14 +73,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entity\ENTITYBASE\EntityBase.csproj">
-      <Project>{a5676341-d5c3-456f-943e-14d7d8f45883}</Project>
-      <Name>EntityBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entity\EntityCenter\EntityCenter.csproj">
-      <Project>{70f3229c-33c9-4a5e-8ccf-c9c223ac218f}</Project>
-      <Name>EntityCenter</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entity\EntitySys\EntitySys.csproj">
       <Project>{3e783f57-1e18-4a68-801e-fd0af7ac44ba}</Project>
       <Name>EntitySys</Name>

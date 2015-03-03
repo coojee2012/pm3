@@ -33,6 +33,16 @@
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
             //  alert('dd')
         }
+        function selEnt(obj, tagId) {
+            var url = "../project/EntListSel.aspx?e=1";
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            } else {
+                $("#" + tagId).val("");
+            }
+        }
     </script>
     <base target="_self">
     </base>
@@ -75,7 +85,6 @@
                             OnClientClick="return checkInfo();" />  
                         </ContentTemplate>
                     </asp:UpdatePanel>                
-                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
                 </td>
                 <td class="m_bar_r">
                 </td>
@@ -87,14 +96,14 @@
                     招标次数：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    第<asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="30px"></asp:TextBox>次招标<tt>*</tt>
                     <input id="txtFId" type="hidden" runat="server" />
                 </td>
                 <td class="t_r t_bg">
-                    企业名称：
+                    标段项目名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_QYMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -102,29 +111,15 @@
                     标段编码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     标段名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
-            </tr>
-            <tr>
-                <td class="t_r t_bg">
-                    标段项目名称：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
-                </td>
-                <td class="t_r t_bg">
-                    备案时间：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_BATime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
-                </td>
-            </tr>               
+            </tr>              
         </table>
         <table width="98%" align="center" class="m_bar">
             <tr>
@@ -175,6 +170,62 @@
                 CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
                 CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" layouttype="Table"
                 NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
+                pageindexboxtype="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
+                showpageindexbox="Always" SubmitButtonText="Go" textafterpageindexbox="页" textbeforepageindexbox="转到">
+            </webdiyer:AspNetPager>
+        </div>
+        <table width="98%" align="center" class="m_bar">
+            <tr>
+                <td class="m_bar_l">
+                </td>
+                <td>
+                    邀标企业选择
+                </td>
+                <td class="t_r">
+                    <asp:Button ID="Button1" runat="server" value="选择" Text="选择企业" class="m_btn_w2" OnClientClick="return selEnt(this,'h_selEntId');"
+                         OnClick="btnAddEnt_Click" />
+                    <input type="hidden"  runat="server" ID="h_selEntId" value="" />
+                    <input type="hidden"  runat="server" ID="txtFQYId" value="" />
+                    <asp:Button ID="Button2" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
+                        OnClick="btnDel1_Click" />
+                    <asp:Button ID="Button3" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload1_Click" />
+                </td>
+                <td class="m_bar_r">
+                </td>
+            </tr>
+        </table>
+        <asp:DataGrid ID="DataGrid1" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
+            HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBound1" Style="margin-top: 6px;
+            margin-bottom: 1px;" Width="98%">
+            <HeaderStyle CssClass="m_dg1_h" />
+            <ItemStyle CssClass="m_dg1_i" />
+            <Columns>
+                <asp:TemplateColumn>
+                    <HeaderStyle Width="30px" />
+                    <HeaderTemplate>
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="CheckItem" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:BoundColumn HeaderText="序号">
+                    <HeaderStyle Width="30px" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="企业名称" DataField="QYMC">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="企业类型" DataField="QYLX">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
+            </Columns>
+        </asp:DataGrid>
+        <div style="padding-left: 1%">
+            <webdiyer:AspNetPager ID="AspNetPager1" runat="server" AlwaysShow="True" CssClass="pages"
+                CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
+                CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" layouttype="Table"
+                NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager2_PageChanging"
                 pageindexboxtype="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
                 showpageindexbox="Always" SubmitButtonText="Go" textafterpageindexbox="页" textbeforepageindexbox="转到">
             </webdiyer:AspNetPager>

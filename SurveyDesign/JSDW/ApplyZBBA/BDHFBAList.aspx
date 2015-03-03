@@ -87,7 +87,7 @@
                                                         </td>
 
                                                         <td colspan="2" rowspan="4" style="text-align: center; padding-right: 10px">
-                                                            <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" OnClick="btnQuery_Click" />&nbsp;<asp:Button ID="btnPup" runat="server" CssClass="m_btn_w12" OnClick="btn_Click" Text="新增业务"></asp:Button>
+                                                            <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" OnClick="btnQuery_Click" />&nbsp;<asp:Button ID="btnPup" runat="server" CssClass="m_btn_w12" OnClick="btn_Click" Text="选择项目"></asp:Button>
 
                                                             &nbsp;
                                                         </td>
@@ -174,12 +174,15 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField HeaderText="招标类别" DataField="ZBLBStr">
-                                                            <HeaderStyle Width="120px" />
+                                                            <HeaderStyle Width="80px" />
                                                         </asp:BoundField>
                                                         <asp:BoundField HeaderText="资格预审方式" DataField="ZGYSFSStr">
-                                                            <HeaderStyle Width="120px" />
+                                                            <HeaderStyle Width="80px" />
                                                         </asp:BoundField>
-                                                        <asp:BoundField HeaderText="招标方式" DataField="ZBJJFSStr">
+                                                        <asp:BoundField HeaderText="标段状态">
+                                                            <HeaderStyle Width="80px" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField HeaderText="招标方式" DataField="ZBFSStr">
                                                             <HeaderStyle Width="120px" />
                                                         </asp:BoundField>
                                                         <asp:BoundField HeaderText="申报日期" DataField="FCreateTime" DataFormatString="{0:d}">

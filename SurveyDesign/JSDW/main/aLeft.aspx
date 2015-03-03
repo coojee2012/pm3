@@ -51,11 +51,10 @@
             if (s)
                 parent.main.location.href = s;
 
-
             //整理按钮样式
             $(".o_m01_1").each(function() {//一级
                 if ($(this).find("+div").find(":parent").length > 0) {
-                    $(this).find("+div:parent").hide();
+                    //$(this).find("+div:parent").hide();
                     $(this).attr("class", "o_m01_3");
                 }
                 else {
@@ -151,6 +150,47 @@
                         <a id="a20" class="o_m01_1" href='../project/ProjectItemList.aspx' target="main"><span>
                             单项工程</span></a>
                     </div>
+                    <div class="o_menu">
+                        <a id="a49" class="o_m01_1" style="cursor: pointer" target="main"><span>选址意见书</span></a>
+                        <div class="o_smenu">
+                            <a id="a52" class="o_m02_1" href='../ApplyXZYJS/ApplyIndex.aspx' target="main"><span>意见书申请</span></a>
+                            <div class="o_smenu2">
+                          
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_menu">
+                        <a id="a51" class="o_m01_1" style="cursor: pointer" target="main"><span>用地规划许可</span></a>
+                        <div class="o_smenu">
+                            <a id="a53" class="o_m02_1" href='../ApplyYDGH/ApplyIndex.aspx' target="main"><span>用地规划申请</span></a>
+                            <div class="o_smenu2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_menu">
+                        <a id="a50" class="o_m01_1" style="cursor: pointer" target="main"><span>工程规划许可</span></a>
+                        <div class="o_smenu">
+                            <a id="a54" class="o_m02_1" href='../ApplyGCGH/ApplyIndex.aspx' target="main"><span>工程规划申请</span></a>
+                            <div class="o_smenu2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_menu">
+                        <a id="a2" class="o_m01_1" style="cursor: pointer" target="main"><span>竣工验收备案</span></a>
+                        <div class="o_smenu">
+                            <a id="a24" class="o_m02_1" href='../ApplyJGYS/ApplyIndex.aspx' target="main"><span>竣工验收备案申请</span></a>
+                            <div class="o_smenu2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_menu">
+                        <a id="a25" class="o_m01_1" style="cursor: pointer" target="main"><span>项目报建申报</span></a>
+                        <div class="o_smenu">
+                            <a id="a26" class="o_m02_1" href='../ApplyXMBJ/ApplyIndex.aspx' target="main"><span>项目报建申报</span></a>
+                            <div class="o_smenu2">
+                            </div>
+                        </div>
+                    </div>
                     <div class="o_menu" >
                         <a id="a46" class="o_m01_1" href='../ApplyZLJDBA/ZLJDBAList.aspx' target="main"><span>
                             质量监督备案</span></a>
@@ -160,7 +200,7 @@
                             安全监督备案</span></a>
                     </div>
                     <div class="o_menu" >
-                        <a id="a12" class="o_m01_1" style="cursor: pointer" target="main"><span>施工许可证管理</span></a>
+                        <a id="a12" class="o_m01_1" style="cursor: pointer" target="main"><span>施工许可证申报</span></a>
                         <div class="o_smenu">
                             <a id="a41" class="o_m02_1" href='../ApplySGXKZGL/CCBLList.aspx' target="main"><span>初次办理</span></a>
                             <div class="o_smenu2">
@@ -174,7 +214,7 @@
                         </div>
                     </div>
                      <div class="o_menu" >
-                        <a id="a5" class="o_m01_1" style="cursor: pointer" target="main"><span>招标备案</span></a>
+                        <a id="a48" class="o_m01_1" style="cursor: pointer" target="main"><span>招投标备案</span></a>
                         <div class="o_smenu">
                             <a id="a7" class="o_m02_1" href='../ApplyZBBA/BDHFBAList.aspx' target="main"><span>标段划分备案</span></a>
                             <div class="o_smenu2">
@@ -188,7 +228,7 @@
                             <a id="a13" class="o_m02_1" href='../ApplyZBBA/ZBWJBAList.aspx' target="main"><span>招标文件备案</span></a>
                             <div class="o_smenu2">
                             </div>
-                            <a id="a14" class="o_m02_1" href='../ApplyZBBA/PBBGBAList.aspx' target="main"><span>评标报告备案</span></a>
+                            <a id="a14" class="o_m02_1" href='../ApplyZBBA/PBBGBAList.aspx' target="main"><span>评标公示备案</span></a>
                             <div class="o_smenu2">
                             </div>
                             <a id="a16" class="o_m02_1" href='../ApplyZBBA/ZBJGBAList.aspx' target="main"><span>中标结果备案</span></a>
@@ -210,63 +250,6 @@
                             <div class="o_smenu2">
                             </div>
                             <a id="a23" class="o_m02_1" href='../project/ProjectItemList.aspx' target="main"><span>停复工查询</span></a>
-                            <div class="o_smenu2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="o_menu">
-                        <a id="a49" class="o_m01_1" style="cursor: pointer" target="main"><span>选址意见书</span></a>
-                        <div class="o_smenu">
-                            <a id="a52" class="o_m02_1" href='../ApplyXZYJS/AppYJS.aspx' target="main"><span>意见书申请</span></a>
-                            <div class="o_smenu2">
-                          
-                            </div>
-                          <%--  <a id="a55" class="o_m02_1" href='../ApplyXZYJSSZ/AppYJS.aspx' target="main"><span>意见书申请(市政)</span></a>--%>
-                          <%--  <a id="a50" class="o_m02_1" href='../ApplyXZYJS/ChooseIDeaList.aspx' target="main"><span>意见书查询</span></a>
-                            <div class="o_smenu2">
-                            </div>--%>
-                        </div>
-                    </div>
-                    <div class="o_menu">
-                        <a id="a51" class="o_m01_1" style="cursor: pointer" target="main"><span>用地规划许可</span></a>
-                        <div class="o_smenu">
-                            <a id="a53" class="o_m02_1" href='../ApplyYDGH/ApplyIndex.aspx' target="main"><span>用地规划申请</span></a>
-                            <div class="o_smenu2">
-                            </div>
-                             <%--<a id="a56" class="o_m02_1" href='../ApplyYDGHSZ/ApplyIndex.aspx' target="main"><span>用地规划申请(市政)</span></a>--%>
-                           <%-- <a id="a54" class="o_m02_1" href='../ApplyXZYJS/ChooseIDeaList.aspx' target="main"><span>用地规划查询</span></a>
-                            <div class="o_smenu2">
-                            </div>--%>
-                        </div>
-                    </div>
-                    <div class="o_menu">
-                        <a id="a50" class="o_m01_1" style="cursor: pointer" target="main"><span>工程规划许可</span></a>
-                        <div class="o_smenu">
-                            <a id="a54" class="o_m02_1" href='../ApplyGCGH/ApplyIndex.aspx' target="main"><span>工程规划申请</span></a>
-                            <div class="o_smenu2">
-                            </div>
-                            <%--<a id="a57" class="o_m02_1" href='../ApplyGCGHSZ/ApplyIndex.aspx' target="main"><span>工程规划申请(市政)</span></a>--%>
-                          <%--  <a id="a50" class="o_m02_1" href='../ApplyXZYJS/ChooseIDeaList.aspx' target="main"><span>意见书查询</span></a>
-                            <div class="o_smenu2">
-                            </div>--%>
-                        </div>
-                    </div>
-                    <div class="o_menu">
-                        <a id="a2" class="o_m01_1" style="cursor: pointer" target="main"><span>竣工验收备案</span></a>
-                        <div class="o_smenu">
-                            <a id="a24" class="o_m02_1" href='../ApplyJGYS/ApplyIndex.aspx' target="main"><span>竣工验收备案申请</span></a>
-                            <div class="o_smenu2">
-                            </div>
-                            <%--<a id="a57" class="o_m02_1" href='../ApplyGCGHSZ/ApplyIndex.aspx' target="main"><span>工程规划申请(市政)</span></a>--%>
-                          <%--  <a id="a50" class="o_m02_1" href='../ApplyXZYJS/ChooseIDeaList.aspx' target="main"><span>意见书查询</span></a>
-                            <div class="o_smenu2">
-                            </div>--%>
-                        </div>
-                    </div>
-                    <div class="o_menu">
-                        <a id="a25" class="o_m01_1" style="cursor: pointer" target="main"><span>项目报建申报</span></a>
-                        <div class="o_smenu">
-                            <a id="a26" class="o_m02_1" href='../ApplyXMBJ/ApplyIndex.aspx' target="main"><span>项目报建申报</span></a>
                             <div class="o_smenu2">
                             </div>
                         </div>

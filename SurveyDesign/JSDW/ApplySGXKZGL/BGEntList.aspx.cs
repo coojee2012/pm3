@@ -61,9 +61,9 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
         switch (id)
         {
             default:
-                return "项目经理";
+                return "项目负责人";
             case "1":
-                return "项目经理";
+                return "项目负责人";
             case "2":
                 return "项目技术负责人";
             case "3":
@@ -73,7 +73,7 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
             case "5":
                 return "质量员";
             case "6":
-                return "专职安全员";
+                return "安全员";
             case "7":
                 return "材料员";
             case "8":
@@ -100,11 +100,13 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
             dg_List.Columns[4].HeaderText = "资质项";
         }
         EgovaDB dbContext = new EgovaDB();
-        var v = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == hf_FAppId.Value && t.FEntType.Equals(hf_FEntType.Value));
-        dg_List.DataSource = v;
-        dg_List.DataBind();
+
         TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
         t_FPrjItemId.Value = sbg.FPrjItemId;
+        TC_SGXKZ_PrjInfo p = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sbg.FPrjInfoId).FirstOrDefault();
+        var v = dbContext.TC_PrjItem_Ent.Where(t => (t.FAppId == p.FAppId || t.FAppId == hf_FAppId.Value) && t.FEntType.Equals(hf_FEntType.Value));
+        dg_List.DataSource = v;
+        dg_List.DataBind();
     }
     //保存
     private void saveInfo()

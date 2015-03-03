@@ -24,12 +24,13 @@
             return AutoCheckInfo();
         }
         function addPrjItem() {
-            var fid = document.getElementById("txtFId").value;;
+            var fid = document.getElementById("txtFId").value;
+            //var 
             if (fid == null || fid == '') {
                 alert('请先保存上方的标段划分信息！');
                 return;
             }
-            showAddWindow('BDInfo.aspx?BDHFBAId=' + fid, 800, 550);
+            showAddWindow('BDInfo.aspx?BDHFBAId=' + fid, 900, 700);
             //  alert('dd')
         }
         
@@ -42,6 +43,12 @@
             $("#dg_list").hide();
             $("#table1").hide();
             $("#Pager1").hide();
+        }
+        function hideBtn() {
+            $("#btnSave").hide();
+            $("#btnAdd").hide();
+            $("#btnDel").hide();
+            $("#btnReload").hide();
         }
     </script>
 
@@ -112,25 +119,25 @@
         </table>
         <table class="m_table" width="98%" align="center">
             <tr>
-                <td class="t_r t_bg" width="12%">
+                <td class="t_r t_bg" width="17%">
                     招标编码：
                 </td>
-                <td colspan="1" width="45%">
+                <td colspan="1" width="33%">
                     <asp:TextBox ID="t_ZBBM" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg" width="14%">
-                    项目名称：
+                    招标项目名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
-                <td class="t_r t_bg" width="12%">
+                <td class="t_r t_bg" width="17%">
                     招标代理机构负责人：
                 </td>
-                <td colspan="1" width="45%">
+                <td colspan="1" width="33%">
                     <asp:TextBox ID="t_ZBDLJGFZR" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg" width="14%">
@@ -145,7 +152,7 @@
                     招标备案名称：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ZBBAMC" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:DropDownList ID="t_ZBBAMC" runat="server" CssClass="m_txt" Width="200px"></asp:DropDownList>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -183,10 +190,10 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">
-                    招标范围：
+                    招标方式：
                 </td>
                 <td colspan="1">
-                    <asp:DropDownList ID="t_ZBFW" runat="server" Width="200px" CssClass="m_txt">
+                    <asp:DropDownList ID="t_ZBFS" runat="server" Width="200px" CssClass="m_txt">
                     </asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
@@ -195,6 +202,16 @@
                 <td colspan="1">
                     <asp:DropDownList ID="t_ZBJJFS" runat="server" CssClass="m_txt" Width="200px">
                     </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td class="t_r t_bg">
+                    招标范围：
+                </td>
+                <td colspan="3">
+                    <asp:TextBox ID="t_ZBFW" runat="server" CssClass="m_txt" Height="35px" TextMode="MultiLine"
+                        Width="539px">
+                    </asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -221,11 +238,22 @@
                 </td>
             </tr>
             <tr>
+                <td class="t_l t_bg" colspan="4">
+                招标前准备情况
+                </td>
+            </tr>
+            <tr>
                 <td class="t_r t_bg">
                     施工现场情况：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_SGXCQK" runat="server" CssClass="m_txt" MaxLength="10" Width="195px"></asp:TextBox>
+                    <asp:CheckBoxList ID="t_SGXCQK" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
+                    <asp:ListItem Value="1">水</asp:ListItem>
+                    <asp:ListItem Value="2">电</asp:ListItem>
+                    <asp:ListItem Value="3">路</asp:ListItem>
+                    
+                    </asp:CheckBoxList>
+                    
                 </td>
                 <td class="t_r t_bg">
                     场地情况：
@@ -233,6 +261,15 @@
                 <td>
                     <asp:TextBox ID="t_CDQK" runat="server" CssClass="m_txt" MaxLength="20" Width="195px"
                         ></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="t_r t_bg">
+                    招标人提供的主要设备或材料：
+                </td>
+                <td colspan="3" class="m_txt_M">
+                    <asp:TextBox ID="t_ZYSB" runat="server" CssClass="m_txt" Height="35px" TextMode="MultiLine"
+                        Width="539px" onblur="checkLength(this,2000,'招标人提供的主要设备或材料');"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -255,15 +292,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>       
-            <tr>
-                <td class="t_r t_bg">
-                    招标人提供的主要设备或材料：
-                </td>
-                <td colspan="3" class="m_txt_M">
-                    <asp:TextBox ID="t_ZYSB" runat="server" CssClass="m_txt" Height="35px" TextMode="MultiLine"
-                        Width="539px" onblur="checkLength(this,2000,'招标人提供的主要设备或材料');"></asp:TextBox>
-                </td>
-            </tr>
+            
         </table>
         <table id="table1" width="98%" align="center" class="m_bar">
             <tr>
@@ -314,7 +343,10 @@
                 <asp:BoundColumn HeaderText="标段说明" DataField="BDSM">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="建造师等级" DataField="ZBBM">
+                <asp:BoundColumn HeaderText="工程资质">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="建造师等级">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>

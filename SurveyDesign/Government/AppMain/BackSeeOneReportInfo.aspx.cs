@@ -50,7 +50,7 @@ public partial class Government_AppMain_BackSeeOneReportInfo : govBasePage
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FId FERFId,er.FResult FFResult,er.FAppTime,er.FMeasure");
         sb.Append(" from CF_App_ProcessInstance ep,CF_App_ProcessRecord er");
         sb.Append(" where ep.fId = er.FProcessInstanceID and ep.FSubFLowId=er.FSubFLowId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and er.FtypeId=1 and isnull(er.FMeasure,0) in (0,4) "); //存子流程类别 1接件 //未接件 
         if (EConvert.ToString(Request.QueryString["type"]) == "p")
@@ -316,7 +316,7 @@ public partial class Government_AppMain_BackSeeOneReportInfo : govBasePage
                     sb.Append(" from cf_App_ProcessInstance ep ");
                     sb.Append(" inner join cf_App_ProcessRecord er on ep.FId=er.FProcessInstanceId ");
                     sb.Append(" where ep.FSubFlowId=er.FSubFlowId ");
-                    sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+                    //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
                     sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
                     sb.Append(" and er.FtypeId=1 and isnull(er.FMeasure,0) in (0,4) "); //存子流");
                     sb.Append(" and ep.FState<>6 and ep.FLinkId='" + FLinkId + "'");

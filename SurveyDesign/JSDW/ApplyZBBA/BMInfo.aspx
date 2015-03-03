@@ -25,6 +25,14 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+        function selEnt(obj, tagId) {
+            var url = "../project/EntListSel.aspx?e=1";
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
     </script>
     <base target="_self">
     </base>
@@ -79,7 +87,10 @@
                     企业名称：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_QYMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_QYMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <input type="hidden"  runat="server" ID="h_selEntId" value="" />
+                    <asp:Button ID="btnAddEnt" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'h_selEntId');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
             </tr>
             <tr>
@@ -93,7 +104,7 @@
                     联系电话：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_LXDH" onblur="isTel(this);" runat="server" CssClass="m_txt" Width="200px" MaxLength="30" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_LXDH" onblur="isTel(this);" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>

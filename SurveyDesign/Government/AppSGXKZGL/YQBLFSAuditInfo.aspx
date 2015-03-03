@@ -54,8 +54,8 @@
                 <asp:DropDownList ID="ddlMType" runat="server" CssClass="m_txt" Width="200
                     px" Enabled="false">
                     <asp:ListItem Value="-1">全部</asp:ListItem>
-                    <asp:ListItem Selected="True" Value="11223">初次办理</asp:ListItem>
-                    <asp:ListItem Value="11224">延期办理</asp:ListItem>
+                    <asp:ListItem Value="11223">初次办理</asp:ListItem>
+                    <asp:ListItem Value="11224" Selected="True" >延期办理</asp:ListItem>
                     <asp:ListItem Value="11225">变更办理</asp:ListItem>
                 </asp:DropDownList>
             </td>
@@ -315,7 +315,7 @@
                 <th colspan="4" style="text-align: left;">本级审查意见
                 </th>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <td class="t_r">施工许可证补办
                 </td>
                 <td>
@@ -332,7 +332,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <td class="t_r">发证机关
                 </td>
                 <td>
@@ -405,7 +405,7 @@
                 Text="锁定人员核查" OnClick="btnLockHuman_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />
+           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = '1'; window.close(); " />
         </div>
  
         <input id="t_fLinkId" runat="server" type="hidden" />

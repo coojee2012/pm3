@@ -25,7 +25,7 @@ public partial class JNCLEnt_mangeInfo_equipment : System.Web.UI.Page
     }
     private void ShowInfo()
     {
-        string sql = "select * from YW_JN_Equipment where fbaseid='" + CurrentEntUser.EntId + "' and Fappid = 'JBQK' and type='0' order by ftime desc ";
+        string sql = "select * from YW_JN_Equipment where fbaseid='" + CurrentEntUser.EntId + "' and type='0' order by ftime desc ";
         this.Pager1.className = "dbShare";
         this.Pager1.sql = sql;
         this.Pager1.pagecount = 20;

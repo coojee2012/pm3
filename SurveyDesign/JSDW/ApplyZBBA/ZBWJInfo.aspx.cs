@@ -38,9 +38,23 @@ public partial class JSDW_ApplyZBBA_ZBWJInfo : System.Web.UI.Page
                     ViewState["FID"] = jsdw.FId;
                     ViewState["FAppId"] = jsdw.FAppId;
                     txtFId.Value = jsdw.FId;
+                    if (jsdw.ZBZZXS == "11221002")
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "showTr", "<script>showTr();</script>");
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "hideTr", "<script>hideTr();</script>");
+                        t_DLJG.Text = dbContext.CF_Ent_BaseInfo.Where(d => d.FId == CurrentEntUser.EntId).Select(d => d.FName).FirstOrDefault();
+                    }
                     ShowFile(txtFId.Value);
-                    t_DLJG.Text = dbContext.CF_Ent_BaseInfo.Where(d => d.FId == CurrentEntUser.EntId).Select(d => d.FName).FirstOrDefault();
+                    
                 }
+            }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
             }
         }
     }
@@ -80,6 +94,7 @@ public partial class JSDW_ApplyZBBA_ZBWJInfo : System.Web.UI.Page
         Session["FAppId"] = qa.FAppId;
         ViewState["FAppId"] = qa.FAppId;
         ViewState["FPrjId"] = qa.FPrjId;
+        ClientScript.RegisterStartupScript(this.GetType(), "hideTr", "<script>hideTr();</script>");
         ShowFile(txtFId.Value);
     }
 
@@ -112,6 +127,7 @@ public partial class JSDW_ApplyZBBA_ZBWJInfo : System.Web.UI.Page
 
         }
         qa = tool.getPageValue(qa);
+        qa.DLJGId = h_selEntId.Value;
         dbContext.SubmitChanges();
         txtFId.Value = fId;
         //  showPrjData();
@@ -155,10 +171,23 @@ public partial class JSDW_ApplyZBBA_ZBWJInfo : System.Web.UI.Page
         if (t_ZBZZXS.SelectedValue == "11221001")
         {
             t_DLJG.Text = dbContext.CF_Ent_BaseInfo.Where(d => d.FId == CurrentEntUser.EntId).Select(d => d.FName).FirstOrDefault();
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr", "<script>hideTr();</script>");
         }
         else
         {
             t_DLJG.Text = "";
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr", "<script>showTr();</script>");
         }
+    }
+    protected void btnAddEnt_Click(object sender, EventArgs e)
+    {
+        selEnt();
+    }
+    private void selEnt()
+    {
+        string selEntId = h_selEntId.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+        t_DLJG.Text = v.QYMC;
     }
 }

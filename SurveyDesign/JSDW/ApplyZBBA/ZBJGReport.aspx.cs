@@ -176,6 +176,12 @@ public partial class JSDW_ApplyZBBA_ZBJGReport : System.Web.UI.Page
             return;
         }
         string fNumber = ddlLevel.SelectedValue;
+        TC_ZBJG_Record tswj = db.TC_ZBJG_Record.Where(t => t.FAppId == fAppId).FirstOrDefault();
+        if (string.IsNullOrEmpty(tswj.CS))
+        {
+            MyPageTool.showMessage("招标次数为必填项请填写", this.Page);
+            return;
+        }
         //if (ddlLevel.SelectedValue == "1")//省级
         //{
         //    if (fNumber.Length < 2)

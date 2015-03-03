@@ -32,7 +32,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <asp:TextBox ID="txtFZRQ" runat="server"  CssClass="m_txt Wdate required" onfocus="WdatePicker({skin:'whyGreen' })" Width="200"></asp:TextBox>
+    <asp:TextBox ID="txtFZRQ" runat="server"  CssClass="m_txt required" Width="200"></asp:TextBox>
     </div>
     </form>
 </body>

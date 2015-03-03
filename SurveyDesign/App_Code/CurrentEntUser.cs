@@ -86,7 +86,6 @@ public class CurrentEntUser
             ProjectDB projectDB = new ProjectDB();
             return projectDB.CF_Sys_UserRight.Where(u => u.FUserId == UserId).Select(u => u.FId).FirstOrDefault();
         }
-
     }
 
     /// <summary>

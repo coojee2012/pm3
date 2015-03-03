@@ -17,7 +17,7 @@ using Approve.EntityBase;
 using Approve.EntitySys;
 using Approve.RuleApp;
 using System.Web.UI.Adapters;
-//using System.Web.UI.MobileControls.Adapters;
+using System.Web.UI.MobileControls.Adapters;
 using System.Web.UI.Design;
 using System.Text;
 

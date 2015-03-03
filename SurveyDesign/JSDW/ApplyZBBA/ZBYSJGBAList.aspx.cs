@@ -68,7 +68,7 @@ public partial class JSDW_APPLYZBBA_ZGYSJGBAList : System.Web.UI.Page
                     a.ProjectName,
                     a.BDBM,
                     a.BDMC,
-                    a.CS
+                    CSStr = "第" + a.CS + "次招标"
 
                 };
         if (!string.IsNullOrEmpty(this.txtFProjectName.Text.Trim()))
@@ -115,11 +115,11 @@ public partial class JSDW_APPLYZBBA_ZGYSJGBAList : System.Web.UI.Page
     {
 
         pageTool tool = new pageTool(this.Page);
-        if (!WFApp.ValidateNewBiz(t_FPrjId.Value, fMType))
-        {
-            tool.showMessage("同一个项目不能创建两条备案信息！");
-            return;
-        }
+        //if (!WFApp.ValidateNewBiz(t_FPrjId.Value, fMType))
+        //{
+        //    tool.showMessage("同一个项目不能创建两条备案信息！");
+        //    return;
+        //}
         if (string.IsNullOrEmpty(CurrentEntUser.EntId))
             return;
         //添加业务

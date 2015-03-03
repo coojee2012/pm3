@@ -36,7 +36,7 @@ public partial class JSDW_ApplySGXKZGL_BGFileList : System.Web.UI.Page
         FAppId = EConvert.ToString(Session["FAppId"]);
 
         var v = from t in dbContext.CF_Sys_PrjList
-                orderby t.FId
+                orderby t.FOrder
                 where t.FManageType == 11225
                 select new
                 {

@@ -36,6 +36,7 @@ public partial class Share_Sys_RoleAdd : System.Web.UI.Page
                 this.ViewState["FID"] = Request["fid"];
                 ShowInfo();
             }
+            //ShowSystemList();
         }
     }
     void ControlBind()
@@ -82,7 +83,7 @@ public partial class Share_Sys_RoleAdd : System.Web.UI.Page
             if (dt.Rows[0]["FPlatId"] != DBNull.Value)
             {
                 this.t_FPlatId.SelectedIndex = t_FPlatId.Items.IndexOf(t_FPlatId.Items.FindByValue(dt.Rows[0]["FPlatId"].ToString()));
-                t_FPlatId.Enabled = false;
+                //t_FPlatId.Enabled = false;
             }
         }
     }
@@ -123,6 +124,8 @@ public partial class Share_Sys_RoleAdd : System.Web.UI.Page
         }
         else
         {
+            if (Request["fparentid"] != null && Request["fparentid"] != "")
+                sl.Add("FParentId", text_FParentNumber.Text);
             sl.Add("FID", Guid.NewGuid().ToString());
             sl.Add("FIsDeleted", 0);
             sl.Add("FCreateTime", DateTime.Now);

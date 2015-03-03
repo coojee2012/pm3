@@ -74,7 +74,7 @@ public partial class Share_WebSide_JSDWJGLogin : System.Web.UI.Page
         }
     }
 
-        bool isTry = true;
+    bool isTry = true;
     //登陆
     private void Login()
     {
@@ -94,6 +94,21 @@ public partial class Share_WebSide_JSDWJGLogin : System.Web.UI.Page
                 string FPassWord = C_FPwd.Text; //密码
                 FPassWord = SecurityEncryption.DESEncrypt(FPassWord);
 
+                //增加同步用户名密码 ljr 2014-11-25
+                string pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.cf_sys_user where FName='" + FName + "' ",WebHelper.XZSP_DataBase));
+                string table = "user";
+                if (string.IsNullOrEmpty(pass))
+                {
+                    pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.CF_Sys_UserRight where FName='" + FName + "' ",WebHelper.XZSP_DataBase));
+                    table = "right";
+                }
+                if (!string.IsNullOrEmpty(pass))
+                {
+                    pass = Encrypt.MiscClass.decode(pass); pass = SecurityEncryption.DESEncrypt(pass);
+                    string synchronous = " exec JKC_PRO_Synchronous '" + FName + "',0,'" + pass + "','" + table + "' ";
+                    sh.PExcute(synchronous);
+                }
+
                 SortedList sl = new SortedList();
                 sl.Add("FName", FName);
                 sl.Add("FPassWord", FPassWord);
@@ -111,6 +126,14 @@ public partial class Share_WebSide_JSDWJGLogin : System.Web.UI.Page
                 DataTable dt = sh.GetTable(sb.ToString(), sh.ConvertParameters(sl));
                 if (dt != null && dt.Rows.Count > 0)//先验证是否是主帐户登陆。
                 {
+                    //此项目平台同步到JKCWFDB_WORK_NJS  ljr 2015-1-17
+                    if (string.IsNullOrEmpty(pass))
+                    {
+                        FPassWord = SecurityEncryption.DESDecrypt(FPassWord); FPassWord = Encrypt.MiscClass.encode(FPassWord);
+                        string sql = " exec JKC_PRO_SynchronousNJS  '" + dt.Rows[0]["uFId"].ToString() + "','" + pass + "' ";
+                        sh.PExcute(sql);
+                    }
+
                     if (dt.Rows[0]["FState"].ToString() == "0")
                     {
                         str = "您的用户已被注销，请和管理员联系。";
@@ -201,6 +224,23 @@ public partial class Share_WebSide_JSDWJGLogin : System.Web.UI.Page
                         }
                         else
                         {
+                            //增加同步用户名密码 ljr 2014-11-26
+                            string pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.cf_sys_user where FName='",WebHelper.XZSP_DataBase)
+                                + sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
+                            string table = "user";
+                            if (string.IsNullOrEmpty(pass))
+                            {
+                                pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.CF_Sys_UserRight where FName='",WebHelper.XZSP_DataBase) +
+                                     sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
+                                table = "right";
+                            }
+                            if (!string.IsNullOrEmpty(pass))
+                            {
+                                pass = Encrypt.MiscClass.decode(pass); pass = SecurityEncryption.DESEncrypt(pass);
+                                string synchronous = "exec JKC_PRO_Synchronous '" + dt.Rows[0]["FID"] + "',1,'" + pass + "','" + table + "' ";
+                                sh.PExcute(synchronous);
+                            }
+
                             //登陆
                             LOGIN(dt.Rows[0]["FType"].ToString(), dt.Rows[0]["FCompany"].ToString(), dt.Rows[0]["rFID"].ToString());
                         }
@@ -246,8 +286,8 @@ public partial class Share_WebSide_JSDWJGLogin : System.Web.UI.Page
     {
         string str = "";
         string FID = rFID;
-        //得到配置的地址
-        string Url = sh.getSystemLoginURL(FSystemId);
+        //登录到老的项目平台 LJR 2014-11-26
+        string Url = "../../ApproveWeb/main/LockCheckAll.aspx";//sh.getSystemLoginURL(FSystemId);
         if (!string.IsNullOrEmpty(Url))
         {
             DateTime time = DateTime.Now.AddHours(1);

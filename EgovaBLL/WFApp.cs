@@ -159,7 +159,7 @@ namespace EgovaBLL
           //     rc.PExcute(sb.ToString());
                db.ExecuteCommand(sb.ToString());
 
-               if (ra.EntStartProcessKCSJ(app.FBaseinfoId, fAppId, app.FYear.ToString(), DateTime.Now.Month.ToString(), fSystemId, fDeptNumber, fNumber, sl))
+               if (ra.EntStartProcessKCSJ(app.FBaseinfoId, fAppId, app.FYear.ToString(), DateTime.Now.Month.ToString(), "1122", fDeptNumber, fNumber, sl))
                {
                    return true;
                }

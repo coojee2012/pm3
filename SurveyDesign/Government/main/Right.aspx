@@ -9,8 +9,7 @@
     <ext:ResourcePlaceHolder ID="ResourcePlaceHolder1" runat="server" Mode="Script" />
     <ext:ResourcePlaceHolder ID="ResourcePlaceHolder2" runat="server" Mode="Style" />
 
-    <script type="text/javascript" src="../../zDialogNew/zDialog.js"></script>
-
+<%--    <script type="text/javascript" src="../../zDialogNew/zDialog.js"></script>--%>
     <link rel="stylesheet" type="text/css" href="../../resources/css/main.css" />
 
     <script src="../../script/default.js" type="text/javascript"></script>
@@ -21,6 +20,7 @@
 
     <script type="text/javascript">
         Ext.ns("X");
+        var iCount = 0;
         var addTab = function(url, id, title) {
             if (url) {
 
@@ -37,6 +37,7 @@
                 var tab = TabPanel1.getComponent(id);
 
                 if (!tab) {
+                    iCount++;
                     tab = TabPanel1.add({
                         id: id,
                         title: title,
@@ -47,6 +48,12 @@
                             url: url,
                             mode: "iframe",
                             maskMsg: "正在加载 ..."
+                        },
+                        destroy: function () {                            
+                            iCount--;
+                            if (iCount == 0) {
+                                parent.goDesktop();
+                            }
                         }
                     });
                     tab.on("activate", function() {
@@ -101,7 +108,8 @@
                     addTab(directLink, getRequest(window.location.href, "num"), document.getElementById("firstName").value);
                 }
             }, window, { delay: 100 });
-        }  
+        }
+        
     </script>
 
 </body>

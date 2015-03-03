@@ -33,6 +33,20 @@
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
             //  alert('dd')
         }
+        function selEnt(obj, tagId) {
+            var url = "../project/EntListSel.aspx?qylx=120";
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
+        function showTr() {
+            $("#btnAddEnt").show();
+        }
+        function hideTr() {
+            $("#btnAddEnt").hide();
+        }
     </script>
     <base target="_self">
     </base>
@@ -75,7 +89,7 @@
                             OnClientClick="return checkInfo();" />  
                         </ContentTemplate>
                     </asp:UpdatePanel>                
-                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
+                    
                 </td>
                 <td class="m_bar_r">
                 </td>
@@ -87,7 +101,7 @@
                     招标次数：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    第<asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="30px"></asp:TextBox>次招标<tt>*</tt>
                     <input id="txtFId" type="hidden" runat="server" />
                 </td>
             </tr>
@@ -96,13 +110,13 @@
                     标段编码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     标段名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -110,13 +124,7 @@
                     标段项目名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
-                </td>
-                <td class="t_r t_bg">
-                    备案时间：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_BATime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr> 
             <tr>
@@ -132,7 +140,7 @@
                 </td>
                 <td colspan="1">
                     <asp:DropDownList ID="t_ZGYSFS" runat="server" CssClass="m_txt" Width="200px">
-                    </asp:DropDownList>
+                    </asp:DropDownList><tt>*</tt>
                 </td>
             </tr> 
             <tr>
@@ -147,7 +155,10 @@
                     代理机构：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_DLJG" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_DLJG" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <input type="hidden"  runat="server" ID="h_selEntId" value="" />
+                    <asp:Button ID="btnAddEnt" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'h_selEntId');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
             </tr> 
             <tr>

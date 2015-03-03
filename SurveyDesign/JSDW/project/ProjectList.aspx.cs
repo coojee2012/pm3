@@ -66,7 +66,7 @@ public partial class JSDW_project_ProjectList : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
-            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('ProjectInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[3].Text + "</a>";
+            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('ProjectInfo.aspx?fid=" + fid + "',1000,700);\">" + e.Item.Cells[3].Text + "</a>";
         }
     }
 

@@ -49,6 +49,7 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
         ddlZBFS.DataTextField = "FName";
         ddlZBFS.DataValueField = "FNumber";
         ddlZBFS.DataBind();
+        ddlZBFS.Items.Insert(0, new ListItem("--全部--", ""));
 
         //资格预审方式
         dt = rc.getDicTbByFNumber("112207");
@@ -56,6 +57,7 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
         ddlZGYSFS.DataTextField = "FName";
         ddlZGYSFS.DataValueField = "FNumber";
         ddlZGYSFS.DataBind();
+        ddlZGYSFS.Items.Insert(0, new ListItem("--全部--", ""));
 
         //招标类别
         dt = rc.getDicTbByFNumber("112208");
@@ -63,11 +65,13 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
         ddlZBLB.DataTextField = "FName";
         ddlZBLB.DataValueField = "FNumber";
         ddlZBLB.DataBind();
+        ddlZBLB.Items.Insert(0, new ListItem("--全部--", ""));
     }
 
     private void ShowInfo()
     {
         EgovaDB dbContext = new EgovaDB();
+        
         string FBaseinfoID = CurrentEntUser.EntId;
         var v = from t in dbContext.CF_App_List
                 join a in dbContext.TC_BDHF_Record
@@ -89,9 +93,11 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
                     a.ZBLB,
                     a.ZGYSFS,
                     a.ZBJJFS,
+                    a.ZBFS,
                     ZBLBStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(a.ZBLB)).Select(d => d.FName).FirstOrDefault(),
                     ZGYSFSStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(a.ZGYSFS)).Select(d => d.FName).FirstOrDefault(),
-                    ZBJJFSStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(a.ZBJJFS)).Select(d => d.FName).FirstOrDefault()
+                    ZBFSStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(a.ZBFS)).Select(d => d.FName).FirstOrDefault()
+                    
                 };
         if (!string.IsNullOrEmpty(this.txtFProjectName.Text.Trim()))
         {
@@ -99,11 +105,11 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(this.txtSDate.Text.Trim()))
         {
-            v = v.Where(t => t.FReportDate >= DateTime.Parse(this.txtSDate.Text.Trim()));
+            v = v.Where(t => t.FReportDate >= DateTime.Parse(this.txtSDate.Text.Trim() + " 00:00:00"));
         }
         if (!string.IsNullOrEmpty(this.txtEDate.Text.Trim()))
         {
-            v = v.Where(t => t.FReportDate <= DateTime.Parse(this.txtEDate.Text.Trim()));
+            v = v.Where(t => t.FReportDate <= DateTime.Parse(this.txtEDate.Text.Trim() + " 23:59:59"));
         }
         if (this.ddlFState.SelectedIndex > 0)
         {
@@ -115,7 +121,7 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
         }
         if (this.ddlZBFS.SelectedIndex > 0)
         {
-            v = v.Where(t => t.ZBJJFS.Equals(ddlZBFS.SelectedValue));
+            v = v.Where(t => t.ZBFS.Equals(ddlZBFS.SelectedValue));
         }
         if (this.ddlZGYSFS.SelectedIndex > 0)
         {
@@ -301,8 +307,8 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
                 }
             }
             //  e.Row.Cells[6].Text = n;
-            e.Row.Cells[6].Text = t;
-            e.Row.Cells[7].Text = s;
+            e.Row.Cells[7].Text = t;
+            e.Row.Cells[8].Text = s;
             var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
             if (pr != null)
             {
@@ -348,7 +354,8 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
                 //    }
                 //}
             }
-            e.Row.Cells[9].Text = n;
+            e.Row.Cells[10].Text = n;
+            e.Row.Cells[5].Text = "已划分" + EConvert.ToInt(rc.GetSignValue("select count(*) from TC_BDHF_BD where FAppId = '" + FID + "'")) + "个标段";
         }
     }
 

@@ -18,6 +18,7 @@ public partial class Share_Main_Login : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            //System.IO.File.AppendAllText("C:\\yujiajun.log",SecurityEncryption.DESDecrypt("xtTmxkPO4M4="));
             if (IsPass())
             {
                 this.liC_TechSupport.Text = ComFunction.GetValueByName("TechSupport");//技术支持

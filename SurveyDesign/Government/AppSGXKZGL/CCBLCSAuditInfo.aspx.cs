@@ -90,6 +90,12 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
            pageTool tool = new pageTool(this.Page, "t_");
            tool.fillPageControl(info);
        }
+       TC_SGXKZ_PrjState info1 = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
+       if (info1 != null)
+       {
+           pageTool tool1 = new pageTool(this.Page, "s_");
+           tool1.fillPageControl(info1);
+       }
    }
     //绑定项目附件信息
     private void bindFileInfo()
@@ -310,11 +316,32 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
    {
 
    }
+    private void saveStateInfo()
+   {
+       EgovaDB db = new EgovaDB();
+       string fId = s_FId.Value;
+       pageTool tool = new pageTool(this.Page,"s_");
+       TC_SGXKZ_PrjState info = new TC_SGXKZ_PrjState();
+       s_FPrjItemId.Value = t_PrjItemId.Value ;
+       if (!string.IsNullOrEmpty(fId))
+       {
+           info = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
+       }
+       else
+       {
+           fId = Guid.NewGuid().ToString();
+           info.FId = fId;
+           db.TC_SGXKZ_PrjState.InsertOnSubmit(info);
+       }
+       info = tool.getPageValue(info);
+       db.SubmitChanges();
+   }
    //保存意见
    protected void btnSave_Click(object sender, EventArgs e)
    {
        try
        {
+           saveStateInfo();
            WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
@@ -406,6 +433,10 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
        {
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('回退到建设单位失败');", true);
        }
+   }
+   protected void btnLockHuman_Click(object sender, EventArgs e)
+   {
+
    }
    
    #endregion

@@ -234,32 +234,32 @@
                                 <HeaderStyle Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="招标项目名称" DataField="ProjectName" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="标段编码" DataField="BDBM">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             
                             <asp:BoundColumn HeaderText="标段名称" DataField="BDMC" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="编制人" DataField="BZR" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="审核人" DataField="SHR" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="审定人" DataField="SDR" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="次数" DataField="CS" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <asp:BoundColumn HeaderText="次数" DataField="CSStr" >
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="状态" DataField="FStateDesc" >
@@ -267,7 +267,7 @@
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             
-                            <asp:BoundColumn HeaderText="上报时间" DataField="FReportTime" >
+                            <asp:BoundColumn HeaderText="上报时间" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>

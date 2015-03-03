@@ -77,11 +77,11 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(this.txtSDate.Text.Trim()))
         {
-            v = v.Where(t => t.FReportDate>=DateTime.Parse( this.txtSDate.Text.Trim()));
+            v = v.Where(t => t.FReportDate >= DateTime.Parse(this.txtSDate.Text.Trim() + " " + "00:00:00"));
         }
         if (!string.IsNullOrEmpty(this.txtEDate.Text.Trim()))
         {
-            v = v.Where(t => t.FReportDate <= DateTime.Parse(this.txtEDate.Text.Trim()));
+            v = v.Where(t => t.FReportDate <= DateTime.Parse(this.txtEDate.Text.Trim() + " " + "23:59:59"));
         }
         if (this.ddlFState.SelectedIndex>0)
         {
@@ -151,8 +151,8 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
         record.FPrjItemId = t_FPriItemId.Value;
         record.PrjItemName = t_FPrjItemName.Text;
         record.ProjectName = t_FProjectName.Value;
-        record.RecordNo = getBANumber();
-        record.RecordTime = dTime;
+        //record.RecordNo = getBANumber();
+        //record.RecordTime = dTime;
         dbContext.TC_QA_Record.InsertOnSubmit(record);
         //提交修改
         dbContext.SubmitChanges();
@@ -340,13 +340,14 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
         t_FPrjId.Value = result.FPrjId;
         t_FProjectName.Value = result.ProjectName;
         t_JSDW.Value = result.JSDW;
-        
+        t_AddressDept.Value = result.AddressDept;
     }
     private string getBANumber()
     {
-        string recordNo = "ZX" + string.Format("{0:yyyyMMdd}", DateTime.Now);
+        string recordNo = t_AddressDept.Value + string.Format("{0:yyyyMMdd}", DateTime.Now);
+        string timeNo = string.Format("{0:yyyyMMdd}", DateTime.Now);
         var result = (from t in dbContext.TC_QA_Record
-                      where t.RecordNo.Contains(recordNo)
+                      where t.RecordNo.Contains(timeNo)
                       select t).Count();
         return recordNo+(result+1);
 

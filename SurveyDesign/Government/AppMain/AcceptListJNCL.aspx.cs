@@ -28,8 +28,8 @@ public partial class Government_AppMain_AcceptListJNCL : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             ShowInfo();
-            string abc = Request["fcol"].ToString();
-            ShowPostion();
+            //string abc = Request["fcol"].ToString();
+           // ShowPostion();
         }
     }
     private void ShowPostion()
@@ -44,16 +44,14 @@ public partial class Government_AppMain_AcceptListJNCL : System.Web.UI.Page
     private string getCondi()
     {
         StringBuilder sb = new StringBuilder();
-        if (Request.QueryString["fmanagetypeid"] != null)
-        {
-            if (Request.QueryString["fmanagetypeid"].IndexOf(",") > -1)
-                sb.Append(" and ep.fmanagetypeid in (" + Request.QueryString["fmanagetypeid"] + ") ");
-            else
-                sb.Append(" and ep.fmanagetypeid='" + Request["fmanagetypeid"] + "'");
-        }
-        if (!string.IsNullOrEmpty(txtFName.Text))
-        { sb.Append(" and ep.FEntName like '%" + txtFName.Text + "%' "); }
-        if (dbSeeState.SelectedValue != "")
+        if (!string.IsNullOrEmpty(txtFName.Text.Trim()))
+            sb.Append(" and c.QYMC like '%" + txtFName.Text + "%' ");
+        if (!string.IsNullOrEmpty(txtCPMC.Text.Trim()))
+            sb.AppendFormat(" and b.SQCPMC like '%{0}%'", txtCPMC.Text);
+        if (!string.IsNullOrEmpty(txtCPLB.Text.Trim()))
+            sb.AppendFormat(" and b.CPLBMC like '%{0}%'", txtCPLB.Text);
+
+        if (!string.IsNullOrEmpty(dbSeeState.SelectedValue))
         {
             switch (dbSeeState.SelectedValue.Trim())
             {
@@ -92,28 +90,29 @@ public partial class Government_AppMain_AcceptListJNCL : System.Web.UI.Page
         sb.Append(" when 5 then '未审批证书' when 6 then '审批完成' end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
 
-        sb.Append(" ,l.FName as ywName");
+        sb.Append(" ,l.FName as ywName,b.SQCPMC,b.CPLBMC,b.BSDJMC,c.QYMC,b.YWBM");
 
         sb.Append(" from CF_App_ProcessInstance ep inner join CF_App_ProcessRecord er");
         sb.Append(" on ep.fId = er.FProcessInstanceID ");
 
         sb.Append(" left join CF_App_List l on ep.FLinkId=l.FId ");
-
+        sb.Append(" left join YW_JNCL_PRODUCT b on l.FId=b.YWBM");
+        sb.Append(" left join YW_JNCL_QYJBXX c on l.FId=c.YWBM");
         sb.Append(" inner join ( ");
         sb.Append(" select max(er.fid)fid from CF_App_ProcessInstance ep,CF_App_ProcessRecord er");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and ep.fsystemid=222 ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        sb.Append(" where ep.fId = er.FProcessInstanceID and ep.fsystemid=1122 and ep.FManageTypeId='4001'");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and er.FtypeId=1 "); //存子流程类别 1接件
-        sb.Append(" group by ep.flinkId )temp on er.fid=temp.fid where 1=1 ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
-        sb.Append(" and er.FtypeId=1 "); //存子流程类别 1接件
+        sb.AppendFormat(" group by ep.flinkId )temp on er.fid=temp.fid where b.FType={0} and c.FType={0} ",FType);
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        //sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
+        //sb.Append(" and er.FtypeId=1 "); //存子流程类别 1接件
         sb.Append(getCondi());
         sb.AppendLine(" ) ttt where 1=1 ");
 
         sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
-
+        //txtFName.Text = sb.ToString();
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "JustAppInfo_List";
@@ -131,50 +130,47 @@ public partial class Government_AppMain_AcceptListJNCL : System.Web.UI.Page
             string fState = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FState"));//e.Item.Cells[e.Item.Cells.Count - 5].Text;
             string fSubFlowId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FSubFlowId"));//e.Item.Cells[9].Text;
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-
+            string YWBM = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "YWBM"));
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
-            e.Item.Cells[5].Text = rc.GetSignValue(EntityTypeEnum.EaSubFlow, "FName", "FId='" + fSubFlowId + "'");
+            //e.Item.Cells[5].Text = rc.GetSignValue(EntityTypeEnum.EaSubFlow, "FName", "FId='" + fSubFlowId + "'");
 
             CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
             box.Attributes["id"] = "span" + box.ClientID;
             box.Attributes["name"] = FLinkId;
             box.Attributes["fSubFlowId"] = fSubFlowId;
-
+            box.Attributes["YWBM"] = YWBM;
             string fColor = "", sUrl = "";
             if (fMeasure == "0")
             {
                 sUrl = "AcceptInfoJNCL.aspx?ftype=1&FLinkId=" + FLinkId + "&fSubFlowId=" + fSubFlowId;
-                e.Item.Cells[8].Text = "未审核";
+                e.Item.Cells[6].Text = "未审核";
                 fColor = "#ff9900";
             }
             if (fMeasure == "5" && fFResult == "1")
             {
                 //sUrl = "AcceptInfoGF.aspx?FLinkId=" + FLinkId;
-                e.Item.Cells[8].Text = "准予受理";
+                e.Item.Cells[6].Text = "准予受理";
                 box.Enabled = false;
                 fColor = "#339933";
             }
-            EaProcessInstance ea = (EaProcessInstance)rc.GetEBase(EntityTypeEnum.EaProcessInstance,
-                "FBaseInfoId,FManageTypeId,fsystemid,FResult,FTime", "fid='" + fid + "'");
-            EaSubFlow es = (EaSubFlow)rc.GetEBase(EntityTypeEnum.EaSubFlow, "", "fid='" + fSubFlowId + "'");
-            if (fState == "6" && ea.FResult == "3") //流程结束并且不同意
+            else if (fState == "6" && fFResult == "3") //流程结束并且不同意
             {
 
                 //sUrl = "AcceptInfoGF.aspx?FLinkId" + FLinkId;
-                e.Item.Cells[8].Text = "不准予受理";
+                e.Item.Cells[6].Text = "不准予受理";
                 box.Enabled = false;
                 fColor = "#ff0000";
             }
             if (fState == "2")
             {
                 //sUrl = "AcceptInfoGF.aspx?FLinkId" + FLinkId;
-                e.Item.Cells[8].Text = "打回企业,重新上报";
+                e.Item.Cells[6].Text = "打回企业,重新上报";
                 box.Enabled = false;
                 fColor = "#b6589d";
             }
-            e.Item.Cells[3].Text = "<font color='" + fColor + "'>" + e.Item.Cells[3].Text + "</font>";
-            if (!string.IsNullOrEmpty(sUrl))
-                e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"javascript:showAddWindow('" + sUrl + "',800,600);\" >" + e.Item.Cells[2].Text + "</a>";
+            //e.Item.Cells[3].Text = "<font color='" + fColor + "'>" + e.Item.Cells[3].Text + "</font>";
+            //if (!string.IsNullOrEmpty(sUrl))
+            //    e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"javascript:showAddWindow('" + sUrl + "',800,600);\" >" + e.Item.Cells[3].Text + "</a>";
 
         }
     }
@@ -206,8 +202,14 @@ public partial class Government_AppMain_AcceptListJNCL : System.Web.UI.Page
                 this.Session["FAppId"] = FLinkId;
                 this.Session["FManageTypeId"] = "4001";
                 Session["FIsApprove"] = 1;
-                Response.Write("<script language='javascript'>window.open('../../NCCLEnt/AppMain/aIndex.aspx');</script>");
+                Response.Write("<script language='javascript'>window.open('../../JCCLEnt/AppMain/aIndex.aspx');</script>");
             }
+        }
+    }
+
+    private string FType {
+        get { 
+            return Request.QueryString["FType"];
         }
     }
 }

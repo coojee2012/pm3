@@ -15,22 +15,20 @@ using System.Web.UI.HtmlControls;
 
 public partial class JNCLEnt_mangeInfo_equipmentListJC : System.Web.UI.Page
 {
-    RCenter rc = new RCenter(); Share sh = new Share();
+    RCenter rc = new RCenter();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            if (Session["FAppId"] != null && !string.IsNullOrEmpty(Session["FAppId"].ToString()))
-            { t_fappid.Value = Session["FAppId"].ToString(); }
-            if (Session["FIsApprove"] != null && !string.IsNullOrEmpty(Session["FIsApprove"].ToString()))
-            { if (Session["FIsApprove"].ToString() == "1") { readOnly(); } }
+            hfYWBM.Value = YWBM;
             ShowInfo();
+            EnabledControl();
         }
     }
     private void ShowInfo()
     {
-        string sql = "select * from YW_JN_AppEquipment where fappid='" + t_fappid.Value + "'  and type='1' order by ftime desc  ";
-        this.Pager1.className = "dbShare";
+        string sql = "select * from YW_JN_AppEquipment where YWBM='" + YWBM + "'  and type='1' order by ftime desc  ";
+        this.Pager1.className = "dbCenter";
         this.Pager1.sql = sql;
         this.Pager1.pagecount = 20;
         this.Pager1.controltopage = "DG_List";
@@ -43,7 +41,8 @@ public partial class JNCLEnt_mangeInfo_equipmentListJC : System.Web.UI.Page
         pageTool tool = new pageTool(this.Page);
         SortedList sl = new SortedList();
         sl.Add("YW_JN_AppEquipment", "FID");
-        tool.DelInfoFromGrid(this.DG_List, sl, "dbShare"); ShowInfo();
+        tool.DelInfoFromGrid(this.DG_List, sl, "dbCenter");
+        ShowInfo();
     }
     protected void btnQuery_Click(object sender, EventArgs e)
     {
@@ -56,11 +55,41 @@ public partial class JNCLEnt_mangeInfo_equipmentListJC : System.Web.UI.Page
             string FID = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
             string SBMC = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SBMC"));
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
-            e.Item.Cells[2].Text = "<a href=\"javascript:showAddWindow('editEquipment.aspx?fid=" + FID + "',800,400);\" >" + SBMC + "</a>";
+            e.Item.Cells[2].Text = "<a href=\"javascript:showAddWindow('editEquipment.aspx?fid=" + FID + "&YWBM=" + YWBM + "',800,400);\" >" + SBMC + "</a>";
         }
     }
-    public void readOnly()
+    private void EnabledControl()
     {
-        btnDel.Enabled = false; Submit1.Attributes.Add("disabled", "disabled");
+        if (Audit == "1" || FIsApprove == "1") //审核页面跳转
+        {
+            foreach (Control control in this.form1.Controls)
+            {
+                WebHelper.SetControlEnabled(control);
+            }
+        }
+    }
+    private string YWBM
+    {
+        get
+        {
+            return Request.QueryString["YWBM"];
+        }
+    }
+    private string FIsApprove
+    {
+        get
+        {
+            string value = Session["FIsApprove"] == null ? "" : Session["FIsApprove"].ToString();
+            if (string.IsNullOrEmpty(value))
+                return "0";
+            return value;
+        }
+    }
+    private string Audit
+    {
+        get
+        {
+            return Request.QueryString["audit"];
+        }
     }
 }

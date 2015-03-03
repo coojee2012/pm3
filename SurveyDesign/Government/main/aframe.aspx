@@ -5,11 +5,11 @@
 <head runat="server">
     <title></title>
 </head>
-<frameset rows="91,*,29" border="0" scrolling="no" >
+<frameset rows="98,*,29" border="0" scrolling="no" >
     <frame name="top" src="atop.aspx" scrolling="no" noresize>
     <frameset cols="0,*" id="trleft" border="0" frameborder="no" framespacing="0">
         <frame name="left" src="aLeft.aspx" scrolling="no" noresize>
-        <frame name="main" src="Right.aspx" noresize>
+        <frame name="main" src="desktop.aspx" noresize>
     </frameset>
     <frameset border="0" frameborder="no" framespacing="0">
         <frame name="bottom" src="bottom.aspx" scrolling="no" noresize>
