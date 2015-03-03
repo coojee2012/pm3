@@ -1,0 +1,80 @@
+建设厅远程地址：118.122.250.28:3390   administrator,scjst@@1
+117地址：172.16.0.46    administrator  scjst@1
+
+
+
+113外网地址
+http://221.237.177.24/JSTWeb/Login.aspx?lock=admin
+http://172.16.0.113/jstweb/login.aspx?lock=admin
+川RG2010122  川RG2010004
+111外网地址
+http://zw.scjst.gov.cn:88/JSTWeb/Login.aspx?lock=admin
+
+admin  rqjyxk@213
+
+
+--成都市
+--990454,61885824
+111燃气数据恢复地址
+http://172.16.0.111/TESTPUB/login.aspx
+115老系统地址
+http://172.16.0.115:88/approveweb/main/isblpf.aspx
+
+117外网地址
+http://118.122.250.28:8008/jstweb/login.aspx
+
+公司老系统地址
+http://192.168.0.8/JstFlowWeb/ApproveWeb/Main/Isblpf.aspx
+scjst 8888899
+
+行政审批正式地址
+http://app.scjst.gov.cn:88/mcreditsc/approveweb/main/isblpf.aspx
+
+项目平台无锁地址：
+http://www1.scjst.gov.cn:88/newnjsweb/logina.aspx?lock=admin
+
+省级帐号：981690
+德阳市帐号：
+
+行政审批外网测试地址
+http://118.122.250.28:8086/approveweb/main/isblpf.aspx
+http://172.16.0.115:8090/approveweb/main/isblpf.aspx
+http://172.16.0.115:8090/admin/main/bugQuery.aspx
+http://172.16.0.115:8089/RC/main/rcLogin.aspx  企业登录
+
+http://jkc-zui/JSTWEB_TEST/Login.aspx?lock=admin
+
+勘察设计系统
+http://app.scjst.gov.cn:88/SurveyDesign/Share/Main/login.aspx
+admin 123456
+
+http://app.scjst.gov.cn:88/MCreditSC/webprint/setup.exe
+
+数字工地地址：
+http://sgrpt.scjst.gov.cn:888/njsweb/logina.aspx
+建设单位：448598  448598
+审批用户：省建设厅  88888899      
+
+外网网站测试地址
+http://172.16.0.115:1234/webSite/main/Publicity.aspx
+
+工法新平台测试地址：
+系统管理员 http://172.16.0.115:8089/Share/Main/Login.aspx
+企业 http://172.16.0.115:8089/Share/WebSide/gfLogin.aspx
+审批 http://172.16.0.115:8089/Share/WebSide/Login.aspx
+专家 http://172.16.0.115:8089/Share/WebSide/zjLogin.aspx
+
+系统管理员 http://118.122.250.28:8086/Share/Main/Login.aspx
+企业 http://118.122.250.28:8086/Share/WebSide/gfLogin.aspx
+审批 http://118.122.250.28:8086/Share/WebSide/Login.aspx
+专家 http://118.122.250.28:8086/Share/WebSide/zjLogin.aspx
+
+专家账号
+柏兵	86650630
+ZP19760325	ZP19760325252325
+
+
+
+
+
+
