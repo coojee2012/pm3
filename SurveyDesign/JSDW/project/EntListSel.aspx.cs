@@ -58,12 +58,13 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
     {
         EgovaDB1 db = new EgovaDB1();
         var App = from b in db.QY_JBXX
-                  join c in db.QY_QYZZXX
-                  on b.QYBM equals c.QYBM into temp
+                  join c in db.QY_QYZZXX              
+                  on b.QYBM equals c.QYBM
+                  into temp
                   from tt in temp.DefaultIfEmpty()
-                  where b.QYLXBM == qylx 
+                  where b.QYLXBM == qylx && tt.SFZX == 1
                   
-                  select new
+                  select  new
                   {
                       b.QYBM,
                       b.QYMC,
@@ -74,7 +75,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                       b.LXDH,
                       ZSBH = tt==null?"":tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ
-                  };
+                   };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
             App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));

@@ -166,7 +166,10 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
             }
             else
             {
-                t_ProjectTime.Text = emp.ProjectTime.Value.ToString("yyyy-MM-dd");
+                if (emp.ProjectTime.HasValue)//项目日期有数据才显示
+                {
+                    t_ProjectTime.Text = emp.ProjectTime.Value.ToString("yyyy-MM-dd");
+                }
             }
             t_ProjectNo.Value = p.ProjectNo;
             t_PrjItemId.Value = pi.FId;
