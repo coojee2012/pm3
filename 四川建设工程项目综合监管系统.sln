@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityBase", "Middle\Entity\ENTITYBASE\EntityBase.csproj", "{A5676341-D5C3-456F-943E-14D7D8F45883}"
 EndProject
@@ -70,6 +70,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SurveyDesign", "SurveyDesig
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "42082"
+		SlnRelativePath = "SurveyDesign\"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{2B282B04-64B5-4966-879D-E89DC79B5C84}"
@@ -103,6 +104,7 @@ Global
 		{A5676341-D5C3-456F-943E-14D7D8F45883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5676341-D5C3-456F-943E-14D7D8F45883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5676341-D5C3-456F-943E-14D7D8F45883}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A5676341-D5C3-456F-943E-14D7D8F45883}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{A5676341-D5C3-456F-943E-14D7D8F45883}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A5676341-D5C3-456F-943E-14D7D8F45883}.Release|.NET.ActiveCfg = Release|Any CPU
 		{A5676341-D5C3-456F-943E-14D7D8F45883}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -114,6 +116,7 @@ Global
 		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Release|.NET.ActiveCfg = Release|Any CPU
 		{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -125,6 +128,7 @@ Global
 		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Release|.NET.ActiveCfg = Release|Any CPU
 		{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -136,6 +140,7 @@ Global
 		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Release|.NET.ActiveCfg = Release|Any CPU
 		{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -147,6 +152,7 @@ Global
 		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Release|.NET.ActiveCfg = Release|Any CPU
 		{1A9A9632-151F-411F-9B65-95EF20B7230E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -158,6 +164,7 @@ Global
 		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Release|.NET.ActiveCfg = Release|Any CPU
 		{CFDA0B71-47E2-436C-82FA-4FF143933053}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -169,6 +176,7 @@ Global
 		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Release|.NET.ActiveCfg = Release|Any CPU
 		{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -180,6 +188,7 @@ Global
 		{B2225F4C-646D-483D-8D23-6F209959A93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2225F4C-646D-483D-8D23-6F209959A93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2225F4C-646D-483D-8D23-6F209959A93C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B2225F4C-646D-483D-8D23-6F209959A93C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{B2225F4C-646D-483D-8D23-6F209959A93C}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{B2225F4C-646D-483D-8D23-6F209959A93C}.Release|.NET.ActiveCfg = Release|Any CPU
 		{B2225F4C-646D-483D-8D23-6F209959A93C}.Release|Any CPU.ActiveCfg = Release|Any CPU

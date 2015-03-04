@@ -29,13 +29,14 @@ public partial class JSDW_project_ProjectList : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         var v = from t in dbContext.TC_Prj_Info
+                join t1 in dbContext.CF_Sys_ManageDept on t.AddressDept equals t1.FCNumber
                 orderby t.ProjectTime
                 select new
                 {
                     t.FId,
                     t.ProjectNo,
                     t.ProjectName,
-                    Province = "四川",
+                    Province = t1.FFullName,
                     t.Address,
                     t.ProjectTime,
                     t.JSDW,
