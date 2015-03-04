@@ -193,4 +193,8 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
         }
     }
     #endregion
+    protected void btnAccept_Click(object sender, EventArgs e)
+    {
+
+    }
 }
