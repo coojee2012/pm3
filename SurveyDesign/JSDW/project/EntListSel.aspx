@@ -59,10 +59,16 @@
                         资质证书编号
                     </th>
                     <th>
+                        安许证编号
+                    </th>
+                    <th>
                         主项资质
                     </th>
                     <th>
                        属地
+                    </th>
+                    <th>
+                       单位地址
                     </th>
                     <th>
                         法人
@@ -91,7 +97,14 @@
                             <%# Eval("ZSBH")%>
                         </td>
                         <td>
+                            <%# Eval("AXBH")%>
+                        </td>
+                        <td>
                             <%# Eval("ZZMC")%>
+                        </td>
+                        <td>
+                            
+                            <%# Eval("RegAdrProvinceName")%>
                         </td>
                         <td>
                             

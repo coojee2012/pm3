@@ -154,7 +154,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null) {
-                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 1).FirstOrDefault();
                 if (v1 != null) {
                     q_SGDWZZZSH.Text = v1.ZSBH;
                     q_SGDWZZDJ.Text = v1.ZZDJ;
