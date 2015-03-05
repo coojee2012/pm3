@@ -40,9 +40,12 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
             sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
 
-        if (this.govd_FRegistDeptId.FNumber != null )
+        if (this.govd_FRegistDeptId.FNumber != null)
         {
-            sb.Append(" and dbo.isSuperDept("+ this.govd_FRegistDeptId.FNumber+",qa.PrjAddressDept" + ") >0 ");
+            sb.Append(" and dbo.isSuperDept(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+        }
+        else {
+            sb.Append(" and qa.PrjAddressDept <> '' ");
         }
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
