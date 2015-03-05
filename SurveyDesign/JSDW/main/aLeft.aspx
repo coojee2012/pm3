@@ -156,8 +156,16 @@
                             质量监督备案</span></a>
                     </div>
                     <div class="o_menu" >
-                        <a id="a47" class="o_m01_1" href='../ApplyAQJDBA/AQJDBAList.aspx' target="main"><span>
+                        <a id="a47" class="o_m01_1"  style="cursor: pointer"  target="main"><span>
                             安全监督备案</span></a>
+                        <div class="o_smenu">
+                            <a id="a471" class="o_m02_1" href='../ApplyAQJDBA/AQJDBAList.aspx' target="main"><span>备案申请</span></a>
+                            <div class="o_smenu2">
+                            </div>
+                            <a id="a472" class="o_m02_1" href='../ApplyAQJDBA/VideoList.aspx' target="main"><span>视频登记</span></a>
+                            <div class="o_smenu2">
+                            </div>
+                        </div>
                     </div>
                     <div class="o_menu" >
                         <a id="a12" class="o_m01_1" style="cursor: pointer" target="main"><span>施工许可证管理</span></a>
