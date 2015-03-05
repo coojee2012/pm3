@@ -98,7 +98,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="5">
-                安全监督备案基本信息
+                安监备案表
             </th>
         </tr>
     </table>
