@@ -34,14 +34,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="EntityBase">
-      <HintPath>..\..\Entity\ENTITYBASE\bin\EntityBase.dll</HintPath>
+      <HintPath>..\Entity\ENTITYBASE\bin\EntityBase.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="EntityCenter">
-      <HintPath>..\..\Entity\EntityCenter\bin\EntityCenter.dll</HintPath>
+      <HintPath>..\Entity\EntityCenter\bin\EntityCenter.dll</HintPath>
     </Reference>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Global.cs" />
