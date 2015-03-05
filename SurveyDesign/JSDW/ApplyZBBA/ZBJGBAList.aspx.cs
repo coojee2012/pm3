@@ -66,7 +66,9 @@ public partial class JSDW_APPLYZBBA_ZBJGBAList : System.Web.UI.Page
                     a.ProjectName,
                     a.BDBM,
                     a.BDMC,
-                    a.CS
+                    CSStr = "第" + a.CS + "次招标",
+                    a.ZBDLDW,
+                    ZBJGStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(a.ZBJG)).Select(d => d.FName).FirstOrDefault()
 
                 };
         if (!string.IsNullOrEmpty(this.txtFProjectName.Text.Trim()))
@@ -113,11 +115,11 @@ public partial class JSDW_APPLYZBBA_ZBJGBAList : System.Web.UI.Page
     {
 
         pageTool tool = new pageTool(this.Page);
-        if (!WFApp.ValidateNewBiz(t_FPrjId.Value, fMType))
-        {
-            tool.showMessage("同一个项目不能创建两条备案信息！");
-            return;
-        }
+        //if (!WFApp.ValidateNewBiz(t_FPrjId.Value, fMType))
+        //{
+        //    tool.showMessage("同一个项目不能创建两条备案信息！");
+        //    return;
+        //}
         if (string.IsNullOrEmpty(CurrentEntUser.EntId))
             return;
         //添加业务
@@ -148,6 +150,7 @@ public partial class JSDW_APPLYZBBA_ZBJGBAList : System.Web.UI.Page
         record.BDId = t_BDId.Value;
         record.BDMC = t_BDMC.Text;
         record.BDBM = t_BDBM.Value;
+        record.ZTBBM = t_ZBBM.Value;
         record.ProjectName = dbContext.TC_Prj_Info.Where(d => d.FId == t_FPrjId.Value).Select(d => d.ProjectName).FirstOrDefault();
         dbContext.TC_ZBJG_Record.InsertOnSubmit(record);
         //提交修改
@@ -268,8 +271,8 @@ public partial class JSDW_APPLYZBBA_ZBJGBAList : System.Web.UI.Page
                 }
             }
             //  e.Row.Cells[6].Text = n;
-            e.Row.Cells[5].Text = t;
-            e.Row.Cells[6].Text = s;
+            e.Row.Cells[7].Text = t;
+            e.Row.Cells[8].Text = s;
             var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
             if (pr != null)
             {
@@ -315,7 +318,7 @@ public partial class JSDW_APPLYZBBA_ZBJGBAList : System.Web.UI.Page
                 //    }
                 //}
             }
-            e.Row.Cells[8].Text = n;
+            e.Row.Cells[10].Text = n;
         }
     }
 
@@ -334,6 +337,8 @@ public partial class JSDW_APPLYZBBA_ZBJGBAList : System.Web.UI.Page
         t_BDMC.Text = result.BDMC;
         t_BDBM.Value = result.BDBM;
         t_FPrjId.Value = result.FPrjId;
+        TC_BDHF_Record bdhf = dbContext.TC_BDHF_Record.Where(t => t.FId == result.BDHFBAId).FirstOrDefault();
+        t_ZBBM.Value = bdhf.ZBBM;
     }
     //private string getBANumber()
     //{

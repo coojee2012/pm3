@@ -60,18 +60,28 @@
                 });
             }
         }
-        function selEnt(tagId, fsysid, obj, notTag) {
-            var url = url = "EntListSelCerti.aspx";
-            url += "?fsysid=" + fsysid;
-            if ($("#" + notTag).val() != undefined)
-                url += "&notBid=" + $("#" + notTag).val();
-            var pid = showWinByReturn('../appmain/' + url, 700, 500);
+        function selEnt(obj, tagId, type) {
+
+            var qylx = "101";
+            switch (type) {
+                case "SG":
+                    qylx = "101";
+                    break;
+                case "SJ":
+                    qylx = "155";
+                    break;
+                case "KC":
+                    qylx = "155";
+                    break;
+                case "JL":
+                    qylx = "125";
+                    break;
+            }
+            var url = "../project/EntListSel.aspx";
+            url += "?qylx=" + qylx;
+            var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
-                var ps = pid.split('|');
-                if (ps.length > 0)
-                    $("#" + tagId).val(ps[0]);
-                if (ps.length > 1)
-                    $("#" + tagId + "_c").val(ps[1]);
+                $("#" + tagId).val(pid);
                 __doPostBack(obj.id, '');
             }
         }
@@ -81,15 +91,7 @@
             $("#s_FBaseInfoId_c").val('');
             return true;
         }
-        function doSelOther(tagId, obj, fsysid, hasCerti, oTagId, tip) {
-            if ($('#' + oTagId).val() == '') {
-                alert(tip);
-                return false;
-            }
-            else {
-                return selEnt(tagId, fsysid, obj, oTagId);
-            }
-        }
+
     </script>
 
     <base target="_self"></base>
@@ -129,14 +131,14 @@
                 建设单位名称：
             </td>
             <td colspan="1" style="width:29%;">
-                <asp:TextBox ID="p_JSDW" runat="server" CssClass="m_txt" ReadOnly="true" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="p_JSDW" runat="server" CssClass="m_txt" Enabled="false" Width="195px"></asp:TextBox>
                 <tt>*</tt>
             </td>
             <td class="t_r t_bg" style="width:18.8%;">
                 建设单位法人：
             </td>
             <td colspan="1">
-                <asp:TextBox ID="p_LegalPerson" runat="server" CssClass="m_txt" Width="195px" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="p_LegalPerson" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -144,14 +146,14 @@
                 项目名称：
             </td>
             <td colspan="1">
-                <asp:TextBox ID="p_ProjectName" runat="server" CssClass="m_txt" Width="195px" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="p_ProjectName" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 <tt>*</tt>
             </td>
             <td class="t_r t_bg">
                 工程名称：
             </td>
             <td colspan="1">
-                <asp:TextBox ID="p_PrjItemName" runat="server" CssClass="m_txt" Width="195px" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="p_PrjItemName" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 <tt>*</tt>
             </td>
         </tr>
@@ -160,14 +162,14 @@
                 工程所属地：
             </td>
             <td colspan="1">
-                <uc1:govdeptidfalse ID="govd_FRegistDeptId" runat="server"/>
+                <uc1:govdeptidfalse ID="govd_FRegistDeptId" runat="server" Enabled="false"/>
             </td>
             <td class="t_r t_bg">
                 工程地点：
             </td>
             <td colspan="1">
                 <asp:TextBox ID="p_Address" runat="server" CssClass="m_txt" Width="195px" MaxLength="30"
-                    ReadOnly="true"></asp:TextBox>
+                    Enabled="false"></asp:TextBox>
                 <tt>*</tt>
             </td>
         </tr>
@@ -184,7 +186,7 @@
             </td>
             <td>
                 <asp:TextBox ID="p_Cost" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                        MaxLength="20" Width="195px" Enabled="false"></asp:TextBox>(万元) <tt>*</tt>
+                        Width="195px" Enabled="false"></asp:TextBox>(万元) <tt>*</tt>
             </td>
         </tr>
         <tr>
@@ -192,14 +194,14 @@
                 计划开工日期：
             </td>
             <td>
-                <asp:TextBox ID="q_StartDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" MaxLength="20" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_StartDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="195px"></asp:TextBox>
                 <tt>*</tt>
             </td>
             <td class="t_r t_bg">
                 计划竣工日期：
             </td>
             <td>
-                <asp:TextBox ID="q_EndDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" MaxLength="20" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_EndDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="195px"></asp:TextBox>
                 <tt>*</tt>
             </td>
         </tr>   
@@ -208,7 +210,7 @@
                 备案号：
             </td>
             <td colspan="3">
-                <asp:TextBox ID="p_RecordNo" runat="server" CssClass="m_txt" ReadOnly="true" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="p_RecordNo" runat="server" CssClass="m_txt" Enabled="false" Width="195px"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -216,13 +218,13 @@
                 立项文号：
             </td>
             <td>
-                <asp:TextBox ID="pj_ProjectNumber" runat="server" CssClass="m_txt" Width="195px" ReadOnly="true"></asp:TextBox>
+                <asp:TextBox ID="pj_ProjectNumber" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
             </td>
             <td class="t_r t_bg">
                 立项时间：
             </td>
             <td>
-                <asp:TextBox ID="pj_ProjectTime" onfocus="WdatePicker()" runat="server" Width="195px" ReadOnly="true" CssClass="m_txt"></asp:TextBox>
+                <asp:TextBox ID="pj_ProjectTime" onfocus="WdatePicker()" runat="server" Width="195px" Enabled="false" CssClass="m_txt"></asp:TextBox>
                 <tt>*</tt>
             </td>
         </tr>
@@ -231,13 +233,13 @@
                 联系人：
             </td>
             <td>
-                <asp:TextBox ID="pj_Contacts" runat="server" CssClass="m_txt" ReadOnly="true" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="pj_Contacts" runat="server" CssClass="m_txt" Enabled="false" Width="195px"></asp:TextBox>
             </td>
             <td class="t_r t_bg">
                 联系电话：
             </td>
             <td>
-                <asp:TextBox ID="pj_Mobile" runat="server" CssClass="m_txt" onblur="isTel(this);" ReadOnly="true" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="pj_Mobile" runat="server" CssClass="m_txt" onblur="isTel(this);" Enabled="false" Width="195px"></asp:TextBox>
             </td>
         </tr>
         <tr name="tr_t1">
@@ -246,7 +248,7 @@
             </td>
             <td colspan="1">
                 <asp:TextBox ID="q_Scale" runat="server" CssClass="m_txt" onblur="isFloat(this)"
-                    Width="195px" MaxLength="8"></asp:TextBox>
+                    Width="195px"></asp:TextBox>
                 <tt name="tt_t1">*</tt>
             </td>
             <td class="t_r t_bg">
@@ -254,7 +256,7 @@
             </td>
             <td colspan="1">
                 <asp:TextBox ID="q_SupervisionCost" runat="server" CssClass="m_txt" onblur="isFloat(this)"
-                    Width="195px" MaxLength="8"></asp:TextBox>(元)
+                    Width="195px"></asp:TextBox>(元)
                 <tt name="tt_t1">*</tt>
             </td>
         </tr>
@@ -310,8 +312,8 @@
                 电梯：
             </td>
             <td colspan="1">
-                <asp:TextBox ID="q_Elevator" runat="server" CssClass="m_txt" Width="195px"
-                    MaxLength="10"></asp:TextBox>(台)
+                <asp:TextBox ID="q_Elevator" runat="server" CssClass="m_txt" Width="195px" onblur="isInt(this)"
+                    ></asp:TextBox>(台)
                 <tt name="tt_t2">*</tt>
             </td>
         </tr>
@@ -371,9 +373,9 @@
                 设计单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="sj_FName" runat="server" CssClass="m_txt" Width="195px" ReadOnly="true"></asp:TextBox>
-                <tt>*</tt>
-                <asp:Button ID="btnMod" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt('sj_FBaseInfoId',1553,this);"
+                <asp:TextBox ID="sj_FName" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                
+                <asp:Button ID="btnMod" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'sj_FBaseInfoId','SJ');"
                     UseSubmitBehavior="false" OnClick="btnSel_sj_Click" />
                 <input id="sj_FBaseInfoId" runat="server" type="hidden" />
             </td>
@@ -416,7 +418,9 @@
                 项目设计注册建筑师：
             </td>
             <td>
-                <asp:TextBox ID="q_JZS" runat="server" CssClass="m_txt" MaxLength="20"  Width="195px"></asp:TextBox>&nbsp;</td>
+                <asp:TextBox ID="q_JZS" runat="server" CssClass="m_txt" MaxLength="20"  Width="195px"></asp:TextBox>&nbsp;
+                
+            </td>
             <td class="t_r t_bg">
                 项目设计注册结构师：</td>
             <td>
@@ -436,8 +440,8 @@
             </td>
             <td colspan="3" class="m_txt_M">
                 <asp:TextBox ID="t_FTxt10" runat="server" CssClass="m_txt" Width="400px" Visible="false"></asp:TextBox>
-                <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt('sj_other_FBaseInfoId',1553,this,'0');"
-                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px;" />
+                <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'sj_other_FBaseInfoId','SJ');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_sj_Click" Style="margin-bottom: 4px;" />
                 <input id="sj_other_FBaseInfoId" runat="server" type="hidden" />
                 <asp:GridView ID="DG_List" runat="server" CssClass="m_dg1" AutoGenerateColumns="False"
                     DataKeyNames="FId" EmptyDataText="没有添加联合体" OnRowCommand="DG_List_RowCommand"
@@ -486,11 +490,11 @@
                 勘察单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="q_CCDW" runat="server" CssClass="m_txt"  Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_CCDW" runat="server" CssClass="m_txt"  Width="195px" Enabled="false"></asp:TextBox>
                 
-                <!--<asp:Button ID="Button1" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt('sj_FBaseInfoId',1553,this);"
-                    UseSubmitBehavior="false" OnClick="btnSel_sj_Click" />-->
-                <input id="Hidden1" runat="server" type="hidden" />
+                <asp:Button ID="Button1" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_KCDWId','KC');"
+                    UseSubmitBehavior="false" OnClick="btnSel_kc_Click" />
+                <input id="q_KCDWId" runat="server" type="hidden" />
             </td>
         </tr>
         <tr>
@@ -512,20 +516,21 @@
                 联系电话：
             </td>
             <td>
-                <asp:TextBox ID="TextBox1" runat="server" CssClass="m_txt" MaxLength="20" onblur="isFloat(this);" Width="195px" ></asp:TextBox>&nbsp;</td>
+                <asp:TextBox ID="q_CCDWDH" runat="server" CssClass="m_txt" MaxLength="20" onblur="isFloat(this);" Width="195px" ></asp:TextBox>&nbsp;</td>
         </tr>
         <tr>
-             <td class="t_r t_bg">
-                注册岩土工程师：
-            </td>
-            <td>
-                <asp:TextBox ID="q_YTGCS" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>&nbsp;</td>
             <td class="t_r t_bg">
                 证书编号：
             </td>
             <td>
                 <asp:TextBox ID="q_CCDWZS" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
+             <td class="t_r t_bg">
+                注册岩土工程师：
+            </td>
+            <td>
+                <asp:TextBox ID="q_YTGCS" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>&nbsp;</td>
+            
         </tr>
         <tr>
             <td class="t_r t_bg">
@@ -551,10 +556,10 @@
                 施工单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
-                
-                <!--<asp:Button ID="Button2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt('k_FBaseInfoId',100,this);"
-                    UseSubmitBehavior="false" CommandName="SJ" OnClick="btnSel_Click" />-->
+                <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                <asp:Button ID="Button2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_SGDWId','KC');"
+                    UseSubmitBehavior="false" OnClick="btnSel_sg_Click" />
+                <input id="q_SGDWId" runat="server" type="hidden" />
             </td>
         </tr>
         <tr>
@@ -610,10 +615,10 @@
                 监理单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="q_JLDW" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
-                
-                <!--<asp:Button ID="Button3" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt('k_FBaseInfoId',1261,this);"
-                    UseSubmitBehavior="false" CommandName="SJ" OnClick="btnSel_Click" />-->
+                <asp:TextBox ID="q_JLDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                <asp:Button ID="Button3" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_JLDWId','KC');"
+                    UseSubmitBehavior="false" OnClick="btnSel_jl_Click" />
+                <input id="q_JLDWId" runat="server" type="hidden" />
             </td>
         </tr>
         <tr>
@@ -655,10 +660,6 @@
    
     <input id="q_AddressDept" type="hidden" runat="server" />
     <input id="pj_AddressDept" type="hidden" runat="server" />
-    <input id="q_SGDWID" type="hidden" runat="server" />
-    <input id="q_JLDWID" type="hidden" runat="server" />
-    <input id="q_SJDWID" type="hidden" runat="server" />
-    <input id="q_CCDWID" type="hidden" runat="server" />
     </form>
 </body>
 </html>

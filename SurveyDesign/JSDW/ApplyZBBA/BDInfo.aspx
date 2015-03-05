@@ -77,13 +77,28 @@
             </tr>
         </table>
         <table class="m_table" width="98%" align="center">
-            <tr>
+            <%--<tr>
+                
                 <td class="t_r t_bg">
-                    企业资质及等级：
+                    企业资质及等级（序列）：
                 </td>
                 <td colspan="3">
+                    <asp:DropDownList ID="t_QYZZDJXL" runat="server" CssClass="m_txt" Width="203px" OnSelectedIndexChanged="t_QYZZDJXL_SelectedIndexChanged"></asp:DropDownList>
+                </td>
+            </tr>--%>
+            <tr>
+                <td class="t_r t_bg">
+                    企业资质等级：
+                </td>
+                <td colspan="1">
                     <asp:TextBox ID="t_QYZZDJ" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                 </td>
+                <%--<td class="t_r t_bg">
+                    企业资质及等级（等级）：
+                </td>
+                <td colspan="1">
+                    <asp:DropDownList ID="t_QYZZDJDJ" runat="server" CssClass="m_txt" Width="203px"></asp:DropDownList>
+                </td>--%>
             </tr>
             <tr>
                 <td class="t_r t_bg">
@@ -91,16 +106,15 @@
                 </td>
                 <td colspan="1">
                     <asp:DropDownList ID="t_ZBBM" runat="server" CssClass="m_txt" Width="200px">
-                        <asp:ListItem Value="1">1</asp:ListItem>
+                        
                     </asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
                     建造师专业：
                 </td>
                 <td colspan="1">
-                    <asp:DropDownList ID="t_ZBDLJGFZR" runat="server" CssClass="m_txt" Width="200px">
-                        <asp:ListItem Value="1">专业1</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:TextBox ID="t_ZBDLJGFZR" runat="server" CssClass="m_txt" Width="200px">
+                    </asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -108,7 +122,7 @@
                     标段编码：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -116,7 +130,7 @@
                     标段名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     标段说明：
@@ -136,14 +150,29 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <tr name="tr_t1">
+            <%--<tr name="tr_t1">
+                
                 <td class="t_r t_bg">
-                    联合体企业资质及等级：
+                    联合体企业资质及等级（序列）：
                 </td>
                 <td colspan="3">
+                    <asp:DropDownList ID="t_LHTQYZZDJXL" runat="server" CssClass="m_txt" Width="203px" OnSelectedIndexChanged="t_LHTQYZZDJXL_SelectedIndexChanged"></asp:DropDownList>
+                </td>
+            </tr>  --%>
+            <tr name="tr_t1">
+                <td class="t_r t_bg">
+                    联合体企业资质等级：
+                </td>
+                <td colspan="1">
                     <asp:TextBox ID="t_LHTQYZZDJ" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                 </td>
-            </tr>                
+                <%--<td class="t_r t_bg">
+                    联合体企业资质及等级（等级）：
+                </td>
+                <td colspan="1">
+                    <asp:DropDownList ID="t_LHTQYZZDJDJ" runat="server" CssClass="m_txt" Width="203px"></asp:DropDownList>
+                </td>--%>
+            </tr>               
         </table>
     </div>
     

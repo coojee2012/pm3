@@ -47,12 +47,23 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
                     ShowFileHXR(txtFId.Value);
                 }
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
+                ClientScript.RegisterStartupScript(this.GetType(), "hideBtn", "<script>hideBtn();</script>");
+            }
         }
     }
 
     void BindControl()
     {
-
+        //中标结果
+        DataTable dt = rc.getDicTbByFNumber("112219");
+        t_ZBJG.DataSource = dt;
+        t_ZBJG.DataTextField = "FName";
+        t_ZBJG.DataValueField = "FNumber";
+        t_ZBJG.DataBind();
     }
 
     private void ShowTitle()
@@ -94,13 +105,17 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         dbContext = new EgovaDB();
         var App1 = from t in dbContext.TC_PBBG_ZBHXR
                 where t.FLinkId == FId 
-                orderby t.FId
+                orderby t.FOrder
                 select new
         {
             t.HXRMC,
             t.PBJ,
             t.TBJ,
             t.FZRXM,
+            t.ZCZSH,
+            t.ZC,
+            t.ZCZH,
+            t.ZCZY,
             t.FId
         };
         PagerHXR.RecordCount = App1.Count();
@@ -117,6 +132,8 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
             t.QYMC,
             t.LXDH,
             t.TBTime,
+            t.TBJ,
+            t.PBJ,
             t.FId
         }).ToList();
         PagerTB.RecordCount = App2.Count();
@@ -157,7 +174,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         qa = tool.getPageValue(qa);
         dbContext.SubmitChanges();
         txtFId.Value = fId;
-        //  showPrjData();
+        //ShowTitle();
         ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     }
     protected void btnReload_ClickBM(object sender, EventArgs e)
@@ -182,7 +199,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerBM.PageSize * (this.PagerBM.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('BMInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('BMInfo.aspx?fid=" + fid + "',900,700,btnReload);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void App_List_ItemDataBoundTB(object sender, DataGridItemEventArgs e)
@@ -191,7 +208,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerTB.PageSize * (this.PagerTB.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('TBInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('TBInfo.aspx?fid=" + fid + "',900,700,Button3);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void App_List_ItemDataBoundFB(object sender, DataGridItemEventArgs e)
@@ -200,7 +217,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerFB.PageSize * (this.PagerFB.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('FBInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('FBInfo.aspx?fid=" + fid + "',900,700,Button9);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void App_List_ItemDataBoundHXR(object sender, DataGridItemEventArgs e)
@@ -209,7 +226,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerHXR.PageSize * (this.PagerHXR.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('HXRInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('HXRInfo.aspx?fid=" + fid + "',900,700,Button6);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void btnDel_ClickBM(object sender, EventArgs e)

@@ -25,9 +25,9 @@
             return AutoCheckInfo();
         }
         function selEmp(obj) {
-            var fAppId = document.getElementById("t_FAppId").value;
+            var fAppId = document.getElementById("h_FAppId").value;
             var rv = showWinByReturn('EmpSel.aspx?FAppId=' + fAppId, 600, 500);           
-            if (pid != null && pid != '') {
+            if (rv != null && rv != '') {
                 var list = rv.toString().split("@");
                 $("#t_FEmpId").val(list[0]);
                 $("#t_CZR").val(list[1]);

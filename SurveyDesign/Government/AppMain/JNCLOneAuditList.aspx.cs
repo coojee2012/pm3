@@ -23,27 +23,39 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
     RCenter rc = new RCenter(); Approve.Common.SaveAsBase sab = new Approve.Common.SaveAsBase();
     RApp ra = new RApp(); Share sh = new Share();
     RAppBacth rap = new RAppBacth();
+    ProjectDB db = new ProjectDB();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            string abc = Request["fcol"].ToString();
-            ShowPostion(); bindBatch(); ShowInfo();
+           // ShowPostion(); 
+            //bindBatch(); 
+            BindControl();
+            ShowInfo();
         }
     }
     private void ShowPostion()
     {
         if (Request["fcol"] != null)
         {
-            this.lPostion.Text = rc.GetMenuName(Request["fcol"].ToString());
+            //this.lPostion.Text = rc.GetMenuName(Request["fcol"].ToString());
 
         }
+    }
+    private void BindControl()
+    {
+        var CPLB = db.getDicList("2001303");
+        ddlCPLB.DataSource = CPLB;
+        ddlCPLB.DataValueField = "fnumber";
+        ddlCPLB.DataTextField = "fname";
+        ddlCPLB.DataBind();
+        ddlCPLB.Items.Insert(0, new ListItem() { Selected = true, Text = "--请选择--", Value = "0" });
     }
     public void bindBatch()
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(" select * from CF_App_BatchNo ");
-        sb.Append(" where FSystemID ='222'");
+        sb.Append(" where FSystemID ='1122'");
         sb.Append(" and FDFId='" + this.Session["DFId"].ToString() + "'");
         sb.Append(" and fisdeleted=0 ");
         sb.Append(" and fstate<>1 ");
@@ -59,15 +71,19 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
         StringBuilder sb = new StringBuilder();
         if (this.txtFName.Text.Trim() != "" && this.txtFName.Text.Trim() != null)
         {
-            sb.Append(" and ep.FEntName like '%" + this.txtFName.Text.Trim() + "%' ");
-        }       
-        if (Request.QueryString["fmanagetypeid"] != null)
-        {
-            if (Request.QueryString["fmanagetypeid"].IndexOf(",") > -1)
-                sb.Append(" and ep.fmanagetypeid in (" + Request.QueryString["fmanagetypeid"] + ") ");
-            else
-                sb.Append(" and ep.fmanagetypeid='" + Request["fmanagetypeid"] + "'");
-        }        
+            sb.Append(" and c.QYMC like '%" + this.txtFName.Text.Trim() + "%' ");
+        }
+        if (!string.IsNullOrEmpty(txtCPMC.Text))
+            sb.AppendFormat(" and b.SQCPMC like '%{0}%'", txtCPMC.Text);
+        if (ddlCPLB.SelectedValue != "0")
+            sb.AppendFormat(" and b.CPLBMC ='{0}'", ddlCPLB.SelectedValue);
+        //if (Request.QueryString["fmanagetypeid"] != null)
+        //{
+        //    if (Request.QueryString["fmanagetypeid"].IndexOf(",") > -1)
+        //        sb.Append(" and ep.fmanagetypeid in (" + Request.QueryString["fmanagetypeid"] + ") ");
+        //    else
+        //        sb.Append(" and ep.fmanagetypeid='" + Request["fmanagetypeid"] + "'");
+        //}        
         if (dbSeeState.SelectedValue != "")
         {
             switch (dbSeeState.SelectedValue.Trim())
@@ -88,10 +104,10 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
         { sb.Append(" and CONVERT(nvarchar(10),er.FReporttime,121) >= '" + t_Stime.Text + "'"); }
         if (!string.IsNullOrEmpty(t_Stime.Text))
         { sb.Append(" and CONVERT(nvarchar(10),er.FReporttime,121) <= '" + t_Etime.Text + "'"); }
-        if (!string.IsNullOrEmpty(ddBatch.SelectedValue))
-        {
-            sb.Append(" and ep.FLinkId in (select FAppId from CF_App_AppBatchNo where FBatchNoId='" + ddBatch.SelectedValue + "')");
-        }
+        //if (!string.IsNullOrEmpty(ddBatch.SelectedValue))
+        //{
+        //    sb.Append(" and ep.FLinkId in (select FAppId from CF_App_AppBatchNo where FBatchNoId='" + ddBatch.SelectedValue + "')");
+        //}
         if (sb.Length > 0)
         {
             return sb.ToString();
@@ -112,28 +128,28 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
         sb.Append(" when 5 then '未审批' when 6 then '审批完成' end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
 
-        sb.Append(" ,er.FIdea,l.FName ywName ");
+        sb.Append(" ,er.FIdea,l.FName ywName,b.SQCPMC,b.CPLBMC,b.BSDJMC,c.QYMC,b.YWBM ");
 
         sb.Append(" from CF_App_ProcessInstance ep inner join CF_App_ProcessRecord er");
         sb.Append(" on ep.fId = er.FProcessInstanceID ");
 
-        sb.Append(" left join CF_App_List l on ep.FLinkId=l.FId ");        
-
+        sb.Append(" left join CF_App_List l on ep.FLinkId=l.FId ");
+        sb.Append(" left join YW_JNCL_PRODUCT b on l.FId=b.YWBM");
+        sb.Append(" left join YW_JNCL_QYJBXX c on l.FId=c.YWBM");
         sb.Append(" inner join ( ");
         sb.Append(" select max(er.fid)fid from CF_App_ProcessInstance ep,CF_App_ProcessRecord er");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and ep.fsystemid=220 ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        sb.Append(" where ep.fId = er.FProcessInstanceID and ep.fsystemid=1122 and ep.FManageTypeId='4001' ");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and er.FtypeId=10 "); //存子流程类别 10初审
-        sb.Append(" group by ep.flinkId )temp on er.fid=temp.fid where 1=1 ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
-        sb.Append(" and er.FtypeId=10 "); //存子流程类别 10初审
+        sb.AppendFormat(" group by ep.flinkId )temp on er.fid=temp.fid where b.FType={0} and c.FType={0} ",FType);
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        //sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
+        //sb.Append(" and er.FtypeId=10 "); //存子流程类别 10初审
         sb.Append(getCondi());
         sb.AppendLine(" ) ttt where 1=1 ");
 
         sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
-
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "JustAppInfo_List";
@@ -154,8 +170,8 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
             this.JustAppInfo_List.DataSource = dt;
             this.JustAppInfo_List.DataBind();
             JustAppInfo_List.Columns[0].Visible = false;
-            string fOutTitle = lPostion.Text;
-            sab.SaveAsExc(this.JustAppInfo_List, fOutTitle, this.Response);
+          //  string fOutTitle = lPostion.Text;
+           // sab.SaveAsExc(this.JustAppInfo_List, fOutTitle, this.Response);
         }
     }
     protected void JustAppInfo_List_ItemDataBound(object sender, DataGridItemEventArgs e)
@@ -168,58 +184,55 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
             string fState = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FState"));//e.Item.Cells[e.Item.Cells.Count - 5].Text;
             string fSubFlowId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FSubFlowId"));//e.Item.Cells[9].Text;
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-
+            string YWBM = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "YWBM"));
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
             
             CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
             box.Attributes["id"] = "span" + box.ClientID;
             box.Attributes["name"] = FLinkId;
             box.Attributes["fSubFlowId"] = fSubFlowId;
-
+            box.Attributes["YWBM"] = YWBM;
             string fColor = "", sUrl = "";
             if (fMeasure == "0")
             {
                 sUrl = "AcceptInfoJNCL.aspx?ftype=10&FLinkId=" + FLinkId + "&fSubFlowId=" + fSubFlowId;
-                e.Item.Cells[8].Text = "未初审";
+                e.Item.Cells[7].Text = "未初审";
                 fColor = "#ff9900";
             }
             if (fMeasure == "5" && fFResult == "1")
             {
                 //sUrl = "AcceptInfoGF.aspx?FLinkId=" + FLinkId;
-                e.Item.Cells[8].Text = "审批通过";
+                e.Item.Cells[7].Text = "审批通过";
                 box.Enabled = false;
                 fColor = "#339933";
             }
-            EaProcessInstance ea = (EaProcessInstance)rc.GetEBase(EntityTypeEnum.EaProcessInstance,
-                "FBaseInfoId,FManageTypeId,fsystemid,FResult,FTime", "fid='" + fid + "'");
-            EaSubFlow es = (EaSubFlow)rc.GetEBase(EntityTypeEnum.EaSubFlow, "", "fid='" + fSubFlowId + "'");
-            if (fState == "6" && ea.FResult == "3") //流程结束并且不同意
+            if (fState == "6" && fFResult == "3") //流程结束并且不同意
             {
                 //sUrl = "AcceptInfoGF.aspx?FLinkId" + FLinkId;
-                e.Item.Cells[5].Text = "退回";
+                e.Item.Cells[7].Text = "退回";
                 box.Enabled = false;
                 fColor = "#ff0000";
             }
             if (fState == "2")
             {
                 //sUrl = "AcceptInfoGF.aspx?FLinkId" + FLinkId;
-                e.Item.Cells[5].Text = "打回下级";
+                e.Item.Cells[7].Text = "打回下级";
                 box.Enabled = false;
                 fColor = "#b6589d";
             }
-            e.Item.Cells[3].Text = "<font color='" + fColor + "'>" + e.Item.Cells[3].Text + "</font>";
+            e.Item.Cells[2].Text = "<font color='" + fColor + "'>" + e.Item.Cells[3].Text + "</font>";
             if (!string.IsNullOrEmpty(sUrl))
-                e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"javascript:showAddWindow('" + sUrl + "',800,600);\" >" + e.Item.Cells[2].Text + "</a>";
+                e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"javascript:showAddWindow('" + sUrl + "',800,600);\" >" + e.Item.Cells[2].Text + "</a>";
 
 
-            string sql = string.Format(@" select FBatchNoId from CF_App_AppBatchNo 
-                            where FAppId='" + FLinkId + "' and FDFId ='" + this.Session["DFId"].ToString()
-                            + "' and fisdeleted=0 ");
-            string fBatchNoId = rc.GetSignValue(sql);
-            if (fBatchNoId != null && fBatchNoId != "&nbsp;")
-            {
-                e.Item.Cells[7].Text = rc.GetSignValue(EntityTypeEnum.EaBatchNo, "FTtile", "FID='" + fBatchNoId + "'");
-            }           
+//            string sql = string.Format(@" select FBatchNoId from CF_App_AppBatchNo 
+//                            where FAppId='" + FLinkId + "' and FDFId ='" + this.Session["DFId"].ToString()
+//                            + "' and fisdeleted=0 ");
+//            string fBatchNoId = rc.GetSignValue(sql);
+//            if (fBatchNoId != null && fBatchNoId != "&nbsp;")
+//            {
+//                e.Item.Cells[7].Text = rc.GetSignValue(EntityTypeEnum.EaBatchNo, "FTtile", "FID='" + fBatchNoId + "'");
+//            }           
         }
     }
 
@@ -443,5 +456,13 @@ public partial class Government_AppMain_JNCLOneAuditList : System.Web.UI.Page
         }
     }
     #endregion
+
+    private string FType
+    {
+        get
+        {
+            return Request.QueryString["FType"];
+        }
+    }
 
 }

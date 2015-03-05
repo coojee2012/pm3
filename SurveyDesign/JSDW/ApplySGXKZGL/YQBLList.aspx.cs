@@ -78,7 +78,14 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(govd_FRegistDeptId.FNumber))
         {
-            v = v.Where(t => t.PrjAddressDept.Equals(this.govd_FRegistDeptId.FNumber.Trim()));
+            if ("51" == govd_FRegistDeptId.FNumber)
+            {
+            }
+            else
+            {
+                v = v.Where(t => t.PrjAddressDept.Equals(this.govd_FRegistDeptId.FNumber.Trim()));
+            }
+            
         }
         if (!string.IsNullOrEmpty(this.txtJSDZ.Text.Trim()))
         {
@@ -284,19 +291,19 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
 
             e.Row.Cells[4].Text = t;
             e.Row.Cells[5].Text = s;
-            var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
-            if (pr != null)
-            {
-                if (pr.FResult == "1")//通过
-                {
-                    n = "<font color='green'>通过</font>";
-                    saveFResult("1", FID);
-                }
-                else//不通过
-                {
-                    n = "<font color='red'>不通过</font>";
-                    saveFResult("3", FID);
-                }
+            //var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
+            //if (pr != null)
+            //{
+            //    if (pr.FResult == "1")//通过
+            //    {
+            //        n = "<font color='green'>通过</font>";
+            //        saveFResult("1", FID);
+            //    }
+            //    else//不通过
+            //    {
+            //        n = "<font color='red'>不通过</font>";
+            //        saveFResult("3", FID);
+            //    }
                 //if (pr.FRoleDesc.Contains("接件"))
                 //{
                 //    if (pr.FResult == "1")//通过
@@ -328,7 +335,7 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
                 //        n += "，<font color='red'>复审不通过</font>";
                 //    }
                 //}
-            }
+            //}
             e.Row.Cells[7].Text = n;
         }
     }
@@ -447,5 +454,6 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
             LinkButton LinkButton1 = (LinkButton)e.Row.FindControl("btnItemSee");
             LinkButton1.CommandArgument = e.Row.RowIndex.ToString();
         }
+        e.Row.Cells[e.Row.Cells.Count - 1].Visible = false;//guid列的隐藏
     }
 }

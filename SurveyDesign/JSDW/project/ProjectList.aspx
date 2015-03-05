@@ -51,7 +51,7 @@
                 登记项目情况
             </td>
             <td class="t_r">
-                <input type="button" id="btnAdd" runat="server" value="新增" class="m_btn_w2" onclick="showAddWindow('ProjectInfo.aspx?e=1',900,700);" />
+                <input type="button" id="btnAdd" runat="server" value="新增" class="m_btn_w2" onclick="showAddWindow('ProjectInfo.aspx?e=1',1000,700);" />
                 <asp:Button ID="btnDel" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                     OnClick="btnDel_Click" />
                 <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click" />

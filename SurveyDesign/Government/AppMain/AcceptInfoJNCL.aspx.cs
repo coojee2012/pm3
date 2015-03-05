@@ -25,139 +25,126 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Request["FLinkId"] != null && !string.IsNullOrEmpty(Request["FLinkId"]))
-            { t_YWBM.Value = Request["FLinkId"].ToString(); }
-            if (Request["fSubFlowId"] != null && !string.IsNullOrEmpty(Request["fSubFlowId"]))
-            { t_fSubFlowId.Value = Request["fSubFlowId"].ToString(); }
-            getTitel(); bindAuditList();
-        }
-    }
-    //显示处理 初步处理
-    public void getTitel()
-    {
-        if (Request["ftype"] != null && !string.IsNullOrEmpty(Request["ftype"]))
-        {
-            t_ftype.Value = Request["ftype"].ToString(); bindFile();
-            if (Request["ftype"].ToString() == "1")
+            hfTypeId.Value = TypeId;
+            if (TypeId == "1")
+                btnAcccpt.Text = "接件";
+            else if (TypeId == "10")
+                btnAcccpt.Text = "上报审批";
+            else if (TypeId == "5")
+                btnAcccpt.Text = "复审";
+            else if (TypeId == "20")
+                btnAcccpt.Text = "办结";
+
+            if (TypeId != "1")
             {
-                lbTile.Text = "节能材料接件"; accept.Visible = true;
-                sqInfo.Visible = false;
-                btnUPCS.Attributes.Add("style", "display:none;");
-                btnUPFS.Attributes.Add("style", "display:none;");
-                btnUPEND.Attributes.Add("style", "display:none;");
+                ltrPerSon.Text = "审查人";
+                ltrUnit.Text = "审查单位";
+                ltrTime.Text = "审查时间";
+                ltrComment.Text = "审查意见";
+                ltrFunction.Text = "审查人职务";
+            }
+            if (!string.IsNullOrEmpty(YWBM))
+            {
+                hfFLinkId.Value = YWBM;
+                string sql = string.Format(@"select TOP 1 B.QYMC,B.FRDB,A.SBRQ,B.LXR,B.LXDH,A.SQCPMC,A.CPLBMC,A.BSDJMC from YW_JNCL_PRODUCT A LEFT JOIN YW_JNCL_QYJBXX B ON A.YWBM = B.YWBM WHERE A.YWBM = '{0}'", YWBM);
+                DataTable table = rc.GetTable(sql);
+                if (table != null && table.Rows.Count > 0)
+                {
+                    DataRow row = table.Rows[0];
+                    pageTool tool = new pageTool(this.Page,"txt");
+                    tool.fillPageControl(row);
+                    ltrSQXX.Text = string.Format("<tr><td>1</td><td>{0}</td><td>{1}</td><td>{2}</td></tr>", row["SQCPMC"], row["BSDJMC"], row["CPLBMC"]);
+                }
+                ShowFile();
                 bindAccept();
-            }
-            else if (Request["ftype"].ToString() == "10")
-            {
-                lbTile.Text = "节能材料初审";
-                btnSave.Attributes.Add("style", "display:none;");
-                bindSqInfo();
-            }
-            else if (Request["ftype"].ToString() == "15")
-            {
-                lbTile.Text = "节能材料复审";
-                btnSave.Attributes.Add("style", "display:none;");
-                bindSqInfo();
-            }
-            else if (Request["ftype"].ToString() == "5")
-            {
-                lbTile.Text = "节能材料领导审批";
-                btnSave.Attributes.Add("style", "display:none;");
-                bindSqInfo();
+                bindAuditList();
             }
         }
     }
-    //材料绑定
-    public void bindFile()
+    private void ShowFile()
     {
-        //《四川省建筑节能材料和产品备案表》（见附表）
-        string sql = string.Format(@"select COUNT(1) cou from YW_FileList l 
-                        inner join CF_AppPrj_FileOther f on l.FFileID=f.FID and l.FAppid=f.FAppId 
-                        where l.FAppid='" + t_YWBM.Value + "' and l.FType=3005");
-        DataTable dt = sh.GetTable(sql);
-        btnOne.Attributes.Add("value", "查看(" + dt.Rows[0]["cou"].ToString() + ")");
-        dt = sh.GetTable("select * from YW_FileState where FAppid='" + t_YWBM.Value + "' and FType=3005 ");
-        if (dt != null && dt.Rows.Count > 0)
+        string sql = string.Format("select A.ID,A.[FILE_NAME],COUNT(B.ID) TOTAL,A.Number FROM YW_FILE A LEFT JOIN YW_FILE_DETAIL B ON A.ID=B.[FileId] WHERE A.YWBM='{0}'  GROUP BY A.[FILE_NAME],a.ID,A.Number", YWBM);
+        DataTable table = rc.GetTable(sql);
+        DataTable tableFile = GetSaveFileMessage();
+        if (table != null && table.Rows.Count > 0)
         {
-            lOne.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-                + "&ftype=1000',400,300);\"><tt>" + dt.Rows[0]["Fstate"].ToString() + "</tt></a>";
-            tbOne.Text = dt.Rows[0]["Fremark"].ToString(); t_One.Value = dt.Rows[0]["FID"].ToString();
-            cbOne.Checked = dt.Rows[0]["Fhave"].ToString() == "0" ? true : false;
+            System.Text.StringBuilder _builder = new System.Text.StringBuilder();
+            int num = 0;
+            foreach (DataRow row in table.Rows)
+            {
+                bool isHave = false;
+                string reMark = string.Empty;
+                if (tableFile != null)
+                {
+                    foreach (DataRow item in tableFile.Rows)
+                    {
+                        if (item["FileDetailId"].ToString() == row["ID"].ToString())
+                        {
+                            isHave = item["IsHave"].ToString() == "1" ? true : false;
+                            reMark = item["Remark"].ToString();
+                            break;
+                        }
+                    }
+                }
+                num++;
+                _builder.Append("<tr class='clDetail'>");
+                _builder.AppendFormat("<td value='{1}'>{0}</td>", num, row["ID"]);
+                _builder.AppendFormat("<td>{0}</td>", row["FILE_NAME"]);
+                _builder.AppendFormat("<td>{0}</td>", row["Number"]);
+                if (tableFile != null)
+                {
+                    _builder.AppendFormat("<td><input type='checkbox' {0} /></td>", isHave == true ? "checked='true'" : "");
+                }
+                else
+                    _builder.AppendFormat("<td><input type='checkbox' /></td>");
+                _builder.AppendFormat("<td><input type='button' value='查看({2})' onclick=\"ChooseFile('{0}','{1}','{3}')\"  class=\"m_btn_w2\"  /></td>", row["ID"], YWBM, row["TOTAL"], row["FILE_NAME"]);
+                _builder.AppendFormat("<td><input type='text' value='{0}' /></td>", reMark);
+                _builder.Append("</tr>");
+            }
+            ltrText.Text = _builder.ToString();
         }
-        else
+    }
+    /// <summary>
+    /// 获取保存的文件信息
+    /// </summary>
+    /// <returns></returns>
+    private DataTable GetSaveFileMessage()
+    {
+        string fileSql = string.Format("select * from YW_FILE_REMARK where YWBM='{0}'", YWBM);
+        DataTable table = rc.GetTable(fileSql);
+        if (table != null && table.Rows.Count > 0)
+            return table;
+        return null;
+    }
+    private void SaveFileMessage()
+    {
+        string file = hfFile.Value;
+        if (!string.IsNullOrEmpty(file))
         {
-            lOne.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-            + "&ftype=3005',400,300);\"><tt>未检测</tt></a>";
+            StringBuilder _builder = new StringBuilder();
+            _builder.AppendFormat("delete from YW_FILE_REMARK where YWBM='{0}';", YWBM);
+            string[] files = hfFile.Value.Split('|');
+            foreach (var item in files)
+            {
+                string[] items = item.Split('-');
+                _builder.AppendFormat("insert into YW_FILE_REMARK(YWBM,FileDetailId,IsHave,Remark)values('{0}',{1},{2},'{3}');", YWBM, items[0], items[1], items[2]);
+            }
+            rc.PExcute(_builder.ToString());
         }
-        //企业营业执照（复印件加盖企业印章）
-        dt = sh.GetTable("select * from YW_FileState where FAppid='" + t_YWBM.Value + "' and FType=3000 ");
-        if (dt != null && dt.Rows.Count > 0)
+    }
+    private void saveIdear()
+    {
+        SortedList osort = new SortedList();
+        if (!string.IsNullOrEmpty(t_ProcessRecordID.Value))
         {
-            lTwo.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-                + "&ftype=3000',400,300);\"><tt>" + dt.Rows[0]["Fstate"].ToString() + "</tt></a>";
-            tbTwo.Text = dt.Rows[0]["Fremark"].ToString(); t_Two.Value = dt.Rows[0]["FID"].ToString();
-            cbTwo.Checked = dt.Rows[0]["Fhave"].ToString() == "0" ? true : false;
-        }
-        else
-        {
-            lTwo.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-            + "&ftype=3000',400,300);\"><tt>未检测</tt></a>";
-        }
-        //代理商的代理合同
-        dt = sh.GetTable("select * from YW_FileState where FAppid='" + t_YWBM.Value + "' and FType=3001 ");
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            lThree.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-                + "&ftype=3001',400,300);\"><tt>" + dt.Rows[0]["Fstate"].ToString() + "</tt></a>";
-            tbThree.Text = dt.Rows[0]["Fremark"].ToString(); t_Three.Value = dt.Rows[0]["FID"].ToString();
-            cbThree.Checked = dt.Rows[0]["Fhave"].ToString() == "0" ? true : false;
-        }
-        else
-        {
-            lThree.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-            + "&ftype=3001',400,300);\"><tt>未检测</tt></a>";
-        }
-        //设计施工验收技术规程（规范、标准）、标准图集、使用手册等相关技术资料
-        dt = sh.GetTable("select * from YW_FileState where FAppid='" + t_YWBM.Value + "' and FType=3002 ");
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            lSix.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-                + "&ftype=3002',400,300);\"><tt>" + dt.Rows[0]["Fstate"].ToString() + "</tt></a>";
-            tbSix.Text = dt.Rows[0]["Fremark"].ToString(); t_Six.Value = dt.Rows[0]["FID"].ToString();
-            cbSix.Checked = dt.Rows[0]["Fhave"].ToString() == "0" ? true : false;
-        }
-        else
-        {
-            lSix.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-            + "&ftype=3002',400,300);\"><tt>未检测</tt></a>";
-        }
-        //法定检测机构出具的有效期内的产品型式检验报告（查验原件，收复印件，复印件须加盖企业公章）
-        dt = sh.GetTable("select * from YW_FileState where FAppid='" + t_YWBM.Value + "' and FType=3003 ");
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            lSeven.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-                + "&ftype=3003',400,300);\"><tt>" + dt.Rows[0]["Fstate"].ToString() + "</tt></a>";
-            tbSeven.Text = dt.Rows[0]["Fremark"].ToString(); t_Seven.Value = dt.Rows[0]["FID"].ToString();
-            cbSeven.Checked = dt.Rows[0]["Fhave"].ToString() == "0" ? true : false;
-        }
-        else
-        {
-            lSeven.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-            + "&ftype=3003',400,300);\"><tt>未检测</tt></a>";
-        }
-        //质量管理有关资料或质量保证体系认证证书
-        dt = sh.GetTable("select * from YW_FileState where FAppid='" + t_YWBM.Value + "' and FType=3004 ");
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            lEight.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-                + "&ftype=3004',400,300);\"><tt>" + dt.Rows[0]["Fstate"].ToString() + "</tt></a>";
-            tbEight.Text = dt.Rows[0]["Fremark"].ToString(); t_Eight.Value = dt.Rows[0]["FID"].ToString();
-            cbEight.Checked = dt.Rows[0]["Fhave"].ToString() == "0" ? true : false;
-        }
-        else
-        {
-            lEight.Text = "<a href='#' onclick=\"showAddWindow('fileState.aspx?fid=" + t_YWBM.Value
-            + "&ftype=3004',400,300);\"><tt>未检测</tt></a>";
+            osort.Add("FID", t_ProcessRecordID.Value);
+            osort.Add("FAppPerson", t_FAppPerson.Text);
+            osort.Add("FCompany", t_FAppPersonUnit.Text);
+            osort.Add("FFunction", txtFunction.Text);
+            osort.Add("FAppTime", t_FAppDate.Text);
+            osort.Add("FIdea", t_FAppIdea.Text);
+            osort.Add("FResult", dResult.SelectedValue.Trim());
+            rc.SaveEBase(EntityTypeEnum.EaProcessRecord, osort, "FID", SaveOptionEnum.Update);
         }
     }
     //绑定审批意见列表
@@ -184,16 +171,18 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
     public void bindAccept()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(" flinkid='" + t_YWBM.Value + "' and FMeasure=0 and FSubFlowId='" + t_fSubFlowId.Value + "'");
-        sb.Append(" and froleid='" + this.Session["DFRoleId"].ToString() + "' and isnull(FAppPerson,'') <> ''");
+        sb.Append(" flinkid='" + YWBM + "' and FMeasure=0 and FSubFlowId='" + fSubFlowId + "'");
+        sb.Append(" and isnull(FAppPerson,'') <> ''");
         DataTable dt = rc.GetTable(EntityTypeEnum.EaProcessRecord, "", sb.ToString());
         if (dt != null && dt.Rows.Count > 0)
         {
             t_FAppPerson.Text = dt.Rows[0]["FAppPerson"].ToString();
             t_FAppPersonUnit.Text = dt.Rows[0]["FCompany"].ToString();
-            t_FAppPersonJob.Text = dt.Rows[0]["FFunction"].ToString();
+            //hfFunction.Value = dt.Rows[0]["FFunction"].ToString();
+            txtFunction.Text = dt.Rows[0]["FFunction"].ToString();
             t_FAppDate.Text = rc.StrToDate(dt.Rows[0]["FAppTime"].ToString());
             t_FAppIdea.Text = dt.Rows[0]["FIdea"].ToString();
+
             t_ProcessRecordID.Value = dt.Rows[0]["FId"].ToString();
             t_FProcessInstanceID.Value = dt.Rows[0]["FProcessinstanceId"].ToString();
             if (dResult.Items.FindByValue(dt.Rows[0]["FResult"].ToString()) != null)
@@ -209,12 +198,13 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
                 t_FAppPerson.Text = dt.Rows[0]["FLinkMan"].ToString();
                 t_FAppPersonUnit.Text = RBase.GetDepartmentName(dt.Rows[0]["FDepartmentID"].ToString()) + RBase.GetDepartmentName(dt.Rows[0]["FCompany"].ToString());
                 t_FAppDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                t_FAppPersonJob.Text = dt.Rows[0]["FFunction"].ToString();
+                //hfFunction.Value = dt.Rows[0]["FFunction"].ToString();
+                txtFunction.Text = dt.Rows[0]["FFunction"].ToString();
             }
+
             string sSql = string.Format(@"select er.FID,a.FID as PFID from CF_App_ProcessInstance a,CF_App_ProcessRecord er
                where er.FMeasure='0' and a.fid=er.FProcessInstanceID and a.fsubflowid=er.fsubflowid and a.fstate<>6 
-               and a.FLinkId='" + t_YWBM.Value + "' and a.FRoleId='" + this.Session["DFRoleId"].ToString()
-                                + "' and er.FSubFlowId='" + t_fSubFlowId.Value + "'");
+               and a.FLinkId='" + YWBM + "' and er.FSubFlowId='" + fSubFlowId + "'");
             dt = rc.GetTable(sSql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -223,210 +213,22 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
             }
         }
     }
-    //绑定申请信息
-    public void bindSqInfo()
+    #region DataGrid 事件处理
+    //各级审批意见
+    protected void DG_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
-        string sql = "select * from YW_JN_AppProduct where fappid='" + t_YWBM.Value + "' ";
-
-    }
-    //保存意见
-    protected void btnSaveYJ_Click(object sender, EventArgs e)
-    {
-        save();
-    }
-    //保存方法本级审批意见
-    protected void save()
-    {
-        if (Request["ftype"] != null && !string.IsNullOrEmpty(Request["ftype"]))
+        if (e.Item.ItemIndex > -1)
         {
-            pageTool tool = new pageTool(this.Page);
-            SortedList osort = new SortedList();
-            if (Request["ftype"].ToString() == "1")
-            {
-                osort.Add("FID", t_ProcessRecordID.Value);
-                osort.Add("FAppPerson", t_FAppPerson.Text);
-                osort.Add("FCompany", t_FAppPersonUnit.Text);
-                osort.Add("FFunction", t_FAppPersonJob.Text);
-                osort.Add("FAppTime", t_FAppDate.Text);
-                osort.Add("FIdea", t_FAppIdea.Text);
-                osort.Add("FResult", dResult.SelectedValue.Trim());
-
-            }
-            else
-            {
-
-            }
-            rc.SaveEBase(EntityTypeEnum.EaProcessRecord, osort, "FID", SaveOptionEnum.Update);
-            savFile();
+            e.Item.Cells[0].Text = (e.Item.ItemIndex + 1).ToString();
         }
     }
-    //保存材料信息
-    protected void savFile()
-    {
-        pageTool tool = new pageTool(this.Page);
-        StringBuilder sb = new StringBuilder();
-        sb.Append(" begin ");
-        //《四川省建筑节能材料和产品备案表》（见附表）
-        string have = cbOne.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_One.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbOne.Text
-              + "' where FID='" + t_One.Value + "' and Ftype=3005 ");
-        }
-        else
-        {
-            t_One.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_One.Value
-                + "','" + tbOne.Text + "','" + t_YWBM.Value + "','3005'," + have + ",'未检测')");
-        }
-        //企业营业执照（复印件加盖企业印章）
-        have = cbTwo.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_Two.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbTwo.Text
-              + "' where FID='" + t_Two.Value + "' and Ftype=3000 ");
-        }
-        else
-        {
-            t_One.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_Two.Value
-                + "','" + tbTwo.Text + "','" + t_YWBM.Value + "','3000'," + have + ",'未检测')");
-        }
-        //代理商的代理合同
-        have = cbThree.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_Three.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbThree.Text
-              + "' where FID='" + t_Three.Value + "' and Ftype=3001 ");
-        }
-        else
-        {
-            t_Three.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_Three.Value
-                + "','" + tbThree.Text + "','" + t_YWBM.Value + "','3001'," + have + ",'未检测')");
-        }
-        //设计施工验收技术规程（规范、标准）、标准图集、使用手册等相关技术资料
-        have = cbSix.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_Six.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbSix.Text
-              + "' where FID='" + t_Six.Value + "' and Ftype=3002 ");
-        }
-        else
-        {
-            t_Six.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_Six.Value
-                + "','" + tbSix.Text + "','" + t_YWBM.Value + "','3002'," + have + ",'未检测')");
-        }
-        //法定检测机构出具的有效期内的产品型式检验报告（查验原件，收复印件，复印件须加盖企业公章）
-        have = cbSeven.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_Seven.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbSeven.Text
-              + "' where FID='" + t_Seven.Value + "' and Ftype=3003 ");
-        }
-        else
-        {
-            t_Seven.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_Seven.Value
-                + "','" + tbSeven.Text + "','" + t_YWBM.Value + "','3003'," + have + ",'未检测')");
-        }
-        //质量管理有关资料或质量保证体系认证证书
-        have = cbEight.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_Eight.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbEight.Text
-              + "' where FID='" + t_Eight.Value + "' and Ftype=3004 ");
-        }
-        else
-        {
-            t_Eight.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_Eight.Value
-                + "','" + tbEight.Text + "','" + t_YWBM.Value + "','3004'," + have + ",'未检测')");
-        }
-        //省外进入我省的建筑节能材料和产品除提供上述资料外，还应提供当地省级建设行政主管部门备案(认定)证明
-        have = cbNight.Checked == true ? "0" : "1";
-        if (!string.IsNullOrEmpty(t_Night.Value))
-        {
-            sb.Append(" update YW_FileState set Fhave=" + have + ",Fremark='" + tbNight.Text
-              + "' where FID='" + t_Night.Value + "' and Ftype=3006 ");
-        }
-        else
-        {
-            t_Night.Value = Guid.NewGuid().ToString();
-            sb.Append(" insert YW_FileState (FID,Fremark,FAppid,Ftype,Fhave,Fstate) values ('" + t_Night.Value
-                + "','" + tbNight.Text + "','" + t_YWBM.Value + "','3006'," + have + ",'未检测')");
-        }
-    }
-    //材料全选
-    protected void btnAll_Click(object sender, EventArgs e)
-    {
-        cbOne.Checked = true; cbTwo.Checked = true; cbThree.Checked = true;
-        cbFour.Checked = true; cbFive.Checked = true; cbSix.Checked = true;
-        cbSeven.Checked = true; cbEight.Checked = true; cbNight.Checked = true;
-    }
-    //接件
-    protected void btnAccept_Click(object sender, EventArgs e)
-    {
-        pageTool tool = new pageTool(this.Page);
-        ReportProcess();
-        tool.showMessageAndRunFunction("接件成功", "window.returnValue='1';window.close();");
-    }
-    //初审
-    protected void btnCS_Click(object sender, EventArgs e)
-    {
-        pageTool tool = new pageTool(this.Page);
-        ReportProcess();
-        tool.showMessageAndRunFunction("初审成功", "window.returnValue='1';window.close();");
-    }
-    //复审
-    protected void btnFS_Click(object sender, EventArgs e)
-    {
-        pageTool tool = new pageTool(this.Page);
-        ReportProcess();
-        tool.showMessageAndRunFunction("复审成功", "window.returnValue='1';window.close();");
-    }
-    //领导审批
-    protected void btnEnd_Click(object sender, EventArgs e)
-    {
-        pageTool tool = new pageTool(this.Page);
-        ReportProcess();
-        tool.showMessageAndRunFunction("领导审批成功", "window.returnValue='1';window.close();");
-    }
+    #endregion
 
     #region 上报流程
-    #region 初次加载版本库，修复报错添加的空
-    protected void btnSee_Click(object sender, EventArgs e)
-    { 
-    
-    }
-    protected void DG_List_ItemDataBound(object sender, EventArgs e)
-    {
-
-    }
-    protected void btnQuery_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void dgSQinfo_ItemDataBound(object sender, EventArgs e)
-    {
-
-    }
-    protected void dResult_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-    protected void btnBackNext_Click(object sender, EventArgs e)
-    {
-
-    }
-
-
-    #endregion
     private void ReportProcess()
     {
-        save();
-        string FLinkId = t_YWBM.Value;
+        saveIdear();
+        string FLinkId = YWBM;
         EaProcessRecord Er = (EaProcessRecord)rc.GetEBase(EntityTypeEnum.EaProcessRecord, "FResult", "FID='" + t_ProcessRecordID.Value + "'");
         SortedList[] sl = new SortedList[1];
         sl[0] = new SortedList();
@@ -442,6 +244,12 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
         //else sl[0].Add("FResult", dAudit.SelectedValue.Trim());
         sl[0].Add("FUserId", this.Session["DFUserId"].ToString());
         EaProcessInstance epi = (EaProcessInstance)rc.GetEBase(EntityTypeEnum.EaProcessInstance, "FReportDate", "fid='" + t_FProcessInstanceID.Value + "'");
+        if (epi == null)
+        {
+            pageTool tool = new pageTool(this.Page);
+            tool.showMessage("流程错误");
+            return;
+        }
         DateTime fReportTime = epi.FReportDate;
         DateTime nowTime = DateTime.Now;
         TimeSpan spanTime = nowTime - fReportTime;
@@ -452,38 +260,91 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
     #endregion
 
     #region 打回到企业
-    private void BackToEnt()
+    private void BatchApp()
     {
-        if (Request["pid"] == null || Request["pid"] == "")
+        ProjectDB db = new ProjectDB();
+        string backIdea = t_FAppIdea.Text;
+        backIdea = backIdea.Length > 200 ? backIdea.Substring(0, 200) : backIdea;
+        if (hfFLinkId.Value == "")
         {
             return;
         }
-        EaProcessInstance epi = (EaProcessInstance)rc.GetEBase(EntityTypeEnum.EaProcessInstance, "", "FId='" + Request["pid"] + "'");
-        if (epi == null)
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sbDescription = new StringBuilder();//记录该操作的关键信息
+        string[] strs = hfFLinkId.Value.Split(',');
+        int iCount = strs.Length;
+        sb.Append("select fid,fbaseInfoId from CF_App_list where fid in (");
+        for (int i = 0; i < iCount; i++)
         {
-            return;
+            if (i == 0)
+            {
+                sb.Append("'" + strs[i].Trim() + "'");
+            }
+            else
+            {
+                sb.Append(",'" + strs[i].Trim() + "'");
+            }
         }
-
-        EaProcessRecord eap = ra.GetProcessRecord(Request["pid"], epi.FSubFlowId);
-        if (eap == null)
+        sb.Append(") ");
+        DataTable dtFLinkIds = rc.GetTable(sb.ToString());
+        if (dtFLinkIds != null && dtFLinkIds.Rows.Count > 0)
         {
-            return;
+            iCount = dtFLinkIds.Rows.Count;
+            for (int ii = 0; ii < iCount; ii++)
+            {
+                string FLinkId = EConvert.ToString(dtFLinkIds.Rows[ii][0]);
+                string fbaseInfoId = EConvert.ToString(dtFLinkIds.Rows[ii][1]);
+                //查询是否有办结的，如果没有，可以打回到企业
+                sb.Remove(0, sb.Length);
+                sb.Append("select count(*) from (");
+                sb.Append(" select fid from cf_App_ProcessInstanceBackup where fstate=6 and flinkId='" + FLinkId + "'");//已经办结的流程
+                sb.Append(" union ");
+                sb.Append(" select fid from cf_App_ProcessInstance where fstate=6 and flinkId='" + FLinkId + "'");//已经办结的流程
+                sb.Append(")tt");
+                iCount = rc.GetSQLCount(sb.ToString());
+                if (iCount > 0)//如果有办结的流程，不可打回 |继续下一轮
+                    continue;
+                //否则
+                sb.Remove(0, sb.Length);
+                sb.Append("select ep.fId,er.FId erFId,'" + Session["DFUserId"] + "' FUserId ");
+                sb.Append(" from cf_App_ProcessInstance ep ");
+                sb.Append(" inner join cf_App_ProcessRecord er on ep.FId=er.FProcessInstanceId ");
+                sb.Append(" where ep.FSubFlowId=er.FSubFlowId ");
+                //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+                sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
+                sb.AppendFormat(" and er.FtypeId={0} and isnull(er.FMeasure,0) in (0,4) ", TypeId); //存子流");
+                sb.Append(" and ep.FState<>6 and ep.FLinkId='" + FLinkId + "'");
+                DataTable dt = rc.GetTable(sb.ToString());
+                if (ra.BatchBack(dt, FLinkId, backIdea))
+                {
+                    //记录打回 企业 操作
+                    string title = "打回企业操作 操作人(DFUserId)：" + Session["DFUserId"];
+                    string description = "关键key:FLinkId" + FLinkId + " backIdea:" + backIdea;
+                    DataLog.Write(LogType.Info, LogSort.Operation, title, description);
+                }
+                //保存到CF_App_Idea
+                CF_App_Idea idea = db.CF_App_Idea.Where(t => t.FLinkId == FLinkId).FirstOrDefault();
+                if (idea == null)
+                {
+                    idea = new CF_App_Idea()
+                    {
+                        FId = Guid.NewGuid().ToString(),
+                        FCreateTime = DateTime.Now,
+                        FLinkId = FLinkId,
+                        FIsdeleted = 0,
+                    };
+                    db.CF_App_Idea.InsertOnSubmit(idea);
+                }
+                idea.FReportCount = db.CF_App_List.Where(t => t.FId == FLinkId).Select(t => t.FReportCount).FirstOrDefault();
+                idea.FResult = "打回";
+                idea.FResultInt = 2;
+                idea.FContent = t_FAppIdea.Text;
+                idea.FAppTime = DateTime.Now;
+                idea.FUserId = EConvert.ToString(Session["DFUserId"]);
+                idea.FTime = DateTime.Now;
+            }
+            db.SubmitChanges();
         }
-        eap.FAppPerson = this.t_FAppPerson.Text;
-        eap.FAppTime = EConvert.ToDateTime(this.t_FAppDate.Text);
-        eap.FCompany = this.t_FAppPersonUnit.Text;
-        eap.FFunction = this.t_FAppPersonJob.Text;
-        eap.FIdea = this.t_FAppIdea.Text;
-        eap.FLevel = EConvert.ToInt(Session["FLevel"].ToString());
-        eap.FLinkId = epi.FLinkId;
-        eap.FMeasure = 0;
-        eap.FOrder = 5000;
-        eap.FUserId = Session["DFUserId"].ToString();
-        DateTime fReportTime = epi.FReportDate;
-        DateTime nowTime = DateTime.Now;
-        TimeSpan spanTime = nowTime - fReportTime;
-        eap.FWaiteTime = spanTime.Days;
-        ra.BackProcessToEnt(Request["pid"], eap);
     }
     #endregion
 
@@ -545,7 +406,7 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
                         sl2.Clear();
                         sl2.Add("FID", fnewId);
                         sl2.Add("FMeasure", 3);//标识为打回到上一步状态
-                       // sl2.Add("FAppPerson", t_Auditer.Text);
+                        //sl2.Add("FAppPerson", t_Auditer.Text);
                         sl2.Add("FIdea", "打回");
                         arrEn.Add(EntityTypeEnum.EaProcessRecord);
                         arrSl.Add(sl2);
@@ -586,5 +447,193 @@ public partial class Government_AppMain_AcceptInfoJNCL : System.Web.UI.Page
     }
     #endregion
 
+    #region 不予受理
+    //不予受理
+    private void BatchEndApp()
+    {
+        ProjectDB db = new ProjectDB();
+        string backIdea = t_FAppIdea.Text;
+        backIdea = backIdea.Length > 200 ? backIdea.Substring(0, 200) : backIdea;
 
+        StringBuilder sb = new StringBuilder();
+        string erIds = t_ProcessRecordID.Value;
+        string s = t_FProcessInstanceID.Value;
+        if (string.IsNullOrEmpty(s) || string.IsNullOrEmpty(erIds))
+            return;
+        string[] strs = s.Trim().Split(',');
+        string[] strs1 = erIds.Trim().Split(',');
+        if (strs.Length <= 0)
+        {
+            return;
+        }
+
+        int iCount = strs.Length;
+
+        ArrayList arrSl = new ArrayList();
+        ArrayList arrEn = new ArrayList();
+        ArrayList arrKey = new ArrayList();
+        ArrayList arrSo = new ArrayList();
+        ArrayList array = new ArrayList();
+        ArrayList arrLink = new ArrayList();
+
+        for (int i = 0; i < iCount; i++)
+        {
+            array.Add(strs[i]);
+
+            SortedList sl = new SortedList();
+            sl.Add("FID", strs[i]);
+            sl.Add("FSeeState", 3);
+            sl.Add("FSeeTime", DateTime.Now);
+
+            arrSl.Add(sl);
+            arrEn.Add(EntityTypeEnum.EaProcessInstance);
+            arrKey.Add("FID");
+            arrSo.Add(SaveOptionEnum.Update);
+            if (strs1.Length > i)
+            {
+                sl = new SortedList();
+                sl.Add("FID", strs1[i]);
+                sl.Add("FUserId", Session["DFUserId"]);
+
+                arrSl.Add(sl);
+                arrEn.Add(EntityTypeEnum.EaProcessRecord);
+                arrKey.Add("FID");
+                arrSo.Add(SaveOptionEnum.Update);
+            }
+            sb.Remove(0, sb.Length);
+            sb.Append(" select flinkid from CF_App_ProcessInstance  ");
+            sb.Append(" where fid='" + strs[i] + "'");
+
+            string fLinkId = rc.GetSignValue(sb.ToString());
+            if (!arrLink.Contains(fLinkId))
+            {
+                arrLink.Add(fLinkId);
+            }
+            //【2015-01-16】 FMeasure=5 已审核,FResult=3 未通过
+            rc.PExcute("update CF_App_ProcessRecord set FAppTime=getdate(),FMeasure=5,FResult=3 where fprocessInstanceId='" + strs[i] + "' and FTypeId=1");//修改退件的时间
+
+        }
+        iCount = arrLink.Count;
+        for (int j = 0; j < iCount; j++)
+        {
+            sb.Remove(0, sb.Length);
+            sb.Append(" select fid from CF_App_AcceptBook ");
+            sb.Append(" where flinkid='" + arrLink[j].ToString() + "'");
+
+            string fId = rc.GetSignValue(sb.ToString());
+            if (fId != null && fId != "")
+            {
+                SortedList sl = new SortedList();
+                sl.Add("FID", fId);
+                sl.Add("FState", 13);
+                arrSl.Add(sl);
+                arrEn.Add(EntityTypeEnum.EaAcceptBook);
+                arrKey.Add("FID");
+                arrSo.Add(SaveOptionEnum.Update);
+            }
+
+            string FLinkId = arrLink[j].ToString();
+            //保存到CF_App_Idea
+            CF_App_Idea idea = db.CF_App_Idea.Where(t => t.FLinkId == FLinkId).FirstOrDefault();
+            if (idea == null)
+            {
+                idea = new CF_App_Idea()
+                {
+                    FId = Guid.NewGuid().ToString(),
+                    FCreateTime = DateTime.Now,
+                    FLinkId = FLinkId,
+                    FIsdeleted = 0,
+                };
+                db.CF_App_Idea.InsertOnSubmit(idea);
+            }
+            idea.FReportCount = db.CF_App_List.Where(t => t.FId == FLinkId).Select(t => t.FReportCount).FirstOrDefault();
+            idea.FResult = "打回";
+            idea.FResultInt = 2;
+            idea.FContent = t_FAppIdea.Text;
+            idea.FAppTime = DateTime.Now;
+            idea.FUserId = EConvert.ToString(Session["DFUserId"]);
+            idea.FTime = DateTime.Now;
+        }
+        db.SubmitChanges();
+
+        iCount = arrSo.Count;
+
+        SortedList[] sls = new SortedList[iCount];
+        EntityTypeEnum[] ens = new EntityTypeEnum[iCount];
+        string[] fkeys = new string[iCount];
+        SaveOptionEnum[] sos = new SaveOptionEnum[iCount];
+        for (int k = 0; k < iCount; k++)
+        {
+            sls[k] = new SortedList();
+            sls[k] = (SortedList)arrSl[k];
+            ens[k] = (EntityTypeEnum)arrEn[k];
+            fkeys[k] = (string)arrKey[k];
+            sos[k] = (SaveOptionEnum)arrSo[k];
+        }
+        rc.SaveEBaseM(ens, sls, fkeys, sos);
+        ra.BatchEnd(array, backIdea, "3");
+    }
+    #endregion
+
+
+    private string YWBM
+    {
+        get
+        {
+            return Request.QueryString["YWBM"];
+        }
+    }
+    private string TypeId
+    {
+        get
+        {
+            return Request.QueryString["typeId"];
+        }
+    }
+    private string fSubFlowId
+    {
+        get
+        {
+            return Request.QueryString["fSubFlowId"];
+        }
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        if (TypeId == "1") //接件环节才可保存附件信息
+        {
+            SaveFileMessage();
+        }
+        saveIdear();
+        pageTool tool = new pageTool(this.Page);
+        tool.showMessage("保存成功");
+        if (TypeId == "1")
+            ShowFile();
+    }
+    protected void btnAcccpt_Click(object sender, EventArgs e)
+    {
+        pageTool tool = new pageTool(this.Page);
+        if (TypeId == "1") //接件环节才可保存附件信息
+        {
+            SaveFileMessage();
+        }
+        ReportProcess();
+        if (TypeId == "20")
+        {
+            
+        }
+        tool.showMessageAndRunFunction(btnAcccpt.Text + "成功", "window.returnValue='1';window.close();");
+    }
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        BatchApp();
+        pageTool tool = new pageTool(this.Page);
+        tool.showMessageAndRunFunction("打回成功", "window.returnValue='1';window.close();");
+    }
+    protected void btnNoAccept_Click(object sender, EventArgs e)
+    {
+        saveIdear();
+        BatchEndApp();
+        pageTool tool = new pageTool(this.Page);
+        tool.showMessageAndRunFunction("操作成功", "window.returnValue='1';window.close();");
+    }
 }

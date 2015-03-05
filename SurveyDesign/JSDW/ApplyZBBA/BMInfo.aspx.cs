@@ -18,6 +18,7 @@ public partial class JSDW_ApplyZBBA_BMInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            ViewState["FID"] = Request.QueryString["fid"];
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                 TC_PBBG_BMQY pb = dbContext.TC_PBBG_BMQY.Where(t => t.FId == Convert.ToString(Request.QueryString["fid"])).FirstOrDefault();
@@ -34,13 +35,18 @@ public partial class JSDW_ApplyZBBA_BMInfo : System.Web.UI.Page
                 ViewState["FAppId"] = Request.QueryString["fAppId"];
                 ViewState["BDId"] = Request.QueryString["BDId"];
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
+            }
         }
     }
 
     //保存
     private void saveInfo()
     {
-        string fId = Request.QueryString["fid"];
+        string fId = EConvert.ToString(ViewState["FID"]);
         TC_PBBG_BMQY Emp = new TC_PBBG_BMQY();
         if (!string.IsNullOrEmpty(fId))
         {
@@ -54,6 +60,7 @@ public partial class JSDW_ApplyZBBA_BMInfo : System.Web.UI.Page
             Emp.BDId = EConvert.ToString(ViewState["BDId"]);
             Emp.FLinkId = EConvert.ToString(ViewState["FLinkId"]);
             Emp.FAppId = EConvert.ToString(ViewState["FAppId"]);
+            Emp.QYId = h_selEntId.Value;
             dbContext.TC_PBBG_BMQY.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
@@ -68,5 +75,17 @@ public partial class JSDW_ApplyZBBA_BMInfo : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+    }
+
+    protected void btnAddEnt_Click(object sender, EventArgs e)
+    {
+        selEnt();
+    }
+    private void selEnt()
+    {
+        string selEntId = h_selEntId.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+        t_QYMC.Text = v.QYMC;
     }
 }

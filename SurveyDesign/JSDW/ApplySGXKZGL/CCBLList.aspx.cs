@@ -296,19 +296,19 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
 
             e.Row.Cells[4].Text = t;
             e.Row.Cells[5].Text = s;
-            var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
-            if (pr != null)
-            {
-                if (pr.FResult == "1")//通过
-                {
-                    n = "<font color='green'>通过</font>";
-                    saveFResult("1", FID);
-                }
-                else//不通过
-                {
-                    n = "<font color='red'>不通过</font>";
-                    saveFResult("3", FID);
-                }
+            //var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
+            //if (pr != null)
+            //{
+            //    if (pr.FResult == "1")//通过
+            //    {
+            //        n = "<font color='green'>通过</font>";
+            //        saveFResult("1", FID);
+            //    }
+            //    else//不通过
+            //    {
+            //        n = "<font color='red'>不通过</font>";
+            //        saveFResult("3", FID);
+            //    }
                 //if (pr.FRoleDesc.Contains("接件"))
                 //{
                 //    if (pr.FResult == "1")//通过
@@ -340,7 +340,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
                 //        n += "，<font color='red'>复审不通过</font>";
                 //    }
                 //}
-            }
+            //}
             e.Row.Cells[7].Text = n;
         }
     }

@@ -2,6 +2,7 @@
 
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
+<%@ Register Src="../../common/govdeptidfalse2.ascx" TagName="govdeptidfalse" TagPrefix="uc2" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -90,7 +91,7 @@
                     建设单位：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="b_JSDW" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_JSDW" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -99,13 +100,13 @@
                 </td>
                 <td colspan="1" style="width:29%;">
                     <input type="hidden"  runat="server" ID="b_JSDWAddressDept" value="" />
-                    <uc1:govdeptid ID="b_JSDW_DeptID" runat="server" ReadOnly="true"/>
+                    <uc2:govdeptidfalse ID="b_JSDW_DeptID" runat="server" Enabled="false"/>
                 </td>
                 <td class="t_r t_bg">
                     建设单位地址：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     </td>
             </tr>
             <tr>
@@ -113,7 +114,7 @@
                     所有制性质：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="b_JSDWXZ" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:DropDownList ID="b_JSDWXZ" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:DropDownList>
                 </td>
                 
             </tr>
@@ -122,13 +123,13 @@
                     法定代表人：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_FDDBR"  runat="server" CssClass="m_txt t_r" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_FDDBR"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     法人电话：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_FRDH" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_FRDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 
             </tr>
@@ -137,13 +138,13 @@
                     领证人：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_LZR" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_LZR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     联系电话：
                 </td>
                 <td >
-                    <asp:TextBox ID="b_LXDH" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_LXDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>           
         </table>
@@ -158,13 +159,13 @@
                     项目名称：
                 </td>
                 <td style="width:29%;">
-                    <asp:TextBox ID="b_ProjectName" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_ProjectName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     工程名称：
                 </td>
                 <td >
-                    <asp:TextBox ID="b_PrjItemName" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_PrjItemName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -174,7 +175,7 @@
                 </td>
                 <td colspan="3">
                     <input type="hidden" runat="server" ID="b_PrjAddressDept" value="" />
-                    <uc1:govdeptid ID="b_PrjGovdeptid" runat="server" ReadOnly="true" />                   
+                    <uc2:govdeptidfalse ID="b_PrjGovdeptid" runat="server" Enabled="false" />                   
                 </td>
             </tr>
             <tr>
@@ -182,13 +183,13 @@
                     建设地址：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_Address" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_Address" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     建设规模：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_ConstrScale"  runat="server" CssClass="m_txt t_r" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_ConstrScale"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -196,13 +197,13 @@
                     工程类别：
                 </td>
                 <td colspan="1">
-                    <asp:DropDownList ID="b_PrjItemType" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:DropDownList>
+                    <asp:DropDownList ID="b_PrjItemType" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
                     结构类型：
                 </td>
                 <td >
-                    <asp:DropDownList ID="b_ConstrType" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true">
+                    <asp:DropDownList ID="b_ConstrType" runat="server" CssClass="m_txt" Width="200px" Enabled="false">
                     </asp:DropDownList>
                 </td>
                 
@@ -211,16 +212,9 @@
                 <td class="t_r t_bg">
                     合同价格（万元）：
                 </td>
-                <td >
-                    <asp:TextBox ID="b_Price" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
-                </td>
-                <td class="t_r t_bg">
-                    币种：
-                </td>
                 <td colspan="3">
-                    <asp:TextBox ID="b_Currency" runat="server" CssClass="m_txt" Width="200px" MaxLength="40" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="false"></asp:TextBox>币种：<asp:DropDownList ID="b_Currency" runat="server" CssClass="m_txt" Width="103px" Enabled="false"></asp:DropDownList>
                 </td>
-   
             </tr>
             
             <tr>
@@ -228,13 +222,13 @@
                     合同开工日期：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_StartDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_StartDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
-                    合同竣工工日期：
+                    合同竣工日期：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="b_EndDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="b_EndDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>       
         </table>
@@ -278,7 +272,7 @@
                     所有制性质：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_JSDWXZ" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:DropDownList ID="t_JSDWXZ" runat="server" CssClass="m_txt" Width="200px" ></asp:DropDownList>
                     <asp:HiddenField  runat="server" ID="hf_JSDWXZ" Value="" />
                     <asp:HiddenField  runat="server" ID="n_JSDWXZ" Value="所有制性质" />
                 </td>
@@ -289,7 +283,7 @@
                     法定代表人：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FDDBR"  runat="server" CssClass="m_txt t_r" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_FDDBR"  runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_FDDBR" Value="" />
                     <asp:HiddenField  runat="server" ID="n_FDDBR" Value="法定代表人" />
                 </td>
@@ -371,7 +365,7 @@
                     建设规模：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ConstrScale"  runat="server" CssClass="m_txt t_r" Width="200px" ></asp:TextBox>
+                    <asp:TextBox  ID="t_ConstrScale"  runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_ConstrScale" Value="" />
                     <asp:HiddenField  runat="server" ID="n_ConstrScale" Value="建设规模" />
                 </td>
@@ -400,16 +394,10 @@
                 <td class="t_r t_bg">
                     合同价格（万元）：
                 </td>
-                <td >
-                    <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                <td colspan="3">
+                    <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" ></asp:TextBox>币种：<asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px"></asp:DropDownList>
                     <asp:HiddenField  runat="server" ID="hf_Price" Value="" />
                     <asp:HiddenField  runat="server" ID="n_Price" Value="合同价格" />
-                </td>
-                <td class="t_r t_bg">
-                    币种：
-                </td>
-                <td colspan="3">
-                    <asp:TextBox ID="t_Currency" runat="server" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_Currency" Value="" />
                     <asp:HiddenField  runat="server" ID="n_Currency" Value="币种" />
                 </td>
@@ -421,19 +409,55 @@
                     合同开工日期：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_StartDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_StartDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_StartDate" Value="" />
                     <asp:HiddenField  runat="server" ID="n_StartDate" Value="合同开工日期" />
                 </td>
                 <td class="t_r t_bg">
-                    合同竣工工日期：
+                    合同竣工日期：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_EndDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_EndDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_EndDate" Value="" />
-                    <asp:HiddenField  runat="server" ID="n_EndDate" Value="合同竣工工日期" />
+                    <asp:HiddenField  runat="server" ID="n_EndDate" Value="合同竣工日期" />
                 </td>
             </tr>       
+        </table>
+        <table class="m_table" width="98%" align="center">
+            <tr>
+                <td class="t_l t_bg" colspan="4">
+                    变更信息
+                </td>
+             </tr>
+            <tr>
+                <td class="t_r t_bg"  style="width:18.8%;">
+                    变更申请人：
+                </td>
+                <td style="width:29%;">
+                    <asp:TextBox ID="t_BGSQR" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                </td>
+                <td class="t_r t_bg">
+                    变更申请时间：
+                </td>
+                <td >
+                    <asp:TextBox ID="t_BGTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                </td>
+            </tr>
+        </table>
+        <table width="98%" align="center" class="m_bar">
+            <tr>
+                <td class="m_bar_l">
+                </td>
+                <td>
+                    变更信息
+                </td>
+                <td class="t_r">
+                    
+                    <asp:Button ID="Button6" cs="cs1" runat="server" Text="显示本次修改" CssClass="m_btn_w6" OnClick="btnReload_Click" />
+                </td>
+                <td class="m_bar_r">
+                </td>
+            </tr>
         </table>
         <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBound" Style="margin-top: 6px;
@@ -477,6 +501,20 @@
                 showpageindexbox="Always" SubmitButtonText="Go" textafterpageindexbox="页" textbeforepageindexbox="转到">
             </webdiyer:AspNetPager>
         </div>
+        <table width="98%" align="center" class="m_bar">
+            <tr>
+                <td class="m_bar_l">
+                </td>
+                <td>
+                    企业变更信息<label runat="server" id="lblQY"></label> 
+                </td>
+                <td class="t_r">
+                    
+                </td>
+                <td class="m_bar_r">
+                </td>
+            </tr>
+        </table>
         <asp:DataGrid ID="dg_ListQY" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBoundQY" Style="margin-top: 6px;
             margin-bottom: 1px;" Width="98%">
@@ -519,6 +557,20 @@
                 showpageindexbox="Always" SubmitButtonText="Go" textafterpageindexbox="页" textbeforepageindexbox="转到">
             </webdiyer:AspNetPager>
         </div>
+        <table width="98%" align="center" class="m_bar">
+            <tr>
+                <td class="m_bar_l">
+                </td>
+                <td>
+                    人员变更信息<label runat="server" id="lblRY"></label> 
+                </td>
+                <td class="t_r">
+                    
+                </td>
+                <td class="m_bar_r">
+                </td>
+            </tr>
+        </table>
         <asp:DataGrid ID="dg_ListRY" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBoundRY" Style="margin-top: 6px;
             margin-bottom: 1px;" Width="98%">

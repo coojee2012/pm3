@@ -312,8 +312,31 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        }
        
    }
-
-   //复审
+    /// <summary>
+    /// 锁定人员
+    /// </summary>
+   private void lockEmp()
+   {
+       EgovaDB db = new EgovaDB();
+       var v = from a in db.TC_PrjItem_Emp
+               where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)
+               select a;
+       foreach(var item in v.ToList<TC_PrjItem_Emp>()){
+           TC_PrjItem_Emp_Lock lockInfo = new TC_PrjItem_Emp_Lock();
+           lockInfo.FId = new Guid().ToString();
+           lockInfo.FIdCard = item.FIdCard;
+           lockInfo.FHumanName = item.FHumanName;
+           lockInfo.FAppId = item.FAppId;
+           lockInfo.FPrjId = item.FPrjId;
+           lockInfo.FPrjItemId = item.FPrjItemId;
+           lockInfo.FEntId = item.FEntId;
+           lockInfo.FEntName = item.FEntName;
+           db.TC_PrjItem_Emp_Lock.InsertOnSubmit(lockInfo);
+       }
+       db.SubmitChanges();
+       
+   }
+   
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
        try
@@ -325,6 +348,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
+               lockEmp();
                DisableButton();
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批成功');", true);
            }

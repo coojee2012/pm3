@@ -40,13 +40,13 @@
         }
 
         function showTr2() {
-            $("tr[name=t_r2]").show();
-            $("tr[name=t_r1]").hide();
+            $("tr[class=t_r2]").show();
+            $("tr[class=t_r1]").hide();
         }
 
         function showTr1() {
-            $("tr[name=t_r1]").show();
-            $("tr[name=t_r2]").hide();
+            $("tr[class=t_r1]").show();
+            $("tr[class=t_r2]").hide();
         }
     </script>
 
@@ -91,7 +91,7 @@
                 <asp:TextBox ID="t_FRemarks" runat="server" CssClass="m_txt" Width="300"></asp:TextBox>
             </td>
         </tr>
-        <tr name="t_r2">
+        <tr class="t_r2">
             <td class="t_r t_bg">
                 文件信息：
             </td>
@@ -99,7 +99,7 @@
                 <asp:Literal ID="name1" runat="server"></asp:Literal>
             </td>
         </tr>
-        <tr name="t_r1">
+        <tr class="t_r1">
             <td class="t_r t_bg">
                 上传附件：
             </td>
@@ -114,7 +114,7 @@
                     value="选择文件..." />
             </td>
         </tr>
-        <tr name="t_r2">
+        <tr class="t_r2">
             <td class="t_r t_bg">
                 附件：
             </td>

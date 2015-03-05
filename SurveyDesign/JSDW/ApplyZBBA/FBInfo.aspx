@@ -28,7 +28,7 @@
         function selTB(obj) {
             var pid = showWinByReturn('../ApplyZBBA/TBSel.aspx?fLinkId=<%=ViewState["FLinkId"] %>', 1000, 500);
             if (pid != null && pid != '') {
-                $("#t_BMId").val(pid);
+                $("#t_FBId").val(pid);
                 __doPostBack(obj.id, '');
             }
         }
@@ -86,10 +86,11 @@
                     投标人：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_TBR" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_TBR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     <asp:Button ID="btnSel" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selTB(this);"
                                         UseSubmitBehavior="false" OnClick="btnSel_Click" />
-                    <input id="t_BMId" type="hidden" runat="server" />
+                    <input id="t_FBId" type="hidden" runat="server" />
+                    <input id="t_QYId" type="hidden" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -103,7 +104,7 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">
-                    废标理由：
+                    备注：
                 </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_Remarks" runat="server" CssClass="m_txt" Height="35px" TextMode="MultiLine"

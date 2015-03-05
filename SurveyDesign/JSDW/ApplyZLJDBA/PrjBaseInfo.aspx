@@ -263,10 +263,10 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:19.8%;">
                 基础类型：
             </td>
-            <td>
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="briBaseType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">桩基础</asp:ListItem>
                     <asp:ListItem Value="2">刚性扩大基础</asp:ListItem>
@@ -274,7 +274,7 @@
                 </asp:RadioButtonList>
                 <asp:TextBox ID="briBaseTxt" runat="server" CssClass="m_txt" Width="260px" MaxLength="100" style="display:none"> </asp:TextBox>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 下部结构类型： </td>
             <td>
                 <asp:CheckBoxList ID="briBottomType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
@@ -356,18 +356,18 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 基础类型：
             </td>
-            <td>
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="RBBaseType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem  Value="1">桩基础</asp:ListItem>
                     <asp:ListItem  Value="2">砼基础</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 主体结构类型： </td>
-            <td>
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="RBMainType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem  Value="1">有卸荷台</asp:ListItem>
                     <asp:ListItem  Value="2">无卸荷台</asp:ListItem>
@@ -403,18 +403,18 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 基础类型：
             </td>
-            <td >
+            <td  style="width:29%;">
                 <asp:RadioButtonList ID="TunnelBaseType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem  Value="1">桩基础</asp:ListItem>
                     <asp:ListItem  Value="2">钢筋砼底板</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 主体结构类型： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="TunnelMainType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">框 架</asp:ListItem>
                     <asp:ListItem Value="2">U型槽</asp:ListItem>
@@ -467,18 +467,18 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 面层结构类型：
             </td>
-            <td >
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="RoadLayerType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">水泥砼</asp:ListItem>
                     <asp:ListItem Value="2">沥青砼</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 道路全长（m）： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:TextBox ID="t_RoadLength" runat="server" CssClass="m_txt" onblur="isFloat(this)"> </asp:TextBox> 
             </td>
         </tr>
@@ -511,19 +511,19 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 管  道  类  型：
             </td>
-            <td >
+            <td style="width:29%;">
                 <asp:CheckBoxList ID="DrainagePipeType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">砼平口管</asp:ListItem>
                     <asp:ListItem Value="2">承插管</asp:ListItem>
                     <asp:ListItem Value="3">塑料管</asp:ListItem>
                 </asp:CheckBoxList>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 全长（m）： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:TextBox ID="t_DrainageLength" runat="server" CssClass="m_txt" onblur="isFloat(this)"> </asp:TextBox> 
             </td>
         </tr>
@@ -561,19 +561,19 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 管  道  类  型：
             </td>
-            <td >
+            <td style="width:29%;">
                 <asp:CheckBoxList ID="WSPipeType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">钢 管</asp:ListItem>
                     <asp:ListItem Value="2">PCCP管</asp:ListItem>
                     <asp:ListItem Value="3">球墨铸铁管</asp:ListItem>
                 </asp:CheckBoxList>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 设计压力（MPa）： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:TextBox ID="t_WSPressure" runat="server" CssClass="m_txt" onblur="isFloat(this)"> </asp:TextBox> 
             </td>
         </tr>
@@ -606,19 +606,19 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 结  构  类  型：
             </td>
-            <td >
+            <td style="width:29%;">
                 <asp:CheckBoxList ID="ECConstrType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">U型槽</asp:ListItem>
                     <asp:ListItem Value="2">排 管</asp:ListItem>
                     <asp:ListItem Value="3">砖砌体</asp:ListItem>
                 </asp:CheckBoxList>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                  全        长（m）： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:TextBox ID="t_ECLength" runat="server" CssClass="m_txt" onblur="isFloat(this)"> </asp:TextBox> 
             </td>
         </tr>
@@ -641,10 +641,10 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 管  道  类  型：
             </td>
-            <td >
+            <td style="width:29%;">
                 <asp:CheckBoxList ID="GasPipeType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">钢 管</asp:ListItem>
                     <asp:ListItem Value="2">PE 管</asp:ListItem>
@@ -652,9 +652,9 @@
                 </asp:CheckBoxList>
                 <asp:TextBox ID="GasPipeTxt" runat="server" CssClass="m_txt" Width="260px" MaxLength="100" style="display:none"> </asp:TextBox>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                  全        长（m）： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:TextBox ID="t_GasLength" runat="server" CssClass="m_txt" onblur="isFloat(this)"> </asp:TextBox> 
             </td>
         </tr>
@@ -699,19 +699,19 @@
             </td>
         </tr>
         <tr>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                 基 础 类 型：
             </td>
-            <td >
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="WTBaseType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">钢筋砼底板</asp:ListItem>
                     <asp:ListItem Value="2">其 它</asp:ListItem>
                 </asp:RadioButtonList>
                 <asp:TextBox ID="WTBaseTxt" runat="server" CssClass="m_txt" Width="260px" MaxLength="100" style="display:none"> </asp:TextBox>
             </td>
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:18.8%;">
                  主体结构类型： </td>
-            <td >
+            <td style="width:29%;">
                 <asp:RadioButtonList ID="WTMainType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">有预应力现浇</asp:ListItem>
                     <asp:ListItem Value="2">无预应力现浇</asp:ListItem>
@@ -746,7 +746,7 @@
             <td class="t_r t_bg">
                 基础结构型式：
             </td>
-            <td >
+            <td>
                 <asp:CheckBoxList ID="BaseConstrType" runat="server" CssClass="noborder_table" RepeatDirection="Horizontal">
                     <asp:ListItem Value="1">筏板或箱型基础</asp:ListItem>
                     <asp:ListItem Value="2">独立柱基</asp:ListItem>
@@ -888,7 +888,7 @@
     <div id="div3">
     <table class="m_table" width="98%" align="center">       
          <tr >
-            <td class="t_r t_bg" style="width:23.3%;">
+            <td class="t_r t_bg" style="width:19.8%;">
                新技术、新工艺、新材料采用情况：
             </td>
             <td colspan="3">
@@ -897,7 +897,7 @@
                      
         </tr>
          <tr >
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:19.8%;">
                其它需要说明的情况：
             </td>
             <td colspan="3">
@@ -906,7 +906,7 @@
                      
         </tr>
         <tr style="height:60px;">
-            <td class="t_r t_bg">
+            <td class="t_r t_bg" style="width:19.8%;">
                备注：
             </td>
             <td colspan="3">

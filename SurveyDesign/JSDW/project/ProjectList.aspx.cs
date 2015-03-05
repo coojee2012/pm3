@@ -29,13 +29,14 @@ public partial class JSDW_project_ProjectList : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         var v = from t in dbContext.TC_Prj_Info
+                join t1 in dbContext.CF_Sys_ManageDept on t.AddressDept equals t1.FCNumber
                 orderby t.ProjectTime
                 select new
                 {
                     t.FId,
                     t.ProjectNo,
                     t.ProjectName,
-                    Province = "四川",
+                    Province = t1.FFullName,
                     t.Address,
                     t.ProjectTime,
                     t.JSDW,
@@ -66,7 +67,7 @@ public partial class JSDW_project_ProjectList : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
-            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('ProjectInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[3].Text + "</a>";
+            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('ProjectInfo.aspx?fid=" + fid + "',1000,700);\">" + e.Item.Cells[3].Text + "</a>";
         }
     }
 

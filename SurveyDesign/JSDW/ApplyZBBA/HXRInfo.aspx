@@ -27,7 +27,17 @@
         function selTB(obj) {
             var pid = showWinByReturn('../ApplyZBBA/TBSel.aspx?fLinkId=<%=ViewState["FLinkId"] %>', 1000, 500);
             if (pid != null && pid != '') {
-                $("#t_BMId").val(pid);
+                $("#t_TBId").val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
+        function selEmp(obj, tagId) {
+            var qybm = document.getElementById("t_QYId").value;
+            var url = "../project/EmpListSel.aspx";
+            url += "?qybm=" + qybm;
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
                 __doPostBack(obj.id, '');
             }
         }
@@ -85,10 +95,11 @@
                     中标候选人名称：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_HXRMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_HXRMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     <asp:Button ID="btnSel" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selTB(this);"
                                         UseSubmitBehavior="false" OnClick="btnSel_Click" />
-                    <input id="t_BMId" type="hidden" runat="server" />
+                    <input id="t_TBId" type="hidden" runat="server" />
+                    <input id="t_QYId" type="hidden" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -96,7 +107,7 @@
                     中标候选人顺序：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="txtOrder" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="txtOrder" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -104,13 +115,13 @@
                     评标价：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_PBJ" onblur="isFloat(this);" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>（万元）
+                    <asp:TextBox ID="t_PBJ" onblur="isFloat(this);" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>（万元）
                 </td>
                 <td class="t_r t_bg">
                     投标价：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_TBJ" onblur="isFloat(this);" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>（万元）
+                    <asp:TextBox ID="t_TBJ" onblur="isFloat(this);" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>（万元）
                 </td>
             </tr>
             <tr>
@@ -118,7 +129,10 @@
                     项目负责人姓名：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FZRXM" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_FZRXM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'h_selEmpId');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmp_Click" Style="margin-bottom: 4px;margin-left:5px;" />
+                    <input id="h_selEmpId" type="hidden" runat="server" />
                 </td>
                 <td class="t_r t_bg">
                     执业资格证号：
@@ -132,7 +146,7 @@
                     注册证书号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZCZSH" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_ZCZSH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     职称：

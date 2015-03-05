@@ -100,7 +100,7 @@ public partial class Share_User_ManUserList : Page
             string FCompany = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FCompany"));
             string FDepartmentID = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FDepartmentID"));
             string FDepartment = sh.GetSignValue(" select fname from CF_Sys_Department where fnumber='" + FDepartmentID + "'");
-            string FBM = sh.GetSignValue(" select fname from CF_Sys_Department where fnumber='" + FCompany + "'");
+            string FBM = sh.GetSignValue(" select fname from CF_Sys_Department where fnumber='" + EConvert.ToInt(FCompany) + "'");
 
             DateTime time = DateTime.Now.AddHours(3);
             string key = SecurityEncryption.DesEncrypt(FID + "|" + SecurityEncryption.ConvertDateTimeInt(time), "32165498");

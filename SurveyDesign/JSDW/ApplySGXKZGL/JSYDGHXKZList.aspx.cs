@@ -21,6 +21,7 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
             {
                 ViewState["FAppId"] = EConvert.ToString(Session["FAppId"]);
             }
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             ShowTitle();
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
@@ -44,6 +45,21 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
         {
             txtFId.Value = sp.FId;
             ShowFile(sp.FId);
+            if (!string.IsNullOrEmpty(sp.BL))
+            {
+                if (sp.BL != "1")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+            }
         }
 
         pageTool tool = new pageTool(this.Page, "t_");
@@ -85,7 +101,7 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
         qa = tool.getPageValue(qa);
         dbContext.SubmitChanges();
         txtFId.Value = fId;
-        //  showPrjData();
+        ShowTitle();
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
     }
     protected void btnReload_Click(object sender, EventArgs e)

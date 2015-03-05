@@ -42,6 +42,9 @@ namespace Web
             exceptURL.Add("~/gmap/locationmap/selectaear.aspx");//地图定位
             exceptURL.Add("~/gmap/locationmap/mapconfig.aspx");//地图定位
             exceptURL.Add("~/tiny_mce/plugins/ajaxfilemanager/filemanager.aspx");
+            exceptURL.Add("~/share/user/userqxfb.aspx");//权限分配
+            exceptURL.Add("~/userautologin.aspx");//自动登录
+            exceptURL.Add("~/userauthority.aspx");//分配权限
 
         }
 
@@ -123,12 +126,12 @@ namespace Web
                     {
                         if (app.Session["SH_UserId"] == null)
                         {
-                            if (url.IndexOf("~/share/webside/") > -1 || url.IndexOf("~/share/main/") > -1)
+                            if (url.IndexOf("~/share/webside/") > -1)
                             {
                             }
                             else
                             {
-                                app.Response.Write("您没有登录或者没有权限访问6" + url);
+                                app.Response.Write("您没有登录或者没有权限访问6");
                                 app.Response.End();
                             }
                         }

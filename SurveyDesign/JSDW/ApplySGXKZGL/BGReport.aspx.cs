@@ -112,17 +112,17 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                 if (app.FUpDeptId.ToString().Length == 2)
                 {
                     ddlLevel.Items.Clear();
-                    ddlLevel.Items.Insert(0, new ListItem("省级", "1"));
+                    ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
                 }
                 else if (app.FUpDeptId.ToString().Length == 4)
                 {
                     ddlLevel.Items.Clear();
-                    ddlLevel.Items.Insert(0, new ListItem("市级", "2"));
+                    ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(app.FUpDeptId.ToString())).Select(d => d.FName).FirstOrDefault(), app.FUpDeptId.ToString()));
                 }
                 else if (app.FUpDeptId.ToString().Length == 6)
                 {
                     ddlLevel.Items.Clear();
-                    ddlLevel.Items.Insert(0, new ListItem("县级", "3"));
+                    ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(app.FUpDeptId.ToString())).Select(d => d.FName).FirstOrDefault(), app.FUpDeptId.ToString()));
                 }
                 tool.ExecuteScript("btnEnable();");
             }

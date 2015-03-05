@@ -77,7 +77,14 @@ public partial class Admin_main_MenuAdd : Page
         //this.t_FRoleId.DataBind();
 
         sb.Remove(0, sb.Length);
-        sb.Append("select fid,Fname,fnumber from cf_sys_role where fisdeleted=0  and ftypeid=2 order by forder,ftime desc");
+        //2015-01-27 喻勋海修改
+        //sb.Append("select fid,Fname,fnumber from cf_sys_role where fisdeleted=0  and ftypeid=2 order by forder,ftime desc");
+        sb.Append(@"with cte as(
+	                select fid,fname,fnumber,forder,fparentId from cf_sys_role where fisdeleted=0 and ftypeid=2 and FMTypeId=100 and fParentId='1000'
+	                union all
+	                select a.fid,a.fname,a.fnumber,a.forder,a.fparentId from cf_sys_role a inner join cte on a.fparentId=cte.fnumber where fisdeleted=0 and ftypeid=2 and FMTypeId=100
+                ) 
+                select * from cte order by forder");
         dt = rc.GetTable(sb.ToString());
         this.t_FRoleId.DataSource = dt;
         this.t_FRoleId.DataTextField = "FName";
@@ -487,14 +494,26 @@ public partial class Admin_main_MenuAdd : Page
     void ShowMenuRole()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("select fid,Fname,fnumber from cf_sys_role where fisdeleted=0 ");
-        if (!string.IsNullOrEmpty(t_FSystemId.SelectedValue) && t_FSystemId.SelectedValue != "0")
-            sb.Append(" and FSystemId='" + t_FSystemId.SelectedValue + "' ");
-        if (t_FManageTypeId.SelectedIndex == 0)
-            sb.Append(" and fMTypeId=100 ");
+        if (t_FSystemId.SelectedValue == "1122")
+        {
+            sb.Append(@"with cte as(
+            	                select fid,fname,fnumber,forder,fparentId from cf_sys_role where fisdeleted=0 and ftypeid=2 and FMTypeId=100 and fParentId='1000'
+            	                union all
+            	                select a.fid,a.fname,a.fnumber,a.forder,a.fparentId from cf_sys_role a inner join cte on a.fparentId=cte.fnumber where fisdeleted=0 and ftypeid=2 and FMTypeId=100
+                            ) 
+                            select * from cte where fParentId<>'1000' order by forder");
+        }
         else
-            sb.Append(" and fMTypeId=110 ");
-        sb.Append("and ftypeid=2 order by forder,ftime desc");
+        {
+            sb.Append("select fid,Fname,fnumber from cf_sys_role where fisdeleted=0 ");
+            if (!string.IsNullOrEmpty(t_FSystemId.SelectedValue) && t_FSystemId.SelectedValue != "0")
+                sb.Append(" and FSystemId='" + t_FSystemId.SelectedValue + "' ");
+            if (t_FManageTypeId.SelectedIndex == 0)
+                sb.Append(" and fMTypeId=100 ");
+            else
+                sb.Append(" and fMTypeId=110 ");
+            sb.Append("and ftypeid=2 order by forder,ftime desc");
+        }
         DataTable dt = rc.GetTable(sb.ToString());
         this.t_FRoleId.DataSource = dt;
         this.t_FRoleId.DataTextField = "FName";

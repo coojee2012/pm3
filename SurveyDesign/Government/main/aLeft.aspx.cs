@@ -51,23 +51,27 @@ public partial class Government_AppMain_aLeft : System.Web.UI.Page
         //        where t.FParentId == p && t.FIsDis == 1
         //        orderby t.FOrder
         //        select new { t.FName, t.FNumber, t.FPicName, t.FLevel, t.FTarget, t.FUrl };
-        string sql = string.Format(@"select m.FName,m.FNumber, m.FPicName,m.FLevel,m.FTarget,m.FUrl
+        if (!string.IsNullOrEmpty(p))
+        {
+            string sql = string.Format(@"select m.FName,m.FNumber, m.FPicName,m.FLevel,m.FTarget,m.FUrl
                                 from CF_Sys_Menu m
                                 where FIsDis=1 and m.FParentId='" + p
-                               + "' and dbo.getRoleid(m.FRoleId,(select FMenuRoleId FROM CF_Sys_UserRight WHERE FUserId ='"
-                               + Session["DFUserId"] + "')) = 1 order by m.FOrder ");
-        if (Session["PsID"] != null)
-        {
-            sql = string.Format(@"select m.FName,m.FNumber, m.FPicName,m.FLevel,m.FTarget,m.FUrl
+                                   + "' and dbo.getRoleid(m.FRoleId,(STUFF((select ','+FMenuRoleId FROM CF_Sys_UserRight WHERE FUserId ='"
+                                   + Session["DFUserId"] + "' FOR XML PATH('')),1,1,''))) = 1 order by m.FOrder ");
+            //System.IO.File.AppendAllText("C:\\yujiajun.log", p + "|" + Session["DFUserId"].ToString(),System.Text.Encoding.Default);
+            if (Session["PsID"] != null)
+            { 
+                sql = string.Format(@"select m.FName,m.FNumber, m.FPicName,m.FLevel,m.FTarget,m.FUrl
                 from CF_Sys_Menu m
                  where FIsDis=1 and m.FParentId='45002' and 
                  dbo.getRoleid(m.FRoleId,(select FMenuRoleId FROM CF_Sys_UserRight 
                  WHERE FUserId ='f3bda2d6-0284-4d1b-b476-18ef6a4c10f0')) = 1
                  and FNumber= '4500232'");
+            }
+           // System.IO.File.AppendAllText("C:\\yujiajun.log", sql,System.Text.Encoding.Default);
+            repMenu.DataSource = rc.GetTable(sql);
+            repMenu.DataBind();
         }
-        repMenu.DataSource = rc.GetTable(sql);
-        repMenu.DataBind();       
-
     }
     protected void repMenu_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -90,13 +94,12 @@ public partial class Government_AppMain_aLeft : System.Web.UI.Page
                 string sql = string.Format(@"select m.FName,m.FNumber, m.FPicName,m.FLevel,m.FTarget,m.FUrl
                                 from CF_Sys_Menu m
                                 where FIsDis=1 and m.FParentId='" + FNumber
-                               + "' and dbo.getRoleid(m.FRoleId,(select FMenuRoleId FROM CF_Sys_UserRight WHERE FUserId ='"
-                               + Session["DFUserId"] + "')) = 1 order by m.FOrder ");
+                               + "' and dbo.getRoleid(m.FRoleId,(STUFF((select ','+FMenuRoleId FROM CF_Sys_UserRight WHERE FUserId ='"
+                                   + Session["DFUserId"] + "' FOR XML PATH('')),1,1,''))) = 1 order by m.FOrder ");
 
              //   repeater.DataSource = v;
                 repeater.DataSource = rc.GetTable(sql);
                 repeater.DataBind();
-
             }
         }
     }

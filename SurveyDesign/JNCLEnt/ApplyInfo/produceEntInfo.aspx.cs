@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ProjectData;
-using Tools;
+using Approve.Common;
 using ProjectBLL;
 using System.Data;
 using Approve.RuleCenter;
@@ -107,10 +107,8 @@ public partial class JNCLEnt_ApplyInfo_produceEntInfo : System.Web.UI.Page
         else
         { tool.showMessage("保存失败"); }
     }
-
     protected void btnQuery_Click(object sender, EventArgs e)
     {
         showInfo();
     }
-
 }

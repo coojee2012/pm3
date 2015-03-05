@@ -59,12 +59,14 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_FSDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     计划结束日期：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_FEDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
             </tr>   
             <tr>

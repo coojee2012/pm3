@@ -139,7 +139,7 @@
                 <td class="t_r" style="padding-right: 10px;">
                     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" class="m_btn_w2" />
                     <input id="btnBack" class="m_btn_w2" onclick="window.close();" type="button" value="返回" />
-                   <asp:Button ID="btnQuery" Style="display: none;" runat="server" Text="刷新" OnClick="btnQuery_Click" class="m_btn_w2" />
+                    <asp:Button ID="btnQuery" Style="display: none;" runat="server" Text="刷新" OnClick="btnQuery_Click" class="m_btn_w2" />
                 </td>
                 <td class="m_bar_r"></td>
             </tr>
@@ -193,14 +193,13 @@
             <tr>
                 <td class="t_r t_bg">经济类型：</td>
                 <td>
-                        <asp:DropDownList ID="t_JJTypeID" Width="120px" CssClass="m_txt" runat="server" AutoPostBack="True">
+                    <asp:DropDownList ID="t_JJTypeID" Width="120px" CssClass="m_txt" runat="server" AutoPostBack="True">
                         <asp:ListItem>--请选择--</asp:ListItem>
                         <asp:ListItem>房屋建筑工程</asp:ListItem>
                         <asp:ListItem>土木工程</asp:ListItem>
                         <asp:ListItem>工业安装工程</asp:ListItem>
                         <asp:ListItem>其他</asp:ListItem>
-                    </asp:DropDownList>
-<tt>*</tt>
+                    </asp:DropDownList><tt>*</tt>
                 </td>
                 <td class="t_r t_bg">成立时间：</td>
                 <td>

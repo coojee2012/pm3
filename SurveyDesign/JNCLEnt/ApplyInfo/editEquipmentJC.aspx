@@ -8,49 +8,21 @@
     <title></title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
-    <script type="text/javascript" src="../../script/jquery.js"></script>
+    <script type="text/javascript" src="../../script/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="../../script/default.js"></script>
     <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../script/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../script/messages_zh.js"></script>
     <base target="_self"></base>
     <script type="text/javascript">
-        function checkInfo() {
-            if ($("#t_SBMC").val() == "") {
-                alert("请填写设备名称");
-                return false;
-            }
-            if ($("#t_XH").val() == "") {
-                alert("请填写型号/产地/出厂日期");
-                return false;
-            }
-            if ($("#t_GL").val() == "") {
-                alert("请填写功率");
-                return false;
-            }
-            if ($("#t_NU").val() == "") {
-                alert("请填写数量");
-                return false;
-            }
-            if ($("#t_DW").val() == "") {
-                alert("请填写单位");
-                return false;
-            }
-            if ($("#t_YZ").val() == "") {
-                alert("请填写原值");
-                return false;
-            }
-            if ($("#t_JZ").val() == "") {
-                alert("请填写净值");
-                return false;
-            }
-            if ($("#t_SFZY").val() == "") {
-                alert("请选择是否自有设备");
-                return false;
-            }
-            if ($("#t_ZT").val() == "") {
-                alert("请选择状态");
-                return false;
-            }
-            return true;
+        $(function () {
+            $("#form1").validate({ onfocusout: function (element) { $(element).valid(); } });
+        });
+        function SaveValidate() {
+            var success = $("#form1").valid();
+            if (success)
+                return true;
+            return false;
         }
     </script>
 </head>
@@ -66,7 +38,7 @@
             <tr>
                 <td class="m_bar_l"></td>
                 <td class="t_r" style="padding-right: 10px;">
-                    <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" class="m_btn_w2" />
+                    <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" OnClientClick="return SaveValidate();" class="m_btn_w2" />
                     <input id="btnBack" class="m_btn_w2" onclick="window.close();" type="button" value="返回" />
                 </td>
                 <td class="m_bar_r"></td>
@@ -77,28 +49,28 @@
                 <td class="t_r t_bg">设备名称：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_SBMC" Width="150px" runat="server" CssClass="m_txt"></asp:TextBox>
+                    <asp:TextBox ID="t_SBMC" Width="150px" runat="server" CssClass="m_txt required"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">型号/产地/出厂日期：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_XH" Width="150px" runat="server" CssClass="m_txt"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_XH" Width="150px" runat="server" CssClass="m_txt required"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">功率：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_GL" Width="150px" runat="server" CssClass="m_txt"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_GL" Width="150px" runat="server" CssClass="m_txt required"></asp:TextBox><tt>*</tt>
                     千瓦
                 </td>
                 <td class="t_r t_bg">数量：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_NU" Width="150px" runat="server" CssClass="m_txt"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_NU" Width="150px" runat="server" CssClass="m_txt required number"></asp:TextBox><tt>*</tt>
                     单位
-                    <asp:TextBox ID="t_DW" Width="60px" runat="server" CssClass="m_txt"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_DW" Width="60px" runat="server" CssClass="m_txt required"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -106,15 +78,15 @@
                 </td>
                 <td>
                     <asp:DropDownList ID="t_SFZY" Width="150px" runat="server">
-                        <asp:ListItem>是</asp:ListItem>
-                        <asp:ListItem>否</asp:ListItem>
+                        <asp:ListItem Value="是">是</asp:ListItem>
+                        <asp:ListItem Value="否">否</asp:ListItem>
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">原值：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_YZ" Width="150px" runat="server" CssClass="m_txt"></asp:TextBox>
+                    <asp:TextBox ID="t_YZ" Width="150px" runat="server" CssClass="m_txt required number"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -122,20 +94,18 @@
                 <td class="t_r t_bg">净值：
                 </td>
                 <td>
-                    <asp:TextBox ID="t_JZ" Width="150px" runat="server" CssClass="m_txt"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_JZ" Width="150px" runat="server" CssClass="m_txt required number"></asp:TextBox><tt>*</tt>
                 </td>
                 <td class="t_r t_bg">状态：
                 </td>
                 <td>
                     <asp:DropDownList ID="t_ZT" Width="150px" runat="server">
-                        <asp:ListItem>正常运行</asp:ListItem>
-                        <asp:ListItem>退出生产</asp:ListItem>
+                        <asp:ListItem Value="正常运行">正常运行</asp:ListItem>
+                        <asp:ListItem Value="退出生产">退出生产</asp:ListItem>
                     </asp:DropDownList><tt>*</tt>
                 </td>
             </tr>
         </table>
-        <input id="t_FID" runat="server" type="hidden" />
-        <input id="t_fappid" runat="server" type="hidden" />
     </form>
 </body>
 </html>

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProjectItemInfo.aspx.cs" Inherits="JSDW_project_ProjectItemInfo" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
-<%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
+<%@ Register Src="../../common/govdeptidfalse2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -65,7 +65,9 @@
                         <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                             OnClientClick="return checkInfo();" />  
                         </ContentTemplate>
-                    </asp:UpdatePanel>                
+                    </asp:UpdatePanel>              
+                        <asp:Button ID="btnRefresh" runat="server" Text="同步到标准库"  CssClass="m_btn_w6"
+                                onclick="btnRefresh_Click" />  
                     <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
                 </td>
                 <td class="m_bar_r">
@@ -77,22 +79,24 @@
                 <td class="t_r t_bg">
                     项目名称：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" MaxLength="40" ReadOnly="true"></asp:TextBox>
+                <td colspan="3">
+                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" MaxLength="40" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
                     项目所属地：
                 </td>
-                <td colspan="1">
+                <td colspan="1">           
                     <uc1:govdeptid ID="govd_FRegistDeptId" runat="server" />
+                    <!--<asp:TextBox ID="AddressDeptName" runat="server" CssClass="m_txt" Width="200px" MaxLength="40" ReadOnly="true"></asp:TextBox>-->
+                    <input id="t_AddressDept" type="hidden" runat="server" />
                 </td>
                 <td class="t_r t_bg">
                     项目地址：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_Address" runat="server" CssClass="m_txt" Width="200px" MaxLength="30" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_Address" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -100,14 +104,14 @@
                     建设总面积：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_Area" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_Area" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     投资规模：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_Investment" Enabled="false" runat="server" CssClass="m_txt"
-                        MaxLength="20" Width="200px" ReadOnly="true"></asp:TextBox>(万元)
+                    <asp:TextBox ID="t_Investment" runat="server" CssClass="m_txt"
+                        MaxLength="20" Width="200px" Enabled="false"></asp:TextBox>(万元)
                 </td>
             </tr>
             <tr>
@@ -125,21 +129,21 @@
                     建设单位名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     法人代表：
                 </td>
                 <td colspan="1">
-                     <asp:TextBox ID="t_LegalPerson" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                     <asp:TextBox ID="t_LegalPerson" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
                     组织机构代码：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_JSDWDM" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                <td colspan="3">
+                    <asp:TextBox ID="t_JSDWDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -147,14 +151,14 @@
                     工程名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_PrjItemName" runat="server" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_PrjItemName" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     工程类别：
                 </td>
                 <td colspan="1">
-                    <asp:DropDownList ID="t_PrjItemType" runat="server" Width="200px" CssClass="m_txt">
+                    <asp:DropDownList ID="t_PrjItemType" runat="server" Width="200px" CssClass="m_txt" Enabled="false">
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
@@ -180,7 +184,7 @@
                 <td class="t_r t_bg">
                     工程规模（m2）
                 </td>
-                <td colspan="1">
+                <td colspan="3">
                       <asp:TextBox ID="t_Scale" onblur="isFloat(this)" runat="server" CssClass="m_txt"
                         MaxLength="20" Width="200px"></asp:TextBox>
                 </td>
@@ -196,7 +200,7 @@
             </tr>              
         </table>
     </div>
-    <input id="t_AddressDept" type="hidden" runat="server" />
+    
     
     </form>
 </body>

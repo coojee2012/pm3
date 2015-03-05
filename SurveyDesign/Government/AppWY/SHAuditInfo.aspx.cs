@@ -142,7 +142,7 @@ public partial class Government_AppWY_SHAuditInfo : System.Web.UI.Page
                     string dfUserId = this.Session["DFUserId"].ToString();
                     dResult.SelectedValue = "1";//接件操作强制选中同意项
                     //信息归档
-                    WYApp.FileInfo(Fappid.Value, hidFManageTypeId.Value, dfUserId);
+                    //WYApp.FileInfo(Fappid.Value, hidFManageTypeId.Value, dfUserId);
                     WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value,
                         dfUserId,
                         t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,

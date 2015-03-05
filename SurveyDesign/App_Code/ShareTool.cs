@@ -1567,7 +1567,7 @@ public class ShareTool
             }
             finally
             {
-                HttpContext.Current.Application.UnLock();
+                HttpContext.Current.Application.UnLock(); 
             }
         }
         //string strRan, strSignedData, strServerCert;
@@ -1579,7 +1579,6 @@ public class ShareTool
         //Session["Ran"] = strRan;
         bjca = (BCACOMLib.SecurityEngineV2Class)HttpContext.Current.Application["bjca"];
         return bjca;
-
     }
 
     public string ReadCA(string CaCerti)

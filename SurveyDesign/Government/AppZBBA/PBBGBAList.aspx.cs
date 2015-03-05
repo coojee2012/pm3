@@ -99,7 +99,7 @@ public partial class Government_AppZBBA_PBBGBAList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.ProjectName,qa.BDBM,qa.BDMC,qa.CS,qa.BATime,qa.BADW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.ProjectName,qa.BDBM,qa.BDMC,'第'+qa.CS+'次招标' as CSStr,qa.BATime,qa.BADW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未审核' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '未通过' when 6 then case er.FResult when 1 then '通过' when 3 then '不通过' end end as FStatedesc,");
@@ -114,7 +114,7 @@ public partial class Government_AppZBBA_PBBGBAList : govBasePage
         sb.Append(getCondi());
         //下面的查询备份表
         sb.Append(" union all ");
-        sb.Append(" select qa.ProjectName,qa.BDBM,qa.BDMC,qa.CS,qa.BATime,qa.BADW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.ProjectName,qa.BDBM,qa.BDMC,'第'+qa.CS+'次招标' as CSStr,qa.BATime,qa.BADW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未审核' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '未通过' when 6 then case er.FResult when 1 then '通过' when 3 then '不通过' end end as FStatedesc,");

@@ -268,10 +268,7 @@
                                     Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="工程所属地" DataField="PrjAddressDeptName">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                            
                             <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -281,7 +278,11 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="项目地址" DataField="Address" >
+                            <asp:BoundColumn HeaderText="上报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="工程所属地" DataField="PrjAddressDeptName">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
@@ -289,10 +290,12 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="申报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                            <asp:BoundColumn HeaderText="项目地址" DataField="Address" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
+                            
+                            
                             <asp:BoundColumn HeaderText="状态" DataField="FStateDesc" >
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />

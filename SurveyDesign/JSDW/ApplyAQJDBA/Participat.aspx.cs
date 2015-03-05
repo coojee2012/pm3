@@ -17,6 +17,7 @@ public partial class JSDW_ApplyAQJDBA_Participat : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            BindControl();
             if (string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                
@@ -31,7 +32,7 @@ public partial class JSDW_ApplyAQJDBA_Participat : System.Web.UI.Page
                 }
                 ViewState["FID"] = Request.QueryString["fid"];
             }
-            BindControl();
+            
             if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
             {
                 TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
@@ -82,5 +83,29 @@ public partial class JSDW_ApplyAQJDBA_Participat : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+    }
+    protected void btnAddEnt_Click(object sender, EventArgs e)
+    {
+        selEnt();
+    }
+    private void selEnt()
+    {
+        string selEntId = t_QYId.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+        if (v != null)
+        {
+            var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v1 != null)
+            {
+                t_ZZZS.Text = v1.ZSBH;
+                t_ZZDJ.Text = v1.ZZDJ;
+            }
+        }
+        t_QYMC.Text = v.QYMC;
+        t_QYDZ.Text = v.QYXXDZ;
+        t_YYZZH.Text = v.YEZZZCH;
+        t_ZZJGDM.Text = v.JGDM;
+        t_QYFDDB.Text = v.FRDB;
     }
 }

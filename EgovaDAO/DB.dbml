@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.16.0.115;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString2" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter_sc" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.101.9\MSSQLSERVER08;Initial Catalog=dbCenter_sc;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenter_scConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -909,24 +909,6 @@
       <Column Name="FMType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TC_AJBA_CJDW" Member="TC_AJBA_CJDW">
-    <Type Name="TC_AJBA_CJDW">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="QYID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="CJJS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="QYDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZZDJ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ZZZS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="YYZZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="QYFDDB" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LXR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TC_AJBA_CZSG" Member="TC_AJBA_CZSG">
     <Type Name="TC_AJBA_CZSG">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1094,19 +1076,6 @@
       <Column Name="ProjectType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TC_SGXKZ_File" Member="TC_SGXKZ_File">
-    <Type Name="TC_SGXKZ_File">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FileName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="ReportTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FilePath" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FileType" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="Size" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TC_SGXKZ_CBSJ" Member="TC_SGXKZ_CBSJ">
     <Type Name="TC_SGXKZ_CBSJ">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1221,6 +1190,694 @@
       <Column Name="PlanEndTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TC_SGXKZ_SGZZSJ" Member="TC_SGXKZ_SGZZSJ">
+    <Type Name="TC_SGXKZ_SGZZSJ">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SGZZSJ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZZSJHQB" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HQTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_ZLAQJDSX" Member="TC_SGXKZ_ZLAQJDSX">
+    <Type Name="TC_SGXKZ_ZLAQJDSX">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZLBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZLBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZLBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AQBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AQBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="AQBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PrjItem_Ent" Member="TC_PrjItem_Ent">
+    <Type Name="TC_PrjItem_Ent">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FProcId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="QYID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FEntType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FOrgCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAddress" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZZDJ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZZZSH" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="YYZZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLegalPerson" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLinkMan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FMobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="mZXZZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="oZXZZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_YQSQ" Member="TC_SGXKZ_YQSQ">
+    <Type Name="TC_SGXKZ_YQSQ">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjInfoId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="SGXKZBH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FZJG" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FZTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LastYQTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="YQStartTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="YQEndTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="YQSQR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="YQTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="YQYY" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="YQCS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_BGJG" Member="TC_SGXKZ_BGJG">
+    <Type Name="TC_SGXKZ_BGJG">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjInfoId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BeforeBG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="AfterBG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BGTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BGNR" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_YSWJ_Record" Member="TC_YSWJ_Record">
+    <Type Name="TC_YSWJ_Record">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_YSJG_Record" Member="TC_YSJG_Record">
+    <Type Name="TC_YSJG_Record">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PBBG_BMQY" Member="TC_PBBG_BMQY">
+    <Type Name="TC_PBBG_BMQY">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BMJBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BMTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PBBG_TBQY" Member="TC_PBBG_TBQY">
+    <Type Name="TC_PBBG_TBQY">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="TBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="TBTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PBBG_Record" Member="TC_PBBG_Record">
+    <Type Name="TC_PBBG_Record">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZBJG" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZBBAH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TXDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TXTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="XGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BADW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_Prj_YZ" Member="TC_Prj_YZ">
+    <Type Name="TC_Prj_YZ">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FEmpId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FCertificateName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FLocation" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAcceptTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PrjItem_Info" Member="TC_PrjItem_Info">
+    <Type Name="TC_PrjItem_Info">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Investment" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="LegalPerson" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JSDWDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="PrjItemType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ConstrType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="Scale" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="PrjItemDesc" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_PrjInfo" Member="TC_SGXKZ_PrjInfo">
+    <Type Name="TC_SGXKZ_PrjInfo">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JCounty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JSDWAddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JSDWDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDWXZ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FDDBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FRDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JSFZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JSFZRZC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JSFZRDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="PrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProjectTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ReportTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PCounty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PrjAddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ConstrType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Currency" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="ProjectFile" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProjectLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="BuildType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProjectUse" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProjectNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_BZJQR" Member="TC_SGXKZ_BZJQR">
+    <Type Name="TC_SGXKZ_BZJQR">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="JFXM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JFXMBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Money" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="JFSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SKJBR" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SKDW" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_Prj_Info" Member="TC_Prj_Info">
+    <Type Name="TC_Prj_Info">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="JSDWDM" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="JSDWDZ" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Contacts" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectNumber" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProjectTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="IsForeign" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JSYDXKZ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JSGCXKZ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Investment" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="ConstrType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProjectUse" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RegisterTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ConstrBasis" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ConstrContent" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="LandType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JSDWFR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_File" Member="TC_SGXKZ_File">
+    <Type Name="TC_SGXKZ_File">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ReportTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FilePath" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FileType" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="Size" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_PrjState" Member="TC_SGXKZ_PrjState">
+    <Type Name="TC_SGXKZ_PrjState">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="SGXKZBB" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FPublish" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_Prj_XCTKJL" Member="TC_Prj_XCTKJL">
+    <Type Name="TC_Prj_XCTKJL">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="TKSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TKBM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TKRY" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TKQK" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="JLR" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JLSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BZ" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_BDHF_Record" Member="TC_BDHF_Record">
+    <Type Name="TC_BDHF_Record">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ZBBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZBDLJGFZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZBBAMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZBLB" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZGYSFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SJZBTZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JLZBTZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZBFW" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZBJJFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="YQTBSQRZZDJ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JHZBStartTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="JHZBEndTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SGXCQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CDQK" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZYSB" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JCJY" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HFBD" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_BDHF_BD" Member="TC_BDHF_BD">
+    <Type Name="TC_BDHF_BD">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDHFBAId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="QYZZDJ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZBBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZBDLJGFZR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LHTQYZZDJ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BDSM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSLHT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="QYZZDJXL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="QYZZDJDJ" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LHTQYZZDJXL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LHTQYZZDJDJ" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_SGXKZ_YW" Member="V_SGXKZ_YW">
+    <Type Name="V_SGXKZ_YW">
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjAddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SGXKZBB" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FPublish" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="YWLX" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.V_SGXKZ_TJ" Member="V_SGXKZ_TJ">
+    <Type Name="V_SGXKZ_TJ">
+      <Column Name="PrjAddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SD" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CCBL_WSB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CCBL_YSB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CCBL_YSH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YQBL_WSB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YQBL_YSB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YQBL_YSH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BGBL_WSB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BGBL_YSB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BGBL_YSH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PBBG_FBYY" Member="TC_PBBG_FBYY">
+    <Type Name="TC_PBBG_FBYY">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="TBR" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FBLY" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Remarks" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PrjItem_Emp_Lock" Member="TC_PrjItem_Emp_Lock">
+    <Type Name="TC_PrjItem_Emp_Lock">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FEntId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsLock" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SelectedCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FHumanName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FEntName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PBBG_ZBHXR" Member="TC_PBBG_ZBHXR">
+    <Type Name="TC_PBBG_ZBHXR">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HXRMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="TBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="FZRXM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZYZGZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="RYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="OrderStr" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_ZBWJ_Record" Member="TC_ZBWJ_Record">
+    <Type Name="TC_ZBWJ_Record">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZGYSFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZBZZXS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DLJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SHR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SDR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DLJGId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_YSJG_QY" Member="TC_YSJG_QY">
+    <Type Name="TC_YSJG_QY">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="QYLX" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_ZBJG_Record" Member="TC_ZBJG_Record">
+    <Type Name="TC_ZBJG_Record">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="BDId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GCBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZTBBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZBDLDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZHAOBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KBSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZHONGBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KGRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="JGRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HTQDDD" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TZFFSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ZBJG" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZBYY" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_JSYDGHXKZ" Member="TC_SGXKZ_JSYDGHXKZ">
+    <Type Name="TC_SGXKZ_JSYDGHXKZ">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Others" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="YDXZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HFJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="YDGHXKZBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_JSGCGHXKZ" Member="TC_SGXKZ_JSGCGHXKZ">
+    <Type Name="TC_SGXKZ_JSGCGHXKZ">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Span" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Others" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HFJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="GCGHXKZBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_HTBABL" Member="TC_SGXKZ_HTBABL">
+    <Type Name="TC_SGXKZ_HTBABL">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_Location" Member="TC_SGXKZ_Location">
+    <Type Name="TC_SGXKZ_Location">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="LocationAddress" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Scale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ProjectBasis" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreateTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HFJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="XZYJSZSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="YDPZSX" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_QTZL" Member="TC_SGXKZ_QTZL">
+    <Type Name="TC_SGXKZ_QTZL">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="QTZL" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CNS" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="SGTJ" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_JDSX" Member="TC_SGXKZ_JDSX">
+    <Type Name="TC_SGXKZ_JDSX">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZLBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZLBAJG" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZLBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="AQBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AQBAJG" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AQBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_ZJBH" Member="TC_SGXKZ_ZJBH">
+    <Type Name="TC_SGXKZ_ZJBH">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ISDBS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZJBH" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="JF" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="YF" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_ZBJGBL" Member="TC_SGXKZ_ZBJGBL">
+    <Type Name="TC_SGXKZ_ZBJGBL">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_SGTSC" Member="TC_SGXKZ_SGTSC">
+    <Type Name="TC_SGXKZ_SGTSC">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="SGTSCHGSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="SGTSCJGMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SGTSCZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="SCWCRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="KCDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="KCDWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="SJDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SJDWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="YCSCSFTG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YCSCWFTS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YCSCWFTM" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="SGTSCJGId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KCDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SJDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_SGTSCRY" Member="TC_SGXKZ_SGTSCRY">
+    <Type Name="TC_SGXKZ_SGTSCRY">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FSGTSCId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="DWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="DWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="RYXM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZJHM" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ZCLXJDJ" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CDJS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RYId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.TC_AJBA_Record" Member="TC_AJBA_Record">
     <Type Name="TC_AJBA_Record">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -1273,544 +1930,29 @@
       <Column Name="Remark" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="RecordTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_QTZL" Member="TC_SGXKZ_QTZL">
-    <Type Name="TC_SGXKZ_QTZL">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="QTZL" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_SGZZSJ" Member="TC_SGXKZ_SGZZSJ">
-    <Type Name="TC_SGXKZ_SGZZSJ">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SGZZSJ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="SGZZSJHQB" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="HQTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_ZJBH" Member="TC_SGXKZ_ZJBH">
-    <Type Name="TC_SGXKZ_ZJBH">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZJBH" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="YBLDBS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="JF" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="YF" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_ZLAQJDSX" Member="TC_SGXKZ_ZLAQJDSX">
-    <Type Name="TC_SGXKZ_ZLAQJDSX">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZLBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZLBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZLBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="AQBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="AQBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="AQBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PrjItem_Ent" Member="TC_PrjItem_Ent">
-    <Type Name="TC_PrjItem_Ent">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FProcId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="QYID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FEntType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FOrgCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FAddress" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZZDJ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZZZSH" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="YYZZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FLegalPerson" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FTel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FLinkMan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FMobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="mZXZZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="oZXZZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PrjItem_Emp" Member="TC_PrjItem_Emp">
-    <Type Name="TC_PrjItem_Emp">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FEntId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FHumanName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FSex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="FPhoto" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FBirthDay" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZGXL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="FMobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FTel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="EmpType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FIdCard" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="XMZW" Type="System.String" DbType="Char(2)" CanBeNull="true" />
-      <Column Name="ZJHM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FEntName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZW" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="DJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_YQSQ" Member="TC_SGXKZ_YQSQ">
-    <Type Name="TC_SGXKZ_YQSQ">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjInfoId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="SGXKZBH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FZJG" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FZTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="LastYQTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="YQStartTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="YQEndTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="YQSQR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="YQTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="YQYY" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Remarks" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="YQCS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_BGPrjInfo" Member="TC_SGXKZ_BGPrjInfo">
-    <Type Name="TC_SGXKZ_BGPrjInfo">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjInfoId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JCounty" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JSDWAddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JSDWDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDWXZ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FDDBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FRDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="PrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PCounty" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PrjAddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="ConstrType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Price" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Currency" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_BGJG" Member="TC_SGXKZ_BGJG">
-    <Type Name="TC_SGXKZ_BGJG">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjInfoId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BeforeBG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="AfterBG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BGTime" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BGNR" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_QYBGJG" Member="TC_SGXKZ_QYBGJG">
-    <Type Name="TC_SGXKZ_QYBGJG">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="YQLX" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="YQMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="BGQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SPJL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_RYBGJG" Member="TC_SGXKZ_RYBGJG">
-    <Type Name="TC_SGXKZ_RYBGJG">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="RYLX" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="XM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZSBH" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="BGQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SPJL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_BDHF_Record" Member="TC_BDHF_Record">
-    <Type Name="TC_BDHF_Record">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="ZBBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZBDLJGFZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZBBAMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZBLB" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZGYSFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SJZBTZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLZBTZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZBFW" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZBJJFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="YQTBSQRZZDJ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="JHZBStartTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JHZBEndTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SGXCQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="CDQK" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZYSB" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="JCJY" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="HFBD" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_BDHF_BD" Member="TC_BDHF_BD">
-    <Type Name="TC_BDHF_BD">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDHFBAId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="QYZZDJ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZBBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZBDLJGFZR" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="LHTQYZZDJ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BDSM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSLHT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_YSWJ_Record" Member="TC_YSWJ_Record">
-    <Type Name="TC_YSWJ_Record">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_YSJG_Record" Member="TC_YSJG_Record">
-    <Type Name="TC_YSJG_Record">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_ZBWJ_Record" Member="TC_ZBWJ_Record">
-    <Type Name="TC_ZBWJ_Record">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZGYSFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZBZZXS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="DLJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SHR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SDR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PBBG_BMQY" Member="TC_PBBG_BMQY">
-    <Type Name="TC_PBBG_BMQY">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BMJBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BMTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PBBG_FBYY" Member="TC_PBBG_FBYY">
-    <Type Name="TC_PBBG_FBYY">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="TBR" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FBLY" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Remarks" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PBBG_TBQY" Member="TC_PBBG_TBQY">
-    <Type Name="TC_PBBG_TBQY">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="QYId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="TBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="TBTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PBBG_Record" Member="TC_PBBG_Record">
-    <Type Name="TC_PBBG_Record">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZBJG" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZBBAH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="TXDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="TXTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="XGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="BADW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PBBG_ZBHXR" Member="TC_PBBG_ZBHXR">
-    <Type Name="TC_PBBG_ZBHXR">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FLinkId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HXRMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="TBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="FZRXM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZYZGZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_Prj_YZ" Member="TC_Prj_YZ">
-    <Type Name="TC_Prj_YZ">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FEmpId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="FCertificateName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FLocation" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="CZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FAcceptTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_ZBJG_Record" Member="TC_ZBJG_Record">
-    <Type Name="TC_ZBJG_Record">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="BDId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="CS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="GCBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BDBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZTBBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BDMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZBDLDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZHAOBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="KBSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZHONGBR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="KGRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JGRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="HTQDDD" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="TZFFSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ZBJG" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZBYY" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_Prj_XCTKJL" Member="TC_Prj_XCTKJL">
-    <Type Name="TC_Prj_XCTKJL">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="TKSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TKBM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="TKRY" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="TKQK" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_Location" Member="TC_SGXKZ_Location">
-    <Type Name="TC_SGXKZ_Location">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="LocationAddress" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="Scale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="ProjectBasis" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="CreateTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="HFJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="XZYJSZSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_PrjItem_Info" Member="TC_PrjItem_Info">
-    <Type Name="TC_PrjItem_Info">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FPrjId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="Investment" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="LegalPerson" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JSDWDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="PrjItemType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ConstrType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="Scale" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="PrjItemDesc" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_Prj_Info" Member="TC_Prj_Info">
-    <Type Name="TC_Prj_Info">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="JSDWDM" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="JSDWDZ" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="Contacts" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Mobile" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Province" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="County" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectNumber" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ProjectTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="IsForeign" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JSYDXKZ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSGCXKZ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="Investment" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="ConstrType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ProjectUse" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="RegisterTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ConstrBasis" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="ConstrContent" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="LandType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SGId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SGRYId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JLId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JLRYId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TC_SGXKZ_JSYDGHXKZ" Member="TC_SGXKZ_JSYDGHXKZ">
-    <Type Name="TC_SGXKZ_JSYDGHXKZ">
+  <Table Name="dbo.TC_AJBA_CJDW" Member="TC_AJBA_CJDW">
+    <Type Name="TC_AJBA_CJDW">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="YDXZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="CreateTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="HFJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="YDGHXKZBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Others" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_JSGCGHXKZ" Member="TC_SGXKZ_JSGCGHXKZ">
-    <Type Name="TC_SGXKZ_JSGCGHXKZ">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Span" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="Others" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="CreateTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="HFJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="GCGHXKZBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="QYID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="CJJS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="QYDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZZDJ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ZZZS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="YYZZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QYFDDB" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LXR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.TC_SGXKZ_ZBJG" Member="TC_SGXKZ_ZBJG">
@@ -1821,7 +1963,7 @@
       <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="KCId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="KCId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
       <Column Name="KCZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="KCZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="KCZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
@@ -1834,7 +1976,7 @@
       <Column Name="KCHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="KCHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="KCXMJL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SJId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="SJId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
       <Column Name="SJZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SJZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SJZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
@@ -1903,6 +2045,8 @@
       <Column Name="SGZBRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SGXMJLZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SGXMJLZJHM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.TC_SGXKZ_HTBA" Member="TC_SGXKZ_HTBA">
@@ -1923,47 +2067,19 @@
       <Column Name="LHTCBDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="LHTCBDWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
       <Column Name="HTLB" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="FBDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CBDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LHTDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TC_SGXKZ_SGTSCRY" Member="TC_SGXKZ_SGTSCRY">
-    <Type Name="TC_SGXKZ_SGTSCRY">
+  <Table Name="dbo.TC_SGXKZ_BGPrjInfo" Member="TC_SGXKZ_BGPrjInfo">
+    <Type Name="TC_SGXKZ_BGPrjInfo">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FSGTSCId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="DWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="DWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="RYXM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZJHM" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="ZCLXJDJ" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="CDJS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_SGTSC" Member="TC_SGXKZ_SGTSC">
-    <Type Name="TC_SGXKZ_SGTSC">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="SGTSCHGSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="SGTSCJGMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SGTSCZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="SCWCRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="KCDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="KCDWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="SJDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SJDWZZJGDM" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="YCSCSFTG" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="YCSCWFTS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="YCSCWFTM" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_PrjInfo" Member="TC_SGXKZ_PrjInfo">
-    <Type Name="TC_SGXKZ_PrjInfo">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjInfoId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
       <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="JProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="JCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -1975,16 +2091,11 @@
       <Column Name="FRDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="LZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JSFZR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JSFZRZC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JSFZRDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
       <Column Name="PrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
       <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="PrjItemType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ProjectTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="ReportTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="PProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PCounty" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -1996,31 +2107,73 @@
       <Column Name="Currency" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="ProjectFile" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ProjectLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="BuildType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ProjectUse" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ProjectNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BGSQR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TC_SGXKZ_BZJQR" Member="TC_SGXKZ_BZJQR">
-    <Type Name="TC_SGXKZ_BZJQR">
+  <Table Name="dbo.TC_SGXKZ_QYBGJG" Member="TC_SGXKZ_QYBGJG">
+    <Type Name="TC_SGXKZ_QYBGJG">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="YQLX" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="YQMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BGQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SPJL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_RYBGJG" Member="TC_SGXKZ_RYBGJG">
+    <Type Name="TC_SGXKZ_RYBGJG">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="RYLX" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="XM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZSBH" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BGQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SPJL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_PrjItem_Emp" Member="TC_PrjItem_Emp">
+    <Type Name="TC_PrjItem_Emp">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FPrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="JFXM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JFXMBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Money" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="JFSJ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SKJBR" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="SKDW" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="FEntId" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="FHumanName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FSex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FPhoto" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FBirthDay" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZGXL" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FMobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FTel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EmpType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIdCard" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="XMZW" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="ZJHM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FEntName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZW" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FEmpId" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="PId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.TC_QA_Record" Member="TC_QA_Record">
@@ -2030,19 +2183,19 @@
       <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
       <Column Name="ProjectName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="LegalPerson" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="LegalPerson" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Province" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="City" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Province" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="City" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="County" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
       <Column Name="ConstrType" Type="System.String" DbType="Char(3)" CanBeNull="true" />
       <Column Name="ProjectType" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-      <Column Name="RecordNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RecordNo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ProjectNumber" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="RegisterTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="RegisterTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Contracts" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Mobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="SGDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
@@ -2076,57 +2229,25 @@
       <Column Name="RecordTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PrjItemType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.YW_WY_XM_JBXX" Member="YW_WY_XM_JBXX">
-    <Type Name="YW_WY_XM_JBXX">
-      <Column Name="XMBH" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
-      <Column Name="XMMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="XMSD" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="XMDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSDWDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="XMLX" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="XMZLX" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JSXZ" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JSMS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="XMZTZ" Type="System.Decimal" DbType="Decimal(15,6)" CanBeNull="true" />
-      <Column Name="JSGM" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
-      <Column Name="JSNR" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
-      <Column Name="BH" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="JSDWZZJFDM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDWFR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSDWFRDH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSDWJSFZR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSDWJSFZRZC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSDWJSFZRDH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="MapX" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
-      <Column Name="MapY" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
-      <Column Name="FUpDeptId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="FUpDeptName" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FSystemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FCreateUser" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FIsDeleted" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FAppID" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
-      <Column Name="Fid" Type="System.String" DbType="VarChar(60) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StandardStatus" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.YW_WY_XM_XMSQ" Member="YW_WY_XM_XMSQ">
-    <Type Name="YW_WY_XM_XMSQ">
-      <Column Name="FID" Type="System.String" DbType="VarChar(60) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="XMBH" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
-      <Column Name="SQYY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SQSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="BZ" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="FAppID" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="FSystemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FCreateUser" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FIsDeleted" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SJDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SGDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="KCDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="JLDWId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ground" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Underground" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InvestmentType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Layers" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Height" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Elevator" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Escalator" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SupervisionCost" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Scale" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="KCWJ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SGTSJWJ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SGTSJWJSCJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SGTSJWJSCPZWH" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

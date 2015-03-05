@@ -20,6 +20,7 @@ public partial class JSDW_ApplyZBBA_TBInfo : System.Web.UI.Page
         {
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
+                ViewState["FID"] = Request.QueryString["fid"];
                 TC_PBBG_TBQY pb = dbContext.TC_PBBG_TBQY.Where(t => t.FId == Convert.ToString(Request.QueryString["fid"])).FirstOrDefault();
                 if (pb != null)
                 {
@@ -34,13 +35,18 @@ public partial class JSDW_ApplyZBBA_TBInfo : System.Web.UI.Page
                 ViewState["FAppId"] = Request.QueryString["fAppId"];
                 ViewState["BDId"] = Request.QueryString["BDId"];
             }
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool1.ExecuteScript("btnEnable();");
+            }
         }
     }
 
     //保存
     private void saveInfo()
     {
-        string fId = Request.QueryString["fid"];
+        string fId = EConvert.ToString(ViewState["FID"]);
         TC_PBBG_TBQY Emp = new TC_PBBG_TBQY();
         if (!string.IsNullOrEmpty(fId))
         {
@@ -54,6 +60,7 @@ public partial class JSDW_ApplyZBBA_TBInfo : System.Web.UI.Page
             Emp.BDId = EConvert.ToString(ViewState["BDId"]);
             Emp.FLinkId = EConvert.ToString(ViewState["FLinkId"]);
             Emp.FAppId = EConvert.ToString(ViewState["FAppId"]);
+            Emp.QYId = t_QYId.Value;
             dbContext.TC_PBBG_TBQY.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
@@ -75,5 +82,7 @@ public partial class JSDW_ApplyZBBA_TBInfo : System.Web.UI.Page
                       where t.FId == this.t_BMId.Value
                       select t).SingleOrDefault();
         t_QYMC.Text = result.QYMC;
+        t_LXDH.Text = result.LXDH;
+        t_QYId.Value = result.QYId;
     }
 }

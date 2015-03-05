@@ -34,6 +34,7 @@ public partial class Share_User_ManUserRightAdd : System.Web.UI.Page
                 ViewState["FID"] = Request.QueryString["fid"];
                 showInfo();
             }
+            hfUserId.Value = Request.QueryString["FUserId"];
         }
     }
 
@@ -84,13 +85,13 @@ public partial class Share_User_ManUserRightAdd : System.Web.UI.Page
         this.t_FRoleId.DataValueField = "FNumber";
         this.t_FRoleId.DataBind();
 
-        ShowMenuRoleId();
+       // ShowMenuRoleId();
     }
     void ShowMenuRoleId()
     {
-        DataTable dtSystemId = GetMenuRoleGroup();
-        rpMenuRoleId.DataSource = dtSystemId;
-        rpMenuRoleId.DataBind();
+        //DataTable dtSystemId = GetMenuRoleGroup();
+        //rpMenuRoleId.DataSource = dtSystemId;
+        //rpMenuRoleId.DataBind();
 
     }
     protected void rpMenuRoleId_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -160,7 +161,7 @@ public partial class Share_User_ManUserRightAdd : System.Web.UI.Page
                 ShowRole(fsystemId);
                 ShowSystemRights(fsystemId);
             }
-            ShowMenuRoleBySave(dt.Rows[0]["FMenuRoleId"].ToString());
+            //ShowMenuRoleBySave(dt.Rows[0]["FMenuRoleId"].ToString());
             tool.fillPageControl(dt.Rows[0]);
             txtFPassWord.Text = SecurityEncryption.DESDecrypt(EConvert.ToString(dt.Rows[0]["FPassWord"]));
             hidd_oldLockNumber.Value = t_FLockNumber.Text;
@@ -275,7 +276,7 @@ public partial class Share_User_ManUserRightAdd : System.Web.UI.Page
             sl.Add("FUserId", Request.QueryString["FUserId"]);//用户ID
         }
         sl.Add("FPassWord", SecurityEncryption.DESEncrypt(txtFPassWord.Text));
-        sl.Add("FMenuRoleId", GetMenuRoleBySel());
+        //sl.Add("FMenuRoleId", GetMenuRoleBySel());
         //建筑市场监管
         sl.Add("FIsPub", t_FIsPub.Checked);//发布权限
         sl.Add("FIsPope", t_FIsPope.Checked);//特殊权限
@@ -294,6 +295,7 @@ public partial class Share_User_ManUserRightAdd : System.Web.UI.Page
 
             ViewState["FID"] = sl["FID"].ToString();
             Hid_RightId.Value = sl["FID"].ToString();
+            //hfUserId.Value = sl["FID"].ToString();
             tool.showMessageAndRunFunction("保存成功", "window.returnValue=1;");
         }
         else
@@ -320,39 +322,39 @@ public partial class Share_User_ManUserRightAdd : System.Web.UI.Page
     }
 
 
-    string GetMenuRoleBySel()
-    {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < rpMenuRoleId.Items.Count; i++)
-        {
-            CheckBoxList cbl = rpMenuRoleId.Items[i].FindControl("txtFMenuRoleId") as CheckBoxList;
-            foreach (ListItem item in cbl.Items)
-            {
-                if (item.Selected)
-                {
-                    if (sb.Length > 0)
-                        sb.Append(",");
-                    sb.Append(item.Value);
-                }
-            }
-        }
-        return sb.ToString();
-    }
-    void ShowMenuRoleBySave(string fMenuRoleId)
-    {
-        if (!string.IsNullOrEmpty(fMenuRoleId))
-        {
-            string[] menus = fMenuRoleId.Split(',');
-            for (int i = 0; i < rpMenuRoleId.Items.Count; i++)
-            {
-                CheckBoxList cbl = rpMenuRoleId.Items[i].FindControl("txtFMenuRoleId") as CheckBoxList;
-                foreach (ListItem item in cbl.Items)
-                {
-                    item.Selected = menus.Contains(item.Value);
-                }
-            }
-        }
-    }
+    //string GetMenuRoleBySel()
+    //{
+    //    StringBuilder sb = new StringBuilder();
+    //    for (int i = 0; i < rpMenuRoleId.Items.Count; i++)
+    //    {
+    //        CheckBoxList cbl = rpMenuRoleId.Items[i].FindControl("txtFMenuRoleId") as CheckBoxList;
+    //        foreach (ListItem item in cbl.Items)
+    //        {
+    //            if (item.Selected)
+    //            {
+    //                if (sb.Length > 0)
+    //                    sb.Append(",");
+    //                sb.Append(item.Value);
+    //            }
+    //        }
+    //    }
+    //    return sb.ToString();
+    //}
+    //void ShowMenuRoleBySave(string fMenuRoleId)
+    //{
+    //    if (!string.IsNullOrEmpty(fMenuRoleId))
+    //    {
+    //        string[] menus = fMenuRoleId.Split(',');
+    //        for (int i = 0; i < rpMenuRoleId.Items.Count; i++)
+    //        {
+    //            CheckBoxList cbl = rpMenuRoleId.Items[i].FindControl("txtFMenuRoleId") as CheckBoxList;
+    //            foreach (ListItem item in cbl.Items)
+    //            {
+    //                item.Selected = menus.Contains(item.Value);
+    //            }
+    //        }
+    //    }
+    //}
     //更新锁库
     private void UpDateLock()
     {

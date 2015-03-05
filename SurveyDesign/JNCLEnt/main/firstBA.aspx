@@ -28,7 +28,7 @@
                 <td class="wxts_l"></td>
                 <td class="wxts_m" valign="top">
                     <div class="wxts_title">
-                        首次备案
+                        首次申请
                     </div>
                     <div style="width: 98%; margin: 0 auto;">
                         <table width="100%" id="appTab" runat="server">
@@ -70,15 +70,21 @@
                                             <asp:BoundColumn HeaderText="序号">
                                                 <ItemStyle Width="40px" />
                                             </asp:BoundColumn>
-                                            <asp:TemplateColumn HeaderText="业务名称">
+                                            <asp:TemplateColumn HeaderText="申请产品名称">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="btnItemSee" runat="server" CommandName="See" Text='<%#Eval("FName") %>'>
+                                                    <asp:LinkButton ID="btnItemSee" runat="server" CommandName="See" Text='<%#Eval("MC") %>'>
                                                     </asp:LinkButton>
                                                     <asp:Literal ID="lit_Count" runat="server"></asp:Literal>
                                                     <asp:Literal ID="prj_Count" runat="server"></asp:Literal>
                                                 </ItemTemplate>
                                                 <ItemStyle CssClass="t_l" />
                                             </asp:TemplateColumn>
+                                            <asp:BoundColumn HeaderText="产品类别" DataField="MC">
+                                                <ItemStyle CssClass="lh t_l" />
+                                            </asp:BoundColumn>
+                                            <asp:BoundColumn HeaderText="标识等级" DataField="SBJB">
+                                                <ItemStyle CssClass="lh t_l" />
+                                            </asp:BoundColumn>
                                            <%-- <asp:TemplateColumn HeaderText="工法名称">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="btnMC" runat="server" CommandName="See" Text='<%#Eval("GFMC") %>'>
@@ -86,8 +92,8 @@
                                                 </ItemTemplate>
                                                 <ItemStyle CssClass="t_l" />
                                             </asp:TemplateColumn>--%>
+                                            <asp:BoundColumn DataField="FReportDate" DataFormatString="{0:d}" HeaderText="上报日期"></asp:BoundColumn>
                                             <asp:BoundColumn HeaderText="状态"></asp:BoundColumn>
-                                            <asp:BoundColumn DataField="FReportDate" DataFormatString="{0:d}" HeaderText="提交时间"></asp:BoundColumn>
                                             <asp:BoundColumn HeaderText="办理结果">
                                                 <ItemStyle CssClass="lh t_l" />
                                             </asp:BoundColumn>

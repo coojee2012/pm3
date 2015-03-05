@@ -68,7 +68,10 @@ public partial class JSDW_APPLYZBBA_ZBWJBAList : System.Web.UI.Page
                     a.ProjectName,
                     a.BDBM,
                     a.BDMC,
-                    a.CS
+                    CSStr = "第" + a.CS + "次招标",
+                    a.BZR,
+                    a.SDR,
+                    a.SHR
 
                 };
         if (!string.IsNullOrEmpty(this.txtFProjectName.Text.Trim()))
@@ -115,11 +118,11 @@ public partial class JSDW_APPLYZBBA_ZBWJBAList : System.Web.UI.Page
     {
 
         pageTool tool = new pageTool(this.Page);
-        if (!WFApp.ValidateNewBiz(t_FPrjId.Value, fMType))
-        {
-            tool.showMessage("同一个项目不能创建两条备案信息！");
-            return;
-        }
+        //if (!WFApp.ValidateNewBiz(t_FPrjId.Value, fMType))
+        //{
+        //    tool.showMessage("同一个项目不能创建两条备案信息！");
+        //    return;
+        //}
         if (string.IsNullOrEmpty(CurrentEntUser.EntId))
             return;
         //添加业务
@@ -270,8 +273,8 @@ public partial class JSDW_APPLYZBBA_ZBWJBAList : System.Web.UI.Page
                 }
             }
             //  e.Row.Cells[6].Text = n;
-            e.Row.Cells[5].Text = t;
-            e.Row.Cells[6].Text = s;
+            e.Row.Cells[8].Text = t;
+            e.Row.Cells[9].Text = s;
             var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
             if (pr != null)
             {
@@ -317,7 +320,7 @@ public partial class JSDW_APPLYZBBA_ZBWJBAList : System.Web.UI.Page
                 //    }
                 //}
             }
-            e.Row.Cells[8].Text = n;
+            e.Row.Cells[11].Text = n;
         }
     }
 

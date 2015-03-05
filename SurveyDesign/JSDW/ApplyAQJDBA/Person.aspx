@@ -21,6 +21,40 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+        function selEmp(obj, tagId) {
+            var zw = document.getElementById("t_XMZW").value;;
+            if (tagId == "t_SGRYId") {
+                qybm = document.getElementById("t_XMZW").value;
+            } else if (tagId == "t_JLRYId") {
+                qybm = document.getElementById("t_JLId").value;
+            }
+            if (qybm != null && qybm != "") {
+                var url = "../project/EmpListSel.aspx";
+                url += "?qybm=" + qybm;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
+            } else {
+                alert('请先选择单位！');
+                return;
+            }
+
+        }
+        function SelectFiles() {
+            var width = 600;
+            var height = 400;
+            sUrl = '<%=ProjectBLL.RBase.GetSysObjectName("FileServerPath") %>tiny_mce/plugins/ajaxfilemanager/filemanager.aspx?type=file&iseditor=1&p=<%=SecurityEncryption.DesEncrypt("../../|"+Session["FUserId"]+"|" + SecurityEncryption.ConvertDateTimeInt(DateTime.Now.AddHours(1)),"12345687")%>';
+            var rv = window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;');
+            if (rv != null && rv.split('|')[0] != 'undefined') {
+                $('#t_FilePath').val(rv.split('|')[0]);
+                $('#t_Size').val(rv.split('|')[1]);
+                $("#btnQuery").click();
+                return true;
+            }
+            return false;
+        }
     </script>
     <base target="_self">
     </base>
@@ -51,6 +85,9 @@
                 <td colspan="1">
                     <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
                     <tt>*</tt>
+                    <input type="hidden"  runat="server" ID="t_FHumanId" value="" />
+                    <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_FHumanId');"
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmpSG_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
                 <td class="t_r t_bg">
                     性别：
@@ -76,7 +113,7 @@
                 <td colspan="1">
                     <asp:DropDownList ID="t_XMZW" runat="server" CssClass="m_txt" Width="202px">
                     </asp:DropDownList>
-                </td>
+                    <tt>*</tt></td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
@@ -85,14 +122,14 @@
                 <td colspan="1">
                     <asp:DropDownList ID="t_ZJLX" runat="server" CssClass="m_txt" Width="195px">
                     </asp:DropDownList>
-                </td>
+                    <tt>*</tt></td>
                 <td class="t_r t_bg">
                     证件号码：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ZJHM" runat="server" CssClass="m_txt"
                         MaxLength="20" Width="195px"></asp:TextBox>
-                </td>
+                    <tt>*</tt></td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
@@ -100,14 +137,13 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_SZQY" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
-                </td>
+                    <tt>*</tt></td>
                 <td class="t_r t_bg">
                     职称：
                 </td>
                 <td colspan="1">
                     <asp:DropDownList ID="t_ZC" runat="server" CssClass="m_txt" Width="202px">
-                        <asp:ListItem Value="1">初级</asp:ListItem>
-                        <asp:ListItem Value="2">高级</asp:ListItem>
+                        
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -131,8 +167,7 @@
                 </td>
                 <td colspan="1">
                     <asp:DropDownList ID="t_ZGXL" runat="server" CssClass="m_txt" Width="202px">
-                        <asp:ListItem Value="1">高中</asp:ListItem>
-                        <asp:ListItem Value="2">大学</asp:ListItem>
+                        
                     </asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
@@ -163,7 +198,27 @@
                 <td colspan="1">
                     <asp:TextBox ID="t_Mobile" onblur="isFloat(this)" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
                 </td>
-            </tr>     
+            </tr>   
+            <tr>
+                <td class="t_r t_bg">
+                上传照片：
+                </td>
+                <td style="padding: 4px; line-height: 28px;">
+                    
+                    <asp:FileUpload ID="file_FPhoto" runat="server" />
+                    &nbsp;
+                    <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" />
+                    
+                </td>
+                <td class="t_r t_bg">
+                    照片：
+                </td>
+                <td colspan="3">
+                    
+                    <asp:Image ID="image_FPhoto" runat="server" Height="150px" Width="150px" />
+                    
+                </td>
+            </tr>   
         </table>
     </div>
     </form>

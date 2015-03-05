@@ -10,6 +10,7 @@ using ProjectBLL;
 using System.Text;
 using Approve.RuleCenter;
 using EgovaDAO;
+using EgovaBLL;
 
 public partial class JSDW_ApplyZBBA_BMSel : System.Web.UI.Page
 {
@@ -75,8 +76,18 @@ public partial class JSDW_ApplyZBBA_BMSel : System.Web.UI.Page
             if (e.CommandName == "Sel")
             {
                 string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
-                pageTool tool = new pageTool(this.Page);
-                tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                string QYMC = e.Item.Cells[e.Item.Cells.Count - 4].Text;
+                TC_PBBG_TBQY pb = dbContext.TC_PBBG_TBQY.Where(t => t.QYMC == QYMC).FirstOrDefault();
+                if (pb != null)
+                {
+                    MyPageTool.showMessage("该企业已投标，不能选择!", this.Page);
+                }
+                else
+                {
+                    pageTool tool = new pageTool(this.Page);
+                    tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                }
+                
             }
         }
     }

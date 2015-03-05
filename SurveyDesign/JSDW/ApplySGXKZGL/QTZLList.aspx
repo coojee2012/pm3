@@ -100,6 +100,24 @@
                     Width="640px" onblur="checkLength(this,2000,'其他资料');"></asp:TextBox>
             </td>
         </tr>
+        <tr>
+            <td class="t_r t_bg">
+                施工现场是否具备施工条件：
+            </td>
+            <td colspan="3" class="m_txt_M">
+                <asp:TextBox ID="t_SGTJ" runat="server" CssClass="m_txt" Height="35px" TextMode="MultiLine"
+                    Width="640px" onblur="checkLength(this,2000,'施工现场是否具备施工条件');"></asp:TextBox><tt>*</tt>
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r t_bg">
+                无拖欠工程款情形的承诺书：
+            </td>
+            <td colspan="3" class="m_txt_M">
+                <asp:TextBox ID="t_CNS" runat="server" CssClass="m_txt" Height="35px" TextMode="MultiLine"
+                    Width="640px" onblur="checkLength(this,2000,'无拖欠工程款情形的承诺书');"></asp:TextBox><tt>*</tt>
+            </td>
+        </tr>
         
     </table>
         <table width="98%" align="center" class="m_bar">

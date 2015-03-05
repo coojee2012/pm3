@@ -41,7 +41,8 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
                         t.FRegistAddress,
                         t.FJuridcialCode,
                         t.FLinkMan,
-                        t.FTel
+                        t.FTel,
+                        t.FOTxt5
                     }).FirstOrDefault();
                 if (jsdw != null)
                 {
@@ -51,8 +52,13 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
                     t_JSDWDZ.Text = jsdw.FRegistAddress;
                     t_JSDWDM.Text = jsdw.FJuridcialCode;
                     t_Contacts.Text = jsdw.FLinkMan;
+                    t_JSDWFR.Text = jsdw.FOTxt5;
                     t_Mobile.Text = jsdw.FTel;
                     ViewState["FJSDWID"] = jsdw.FId;
+                    if (string.IsNullOrEmpty(t_ProjectNo.Text))
+                    {
+                        txtProjectNo.Value = GetPrjNo();
+                    }
                 }
             }
         }
@@ -82,6 +88,13 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         t_ProjectLevel.DataTextField = "FName";
         t_ProjectLevel.DataValueField = "FNumber";
         t_ProjectLevel.DataBind();
+
+        //用地性质
+        dt = rc.getDicTbByFNumber("500");
+        t_LandUse.DataSource = dt;
+        t_LandUse.DataTextField = "FName";
+        t_LandUse.DataValueField = "FNumber";
+        t_LandUse.DataBind();
 
         //访问大屏
         string url = ConfigurationManager.ConnectionStrings["eGova"].ConnectionString;
@@ -113,8 +126,8 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
             }
             //查询最大的号码
             StringBuilder sb = new StringBuilder();
-            sb.Append("select max(right(ProjectNo,2)) from TC_Prj_Info ");
-            sb.Append("where substring(ProjectNo,7,6) = " + fDate);
+            sb.Append("select ISNULL(max(right(ProjectNo,2)),0) from TC_Prj_Info ");
+            sb.Append("where substring(ProjectNo,7,6) = '" + fDate + "'");
             int iNo = EConvert.ToInt(rc.GetSignValue(sb.ToString())) + 1;
             fNo += iNo.ToString().PadLeft(2, '0');
         }
@@ -137,7 +150,7 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
     private void saveInfo()
     {
         EgovaDB dbContext = new EgovaDB();
-        t_ProjectNo.Text = GetPrjNo();
+        
         t_AddressDept.Value = govd_FRegistDeptId.fNumber;
         //t_Province.Value = govd_FRegistDeptId.fNumber.Substring(0, 2);
         //t_City.Value = govd_FRegistDeptId.fNumber.Substring(2, 2);
@@ -153,6 +166,7 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         }
         else
         {
+            
             fId = Guid.NewGuid().ToString();
             Emp.FId = fId;
             Emp.JSDW = t_JSDW.Text;
@@ -165,7 +179,7 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
         txtFId.Value = fId;
-        
+
         
         //showInfo();
         //tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
@@ -281,4 +295,17 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         }
     }
 
+    protected void btnRefresh_Click(object sender, EventArgs e)
+    {
+        object obj = ViewState["FID"];
+        if (obj!=null)
+        {
+            //System.IO.File.AppendAllText("C:\\yujiajun.log", ViewState["FID"].ToString(), Encoding.Default);
+            string sql = @"exec SP_XM_TO_BZK @FID";
+            rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('操作成功')</script>");
+        }
+        else
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请先保存')</script>");
+    }
 }

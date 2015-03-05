@@ -33,12 +33,23 @@
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
             //  alert('dd')
         }
+        function selHXR(obj) {
+            var fBDId = '<%=ViewState["BDId"] %>';
+            var pid = showWinByReturn('../ApplyZBBA/HXRSel.aspx?fBDId=' + fBDId, 1000, 500);
+            if (pid != null && pid != '') {
+                $("#t_QYId").val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
     </script>
     <base target="_self">
     </base>
     <style type="text/css">
         .modalDiv {display:none; position: absolute; top: 1px; left: 1px; width: 100%; height: 100%; z-index:9999; background-color:gray; opacity:.50; filter: alpha(opacity=50); }
         .m_txt {}
+        .auto-style1 {
+            height: 25px;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +87,7 @@
                             OnClientClick="return checkInfo();" />  
                         </ContentTemplate>
                     </asp:UpdatePanel>                
-                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
+                    
                 </td>
                 <td class="m_bar_r">
                 </td>
@@ -88,7 +99,7 @@
                     招标次数：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    第<asp:TextBox ID="t_CS" runat="server" CssClass="m_txt" Width="30px"></asp:TextBox>次招标<tt>*</tt>
                     <input id="txtFId" type="hidden" runat="server" />
                 </td>
             </tr>
@@ -97,13 +108,13 @@
                     标段编码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDBM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     标段名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -111,27 +122,29 @@
                     标段项目名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     招投标编码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZTBBM"  runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                    <asp:TextBox ID="t_ZTBBM"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>  
              <tr>
                 <td class="t_r t_bg">
                    招标代理单位：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ZBDLDW" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                <td colspan="1" class="auto-style1">
+                    <asp:TextBox ID="t_ZBDLDW" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox> 
+                    <asp:Button ID="btnSelEnt" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selHXR(this);"
+                                        UseSubmitBehavior="false" OnClick="btnSel_Click" />
                 </td>
                 <td class="t_r t_bg">
                     招标人：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ZHAOBR"  runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                <td colspan="1" class="auto-style1">
+                    <asp:TextBox ID="t_ZHAOBR"  runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
                 </td>
             </tr> 
              <tr>
@@ -153,7 +166,10 @@
                     中标人：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ZHONGBR" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_ZHONGBR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                    <asp:Button ID="btnSel" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selHXR(this);"
+                                        UseSubmitBehavior="false" OnClick="btnSel_Click" />
+                    <input id="t_QYId" type="hidden" runat="server" />
                 </td>
                 
             </tr>  
@@ -191,7 +207,7 @@
                     中标结果：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ZBJG" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:DropDownList ID="t_ZBJG" runat="server" CssClass="m_txt" Width="200px" ></asp:DropDownList>
                 </td>
                 
             </tr> 
@@ -200,7 +216,7 @@
                     中标原因：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ZBYY" runat="server" CssClass="m_txt" Width="98%" Height="88px" ></asp:TextBox>
+                    <asp:TextBox ID="t_ZBYY" runat="server" CssClass="m_txt" Width="539px" Height="35px" TextMode="MultiLine" ></asp:TextBox>
                 </td>
                 
             </tr>        

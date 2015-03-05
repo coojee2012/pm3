@@ -24,21 +24,22 @@ public partial class Admin_main_aTop : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            hfCurrentTime.Value = DateTime.Now.ToString();
             if (Session["DFUserId"] != null)
             {
                 DataTable dt = rc.GetTable("select * from cf_sys_user where fid='" + Session["DFUserId"].ToString() + "'");
                 if (dt.Rows.Count > 0 && dt != null)
                 {
                     string Department = rc.GetSignValue(" select FName from CF_Sys_Department where FNumber=" + EConvert.ToInt(dt.Rows[0]["FDepartmentID"]));
-                    this.lab_User.Text = " 当前用户：" + dt.Rows[0]["FLinkMan"]
-                        + "<a  href='javascript:void(0)' onclick=\"showAddWindow('../NewAppMain/ManagerEdit.aspx?fid=" + Session["DFUserId"] + "',580,380);\">[编辑]</a>&nbsp;&nbsp;&nbsp;单位：" +
-                      Department + "&nbsp;&nbsp;&nbsp;职务：" + dt.Rows[0]["FFunction"];
-
+                    //this.lab_User.Text = " 当前用户：" + dt.Rows[0]["FLinkMan"]
+                    //    + "<a  href='javascript:void(0)' onclick=\"showAddWindow('../NewAppMain/ManagerEdit.aspx?fid=" + Session["DFUserId"] + "',580,380);\">[编辑]</a>&nbsp;&nbsp;&nbsp;单位：" +
+                    //  Department + "&nbsp;&nbsp;&nbsp;职务：" + dt.Rows[0]["FFunction"];
+                    lab_User.Text = " 当前用户：" + dt.Rows[0]["FLinkMan"].ToString();
                 
 
                 }
             }
-            lDate.Text = "今天是：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Now) + " " + DateTime.Now.DayOfWeek.ToString();
+            //lDate.Text = "今天是：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Now) + " " + DateTime.Now.DayOfWeek.ToString();
             showMenu();
 
             //菜单角色
@@ -67,6 +68,7 @@ public partial class Admin_main_aTop : System.Web.UI.Page
         sb.Append("select FID,froleid,FNumber,FName,FPicName,FOrder,FUrl,FQurl,FTarget ");
         sb.Append("from cf_sys_menu ");
         sb.Append("where fparentid = '450' and flevel=2 and FIsDis=1 and FNumber<>'8050' ");
+      //  System.IO.File.AppendAllText("C:\\yujiajun.log", sb.ToString(),System.Text.Encoding.Default);
         DataTable dtMenu = rc.GetTable(sb.ToString());
 
         string str = "";

@@ -43,7 +43,7 @@ public partial class JNCLEnt_main_firstBA : System.Web.UI.Page
     public void showInfo()
     {
         string FBaseinfoID = CurrentEntUser.EntId;
-        string sql = "select l.* from CF_App_List l where l.FBaseinfoId='"
+        string sql = "select l.*,a.mc,a.sbjb from CF_App_List l,YW_JN_AppProduct a where l.fid=a.fappid and l.FBaseinfoId='"
             + FBaseinfoID + "'and l.FCreateUser = '" + CurrentEntUser.UserId + "' ";
         if (!string.IsNullOrEmpty(t_YWFname.Text.Trim()))
         {
@@ -58,6 +58,7 @@ public partial class JNCLEnt_main_firstBA : System.Web.UI.Page
             sql += " and l.FYear = '" + drop_FYear.SelectedValue.Trim() + "' ";
         }
         sql += " order by l.FCreateTime desc ";
+       // t_YWFname.Text = sql;
         this.Pager1.className = "dbShare";
         this.Pager1.sql = sql;
         this.Pager1.pagecount = 20;
@@ -137,13 +138,13 @@ public partial class JNCLEnt_main_firstBA : System.Web.UI.Page
             //提交状态
             if (FState != "0")
             {
-                e.Item.Cells[3].Text = "<font color='green'>已提交</font>";
+                e.Item.Cells[5].Text = "<font color='green'>已提交</font>";
                 if (FState == "6")
-                    e.Item.Cells[3].Text = "<font color='green'>已确认</font>";
+                    e.Item.Cells[5].Text = "<font color='green'>已确认</font>";
             }
             else
             {
-                e.Item.Cells[3].Text = "<font color='#88888'>未提交</font>";
+                e.Item.Cells[5].Text = "<font color='#88888'>未提交</font>";
                 e.Item.Cells[4].Text = "<font color='#88888'>--</font>";
             }
             LinkButton btnOp = (LinkButton)e.Item.FindControl("btnOp");
@@ -217,7 +218,7 @@ public partial class JNCLEnt_main_firstBA : System.Web.UI.Page
                     e.Item.Cells[8].Text = "";
                     break;
             }
-            e.Item.Cells[3].Text = s; e.Item.Cells[5].Text = r;
+            e.Item.Cells[5].Text = s; e.Item.Cells[6].Text = r;
         }
     }
     protected void DG_List_ItemCommand(object source, DataGridCommandEventArgs e)

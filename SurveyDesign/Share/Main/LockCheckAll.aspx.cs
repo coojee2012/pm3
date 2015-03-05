@@ -14,7 +14,6 @@ using Approve.EntityCenter;
 using Approve.EntityBase;
 using Approve.Common;
 using System.Data.SqlClient;
-using System.IO;
 
 public partial class Share_Main_LockCheckAll : System.Web.UI.Page
 {
@@ -42,7 +41,7 @@ public partial class Share_Main_LockCheckAll : System.Web.UI.Page
 
         pageTool tool = new pageTool(this.Page);
         StringBuilder sb = new StringBuilder();
-        sb.Append("select FID,FType,FName,FPassWord,FMenuRoleId,FManageDeptId,FRoleId ");
+        sb.Append("select FID,FType,FName,FPassWord,FMenuRoleId,FManageDeptId ");
         sb.Append("from cf_sys_user ");
         sb.Append("where fid=@FID ");
         DataTable dt = sh.GetTable(sb.ToString(), new SqlParameter("@FID", UserID));
@@ -58,20 +57,15 @@ public partial class Share_Main_LockCheckAll : System.Web.UI.Page
                 Session["FUserId"] = dt.Rows[0]["FId"].ToString();
                 Session["SH_IsAdmin"] = 0;
                 //this.Response.Redirect("aIndex.aspx");
-                Session["FType"] = FType;
-                Session["DFUserName"] = dt.Rows[0]["FName"].ToString();
-                Session["DFUserId"] = dt.Rows[0]["FId"].ToString();
-                Session["DFMenuRoleId"] = dt.Rows[0]["FMenuRoleId"].ToString();
-                Session["DFId"] = dt.Rows[0]["FManageDeptId"].ToString();
-                Session["DFRoleId"] = dt.Rows[0]["FRoleId"].ToString(); ;
-                //增加老项目管理登录 ljr 2014-11-25  
+                //增加老项目管理登录 ljr 2014-11-25
                 string fname = dt.Rows[0]["FName"].ToString();
                 fname = System.Web.HttpUtility.UrlEncode(fname);
                 string pass = dt.Rows[0]["FPassWord"].ToString();
                 pass = SecurityEncryption.DESEncrypt(pass);
                 pass = System.Web.HttpUtility.UrlEncode(pass);
-                string web = System.Configuration.ConfigurationSettings.AppSettings["dbPage"];
+                string web =System.Configuration.ConfigurationSettings.AppSettings["dbPage"];
                 this.Response.Redirect(web + "?U=" + fname + "&W=" + pass + "&S=12");
+                //this.Response.Redirect("http://localhost:8111/NJSWeb/Login_Tran.aspx?U=" + fname + "&W=" + pass + "&S=12");
             }
             else if (FType == "0")//超级管理员
             {

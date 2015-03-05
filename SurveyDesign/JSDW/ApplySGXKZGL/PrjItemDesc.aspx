@@ -104,7 +104,7 @@
                     建设单位地址：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" MaxLength="30" ></asp:TextBox>
+                    <asp:TextBox ID="t_JSDWDZ" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                     <tt>*</tt></td>
             </tr>
             <tr>
@@ -143,7 +143,7 @@
                     <asp:TextBox ID="t_LXDH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
-                    技术负责人：
+                    建设单位项目负责人：
                 </td>
                 <td >
                     <asp:TextBox ID="t_JSFZR" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
@@ -151,16 +151,16 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">
-                    技术负责人职称：
+                    建设单位项目负责人职称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSFZRZC" runat="server" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_JSFZRZC" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
-                    技术负责人电话：
+                    建设单位项目负责人电话：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSFZRDH" runat="server" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_JSFZRDH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     
                 </td>
             </tr>            
@@ -265,7 +265,7 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">
-                    总面积
+                    总面积：
                 </td>
                 <td colspan="1">
                       <asp:TextBox ID="t_Area" onblur="isFloat(this)" runat="server" CssClass="m_txt"
@@ -311,7 +311,7 @@
                 </td>
                 <td >
                     <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="false"></asp:TextBox><tt>*</tt>币种：
-                    <asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px"></asp:DropDownList><tt>*</tt>
+                    <asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px" Enabled="false"></asp:DropDownList><tt>*</tt>
                 </td>
             </tr>
             

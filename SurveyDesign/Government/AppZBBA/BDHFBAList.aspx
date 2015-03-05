@@ -162,11 +162,8 @@
                 招标类别：
             </td>
             <td>
-                <asp:DropDownList ID="DropDownList2" runat="server" CssClass="m_txt" Width="169px">
-                    <asp:ListItem Value="-1">全部</asp:ListItem>
-                    <asp:ListItem Value="0" >设计</asp:ListItem>
-                    <asp:ListItem Value="1">施工</asp:ListItem> 
-                    <asp:ListItem Value="2">监理</asp:ListItem>
+                <asp:DropDownList ID="ddlZBLB" runat="server" CssClass="m_txt" Width="169px">
+
                 </asp:DropDownList>
 
             </td>
@@ -184,10 +181,8 @@
                 招标方式：
             </td>
             <td>
-                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="m_txt" Width="169px">
-                    <asp:ListItem Value="-1">全部</asp:ListItem>
-                    <asp:ListItem Value="0"  >公开招标</asp:ListItem>
-                    <asp:ListItem Value="1">邀请招标</asp:ListItem> 
+                <asp:DropDownList ID="ddlZBFS" runat="server" CssClass="m_txt" Width="169px">
+
                 </asp:DropDownList>
 
             </td>
@@ -247,22 +242,22 @@
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="项目名称" DataField="ProjectName" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False"  />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="招标类别" DataField="ZBLB" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <asp:BoundColumn HeaderText="招标类别">
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="标段状态"  >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False"  />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="招标方式" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <asp:BoundColumn HeaderText="招标方式">
+                                <ItemStyle Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="资格预审方式" DataField="ZGYSFS" >
+                            <asp:BoundColumn HeaderText="资格预审方式" >
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
@@ -270,7 +265,7 @@
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="上报时间" DataField="FReportTime" >
+                            <asp:BoundColumn HeaderText="上报时间" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>

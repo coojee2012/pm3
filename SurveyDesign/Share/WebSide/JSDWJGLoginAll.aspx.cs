@@ -95,11 +95,11 @@ public partial class Share_WebSide_JSDWJGLoginAll : System.Web.UI.Page
                 FPassWord = SecurityEncryption.DESEncrypt(FPassWord);
 
                 //增加同步用户名密码 ljr 2014-11-25
-                string pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.cf_sys_user where FName='" + FName + "' ");
+                string pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.cf_sys_user where FName='" + FName + "' ",WebHelper.XZSP_DataBase));
                 string table = "user";
                 if (string.IsNullOrEmpty(pass))
                 {
-                    pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.CF_Sys_UserRight where FName='" + FName + "' ");
+                    pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.CF_Sys_UserRight where FName='" + FName + "' ",WebHelper.XZSP_DataBase));
                     table = "right";
                 }
                 if (!string.IsNullOrEmpty(pass))
@@ -225,12 +225,12 @@ public partial class Share_WebSide_JSDWJGLoginAll : System.Web.UI.Page
                         else
                         {
                             //增加同步用户名密码 ljr 2014-11-26
-                            string pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.cf_sys_user where FName='"
+                            string pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.cf_sys_user where FName='",WebHelper.XZSP_DataBase)
                                 + sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
                             string table = "user";
                             if (string.IsNullOrEmpty(pass))
                             {
-                                pass = sh.GetSignValue("select FPassWord from LINKER_46.dbCenterSC.dbo.CF_Sys_UserRight where FName='" +
+                                pass = sh.GetSignValue(string.Format("select FPassWord from LINKER_XZSP.{0}.dbo.CF_Sys_UserRight where FName='",WebHelper.XZSP_DataBase) +
                                      sh.GetSignValue("select FName from from CF_Sys_User where FID='" + dt.Rows[0]["FID"]) + "' ");
                                 table = "right";
                             }

@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>质量监督备案接件</title>
+    <title>办理统计</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -53,13 +53,8 @@
 
     </script>
 
-    <style type="text/css">
-        .auto-style1 {
-            height: 23px;
-        }
-    </style>
+    </head>
 
-</head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -69,99 +64,116 @@
             <table width="98%" align="center" class="m_title">
                 <tr>
                     <th colspan="5">
-                        <asp:Literal ID="lPostion" runat="server">质量监督备案统计</asp:Literal>
+                        
+                        <asp:Label ID="lbTitle" runat="server" Text="施工许可证办理统计情况（截止统计日期）"></asp:Label>
                     </th>
                 </tr> 
-                <tr>
-                    <td class="t_r">
-                        备案时间起：
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtSDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
-                    </td>
-                    <td class="t_r">
-                        备案时间止：
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtEDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
-                    </td>
-                    <td  style="text-align: center; padding-right: 10px">
-                        <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClick="btnQuery_Click"
-                            Text="查询" />
-                        &nbsp;
-                        <input id="btnClear" class="m_btn_w2" style="margin-top: 3px;" type="button" value="重置"
-                            onclick="clearPage();" />
-                    </td>
-                </tr>
+               
             </table>  
-            <asp:GridView ID="gv_stat" runat="server" CssClass="m_dg1" Width="98%" HorizontalAlign="Center"
-                    AutoGenerateColumns="False" OnRowDataBound="gv_stat_RowDataBound"
-                    EmptyDataText="没有数据" EnableModelValidation="True" OnRowCommand="gv_stat_RowCommand" OnRowCreated="gv_stat_RowCreated">
-                    <HeaderStyle CssClass="m_dg1_h" />
-                    <RowStyle CssClass="m_dg1_i" />
-                    <EmptyDataRowStyle CssClass="m_dg1_i" />
-                    <Columns>
-                        <asp:TemplateField HeaderText="序号">
-                            <HeaderStyle Width="40px" />
-                            <ItemTemplate>
-                                <asp:Label ID="lbautoid" runat="server"></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField HeaderText="属地" DataField="AddressDeptName" />
-                        <asp:TemplateField HeaderText="市政基础设施工程">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("SZJCSS") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnItemSee1" runat="server" CommandName="See1" autopostback="true" Text='<%# Bind("SZJCSS") %>' CommandArgument='<%#Eval("AddressDept")%>'>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="房屋建筑工程">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("FWJZGC") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnItemSee2" runat="server" CommandName="See2" autopostback="true" Text='<%# Bind("FWJZGC") %>' CommandArgument='<%#Eval("AddressDept")%>'>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="改造工程（装饰）">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Other") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnItemSee3" runat="server" CommandName="See3" autopostback="true" Text='<%# Bind("Other") %>' CommandArgument='<%#Eval("AddressDept")%>'>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="合计">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("HJ") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnItemSeeAll" runat="server" CommandName="SeeAll" autopostback="true" Text='<%# Bind("HJ") %>' CommandArgument='<%#Eval("AddressDept")%>'>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                    </Columns>
-                </asp:GridView>
-            <webdiyer:AspNetPager ID="Pager1" runat="server" width="98%" AlwaysShow="True" CssClass="pages"
+            <div style="width:98%;margin:0 auto;">
+            <asp:Repeater ID="rep_List" runat="server"  OnItemCommand="rep_List_ItemCommand">
+                <HeaderTemplate>
+                    <table  Class="m_dg1" Width="100%" HorizontalAlign="Center" align="center" >
+                        <tr Class="m_dg1_h">
+                            <td rowspan="2" align="center">序号</td>
+                            <td rowspan="2" align="center">属地</td>
+                            <td colspan="3" align="center">初次办理</td>
+                            <td colspan="3" align="center">延期办理</td>
+                            <td colspan="3" align="center">变更办理</td>
+                        </tr>
+                        <tr Class="m_dg1_h">
+                            <td>未上报</td>
+                            <td>已上报</td>
+                            <td>已审核</td>
+                            <td>未上报</td>
+                            <td>已上报</td>
+                            <td>已审核</td>
+                            <td>未上报</td>
+                            <td>已上报</td>
+                            <td>已审核</td>
+                        </tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr class="m_dg1_i">
+                        <td>
+                            <%# Container.ItemIndex+1 %>
+                        </td>
+                        <td class="t_l">
+                            <%#Eval("SD")%>
+                        </td>
+                        <td>
+                           
+                            <asp:LinkButton ID="LinkButton8" runat="server" CommandName="CCBL_WSB" CommandArgument='<%#"0|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("CCBL_WSB")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            
+                            <asp:LinkButton ID="LinkButton7" runat="server" CommandName="CCBL_YSB" CommandArgument='<%#"1|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("CCBL_YSB")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            
+                            <asp:LinkButton ID="LinkButton6" runat="server" CommandName="CCBL_YSH" CommandArgument='<%#"6|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("CCBL_YSH")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            
+                            <asp:LinkButton ID="LinkButton5" runat="server" CommandName="YQBL_WSB" CommandArgument='<%#"0|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("YQBL_WSB")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                         
+                            <asp:LinkButton ID="LinkButton4" runat="server" CommandName="YQBL_YSB" CommandArgument='<%#"1|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("YQBL_YSB")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton3" runat="server" CommandName="YQBL_YSH" CommandArgument='<%#"6|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("YQBL_YSH")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CommandName="BGBL_WSB" CommandArgument='<%#"0|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("BGBL_WSB")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            
+                            <asp:LinkButton ID="LinkButton1" runat="server" CommandName="BGBL_YSB" CommandArgument='<%#"1|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("BGBL_YSB")%>
+                            </asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="linkBtn_BGBL_YSH" runat="server" CommandName="BGBL_YSH" CommandArgument='<%#"6|"+Eval("PrjAddressDept")%>'>
+                                <%#Eval("CCBL_YSH")%>
+                            </asp:LinkButton>
+                            
+                        </td>
+                    </tr>  
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+            <webdiyer:AspNetPager ID="Pager1" runat="server" width="100%" AlwaysShow="True" CssClass="pages"
                     CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
                     CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" LayoutType="Table"
                     NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
                     PageIndexBoxType="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
-                    ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到"></webdiyer:AspNetPager>
+                    ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到" HorizontalAlign="Center" CustomInfoTextAlign="Center"></webdiyer:AspNetPager>
      
-   
+            </div>
         </asp:Panel>
     
         <asp:Panel ID="DetailPanel" runat="server" Visible="False">
             <table width="98%" align="center" class="m_title">
                 <tr>
                     <th colspan="5">
-                        <asp:Literal ID="Literal1" runat="server">质量监督备案明细</asp:Literal>
+                        <asp:Literal ID="Literal1" runat="server">施工许可证明细</asp:Literal>
                     </th>
                 </tr> 
                 <tr>
@@ -172,10 +184,10 @@
                         <asp:TextBox ID="txtPrjItemName"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
                     </td>
                     <td class="t_r">
-                        项目名称：
+                        建设单位：
                     </td>
                     <td>
-                        <asp:TextBox ID="txtProjectName"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
+                        <asp:TextBox ID="txtJSDW"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
                     </td>
                     <td  rowspan="4" style="text-align: center; padding-right: 10px">
                         <asp:Button ID="btnQuery1" runat="server" CssClass="m_btn_w2" OnClick="btnQuery1_Click"
@@ -189,57 +201,43 @@
                 </tr>
                 <tr>
                     <td class="t_r">
-                        工程性质：
+               业务类型：
+            </td>
+            <td >
+                <asp:DropDownList ID="ddlMType" runat="server" CssClass="m_txt" Width="169px">
+                    <asp:ListItem Value="-1">全部</asp:ListItem>
+                    <asp:ListItem Value="11223"  >初次办理</asp:ListItem>
+                    <asp:ListItem Value="11224">延期办理</asp:ListItem> 
+                    <asp:ListItem Value="11225">变更办理</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td class="t_r">
+                状态：
+            </td>
+            <td>
+               <asp:DropDownList ID="ddlState" runat="server" CssClass="m_txt" Width="169px">
+                    <asp:ListItem Value="-1" Selected="True">全部</asp:ListItem>
+                    <asp:ListItem Value="0"  >未上报</asp:ListItem>
+                    <asp:ListItem Value="1">已上报</asp:ListItem> 
+                    <asp:ListItem Value="6">已审核</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+                   
+                    
+                </tr>
+                <tr>
+                    
+                     <td class="t_r">
+                        工程所属地：
                     </td>
-                    <td class="auto-style1">
-                        <asp:DropDownList ID="p_PrjItemType" runat="server" CssClass="m_txt" DataSourceID="SqlDataSource1" DataTextField="FName" DataValueField="FNumber" >
-                        </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbCenter %>" SelectCommand="SELECT '-1' [FNumber], '   ' [FName] union SELECT [FNumber], [FName] FROM [CF_Sys_Dic] WHERE ([FParentId] = @FParentId)">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="20001" Name="FParentId" Type="Int32" />
-                            </SelectParameters>
-                        </asp:SqlDataSource>
-                    </td>
-                    <td class="t_r">
-                        属地：
-                    </td>
-                    <td class="auto-style1">
+                    <td colspan="3">
                         <uc1:govdeptid ID="govd_FRegistDeptId" runat="server" />   
                     </td>
                     
                 </tr>
-                <tr>
-                    <td class="t_r">
-                        备案编号：
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtRecordNo"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
-                    </td>
-                    <td class="t_r">
-                        建设单位：
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtJSDW"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
-                    </td>
-                    
-                </tr>
-                <tr>
-                    <td class="t_r">
-                        备案时间起：
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtSDate1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
-                    </td>
-                    <td class="t_r">
-                        备案时间止：
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtEDate1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
-                    </td>
-                    
-                </tr>
+            
             </table>
-            <div style="width:98%">
+            <div style="width:98%;margin:0 auto;">
                 <asp:GridView ID="gv_detail" runat="server" CssClass="m_dg1" Width="100%" HorizontalAlign="Center"
                     AutoGenerateColumns="False" OnRowDataBound="gv_detail_RowDataBound"
                     EmptyDataText="没有数据" EnableModelValidation="True" OnRowCommand="gv_detail_RowCommand" OnRowCreated="gv_detail_RowCreated">
@@ -253,7 +251,7 @@
                                 <asp:Label ID="lbautoid" runat="server"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField HeaderText="属地" DataField="AddressDeptName" />
+                        
                         <asp:TemplateField HeaderText="工程名称">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("PrjItemName") %>'></asp:TextBox>
@@ -263,10 +261,13 @@
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField HeaderText="项目名称" DataField="ProjectName" />
-                        <asp:BoundField HeaderText="备案编号" DataField="RecordNo" />
-                        <asp:BoundField HeaderText="建设单位" DataField="JSDW" />
-                        <asp:BoundField HeaderText="备案时间" DataField="FAppDate" />                       
+                         <asp:BoundField HeaderText="建设单位" DataField="JSDW" />
+                        <asp:BoundField HeaderText="上报日期" DataField="FAppDate" />  
+                        <asp:BoundField HeaderText="工程所属地" DataField="AddressDeptName" />
+                        <asp:BoundField HeaderText="业务类型" DataField="YWLX" />
+                        <asp:BoundField HeaderText="项目地址" DataField="Address" />
+                       
+                                             
                     </Columns>
                 </asp:GridView>
                 <webdiyer:AspNetPager ID="Pager2" runat="server" width="98%" AlwaysShow="True" CssClass="pages"

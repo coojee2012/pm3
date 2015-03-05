@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Query.aspx.cs" Inherits="Government_AppAQJDBA_Query" %>
-
+<%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -147,8 +147,8 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <table width="98%" align="center" class="m_title">
         <tr>
-            <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">质量监督备案接件</asp:Literal>
+            <th colspan="6">
+                <asp:Literal ID="lPostion" runat="server">办理查询</asp:Literal>
             </th>
         </tr>
         <tr>
@@ -168,7 +168,7 @@
                 <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
             </td>
             
-            <td colspan="2" rowspan="3" style="text-align: center; padding-right: 10px">
+            <td colspan="2" rowspan="4" style="text-align: center; padding-right: 10px">
                 <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClick="btnQuery_Click"
                     Text="查询" />
                 &nbsp;
@@ -184,27 +184,37 @@
                 <asp:TextBox ID="txtRecordNo" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
             </td>
             <td class="t_r">
-                状&nbsp; 态：
+                工程性质：
             </td>
             <td>
-                <asp:DropDownList ID="ddlState" runat="server" CssClass="m_txt" Width="169px">
-                    <asp:ListItem Value="-1">全部</asp:ListItem>
-                    <asp:ListItem Value="0" >待接件</asp:ListItem>
-                    <asp:ListItem Value="1">准予受理</asp:ListItem> 
-                    <asp:ListItem Value="3">不予受理</asp:ListItem>
-                    <asp:ListItem Value="5">已退回</asp:ListItem>
+                <asp:DropDownList ID="t_PrjItemType" runat="server" CssClass="m_txt" Width="169px">
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td class="t_r">
-                申报日期起：
+                建设单位：
+            </td>
+            <td>
+                <asp:TextBox ID="txtJSDW" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+            </td>
+            <td class="t_r">
+                工程所属地：
+            </td>
+            <td>
+                <uc1:govdeptid ID="govd_FRegistDeptId" runat="server" ReadOnly="true" />
+            </td>
+            
+        </tr>
+        <tr>
+            <td class="t_r">
+                备案时间起：
             </td>
             <td>
                 <asp:TextBox ID="txtSDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
             </td>
             <td class="t_r">
-                申报日期止：
+                备案时间止：
             </td>
             <td>
                 <asp:TextBox ID="txtEDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
@@ -249,7 +259,7 @@
                                     Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="项目名称" DataField="ProjectName">
+                            <asp:BoundColumn HeaderText="属地" DataField="PrjAddressDeptName">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
@@ -257,6 +267,11 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="项目名称" DataField="ProjectName">
+                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            
                             <asp:BoundColumn HeaderText="备案编号" DataField="RecordNo" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -265,12 +280,8 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="申报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                            <asp:BoundColumn HeaderText="备案时间" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="状态" DataField="FStateDesc" Visible="False">
-                                <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
       

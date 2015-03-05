@@ -12,10 +12,14 @@
     <AssemblyName>RuleAppCode</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -139,10 +143,6 @@
     <Compile Include="WorkQueue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ProjectData\ProjectData.csproj">
-      <Project>{08aa7d6f-f5e6-4d18-8543-103a5a1d0fed}</Project>
-      <Name>ProjectData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Entity\ENTITYBASE\EntityBase.csproj">
       <Project>{A5676341-D5C3-456F-943E-14D7D8F45883}</Project>
       <Name>EntityBase</Name>

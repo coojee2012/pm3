@@ -21,6 +21,27 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+        function selEnt(obj, tagId) {
+            var url = "../project/EntListSel.aspx";
+            var qylx = "101";
+            var type = document.getElementById("t_CJJS").value;
+            if (type == "11220102" || type == "11220103" || type == "11220104") {
+                qylx = "101";
+            } else if (type == "11220105" || type == "11220106") {
+                qylx = "155";
+            } else if (type == "11220107") {
+                qylx = "125";
+            } else {
+                alert("请先选择参建角色");
+                return;
+            }
+            url += "?qylx=" + qylx;
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
     </script>
     <base target="_self">
     </base>
@@ -49,8 +70,11 @@
                     企业名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_QYMC" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
+                    <asp:TextBox ID="t_QYMC" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
+                    <input type="hidden"  runat="server" ID="t_QYId" value="" />
+                <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_QYId');"
+                UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
                 <td class="t_r t_bg">
                     参建角色：
@@ -66,7 +90,7 @@
                     企业地址：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_QYDZ" runat="server" CssClass="m_txt" Width="274px" MaxLength="30"></asp:TextBox>
+                    <asp:TextBox ID="t_QYDZ" runat="server" CssClass="m_txt" Width="274px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -74,7 +98,7 @@
                     组织机构代码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZZJGDM" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_ZZJGDM" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -82,14 +106,14 @@
                     资质等级：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZZDJ" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_ZZDJ" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     资质证书号：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ZZZS" runat="server" CssClass="m_txt"
-                        MaxLength="20" Width="195px"></asp:TextBox>
+                        Width="195px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -97,13 +121,13 @@
                     营业执照号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_YYZZH" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_YYZZH" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     企业法定代表人：
                 </td>
                 <td colspan="1">
-                     <asp:TextBox ID="t_QYFDDB" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                     <asp:TextBox ID="t_QYFDDB" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             

@@ -241,7 +241,7 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CCBLJJAuditInfo.aspx')" />
+                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CCBLJJAuditInfo.aspx')" OnClick="btnAccept_Click" />
                 <asp:Button ID="btnAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                     Text="受理单打印" OnClientClick="return app('BackSeeOneReportInfo.aspx')" Visible="false" />
                 <asp:Button ID="btnNotAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w8"
@@ -274,10 +274,7 @@
                                     Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="工程所属地" DataField="PrjAddressDeptName">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                            
                             <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -287,7 +284,11 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="项目地址" DataField="Address" >
+                            <asp:BoundColumn HeaderText="上报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="工程所属地" DataField="PrjAddressDeptName">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
@@ -295,10 +296,11 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="申报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                            <asp:BoundColumn HeaderText="项目地址" DataField="Address" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
+
                             <asp:BoundColumn HeaderText="状态" DataField="FStateDesc" >
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />

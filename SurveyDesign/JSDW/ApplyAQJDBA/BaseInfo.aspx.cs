@@ -79,7 +79,11 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         qa = tool.getPageValue(qa);
         tool = new pageTool(this.Page, "q_");
         qa = tool.getPageValue(qa);
-        qa.Contracts = pj_Contracts.Text;
+        qa.Contracts = pj_Contacts.Text;
+        qa.SGId = t_SGId.Value;
+        qa.SGRYId = t_SGRYId.Value;
+        qa.JLId = t_JLId.Value;
+        qa.JLRYId = t_JLRYId.Value;
         db.SubmitChanges();
       //  showPrjData();
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
@@ -87,5 +91,105 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
     protected void btnSel_Click(object sender, EventArgs e)
     {
 
+    }
+    protected void btnAddEntSG_Click(object sender, EventArgs e)
+    {
+        selEnt("SG");
+    }
+    protected void btnAddEntJL_Click(object sender, EventArgs e)
+    {
+        selEnt("JL");
+    }
+    protected void btnAddEmpSG_Click(object sender, EventArgs e)
+    {
+        selEmp("SG");
+    }
+    protected void btnAddEmpJL_Click(object sender, EventArgs e)
+    {
+        selEmp("JL");
+    }
+    private void selEmp(string type)
+    {
+        if (type == "SG")
+        {
+            string selEmpId = t_SGRYId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            if (v != null)
+            {
+                q_SGDWXMJL.Text = v.XM;
+                
+                q_SGDWSFZH.Text = v.SFZH;
+                var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+                if (v1 != null)
+                {
+                    q_SGDWZGZH.Text = v1.ZGZSH;
+                }
+            }
+
+        }
+        else if (type == "JL")
+        {
+            string selEmpId = t_JLRYId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            if (v != null)
+            {
+                q_JLDWXMZJ.Text = v.XM;
+                
+                var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+                if (v1 != null)
+                {
+                    q_SGDWZGZH.Text = v1.ZGZSH;
+                }
+            }
+
+        }
+    }
+    private void selEnt(string type)
+    {
+        if (type == "SG")
+        {
+            string selEntId = t_SGId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v != null) {
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+                if (v1 != null) {
+                    q_SGDWZZZSH.Text = v1.ZSBH;
+                    q_SGDWZZDJ.Text = v1.ZZDJ;
+                }
+                var v2 = db.QY_QYZSXX.Where(t => t.QYBM == selEntId && t.ZSLXBM == "150").FirstOrDefault();//安全生产许可证
+                if (v2 != null)
+                {
+                    q_SGDWAXZH.Text = v2.ZSBH;
+                }
+            }
+            q_SGDW.Text = v.QYMC;
+            q_SGDWFR.Text = v.FRDB;
+            q_SGDWDH.Text = v.FRDBSJH;
+            q_SGDWZZJGDM.Text = v.JGDM;
+        }
+        else if (type == "JL")
+        {
+            string selEntId = t_JLId.Value;
+            EgovaDB1 db = new EgovaDB1();
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v != null)
+            {
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+                if (v1 != null)
+                {
+                    q_JLDWZZZSH.Text = v1.ZSBH;
+                    q_JLDWZZDJ.Text = v1.ZZDJ;
+                }
+                
+            }
+            q_JLDW.Text = v.QYMC;
+            q_JLDWFR.Text = v.FRDB;
+            q_JLDWDH.Text = v.FRDBSJH;
+            q_JLDWZZJGDM.Text = v.JGDM;
+        }
+        
     }
 }

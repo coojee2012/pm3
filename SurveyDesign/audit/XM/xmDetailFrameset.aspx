@@ -24,6 +24,10 @@
             document.all("bottom").style.height = document.body.scrollHeight;
             document.all("bottom").style.width = document.body.scrollWidth;
         }
+        function ShowWindow(url)
+        {
+            showAddWindow(url+"?", 800, 500);
+        }
     </script>
 
 </head>
@@ -50,30 +54,32 @@
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="选址意见书" width="12" height="12" />
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="选址意见书" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12"><%--<a href="123.aspx" target="bottom"></a>--%>选址意见书
+                    <td valign="middle" class="style12"><%--<a href="123.aspx" target="bottom"></a>--%>
+                        <asp:Literal ID="ltrXZYJS" Text="选址意见书" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="用地规划许可证" width="12" height="12" />
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="用地规划许可证" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">用地规划许可证
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrYDGH" Text="用地规划许可证" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="工程规划许可证" width="12" height="12" />
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">工程规划许可证
+                    <td valign="middle" class="style12">
+                        <asp:Literal ID="ltrGCGH" Text="工程规划许可证" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
@@ -83,7 +89,7 @@
                         <img src="../images/hp_xmjd_dbl.jpg" alt="初步设计" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">初步设计
+                    <td valign="middle" class="style12" style="color:#d9e1e4">初步设计
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
@@ -93,7 +99,7 @@
                         <img src="../images/hp_xmjd_dbl.jpg" alt="施工图审查" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">施工图审查
+                    <td valign="middle" class="style12" style="color:#d9e1e4">施工图审查
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
@@ -105,61 +111,61 @@
                     <td class="style13">&nbsp;
                     </td>
                     <td valign="middle" align="center" class="style10">
-
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="项目报建" width="12" height="12" />
+                        
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="项目报建" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">项目报建
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrXMBJ" Text="项目报建" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="招投标备案" width="12" height="12" />
-
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="招投标备案" width="12" height="12" />
+                        
                     </td>
-                    <td valign="middle" class="style12">招投标备案
-                    </td>
-                    <td valign="middle" align="center" class="style14">
-                        <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
-                    </td>
-                    <td valign="middle" align="center" class="style10">
-
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="质量监督备案" width="12" height="12" />
-
-                    </td>
-                    <td valign="middle" class="style12">质量监督备案
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrZTBXX" Text="招投标备案" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="安全监督备案" width="12" height="12" />
+                        
+                        <asp:Literal ID="ltrZLJDImg" runat="server"></asp:Literal>
+                    </td>
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrZLJDBA" Text="质量监督备案" runat="server"></asp:Literal>
+                    </td>
+                    <td valign="middle" align="center" class="style14">
+                        <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
+                    </td>
+                    <td valign="middle" align="center" class="style10">
+                        <asp:Literal ID="ltrAQJDimg" runat="server"></asp:Literal>
+                       
 
                     </td>
-                    <td valign="middle" class="style12">安全监督备案
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrAQJDBA" Text="安全监督备案" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="施工许可证" width="12" height="12" />
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="施工许可证" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">施工许可证
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrSGXKZ" Text="施工许可证" runat="server"></asp:Literal>
                     </td>
                     <td valign="middle" align="center" class="style14">
                         <img src="../images/hp_xmjd_jt.jpg" alt="" width="30" height="14" />
                     </td>
                     <td valign="middle" align="center" class="style10">
 
-                        <img src="../images/hp_xmjd_dbl.jpg" alt="竣工验收备案" width="12" height="12" />
+                        <img src="../images/hp_xmjd_ybl.jpg" alt="竣工验收备案" width="12" height="12" />
 
                     </td>
-                    <td valign="middle" class="style12">竣工验收备案
+                    <td valign="middle" class="style12"><asp:Literal ID="ltrJGYSBA" Text="竣工验收备案" runat="server"></asp:Literal>
                     </td>
                     <td>&nbsp;
                     </td>

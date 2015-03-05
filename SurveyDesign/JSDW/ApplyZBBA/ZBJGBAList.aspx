@@ -80,7 +80,7 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td colspan="2" rowspan="4" style="text-align: center; padding-right: 10px">
-                                                            <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" OnClick="btnQuery_Click" />&nbsp;<asp:Button ID="btnPup" runat="server" CssClass="m_btn_w12" OnClick="btn_Click" Text="新增业务"></asp:Button>
+                                                            <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" OnClick="btnQuery_Click" />&nbsp;<asp:Button ID="btnPup" runat="server" CssClass="m_btn_w12" OnClick="btn_Click" Text="选择项目"></asp:Button>
 
                                                             &nbsp;
                                                         </td>
@@ -151,10 +151,16 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField HeaderText="标段名称" DataField="BDMC">
+                                                            <HeaderStyle Width="70px" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField HeaderText="次数" DataField="CSStr">
+                                                            <HeaderStyle Width="70px" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField HeaderText="招标代理单位" DataField="ZBDLDW">
                                                             <HeaderStyle Width="120px" />
                                                         </asp:BoundField>
-                                                        <asp:BoundField HeaderText="次数" DataField="CS">
-                                                            <HeaderStyle Width="120px" />
+                                                        <asp:BoundField HeaderText="中标结果" DataField="ZBJGStr">
+                                                            <HeaderStyle Width="80px" />
                                                         </asp:BoundField>
                                                         <asp:BoundField HeaderText="申报日期" DataField="FCreateTime" DataFormatString="{0:d}">
                                                             <HeaderStyle Width="80" />
@@ -215,6 +221,7 @@
                                     <asp:TextBox ID="t_BDMC" runat="server" CssClass="m_txt" Width="300px" ReadOnly="true"></asp:TextBox>
                                     <input id="t_BDId" type="hidden" runat="server" />
                                     <input id="t_BDBM" type="hidden" runat="server" />
+                                    <input id="t_ZBBM" type="hidden" runat="server" />
                                     <input id="t_FPrjId" type="hidden" runat="server" />
                                     <input id="t_FPrjName" type="hidden" runat="server" />
                                     <input id="t_OldFAppId" type="hidden" runat="server" />

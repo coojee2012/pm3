@@ -60,6 +60,28 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         t_PrjItemType.DataValueField = "FNumber";
         t_PrjItemType.DataBind();
         t_ConstrType.Items.Insert(0, new ListItem("--请选择--", ""));
+
+        //所有制
+        dt = rc.getDicTbByFNumber("112212");
+        t_JSDWXZ.DataSource = dt;
+        t_JSDWXZ.DataTextField = "FName";
+        t_JSDWXZ.DataValueField = "FNumber";
+        t_JSDWXZ.DataBind();
+        b_JSDWXZ.DataSource = dt;
+        b_JSDWXZ.DataTextField = "FName";
+        b_JSDWXZ.DataValueField = "FNumber";
+        b_JSDWXZ.DataBind();
+
+        //币种
+        dt = rc.getDicTbByFNumber("112211");
+        t_Currency.DataSource = dt;
+        t_Currency.DataTextField = "FName";
+        t_Currency.DataValueField = "FNumber";
+        t_Currency.DataBind();
+        b_Currency.DataSource = dt;
+        b_Currency.DataTextField = "FName";
+        b_Currency.DataValueField = "FNumber";
+        b_Currency.DataBind();
     }
     //显示
     private void showInfo()
@@ -86,10 +108,9 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
             b_JSDWAddressDept.Value = sp.JSDWAddressDept;
             b_PrjAddressDept.Value = sp.PrjAddressDept;
             b_PrjGovdeptid.fNumber = sp.PrjAddressDept;
-            JSDW_DeptID.fNumber = sbg.JSDWAddressDept;
-            PrjGovdeptid.fNumber = sbg.PrjAddressDept;
-            t_JSDWAddressDept.Value = sbg.JSDWAddressDept;
-            t_PrjAddressDept.Value = sbg.PrjAddressDept;
+            JSDW_DeptID.fNumber = t_JSDWAddressDept.Value;
+            PrjGovdeptid.fNumber = t_PrjAddressDept.Value;
+            
             h_FId.Value = sbg.FId;
             h_FPrjInfoId.Value = sbg.FPrjInfoId;
             h_FPrjItemId.Value = sbg.FPrjItemId;
@@ -99,8 +120,8 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     private void saveInfo()
     {
         string fId = h_FId.Value;
-        //t_JSDWAddressDept.Value = JSDW_DeptID.fNumber;
-        //t_PrjAddressDept.Value = PrjGovdeptid.fNumber;
+        t_JSDWAddressDept.Value = JSDW_DeptID.fNumber;
+        t_PrjAddressDept.Value = PrjGovdeptid.fNumber;
         b_JSDWAddressDept.Value = b_JSDW_DeptID.fNumber;
         b_PrjAddressDept.Value = b_PrjGovdeptid.fNumber;
         TC_SGXKZ_BGPrjInfo Emp = new TC_SGXKZ_BGPrjInfo();
@@ -121,13 +142,13 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         updateBGJG();
         h_FId.Value = fId;
         //showInfo();
-        ShowBGJG();
-        ShowQYBGJG();
-        ShowRYBGJG();
+        //System.Threading.Thread.Sleep(2000);
+        //
         ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+
         //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
         //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
-        
+        //Response.AddHeader("Refresh", "0"); 
     }
     //变更结果更新
     protected void updateBGJG()
@@ -151,6 +172,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
             //string value2 = EConvert.ToString(p2[i].GetValue(sbg2, null));
             compareValueToSortedList(value1, Id1); 
         }
+        
     }
     private bool compareValueToSortedList(string value1, string Id1)
     {
@@ -179,7 +201,13 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
                 value2 = t_JSDWAddressDept.Value;
             }
             TC_SGXKZ_BGJG Emp = new TC_SGXKZ_BGJG();
+            if (Id1 == "StartDate" || Id1 == "EndDate")
+            {
+                value1 = value1.Substring(0, 10).Replace("-", "/");
+                value2 = value2.Substring(0, 10).Replace("-","/");
+            }
             result = value1 == value2;
+            
             if (!result)
             {
                 if (Id1 == "PrjAddressDept")
@@ -199,6 +227,8 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
                 }
                 System.Web.UI.HtmlControls.HtmlForm myform = (System.Web.UI.HtmlControls.HtmlForm)this.Page.FindControl("Form1");
                 System.Web.UI.Control control = myform.FindControl("n_" + Id1);
+                var para = dbContext.TC_SGXKZ_BGJG.Where(t => t.BGNR == ((System.Web.UI.WebControls.HiddenField)control).Value);
+                dbContext.TC_SGXKZ_BGJG.DeleteAllOnSubmit(para);
                 string fId = Guid.NewGuid().ToString();
                 Emp.FId = fId;
                 Emp.FAppId = h_FAppId.Value;
@@ -220,6 +250,15 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     void ShowBGJG()
     {
         EgovaDB dbContext = new EgovaDB();
+        string sql = @" select count(*) from TC_SGXKZ_RYBGJG
+                            where FAppId='{0}' and BGQK='增加'";
+        sql = string.Format(sql, h_FAppId.Value);
+        int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        sql = @" select count(*) from TC_SGXKZ_RYBGJG
+                            where FAppId='{0}' and BGQK='退出'";
+        sql = string.Format(sql, h_FAppId.Value);
+        int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        lblRY.InnerText = "增加" + count1 + "个，退出" + count2 + "个";
         var App = dbContext.TC_SGXKZ_BGJG.Where(t => t.FAppId == h_FAppId.Value).Select(t => new
         {
             t.BeforeBG,
@@ -248,6 +287,15 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     void ShowQYBGJG()
     {
         EgovaDB dbContext = new EgovaDB();
+        string sql = @" select count(*) from TC_SGXKZ_QYBGJG 
+                            where FAppId='{0}' and BGQK='增加'";
+        sql = string.Format(sql, h_FAppId.Value);
+        int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        sql = @" select count(*) from TC_SGXKZ_QYBGJG 
+                            where FAppId='{0}' and BGQK='退出'";
+        sql = string.Format(sql, h_FAppId.Value);
+        int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        lblQY.InnerText = "增加"+count1+"个，退出"+count2+"个";
         var App = dbContext.TC_SGXKZ_QYBGJG.Where(t => t.FAppId == h_FAppId.Value).Select(t => new
         {
             t.YQLX,
@@ -305,5 +353,9 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+    }
+    protected void btnReload_Click(object sender, EventArgs e)
+    {
+        ShowBGJG();
     }
 }

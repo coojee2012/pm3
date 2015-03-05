@@ -89,6 +89,7 @@ public partial class Government_AppMain_aIndex : System.Web.UI.Page
             sb.Append(" and er.FMeasure in (0,1,4) and er.ftypeid=1 group by ");
             sb.Append(" ep.FLinkId ");
             sb.Append(")t");
+
             int count = rc.GetSQLCount(sb.ToString());
             if (count > 0)
             {
@@ -159,7 +160,8 @@ public partial class Government_AppMain_aIndex : System.Web.UI.Page
             }
             i++;
         }
-        DataTable dt = rc.GetTable(sb.ToString());
+        //System.IO.File.AppendAllText("C:\\yujiajun.log", sb.ToString(), Encoding.Default);
+        DataTable dt = string.IsNullOrEmpty(sb.ToString()) ? null : rc.GetTable(sb.ToString());
         if (dt != null)
         {
             iCount = dt.Rows.Count;

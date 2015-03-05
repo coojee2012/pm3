@@ -18,6 +18,7 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            BindControl();
             if (string.IsNullOrEmpty(Request.QueryString["fprjId"]))
             {
                
@@ -29,14 +30,16 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
                 {
                     pageTool tool = new pageTool(this.Page);
                     tool.fillPageControl(emp, divSetup2);
-                    govd_FRegistDeptId.fNumber = emp.AddressDept;
+                   // govd_FRegistDeptId.fNumber = emp.AddressDept;
                     t_AddressDept.Value = emp.AddressDept;
-                    t_LegalPerson.Text = emp.Contacts;
+                    govd_FRegistDeptId.fNumber = emp.AddressDept;
+                    t_LegalPerson.Text = emp.JSDWFR;
                     ViewState["FJSDWID"] = emp.FJSDWID;
+                    t_PrjItemType.SelectedValue = emp.ProjectType;
                 }
                 ViewState["FPrjId"] = Request.QueryString["fprjId"];
             }
-            BindControl();
+            
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                 ViewState["FID"] = Request.QueryString["fid"];
@@ -74,13 +77,20 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
             ViewState["FJSDWID"] = emp.FId;
             ViewState["FPrjId"] = emp.FPrjId;
             govd_FRegistDeptId.fNumber = t_AddressDept.Value;
+            
         }
     }
+    //private string getAddressDeptName(string fNumber)
+    //{
+    //    EgovaDB dbContext = new EgovaDB();
+    //    var v = dbContext.CF_Sys_ManageDept.Where(t => t.FNumber.Equals(fNumber)).FirstOrDefault();
+    //    return EConvert.ToString(v.FFullName);
+    //}
     //保存
     private void saveInfo()
     {
         string fId = EConvert.ToString(ViewState["FID"]);
-        t_AddressDept.Value = govd_FRegistDeptId.fNumber;
+       // t_AddressDept.Value = govd_FRegistDeptId.fNumber;
         TC_PrjItem_Info Emp = new TC_PrjItem_Info();
         if (!string.IsNullOrEmpty(fId))
         {
@@ -106,5 +116,18 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+    }
+    protected void btnRefresh_Click(object sender, EventArgs e)
+    {
+        object obj = ViewState["FID"];
+        pageTool tool = new pageTool(this.Page);
+        if (obj!=null)
+        {
+            string sql = @"exec SP_GC_TO_BZK @FID";
+            rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
+            tool.showMessage("操作成功");
+        }
+        else
+            tool.showMessage("请先保存");
     }
 }

@@ -23,50 +23,37 @@
                 form1.btnQuery.click();
             }
         }
-        function app(url) {
-            var tmpVal = ''; var fsubid = '';
-            //$(":checkbox[id$=CheckItem]").each(function () {
-            //    if ($(this).attr("checked")) {
-            //        var id = $("#span" + $(this).attr("id")).attr("name");
-            //        if (tmpVal.indexOf(id + ",") == -1) {
-            //            tmpVal += id + ",";
-            //        }
-            //    }
-            //});
-            var cou = 0;
-            var chkColl = document.getElementsByTagName("input");
-            for (var i = 0; i < chkColl.length; i++) {
-                if (chkColl[i].type == "checkbox" && chkColl[i].id.indexOf("CheckItem") > -1) {
-                    if (!chkColl[i].disabled && chkColl[i].checked == true) {
-                        cou += 1;
-                        var span = document.getElementById("span" + chkColl[i].id)
-                        if (span) {
-
-                            if (tmpVal.indexOf(span.getAttribute("name") + ",") == -1) {
-                                tmpVal += span.getAttribute("name") + ",";
-                                fsubid += span.getAttribute("fSubFlowId") + ",";
-                            }
-                        }
-                    }
-                }
+        function BackApp(url) {
+            var items = $("#JustAppInfo_List").find(".checkboxItem > input[type=checkbox][checked]");
+            if (items.length < 1) {
+                alert("当前未选择任何项");
+                return false;
+            } else if (items.length > 1) {
+                alert("只能选择一项进行退回");
+                return false;
             }
+            var tmpVal = $(items[0]).parent("span").attr("name");
+            var fsubid = $(items[0]).parent("span").attr("fSubFlowId");
             var obj = new Object();
-            if (tmpVal.length > 1) {
-                tmpVal = tmpVal.substring(0, tmpVal.length - 1);
-                fsubid = fsubid.substring(0, fsubid.length - 1);
-            }
-            else {
-                alert("请选择一条节能材料信息接件！");
-                return false;
-            }
-            if (cou > 1 || cou <= 0) {
-                alert("只能选择一条节能材料信息接件！");
-                return false;
-            }
             obj.name = '';
             obj.id = tmpVal;
             ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid, 700, 600, obj);
-            return false
+            return false;
+        }
+        function app(url) {
+            var items = $("#JustAppInfo_List").find(".checkboxItem > input[type=checkbox][checked]");
+            if (items.length < 1) {
+                alert("当前未选择任何项");
+                return false;
+            } else if (items.length > 1) {
+                alert("只能选择一项进行申报");
+                return false;
+            }
+            var tmpVal = $(items[0]).parent("span").attr("name");
+            var fsubid = $(items[0]).parent("span").attr("fSubFlowId");
+            var YWBM = $(items[0]).parent("span").attr("YWBM");
+            ShowWindow(url + '?typeId=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + "&YWBM=" + YWBM, 700, 600);
+            return false;
         }
     </script>
 </head>
@@ -74,7 +61,7 @@
     <form id="form1" runat="server">
         <table width="98%" align="center" class="m_title">
             <tr>
-                <th colspan="7">
+                <th colspan="9">
                     <asp:Literal ID="lPostion" runat="server">节能材料待接件</asp:Literal>
                 </th>
             </tr>
@@ -83,6 +70,16 @@
                 </td>
                 <td align="left">
                     <asp:TextBox ID="txtFName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                </td>
+                <td class="t_r">产品名称：
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtCPMC" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                </td>
+                <td class="t_r">产品类别：
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtCPLB" runat="server" CssClass="m_txt" Width="100px"></asp:TextBox>
                 </td>
                 <td class="t_r">业务状态：
                 </td>
@@ -110,7 +107,7 @@
                 <td class="t_r">
                     <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="接件" OnClientClick="return app('AcceptInfoJNCL.aspx')" />
                     <asp:Button ID="btnBack" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
-                        Text="退件" OnClientClick="return app('BackSeeOneReportInfo.aspx')" />
+                        Text="退件" OnClientClick="return BackApp('BackSeeOneReportInfo.aspx')" />
                     <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
                         OnClick="btnOut_Click" Text="导出" />
                 </td>
@@ -128,35 +125,39 @@
                         <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:CheckBox ID="CheckItem" runat="server" />
+                        <asp:CheckBox ID="CheckItem" CssClass="checkboxItem" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateColumn>
                 <asp:BoundColumn HeaderText="序号">
                     <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
                         Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                     <HeaderStyle Wrap="False" />
-                </asp:BoundColumn>                
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="产品名称" DataField="SQCPMC" HeaderStyle-Width="150px">
+                    <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="产品类型" DataField="CPLBMC" HeaderStyle-Width="100px">
+                    <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="标识等级" DataField="BSDJMC" HeaderStyle-Width="100px">
+                    <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
                 <asp:TemplateColumn HeaderText="企业名称" HeaderStyle-Width="200px">
                     <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnQY" runat="server" CommandName="See" Text='<%#Eval("FEntName") %>'>
+                        <asp:LinkButton ID="btnQY" runat="server" CommandName="See" Text='<%#Eval("QYMC") %>'>
                         </asp:LinkButton>
                     </ItemTemplate>
                     <ItemStyle Wrap="False" HorizontalAlign="Left" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                 </asp:TemplateColumn>
-                <asp:BoundColumn HeaderText="业务名称" HeaderStyle-Width="200px" DataField="ywName">
-                    <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
-                    <HeaderStyle Font-Underline="False" Wrap="False" />
-                </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="业务状态" DataField="FSeeState" HeaderStyle-Width="80px">
                     <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
-                </asp:BoundColumn>                
-                <asp:BoundColumn HeaderText="当前所在位置" DataField="FSubFlowId" Visible="false">
-                    <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
-                    <HeaderStyle Font-Underline="False" Wrap="False" />
-                </asp:BoundColumn>                
+                </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="上报时间" HeaderStyle-Width="100px" DataField="FReporttime" DataFormatString="{0:yyyy-MM-dd}">
                     <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Left" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -169,6 +170,7 @@
                 <asp:BoundColumn DataField="FMeasure" Visible="False"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FLinkId" Visible="False"></asp:BoundColumn>
+                <asp:BoundColumn DataField="YWBM" Visible="False"></asp:BoundColumn>
             </Columns>
             <FooterStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
                 Font-Underline="False" Wrap="False" />

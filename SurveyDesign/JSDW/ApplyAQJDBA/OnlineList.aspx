@@ -34,7 +34,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="5">
-                主要人员
+                持证上岗人员
             </th>
         </tr>
         <tr>
@@ -52,7 +52,7 @@
             <td class="m_bar_l">
             </td>
             <td>
-                主要人员情况
+                持证上岗人员情况
             </td>
             <td class="t_r">
                 <input type="button" id="btnAdd" runat="server" value="新增" class="m_btn_w2" onclick="addOnline();" />
@@ -101,10 +101,10 @@
             <asp:BoundColumn DataField="ZHUCZSH" HeaderText="注册证书号">
                 <ItemStyle Wrap="false" />
             </asp:BoundColumn>
-            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FHumanId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="XMZW" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FAppId" Visible="False"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
     <div style="padding-left: 1%">

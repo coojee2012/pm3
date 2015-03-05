@@ -119,7 +119,6 @@ tt { color: Red; margin-left: 1px; }
 .top_backimg01 { background: url(image/atop01.jpg) no-repeat; height: 86px; width: 100%; }
 .top_backimg02 { background: url(image/atop02.jpg) no-repeat; height: 67px; width: 100%; }
 .top_backimgGLDW { background: #59AFDE url(image/atopGLDW.png) no-repeat; height: 67px; width: 100%; }
-.top_backimgWY { background: #59AFDE url(image/atopWY.jpg) no-repeat; height: 67px; width: 100%; }
 /*----人员版-----*/
 .top_backimg_emp { background: url(image/atop_emp.jpg) no-repeat; height: 67px; width: 100%; }
 
