@@ -234,6 +234,14 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         if (v1 != null)
             t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
 
+        //获取增项资质
+        var _v2 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId&&t.SFZX==0);
+        var _oZXZZ = new StringBuilder();
+        foreach (var i in _v2) {
+            _oZXZZ.Append(i.ZZLB + i.ZZMC + i.ZZDJ + "\r\n");
+        }
+        t_oZXZZ.Text = _oZXZZ.ToString();
+
         if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
