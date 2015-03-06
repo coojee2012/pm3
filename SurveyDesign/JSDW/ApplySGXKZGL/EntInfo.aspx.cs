@@ -18,8 +18,11 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            //应用编号
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
+            //企业类型
             t_FEntType.Value = EConvert.ToString(Request["FEntType"]);
+            //企业编号
             txtFId.Value = EConvert.ToString(Request["FId"]);
             
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
@@ -228,7 +231,9 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             t_FTel.Text = v.LXDH;
             t_FOrgCode.Text = v.JGDM;
         }
-        
+        //如果企业发生变化就删除历史的企业的相关人员  add by psq 2015-3-5
+
+        //
 
         var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
