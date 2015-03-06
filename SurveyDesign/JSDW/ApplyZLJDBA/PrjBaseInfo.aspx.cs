@@ -12,12 +12,17 @@ public partial class JSDW_ApplyZLJDBA_PrjBaseInfo : System.Web.UI.Page
     EgovaDB db = new EgovaDB();
     string fAppId = "";
     string fPrjItemType = "";
+    string fPrjid = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            fAppId = EConvert.ToString(Session["FAppId"]);
-            TC_QA_Record qa = db.TC_QA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
+            
+           // fAppId = EConvert.ToString(Session["FAppId"]);  更换为项目ID
+            fPrjid = EConvert.ToString(Session["FPrjid"]);
+
+
+            TC_PrjItem_Info qa = db.TC_PrjItem_Info.Where(t => t.FPrjId  == fPrjid).FirstOrDefault();
             fPrjItemType = qa.PrjItemType;
             ViewState["FPrjItemType"] = qa.PrjItemType;
             if (fPrjItemType == "2000101")//房屋建筑

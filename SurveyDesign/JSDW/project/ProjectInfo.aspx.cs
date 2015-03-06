@@ -180,7 +180,6 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         ViewState["FID"] = fId;
         txtFId.Value = fId;
 
-        
         //showInfo();
         //tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
        // ScriptManager.RegisterClientScriptBlock(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);

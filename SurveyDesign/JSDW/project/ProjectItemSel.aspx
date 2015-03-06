@@ -70,6 +70,7 @@
 <ItemStyle HorizontalAlign="Left"></ItemStyle>
             </asp:BoundColumn>
             <asp:BoundColumn DataField="PrjItemType" HeaderText="工程类别"></asp:BoundColumn>
+            <asp:BoundColumn DataField="JSDW" HeaderText="建设单位"></asp:BoundColumn>
             <asp:ButtonColumn HeaderText="选择" CommandName="Sel"></asp:ButtonColumn>
             <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
         </Columns>
