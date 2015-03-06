@@ -193,7 +193,7 @@
                     资质项：
                 </td>
                 <td  >
-                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px" Enabled ="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
