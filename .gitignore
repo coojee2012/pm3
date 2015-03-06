@@ -10,3 +10,5 @@ Middle/Entity/EntityQuali/EntityQuali.dll
 /UnitTestProject1
 *.pdb
 /SurveyDesign/Bin
+/dll/EntityBase.dll
+
