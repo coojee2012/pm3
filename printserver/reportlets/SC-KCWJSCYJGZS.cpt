@@ -1,0 +1,1486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20130114" releaseVersion="7.0.4">
+<TableDataMap>
+<TableData name="项目基本信息" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[
+select  *,(select Top 1 FName from CF_Sys_Dic where FNumber=p.Ftype) FLeiBie,
+(case when p.FLevel is null then null else convert(varchar,p.FLevel)+'级' end) FLevelJi,
+substring(convert(varchar(10),a.FRePortDate,120),1,4) FY, 
+substring(convert(varchar(10),a.FRePortDate,120),6,2) FM,
+substring(convert(varchar(10),a.FRePortDate,120),9,2) FD 
+from CF_Prj_BaseInfo p 
+inner join CF_App_List a on a.FPrjId=p.FId
+where a.FPrjId=(select FPrjId from CF_App_List a1 where a1.Fid='${FAppId}') 
+and a.FManageTypeId=28803 and a.FState=3]]></Query>
+</TableData>
+<TableData name="建设单位" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select  top 1  e.FName,e.FLinkMan,e.FTel,e.FOTxt5,p.FKind,p.FNature,p.FSectors,p.FLevel,p.FIntensity,p.FArea,p.FHeight,p.FLayers,p.FGround,p.FUnderground from CF_Ent_BaseInfo e
+inner join 
+CF_Prj_BaseInfo p on e.FId=p.FBaseInfoId
+inner join CF_App_List a on a.FPrjId=p.FId
+where a.FPrjId=(select FPrjId from CF_App_List a1 where a1.Fid='${FAppId}') and a.FManageTypeId=28803 and a.FState=3
+]]></Query>
+</TableData>
+<TableData name="勘察单位" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+top 1 
+t.FId,
+t.FBaseInfoId,
+t.FName,
+t.FLevelName,
+t.FCertiNo,
+t.FAppId,
+t.FLinkMan,
+t.FTel
+from  CF_Prj_Ent t
+inner join   CF_App_List a on t.FAppId = a.FLinkId
+  where a.FPrjId = (select top 1 FPrjId from CF_App_List a1 where a1.FId='${FAppId}') 
+  
+  and a.FManageTypeId = 283 and t.FEntType = 15501 and a.FState = 6 
+]]></Query>
+</TableData>
+<TableData name="勘察联系人" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[
+select 
+top 1 
+                          t.FName,
+                          t.FTel,
+                          t.FCall,
+                          t.FEmail,
+                          t.FCertiNo,
+                          t.FFunction
+from  CF_Prj_Emp t
+inner join   CF_App_List a on t.FAppId = a.FId
+  where a.FPrjId = (select top 1 FPrjId from CF_App_List a1 where a1.FId='${FAppId}') 
+  
+  and a.FManageTypeId = 280 and t.FType = 1 and a.FState = 6
+]]></Query>
+</TableData>
+<TableData name="图审机构" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select top 1 
+t.FId,
+t.FBaseInfoId,
+(select top 1 FOtxt5 from CF_Ent_baseInfo where Fid=t.FBaseInfoId) FOtxt5,
+t.FName,
+t.FLevelName,
+t.FCertiNo,
+t.FAppId from CF_Prj_Ent t
+inner join CF_App_List a on t.FAppId = a.FId
+where a.FLinkId = (select top 1 FLinkId from CF_App_List a1 where a1.FId='${FAppId}') 
+and  a.FManageTypeId = 287 and t.FEntType = 145 and a.FState = 6   ]]></Query>
+</TableData>
+<TableData name="字典" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select FNumber,FName,FParentId from CF_Sys_Dic]]></Query>
+</TableData>
+<TableData name="行政批文" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select l.FId,FFileName,FFileAmount,l.FRemark,Forder,
+(select top 1  o.FAppDeptName + '\n' + o.FFileNo from CF_Appprj_File o
+where o.FAppId = a.fid and o.FPrjListId = l.FId
+) text,FIsPrjType
+from CF_Sys_PrjList  l 
+inner join CF_App_List a on a.FManageTypeId=l.FManageType
+where a.FId='${FAppId}' and l.FRemark<>'2'
+
+order by Forder]]></Query>
+</TableData>
+<TableData name="流程实例表" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select * from CF_App_ProcessInstance where FLinkId='${FAppId}'
+union 
+select * from CF_App_ProcessInstanceBackUp where FLinkId='${FAppId}'
+order by freportDate desc,FReportCount desc]]></Query>
+</TableData>
+<TableData name="流程实例备份表" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select * from dbo.CF_App_ProcessInstanceBackUp where FLinkId='${FAppId}'
+order by freportDate desc,FReportCount desc]]></Query>
+</TableData>
+<TableData name="申请表" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select * from cf_app_list where FId='${FAppId}']]></Query>
+</TableData>
+<TableData name="项目数据项" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select * from CF_Prj_Data d where d.FAppId='${FAppId}']]></Query>
+</TableData>
+<TableData name="送审日期" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select FReportDate from CF_App_List where FManageTypeId = 287
+and FId=(select FLinkId from CF_App_List a1 where a1.FId='${FAppId}')]]></Query>
+</TableData>
+<TableData name="技术性审查完成日期" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select l.FReportDate,
+a.FResult,
+a.FContent from CF_App_List l
+inner join CF_App_Idea a on l.FId = a.FLinkId and a.FUserId is null
+where l.FManageTypeId = 28803 and 
+l.FLinkId = (select FLinkId from CF_App_List a1 where a1.FId='${FAppId}') ]]></Query>
+</TableData>
+<TableData name="审查编号" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select FTxt1,FTxt2 from CF_Prj_Data where FAppId='${FAppId}']]></Query>
+</TableData>
+<TableData name="审查情况意见" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select e.FId,
+e.FAppId,
+e.FName, 
+e.FMajor,
+id.FOrder,
+id.FResult,
+id.FContent,
+e.FAppMajor,
+e.FTxt3,
+e.FTxt4
+ from  CF_App_List a
+inner join CF_App_List oa on a.FLinkId = oa.FLinkId
+inner join CF_Prj_Emp e on oa.FId = e.FAppId   
+inner join CF_App_Idea id on a.FId=id.FLinkId and  id.FUserId=e.FEmpBaseInfo
+where a.FManageTypeId = 28803 and a.FState = 6 and a.FLinkId=(select top 1 FLinkId from CF_App_List a1 where a1.FId='${FAppId}')   
+and a.FState = 6 and ((e.FType = 2 or e.FType = 3))]]></Query>
+</TableData>
+<TableData name="告知书" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select FId,FTxt1,FTxt2,FRemark,FContent from CF_Prj_Text  where FAppId='${FAppId}' order by Ftxt1]]></Query>
+</TableData>
+<TableData name="审查备案时间" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+ t.FId,t.FPrjId,
+ (select FCertiNo from CF_Prj_Certi c where c.FProjectId =t.FPrjId and c.FAppId = t.FId and c.FCertiTypeId =305)FCertiNo ,
+ d.FPrjName,t.FName,
+ t.FCreateTime,
+                    t.FState,
+                    t.FManageTypeId,
+                    t.FYear,
+                    t.FBaseName,
+                    t.FAppDate,
+                    t.FRePortDate,
+                    c.FName,c.FCertiTypeId,c.FEntName,c.FAddress,c.FCertiNo,c.FAppDate
+ from CF_App_List t inner join
+ CF_Prj_Data d on t.FLinkId = d.FId 
+ left join CF_Prj_Certi c 
+ on c.FAppId =t.Fid
+  where  t.FManageTypeId =290 
+ and t.FLinkId=(select top 1  FLInkId from CF_App_List where Fid='${FAppId}')]]></Query>
+</TableData>
+<TableData name="勘察文件报审" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select * from CF_App_List where FLinkId=(select FLinkId from CF_App_List where FId='${FAppId}')
+and FManageTypeId=287]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<Title>
+<![CDATA[勘察文件审查意见告知书]]></Title>
+<ServerPrinter/>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-First')}]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Previous')}]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Next')}]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Last')}]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.FlashPrint">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Utils-Print[Client]A')}]]></Text>
+<IconName>
+<![CDATA[flashprint]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Print')}]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Export')}]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Email">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Email')}]]></Text>
+<IconName>
+<![CDATA[email]]></IconName>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+<Background name="ColorBackground" color="-4144960"/>
+</ReportWebAttr>
+<Report class="com.fr.report.worksheet.WorkSheet" name="申请表">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[0,1152000,1152000,2160000,2160000,2160000,1152000,1440000,1440000,1440000,1440000,1152000,1152000,1728000,1728000,1728000,1152000,1905000,720000,1905000,1152000,1152000,1152000,2160000,2160000,1152000,1152000,1152000,1152000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1752600,1981200,4267200,1828800,2476500,2160000,1440000,2160000,1440000,2160000,1440000,1638300,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0">
+<O t="DSColumn">
+<Attributes dsName="申请表" columnName="FState"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="0">
+<O t="DSColumn">
+<Attributes dsName="流程实例备份表" columnName="FBarCode"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="2" r="0">
+<O t="DSColumn">
+<Attributes dsName="项目基本信息" columnName="FType"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="5" r="1" cs="5" s="0">
+<O t="DSColumn">
+<Attributes dsName="流程实例表" columnName="FBarCode"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A1 = 0 || A1 = 2]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.RowHeightHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Present class="com.fr.report.cell.cellattr.BarcodePresent">
+<BarcodeAttr height="25" RCodeVersion="7" RCodeErrorCorrect="1" RcodeDrawPix="1"/>
+</Present>
+<Expand/>
+</C>
+<C c="8" r="2" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A1 = 0 || A1 = 2]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.RowHeightHighlightAction">
+<RowHeight i="1440000"/>
+</HighlightAction>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[草表]]></O>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="4" cs="10" s="2">
+<O>
+<![CDATA[四川省房屋建筑和市政基础设施工程]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" cs="10" s="2">
+<O>
+<![CDATA[勘察文件审查意见告知书]]></O>
+<Expand/>
+</C>
+<C c="1" r="13" cs="2" s="3">
+<O>
+<![CDATA[工 程 名 称：]]></O>
+<Expand/>
+</C>
+<C c="3" r="13" cs="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="项目基本信息" columnName="FPrjName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="14" cs="2" s="3">
+<O>
+<![CDATA[建 设 单 位：]]></O>
+<Expand/>
+</C>
+<C c="3" r="14" cs="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="建设单位" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="15" cs="2" s="3">
+<O>
+<![CDATA[勘 察 单 位：]]></O>
+<Expand/>
+</C>
+<C c="3" r="15" cs="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="勘察单位" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="16" s="5">
+<Expand/>
+</C>
+<C c="2" r="16" s="5">
+<Expand/>
+</C>
+<C c="3" r="16" s="5">
+<Expand/>
+</C>
+<C c="4" r="16" s="5">
+<Expand/>
+</C>
+<C c="5" r="16" s="5">
+<Expand/>
+</C>
+<C c="6" r="16" s="5">
+<Expand/>
+</C>
+<C c="7" r="16" s="5">
+<Expand/>
+</C>
+<C c="1" r="17" cs="4" s="6">
+<O>
+<![CDATA[  审查机构法定代表人:]]></O>
+<Expand/>
+</C>
+<C c="5" r="17" cs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="图审机构" columnName="FOtxt5"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="7" r="17" cs="2" s="7">
+<O>
+<![CDATA[（签章或签字）]]></O>
+<Expand/>
+</C>
+<C c="1" r="18" s="5">
+<Expand/>
+</C>
+<C c="2" r="18" s="5">
+<Expand/>
+</C>
+<C c="3" r="18" s="5">
+<Expand/>
+</C>
+<C c="4" r="18" s="5">
+<Expand/>
+</C>
+<C c="5" r="18" s="5">
+<Expand/>
+</C>
+<C c="6" r="18" s="5">
+<Expand/>
+</C>
+<C c="7" r="18" s="5">
+<Expand/>
+</C>
+<C c="1" r="19" cs="2" s="3">
+<O>
+<![CDATA[审 查 机 构：]]></O>
+<Expand/>
+</C>
+<C c="3" r="19" cs="4" s="4">
+<O t="DSColumn">
+<Attributes dsName="图审机构" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="7" r="19" cs="5" s="7">
+<O>
+<![CDATA[（打印审查机构全称并加盖公章）]]></O>
+<Expand/>
+</C>
+<C c="2" r="23" cs="3" s="8">
+<O>
+<![CDATA[勘察文件报审时间：]]></O>
+<Expand/>
+</C>
+<C c="5" r="23" cs="6" s="9">
+<O t="DSColumn">
+<Attributes dsName="勘察文件报审" columnName="FReportDate"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="2" r="24" cs="3" s="8">
+<O>
+<![CDATA[勘察文件审查完成时间：]]></O>
+<Expand/>
+</C>
+<C c="5" r="24" cs="6" s="10">
+<O t="DSColumn">
+<Attributes dsName="审查备案时间" columnName="FCreateTime"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="576000">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.PageNumberHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[1]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页/共]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.NumberOfPageHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[100]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.worksheet.WorkSheet" name="流水号">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1371600,1152000,864000,864000,864000,864000,864000,864000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[0,1752600,2160000,2160000,1828800,2476500,2057400,2743200,2743200,2743200,2133600,1943100,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="1" r="0" cs="5" s="11">
+<O>
+<![CDATA[编号：       （审查机构自行编号）]]></O>
+<Expand/>
+</C>
+<C c="6" r="0" s="12">
+<Expand/>
+</C>
+<C c="7" r="0" s="12">
+<Expand/>
+</C>
+<C c="8" r="0" s="12">
+<Expand/>
+</C>
+<C c="9" r="0" s="12">
+<Expand/>
+</C>
+<C c="10" r="0" s="12">
+<Expand/>
+</C>
+<C c="11" r="0" s="13">
+<Expand/>
+</C>
+<C c="1" r="1" cs="11" s="14">
+<O>
+<![CDATA[审查意见]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" cs="11" s="15">
+<O>
+<![CDATA[    受委托，本审查机构对建设单位报送的岩土工程勘察报告/岩土工程设计文件及相关文件、资]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" cs="11" s="16">
+<O>
+<![CDATA[料进行了审查，意见（包括问题类别）见下：]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" cs="2" s="17">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="3" r="4" cs="4" s="17">
+<O>
+<![CDATA[图号/页码]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" cs="3" s="17">
+<O>
+<![CDATA[初审（复审）意见]]></O>
+<Expand/>
+</C>
+<C c="10" r="4" cs="2" s="17">
+<O>
+<![CDATA[问题类别]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" rs="2">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FTxt1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="5" cs="11" s="18">
+<HighlightList>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A6 = "49801"]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[  外业资料]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性2]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A6 = "49802"]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[  实验资料]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性3]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A6 = "49803"]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[  报告书]]></O>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="6" cs="2" s="19">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FId"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Result>
+<![CDATA[seq()]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A6"/>
+</C>
+<C c="3" r="6" cs="4" s="18">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FTxt2"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Result>
+<![CDATA['  '+$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A6"/>
+</C>
+<C c="7" r="6" cs="3" s="18">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FContent"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Result>
+<![CDATA['  '+$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A6"/>
+</C>
+<C c="10" r="6" cs="2" s="19">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FRemark"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Parameters/>
+</O>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.DatabaseDictionary">
+<FormulaDictAttr ki="2" vi="1"/>
+<DBDictAttr tableName="CF_Sys_Dic" schemaName="dbo" ki="2" vi="1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[dbCenterKCSJ]]></DatabaseName>
+</Connection>
+</Dictionary>
+</Present>
+<Expand dir="0" leftParentDefault="false" left="A6"/>
+</C>
+<C c="1" r="7" cs="6" s="20">
+<O>
+<![CDATA[初审结果：□合格  □不合格    年   月   日]]></O>
+<Expand/>
+</C>
+<C c="7" r="7" cs="5" s="20">
+<O>
+<![CDATA[复审结果：□合格  □不合格   年   月   日]]></O>
+<Expand/>
+</C>
+<C c="1" r="8" cs="11" s="21">
+<O>
+<![CDATA[   请建设单位将审查结论及时送达勘察单位，勘察单位应对岩土工程勘察报告/岩土工程设计文]]></O>
+<Expand/>
+</C>
+<C c="1" r="9" cs="11" s="15">
+<O>
+<![CDATA[件中存在的上述问题进行修改和完善，建设单位应将修改后的岩土工程勘察报告/岩土工程设计文]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" cs="11" s="16">
+<O>
+<![CDATA[件重新报送审查机构进行复审。]]></O>
+<Expand/>
+</C>
+<C c="1" r="11" cs="2" rs="3" s="17">
+<O>
+<![CDATA[审查机构\\n技术负责人]]></O>
+<Expand/>
+</C>
+<C c="3" r="11" s="22">
+<Expand/>
+</C>
+<C c="4" r="11" s="23">
+<Expand/>
+</C>
+<C c="5" r="11" s="23">
+<Expand/>
+</C>
+<C c="6" r="11" s="24">
+<Expand/>
+</C>
+<C c="7" r="11" rs="3" s="17">
+<O>
+<![CDATA[审查人]]></O>
+<Expand/>
+</C>
+<C c="8" r="11" s="22">
+<Expand/>
+</C>
+<C c="9" r="11" s="23">
+<Expand/>
+</C>
+<C c="10" r="11" s="23">
+<Expand/>
+</C>
+<C c="11" r="11" s="24">
+<Expand/>
+</C>
+<C c="3" r="12" s="25">
+<Expand/>
+</C>
+<C c="4" r="12">
+<Expand/>
+</C>
+<C c="5" r="12">
+<Expand/>
+</C>
+<C c="6" r="12" s="26">
+<Expand/>
+</C>
+<C c="8" r="12" s="25">
+<Expand/>
+</C>
+<C c="9" r="12">
+<Expand/>
+</C>
+<C c="10" r="12">
+<Expand/>
+</C>
+<C c="11" r="12" s="26">
+<Expand/>
+</C>
+<C c="3" r="13" cs="4" s="27">
+<O>
+<![CDATA[（签字并盖人员审查专用章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="13" cs="4" s="27">
+<O>
+<![CDATA[（签字并盖人员审查专用章）]]></O>
+<Expand/>
+</C>
+<C c="1" r="14" cs="2" rs="5" s="17">
+<O>
+<![CDATA[审查机构]]></O>
+<Expand/>
+</C>
+<C c="3" r="14" cs="4" rs="3" s="28">
+<O t="DSColumn">
+<Attributes dsName="图审机构" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="7" r="14" rs="5" s="17">
+<O>
+<![CDATA[项目所\\n在地市\\n级建设\\n主管部\\n门备案\\n意见]]></O>
+<Expand/>
+</C>
+<C c="8" r="14" cs="4" rs="3" s="29">
+<O>
+<![CDATA[按规定完成审查，予以备案。]]></O>
+<Expand/>
+</C>
+<C c="3" r="17" cs="4" s="30">
+<O>
+<![CDATA[（打印机构全称并盖审查专用章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="17" s="31">
+<Expand/>
+</C>
+<C c="9" r="17" s="32">
+<Expand/>
+</C>
+<C c="10" r="17" cs="2" s="33">
+<O>
+<![CDATA[（公章）]]></O>
+<Expand/>
+</C>
+<C c="3" r="18" s="34">
+<Expand/>
+</C>
+<C c="4" r="18" cs="3" s="35">
+<O>
+<![CDATA[年    月    日 ]]></O>
+<Expand/>
+</C>
+<C c="8" r="18" s="34">
+<Expand/>
+</C>
+<C c="9" r="18" cs="3" s="35">
+<O>
+<![CDATA[年   月   日 ]]></O>
+<Expand/>
+</C>
+<C c="1" r="19" cs="11">
+<O>
+<![CDATA[注：1、本告知书一式三份，装订成册，建设单位、审查机构、建设主管部门各一份，具有同等效力。]]></O>
+<Expand/>
+</C>
+<C c="1" r="20" cs="11">
+<O>
+<![CDATA[2、在“□”内画“√”选择问题类别。]]></O>
+<Expand/>
+</C>
+<C c="1" r="21" cs="11">
+<O>
+<![CDATA[3、审查意见可加页，每页加盖审查机构和审查人员审查专用章，具有同等效力。]]></O>
+<Expand/>
+</C>
+<C c="1" r="22" cs="11">
+<O>
+<![CDATA[4、本告知书加盖审查专用章，并经建设主管部门备案后生效。]]></O>
+<Expand/>
+</C>
+<C c="1" r="23" cs="11">
+<O>
+<![CDATA[5、审查机构应当在审查后5个工作日内，将告知书及审查中发现的建设单位、勘察设计企业和注册执业人员违反法律、法]]></O>
+<Expand/>
+</C>
+<C c="1" r="24" cs="11">
+<O>
+<![CDATA[规和工程建设强制性标准的问题，报工程项目所在地市级建设主管部门做告知性备案。]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="576000">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.PageNumberHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[1]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页/共]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.NumberOfPageHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[100]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="0"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="200"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy年M月d日]]></Format>
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy年M月d日]]></Format>
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+<DesignerVersion DesignerVersion="HAE"/>
+<PreviewType PreviewType="0"/>
+</WorkBook>
