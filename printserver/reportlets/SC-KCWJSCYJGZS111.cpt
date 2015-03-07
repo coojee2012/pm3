@@ -1,0 +1,3638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20130114" releaseVersion="7.0.4">
+<TableDataMap>
+<TableData name="项目基本信息" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FBaseinfoId,,.,,FType,,.,,FPrjNo,,.,,FAppNo,,.,,FPrjName,,.,,FLevel,,.,,FStruType,,.,,FLeader,,.,,FLinkMan,,.,,FMobile,,.,,FEmail,,.,,FPostCode,,.,,FCertiNo,,.,,FManageDeptId,,.,,FAppTime,,.,,FUpLevel,,.,,FAddressDept,,.,,FAllAddress,,.,,FArea,,.,,FUnit1,,.,,FSize,,.,,FAllMoney,,.,,FPerson,,.,,FTel,,.,,FRemark,,.,,FIsValid,,.,,FState,,.,,FCreateTime,,.,,FTime,,.,,FIsDeleted,,.,,FLat,,.,,FLon,,.,,FFunds,,.,,FKind,,.,,FScale,,.,,FNature,,.,,FAntiSeismic,,.,,FEarthquake,,.,,FIntensity,,.,,FLandArea,,.,,FHeight,,.,,FLayers,,.,,FGround,,.,,FUnderground,,.,,FSectors,,.,,FId,,.,,FBaseinfoId,,.,,FPrjId,,.,,FName,,.,,FManageTypeId,,.,,FwriteDate,,.,,FReportDate,,.,,FIsSign,,.,,FState,,.,,FResult,,.,,FYear,,.,,FMonth,,.,,FLinkId,,.,,FBaseName,,.,,FUpDeptId,,.,,FRemark,,.,,FIsCheck,,.,,FCount,,.,,FTime,,.,,FIsDeleted,,.,,FCreateTime,,.,,FReportCount,,.,,FToBaseinfoId,,.,,FAppDate,,.,,FLeiBie,,.,,FLevelJi]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,com.fr.stable.Primitive,java.lang.String,java.lang.Integer,java.lang.Integer,com.fr.stable.Primitive,java.lang.String,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,java.lang.Integer,com.fr.stable.Primitive,com.fr.stable.Primitive,java.lang.String,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,java.lang.Double,com.fr.stable.Primitive,com.fr.stable.Primitive,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,java.sql.Timestamp,java.sql.Timestamp,java.lang.Boolean,com.fr.stable.Primitive,com.fr.stable.Primitive,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.sql.Timestamp,java.sql.Timestamp,com.fr.stable.Primitive,java.lang.Integer,com.fr.stable.Primitive,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,java.sql.Timestamp,java.lang.Boolean,java.sql.Timestamp,java.lang.Integer,com.fr.stable.Primitive,java.sql.Timestamp,java.lang.String,java.lang.String]]></ColumnTypes>
+<RowData>
+<![CDATA[m@DF`,W?Hmf1?,60Im2KO@.ID[<NTq<s1(u",mO*chN*/0S@2ORisnQ=kG&TQZ:d4%msFCGf
+;1PPhFTib#ERt(L:\ifph8mW_5tG=""#hF<kGd\MQ%)(c3PUb=F`#6ZNZ'8Lg7i]AJJ,2"#:J
+UAKX;oI$:m%&nR:tc[6M*j-5io43?t\ElroPTV\mYefXm:I<'i9q:Fs0-`<#DDsi+Zro_0H+
+2-Ao-`NpNhm3(Q:Rh*mlBot^/)X<5=kA-?Yd7]A8h#!aBcQo@^ZFT]AGr4o4S:]ABtIC\[eh'l;
+mYiV.9Iqr?/?^4u)*4X,guTXUk*EOq=?>*e!*T25F_.E2/_<M$m]AZWCQ$LVp1Vs&S6mT7[WF
+P?n2e$4SlkRgc&4IT4UE9+mE]A6ptaGa*OI?%]AR[@3m"uR\]Am6>P(HV#jID(MQ4`;Ub05+NK'
+i-!)cj--(67k[jGhFO8*`qlCd*+=rUm5[X?Z[A#9>b#^PoKlB=A_ZUg0JhgKp;P*T!O)]AOST
+I.Qcc8'<A?AJn$I(#D!jkm(&rIVU.L+Z_.4B@?^#$^Y7I-ft@@Efmlbc)b.D>_n'SierP<pH
+2Hq##:E:gh!X+BaeS=c"lK=f^,foO3$TPbn:XMfGV9-?+^(CGk/,!J@@iJIqX_JX)Mm5)Hhm
+;lIgcml+2,@uq[OgOpAgm;MAL3NASf>-f;WZhSol%U^gETorT($Plb>IYfBX*#\'7VJhU\oV
+?fobNneEqgjNSgfRmL\B`&Q&!E%qro'IOfX<S:pCKkP+o`CeLB:ua=>.YG?c30O=c#"CR2J/
+j(`:.\/HbVT^jEqX7&NSZQP7=8=W\nYRfHs>RqPr@;V@Tdk6bfLD$`Y1"jVI4goMVU,'"1>$
+S-gS7u=atI9o?1M.&^8:KkS;Y.1:)R\,;!H!hC)#RNVGY93YH4Q,XG!*a\n>L^s4.6Dlu]AO?
+Sa"<n&n%:1P-;7#+s2X"<9]AS33fp!X[$Eb;d`'Q1;NMt1Fj`(R;&''Hhb0''A"QD4^<^$`1Y
+=EV(<U_=st-=<VYu=2o9d:L3;%\/GQZj(GW:',^e*r6>#bO(_1U$S3`#=ZHulJ.I0ABObP3Y
+K-Ij,8E)Fm$je`m3ZDFGCNJrO3%.<0MUeUqE%dKKI!KXYk9$0TDf4FHs5_QDV^ER0h"KY5K'
+cEA#(kNnKM`TeNmAJQJUi<UQ9&VK!bI27fao5O-U(]A![&42=+'9T<hq-&8f$7Eie?H+0Q%e<
+h/C.4V%37X;!kFJA.SMiBWeN0JppSGt[)>cCf6@"u6@+3q($*LVSPWgJco?W6Bk"$),\riS6
+pp>*NB;M&_EWEnoAC*^BK?J*+<@[^3'(1:LhDKt1j8!#q)o]A$g&P[e<!+(,GP3mMmGf4Ff@Q
+,CjI"2[''2(k3$B9)kp$5#)-T"6\^i^an1Y2lbm\(qa*[Q`e&R8@oUfF^n+rKPIg8VsXWa`M
+;B/Q"co)V>UBBKj[]AKXSg*sC92Kh]A,X'u:-N:96.^a)B0Pfgfj*u,5GUhd42o[+%B5CHu3b/
+<mVYA>emTt?\dl_KF(Zl?.2b7Gk4p2$i7(6pX'Jna/q/<Xeq9dL9iLg[PbltlZ2B_G+o<,=-
+ETN=,,GW2N1hR5NC%c1Z1S+@SD1qA9nFlAZR,/u?<r1[R$WWmBX1Jup@"a\/,W(`l?_[GJ]A@
+Q`s;Xq8Q6btS5qem*D7AE^59/h`<qJfIa_fc#5bgN(>6QDc0J-@fJlm56[+g'J+s@[!3p/<K
+X?mjOXiJ)>^]A#P[,bhkFcR]A0a.?9'0q=Z()R\4Gm[b#>n+EBdQgoFA>APg\OliChm-SmFjmJ
+/"02>g>We#i.)KWGa[BoRTM)9YU34]A_Z)>;[l[N?*hOJbh2R/W'gQu5&7#7_eIYtm1CCrMC8
+3MpJiT#."_(TP&Yp1b-H5.*98Os+Zq33K13D@J]ARIl0lL5g*7_3N@lL4C'XR72`"LfRWi13r
+*/B<Ms''p@<dc5ki/2a2kVAu'sM;ip!WnaN.fYgKXhX,^aK[oZ42Z<q6<d]A`uZt"5RdQu=g%
+tS21P5_5r)/e%sT"'0b@q`#[D#9[=-9P66?S@MMJfL%,UeF>mL6WGr:Rj[i@=p@80d[d<iL>
+W#Rg5QMH2!N/OOtMeIIcMRqA:1k?$MdNgQ01UPsfc;]A</IlJ/aB;*)K@oP7jiF;HRp)ZF<+K
+0F%#6XpeX,2`D%LI+sd/Tu_rMAi*]Au*\?;d+;0eNb)75Z@1E@"=lL"HS+Z/F+Q%H_oC9^Sa0
+&4BfY$b:OC5=8W)+f;)!&188mHR9*&Go$1Y?K7nLH'8E]A`M^*9Uk,'HRRF(V=mTk,.iu>Jn$
+e?P[rld@7NF.*6@ej"O\*^]A8s(KM.o:'Qm"HC?XNr'n\7X>RPW?&q"c*25j;6DeiH<(q1(3L
+gV)63_3*ZlReRV,S<cm/BQUE'VS3F:QHZeG>7ReE.7BOB:DsDU*1:N6T6m@]AskBsS0;qkcj!
+..*5TBd)psb(cAX2^9;#*\F@A?R!ZOs)\5^^-9[3)?D/0S:^&`ul"`Z5XMG6jaKYU/7>'TPb
+7f9&l8`RVmT6l$6QX+W[9BO+$9WbffE,tg'=hSZndojBUNc`C!-o2BeK>OKp$1'?X#X4?O`i
+IB^N;o.r$i&H8Xb8VV&eHITd=K[n,WI0>GpQt)P%W;Jn&tYnhSelp2Vu)/:LKTtDML0o(8Sh
+kj!CHDQR#,^-uhpkX0T^Ff$,s1A\WOoNluMfB%MP`!QKEG3_!'1.OcZM-6P&tQ(t,U^S\=n3
+E6[9(JIg>h,tH51WJpSgYX[d/PAtPfMS&u,qJaUN%^)SDk!d.4Ob>^JX.S`>o6]AeDZmTZ8l2
+<,;N3H$3_^#!WGEg<6_IS8**PZ=7<ri,/Lr8l]A9(@LNiO>\2HS]A@A*CuWdk&J$04MO6j@\`/
+PpW"jKL<%1Hk=r7`j)F-H7m&sOa14i1?e,SY9.Req"-]A')60jlDHX7'A_.87r9<*Ggt_e_n-
+Q"R?XLS?;&S'EraGEODormZmcXB.qWjK^H18f8m]AY72^46"@$`B&8s.f%3mjC=\`"O.RK?M]A
+=<H3/8Y54p2Pq6XtcPZZF=Xk.+#qV>V8L>*DK18e]AGt=B:Y?FH)-$jlIFX,Sm=5\QCjAR?\1
+fot%IEa%C4nN;/\.uj5HDeD%!BWtCML`.Y$aaA86I=YLKnf$VOAe9)`+ZsJ:!Cf1h+;FU:Yh
+s(4EP4U-_DuF[<5%se/+c,ieaMM$BE,a=k'D*3X2JC_Ec8e;glE>R?]A2t>/3RPr7@%dQ`#uV
+Xk0kJL76r3Q`?T]A\8K:Y*4+3Q9N!54`4-5XV`iNl?QLO3R]A@=gU#r"%8\'ULk&`]A+UQHFg,[
+015$a?-\`]A4N=?kFu7enChIXu&P#3h!G?bHP3_l.!&BA'R]AaTt/lL_kH4cQ%kI*pl^Wj%!(C
+T]A5fC]A,946*>WWYP%TPE2fslR-94ba6(:U!sR_O"[-ZNh&B#fZF<qe'[HlM$[):Oag8XQ9Y7
+/;B.S5G`$TTDE0R9dEYa3KEYeO;,]Ag9=>0M`.Z#@_1]A5kfZ;3.tY<0e>7]AN-M40O7apJGYOX
+%;(_?hp?)sJCCA'PM)Ua]ACXd+)H")+mF%6P;iIEC1mM;;Fq($K=21t:R[F&pT8cs/0BI+FF*
+nbRt$Ah:t:dDeY-Y#@fUd@IQUE'T&0J<3:'gi<%RfjE3F-lle*]AOW\Q`'uL\DMQQ@EBDZ$F!
+K!JVC;k?P9DF='#4i6K$dJZI*r9Co+YY,brb_![I!dcV#1bJ<FZiR3\`D^A\khf^5f`8<Ujt
+&02m4\QC2Sc,"n&$/u+AEbU$>crA45)?WG;hZe^aE=S8:l:$M+^Q5Pcs$s'OXp\'Vt:?B\?b
+OKS1")^pj@_F\t388TCn@FmoG&1ff).si/P41ihJ`pDP,9E;S:-]A=1RJ3P[;8;&F$?)cK?oe
+jSR%o<<:FlbcP!4I(GQ[/(moU\>hO!SHFABFdD_RtfJr\#rfgXhlNK.bX:Kjf:F>WW"2XHVj
+Oqu\S_/9mc@at^=;%c5GE1gY#%$blFQ4)l:l/$8`HisE8h)d?3[%pf`:5[]Alhg#osDeQ<9nI
+7@WX7g*J[hZH>jZoR`Oug8G&oG$6p`%7d]A#):kE:Y#*chI4CLQ5*O^tcj\j->8GGi_bcSJp'
+Zqm,/7$K%Ma[m:WG7@E6cMlP-g&sg&Z!'-?RC9qKqZa_c6eg%+/W*97?"o+V@YD0"lAlY/7d
+W$/kW9<Kli`uca[^kZS?=.b=Wl=\MWWhr_OF,qhUco@Ob/ReC8Re&a,WhT-LbeHJNjBp@rtH
+q-7cKZ=]Aj/+A9T7<)4E*U.F=G>Y>]A%O[Tk5L?LV>=p[c5kRQYD\;`TW*h.1h[E,uTYg;i&7e
+eh2fIp*VhUl8^lsi[!ZUe'`[1<A!%Y9XOH=[>!a41^=.<gQJZ]A"k$(a^l9.ma9_S):-nKm)_
+ZXl)]A)5l:tk>LFj@RY=c6Yak,O>HLQ5V(FW&?A$;4Q-6c^#&:1?jnTV3E9X"48`a[0%Vjt_O
+*;j[;PQuSPXpYF`S*4)eX<pF__>W$Yl&'J5g8R5BYUr*B,7Z^+RZ=D%>TS1-CAhA#B>CsL5K
+f2a2""fRk+#X+dPQ<jf'8%f9;t\C8=&\cLXK2&+_7(#j8KkdMS565J8&92\nX^+.6&N`e)Im
+Nn$O8722fLf=q\"h_rY!gcf5\20feunpolB9;5sf,8T!Ts--9.;?$</II*;u(W(Fka7LA08&
+XVJ4$>[NZOba[ZP*tYt8qq`n2+RK/i8c.EIO]AJ2JZ8r[P!^X1L<ETYPCt#.d9f[W7<7[]A8^?
+\I!j1pO&:'WNjSd&uqVnr(T=n$9]ADe;"sQpfW1&]AsYW7o2N?#qCYX'(H.QpjB,.VUkGG30oL
+-G*.^f<ftdX?P\5t&^7#tY2:4rb`,-O#[0"!@J6"@@$7dg.Dad*M-=ln=P4^6@<Mn*Z9.os/
+-NF+=9,#GA4S*r@g\M1Z,m"I$f!8m6Bo'$7,!Sq^$<d[5^%;@XQu5gOZ)l2YKf4MO<\G*%$.
+9IWuN]A$T&ut+KP$Me`[&YEIo<RKS>_/i)@r=Ne[B-Tc=V0HF4IYuIEcl+J\EcF^9-nTggrm;
+3$l]Ag.N6Z"Z4YW!2J$*r/?*D!CYkJ:fMD78__rBOcudEARga,&X%oSb26<kPA\khj^.(Lc]Ad
+"NIA.cq?(n3CfGd0/HM8O"1:6c5X;NAolMB7/HjqUaN$arpfekDhQI:!b;>N+nS9+i4:8SrD
+L;*e<N8sD0,f&R;q:<g3Kh/5]Al?O!TmZ2O,'MY^AHIE"$t.`:!M*9So,r@\~
+]]></RowData>
+</TableData>
+<TableData name="建设单位" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FName,,.,,FLinkMan,,.,,FTel,,.,,FOTxt5,,.,,FKind,,.,,FNature,,.,,FSectors,,.,,FLevel,,.,,FIntensity,,.,,FArea,,.,,FHeight,,.,,FLayers,,.,,FGround,,.,,FUnderground]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive]]></ColumnTypes>
+<RowData>
+<![CDATA[.k\ri97=Buf8FeKT(Yp-ZF?1lac=ZEPF$<Y!J(CcE'E#=ouX@BS43\e#,VTZ@+s8[:^9=VJG
+Brb(1=k1T`M&GVm2gB-O9\P~
+]]></RowData>
+</TableData>
+<TableData name="勘察单位" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FBaseInfoId,,.,,FName,,.,,FLevelName,,.,,FCertiNo,,.,,FAppId,,.,,FLinkMan,,.,,FTel]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive]]></ColumnTypes>
+<RowData>
+<![CDATA[%Epm@_E\Z_iHc"j0XHhng#HUMV&"B-oFfM;cq:D+@]Ac;i8JZ@Uo@G'KC1CLl'k1SV<]AktI69
+n3sZ54uq<"Z_TSNn.F?uoia6in"5i023MD,IqDG#R,Rd[mp+SEJ4kk1B;#I]A0510&q-nmo+_
+Q2,_7eAeorRC&LK<+I4R#VP\/rNJ3NnIf~
+]]></RowData>
+</TableData>
+<TableData name="勘察联系人" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FName,,.,,FTel,,.,,FCall,,.,,FEmail,,.,,FCertiNo,,.,,FFunction]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[null,null,null,null,null,null]]></ColumnTypes>
+</TableData>
+<TableData name="图审机构" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FBaseInfoId,,.,,FOtxt5,,.,,FName,,.,,FLevelName,,.,,FCertiNo,,.,,FAppId]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String]]></ColumnTypes>
+<RowData>
+<![CDATA[%F2Wr_CuNdiS)2>A38thER&3(#mC_K,R/dN$A:f7#spH[,aM"-N'Ue?eIQL&-+F9r!WqN25S
+Qj)jJ\`2>eQ;0PLu=s13l+s!KpuDaE]AKpPMr=WqekUY[91^eolE-Ap@%OuNQ8FF*pr^q;LQ1
+Q?!"r8gp^KNA[M#g4mL`dd@gVV$4nda0=f3K>*+I<~
+]]></RowData>
+</TableData>
+<TableData name="字典" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FNumber,,.,,FName,,.,,FParentId]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.Integer,java.lang.String,java.lang.Integer]]></ColumnTypes>
+<RowData>
+<![CDATA[XhDhS**]Am!3-LnQN69E`e8O3!LXdg=raf,2K?Tcb=\^G:3D)rNHi]A<s.lrMV6@]A%B"Hj7S&4
+\tciaEJoL`"rLaOP1cHb0OHgraDUcS%CADt[M^\%_O;36]A5n$Mq*$+0OJn:\OY.;q:5Z[5D1
+^QHGUSs"0&ECb4ui@2:.Tq=8BJ\l15_4kqUtrd$</3#\;^4C!@CkRD$)(aWT<%+ClaqH%gJ>
+&Er4%qgNYTB6&o3V-`?^'h\Q?68a"?3^=6qW9bjDr+WE\DA/E^*mW#%o0:MV:01-qVgQAI<.
+MOKR"VmpqF-bpl9*)Tq'kiJ&$80lZ`<XUN5ZOi&?Y70jINnL%q5#eMI3MnnKN0([*6ATUa]A<
+NXt(>K9O">E4)-_Ma'WP%[/=9GApsks"P9X70k9/#Q:-glEA0WruR*fcGa`?=n$AfhX;Hhjp
+6>;5):9jL7;*PG:O35'6(A\+,6i\,l#*HqR0Ir?,0_f:94SGF=bSm9j(<;Y*@\Ei!os1?nBI
+ZIW^6_s0-nN14[-t(NR)/F5PqOPVZ8"r$6Z<cAr<>\EVt3VjhP\<k9o0>#>K:>6NKGKC]A!N5
+C*#UG`#?:`^."Yh`kGN`Xa0Z[tjF\*q#>oRJS,EqhNc,ca[5-L55OF`F0Q9*Bn[j;9jR/X'5
+Hp*]A:]A%X!7tH$l;EZ]A\K-mmN4(R(Ji3bc`K&*mkAsokQVR2H2Gl&r#4AE1l&]AW!#OKVSi,uP
+j'trVL(U#uX23#Ho%SCHIad2e.)3IILCh?\F<W]Aro()_;lF8nS&A[2cS)L^Io>Dk`ELMY['N
+f,W&+G1k`=NHLbmlu+PUdF/gb)ik]AuUSpSi"U'lUgDLL"0SGL.ClW@>6:Kf(pA(8R0L;SGU@
+1bjq(]AT1AYXCcM"fXGf7m$<Uh90\j;.Dk<3:1Ze1T^k_.T[dBKeb?#!'nQMY-e%`GIO0]A,uU
+*QS!1(Ol'9"B4P]Amis5mE>=qrSZ:IrC:u#]A^ghnpLWel^dn&SF*N<&GBbVsJ$Ra9K2A0+<BC
+HTj43QL=WTbT=O:HKn0["o%%a#V>J9!nWIU&H?:iYdh6#VTR_F?dP441Q9@`i\J+X5/aDh"Y
+5;dhrM`\#oS#Y?FkhiI@mpEk'h(c8gBL(2__%(ttA"?B9QNX5@mp-+ppD=_PI$X9[bGd)++`
+\[g0^QT,G4jpgK?I3GHNemnN_=Hbk@!b7^Eto*%//!B$*H'sH"HokQNq3?fbA&L_h]A53#L<e
+P.boCG@JKY=o%QNMIlK(#\c;&oSG<M)M+.u@7=fWV5Ih:O^&S#?SD+JI0KcBgY.7(^%0$bPU
+k<k^Q5Mfhg$=Fj]AkZO@lpjPs<$j,^f@06VH%4g(^300BbYu@0S-?h#WTp[DT[8Va_"'6R"0T
+#+=.4h/s4M5g94PA\<<6G/Q>UoN2uh7j"ajtl/M.mHbrbE=e_D(EB/i936K'='6M<Jfq[MEd
+h^HK+<Z?h+!>aEI=R0_jT_^@YL+Uq3J`X>j/*DosGG!%VGNNH*Il_g]AFr#jKe,AOoE4]Au)f[
+84`G%!9,kWc]A@=+C*Af+XV4%UK^;p@-l]ASf&Qu?'QaO_s")lHQW*tHb>?DNTc\E?0Skb(QXr
+k%-qO'*B[,A/Z/b41b3YRi"06Nq8&>si<hfgaB1>SCt2mZe]A#`2c?IommW5/RS`@C7Dm03<p
+]AN2\GiiCCQfcH8*c0qYknVuC]AU@?"aN%\dDb]A`3-gGh^+2@d-hsZgL7pn_qAU7YfI;EMuRsZ
+bII]Aua0)qEq`E,*De-QG"SAl&RUf^4ke*cBQfKkc$'h(@O*#e#nCCN2Z%\EDNM&"apQh]A)f=
+#X0I#e2<t+\:7dHXhj*2(s_%9hnK*k8*Q&MhN2#kI1Jfo0aHd<pe,Q\8$nbs'Ed\rGW$&u6\
+=cun!,sr_pq?2=Cg^d339FrXU07/1\^"?Qds9Y_>OMKf8$CAFL(f[hFTHiiSB9Y9='=_>su3
+Vc^*KZG[3]AW7Q=-P:F:s=btG,B+V:5-HjBS!(XI)9ZTNMkE=EsC9/mF[-#>n+ne7$TKV49_0
+q!1R'4>Fo*bTH@i,m$n<,YRUj\KP=eu.IYi7eJ1f5S4CY)/moJ$a5$Z;J%U)hTL[_3V4;*t;
+;l,soFXE/3?eApBBYL6TBhC(4ZX3XVdS;j^Z>mdO\?fG#)3gkBM:CULO&Tej>m/<2-cW4oI#
+-gr*o5(Z^!!uReu$fHDSS'^mV'!GU^5Q':>95hH*J%^7hG^WS?]A*m]A%iE-lE"2&paYp'G4!?
+A,7QCth%/>ou#Xe"DU\EY0?\EL;7ZOHj86Z[B(S6d%+/e?fuZ^&ir6AWb7R'ij4+Mabs=&.T
+^-KZJAbK023K5unt*Fp\KAIC?Ohgsnc%ID,SHkoDSD)T!',f!0j"5`oWmEO8oK@XVPQJ2d`l
+OXOMQFZ>\`7`&a(<)[b)eF?@N@b,7Tn>Y&CGOicT.sVu3IfLbIfh#*ZDc[(jfa;j;`&u&P7[
+'k5#2*nB.gZVK("DaEdNX]A@LPOQ"Mu"F?C[.!`]AnHKV;NTfrm?=.'3;5B_[?FqgDTKGs*?aG
+n=.5;OSsmP=\d692daB.Zg:1@a1R?4*S_hL="hrfnfc^^E@s=Up(D33DTEk/rR9NmlJ`2@?O
+ej]AP&GZsp+j3n]ARpi!MI2@bY:e]A(?U"d>0\lHN?b(i>%*"XM28H-*f%MH6-Ar?A$o.jfK=^#
+_?7onUiJ$6[$aA'sku[@CjZZi6RJ#P4HW\^-Dl\BZU44uDO[9$'MfSB8s8*8G944%^Rrd]AWH
+2.!ip.]Aff>>?6eHg"J@D#-oNf[rldK9/cl-^/BB3)AQt9M7;+`!jMJ^EtWMWtR:!X$SJ!TTh
+4m#6?n&P:q6^rRIHohVmDg*JSD$%eLd38^kBgj.`+k1/A3MdeS+>rRKUjFag)]A$!eGF"gL'p
+?c##WN-#i:F?S#b_o.*'7Ta!lhWZK!"VBke5K`q=fP@_RoF%0S,VhILA/84Y*?\`f#/Qq70_
+g:p!SSfHJ<X5%o[`l.lb"C"AVuE$1]AK3/+9i.V"KLhk?Ko-&q>PI1$4jn$ZP27k'Oqid(oZ*
+*C%)Pg^HoqNBau1Q2*TuR9NaREFiq\eRHgOs:TcEP?MFm,'c&TYNe<s&J\33I9/&Ks5<J!Q5
+hr8YbIVgWg%Efj0RiT2P/f6tGquV/PE(h9b4_]A4;pKiCeQ..OYbMLs6?!TgQ%0$`qVpK-%)J
+Y301O`'>]A.(-'>6d+^5bQI=4!^?O9NXF\?S0+q"Seq>BB$9@2?<6Y^4mHb.78,.;*nHc]A;#D
+Qnll!@IHA7XH_%k>\JuBYs]Af.CA\:"9lfH^W/]AcbLX!s"0je)ZD&b1LJ00AkR!#(q9jL;fJH
+Br7bpEI`%QRWnB,O,BOLUN&5H:&?eXo&.5"bR\.m\XaFrf?j5KZK6FB!2dHs`IPf`ngVm@Ml
+pj45*L#"cht%a%jo[,'39"=u`KLu?8gmiC?Nib1<b,dn:Ceb7&_f8Tde%_ir1)-V(hrmBJ/&
+u@_KI'#MXj^^q+rS$9[P)08a/%"7T4JL4N`!"NsrFa`&+!H]A4r!l1',&hf(_[UFY3A=,D/jO
+gT$2jt=F85R.>Zg(;X'mMIW%"MEpOh.?fmPZG\FpE`.9%lYQZ501Y)XHmjN2dpE2S_#(5o=2
+1r3BZfJqgegG9Xc"0a@?a,nfe8_T2k`>W[QhOS#oDl+XK@gf\UYi#;XkO_>/_WOM4'n!=EgU
+Bs/)T*"(7P.9\M0Nu(;]ANb7q:c?BmoOERn>@X>?(I_1q"Yrd`R5X9iu1eVNu%gM"V/9A97EX
+S.11k]Apae,cgE*P)/.E(:!^\>F"9CJ0G74p%lkZ*J'a"<mBlVRc,Y@(T(D"3GjW%g\j(8m9`
+X+,2bNDir:-j[FW>W@:U'J&6E9buqS/hr%,Z4N-JImYm&NOFAl=0FG0/orfBa^>*IhlYQ8r,
+i@oJ%[j$a86\;37TI<J7npp&2Z8Td37VKDt:bIs55ZErg_&oqMlli.j'm8e:YD?sO!nf8(&,
+%dQBSOkG:r>2V"*7Of6Ef!s+]Ag5F=!ggHo8+bi2O!6<_mG<A9r_sf_>kc\q%T6kOCi30qa1<
+?WU=nmN]AJT/Gb@4p#573C]Ac'l$td>d!2:a+p_7_9<]A$TY-Wq2aoZ5o)ZQF1)O<dZ$C_R#=7A
+^p:F]AtBN9#_e`)5?0'8iM9^j!eMmDf$cHoVoWPKnWN_H/VMMgqOi4T9f;)GiK_6ijKE3-*KT
+E4*69Y1.-3G"CE&;XbH!PrU4>B5-c"^4C]A>l23UYdaPOn>]A@n-*>FMnOSB@MIKKA2m5.kl\#
+X-_CA"SGcBE206_a@^%$Wg?oECkX]A4c?9lT?nD6eLYQ_qPsn;cTI_(2g!R")eND85*)GctS:
+V43n2:sG7".DZZ=DI,AC-q3NcTY.M=32uFuTnm+Xpp,UM_9!#?,m45k1rqP$KiA\DFhidPaB
+IgEUPgM_hF.+_k"&G.ZD@70CcmM_]A^g6Y>_;oIYLE`;J8G>J>NN?g*$Ko<TKBp@%.VaBKR/(
+e6uYVj[o'JDH5B\8'_W"3KlVI4Is>!H]Ara1G!m5%P2"lKHNRS#.)ib@J:FE6')uO9KA;2Kfg
+d]A@=p`_!P>ae%S[PHfF:YP2u_W,OPC&./O8*H.ACF#.koq*=q,`ZXc+X_?8"1LMe%o39f+D!
+NlD8hKH'Os`]AZJ=/B6nmc-%6!(nEHQ>5;UMBd2gq!0WK4AB.J:,58-roJGIo(7X)9'GTrqM6
+SK"_*+IMERT.*&FQiWF!c[uq`+JQ>NJePOYasWXuJiAq_T9ic$IP2+e@3a$:-mb;dp0]AN*G7
+/+I#0ul/VG@D;FP\=h1=hFp43NF8m5G7eHGLNRHf]Aeql7ka.L`.OM_-g_pY^BhI79Bbj.d]AB
+iEh$mt3@:fnQ^qW;^PkNMo?\(gLJZoDr6S/]A33^IK5Ldcb3/p*1Z!aUl/`eS.ZSCe/>$gl=)
+R9\+7p>E1E^c\#0@_Q2%TTR-%l\G&i8ET5:#PXue[2._Lopl>6[s;[;A:`QNMYW&2V&';p\h
+3#HV$(244]A@!^#On#FPn5>K#fC0%ZCl(6(?U!6Ul;A1"Af?3@3`[4?U8#3u?pOEJ/AJ<(*t]A
+in/ja__>?L!-&U$j,Y"j,q(&8VIDGF7QnO1*Sff8s7re^IDAOc\&ND.DJhq/DoX#XmI)$)^:
+:O4S9c28Gt.4W-]A&%bYi)\1b@q(>EhUiO!Zl4p+^C<o6%mkmjIS;<9d+u'oZ>r^od5i::]As"
+erMc<7M88#h8['KLKm4=T#m.D%=MWje\iV?_@PgI9BOG?7#agWLZ5I--9V.+_0Y`b.3d6#T*
+bJ<KgS-_g,_iP>3CMC*VminHL+%b\<@N16'2!oWpHS[9Huij^*s)]AM7P(V-K;uCS-dP(9)W\
+__'0Og&H4edq_dMmM3#1+Q>Z@Uqg#':WS=F$Xfn&.Yj9cj$RY?Zfr!f:3\NRs@e[GeNE@C@7
+`ERoG0uJAGN7Hiq#@SQRaW3.R=Srjh5ZM)>c>/mAEH6;C#-/5>(rS(RFh*@Q]A<P-IiQ>"cJ.
+*7s\>3m5:Tb[/YhmY&)GsT"/R9g#$,&cbZ\;=]AFc3S"*&<Vq_H2On$os&Ok+M_hP/.$2mm)c
+9$muW$O5[(&$i0"R@9#EY]AE%Pb;..7L3#\6'`fNS`<p!r$g-4Wa(7uO)]AWbNb8_5J!as'As%
+Ikk0"=n#M@V/'l`iXA03#LaNPLQN(,cSR#i#JoglPb\hN4B,pX(UV02S4,A#2WB+5.4U]AX);
+#AU!Y!T^ohX\D`,X99UNDj:.kYbp^&4!Y<VZ??[CB-'r3NE3.cinF"=%;V8b[k=)F7$E.bT4
+qgJMB/]A;F4V%?7Fs0DR,!W.Me*O.J9_nr6m&\g]A#Lf;6iR":--8&OL[e]AdktHkQDZ55O4Jme
+ROI4U)]AEYbjp&#/_'W&589!gLEi"<(2oAb=S[?d--opJH.9[3Pa%//A)fqWb.tjG%KPn8=1I
+$DD5Upo!hnF:^U$VM5eoF\.F70@L`tUqrAS%`G/IV=1^G#K_<$l=5JA0&k6#i6u":A^,agbE
+d5/^pOK=JP&PKM=mX&m=fg\c&_5gnQplI\-`Y@KH!OKo(EHM[;i+$O&(!R!nQ/k^Y\+FJYGr
+rN9C862=Q>K@#eNO<<EodO[92?VB7/'ccDW9^#mZ'bYc,ir3T4?W)HI*J1s:S16(R7<BW#h&
+(]AN0=ITUJ-Q'7OSK-P*kk2PA!KJ,De(`&DCjT5e,Re9hYTr`q)70@<5EP4XXTAd,ST1<F9ru
+531^b:4@7[,'<BH9dY$0W\S^f%<+ZHH&i9HFmWBhgbr&Lk%[1?\'ER"0@q[qA5I5Y_U'U`,-
+[@j*ej(7gXM+/+iS,[KX4fQQjp@oUl7L8TQ+`WX[iW=^mo]A?0k]A*C#T?==GS9(Am?q*D\CQ<
+WIX-\q(:YdIm-NF^3cf2dnl0/fdY?9YJUr1ufWC[Zr3-G0ik-+:?ICT=f`9_"-Z<&+32TVaq
+*3Dh]A.#b6"]ApYKP[s+>dVCFBE580QR'$ngIYPK1=;8!cU59C`fW\2o0qa9;*/<.rIkT^hB7Q
++2Vb%K$k.i;GO=O?J7LZ*);c?T9340FG@%@-CZ6;/&LuZ36*cT0ti[FnI1T-<P(5MOY")XYR
+-]A4@:D/=Y'kFi^%iiHE$e.+QUttc2j+fJ60\>-7+d2]A$=q]AhYm]A(u\R?I%I8#q<a70PO#f0$
+7Y`lBg:I^cP7'"II`)sCWR']Al6+3U]A8NqHe"FX4JMW9E?8&7=GZ>^RmgV'24ON'6%">5*lMm
+UNH.R,N\M0^3'/IHO"n`F9#Ipp]ADtRa?!7bdHXOY/Rp0>#94H_,F*s7LKTb\.HTP<PfjLGd_
+p#m[6.gjai9Fh$IsQ=Es_88(%=S6:Do-&OrIu;3D>n,D8o2YVFYWMP!hP)Ih(YoeAd:Yi=X9
+c<b0iOXi#8i$2fDiiRpmZa37*%hn-V+[n*Y@q;tPo5LCQMF/U`\]AZ_*!Yhf(\^)+1_`!6&(%
+*,srMbOS#!9`\?Xro]AWTN5Rf;9**\p@H&*qgrlFh(,qQ5_$O*`*VU-Ku(hVL#l,T/c4V/ie#
+1"g]A<sR/,.e>Xh<fr0IeK242qY0McEQOK3rojE'C+cVW0pMlr7Q#/r,F1>UL$EQCg2cKV-0%
+-U#-oau3)0D!`Z%jlp=R"6Q7X?3]AhdkrF,%,<p.bs*H>`af2EK0\?a(^UE>iC&W5DMPlu*//
+t_@7j'lY:lp-qnptS!04lZa`3rKs$5nU0=M1f6oD<p94I[)qtGlHBt,sK^]Aqs+ZdBe8]A`r2$
+]AlL@p^ug1)arsD__i;M_8n+q(]ANYUGK\YVE$Lp,$%?"J,PtNc(')[[<$cC(=6*EIfga'aASb
+*4(+e&``R&IpE1L=Qs$k,($:g)_J$'tp1a_P<jJFfb0aJ:&hC*JM8OAlNC9/OAZX>h#o5hWF
+EekYn(?\d^QbP:0Rj8WE!(RZ&OYbU7om<>Pfj+]Ac>I!fO-nBi.p"4X7p3:k&Y,ZAV>Z5s5E0
+eL6heN,NA<:'68e[;F=YCk:3fY%isTOfE^M08Jei7?ae"fW"*5B4UPYm,t#$("&=IGg8ZS7L
+jD7[>=q*K12T@@R5tG=%TFU;=F;QmN")*j!?N-Z9qq8D0XXJ2,.jhlkE3=&Y?F.Jho.5Z*nq
+]AEGr'$9gtu>n5#2GNHlK!>^YD6&Z4b;Ei6^)VEt(G^h=)A42.\X)QsN)kW6C]AJ<o`0\R"UgZ
+IDpShd\R!mC/q#OY-84>8MeliJ6$P&$=38W0q/Rjr'c3%QT*1:t\^@.`9UFMJP]A64JjQN?/:
+3&=!hPaF7t#`)Fh0^:r\VSsjfVNEWh;GT<e+0qdH%_qG6?=#Z4;7.kN6XfWfd+N?U29YhT/!
+A*(,bCB;"3BL;;0A0bX(ADN#L)@SN;NtWnPDpB8i?O?lm.db'S0O,TJ0,,uO!i_Ko*B2n3=1
+T)3h->k<!o7)e.KkA#QMDI3QZdW,OM?u;,]AB=@U:$nV#o,+ZtnKc)Z#+$Q2sgcW7FNPOp"QA
+F_S$466\cBNXt"f$3k2gHZcN0DPjdp#4@MD:>$C,KM-fTAXSnDM/+\Vj)BZ;hG/*%fVkk2jm
+!-Tr)SEN734Am)]Aba\<PW0fe>.jfX8s6Kdp$eiM#GPFJSiPl,<Ynhi3p;s<p-TR^?E7E!/.V
+O8kN9!>%oLSPhB0%dK`[0kNKW<qe`p/;Emb0PjFq2^Fe)ZpO&qQPK(g/KSMtf4tri.4c>NJ4
+@EBZ3@n1h"=qQ&do)+bVL,q%<ZVUb^dmM&)n+A,0@=hg)H8K/Ok)?;NF2Sr!SmBdVoC$i7Ks
+`)<4%jQl\%-2i7Aj]AL6,Vf$CU/J_d`:RUVkFI(2CU]A8$iJa"TSE"IOiHG%lUT6jXX7V9<;1A
+%@7caXec?*kbGsc%lOm)QH!;FC&da1[L:c>Bmk;j\=48<_C*L&[iY$J=B[>j0WRG$o)_jfn\
+tpue@gXe55&Z0[_p3d3\hafjKZn5*X2(VTa-bpV/UU0o&g<8*(P#gq4o-Q]A73gtmFYAVV[+=
+)5%2T#keXpE!))mgHN1n%9*pW3BRf`rnDiL]A1KP;88-k(JM1nLq#FlL"f?$*h!GJI)FORgW<
+d/#jiL7[6#]AXVI60;7&e#Xn+`dYXk)(Z;7,'O%pMFVN@"]A5k4bCp6n:#NGh-`.L/S=\^m`kq
+4+A*%hcmPJS`%#res"9BT@HPno)7)&`91SP:YkOeVE[qN+10[Al&nehduP,Poh_M.m#N0udj
+>DOu;W_&83;p<)"=a@J'n2"C6ToIf#M3MC9VtLM=P^24613KCH'ibe4b*hUYGV-1WQMOkDPu
+)eam@(rsZhgW&g'[#2Bod<dKo"^-#AnFWPmh$+n9k$)qqp=>F$YihP)L<',Nm*!NtHAaA>hq
+-]A1l1hAB1T&&^*cTC5iW?'<<(:";G%<ajN8)T-U!R`NqI,&oX&@9]AV`0]A9NuiL=9*l-6cCSS
+pCSs-&@OISa-!&"gR<@J@2_&<pcu5"<Ha-cQ(15=hFRsB\#u9@hM%B'V<;%E!#_s@i)@A#)>
+!`[2ns:-eCN`$I/B>Ihu@3Bo]AX;9C<f"_iuZ4Fa^Y%6)q[PCLY%JN[^*Cn.F:N>\P[\Gk#<0
+7\I1pGa<Z0#Rq:]AbldQa^HB$<lVDoqT,]AYmh#cBNfMmGVpro'_aT0K*E1Iudj//?J.r3[1KA
+d[IDTW.Q1WUN8hD.ARJ+:j]A]A^1iTIt(soIGFUp/.R@?d#n0bf(*nMr+/MA'?e3kM0r5FNtY/
+G.pu\jCemS8F%^*)a2M/^3U7A[#u40T@9j7u;SPC18[0*r7\sP7YH"YLiiTIZ9P,W"d\j"k.
+gY%=1h$%aWiK1F%^(\Lp=;eR$MM@o<^o_uOoW7,$m?m\5FG"71&R`*$#]A+LcOjL*PSB42?+l
+b`71#l#C8%Mp9]AsT'&LhL7_hm9g&I6oSI.@fqr$+dUh%&\J>PQ<`KK:hrcCAE[l?n":3;qd:
+T3,&3E/iuiRf%-:48??q\l=h\bB(7:]A\4>/Q1>nbZ_UN;`CpiT5reGp#)i<2NgU/n(Xf%qK#
+Q0=iT(&.P@,L!Fsg(p"CoA:GaXNsT;"HjMm'lsldu)Rhkf6Zprk-'[alp9]AahpZF`T9j(&k>
+f8jPV!C3nMf@3J/R'E5htc*(3,DiL?K(sLL5d7^%*6NfE)U=W9B90O>YF\?+1AKN,HndrVBG
+k<PSJT*UC-FZM?6AKb"JUFJF`"oQVF0V6_%R)N),HrTq4ObSZdfC&W?GL^1p0EAi#MQ3'77L
+2,"NPfe)6(K=04U55W+&LRhLkl3icAWdX)aa+FHk:ZqRTQ;?tY64r8_[>r/(FSqZa*^A:]AhC
+J+EjAV<:1DV\Q1N]Arqr*G8sdV<n03j6gr7YQp6i@#'V&XIIfq:'PZb`#Y=7K=%c(4kjQg7[l
+(-N$)ZO[Ur!LH3`dJ0Is^&0HrDu*13f*F4@0.DM<UWq76nGE>IA`3p'@[WW#!HIP#ur$qr%+
+pk/kWUUl^#QK/g'IR\3ZWO=L%BG:1;qcdh8,r54WQ9dE,B.$mBH9P[^ZUm!j!"qOco@)3'AR
+jId;;1$g`!j*q(UNU[4hG0u'DiP'HT-/(9T7"P"iN#P+.i;!t2^rErV7Ue2JaWhg!d?"UF=;
+!&"l>dKWbI+&[=E9"D1$E;!Mii(Hj&udn*iQoH=(l@(!&ASh`8C4Z8!3eC'IFN!V;SgDro+C
+QnG?de">7oHZN?YW7bqs>D]A18MAR1MAGQh"5cA(LhmPATCDV#E.h"?GF]AWjZaUQs+R+AgTcT
+$aa&e>-Y0:*J(!fOsjp0EDMg9N1&NT<\pXV#ZOinN8<-llerqp8QJG&M4U<asbs*Q]A.Lri)"
+k[9=P1'8;!87rCe)+GqfX'IU^<[+-Y__m)]AuXl_'u.DSbVX1:.6`85g[+K)&U#*\V\DuRr^l
+?*&D]Ai]A</P_'GP"fdpYH`9GgNI3jab=o;l(lU]A"Xs.DV`@S"H=--o"GfY<>M*D&M!GN*^;C.
++`k&HPMq#59<g,Ki30;h-ndBD*XCC9[DcbF#rUd[U?nuEPj1RpF-Gc2lRI77I<8#-/mZN>n-
+r;m)CrlH,@k""FJB=>5+Tc6*(lqT2L0rPIqe*tdu_grIBjn<c)c)]AbK8GFdJ265/oB^>r<N>
+VJF@-$)Y5St5(V?jtQhFH<2CJ59I:JX>_o6WKEn:t!F;"%'!Zf@)kmYm2/k&S=*70ZFan3h<
+/`*(u*e>i7IgA@uY.l&_n+eY_Pc=u<p?62S1J+]AH&$l3G<KF(^m+X/d_\#ZtD$Xj7#<+bQn[
+$gEuo<\FK,'n*uC03di@mC7*LW,64?djPi'8mOsGHp%Q;)@X*+Gl?hg'RE4.0jAZLo%E(s76
+mZ]A0B"hhk#D.5UE&3MismHfK^(,RpqZ-RUkBbU5"e;R5/UnjAKp>gM8WhS=&2?]A-3I5o&b`?
+5?uHQW?8/i1I'Z$?7s"IGFC&O;IP*JqDJXg^+6$&b`O0drXI:P@iPhCr`KrJZ3^N!70#mVOI
+bD"ZnAc9kUP"H38n[F8@AI[eMSeofk1*aX/btk3Rse)'DrO;BL?8Tp#AclVi]Aojn/+]Ak69E=
+@?q%H$5&>:u=Lk0Rp79e!N%[V7BNq`4*AhG61$cpn4D5.sHoMGf$B2C*0Rf%1'p[E./]A:E5!
+oHnbBn<d`.*Ans?>`!Lh5m*N@U;o98$)Y7GRpq*rejR^(LGFK:^"XE'VAW[D[fA:M73F/"D]A
+mprGK[#Is=U0-INgdGa==+]AZ1ITN/G7+`hZ-0&[@o2,Eu)eS^t<^QS+@d8VRVbr%2WU2D$$P
+4VFC\U)?+I%_Gd^-oSaYobb+/+IQbo)WjqY0QIW:5hkELHNn,&Ja.I5.$%.*_9fThl=0ARnn
+p<#;j-2!kK7ak6=V_S+I`F"l>PY$16cA7%:sYgV9t291U`JSgHm2+R->bc-_a#,TDCKFG%F6
+N1;PElF*t_b=?^[i'j5pHe8O)5VAS"[DiKJXg5Q.SVF`)uEqk)2I(p86H&Ef_bnmtKH!P9:U
+s#!eP^T"5[*9^fLT-e=Nsiq"P`Kk3%$r;W!AU^Ii2O_&F`hDF#WkAUPpnBr<[b.1;kp%EBC]A
+.l5:n_MUo-`IahMq=^H,DR*Q>b5!0<$=h>CgVnkVfT`DtCX6^LJb7a1f,41G>c=,ppq&5Vi1
+:0XV%j1@&)]A3<<%E*$-N:I2>k0liIS8\(Fe0e!roFY:ZEj&$+56B5KRII7QiT$)+k/a>OM/m
+uQ6kgseu\%Ih2;MN<e:<s=(8c#@=qeW*WPiQI7@a9IE^FGSSDT@O5'@`nZO\=,':XGI4e,?Y
+EoMRK-+i'WD!]AOffnNC]A+Cb9Wn,[L;EnjD@U8f>!)ICRlh1-Y[d@&@!Z_'B@"\IiNi'=1Al#
+I_)P?InD.h0.L:[qTs+?&GJEIR2?ob#MNbW]AD#g+mF90>WeM"Hef3dr73ETs,fhd6P[/P#d.
+&[:/m<OERL!))UeuPLZE.iY,B!39Ob<<30_J&[!l!F,1H8o[!n^#6'QNhNgL:d'o]A`4S:J5+
+c:H#oTsgP]Aj5^o48,nC8Wo51HMsEuddo]AAacn:`Q<glUuP(FSHU%SEQKInY*A]A;!R3%-YCOf
+*Y+@@.fY]A)M\!^N]A.SV0/_nM01hU-B7`hi9/VZo?ZCY+*GRA&`;7<r]A33&`>>lY^[I(TG1?2
+sdq`<Q5:$D:2eGs#aMJE"d/SFVdqqL$6c9`Z#^]AN`TWncIJD1X>1=@bQmH-#a->&L79Z;lr"
+N4s.ol!YIOr"S\Vh-.N>iP;=BWmr=,eoeQ3"df&l*j]Ae0D3%AXWT.4<dSAlXRP1%;4Wq^7]A>
+&Z@bTAfrWl\O9QY_Y/l?l<=6_a"da;d-KD7iDp^ej^e6pZ>2gTJ!)uC2@ULeG17^4-<L2c-&
+Q5uQ&U$SeG)L"k0J8UqME^ccY%kbItrY+9[JnnJr:Xp2U9HPK2*J.)-b$%5]A`FKoE2fh2S.F
+:cpbS*C3rc#_O"/54WMd9F/R6m1M3+A/B"\>Q6o/Dn/#s0g4l$<uPa#3^Ns-UQPRkorZT&k5
+J:H6fP'n3Aj;b8b%[AA#*.IQs<)(#^XKL(fM_/tU_-n7#X':"SdL20)WH*,>^*Rb6j#b9["=
+">ihh(/C-a?t5*"OeHYjr>6W&KjQc2c^f,pYkhmJnV$'oiAnP>Vt9*rQ8m`;pEi7fS.M\no)
+oH"I!b&-:lg(-/dc-48>l%Dt&W*EF%_m`L]A'6,IZetX%?cKCmT@5O=l5bl:>K3ASDrkO=ibN
+r?m?[44WBsD=l:O'DguO2+E>#JMYo1R3//le]AM#d6trd"2q!CQd%bj#<#:Y->.NeRh\#`A^o
+dY4bb2=?qNsgAVjh9E/?4er)D1.^CcJ)$W:_?t6:0tXo"g8rX/N2Y$qKZ_OQeQ)]AS.ANr2Eq
+kZAQ,[W--$S1#q6-CTj#a)j$I]AI]Aq>JWeD+(Cr,]A3lhPR@V`]A@K9,A"u&#'i!0S/MK.4<M%4
+^>uP9TOs2CHf&IbG7!;P6+.I"V:LL,&5%[q!dco"t>Hk5::("F?GF\@<g7Y@"\uCLJZ+7=n'
+bp#++q6jZ?*ZL,'tl-h-,$s7mgN8cn1QRWZ"V/CI-Vo%VAD=S5j&4Cl-EgOBPKd^t8fZNHiL
+:^`*'nE.M="\U.B?=u)OQY(;q(cn@4c2K,<`u*aZ>dD=+l6,W\f$#&B/8B\TV^)#TB6^jNXi
+;PR5,tMn!>j3^mo)bs(lp*l:@`/MTm8]A8L(ofnU=)&)VqJ/i0g^O5p!*O:LlhY".L4D3$cc[
+r0or`EQsHOET*S\BMtbeE$OON[=#n'[DboZ7?q=a'?%JBI5i+gb`^<p4]A_dVkok/D+a)qd'[
+QKq!ctA%Gr(+?(BJqoJ!g?'rl5?bs@*M&2dfP*LX9c!OQhg_b6/2Z?*aL!&%AN,@T#&l'+rj
+I*E<g:jYP*DO(Iorng?hddidH+,X1%bSZs,luGsgX@*to2+EN$Yc!m"Tb*A%!jY+_Ip=1;+G
+P,Dm)DU@kF@(CStDR\A$BSOEX,mV[&A#(@UR5f-]AW<jbIi]AP'(n?(G8jn(Y\FV*.&P,JZ05G
+T0V=ZRVJp:-j#l"9;6l.MG61W*M+p>.ajgdI23aW4L76r_lk/ASQaQiMaD>C;8=m`@?KSp$q
+g/5VH3a&6cg-e5VWJ.A#eSnc7s)WqgadiS,1fFt$k!3suOkPgA]A:Ir$Z=B@(,HE:R]A):OtKS
+M.l[]AVl&siJf1D;5k;WdY/&l?cN)N?Y,q#[F[rmPX1.DlcDnaaL%-HfRS\b*&DJ*R86KW8qV
+WnIjY3]A^E:j*W5,m7A71`IdT;kg*kcr-lY[U1GC):HdF&(9q\a`)V(m48YHO&4s3%5nlDi$s
+h@krB8"qB9>q6CtM3"!7M,>!*.H.D!?</lD=pWO4G4%(-afLA5.U?)(2OK5AXTdDS$]AqSHWa
+_)5BJuD[p7t.k*XC.<OD:b\2gA(#I&Iegdt=L&)Dr4"R>d:m:!On_MN!')c-]AP.!;4j9>;8H
+`.?C:cFHueDFb3(NEkjHig/LH5>_9aNpqM9YB"n%$Ne.T43`>SgP6sBL<FSZT6RqGc.:?([e
+(G$ONh!XiNh?GkO@E[8R`s?E3=El<L4LKYe+<^##n%>#jH;JOWMRb4[5HGZ7urI6J8@YXpOO
+A,,8JKggZ2k$f\@Lt\l]A>Q7ANN%h]A=EeVM?)uVN8s>!Ss,i9SV$f3e<2ea%0+K[WVmm:acn=
+-Z60ESNm8%SNrDkf\c':Oc6UNl1!dBVq=fIh`q!3]AaR\9+C>F0pWa+X>l+okVt!2%+b>F']Ar
+2]AiP^X='ZLN^,C4$ul*]A(2H'+sWL=4Q*97<iFm,jOu=Hmkm>%>hCSfEaqi+p$22s+p:S^WG!
+O0QGb<HX(@6"=`&4k.,Fg3YBosS5;nS\!_p]AWjt2r@Oj+IC*68lG>`in`l(t#68u0((P4m>)
+XnmV4CVNIfT:f<;q#sb$8_+mKuJ(^8T/[iPsMCnf)8VV>,T+n#=<'JV2rmj66r!bF.(uU6oZ
+tpAKHshCoodK@qjM_DD$T1+"miIE4:SoLDfhe./^"fB<'+S]ANZFjBEmNg:g'GaK--C+PbgB2
+/CD-C/n;uC1nqB4UG_&,5&)G;OTCrWJ@3%Xc.nE:i^$lCX=dKRUVm$%'"8#oM]Au^;\Y:RrY7
+D`>Y-+[0''GXHlDg9FlMEk1*KAEe(/3LGI^o5`[!2jTc^6KE!,C2oBlqmENO=dJh@O8>NPB>
+h("]AObL:1<VEH#%`<`mK:C58"l.1pp9iO^3$0IZWJ=saSRqi(SCd3FjRX>Vop:d3Z^Ts>2O&
+&9)eT>hg+pE"4H+FNRVCI/l!K>Gl*m-W01);L*@W`rMtR`&?&2jl333lq0P.3jl*a2%3\+(]A
+u%D?rUOM&YfVO]A"(3C>BikG6lgm<No#TX46*9Y.6L/X_I8cn.Ok;]ACRj/pE$UUo3#Zer%J*3
+5Q/(kqS,&"QO,RS[8nWYN;2`FM]AY\AOU.R:W,&e\aaH'M=t=omLn^B%Kfikr9VA%m@b-K@jN
+j`!o4Q=B7pOXUdEsbLqUlr#H\^n7.f(?!2(9<]AValOF:If1W1NV1EPFRYl+X.m;o*%I/$t6-
+i`?o)J*K./A=u=ZuA4(.:)'+[\l#qS7QNuX/.r`3p5r'H?L!PdY\\j.$7'%8TT"_BVdhpWZL
+)$@cc[%M2c4816!C't7jGLfpmSXN`;G&0dYYG)5&7[C(Hk5*^:lEMV_2,9NC1`MQrMD%gi/l
+*p<Cc[5CEs080VJYlc*_OY=cEWi1>3=A7ZU[^Z+!WS;M^?Xlg-]A%A%;J$(,]AW>^X%^tC3)TX
+^!DL^kZkM6q7u57Ia0I4Hr2N6e=2.U%Sm;Tp)\,>_"T"T;(!cVa22FM\Gm:h:6W`HeqbEiUJ
+1B?OMS+l^W'/k9Lk(,Y,dVN:iok[dOeJMe=RkNaqQZ<^,BT-lMJ'1C#D$#r5ik[X^Db;;KX#
+1$%'P-=QruTZXol@eu?+]A:^X66,ANHV,>#u9^aTpWU=LTjmY28.Z*&Y;(hrCfTV%22NYU8Ll
+4l*QNc6h)XV3U)PsW8R,@t\);KRL>I!$'Qh(,kA?T6-..pNtTRqs%F>^uqs@Sb@E0(EOUiY?
+LudMrC>8FX4C/UONUmn2oX)5VN,d9a5/ceM"hDKdj,NF-o-mYt0qZQ0c)j8=`>WsZUl:Y\!$
+9=/cD#`S,K[VDthW'Q/un>.!>,"I/'\aIqa)5:<rThb3=b!SY!"c$r'ASI\>`Qho:Nb0`pdt
+9Br4l<6AG%mn\9KA&C=9)sNP6^cF6SVF:8kYp_osF&\2IjcH]AMfU*K"UI24bQ'9!lOs4#5M4
+Tgqne5YU6S3ArI)@T%@-JCs6tRC9DI3#aJ5PQ4$."$TU!b(O^#.\8cpDR)sIdN^X75A@SSB@
+i,PIE]A5h+^qU@RaPK4O0tlJZ?i>,W<u\i#;NYY@dW?=^gMY%l<.qZ@U[U!?mY_V6YMGla7ME
+SXQ`+<5J-Z[o,>86.8EVoa-=X!TXaPn(,2.m:2EcNr;'\e*7-8H-pPF[ke2-g.pE%0QMO_IC
+k`j>JR;)"V)="[8RB$(77q!o4AQBoi;cegVkiW\^YkKfhhS6nk)Ya5&D@f#qn22@Xioe?^D]A
+(DG0SrH(<mlLuH'p,9P/619cfImBV1!D>MGD@Spl-Pmc:^6M#9Z%^Y;#SRXD39APtlOd840V
+]AKAtG3/1RP(<RD^+-Ais*a+K<95\K:WreFKW,rCqbmrV5PnLa9A&;.IeQC+"P5En;^*DO,sY
+UP-"pW4t\CRX'_j:;]AWKJ,MN1#a#CXbd_M1"Choa%'BGQ.+si:]Au'fkk4_#i]Ar>JqI/qK[.A
+&>d.jQ23f`%+!t3MkpgBo$lFCI4%^rOCf/\!FQP"A9>oo9E:VZY=IHNM,_cuE5d.VokOseI]A
+#B+L+"<a_enC>\[W[1<FT[adB9(Yc\"oVT5<8"!"a^rN9(gW"2Vshg*O1[G>`Kjb>8k,LrC5
+H.m5Dhn<f*iT0Hm6m):m`0rWfQU:8m%?4d\(;";_mgG.lK&\`<2oRbYOCIV`n]AH7+=b#IEY+
+lWF.pbA;gu!Y,"Il=ub3cRDHLTPLY8;oX_dL/5l1m;HSkp)SURJ@+^9Ml6Pp)DrH:/mZgI,`
+OIln1-(>n;%b0"+i9O:QJNO#X:WsAT'`7`H;CP>f_b5Sd/ZT<gZ&p:4"!Q_ab??`/m:n3)2F
+4%lEpsCOn#[*=nloIJN.)Nhis[.>?,J0'WTPkarFX0fCQEO*J3ISD5[k%=$7K'6Jq-q-\Q10
+E(=HS=>Zj)^=X`31,;f_kg+^d.N-Z`dhWl=,5^n`nqS*4'\PE*'ub9?oQ%!4>r2?M#.M0P.d
+["_*@;L^F/..ZQ85-?<rFP)QX10RmY/p(`?'n'$tDas?T(/XUnnE5hc-CF11+[E1cL\+A*U+
+(E=*CJ.C\2ZqNPFDd*[ah26M98C72U\DWk")i7=0Ek^=I9$;#KcOELgB7uWEdq6-(*'Lo9d2
+7lD;hc#Bk7V@W#R+DcRW@s-mUkDlZenk`%[^+cuRLmn3VQIrD2.R4e,NsdX.TeSAPGDj,D0S
+g>Tr>uND0<:Sa=a\\a<A0+Q^Hr(gS54;?:;9,)@*iY[uFoBXSVP(+po%*0S?L[5<ilH>8<Bt
+Yo7m;>SR%^DVJPYQKW'bl&n3QD\5N-B,l/X#17Kp)9h8jM2+l,k*1GZg@Ir>4Rntj,Ym(O,I
++oi+6r8O_H6VYY?VMMb/U\B[)p__em6X:i/FLTR\-u%6F,j'5,2c8.+/K@q0$Uop)L,f7XuH
+kVZOJ:%p>+4X5k%R.:ea[L0t?+&TGt+41ro*>ab;rWNp:">c6,W)rOrs[h4I"m4St\::.[TI
+!(`=mPSfGZV+aYk'g32g3.*R/b>&*(_!4\;)bK":\h;#DFd_%Uk9-Sm+;%V>1n8>noh<sP'S
+KD%<>Fd*54u=L;2+'Bm;f?j?7&MaOE[,7C$(N,:6,Q/A!e[++LeK7I;<fi(2oP8RF*0o/!o\
+L4G+9li"rpE%bAG1%\+PI!D_Crtj:q5)>.h,HBCphF-.Z)7b'sEl-pYrj0@!*Urrnr0C`FBC
+Xk70'i"S/S;(l?3NQKXQU>9!;Y@'MWE\Tq8Th+M,f\T,!3`WMF=2L/gP9cq&I'D[%(9Y$&=M
+7@Alf+UZ(s#]Ab3GYM(R8':RO8'@PmQ)/W9rT;)FFkB@^AT2]AIVNYKNVb/K<Ldh4\#Q-2?8Ep
+oPOXj7WI\A_7p:*lH'FUSOok@.P>)iX2Z[f:/ZQS&R?\$qn^/^c.jP"Y5;(h'1L;-R<cfZCp
++jDP$&U4i]Af+l(]AT<'%N4sL7EP7;sZ?q(A+N*"<^%MDlfZm[4n#U_/<]A(PK*e->Y-*<?H09J
+X7(kk=%g`u_Xn,JB%lde@h^DJ3+Hs.>WS3ls7-57b1po:F8HCeED2X=^U[6RTR@6YQ@Ve@hk
+HuG),"N&\udi\Mkght-u8gJ>G\6*q"c5FE0ji^q(=Z$eIA<CX,mInH=4'-N[ZLQ^6Ui6[Gca
+Nb^6m7D"R10MBiSu36s8OFRG7@-LOl&.mtgQS8:Ngf2+fIXYUAtDpM89N[0WiVJ'Gb]Ah]A;+H
+V!H_fS/4ML&E/3@u`kZ"QLh6@r<*2roS+u@Ma%O\Akpl1oEW!^q&Qt<$9-&K;P)<guq@hl`S
+0ds'"6W&)kdkYKPns_BZuJW_R_eIG24`^mr$"6BC?L`MD8*WS\rF[bu:u$-,enX^Co<GYQ;s
+M4+u3Jrl8Rdmn@h<bKaWcOi`PgJ%RA.86$K>?;sKATj;rCTtHD#gA#%6l:G6Ybtl-JMV8U5B
+6:n_1h5l+fG(UN/j81HAoqj=HSmts);C>Df@D/6i#=O5"U+aC_uc%BWi#Lb"3M3T!-o&I)^)
+&(Iu/Yf9G+7e;#s[UVkOteN(7j(h#)_3%UI::1Bqea!Qt`S6l#.;??il4)35Rrbkc\FC]Am3V
+k;""Z1E%W8'*oeqEnaYV`[T^Za\fQhpjGZ(R]AN%/1l5lFXn@r38mpb9iCbq[u/ch]A_k/eJ+F
+)K6l'/MqG<+rYE$o%/SqQ.X[Z\B1r6WbiqhcR^8B3"[40#p%W8so6CgTacl$>dXafod*M[F?
+O8.MI[*Shq8-Lt+VoNo[*MIajYdlR*-5&9b(HBG"fYc'!i^(K5o!HJHXCuL<5T`dlE_b"Xf9
+#;KfT)3GZf#3ih*2(BZg-er`q([tW=aesOX)c;bgp'lLSi>;0TDC\\AlR*@&D^.'3ka<VbWk
+k2^giTp]A[RsUOJfq-K,Z=[>i#/oCDR%s6s$<GEr-;\p\*$R?:Ui,!nkZXt?X+Xds;We%`Q&]A
+tdL]A,I.DkMGa5+!i:^&`@N*0:]ADYHL!TPd)Oi3Y188AG)*U=+f5'?Z0X)u&$TP0qYD]Aji:Qg
+gM>rn@InW6Jk@W!F1%4P4_5Z?C\;SQ"'J#C+IW("*kT&$LM`7e"X#(m5,FD#b]A2:%0Af%dj]A
+7LkK96Ac.no4*7i<8_@T>ak!1?K%:R=(bQ1)ce>GqGaI:9RhQUXn@`^HbK7]AI_jUf]Ag*FojV
+3Sr1s+q6..K^Y5+!4gnfQ^3MEiGj$+Wj:$#j@GU-]AZi2#M]AsCI/StQK&*DN$HbKI8hE8Wh^n
+SD4%^cQ[8Kh4DSuIGm'NIMQ6V4_>Jao&K:fNL]APD9gKEr#Mip-pd&R-c@h4!)'a0%,hm_abc
+9csH+4SetJU:/Zi:K\cVQJu.JcZ*!U5o"5$nTb9==lnoD"Nql*AnBI4[$8c+]A::Apu\OTjc0
+/R%[LPG_\LB%lWQOAY6KV+0n:[>i/.902iBukO):Ncg20Yn]A?";MjPjJ=$KmPc'uA,"K>h(j
+)OR!(aV]A'MWXl"fbV/9ZFX/HP^@7P:5bSB1%2@XHjR;k%LNu#g^$L75Dqt:HYG]A8V?M7peiP
+l8qMe)+b,AXE(VahMACI`kmE]AA>u'84&m;^)DZ#]A^1Oe$eF=U4aCbPU8TLHpiohL$L/)M_`7
+Yf3VHuq_idN`Jt>1rVbEqU@K<\0l-'[4P=pjk)s[\2M,pb\47u^MP%#2VB:ZVMcHL)`d?='%
+t?q/CN0Y''__CPdfPqK2=mU>$^-J)Ida;uAgUaj40fK*KcE.T=)BlHLnm8MB$`VhC349(OTa
+5%&o))?h4,s\"M[U`>$>pmg1]AnJ+2U_!Td-OlKgib!#4'YP*MdrmfN2"smIiKjbNU(*1k+8W
+3?i"Y(!UBg&&6$e)#fNe'=H2q3Y8b$3.itqY2"O4ffRR'%<ES+(rT?I7)=9B#1^j3Y*&#1G>
++fF`_t1M2.)CHpO)Yo*65B_4SV<oGMLF``UBp3<r</G,Q3G/aLO6EE@F\@JeK2CIq[%Bb*W<
+''B*ec3Cf`6Rg>_-Tur(JG`&R$M<??tEW*EiebDP*MB[n\^s(ifY`@`Hs2\pgd1)$^DpP59:
+DI`39@gn743#Bd:pZ+mq%9TYb[]AZ=e,D8ua2iMj`c?0iAB7EcdrO0%(*Ds?E*$0L\;@2]A=s=
+oB+gT&7,b[UAVE[)ch6+b?`irZ@,T'Bei,6HDMB+'V>&0n,Q4MT"]A)6i:8Ok4m#46%kd\TJM
+.&/QW_:/N"T$hr%o:iIXf\a3tc=nsD*pFCam^aU\8$q)0TbSofXr39&AVupTf\q1H8cK#2Y*
+L^5%SK/b)bQ8bd+(YkC0A9j&-[_*F#G+_Ln<5ZO`#^J"$8S:)^4E#0s+"?/T)Z4BH`s)UoNM
+5()!Z6ppretoP2]A7oLqZ?"A$ULNM=ETeqdP@@o&/&mQ9\lME[\tXJ8<17>L4T-#<@?8D6l+.
+A`f_;]AW;1:<l78I7N(t%Zo`M#SOTHV[W<H1hT5<jl"^+DcDW:b2ZK+>HY_b14\l0*o]A\Ze-\
+J_72SGJ[LL:'PhXg`U,>Idp!^]AI(%sA_m/<Bi^/"*2:l1pO:)LE>Abe$KgghZaYEc"T()qh`
+C*=*L\cS!(T<i-(B=8[raJ'Qj3HGbp&Q9,(h%;aHDpC;oS$llK7,K,(N:AbmkD7@OSJKW!]A&
+bHoQ7knf0%'6[h`K)hLQ';>AsC+5YPC::H820/,?Q0ooRR[*_%;ScO,DYRd$3(2NuHUUnaZK
+0Ul0NH,&>Q%:=.fI[S"I-nac+:l52b/ZPV.Oloji04&U@%nP!8IN:q]AmJ.J&iFn*1GEBM@5S
+nh7V&a:U>=sCR6UQ/cP5\gtIH0W(=/E0qrK$9?s#[!X'4^:bi`JOM'PZ^*Y)VnRn]A2DAEi`9
+V<-GcN"q<;!ne?!eaSuZA'h#TJsF/%&&+DnUeRaTW>/$k:2MaTs$"$mC(,Y*UI.F-\J]A@18a
+`ko49>#S$FU1p]A);2Yi\&<sg(ot3J(W-p9dG'<GDq]A[Wq_:AJ[nB:_OSGOcJVI?TI1S#t/EB
+il5->Ap0V3Sc#UfNg?Q>@>ZhJ0S_AM5.?Q-=Z;BdN)&?0[@O1p(4(JuKc;/4VWtbk\6T<m7[
+E\^```$CMI7:?@3Z(9-MK/a6_!`?Hc=\QZR?W9?jDVZTl1PUSI_3HhGX.`ngnVBZ<(g\]A>Ng
+KHCZEo.ZY3U]Afbo)2_5bsG0`/BGnoe$rU.$[<9).X$M1$\CJ;LHC.'+D<97!FZ*<(L:pP"G>
+N(7)>q+2D.WW6+b?3NXFhrL8,VD,^V>O;^C"BP`eHfd:PL)&UNLXLbbLYOV;I(kig-a!kC3<
+-(2UgM81%krE"Vcd!W$3DosBjS#7A(*U,9\MRhVT>u/\$RqEjb5;HYbHKCj-<TfC[N]A?L776
+5fuoP>RIZY=Xj5+ds)I;!O9@2.:Fd[2<OdFG=9II-fahUFB)Fc%PN$/O#shM;A<jB=udLoJM
+IX8&;2`EGc<(_:cDkC8CXBO"?CdCd:9mi+m[1K%&F`qQlF0(F4*N4Hr;'DjHFWl5(QJskkDp
+>!eJ=kqRGBU'G>ET+9O\3/bg..2o*WGAp9i"V&KnEp5frhio7cH(tOImiGf7,45fGm_e>W.d
+hiP\Xt)UPCHY!-pb2:AmV*"*k.Y6<Me.7s6%mCkO3T[#X;fY)]AG;^`B*Tc\$r)rm?,oJ+0"]A
+4HVaB@)3.`mSeP^S2*qc6[eID36'Ob8T2tZd4\a8H<!?+9-efPmO\-c<r'<^IoAcR,MNeSgN
+\j6Cu[?5fL:I0j1(F6:3O]AR]AWh74Fj:1\8mSso7lWql+]AT0o0`[kJBN3Zj6:t%PGZ8>%OubO
+7QK9moa)5'n`CsMr=3'F>S%h[B:l8pr$@+&.+_d@B,C<^6I?&F'iQ;m[Gc^FPY+#Y-M\F'q_
+#EIrH$YH/r7N.97TYimb+&YhT"3i9"ERDQRs8;Qrul!Zg6op!BD']AH;Il!'?5'nJhaV-gi`d
+#mZ`#7cn`]A_O"o,sME3k>=:<7]AuT;,qd-2UG(gpM#$2O7`uaukGEJL10X[QPDW]AUl@$%oLfh
+6_@kTkqn>IrjA`nOd&.0&JccB[]AgBrPI.k5Jo^?p&H<sj+o(SsVh`!bAkPJ%;#;X%f$SGHc.
+-X(7@SPe#`/W@2!l63EH3.Bl"<NU?^i(Y*L*fI^$Y!W.A_^UQA&.Z9/B/'`m7lF]A:I"+?S!f
+pF\B[s)mct`rF!C\::\&K(-ghJ]A_F(aW.a+M[kYkiB14m&q`,lo&Z_oa(Khdg!b3k\938:Fn
+.>+4-1ArR:+I!q*I/oKg,!R>f/HKVAU1o5NC7:;=<fQ*N_<q_qbbjIg+ZGe\k4@Pc/9O\rfS
+:Qk#"hklG%[sH54'@ljtm-@gPUK.D.eYonqi7XIUs1=1bY,Zm)B#,k.ZQa':47rnfeRW]AFC%
+'F^g*/o_`BaRJ8!X_%h!Ta^Na,R2+*ioH>iVpL"N0&W6eLp"+R8XG&lqlEh9$QJ[e_m']ANZc
+l*Oae$VeN?Yf>]AL5?7N*J&egsp3A#Za0"glNDmLfgm)G91iqK*Ca>E%,#2%+M%%I6p;kW$(D
+)q(g)kk;?6Xjki#5nTJJ'Am1h&&-=D7!CiV$r)f0CU/iF.d;S;*ol"[S<WL]APD8n[mB+p1>_
++/7s[-sG7hK7lf$>5d.b(bEi+'*`Wel'o_``+7^,"\A*Ef-DbUG]AI+Ibu]Aln-&Gth:de[8=n
+NnVt=K$6q7/<5>.*?L_:Ll,F$>EY4!-Tm=H5gW@>L5Zj^`6%2/KqHE&e><4=Oe!D(69--/-0
+!]AaN,V^ZGrpp\1?37Y$BDj[[F**Io*RAp0a91:<cT$o5(j#L7?#F>4UU]A/),TEf5NHmMh?Zc
+%BJ^>52X@sAc/.-e:'mkF*@CZH?W*n/$J[p_KA"oi^X>=5)EMI^77+qD+;Z<!cTZClO<$jZ#
+WE^OAOeH[n0?!qYSLD-`5WCX=p1HXTN<R#T;WR\@13Z+7r1LC64$epNBWL8]A'LaH/)-Bs#92
+5(4)#b"#1.kYTS4H1(QVpg>J9_ebgbXfQ(6UK3^*d*TiQGq7WLp+%9YJis/9`$d'DQkaLL(F
+<@bqBup1ksH+M7r.JL]A-'iK<%[A_,PX@2.I-c-aMWCZBn8+T_jZ*21$c.H?&NQE0[To)4]AiU
+C)nUMH$;I-D^2gRD?ZG,YNL2;6N5'"4LYXe8%_Ec1c-$uDHg`@mdI6Uf-9mZnNL6n`*$63_Q
+u1b+jdLqnk>GbE>q.hbR"=+Hr*&V/g1qX`<=B3HAieG!ni%^HA01SA,=d\S@T]AAP36;0A\J[
+p;m7)u!L)n?ZV*7>*JJF5Fe_qoKO?312,'ZBeI^QlWR4Kr]A3U2U[AtC/J4R(u<$4F#Tss5:3
+\\Ib6T.'J/pmV]Ab@&bZN&*P&nEPW`Jm8M?Z&/-33&rMXesm!N+f0M1Aur>XW19N[.$DjMO=L
+7:d0qS&LISQ)N-gANS4Ei#2fk\r!RQsZZJVqBjeCW+26aJ!2]Aj2`k>?r]AP29'0TVXY)]A!HO0
+ABmUuWt`I"ST0Qq/fiGB262=GqUDl"b[8g:j95RcAaKkkrKOog)E%g,]A3lQ.[*)aA-LkN&_N
+0>\/n9q5M62QNOS2K[.;!RZDSV\IBMiFoQfo8L5Eb7fUbmk9#>'=]ABaYH\hh/HW^>#[-&'L1
+2)!*a*$V'p"?!LW,,Za(jV4PHM&C*YLa'Ch;K&;NY6WVN,%Prb-&;,7TcOT4XF`PA0d1OT5P
+\riM:j^N:(*W@n,Iranh_bO0.1nQ>^KqCF'euAo8,uX6(0]AOuD%/dN#GMTtN]A1DMUH6lVLK4
+cAO=&*njfVQb!C'YeF4:O:-E\0K7-kO+F3eXMZ8[IcD80"M1Jae*=[1-;Td*U!d#=4#^=@#+
+6E).$T0gWY9QbO_ate/cm`fX;XWZ`54I1!I9#ZshDDZ4N'HIiGf/F&P@'q1g1L!9&p`8.qB'
+2qAXJXLqeEP#jW,glJVM2W`mP%1r<B.(86#)>qau*sn82ilaTr'4bX/-6N-i-KVgAGP:R`L9
+J\M=?sAp:r"]A_!^a."1'ljDeGNhXI9s9CT%K'-5PjY)WT?/a\^.&Mjeh$0YI1>A4:qFh#9_'
+m>aZ?K"fPg$ao,*Ti=P`5.o_Z"W6S&E`#5d<<RaVhHc`PX8%[qf5nH1MVt+aR+uPfZ]AE;l#!
+X:$/XTVA+4qu8%6=,_i76E8kBU*#rrPKM\b/\od<@f=%a>h0Tu(sIX,Ur&ha,83h]As(Y_]Aj7
+;+"K-mER@\p)sLDV*;8$m<&5[b!1)]Ao\rX>2[5:G$]A#N<)uULsS_>p_5h56/7B8nU6P.$SD-
+0*McH4G(f`@*d(.lZd/n[Ym,4d^4)`-!2R)mj;%1]AXHVJBknQ/PtUfH6mC!&@#ESB\5`04qK
+ua(HQs_ko_HY#6N.:ZFY5O6'3BahOA&L:ga0s0V%sX8Qu<gY<\g1++fj8E"rq+[:S?/$6^[b
+^tjl[TAYSYh"VjCZ1sGe'e'9D0D<aJ).:_jg3O6qNrO1'`1"?!NBrJRbf$m`BC_X+8WZ4V`0
+BRR,%4#R>O5.,*@7]A*7c-sn4]AG0er.c]AgL3D"<$q[`$?.h--,t^*D\mHoT2pnHqLId<5#T4f
+,m4Y[OLIm#R/C:p-N%jhBl'fEaiL>h.[-_ugbtfL[c68#QCO4/P5IrFiO$!-Mj4`sJ0l"*YX
+O(R68Z3[jhq^p6(!G<3F!b:8>+?D<Nu7#1CkZ!Z&#.E_.P$K4P[VjS1PNE)Ds3d;M3%lRqo7
+&)FsIJCt*(YU8G,Ec<U[r8mjM1>a5G8neh5AiQh<Vl?2i0oE9I)c%#)`D=qNPh&R>j!a'jUE
+7n&:ckSoY;052s7+-J6Ru^"4LN#t,3nG20a]AB3?,THJ+f9$4R;I3*T,6]A-c2<RC5a^1QJ%GO
+PI;jlckoaJk]A?9K6t@geE<f-sMrmf^,'RQZ>E$0MiRgu>A-g'8M5j_93fK1W#+p.9kp<Wl>I
+0uZJoOBCRYOoMMk(6E\,0Up!I8*so9nG90]AG%[:a_PP_id1A'&*A#:boDYX,'#E#4V5UWPm.
+]AVi7g%ULI"_?!meL,PU8<gr"q$`i_M;rEHDY$Wa0b!)VqS>VZI1S5;7]AW[=ki5FMj?3akpS8
+E,2Zf'9Q]AJ5+#8bM*_V@=B;f$_9UWatnD<"sF`mBCLm7tU"o9VEm[rBV3A-l1&Yqib,^)'a/
+<Rd)T?-ElZpp:I&5eADe.)>"n7Ke=-Pum+>.:dYZ67,m!i+K.g,/P7,81l+QJi[4LT;A)Tg(
+a[^,]AqtD^7c;oMJK9ZWBV`\f91`'-<KulK13qGIT\/eJY^fIF59$>%$n*_a!=(Jmf%5P_o2p
+]A!H5P;kAqLI@J2jahNh/K"Z_A;(cKDa)J<r_o[.PL+Tq\\e6d)VK&0TfLB["Y#nnIOs-]ATpN
+4^7V8P>o+DPYl8?&dX><f,hb(>6a`IBE$no[j`9BF*IPqh,IMNkA"Sa/)3JP!<tgJt5DL'i[
+b?=V+-g)=^HSntS%Ug.RE8OEjBh4@e"E1,N16M>,&E5)]AF5FXH^pkc\B[8e.CKgp<:g1f!WK
+Wo=udf2eD)idoq=l_a@?meP]AW_r+:Eb#gHdMu&JnbTEt`uHlk"D$7Ik'HQmVWmTS?_2;V4+P
+^a>uucG)sU!AmR_/3(jIRsg^Jn;"VA+"*+JXOD&No6@>.sH5Pp5>W5FL-EJ4f)Dq1?"Bf86I
+%i]A*qB0fl$GHUo&K-i4WOG>[Sp!\.ZJtn>`]A+GGuc&rY2Q`ucB$CKl<(<Ibd/uOG'6Ik[&gH
+>>fOP+n=1!S)m=o1EX$6ZFL^p'XXh4i1RUYscKP1`C[PLQ^!b#>a%2gjJ7Po/Yo:Sh*c$?+(
+QL5T$>_f#2PFFI><nd>^l>s=*+JXILPD$!LZX,Q;02_4!r,E"aDMOThW4<jI#b++TM6cMIe/
+C0X+>X9)]A%A\!e?,g1(mllM\>`i.VbTW:hC*.>"]A(fYY0b^^OYT@,A[<+I!+W)D$72,C)R#P
++CD`:p4U23cl5FjiB++A`Gqa5WojLm\0/,:m`==BtT!U\7u/I!\BX"q*[jBd,>k%'HP4VRDu
+76Y-@@eGc8s-Ue:1S!\"#U_3k+ibIefcAoa$QBnrhQ]ArFVj%]A@UJ/kf\]A8!q*V"SsL6`F`9X
+MAZhg\N(+I52WRTdQ$hI>DYEi-[(T<fEs<IrKnT6mfTjAmnX+^"beUH5n:Dnh^nI8+:AYhNh
+hW2hC>rch48h*rG_K.]AWK><>rZStBt$RBr%Jen/2`]A;6DKN1:RHN^3A1Fs\ICG:TN?;9FpjQ
+lg]AMZ"S.p:!Y!F"d(',US,Gb9A_W=)E>s=3:T(XOGXcOjVW&34<E+&4>aRX^Pcr%_sJQ8kV+
+JG>oS7/FB$blG-2&ta'O[b:/S6k#pM04KQtY$l':FlSjoE@>9*Rurs,V9`S4'kQMAJ0G"+oq
+j1R-?nD%H=.j&#"_;'8d2MI#fi_r4l$8#"58!WcN"%-$uM+Dm^K>Wc&ZT5FMF$Q$-7gVUn/d
+<K8j>%*1Zq:J[fL7G3QXSF>M`Hd9.NQt**4S[\P,18oFF!QMWF*@)EXiuGfW&:S+B?XpYuMF
+=oH>0N#:U/FPH\V#QVfg3W*#!oJ%V<>YtsIj0p[mk^EF[N`O/lg7=YL*Nrl4<\_hm[>YA]AVd
+elM]AR6jD7XI_cGHK.+s0`@htHqde-P_>a1]AdP0+io!:`&4dmk'.mlrM?LBKrr<~
+]]></RowData>
+</TableData>
+<TableData name="行政批文" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FFileName,,.,,FFileAmount,,.,,FRemark,,.,,Forder,,.,,text,,.,,FIsPrjType]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.Integer,com.fr.stable.Primitive,java.lang.String]]></ColumnTypes>
+<RowData>
+<![CDATA[1J]Ao%2)e&aeMT0>9@5UO2,)Rq1ekF.2)7'G8M`+t2).c]AiI&4SiNr>QT62`63jFUlO;!9I~
+]]></RowData>
+</TableData>
+<TableData name="流程实例表" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FID,,.,,FIsDeleted,,.,,FTime,,.,,FCreateTime,,.,,FBaseInfoID,,.,,FEntName,,.,,FEmpId,,.,,FEmpName,,.,,FLinkId,,.,,FState,,.,,FIsPrime,,.,,FIsBase,,.,,FIsTemp,,.,,FListId,,.,,FTypeId,,.,,FLevelId,,.,,FLeadId,,.,,FLeadName,,.,,FAppLevel,,.,,FProcessId,,.,,FSubFlowId,,.,,FManageDeptId,,.,,FManageTypeId,,.,,FResult,,.,,FYear,,.,,FMonth,,.,,FSubmitDate,,.,,FReportDate,,.,,FCurStepID,,.,,FRoleId,,.,,FBeginRoleId,,.,,FDefineDay,,.,,FAppState,,.,,FBackIdea,,.,,FSystemId,,.,,FIsNew,,.,,FSeeState,,.,,fseetime,,.,,FPlanTime,,.,,FFactTime,,.,,FBarCode,,.,,FReportCount,,.,,CheckState,,.,,CheckResult,,.,,HandState,,.,,FIsSign]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]]></ColumnTypes>
+</TableData>
+<TableData name="流程实例备份表" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FID,,.,,FIsDeleted,,.,,FTime,,.,,FCreateTime,,.,,FBaseInfoID,,.,,FEntName,,.,,FEmpId,,.,,FEmpName,,.,,FLinkId,,.,,FState,,.,,FIsPrime,,.,,FIsBase,,.,,FIsTemp,,.,,FListId,,.,,FTypeId,,.,,FLevelId,,.,,FLeadId,,.,,FLeadName,,.,,FAppLevel,,.,,FProcessId,,.,,FSubFlowId,,.,,FManageDeptId,,.,,FManageTypeId,,.,,FResult,,.,,FYear,,.,,FMonth,,.,,FSubmitDate,,.,,FReportDate,,.,,FCurStepID,,.,,FRoleId,,.,,FBeginRoleId,,.,,FDefineDay,,.,,FAppState,,.,,FBackIdea,,.,,FSystemId,,.,,FIsNew,,.,,FSeeState,,.,,fseetime,,.,,FPlanTime,,.,,FFactTime,,.,,FBarCode,,.,,FReportCount,,.,,CheckState,,.,,CheckResult,,.,,HandState,,.,,FIsSign]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]]></ColumnTypes>
+</TableData>
+<TableData name="申请表" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FBaseinfoId,,.,,FPrjId,,.,,FName,,.,,FManageTypeId,,.,,FwriteDate,,.,,FReportDate,,.,,FIsSign,,.,,FState,,.,,FResult,,.,,FYear,,.,,FMonth,,.,,FLinkId,,.,,FBaseName,,.,,FUpDeptId,,.,,FRemark,,.,,FIsCheck,,.,,FCount,,.,,FTime,,.,,FIsDeleted,,.,,FCreateTime,,.,,FReportCount,,.,,FToBaseinfoId,,.,,FAppDate]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.sql.Timestamp,java.sql.Timestamp,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.Integer,java.lang.Integer,java.lang.String,java.lang.String,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,com.fr.stable.Primitive,java.sql.Timestamp,java.lang.Boolean,java.sql.Timestamp,java.lang.Integer,java.lang.String,java.sql.Timestamp]]></ColumnTypes>
+<RowData>
+<![CDATA[D3$bR"@3GaA)C`_#V=Zss4jK`V]A?odQ30fG":8U0XB6&W1,^N<199Y\0MI/H<*8fE=+ulC@&
+[f@H*ftmabiC)WL+kYZ\b?M,aF\"e\"/IMHLU&cH[r\P.;pd;T-OOENF`<(,o\7'2c/@n&T)
+o!^^^HrI4$e;kH89caS@N^R-+7kL8r6,XsO>Jh1S[a*&RCD#!15*,G`^"6\ogIsZ7mcI3F=Y
+8FKoGL]Ao4#"K#;)3k:nYmp:[WE)o$[DI7"1mhXaqr+TjhSHD(^2(I:\'9U+\6C8/!!~
+]]></RowData>
+</TableData>
+<TableData name="项目数据项" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FAppId,,.,,FPrjId,,.,,FPrjName,,.,,FPriItemId,,.,,FBaseInfoId,,.,,FType,,.,,FTxt1,,.,,FTxt2,,.,,FTxt3,,.,,FTXt4,,.,,FTxt5,,.,,FTxt6,,.,,FTxt7,,.,,FFloat1,,.,,FFloat2,,.,,FFloat3,,.,,FFloat4,,.,,FInt1,,.,,FInt2,,.,,FInt3,,.,,FDate1,,.,,FDate2,,.,,FDate3,,.,,FDate4,,.,,FDate5,,.,,FDate6,,.,,FDate7,,.,,FTxt10,,.,,FTxt11,,.,,FTxt12,,.,,FDeptName,,.,,FPubTime,,.,,FIsDeleted,,.,,FCreateTime,,.,,FTime,,.,,FTxt8,,.,,FTxt9,,.,,FTxt13,,.,,FTxt18,,.,,FOperator,,.,,FManageDeptId,,.,,FDepartment,,.,,FIsPub,,.,,FPubManageDeptId,,.,,FPubDepartment,,.,,FPubOperator,,.,,FInt0,,.,,FTxt14,,.,,FInt4,,.,,FTxt15,,.,,FTxt16,,.,,FTxt17,,.,,FFloat5,,.,,FFloat6,,.,,FInt5,,.,,FFloat7,,.,,FFloat8,,.,,FFloat9,,.,,FFloat10,,.,,FFloat11,,.,,FDate8,,.,,FDate9,,.,,FDate10,,.,,FTxt19,,.,,FTxt20,,.,,FTxt21]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]]></ColumnTypes>
+</TableData>
+<TableData name="送审日期" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FReportDate]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.sql.Timestamp]]></ColumnTypes>
+<RowData>
+<![CDATA[1GUX@eho;42)\Df1q#0IZna?>!!~
+]]></RowData>
+</TableData>
+<TableData name="技术性审查完成日期" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FReportDate,,.,,FResult,,.,,FContent]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.sql.Timestamp,java.lang.String,java.lang.String]]></ColumnTypes>
+<RowData>
+<![CDATA[1GUX@eho;42)\Df1pJgCYVNKAI'TOAl%G(0$hb]AFn+ZH:ft60V>OU%oo:G[CI_K44o9J(%:0
+7u+~
+]]></RowData>
+</TableData>
+<TableData name="审查编号" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FTxt1,,.,,FTxt2]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[null,null]]></ColumnTypes>
+</TableData>
+<TableData name="审查情况意见" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FAppId,,.,,FName,,.,,FMajor,,.,,FOrder,,.,,FResult,,.,,FContent,,.,,FAppMajor,,.,,FTxt3,,.,,FTxt4]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[null,null,null,null,null,null,null,null,null,null]]></ColumnTypes>
+</TableData>
+<TableData name="告知书" class="com.fr.data.impl.EmbeddedTableData">
+<Parameters/>
+<ColumnNames>
+<![CDATA[FId,,.,,FTxt1,,.,,FTxt2,,.,,FRemark,,.,,FContent]]></ColumnNames>
+<ColumnTypes>
+<![CDATA[java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String]]></ColumnTypes>
+<RowData>
+<![CDATA[AWuFT'1!>Q5Bl#HUbcZOO#&S_Gn(Pj<CFZV=9YO_5Qp1`Pe4S%B3RRi$D)+"XYH5[ZLd%as4
+\a'KJ=@#3c^<%"#qSiBU%1!D(oA]A87rh/Pg*R0X5q1D&%Z_%0tJ<irb8q"-nBpjZ9>d*Wm>n
+3qX3D2G(nB!i2$U[\H*SS!hTl+e$Im6XdCn^aqY@%]A;ij$CS++`X7c#kin"RqbLLkUCfZ-8B
+cTj^Xc+AcEpu)"0Lg>S7,U8J.1lLbD1Ug@XPS7`\p63Fl;*]AVbJi.ZCSd1c7q8o]A?IB*7j8_
+@T<HH,:@dGPckFB^Jr[!F3q0[F:r3/8-]ARAV_#:GMp]A4#8mcoqXD:68t"&]A$Ps5YA5c7E:W*
+X\'nO6Hn]A\J#ts&N>M<Sr]A5a9"XSk^Q>0jLW#Ob?7-r;GU@2N0T#W`V&3/cZB;T?_s'^"p=:
+[(-d9>4JeW^]AJ%?:Yt/91e=9k=\b^aMTgF/D)".Jp)[@P4dG[`SJuWgOhKOOqVQEYYmHRP]AS
+,NEpHYGj?V7cX[A,W?bIOjOcoOL04.udM[O>U_'M<9!CLj+m[BgPOFhf`akLt)QXR&;@!b;1
+)@1%,.!@NpSnZfFN(oNNW&n';dJuIR`fp4VB:7nAYTFPRO63'3AU5*p^e;KmkPF+$T,<&R=T
+10L7R#9`bu@P`OA73Q-G']A)Z~
+]]></RowData>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<Title>
+<![CDATA[勘察文件审查合格书]]></Title>
+<ServerPrinter/>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-First')}]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Previous')}]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Next')}]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Last')}]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.FlashPrint">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Utils-Print[Client]A')}]]></Text>
+<IconName>
+<![CDATA[flashprint]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Print')}]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Export')}]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Email">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Email')}]]></Text>
+<IconName>
+<![CDATA[email]]></IconName>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+<Background name="ColorBackground" color="-4144960"/>
+</ReportWebAttr>
+<Report class="com.fr.report.worksheet.WorkSheet" name="申请表">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[0,1152000,1152000,2160000,2160000,2160000,1152000,1440000,1440000,1440000,1440000,1152000,1152000,1728000,1728000,1728000,1152000,1905000,1728000,1905000,1728000,1728000,1728000,1728000,1728000,1152000,1152000,1152000,1152000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1752600,1981200,4267200,1828800,2476500,2057400,2743200,2743200,2743200,2133600,2209800,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0">
+<O t="DSColumn">
+<Attributes dsName="申请表" columnName="FState"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="0">
+<O t="DSColumn">
+<Attributes dsName="流程实例备份表" columnName="FBarCode"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="2" r="0">
+<O t="DSColumn">
+<Attributes dsName="项目基本信息" columnName="FType"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="5" r="1" cs="4" s="0">
+<O t="DSColumn">
+<Attributes dsName="流程实例表" columnName="FBarCode"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A1 = 0 || A1 = 2]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.RowHeightHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Present class="com.fr.report.cell.cellattr.BarcodePresent">
+<BarcodeAttr height="25" RCodeVersion="7" RCodeErrorCorrect="1" RcodeDrawPix="1"/>
+</Present>
+<Expand/>
+</C>
+<C c="6" r="2" cs="2" s="0">
+<HighlightList>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A1 = 0 || A1 = 2]]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.RowHeightHighlightAction">
+<RowHeight i="1440000"/>
+</HighlightAction>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[草表]]></O>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="4" cs="10" s="1">
+<O>
+<![CDATA[四川省房屋建筑和市政基础设施工程]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" cs="10" s="1">
+<O>
+<![CDATA[勘察文件审查意见告知书]]></O>
+<Expand/>
+</C>
+<C c="1" r="13" cs="2" s="2">
+<O>
+<![CDATA[工 程 名 称：]]></O>
+<Expand/>
+</C>
+<C c="3" r="13" cs="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="项目基本信息" columnName="FPrjName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="14" cs="2" s="2">
+<O>
+<![CDATA[建 设 单 位：]]></O>
+<Expand/>
+</C>
+<C c="3" r="14" cs="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="建设单位" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="15" cs="2" s="2">
+<O>
+<![CDATA[勘 察 单 位：]]></O>
+<Expand/>
+</C>
+<C c="3" r="15" cs="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="勘察单位" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="16" s="4">
+<Expand/>
+</C>
+<C c="2" r="16" s="4">
+<Expand/>
+</C>
+<C c="3" r="16" s="4">
+<Expand/>
+</C>
+<C c="4" r="16" s="4">
+<Expand/>
+</C>
+<C c="5" r="16" s="4">
+<Expand/>
+</C>
+<C c="6" r="16" s="4">
+<Expand/>
+</C>
+<C c="7" r="16" s="4">
+<Expand/>
+</C>
+<C c="1" r="17" cs="4" s="5">
+<O>
+<![CDATA[  审查机构法定代表人:]]></O>
+<Expand/>
+</C>
+<C c="5" r="17" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="图审机构" columnName="FOtxt5"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="7" r="17" cs="2" s="6">
+<O>
+<![CDATA[（签章或签字）]]></O>
+<Expand/>
+</C>
+<C c="1" r="18" s="4">
+<Expand/>
+</C>
+<C c="2" r="18" s="4">
+<Expand/>
+</C>
+<C c="3" r="18" s="4">
+<Expand/>
+</C>
+<C c="4" r="18" s="4">
+<Expand/>
+</C>
+<C c="5" r="18" s="4">
+<Expand/>
+</C>
+<C c="6" r="18" s="4">
+<Expand/>
+</C>
+<C c="7" r="18" s="4">
+<Expand/>
+</C>
+<C c="1" r="19" cs="2" s="2">
+<O>
+<![CDATA[审 查 机 构：]]></O>
+<Expand/>
+</C>
+<C c="3" r="19" cs="4" s="3">
+<O t="DSColumn">
+<Attributes dsName="图审机构" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="7" r="19" cs="3" s="6">
+<O>
+<![CDATA[（打印审查机构全称并加盖公章）]]></O>
+<Expand/>
+</C>
+<C c="2" r="23" cs="3" s="7">
+<O>
+<![CDATA[勘察文件报审时间：]]></O>
+<Expand/>
+</C>
+<C c="5" r="23" cs="4" s="7">
+<O>
+<![CDATA[      年     月     日]]></O>
+<Expand/>
+</C>
+<C c="2" r="24" cs="3" s="7">
+<O>
+<![CDATA[勘察文件审查完成时间：]]></O>
+<Expand/>
+</C>
+<C c="5" r="24" cs="4" s="7">
+<O>
+<![CDATA[      年     月     日]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="576000">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.PageNumberHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[1]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页/共]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.NumberOfPageHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[100]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.worksheet.WorkSheet" name="流水号">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1371600,1152000,864000,864000,864000,864000,864000,864000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2743200,1752600,2160000,2160000,1828800,2476500,2057400,2743200,2743200,2743200,2133600,1943100,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="1" r="0" cs="5" s="8">
+<O>
+<![CDATA[编号：（审查机构自行编号）]]></O>
+<Expand/>
+</C>
+<C c="6" r="0" s="9">
+<Expand/>
+</C>
+<C c="7" r="0" s="9">
+<Expand/>
+</C>
+<C c="8" r="0" s="9">
+<Expand/>
+</C>
+<C c="9" r="0" s="9">
+<Expand/>
+</C>
+<C c="10" r="0" s="9">
+<Expand/>
+</C>
+<C c="11" r="0" s="10">
+<Expand/>
+</C>
+<C c="1" r="1" cs="11" s="11">
+<O>
+<![CDATA[审查意见]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" s="12">
+<Expand/>
+</C>
+<C c="2" r="2" s="13">
+<Expand/>
+</C>
+<C c="3" r="2" s="13">
+<Expand/>
+</C>
+<C c="4" r="2" s="13">
+<Expand/>
+</C>
+<C c="5" r="2" s="13">
+<Expand/>
+</C>
+<C c="6" r="2" s="13">
+<Expand/>
+</C>
+<C c="7" r="2" s="13">
+<Expand/>
+</C>
+<C c="8" r="2" s="13">
+<Expand/>
+</C>
+<C c="9" r="2" s="13">
+<Expand/>
+</C>
+<C c="10" r="2" s="13">
+<Expand/>
+</C>
+<C c="11" r="2" s="14">
+<Expand/>
+</C>
+<C c="1" r="3" cs="11" s="15">
+<O>
+<![CDATA[    受委托，本审查机构对建设单位报送的岩土工程勘察报告/岩土工程设计文件及相关文件、资]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" cs="11" s="16">
+<O>
+<![CDATA[料进行了审查，意见（包括问题类别）见下：]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" cs="2" s="17">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="3" r="5" cs="4" s="17">
+<O>
+<![CDATA[图号/页码]]></O>
+<Expand/>
+</C>
+<C c="7" r="5" cs="3" s="17">
+<O>
+<![CDATA[初审（复审）意见]]></O>
+<Expand/>
+</C>
+<C c="10" r="5" cs="2" s="17">
+<O>
+<![CDATA[问题类别]]></O>
+<Expand/>
+</C>
+<C c="0" r="6" rs="2">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FTxt1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="6" cs="11" s="18">
+<HighlightList>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A7='49801']]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[外业资料]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性2]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A7='49802']]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[实验资料]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.cell.cellattr.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性3]]></Name>
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[A7='49803']]></Formula>
+</Condition>
+<HighlightAction class="com.fr.report.cell.cellattr.highlight.ValueHighlightAction">
+<O>
+<![CDATA[报告书]]></O>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="7" cs="2" s="19">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FId"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="6"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Result>
+<![CDATA[seq()]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A7"/>
+</C>
+<C c="3" r="7" cs="4" s="18">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FTxt2"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="6"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Result>
+<![CDATA['  '+$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A7"/>
+</C>
+<C c="7" r="7" cs="3" s="18">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FContent"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="6"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Result>
+<![CDATA['  '+$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A7"/>
+</C>
+<C c="10" r="7" cs="2" s="19">
+<O t="DSColumn">
+<Attributes dsName="告知书" columnName="FRemark"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[FTxt1]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="6"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper">
+<Attr divideMode="1"/>
+</RG>
+<Parameters/>
+</O>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="205001:I" value="物业管理所有序列s"/>
+<Dict key="2980513:I" value="勘察单位资质证书"/>
+<Dict key="501307004:I" value="电气机械设备制造业工程"/>
+<Dict key="2980203:I" value="城乡规划许可文件"/>
+<Dict key="80661003:I" value="商业服务业设施用地"/>
+<Dict key="22001410:I" value="城市规划师"/>
+<Dict key="29801:I" value="初步设计委托"/>
+<Dict key="2200031:I" value="A证"/>
+<Dict key="11800206:I" value="经济"/>
+<Dict key="1050020135:I" value="一级"/>
+<Dict key="110030003:I" value="集体企业"/>
+<Dict key="80730201:I" value="污水管道"/>
+<Dict key="151005:I" value="打坑机"/>
+<Dict key="165017:I" value="大型"/>
+<Dict key="116003:I" value="劳务分包"/>
+<Dict key="2980503:I" value="建设工程规划许可证"/>
+<Dict key="155008:I" value="日志管理"/>
+<Dict key="51402:I" value="政策性保障住房"/>
+<Dict key="2000304:I" value="厂房"/>
+<Dict key="20900202:I" value="水利水电工程"/>
+<Dict key="50131015:I" value="电子特种环境工程"/>
+<Dict key="1050020189:I" value="二级"/>
+<Dict key="1050030046:I" value="不分等级"/>
+<Dict key="124012:I" value="民航局总直属企业"/>
+<Dict key="27102:I" value="已中止"/>
+<Dict key="1050030012:I" value="一级"/>
+<Dict key="246011:I" value="规划师"/>
+<Dict key="501308002:I" value="肉食品加工工程"/>
+<Dict key="1050020416:I" value="二级"/>
+<Dict key="1050030001:I" value="二级"/>
+<Dict key="1050020055:I" value="三级"/>
+<Dict key="2200103:I" value="建筑师"/>
+<Dict key="2200161:I" value="建造师"/>
+<Dict key="260888071:I" value="项目合同"/>
+<Dict key="209010:I" value="城市规划师"/>
+<Dict key="501300:I" value="工程设计综合资质"/>
+<Dict key="105002006:I" value="园林古建筑工程"/>
+<Dict key="80710103:I" value="管道长度"/>
+<Dict key="260888062:I" value="施工图勘察文件审查合格书"/>
+<Dict key="80551301:I" value="体育场馆"/>
+<Dict key="113001:I" value="物体打击"/>
+<Dict key="501303001:I" value="油田地面"/>
+<Dict key="509003:I" value="框架结构"/>
+<Dict key="141001:I" value="商业房"/>
+<Dict key="77010103:I" value="图纸"/>
+<Dict key="135003016:I" value="农林工程"/>
+<Dict key="158017:I" value="公路"/>
+<Dict key="77010602:I" value="图表"/>
+<Dict key="501308005:I" value="粮食工程"/>
+<Dict key="50103:I" value="工业用地"/>
+<Dict key="1050020015:I" value="三级"/>
+<Dict key="13202:I" value="道路公共交通工程类别"/>
+<Dict key="109018008:I" value="煤气热力"/>
+<Dict key="26900101:I" value="一级"/>
+<Dict key="517001:I" value="项目审批信息"/>
+<Dict key="2980505:I" value="建筑设计防火审核"/>
+<Dict key="80130805:I" value="逆流"/>
+<Dict key="50706:I" value="施工图"/>
+<Dict key="105002050:I" value="炉窑工程"/>
+<Dict key="80131307:I" value="无行人"/>
+<Dict key="510004:I" value="国有投资"/>
+<Dict key="22001010:I" value="城市规划师"/>
+<Dict key="80720201:I" value="人行道"/>
+<Dict key="501314002:I" value="特大桥梁"/>
+<Dict key="80131301:I" value="机动车多"/>
+<Dict key="50131705:I" value="城镇燃气工程"/>
+<Dict key="135003009:I" value="冶炼工程  "/>
+<Dict key="2000704:I" value="城市隧道"/>
+<Dict key="260888043:I" value="规划审批红线图"/>
+<Dict key="1050010079:I" value="二级"/>
+<Dict key="135003012:I" value="通信工程"/>
+<Dict key="48201:I" value="所有序列"/>
+<Dict key="80131003:I" value="铸铁"/>
+<Dict key="105002055:I" value="海洋石油工程"/>
+<Dict key="501306002:I" value="弹、火工品及固体发动机工程"/>
+<Dict key="1:I" value="省级"/>
+<Dict key="50131013:I" value="显示器件项目工程"/>
+<Dict key="165015:I" value="二级"/>
+<Dict key="11800203:I" value="给排水"/>
+<Dict key="135001:I" value="综合资质"/>
+<Dict key="2980516:I" value="其他资料"/>
+<Dict key="1050010108:I" value="二级"/>
+<Dict key="86602:I" value="管理部门"/>
+<Dict key="10:I" value="水利建筑工程"/>
+<Dict key="19203:I" value="跨度(米)"/>
+<Dict key="50106:I" value="道路广场用地"/>
+<Dict key="108002:I" value="工程师"/>
+<Dict key="509008:I" value="桁架结构"/>
+<Dict key="1320302:I" value="区域锅炉房"/>
+<Dict key="207001001:I" value="房屋拆迁企业专业"/>
+<Dict key="2200125:I" value="造价师"/>
+<Dict key="80131105:I" value="小区"/>
+<Dict key="209003:I" value="建筑师"/>
+<Dict key="112009:I" value="设计大师"/>
+<Dict key="112902:I" value="军官证"/>
+<Dict key="1050010020:I" value="二级"/>
+<Dict key="1050020301:I" value="三级"/>
+<Dict key="158011:I" value="商物粮"/>
+<Dict key="50803:I" value="地面是否有文物古迹"/>
+<Dict key="1050010111:I" value="二级"/>
+<Dict key="22001510:I" value="城市规划师"/>
+<Dict key="660104:I" value="注销企业"/>
+<Dict key="80070501:I" value="桥梁座数"/>
+<Dict key="161005:I" value="原项目经理证扫描件"/>
+<Dict key="210001:I" value="法定代表人"/>
+<Dict key="2:I" value="市级"/>
+<Dict key="80070303:I" value="集中供热管道长度：蒸汽"/>
+<Dict key="52105:I" value="市政设施"/>
+<Dict key="105002005:I" value="混凝土预制构件"/>
+<Dict key="80130509:I" value="严重腐蚀"/>
+<Dict key="807102012:I" value="锅炉房"/>
+<Dict key="125001:I" value="兼职"/>
+<Dict key="2000803:I" value="燃气工程"/>
+<Dict key="501309003:I" value="铀矿山及选冶工程"/>
+<Dict key="660103:I" value="有档案企业"/>
+<Dict key="20900101:I" value="机电工程"/>
+<Dict key="105003002:I" value="抹灰作业"/>
+<Dict key="2200155:I" value="造价师"/>
+<Dict key="173000:I" value="所有序列"/>
+<Dict key="501302012:I" value="医疗器械(含药品内包装)"/>
+<Dict key="80130202:I" value="损坏"/>
+<Dict key="2440102:I" value="贰级"/>
+<Dict key="80470401:I" value="城市综合方面（170）"/>
+<Dict key="196002:I" value="注册监理工程师"/>
+<Dict key="80670101:I" value="地下水"/>
+<Dict key="158026:I" value="建筑"/>
+<Dict key="501319005:I" value="城市防洪"/>
+<Dict key="501312:I" value="建材行业"/>
+<Dict key="501312002:I" value="玻璃、陶瓷、耐火材料工程"/>
+<Dict key="165009:I" value="民用三级"/>
+<Dict key="2000203:I" value="民间资金、外资或非政府组织投资的关系公共利益和公众安全的公共建筑、大型房屋建筑、住宅小区建设项目"/>
+<Dict key="155007:I" value="流程管理"/>
+<Dict key="1050020300:I" value="二级"/>
+<Dict key="80070101:I" value="供水综合生产能力"/>
+<Dict key="191003:I" value="市政桥梁工程"/>
+<Dict key="501319004:I" value="河道整治"/>
+<Dict key="2980302:I" value="项目立项批复文件"/>
+<Dict key="260888001:I" value="项目立项（批准、核准、备案）文件"/>
+<Dict key="105001011:I" value="机电安装工程"/>
+<Dict key="24507:I" value="建筑"/>
+<Dict key="80130105:I" value="非污水井盖"/>
+<Dict key="1050020286:I" value="三级"/>
+<Dict key="10013:I" value="外来监理企业管理信息系统"/>
+<Dict key="807102022:I" value="锅炉房"/>
+<Dict key="135003007:I" value="林业及生态工程"/>
+<Dict key="56:I" value="林业及生态工程"/>
+<Dict key="80071003:I" value="市容环卫专用车辆"/>
+<Dict key="3:I" value="煤炭工业建筑安装工程"/>
+<Dict key="1050020096:I" value="二级"/>
+<Dict key="260888033:I" value="勘察单位资质证书"/>
+<Dict key="158037:I" value="工程设计"/>
+<Dict key="509004:I" value="剪力墙结构"/>
+<Dict key="10015:I" value="房地产评估机构管理信息系统"/>
+<Dict key="501320023:I" value="林业工程"/>
+<Dict key="110010:I" value="其他有限责任公司"/>
+<Dict key="660101:I" value="新办企业"/>
+<Dict key="2200141:I" value="建造师"/>
+<Dict key="80661005:I" value="物流仓储用地"/>
+<Dict key="770103:I" value="城镇总体规划"/>
+<Dict key="102000:I" value="通信管理局"/>
+<Dict key="5013101:I" value="电子工程"/>
+<Dict key="1050030071:I" value="二级"/>
+<Dict key="52103:I" value="仓储"/>
+<Dict key="80750501:I" value="国家拨款"/>
+<Dict key="10019:I" value="规划编制单位管理信息系统"/>
+<Dict key="501318001:I" value="沿岸工程"/>
+<Dict key="2980402:I" value="工程地质勘察报告"/>
+<Dict key="367008:I" value="眉县建设工程质量安全监督站"/>
+<Dict key="502352:I" value="环境工程"/>
+<Dict key="80131306:I" value="行人少"/>
+<Dict key="501310008:I" value="电子特种环境工程"/>
+<Dict key="1050010050:I" value="一级"/>
+<Dict key="80131103:I" value="重点国家机关（部级以上）及重要外国驻华机构"/>
+<Dict key="112004:I" value="绿色建筑创新奖"/>
+<Dict key="80130602:I" value="损坏"/>
+<Dict key="80130201:I" value="完好"/>
+<Dict key="50131011:I" value="电子整机产品项目工程"/>
+<Dict key="1050020337:I" value="二级"/>
+<Dict key="1050030024:I" value="不分等级"/>
+<Dict key="501302004:I" value="化工矿山"/>
+<Dict key="1350030010:I" value="甲级"/>
+<Dict key="501311013:I" value="化纤工程"/>
+<Dict key="320001:I" value="规划编制单位所有序列"/>
+<Dict key="209006:I" value="三类人员"/>
+<Dict key="110008:I" value="港、澳、台投资企业"/>
+<Dict key="209008:I" value="特种作业人员 "/>
+<Dict key="8812:I" value="规划选址意见"/>
+<Dict key="5101301:I" value="林业工程"/>
+<Dict key="108008:I" value="经济员"/>
+<Dict key="503331:I" value="建筑设计事务所"/>
+<Dict key="260888007:I" value="大型人员密集场所和其他特殊建设项目的消防审核意见"/>
+<Dict key="22001011:I" value="招标师"/>
+<Dict key="1050020205:I" value="二级"/>
+<Dict key="80131209:I" value="荒地"/>
+<Dict key="501312001:I" value="水泥工程"/>
+<Dict key="80130506:I" value="砖砌"/>
+<Dict key="26900103:I" value="三级"/>
+<Dict key="501315004:I" value="修造船厂水工工程"/>
+<Dict key="80131102:I" value="工厂"/>
+<Dict key="11800202:I" value="建筑"/>
+<Dict key="1050020180:I" value="三级"/>
+<Dict key="700001:I" value="所有序列"/>
+<Dict key="77010703:I" value="图纸"/>
+<Dict key="151000:I" value="高空修剪车"/>
+<Dict key="1050020188:I" value="一级"/>
+<Dict key="105002015:I" value="预应力工程"/>
+<Dict key="105001003:I" value="港口与航道工程"/>
+<Dict key="220009:I" value="机构专职人员"/>
+<Dict key="1050020312:I" value="一级"/>
+<Dict key="158032:I" value="消防设施工程设计"/>
+<Dict key="501316001:I" value="机场总体规划工程"/>
+<Dict key="510003:I" value="贷款"/>
+<Dict key="80070203:I" value="人工煤气供气管道长度"/>
+<Dict key="92:I" value="项目施工图设计"/>
+<Dict key="80070603:I" value="雨污合流管道长度"/>
+<Dict key="77010802:I" value="总体规划纲要"/>
+<Dict key="504001:I" value="选址意见书"/>
+<Dict key="1350030121:I" value="乙级"/>
+<Dict key="51304:I" value="筏板基础"/>
+<Dict key="105003010:I" value="水暖电安装作业"/>
+<Dict key="260888003:I" value="城乡规划许可文件（建设用地规划许可证、乡村建设规划许可证）"/>
+<Dict key="2980506:I" value="建筑工程防雷审核"/>
+<Dict key="191001:I" value="工业与民用建筑工程"/>
+<Dict key="161006:I" value="协议书"/>
+<Dict key="80760101:I" value="机械化"/>
+<Dict key="134001001:I" value="工程勘察综合资质"/>
+<Dict key="1050020445:I" value="二级"/>
+<Dict key="137001001:I" value="房地产开发"/>
+<Dict key="105002041:I" value="水工金属结构制作与安装工程"/>
+<Dict key="130001001:I" value="安全生产许可证序列"/>
+<Dict key="7042:I" value="企业名称变更"/>
+<Dict key="147002:I" value="企业"/>
+<Dict key="1350030090:I" value="甲级"/>
+<Dict key="117003:I" value="三级"/>
+<Dict key="501312005:I" value="无机非金属材料及制品工程"/>
+<Dict key="2200011:I" value="一级建造师"/>
+<Dict key="1050020365:I" value="三级"/>
+<Dict key="80710101:I" value="供热能力"/>
+<Dict key="200070102:I" value="面积"/>
+<Dict key="209002:I" value="建造员"/>
+<Dict key="502002:I" value="集体土地"/>
+<Dict key="367002:I" value="渭滨区建设工程质量安全监督站"/>
+<Dict key="105002042:I" value="水利水电机电设备安装工程"/>
+<Dict key="1350030070:I" value="甲级"/>
+<Dict key="2200169:I" value="结构师"/>
+<Dict key="11:I" value="铁路建筑工程"/>
+<Dict key="444010:I" value="其它"/>
+<Dict key="165019:I" value="小型"/>
+<Dict key="105002062:I" value="城市垃圾处理工程"/>
+<Dict key="501320:I" value="农林行业"/>
+<Dict key="1050020428:I" value="一级"/>
+<Dict key="9:I" value="轻纺工业建筑安装工程"/>
+<Dict key="26900102:I" value="二级"/>
+<Dict key="501311004:I" value="日化及塑料工程"/>
+<Dict key="22000910:I" value="城市规划师"/>
+<Dict key="110005:I" value="联营企业"/>
+<Dict key="124004:I" value="县级"/>
+<Dict key="80730202:I" value="雨水管道"/>
+<Dict key="2660103:I" value="三级"/>
+<Dict key="770101:I" value="区域性规划"/>
+<Dict key="1050020261:I" value="二级"/>
+<Dict key="116002:I" value="专业分包"/>
+<Dict key="77010603:I" value="备案审查汇报材料"/>
+<Dict key="260888048:I" value="设计合同及支付设计费用凭证"/>
+<Dict key="8802:I" value="可研报告"/>
+<Dict key="404001:I" value="陕西省建筑工程质量安全监督总站"/>
+<Dict key="147001:I" value="个人"/>
+<Dict key="5101401:I" value="农业工程"/>
+<Dict key="123012:I" value="其他注册人员"/>
+<Dict key="200070301:I" value="长度"/>
+<Dict key="1050020579:I" value="三级"/>
+<Dict key="196004:I" value="法定代表人"/>
+<Dict key="200070802:I" value="面积"/>
+<Dict key="320001012:I" value="乙级"/>
+<Dict key="80130701:I" value="Y 溢流井"/>
+<Dict key="101005:I" value="开通短信提醒"/>
+<Dict key="1050020336:I" value="一级"/>
+<Dict key="80130504:I" value="干净"/>
+<Dict key="109018:I" value="规划编制从事专业"/>
+<Dict key="2:I" value="治金有色工业建筑工程"/>
+<Dict key="501306014:I" value="坦克、装甲车辆工程"/>
+<Dict key="1350030151:I" value="乙级"/>
+<Dict key="20001:I" value="工程类别"/>
+<Dict key="24401:I" value="项目经理"/>
+<Dict key="310000043:I" value="三级"/>
+<Dict key="1350030132:I" value="丙级"/>
+<Dict key="138001001:I" value="园林绿化所有专业"/>
+<Dict key="209004:I" value="监理师"/>
+<Dict key="80130704:I" value="Zh 闸井"/>
+<Dict key="20002:I" value="资金来源"/>
+<Dict key="501315:I" value="水运行业"/>
+<Dict key="260888068:I" value="民用建筑节能设计审查备案登记表"/>
+<Dict key="105001:I" value="施工总承包 "/>
+<Dict key="310000042:I" value="二级"/>
+<Dict key="165010:I" value="工业大型"/>
+<Dict key="7025:I" value="经营负责人"/>
+<Dict key="50705:I" value="材料"/>
+<Dict key="113030:I" value="建筑装饰一体化"/>
+<Dict key="1050020192:I" value="二级"/>
+<Dict key="112010:I" value="通报表扬"/>
+<Dict key="1050010095:I" value="二级"/>
+<Dict key="2000309:I" value="道路"/>
+<Dict key="50131708:I" value="城市隧道工程"/>
+<Dict key="2000312:I" value="环境卫生"/>
+<Dict key="2000702:I" value="立交桥"/>
+<Dict key="77010301:I" value="基础资料"/>
+<Dict key="134002001:I" value="工程设计综合资质"/>
+<Dict key="195005:I" value="施工员"/>
+<Dict key="112006:I" value="长安杯"/>
+<Dict key="1350030020:I" value="甲级"/>
+<Dict key="260888039:I" value="其他资料"/>
+<Dict key="136001001:I" value="招标代理所有专业"/>
+<Dict key="501319:I" value="水利行业"/>
+<Dict key="1050020349:I" value="二级"/>
+<Dict key="5013103:I" value="广电工程"/>
+<Dict key="20900105:I" value="矿业工程"/>
+<Dict key="1050020083:I" value="二级"/>
+<Dict key="1350030051:I" value="乙级"/>
+<Dict key="220006:I" value="注册监理师"/>
+<Dict key="501316002:I" value="供油工程"/>
+<Dict key="105003005:I" value="钢筋作业"/>
+<Dict key="2000809:I" value="轨道交通工程"/>
+<Dict key="1050020542:I" value="二级"/>
+<Dict key="444001:I" value="非粘土类新型墙材"/>
+<Dict key="1350030141:I" value="乙级"/>
+<Dict key="1050010077:I" value="特级"/>
+<Dict key="2000901:I" value="全部或者部分使用政府财政资金及其他国有资金投资的市政基础设施建设项目"/>
+<Dict key="105002021:I" value="电信工程"/>
+<Dict key="260888021:I" value="公共交通（轨道交通）主管部门批复文件"/>
+<Dict key="80470204:I" value="城市供水、节水设施建设管理（100）"/>
+<Dict key="51301:I" value="条形基础"/>
+<Dict key="50131034:I" value="电影工程"/>
+<Dict key="159002:I" value="特许"/>
+<Dict key="1050020526:I" value="二级"/>
+<Dict key="22001610:I" value="城市规划师"/>
+<Dict key="1050020110:I" value="二级"/>
+<Dict key="105003006:I" value="混凝土作业"/>
+<Dict key="158014:I" value="轻纺"/>
+<Dict key="1050020432:I" value="二级"/>
+<Dict key="109010:I" value="监理工程师注册专业"/>
+<Dict key="7022:I" value="企业经理"/>
+<Dict key="2980306:I" value="勘察合同及支付勘察费用凭证"/>
+<Dict key="367003:I" value="金台区建设工程质量安全监督站"/>
+<Dict key="2980401:I" value="委托单"/>
+<Dict key="105004001:I" value="燃气燃烧器具安装、维修"/>
+<Dict key="80130604:I" value="垃圾"/>
+<Dict key="1050020218:I" value="二级"/>
+<Dict key="22000811:I" value="招标师"/>
+<Dict key="80690502:I" value="燃气损失量"/>
+<Dict key="1930100:I" value="管理部门审批"/>
+<Dict key="80131104:I" value="医疗卫生"/>
+<Dict key="1050020404:I" value="三级"/>
+<Dict key="2980515:I" value="勘察合同"/>
+<Dict key="19204:I" value="层数"/>
+<Dict key="139001001:I" value="勘察设计所有序列"/>
+<Dict key="501313000:I" value="铁道行业"/>
+<Dict key="105001004:I" value="水利水电工程"/>
+<Dict key="135003014:I" value="电力工程"/>
+<Dict key="1050020457:I" value="一级"/>
+<Dict key="260888019:I" value="城镇燃气主管部门批复文件"/>
+<Dict key="404007:I" value="延安市建设工程质量安全监督中心站"/>
+<Dict key="2980507:I" value="设计单位资证书"/>
+<Dict key="109009:I" value="建造师专业"/>
+<Dict key="2980511:I" value="计算书及计算软件名称 "/>
+<Dict key="506:I" value="招标方式"/>
+<Dict key="501307003:I" value="交通运输设备制造业工程"/>
+<Dict key="7021:I" value="法定代表人"/>
+<Dict key="320001011:I" value="甲级"/>
+<Dict key="62:I" value="市政公用工程"/>
+<Dict key="1350030022:I" value="丙级"/>
+<Dict key="501316004:I" value="场道、目视助航工程"/>
+<Dict key="1050020043:I" value="三级"/>
+<Dict key="80070206:I" value="液化石油气储气能力"/>
+<Dict key="440001:I" value="一级建造师"/>
+<Dict key="501005:I" value="临时建筑"/>
+<Dict key="77011003:I" value="图纸"/>
+<Dict key="501321:I" value="建筑行业"/>
+<Dict key="80130807:I" value="无水"/>
+<Dict key="260888022:I" value="环境卫生（城市管理）主管部门批复文件"/>
+<Dict key="80130401:I" value="完好"/>
+<Dict key="22001310:I" value="城市规划师"/>
+<Dict key="80710203:I" value="管道长度"/>
+<Dict key="29701:I" value="正常施工"/>
+<Dict key="2000705:I" value="独立水厂"/>
+<Dict key="105001010:I" value="通信工程"/>
+<Dict key="501302002:I" value="化工工程"/>
+<Dict key="124002:I" value="省级"/>
+<Dict key="2000601:I" value="特殊设防类"/>
+<Dict key="165007:I" value="民用一级"/>
+<Dict key="2200143:I" value="建筑师"/>
+<Dict key="141002:I" value="住宅"/>
+<Dict key="501306003:I" value="燃机、动力装置及航天发动机工程"/>
+<Dict key="1050010017:I" value="三级"/>
+<Dict key="158035:I" value="轻型钢结构工程设计"/>
+<Dict key="501310015:I" value="广播电视发射"/>
+<Dict key="220010:I" value="机构外聘人员"/>
+<Dict key="2980403:I" value="施工图设计文件编制委托合同范本"/>
+<Dict key="24601:I" value="规划师"/>
+<Dict key="108010:I" value="助理政工师"/>
+<Dict key="195004:I" value="注册结构师"/>
+<Dict key="260888034:I" value="勘察单位工商营业执照"/>
+<Dict key="310000061:I" value="一级"/>
+<Dict key="80070505:I" value="道路照明灯盏数"/>
+<Dict key="501311006:I" value="制盐及盐化工程"/>
+<Dict key="770202:I" value="控制单元图则"/>
+<Dict key="17412:I" value="矿山安全检查作业"/>
+<Dict key="504009:I" value="竣工验收合格证"/>
+<Dict key="59:I" value="港口与航道工程"/>
+<Dict key="1050030057:I" value="一级"/>
+<Dict key="123006:I" value="注册规划师"/>
+<Dict key="501320001:I" value="农业综合开发生态工程"/>
+<Dict key="187004:I" value="当年撤销"/>
+<Dict key="166007:I" value="4.境外工程完成合同额(万元)"/>
+<Dict key="31000006:I" value="建筑幕墙工程设计与施工"/>
+<Dict key="2200022:I" value="二级"/>
+<Dict key="1320101:I" value="暖式车库"/>
+<Dict key="80130601:I" value="完好"/>
+<Dict key="2200033:I" value="C证"/>
+<Dict key="50131710:I" value="公共交通工程"/>
+<Dict key="2200101:I" value="建造师"/>
+<Dict key="165003:I" value="勘察丙级"/>
+<Dict key="80070903:I" value="附属绿地面积"/>
+<Dict key="1050020151:I" value="三级"/>
+<Dict key="1320303:I" value="其他"/>
+<Dict key="196003:I" value="监理员"/>
+<Dict key="501321005:I" value="机电设计事务所"/>
+<Dict key="119002:I" value="中级"/>
+<Dict key="220005:I" value="项目总监"/>
+<Dict key="80130203:I" value="断裂"/>
+<Dict key="501307:I" value="机械行业"/>
+<Dict key="1050020352:I" value="二级"/>
+<Dict key="77011002:I" value="总体规划纲要"/>
+<Dict key="48001:I" value="所有序列"/>
+<Dict key="260888012:I" value="初步设计文件（含说明书、图纸、概算）"/>
+<Dict key="7031:I" value="企业法人"/>
+<Dict key="117001:I" value="一级"/>
+<Dict key="50235401:I" value="消防设施工程设计"/>
+<Dict key="116001:I" value="自行施工"/>
+<Dict key="501320007:I" value="林产化学工程"/>
+<Dict key="1350030110:I" value="甲级"/>
+<Dict key="61:I" value="通信工程"/>
+<Dict key="501311003:I" value="制糖工程"/>
+<Dict key="77010601:I" value="规划编制说明"/>
+<Dict key="107001:I" value="博士"/>
+<Dict key="80470101:I" value="城市规划管理体制（70）"/>
+<Dict key="17416:I" value="危险物品作业"/>
+<Dict key="220011:I" value="技术经济专家库"/>
+<Dict key="501319008:I" value="水文设施"/>
+<Dict key="509002:I" value="框剪结构"/>
+<Dict key="105002059:I" value="特种专业工程"/>
+<Dict key="50235301:I" value="建筑智能化系统设计"/>
+<Dict key="114003:I" value="高级"/>
+<Dict key="1050020391:I" value="不分等级"/>
+<Dict key="182000:I" value="自有"/>
+<Dict key="109018002:I" value="环保"/>
+<Dict key="1050020026:I" value="一级"/>
+<Dict key="80070703:I" value="COD削减能力"/>
+<Dict key="117000:I" value="无"/>
+<Dict key="807101022:I" value="锅炉房"/>
+<Dict key="1320201:I" value="场站建设"/>
+<Dict key="8:I" value="森林工业建筑安装工程"/>
+<Dict key="11800201:I" value="园林"/>
+<Dict key="1050010078:I" value="一级"/>
+<Dict key="2200032:I" value="B证"/>
+<Dict key="2000501:I" value="新建"/>
+<Dict key="49803:I" value="报告书"/>
+<Dict key="105002002:I" value="建筑装修装饰工程"/>
+<Dict key="17408:I" value="制冷作业"/>
+<Dict key="2000310:I" value="桥隧"/>
+<Dict key="135003002:I" value="矿山工程"/>
+<Dict key="13:I" value="港口建筑工程"/>
+<Dict key="2000402:I" value="中型"/>
+<Dict key="55:I" value="电力工程"/>
+<Dict key="187001:I" value="营业"/>
+<Dict key="80690501:I" value="销售气量"/>
+<Dict key="260888047:I" value="设计单位工商营业执照"/>
+<Dict key="77010803:I" value="图纸"/>
+<Dict key="501316003:I" value="通信、导航、航管及航站楼弱电工程"/>
+<Dict key="1350030021:I" value="乙级"/>
+<Dict key="80470205:I" value="城市污水设施建设管理（50）"/>
+<Dict key="260888004:I" value="规划建筑红线图"/>
+<Dict key="191004:I" value="煤炭工业建筑安装工程"/>
+<Dict key="50131021:I" value="有线通信"/>
+<Dict key="102002:I" value="信息产业厅"/>
+<Dict key="511009:I" value="分包合同"/>
+<Dict key="80661008:I" value="绿地"/>
+<Dict key="260888049:I" value="全套施工设计文件"/>
+<Dict key="503333:I" value="机电设计事务所"/>
+<Dict key="310000062:I" value="二级"/>
+<Dict key="197001:I" value="勘察人员"/>
+<Dict key="18:I" value="市政桥梁工程"/>
+<Dict key="1350030050:I" value="甲级"/>
+<Dict key="135006:I" value="事务所"/>
+<Dict key="501303002:I" value="气田地面"/>
+<Dict key="1370010011:I" value="一级"/>
+<Dict key="80130703:I" value="Da 倒虹吸"/>
+<Dict key="1350030012:I" value="丙级"/>
+<Dict key="27103:I" value="讨论中"/>
+<Dict key="20:I" value="装饰装修工程"/>
+<Dict key="4:I" value="石油工业建筑安装工程"/>
+<Dict key="105002048:I" value="送变电工程"/>
+<Dict key="80130502:I" value="损坏"/>
+<Dict key="1050020487:I" value="二级"/>
+<Dict key="158024:I" value="水利"/>
+<Dict key="77010704:I" value="备案审查汇报材料"/>
+<Dict key="158034:I" value="建筑幕墙工程设计"/>
+<Dict key="195003:I" value="安全负责人"/>
+<Dict key="501310007:I" value="微电子产品项目工程"/>
+<Dict key="770105:I" value="近期建设规划"/>
+<Dict key="1050020162:I" value="一级"/>
+<Dict key="105003007:I" value="脚手架作业"/>
+<Dict key="367006:I" value="扶风县建设工程质量安全监督站"/>
+<Dict key="260888023:I" value="法律、法规规定的其他资料"/>
+<Dict key="194001:I" value="施工许可证"/>
+<Dict key="1350030120:I" value="甲级"/>
+<Dict key="1050020459:I" value="三级"/>
+<Dict key="1050010052:I" value="三级"/>
+<Dict key="501313003:I" value="隧道"/>
+<Dict key="80720802:I" value="五十年一遇标准"/>
+<Dict key="501311012:I" value="化纤原料工程"/>
+<Dict key="109009003:I" value="市政"/>
+<Dict key="80470202:I" value="集中供热设施建设管理（100）"/>
+<Dict key="2980309:I" value="对于工程勘察分级标准大型以上工程的各工作环节质量控制记录"/>
+<Dict key="110110:I" value="其他企业"/>
+<Dict key="144007:I" value="项目经理"/>
+<Dict key="2200091:I" value="建造师"/>
+<Dict key="1050020068:I" value="三级"/>
+<Dict key="26900301:I" value="一级"/>
+<Dict key="77010303:I" value="图纸"/>
+<Dict key="108099:I" value="其他"/>
+<Dict key="115001:I" value="施工总承包"/>
+<Dict key="80551302:I" value="电影院"/>
+<Dict key="367009:I" value="千阳县建设工程质量安全监督站"/>
+<Dict key="501001:I" value="新建"/>
+<Dict key="511001:I" value="施工总包合同"/>
+<Dict key="165008:I" value="民用二级"/>
+<Dict key="1050020475:I" value="三级"/>
+<Dict key="1370010013:I" value="三级"/>
+<Dict key="1050030035:I" value="不分等级"/>
+<Dict key="220013:I" value="专职专业人员"/>
+<Dict key="115002:I" value="专业施工承包"/>
+<Dict key="50102:I" value="公共设施用地"/>
+<Dict key="80130402:I" value="损坏"/>
+<Dict key="29702:I" value="中止施工"/>
+<Dict key="501311010:I" value="印染工程"/>
+<Dict key="260888075:I" value="建设工程勘察外业实物工作量见证验收一览表"/>
+<Dict key="1050020276:I" value="通信系统工程(一级及以下公路)"/>
+<Dict key="105002034:I" value="港口与海岸工程"/>
+<Dict key="144004:I" value="总工程师"/>
+<Dict key="2980508:I" value="设计单位工商营业执照"/>
+<Dict key="260888054:I" value="勘察合同"/>
+<Dict key="501306007:I" value="运载火箭制造工程"/>
+<Dict key="105002037:I" value="通航建筑工程"/>
+<Dict key="107005:I" value="中专"/>
+<Dict key="911001:I" value="所有序列"/>
+<Dict key="501304005:I" value="新能源发电"/>
+<Dict key="501003:I" value="翻建"/>
+<Dict key="52001:I" value="所有序列"/>
+<Dict key="2000307:I" value="燃气"/>
+<Dict key="265001:I" value="甲级"/>
+<Dict key="2200081:I" value="建造师"/>
+<Dict key="105004:I" value="专项资质"/>
+<Dict key="128003:I" value="其他"/>
+<Dict key="211003:I" value="分标段工程"/>
+<Dict key="1050020148:I" value="二级"/>
+<Dict key="444003:I" value="墙材保温材料"/>
+<Dict key="77010404:I" value="备案审查汇报材料"/>
+<Dict key="2440103:I" value="叁级"/>
+<Dict key="501310005:I" value="电子基础产品项目工程"/>
+<Dict key="34000101:I" value="工程项目所有专业"/>
+<Dict key="17101:I" value="汇款"/>
+<Dict key="80720801:I" value="百年一遇标准"/>
+<Dict key="105002004:I" value="预拌商品混凝土"/>
+<Dict key="20005:I" value="建设性质"/>
+<Dict key="20007:I" value="市政工程类别"/>
+<Dict key="108001:I" value="高级工程师"/>
+<Dict key="19802:I" value="框剪结构"/>
+<Dict key="206001:I" value="造价咨询所有序列"/>
+<Dict key="501310016:I" value="广播电视传输"/>
+<Dict key="133001001:I" value="建造师所有序列"/>
+<Dict key="77010402:I" value="总体规划纲要"/>
+<Dict key="806703031:I" value="生活用水"/>
+<Dict key="501308003:I" value="批发配送与物流仓储工程"/>
+<Dict key="158028:I" value="结构设计事务所"/>
+<Dict key="19201:I" value="平方米"/>
+<Dict key="135003011:I" value="港口与航道工程"/>
+<Dict key="2000301:I" value="住宅"/>
+<Dict key="260888010:I" value="法律、法规规定的其他资料"/>
+<Dict key="501321002:I" value="人防工程"/>
+<Dict key="151004:I" value="挖掘机"/>
+<Dict key="1050020246:I" value="二级"/>
+<Dict key="200070701:I" value="长度"/>
+<Dict key="80551303:I" value="图书馆"/>
+<Dict key="501314001:I" value="公路"/>
+<Dict key="16:I" value="热力及燃气建筑安装工程"/>
+<Dict key="80070601:I" value="污水管道长度"/>
+<Dict key="111001:I" value="美元"/>
+<Dict key="111002:I" value="欧元"/>
+<Dict key="80070801:I" value="再生水管道长度"/>
+<Dict key="200070101:I" value="长度"/>
+<Dict key="2980512:I" value="岩土工程勘察报告审查委托单"/>
+<Dict key="1050020538:I" value="一级"/>
+<Dict key="1050010045:I" value="特级"/>
+<Dict key="501306019:I" value="控制系统、光学、光电、电子、仪表工程"/>
+<Dict key="19100302:I" value="身份证"/>
+<Dict key="1050020220:I" value="一级"/>
+<Dict key="191006:I" value="化学工业建筑安装工程"/>
+<Dict key="131001:I" value="施工图审查企业所有序列"/>
+<Dict key="105003001:I" value="砌筑作业"/>
+<Dict key="2000308:I" value="热力"/>
+<Dict key="80130103:I" value="防盗"/>
+<Dict key="109018005:I" value="园林绿化"/>
+<Dict key="144003:I" value="副总经理"/>
+<Dict key="501320022:I" value="农业工程"/>
+<Dict key="8809:I" value="项目申请报告"/>
+<Dict key="111000:I" value="人民币"/>
+<Dict key="501311007:I" value="皮革毛皮及制品"/>
+<Dict key="2000706:I" value="污水处理"/>
+<Dict key="260888074:I" value="工程勘察主要进场人员名单"/>
+<Dict key="80760201:I" value="密闭车（箱）清运量"/>
+<Dict key="80070705:I" value="干污泥处置能力"/>
+<Dict key="80131208:I" value="农田"/>
+<Dict key="191012:I" value="铁路建筑工程"/>
+<Dict key="50505:I" value="吨位(吨)"/>
+<Dict key="260888008:I" value="可能对环境造成重大影响的环境影响评价报告审批文件"/>
+<Dict key="52102:I" value="工业"/>
+<Dict key="501312003:I" value="新型建筑材料工程"/>
+<Dict key="807102021:I" value="热电厂"/>
+<Dict key="1350030041:I" value="乙级"/>
+<Dict key="1050020164:I" value="三级"/>
+<Dict key="107000:I" value="博士后"/>
+<Dict key="208001001:I" value="建筑节能企业所有序列"/>
+<Dict key="19808:I" value="桁架结构"/>
+<Dict key="77010403:I" value="图纸"/>
+<Dict key="51303:I" value="井格基础"/>
+<Dict key="53:I" value="化工石油工程"/>
+<Dict key="509006:I" value="排架结构"/>
+<Dict key="501303004:I" value="海洋石油"/>
+<Dict key="80720301:I" value="大桥及特大桥"/>
+<Dict key="24504:I" value="林学"/>
+<Dict key="134001002:I" value="工程勘察专业资质"/>
+<Dict key="1050010059:I" value="特级"/>
+<Dict key="260888079:I" value="施工图设计文件编制委托合同范本"/>
+<Dict key="146001:I" value="划拨"/>
+<Dict key="1050020191:I" value="一级"/>
+<Dict key="159001:I" value="考核"/>
+<Dict key="212002:I" value="注册结构师"/>
+<Dict key="1050020460:I" value="一级"/>
+<Dict key="158009:I" value="军工"/>
+<Dict key="502357:I" value="风景园林工程设计专项"/>
+<Dict key="1050010016:I" value="二级"/>
+<Dict key="29803:I" value="勘察文件审查委托"/>
+<Dict key="105002011:I" value="建筑防水工程"/>
+<Dict key="501317:I" value="市政行业"/>
+<Dict key="123018:I" value="预算员"/>
+<Dict key="114001:I" value="初级"/>
+<Dict key="260888002:I" value="建设用地批准文件（出让合同及使用权证）"/>
+<Dict key="80130301:I" value="有、完好"/>
+<Dict key="80670301:I" value="售水量"/>
+<Dict key="107006:I" value="高中及以下"/>
+<Dict key="17414:I" value="采掘(剥)作业"/>
+<Dict key="1050020513:I" value="一级"/>
+<Dict key="660102:I" value="有资质无档案企业"/>
+<Dict key="260888053:I" value="工程勘察成果报告"/>
+<Dict key="10017:I" value="房屋拆迁单位管理信息系统"/>
+<Dict key="501311002:I" value="食品发酵烟草工程"/>
+<Dict key="112008:I" value="市级文明工地"/>
+<Dict key="20009:I" value="资金来源(市政)"/>
+<Dict key="807101011:I" value="热电厂"/>
+<Dict key="10020:I" value="施工许可证管理信息系统"/>
+<Dict key="1050020313:I" value="二级"/>
+<Dict key="200070202:I" value="面积"/>
+<Dict key="260888066:I" value="勘察、设计、审查机构单位资质符合要求的证明材料"/>
+<Dict key="105002030:I" value="铁路电气化工程"/>
+<Dict key="1050010001:I" value="一级"/>
+<Dict key="501306001:I" value="导弹及火箭弹工程"/>
+<Dict key="501315006:I" value="水上交通管制工程"/>
+<Dict key="1320301:I" value="热电厂"/>
+<Dict key="80661001:I" value="居住用地"/>
+<Dict key="80070503:I" value="车行道新建、扩建面积"/>
+<Dict key="1050020136:I" value="二级"/>
+<Dict key="504004:I" value="规划许可证"/>
+<Dict key="340001:I" value="工程项目所有序列"/>
+<Dict key="501311:I" value="轻纺行业"/>
+<Dict key="200070402:I" value="面积"/>
+<Dict key="80130107:I" value="D700"/>
+<Dict key="1050020284:I" value="一级"/>
+<Dict key="158019:I" value="工程勘察专业类"/>
+<Dict key="220016:I" value="专业技术人员"/>
+<Dict key="22001411:I" value="招标师"/>
+<Dict key="1050020245:I" value="一级"/>
+<Dict key="2000602:I" value="重点设防类"/>
+<Dict key="123009:I" value="安全员"/>
+<Dict key="105002023:I" value="桥梁工程"/>
+<Dict key="1050020222:I" value="三级"/>
+<Dict key="134002002:I" value="工程设计行业资质"/>
+<Dict key="404003:I" value="铜川市建设工程质量安全监督站"/>
+<Dict key="121001:I" value="在职"/>
+<Dict key="501305006:I" value="焦化和耐火材料工程"/>
+<Dict key="302002:I" value="硕士"/>
+<Dict key="5101399:I" value="农林行业(农业工程)"/>
+<Dict key="2000202:I" value="使用国家融资、国际组织或者外国政府贷款、援助资金的房屋建筑建设项目"/>
+<Dict key="1050020031:I" value="三级"/>
+<Dict key="501309:I" value="核工业行业"/>
+<Dict key="138001:I" value="园林绿化所有序列"/>
+<Dict key="8804:I" value="初步设计方案"/>
+<Dict key="151002:I" value="洒水车"/>
+<Dict key="404010:I" value="商洛市建设工程质量安全监督中心站"/>
+<Dict key="501303003:I" value="管道输送"/>
+<Dict key="2980502:I" value="项目立项批准文件或备案文件"/>
+<Dict key="1350030122:I" value="丙级"/>
+<Dict key="108004:I" value="技术员"/>
+<Dict key="770106:I" value="控制性详细规划"/>
+<Dict key="806703011:I" value="生产运营用水"/>
+<Dict key="501301:I" value="煤炭行业"/>
+<Dict key="80130403:I" value="缺少"/>
+<Dict key="8817:I" value="施工图备案"/>
+<Dict key="151008:I" value="绘图仪"/>
+<Dict key="6:I" value="电力工业建筑安装工程"/>
+<Dict key="2980201:I" value="委托单"/>
+<Dict key="20900401:I" value="省级监理师"/>
+<Dict key="2000306:I" value="排水"/>
+<Dict key="105002017:I" value="机电设备安装工程"/>
+<Dict key="260888064:I" value="施工图设计文件审查合格书"/>
+<Dict key="2200113:I" value="建筑师"/>
+<Dict key="151010:I" value="其他"/>
+<Dict key="2200105:I" value="造价师"/>
+<Dict key="501310002:I" value="通信工程"/>
+<Dict key="1050010096:I" value="三级"/>
+<Dict key="260888032:I" value="规划许可证明（包括经审查批准的规划总平面图等）"/>
+<Dict key="501310017:I" value="电影工程"/>
+<Dict key="211002:I" value="分期建设"/>
+<Dict key="77010804:I" value="备案审查汇报材料"/>
+<Dict key="124030002:I" value="省直属企业"/>
+<Dict key="10001:I" value="建筑施工企业管理信息系统"/>
+<Dict key="444008:I" value="空调系统"/>
+<Dict key="139001:I" value="勘察设计所有序列"/>
+<Dict key="260888051:I" value="岩土工程勘察报告审查委托单"/>
+<Dict key="105002026:I" value="公路路基工程"/>
+<Dict key="51306:I" value="桩基础"/>
+<Dict key="80760503:I" value="其他"/>
+<Dict key="101001:I" value="新开锁"/>
+<Dict key="501315003:I" value="通航建筑工程"/>
+<Dict key="191014:I" value="港口建筑工程"/>
+<Dict key="501306009:I" value="航空飞行器工程"/>
+<Dict key="260888065:I" value="建设单位与勘察、设计、审图单位签定的合同"/>
+<Dict key="50235701:I" value="风景园林工程设计"/>
+<Dict key="1050020298:I" value="二级"/>
+<Dict key="105001009:I" value="市政公用工程"/>
+<Dict key="195006:I" value="质量员"/>
+<Dict key="50131016:I" value="电子系统工程"/>
+<Dict key="50131031:I" value="广播电视中心"/>
+<Dict key="166005:I" value="2.3专业承包完成合同额(万元)"/>
+<Dict key="80470203:I" value="城市燃气建设管理（50）"/>
+<Dict key="1050020403:I" value="二级"/>
+<Dict key="1050020340:I" value="三级"/>
+<Dict key="260888020:I" value="建设（城镇排水）主管部门批复文件"/>
+<Dict key="11800205:I" value="会计"/>
+<Dict key="1050010110:I" value="一级"/>
+<Dict key="501311011:I" value="服装工程"/>
+<Dict key="166001:I" value="1.1工程勘察完成合同额(万元)"/>
+<Dict key="220008:I" value="注册人员"/>
+<Dict key="191002:I" value="装饰装修工程"/>
+<Dict key="155005:I" value="编码管理"/>
+<Dict key="191005:I" value="石油工业建筑安装工程"/>
+<Dict key="1050010064:I" value="一级"/>
+<Dict key="105003012:I" value="架线作业"/>
+<Dict key="17404:I" value="企业内机动车辆驾驶"/>
+<Dict key="1050010033:I" value="一级"/>
+<Dict key="806703012:I" value="生产服务用水"/>
+<Dict key="1050020309:I" value="一级"/>
+<Dict key="501310006:I" value="显示器件项目工程"/>
+<Dict key="105002054:I" value="无损检测工程"/>
+<Dict key="80070102:I" value="供水管道长度"/>
+<Dict key="80710102:I" value="供热总量"/>
+<Dict key="195001:I" value="项目负责人"/>
+<Dict key="211001:I" value="单体工程"/>
+<Dict key="1050010029:I" value="一级"/>
+<Dict key="1050020285:I" value="二级"/>
+<Dict key="151006:I" value="工程模具"/>
+<Dict key="50703:I" value="勘察"/>
+<Dict key="110030010:I" value="其他"/>
+<Dict key="58:I" value="公路工程"/>
+<Dict key="158002:I" value="工程勘察综合类"/>
+<Dict key="80070905:I" value="防护绿地面积"/>
+<Dict key="124009:I" value="交通部直属企业"/>
+<Dict key="105002039:I" value="水上交通管制工程"/>
+<Dict key="5013171:I" value="市政（燃气工程、轨道交通工程除外）"/>
+<Dict key="501306016:I" value="火、炸药工程"/>
+<Dict key="50701:I" value="施工"/>
+<Dict key="501307011:I" value="物料搬运及仓储"/>
+<Dict key="1050020272:I" value="监控系统工程"/>
+<Dict key="1350030040:I" value="甲级"/>
+<Dict key="1050020071:I" value="三级"/>
+<Dict key="110030007:I" value="私营企业"/>
+<Dict key="19206:I" value="其它"/>
+<Dict key="121003:I" value="不在岗"/>
+<Dict key="310000002:I" value="二级"/>
+<Dict key="501302:I" value="化工石化医药行业"/>
+<Dict key="1050020566:I" value="不分等级"/>
+<Dict key="2980501:I" value="委托单"/>
+<Dict key="1050020458:I" value="二级"/>
+<Dict key="1050020527:I" value="三级"/>
+<Dict key="260888070:I" value="工程勘察外业见证委托合同范本"/>
+<Dict key="2000403:I" value="小型"/>
+<Dict key="80700302:I" value="燃气损失量"/>
+<Dict key="501318:I" value="海洋行业"/>
+<Dict key="501309002:I" value="核燃料加工制造及处理工程"/>
+<Dict key="190005:I" value="其他"/>
+<Dict key="260888015:I" value="规划红线图"/>
+<Dict key="1050020279:I" value="通信、监控、收费综合系统工程(一级及以下公路)"/>
+<Dict key="77010401:I" value="基础资料"/>
+<Dict key="166003:I" value="2.1岩土工程治理完成合同额(万元)"/>
+<Dict key="105002027:I" value="公路交通工程"/>
+<Dict key="501307008:I" value="热加工"/>
+<Dict key="134002005:I" value="建筑工程设计事务所资质"/>
+<Dict key="80130804:I" value="流速慢"/>
+<Dict key="1050020001:I" value="二级"/>
+<Dict key="501306012:I" value="船舶机械工程"/>
+<Dict key="105002033:I" value="机场目视助航工程"/>
+<Dict key="1050020054:I" value="二级"/>
+<Dict key="260888009:I" value="人防审查意见"/>
+<Dict key="1050020514:I" value="二级"/>
+<Dict key="260888014:I" value="城乡规划许可文件（选址意见书）"/>
+<Dict key="105002064:I" value="城市给水排水工程"/>
+<Dict key="105002038:I" value="通航设备安装工程"/>
+<Dict key="2650101:I" value="住宅装饰装修工程专业承包"/>
+<Dict key="19100303:I" value="学历证"/>
+<Dict key="260888037:I" value="勘察纲要、工程勘察有关数据、图表和原始资料等"/>
+<Dict key="1050020389:I" value="一级"/>
+<Dict key="80740201:I" value="建成区"/>
+<Dict key="112901:I" value="身份证"/>
+<Dict key="123005:I" value="注册结构师"/>
+<Dict key="51204:I" value="奢侈型住房"/>
+<Dict key="503332:I" value="结构设计事务所"/>
+<Dict key="1350030101:I" value="乙级"/>
+<Dict key="80130705:I" value="D 跌落井"/>
+<Dict key="80760602:I" value="焚烧"/>
+<Dict key="501314:I" value="公路行业"/>
+<Dict key="501302010:I" value="中成药"/>
+<Dict key="80070401:I" value="轨道交通运营线路长度"/>
+<Dict key="200070601:I" value="日污水处理能力"/>
+<Dict key="158016:I" value="铁道"/>
+<Dict key="80700401:I" value="家庭用户"/>
+<Dict key="50131032:I" value="广播电视发射"/>
+<Dict key="105002028:I" value="铁路电务工程"/>
+<Dict key="80720302:I" value="立交桥"/>
+<Dict key="144005:I" value="总经济师"/>
+<Dict key="10018:I" value="设计施工一体化企业管理信息系统"/>
+<Dict key="444009:I" value="节能照明系统"/>
+<Dict key="2000903:I" value="民间资金、外资、非政府组织投资的关系公共利益和公众安全的市政基础设施建设项目"/>
+<Dict key="158038:I" value="工程勘察"/>
+<Dict key="51401:I" value="商品房"/>
+<Dict key="2980204:I" value="工程勘察资料"/>
+<Dict key="501313:I" value="铁道行业"/>
+<Dict key="501313004:I" value="电气化"/>
+<Dict key="123003:I" value="注册造价师"/>
+<Dict key="260888080:I" value="工程勘察资料"/>
+<Dict key="102003:I" value="交通厅"/>
+<Dict key="1050020402:I" value="一级"/>
+<Dict key="504003:I" value="用地许可证"/>
+<Dict key="105002029:I" value="铁路铺轨架梁工程"/>
+<Dict key="108011:I" value="政工师"/>
+<Dict key="10012:I" value="外来勘察设计企业管理信息系统"/>
+<Dict key="17102:I" value="现金"/>
+<Dict key="367001:I" value="宝鸡市建设工程质量安全监督站"/>
+<Dict key="49902:I" value="非强条"/>
+<Dict key="1050010065:I" value="二级"/>
+<Dict key="1001:I" value="土建"/>
+<Dict key="135003006:I" value="水利水电工程"/>
+<Dict key="105003004:I" value="油漆作业"/>
+<Dict key="501311009:I" value="纺织工程"/>
+<Dict key="199002:I" value="注册结构师"/>
+<Dict key="4040:I" value="质量安全监督单位"/>
+<Dict key="194003:I" value="施工备案证"/>
+<Dict key="404012:I" value="杨凌示范区建设工程质量安全监督站"/>
+<Dict key="24502:I" value="园艺"/>
+<Dict key="1050010032:I" value="特级"/>
+<Dict key="51203:I" value="宽敞型住房"/>
+<Dict key="501302005:I" value="生化、生物药"/>
+<Dict key="17407:I" value="压力容器作业"/>
+<Dict key="1008604:I" value="打回通知"/>
+<Dict key="110030001:I" value="有限责任公司"/>
+<Dict key="134002:I" value="工程设计"/>
+<Dict key="80070205:I" value="天然气供气管道长度"/>
+<Dict key="165011:I" value="工业中型"/>
+<Dict key="503001:I" value="自有"/>
+<Dict key="8801:I" value="项目建议书"/>
+<Dict key="367007:I" value="岐山县建设工程质量安全监督站"/>
+<Dict key="1350030060:I" value="甲级"/>
+<Dict key="50131014:I" value="微电子产品项目工程"/>
+<Dict key="501320008:I" value="营造林工程"/>
+<Dict key="80070704:I" value="NH3-N削减能力"/>
+<Dict key="1050020177:I" value="三级"/>
+<Dict key="8808:I" value="环境影响评价"/>
+<Dict key="5013111:I" value="轻纺行业(纺织工程)"/>
+<Dict key="1050020325:I" value="二级"/>
+<Dict key="404005:I" value="咸阳市建设工程质量安全监督站"/>
+<Dict key="80690601:I" value="家庭用户"/>
+<Dict key="220003:I" value="三类人员"/>
+<Dict key="1050020530:I" value="三级"/>
+<Dict key="32000101:I" value="规划编制单位所有专业"/>
+<Dict key="501301001:I" value="矿井"/>
+<Dict key="1050040011:I" value="不分等级"/>
+<Dict key="80670302:I" value="免费供水量"/>
+<Dict key="209011:I" value="招标师"/>
+<Dict key="80710201:I" value="供热能力"/>
+<Dict key="1350030011:I" value="乙级"/>
+<Dict key="507:I" value="招标性质"/>
+<Dict key="2200119:I" value="结构师"/>
+<Dict key="29804:I" value="施工图设计文件编制委托"/>
+<Dict key="77010102:I" value="总体规划纲要"/>
+<Dict key="2000703:I" value="高架桥"/>
+<Dict key="49801:I" value="外业资料"/>
+<Dict key="110009:I" value="外商投资企业"/>
+<Dict key="80130702:I" value="J 截流井"/>
+<Dict key="1050020070:I" value="二级"/>
+<Dict key="109018007:I" value="电力电信"/>
+<Dict key="195011:I" value="注册建造师"/>
+<Dict key="51:I" value="冶炼工程"/>
+<Dict key="1050020176:I" value="二级"/>
+<Dict key="1050020502:I" value="二级"/>
+<Dict key="50501:I" value="平方米"/>
+<Dict key="158018:I" value="水运"/>
+<Dict key="2000804:I" value="热力工程"/>
+<Dict key="807003011:I" value="居民家庭"/>
+<Dict key="12:I" value="公路建筑工程"/>
+<Dict key="158029:I" value="机电设计事务所"/>
+<Dict key="105002013:I" value="附着升降脚手架"/>
+<Dict key="19202:I" value="公里"/>
+<Dict key="501306011:I" value="船舶制造工程"/>
+<Dict key="501304008:I" value="风力发电"/>
+<Dict key="161007:I" value="验收备案表"/>
+<Dict key="501302011:I" value="药物制剂"/>
+<Dict key="502352003:I" value="污染修复工程"/>
+<Dict key="80130302:I" value="破损"/>
+<Dict key="112005:I" value="梁思成奖"/>
+<Dict key="80551304:I" value="科技馆"/>
+<Dict key="80131211:I" value="院内"/>
+<Dict key="187005:I" value="其他"/>
+<Dict key="50235601:I" value="轻型钢结构工程设计"/>
+<Dict key="501310011:I" value="无线通信"/>
+<Dict key="105002035:I" value="港口装卸设备安装工程"/>
+<Dict key="501304003:I" value="水力发电（含抽水蓄能、潮汐）"/>
+<Dict key="93:I" value="项目审查"/>
+<Dict key="134002003:I" value="工程设计专业资质"/>
+<Dict key="50:I" value="房屋建筑工程"/>
+<Dict key="112002:I" value="华夏奖"/>
+<Dict key="511002:I" value="监理合同"/>
+<Dict key="501310004:I" value="电子整机产品项目工程"/>
+<Dict key="80070304:I" value="集中供热管道长度：热水"/>
+<Dict key="123010:I" value="其他持证上岗人员"/>
+<Dict key="105002047:I" value="火电设备安装工程"/>
+<Dict key="2200121:I" value="建造师"/>
+<Dict key="80131108:I" value="其它"/>
+<Dict key="135003015:I" value="铁路工程 "/>
+<Dict key="501311008:I" value="家电电子及日用机械"/>
+<Dict key="2460111:I" value="规划师"/>
+<Dict key="80740101:I" value="建成区"/>
+<Dict key="501307005:I" value="金属制品业工程"/>
+<Dict key="173000000:I" value="所有专业"/>
+<Dict key="511003:I" value="勘察合同"/>
+<Dict key="80130101:I" value="完好"/>
+<Dict key="2980510:I" value="全套施工设计文件"/>
+<Dict key="80130505:I" value="垃圾或泥"/>
+<Dict key="80070901:I" value="公园个数"/>
+<Dict key="158005:I" value="化工石化医药"/>
+<Dict key="1350030061:I" value="乙级"/>
+<Dict key="1050020066:I" value="一级"/>
+<Dict key="807102011:I" value="热电厂"/>
+<Dict key="1050020257:I" value="一级"/>
+<Dict key="165018:I" value="中型"/>
+<Dict key="124030:I" value="工程项目系统企业隶属"/>
+<Dict key="19804:I" value="剪力墙结构"/>
+<Dict key="260888031:I" value="项目立项批复文件"/>
+<Dict key="501307006:I" value="仪器仪表及文化办公机械制造业工程"/>
+<Dict key="80131202:I" value="辅路"/>
+<Dict key="51302:I" value="独立基础"/>
+<Dict key="4800101:I" value="所有专业"/>
+<Dict key="80730401:I" value="二、三级"/>
+<Dict key="112903:I" value="其他"/>
+<Dict key="5033331:I" value="机电设计事务所"/>
+<Dict key="1050020149:I" value="三级"/>
+<Dict key="260888050:I" value="计算书及计算软件名称（抗震验算、砌体承压计算书等）&amp;nbsp;"/>
+<Dict key="501308004:I" value="成品油储运工程"/>
+<Dict key="22001311:I" value="招标师"/>
+<Dict key="1050020462:I" value="三级"/>
+<Dict key="1050010000:I" value="特级"/>
+<Dict key="517002:I" value="项目核准信息"/>
+<Dict key="52104:I" value="公共设施"/>
+<Dict key="5013112:I" value="轻纺行业(轻工工程)"/>
+<Dict key="80470201:I" value="城市道路建设、交通整治（100）"/>
+<Dict key="77010504:I" value="备案审查汇报材料"/>
+<Dict key="444007:I" value="太阳能光电系统"/>
+<Dict key="107002:I" value="硕士"/>
+<Dict key="80070701:I" value="污水处理厂处理能力"/>
+<Dict key="80130406:I" value="塑钢"/>
+<Dict key="1050010048:I" value="三级"/>
+<Dict key="1050020582:I" value="三级"/>
+<Dict key="501319009:I" value="水利行业"/>
+<Dict key="1050020217:I" value="一级"/>
+<Dict key="50108:I" value="水域和其它用地"/>
+<Dict key="50131706:I" value="桥梁工程"/>
+<Dict key="501310010:I" value="有线通信"/>
+<Dict key="124030001:I" value="属地管理企业"/>
+<Dict key="158027:I" value="建筑设计事务所"/>
+<Dict key="501310013:I" value="通信铁塔"/>
+<Dict key="2200159:I" value="结构师"/>
+<Dict key="501303:I" value="石油天然气（海洋石油）行业"/>
+<Dict key="501303005:I" value="油气库"/>
+<Dict key="135003013:I" value="机电安装工程"/>
+<Dict key="109009002:I" value="矿业"/>
+<Dict key="50107:I" value="市政公用设施用地"/>
+<Dict key="24503:I" value="林业"/>
+<Dict key="1050020417:I" value="三级"/>
+<Dict key="501316:I" value="民航行业"/>
+<Dict key="110004:I" value="股份合作企业"/>
+<Dict key="404002:I" value="西安市建设工程质量安全监督站"/>
+<Dict key="77010202:I" value="总体规划纲要"/>
+<Dict key="105002060:I" value="燃气燃烧器具安装、维修"/>
+<Dict key="2980504:I" value="规划审批红线图"/>
+<Dict key="1050030117:I" value="不分等级"/>
+<Dict key="1050020446:I" value="三级"/>
+<Dict key="367004:I" value="陈仓区建设工程质量安全监督站"/>
+<Dict key="1050030058:I" value="二级"/>
+<Dict key="1050030070:I" value="一级"/>
+<Dict key="77011004:I" value="备案审查汇报材料"/>
+<Dict key="1050020123:I" value="二级"/>
+<Dict key="1380010011:I" value="一级"/>
+<Dict key="2980101:I" value="委托单"/>
+<Dict key="2000802:I" value="排水工程"/>
+<Dict key="1050020095:I" value="一级"/>
+<Dict key="91:I" value="项目勘察"/>
+<Dict key="50131033:I" value="广播电视传输"/>
+<Dict key="80760402:I" value="焚烧"/>
+<Dict key="158007:I" value="电力"/>
+<Dict key="105003003:I" value="石制作"/>
+<Dict key="501304001:I" value="火电发电（含核电站常规岛设计）"/>
+<Dict key="26900201:I" value="一级"/>
+<Dict key="501309005:I" value="核技术及同位素应用工程"/>
+<Dict key="151007:I" value="模板"/>
+<Dict key="26900202:I" value="二级"/>
+<Dict key="1050020473:I" value="一级"/>
+<Dict key="770107:I" value="城市设计"/>
+<Dict key="501301002:I" value="露天矿"/>
+<Dict key="77010201:I" value="基础资料"/>
+<Dict key="22000404:I" value="材料员"/>
+<Dict key="191019:I" value="治金有色工业建筑工程"/>
+<Dict key="1370010012:I" value="二级"/>
+<Dict key="50802:I" value="空中或地上有否有市政设施或沟渠"/>
+<Dict key="80750502:I" value="经营收入"/>
+<Dict key="1050020415:I" value="一级"/>
+<Dict key="1050010109:I" value="三级"/>
+<Dict key="2200153:I" value="建筑师"/>
+<Dict key="49802:I" value="实验资料"/>
+<Dict key="2200145:I" value="造价师"/>
+<Dict key="2200109:I" value="结构师"/>
+<Dict key="1050020206:I" value="三级"/>
+<Dict key="135006001:I" value="所有"/>
+<Dict key="2980102:I" value="初步设计委托合同范本"/>
+<Dict key="17410:I" value="矿山通风作业"/>
+<Dict key="2200123:I" value="建筑师"/>
+<Dict key="80470206:I" value="城市园林绿化建设（180）"/>
+<Dict key="444006:I" value="太阳能光热系统"/>
+<Dict key="367005:I" value="凤翔县建设工程质量安全监督站"/>
+<Dict key="105001001:I" value="公路工程"/>
+<Dict key="50603:I" value="公开招标"/>
+<Dict key="7024:I" value="财务负责人"/>
+<Dict key="1050020042:I" value="二级"/>
+<Dict key="502352001:I" value="水污染防治工程"/>
+<Dict key="135003010:I" value="化工石油工程"/>
+<Dict key="50131713:I" value="轨道交通工程"/>
+<Dict key="80131203:I" value="自行车道"/>
+<Dict key="501318003:I" value="海水利用"/>
+<Dict key="110006:I" value="股份有限公司"/>
+<Dict key="501304006:I" value="变电工程"/>
+<Dict key="105002019:I" value="建筑智能化工程"/>
+<Dict key="159000:I" value="考试"/>
+<Dict key="260888052:I" value="勘察单位资质证书"/>
+<Dict key="13203:I" value="热源类型"/>
+<Dict key="135003004:I" value="航天航空工程 "/>
+<Dict key="501306006:I" value="航天空间飞行器工程"/>
+<Dict key="22001611:I" value="招标师"/>
+<Dict key="105002007:I" value="钢结构工程"/>
+<Dict key="501310001:I" value="电子工程"/>
+<Dict key="158030:I" value="建筑装饰工程设计"/>
+<Dict key="7043:I" value="执业企业变更"/>
+<Dict key="101003:I" value="续费"/>
+<Dict key="80131302:I" value="非机动车多"/>
+<Dict key="155001:I" value="用户管理"/>
+<Dict key="52101:I" value="居住"/>
+<Dict key="1050020107:I" value="一级"/>
+<Dict key="77010904:I" value="备案审查汇报材料"/>
+<Dict key="807101012:I" value="锅炉房"/>
+<Dict key="501310012:I" value="邮政工程"/>
+<Dict key="158023:I" value="海洋"/>
+<Dict key="50131704:I" value="热力工程"/>
+<Dict key="125000:I" value="专职"/>
+<Dict key="2000201:I" value="全部或者部分使用政府财政资金及其他国有资金投资的房屋建筑建设项目"/>
+<Dict key="60000101:I" value="所有等级"/>
+<Dict key="50131709:I" value="载人索道"/>
+<Dict key="105002043:I" value="河湖整治工程"/>
+<Dict key="50503:I" value="跨度(米)"/>
+<Dict key="1050020277:I" value="监控系统工程(一级及以下公路)"/>
+<Dict key="1050020056:I" value="四级"/>
+<Dict key="20003:I" value="建筑使用性质"/>
+<Dict key="501320009:I" value="森林资源环境工程"/>
+<Dict key="80760403:I" value="其他"/>
+<Dict key="80131004:I" value="凿口"/>
+<Dict key="80130501:I" value="完好"/>
+<Dict key="220007:I" value="项目总工"/>
+<Dict key="165005:I" value="勘察其他"/>
+<Dict key="1320103:I" value="车棚"/>
+<Dict key="501314004:I" value="交通工程"/>
+<Dict key="50601:I" value="直接发包"/>
+<Dict key="146002:I" value="出让"/>
+<Dict key="8816:I" value="招标实施方案"/>
+<Dict key="80130407:I" value="锈蚀"/>
+<Dict key="19806:I" value="排架结构"/>
+<Dict key="501313001:I" value="轨道"/>
+<Dict key="8806:I" value="规划选址意见"/>
+<Dict key="49903:I" value="法规"/>
+<Dict key="158025:I" value="农林"/>
+<Dict key="244011:I" value="项目经理"/>
+<Dict key="2000313:I" value="公共交通"/>
+<Dict key="444002:I" value="粘土类新型墙材"/>
+<Dict key="105001006:I" value="矿山工程"/>
+<Dict key="1050010080:I" value="特级"/>
+<Dict key="135001001:I" value="综合资质"/>
+<Dict key="109018000:I" value="规划"/>
+<Dict key="501002:I" value="改建"/>
+<Dict key="80710301:I" value="住宅"/>
+<Dict key="29802:I" value="项目勘察委托"/>
+<Dict key="1050030106:I" value="不分等级"/>
+<Dict key="80131303:I" value="机动车和非机动车都多"/>
+<Dict key="80071001:I" value="生活垃圾无害化处理能力"/>
+<Dict key="511007:I" value="专包合同"/>
+<Dict key="80551305:I" value="博物馆"/>
+<Dict key="77010801:I" value="基础资料"/>
+<Dict key="131001001:I" value="施工图审查企业所有专业"/>
+<Dict key="109018004:I" value="道路交通"/>
+<Dict key="260888041:I" value="项目立项批准文件或备案文件"/>
+<Dict key="2200093:I" value="建筑师"/>
+<Dict key="1350030142:I" value="丙级"/>
+<Dict key="144001:I" value="董事长"/>
+<Dict key="102005:I" value="水利厅"/>
+<Dict key="1350030091:I" value="乙级"/>
+<Dict key="19:I" value="其它工程"/>
+<Dict key="1050020351:I" value="一级"/>
+<Dict key="503:I" value="用地性质"/>
+<Dict key="80130508:I" value="砌块"/>
+<Dict key="1050020028:I" value="三级"/>
+<Dict key="165014:I" value="一级"/>
+<Dict key="1050020124:I" value="三级"/>
+<Dict key="770109:I" value="国家级开发区总体规划"/>
+<Dict key="110000:I" value="有限责任公司"/>
+<Dict key="1380010012:I" value="二级"/>
+<Dict key="108003:I" value="助理工程师"/>
+<Dict key="161001:I" value="身份证"/>
+<Dict key="1050020348:I" value="一级"/>
+<Dict key="124011:I" value="信息产业部直属企业"/>
+<Dict key="187003:I" value="筹建"/>
+<Dict key="5033321:I" value="结构设计事务所"/>
+<Dict key="8820:I" value="用地文件备案"/>
+<Dict key="50131022:I" value="无线通信"/>
+<Dict key="51205:I" value="投资型住房"/>
+<Dict key="212001:I" value="其他注册师"/>
+<Dict key="19810:I" value="其他"/>
+<Dict key="2000101:I" value="房屋建筑"/>
+<Dict key="501308:I" value="商物粮行业"/>
+<Dict key="1350030071:I" value="乙级"/>
+<Dict key="113010:I" value="建筑智能化一体化"/>
+<Dict key="206001001:I" value="造价咨询所有专业"/>
+<Dict key="2000805:I" value="道路工程"/>
+<Dict key="108009:I" value="高级政工师"/>
+<Dict key="1050020274:I" value="安全设施"/>
+<Dict key="80661007:I" value="公用设施用地"/>
+<Dict key="101002:I" value="换锁"/>
+<Dict key="509009:I" value="网架结构"/>
+<Dict key="191018:I" value="给水排水工程"/>
+<Dict key="501305004:I" value="金属材料工程"/>
+<Dict key="501307001:I" value="通用设备制造业工程"/>
+<Dict key="501319002:I" value="引调水"/>
+<Dict key="5023581:I" value="照明工程设计"/>
+<Dict key="22000405:I" value="预算员"/>
+<Dict key="50704:I" value="设计"/>
+<Dict key="165016:I" value="三级"/>
+<Dict key="1003:I" value="工程管理"/>
+<Dict key="105002022:I" value="电子工程"/>
+<Dict key="80131101:I" value="餐饮"/>
+<Dict key="770104:I" value="分区规划"/>
+<Dict key="110007:I" value="私营企业"/>
+<Dict key="210002:I" value="注册岩土工程师"/>
+<Dict key="50602:I" value="邀请招标"/>
+<Dict key="502358:I" value="照明工程设计专项"/>
+<Dict key="17411:I" value="矿山排水作业"/>
+<Dict key="302004:I" value="其他"/>
+<Dict key="1350030160:I" value="甲级"/>
+<Dict key="10011:I" value="外来施工企业管理信息系统"/>
+<Dict key="1050020539:I" value="二级"/>
+<Dict key="31000004:I" value="建筑装饰装修工程设计与施工"/>
+<Dict key="121002:I" value="退休"/>
+<Dict key="158013:I" value="电子通信广电"/>
+<Dict key="501306013:I" value="船舶水工工程"/>
+<Dict key="911001001:I" value="所有专业"/>
+<Dict key="999999992:I" value="国家级"/>
+<Dict key="501310014:I" value="广播电视中心"/>
+<Dict key="80650801:I" value="污水处理厂集中处理率"/>
+<Dict key="503003:I" value="非自有"/>
+<Dict key="50504:I" value="层数"/>
+<Dict key="15:I" value="邮电通讯及电子设备安装工程"/>
+<Dict key="310000:I" value="设计施工一体化序列"/>
+<Dict key="1050020324:I" value="一级"/>
+<Dict key="50131023:I" value="邮政工程"/>
+<Dict key="5:I" value="化学工业建筑安装工程"/>
+<Dict key="1050020109:I" value="三级"/>
+<Dict key="77010302:I" value="总体规划纲要"/>
+<Dict key="187002:I" value="停业"/>
+<Dict key="444005:I" value="采暖系统"/>
+<Dict key="8821:I" value="环境影响评价"/>
+<Dict key="310000022:I" value="二级"/>
+<Dict key="165013:I" value="其他"/>
+<Dict key="501310009:I" value="电子系统工程"/>
+<Dict key="1050020039:I" value="一级"/>
+<Dict key="610321:I" value="陕西省宝鸡市陈仓区"/>
+<Dict key="105002049:I" value="核工程"/>
+<Dict key="211009:I" value="整体工程"/>
+<Dict key="1350030130:I" value="甲级"/>
+<Dict key="80700301:I" value="销售气量"/>
+<Dict key="501320005:I" value="设施农业工程"/>
+<Dict key="635002:I" value="设备安装工程"/>
+<Dict key="191009:I" value="森林工业建筑安装工程"/>
+<Dict key="22001111:I" value="招标师"/>
+<Dict key="1350030062:I" value="丙级"/>
+<Dict key="19301:I" value="所有类型"/>
+<Dict key="80131201:I" value="主路"/>
+<Dict key="190001:I" value="住宅"/>
+<Dict key="260888063:I" value="施工图设计文件审查报告"/>
+<Dict key="80070702:I" value="污水泵站提升能力"/>
+<Dict key="1050020474:I" value="二级"/>
+<Dict key="770108:I" value="历史文化名城保护规划"/>
+<Dict key="1050010046:I" value="一级"/>
+<Dict key="2200095:I" value="造价师"/>
+<Dict key="1050020429:I" value="二级"/>
+<Dict key="110003:I" value="集体企业"/>
+<Dict key="165006:I" value="民用特级"/>
+<Dict key="105003011:I" value="钣金作业"/>
+<Dict key="80130404:I" value="错位"/>
+<Dict key="80760601:I" value="卫生填埋"/>
+<Dict key="220001:I" value="项目经理"/>
+<Dict key="80131206:I" value="混行道路"/>
+<Dict key="19205:I" value="吨位(吨)"/>
+<Dict key="80131107:I" value="施工排水"/>
+<Dict key="330001001:I" value="房地产估价机构所有专业"/>
+<Dict key="1050020431:I" value="一级"/>
+<Dict key="1050020581:I" value="二级"/>
+<Dict key="8810:I" value="招标实施方案"/>
+<Dict key="80470501:I" value="加分因素（120）"/>
+<Dict key="1050020262:I" value="三级"/>
+<Dict key="17401:I" value="电工作业"/>
+<Dict key="1050020258:I" value="二级"/>
+<Dict key="1050020578:I" value="二级"/>
+<Dict key="105002016:I" value="起重设备安装工程"/>
+<Dict key="2980509:I" value="设计合同及支付设计费用凭证"/>
+<Dict key="260888069:I" value="工程勘察委托合同范本"/>
+<Dict key="124010:I" value="水利部直属企业"/>
+<Dict key="105002024:I" value="隧道工程"/>
+<Dict key="50131702:I" value="排水工程"/>
+<Dict key="320001013:I" value="丙级"/>
+<Dict key="2980304:I" value="勘察单位资质证书"/>
+<Dict key="158015:I" value="建材"/>
+<Dict key="119001:I" value="初级"/>
+<Dict key="80071004:I" value="公共厕所座数"/>
+<Dict key="77010304:I" value="备案审查汇报材料"/>
+<Dict key="2980205:I" value="工程勘察委托合同范本"/>
+<Dict key="191008:I" value="建材建筑安装工程"/>
+<Dict key="501321004:I" value="结构设计事务所"/>
+<Dict key="1008601:I" value="受理通知"/>
+<Dict key="1050020593:I" value="不分等级"/>
+<Dict key="510001:I" value="政府投资"/>
+<Dict key="1050020380:I" value="二级"/>
+<Dict key="1050030095:I" value="二级"/>
+<Dict key="77010701:I" value="基础资料"/>
+<Dict key="440002:I" value="二级建造师"/>
+<Dict key="8815:I" value="项目备案申请"/>
+<Dict key="112003:I" value="人居环境奖"/>
+<Dict key="260888016:I" value="可能对环境造成重大影响的环境影响评价"/>
+<Dict key="501320006:I" value="林产工业工程"/>
+<Dict key="105002036:I" value="航道工程"/>
+<Dict key="404009:I" value="安康市建设工程质量安全监督中心站"/>
+<Dict key="135003003:I" value="公路工程"/>
+<Dict key="5033311:I" value="建筑设计事务所"/>
+<Dict key="220004:I" value="建筑五大员"/>
+<Dict key="302001:I" value="博士"/>
+<Dict key="191020:I" value="其它工程"/>
+<Dict key="20008:I" value="市政行业类别"/>
+<Dict key="1350030100:I" value="甲级"/>
+<Dict key="158001:I" value="工程设计综合工程"/>
+<Dict key="2000303:I" value="商住楼"/>
+<Dict key="1350030072:I" value="丙级"/>
+<Dict key="51305:I" value="箱形基础"/>
+<Dict key="1050020486:I" value="一级"/>
+<Dict key="80130603:I" value="干净"/>
+<Dict key="511005:I" value="施工分包合同"/>
+<Dict key="108006:I" value="助理经济师"/>
+<Dict key="517003:I" value="项目备案信息"/>
+<Dict key="10005:I" value="园林绿化企业管理信息系统"/>
+<Dict key="161002:I" value="毕业证"/>
+<Dict key="77010205:I" value="CAD文件"/>
+<Dict key="2200149:I" value="结构师"/>
+<Dict key="807101021:I" value="热电厂"/>
+<Dict key="1050020:I" value="不分等级"/>
+<Dict key="501302003:I" value="石油及化工产品储运"/>
+<Dict key="20900104:I" value="建筑工程"/>
+<Dict key="1050020577:I" value="一级"/>
+<Dict key="80131106:I" value="高等教育和科研机构"/>
+<Dict key="24501:I" value="园林"/>
+<Dict key="195009:I" value="预算员"/>
+<Dict key="105002020:I" value="环保工程"/>
+<Dict key="8814:I" value="环境影响评价"/>
+<Dict key="2980514:I" value="工程勘察成果报告"/>
+<Dict key="1320203:I" value="其他"/>
+<Dict key="50105:I" value="对外交通用地"/>
+<Dict key="1050010107:I" value="一级"/>
+<Dict key="24506:I" value="植保"/>
+<Dict key="2000302:I" value="公建"/>
+<Dict key="2200139:I" value="结构师"/>
+<Dict key="260888061:I" value="施工图勘察文件审查报告"/>
+<Dict key="1050010034:I" value="二级"/>
+<Dict key="2200135:I" value="造价师"/>
+<Dict key="1050010028:I" value="特级"/>
+<Dict key="19100304:I" value="职称证"/>
+<Dict key="200070501:I" value="日供水量"/>
+<Dict key="10006:I" value="施工图审查机构管理信息系统"/>
+<Dict key="105002001:I" value="土石方工程"/>
+<Dict key="113040:I" value="建筑幕墙一体化"/>
+<Dict key="80130801:I" value="水至井筒"/>
+<Dict key="105002018:I" value="爆破与拆除工程"/>
+<Dict key="220015:I" value="专业技术人员"/>
+<Dict key="302003:I" value="学士"/>
+<Dict key="504:I" value="证书类型"/>
+<Dict key="199001:I" value="其他注册师"/>
+<Dict key="501306010:I" value="机场工程"/>
+<Dict key="2000807:I" value="城市隧道工程"/>
+<Dict key="29805:I" value="施工图设计文件审查委托"/>
+<Dict key="134001:I" value="工程勘察"/>
+<Dict key="80730203:I" value="雨污合流管道"/>
+<Dict key="22001210:I" value="城市规划师"/>
+<Dict key="1050020363:I" value="一级"/>
+<Dict key="105002057:I" value="城市及道路照明工程"/>
+<Dict key="1050020444:I" value="一级"/>
+<Dict key="158008:I" value="冶金"/>
+<Dict key="86601:I" value="技术支持"/>
+<Dict key="117004:I" value="建造员"/>
+<Dict key="105002051:I" value="冶炼机电设备安装工程"/>
+<Dict key="123007:I" value="施工员"/>
+<Dict key="105002014:I" value="金属门窗工程"/>
+<Dict key="7041:I" value="姓名变更"/>
+<Dict key="2200133:I" value="建筑师"/>
+<Dict key="501319003:I" value="灌溉排涝"/>
+<Dict key="1050020297:I" value="一级"/>
+<Dict key="7023:I" value="技术负责人"/>
+<Dict key="2200099:I" value="结构师"/>
+<Dict key="17403:I" value="起重机械(含电梯)作业"/>
+<Dict key="11800207:I" value="其它系列"/>
+<Dict key="1350030031:I" value="乙级"/>
+<Dict key="1050010047:I" value="二级"/>
+<Dict key="367013:I" value="太白县建设工程质量安全监督站"/>
+<Dict key="770203:I" value="控制单元附件"/>
+<Dict key="8819:I" value="规划选址意见"/>
+<Dict key="501311005:I" value="日用硅酸盐工程"/>
+<Dict key="105002045:I" value="水工大坝工程"/>
+<Dict key="136001:I" value="招标代理序列"/>
+<Dict key="17415:I" value="矿山救护作业"/>
+<Dict key="24505:I" value="植物"/>
+<Dict key="1320102:I" value="冷室车库"/>
+<Dict key="124005:I" value="属地管理企业"/>
+<Dict key="502352004:I" value="大气污染防治工程"/>
+<Dict key="80130802:I" value="流速正常"/>
+<Dict key="1005:I" value="市政"/>
+<Dict key="191010:I" value="轻纺工业建筑安装工程"/>
+<Dict key="501311001:I" value="制浆造纸工程"/>
+<Dict key="105003000:I" value="木工作业"/>
+<Dict key="80730301:I" value="二、三级处理"/>
+<Dict key="310000021:I" value="一级"/>
+<Dict key="80670303:I" value="漏损水量"/>
+<Dict key="501307010:I" value="检测"/>
+<Dict key="260888046:I" value="设计单位资证书"/>
+<Dict key="260888067:I" value="地质勘察报告、全套加盖出图章、注册工程师执业章、审查章的施工图"/>
+<Dict key="200070201:I" value="长度"/>
+<Dict key="101004:I" value="补锁"/>
+<Dict key="137001:I" value="房地产所有序列"/>
+<Dict key="207001:I" value="房屋拆迁企业序列"/>
+<Dict key="501302006:I" value="化学原料药"/>
+<Dict key="80070207:I" value="液化石油气供气管道长度"/>
+<Dict key="29602:I" value="有资质有档案"/>
+<Dict key="501306:I" value="军工行业"/>
+<Dict key="444004:I" value="屋面保温材料"/>
+<Dict key="50109:I" value="特殊用地"/>
+<Dict key="20900103:I" value="市政公用工程"/>
+<Dict key="1350060011:I" value="无"/>
+<Dict key="296:I" value="企业状态"/>
+<Dict key="200070302:I" value="面积"/>
+<Dict key="108007:I" value="经济师"/>
+<Dict key="8805:I" value="节能评估审查"/>
+<Dict key="1050020079:I" value="一级"/>
+<Dict key="501306017:I" value="防化、民爆器材工程"/>
+<Dict key="260888011:I" value="工程地质勘察报告"/>
+<Dict key="501303007:I" value="石油机械制造与修理"/>
+<Dict key="2980310:I" value="其他资料"/>
+<Dict key="501313002:I" value="桥梁"/>
+<Dict key="600001:I" value="三类人员所有序列"/>
+<Dict key="123001:I" value="注册监理工程师"/>
+<Dict key="806905011:I" value="居民家庭"/>
+<Dict key="1050020377:I" value="二级"/>
+<Dict key="50131711:I" value="环境卫生工程"/>
+<Dict key="8818:I" value="节能评估审查"/>
+<Dict key="1050030013:I" value="二级"/>
+<Dict key="17405:I" value="登高架设作业"/>
+<Dict key="2200061:I" value="国家级"/>
+<Dict key="80130303:I" value="无"/>
+<Dict key="503002:I" value="部分自有"/>
+<Dict key="501313005:I" value="通信信号"/>
+<Dict key="77010501:I" value="基础资料"/>
+<Dict key="2200129:I" value="结构师"/>
+<Dict key="1050020260:I" value="一级"/>
+<Dict key="161004:I" value="职称证"/>
+<Dict key="109018009:I" value="区域"/>
+<Dict key="80470301:I" value="城市环境卫生设施建设管理（120）"/>
+<Dict key="105002056:I" value="城市轨道交通工程"/>
+<Dict key="509007:I" value="钢架结构"/>
+<Dict key="165001:I" value="勘察甲级"/>
+<Dict key="1350030150:I" value="甲级"/>
+<Dict key="158020:I" value="工程勘察劳务类"/>
+<Dict key="501305011:I" value="冶金矿山工程"/>
+<Dict key="158021:I" value="民航"/>
+<Dict key="77010702:I" value="总体规划纲要"/>
+<Dict key="209005:I" value="造价师"/>
+<Dict key="107004:I" value="大专"/>
+<Dict key="770110:I" value="自治区开发区总体规划"/>
+<Dict key="260888077:I" value="静探孔外业见证确认表"/>
+<Dict key="10002:I" value="招标代理企业管理信息系统"/>
+<Dict key="80760501:I" value="卫生填埋"/>
+<Dict key="80760401:I" value="卫生填埋"/>
+<Dict key="1050010014:I" value="特级"/>
+<Dict key="80070504:I" value="人行道新建、扩建面积"/>
+<Dict key="1350030112:I" value="丙级"/>
+<Dict key="700001001:I" value="所有专业"/>
+<Dict key="8803:I" value="招标实施方案"/>
+<Dict key="2200115:I" value="造价师"/>
+<Dict key="60:I" value="航天航空工程"/>
+<Dict key="105001005:I" value="电力工程"/>
+<Dict key="1050020014:I" value="二级"/>
+<Dict key="2980305:I" value="勘察单位工商营业执照"/>
+<Dict key="105002052:I" value="化工石油设备管道安装工程"/>
+<Dict key="80661101:I" value="耕地"/>
+<Dict key="80710202:I" value="供热总量"/>
+<Dict key="501303006:I" value="油气加工"/>
+<Dict key="2200111:I" value="建造师"/>
+<Dict key="50502:I" value="公里"/>
+<Dict key="135003:I" value="专业资质"/>
+<Dict key="110030009:I" value="外商投资企业"/>
+<Dict key="1050010093:I" value="特级"/>
+<Dict key="80761801:I" value="三类以上"/>
+<Dict key="501306015:I" value="枪、炮工程"/>
+<Dict key="501309004:I" value="核设施退役及放射性三废处理处置工程"/>
+<Dict key="105002046:I" value="水工隧洞工程"/>
+<Dict key="260888035:I" value="勘察合同及支付勘察费用凭证"/>
+<Dict key="158031:I" value="环境工程设计"/>
+<Dict key="502353:I" value="建筑智能化系统设计专项"/>
+<Dict key="501004:I" value="永久建筑"/>
+<Dict key="115004:I" value="其他"/>
+<Dict key="8807:I" value="用地文件批复"/>
+<Dict key="1050010051:I" value="二级"/>
+<Dict key="501315001:I" value="港口工程"/>
+<Dict key="501304007:I" value="送电工程"/>
+<Dict key="2200131:I" value="建造师"/>
+<Dict key="2980202:I" value="项目立项（批准、核准、备案）文件"/>
+<Dict key="49901:I" value="强条"/>
+<Dict key="501307002:I" value="专用设备制造业工程"/>
+<Dict key="105002044:I" value="堤防工程"/>
+<Dict key="17406:I" value="锅炉作业(含水质化验)"/>
+<Dict key="1350030162:I" value="丙级"/>
+<Dict key="134001003:I" value="工程勘察劳务资质"/>
+<Dict key="80070902:I" value="公园绿地面积"/>
+<Dict key="501309001:I" value="反应堆工程设计（含核电站反应堆工程）"/>
+<Dict key="2980307:I" value="工程勘察成果报告书"/>
+<Dict key="195007:I" value="安全员"/>
+<Dict key="77010204:I" value="备案审查汇报材料"/>
+<Dict key="80750602:I" value="经营支出"/>
+<Dict key="501305001:I" value="金属冶炼工程"/>
+<Dict key="50131701:I" value="市政（燃气、轨道交通工程除外）"/>
+<Dict key="200070401:I" value="长度"/>
+<Dict key="501315002:I" value="航道工程"/>
+<Dict key="105001002:I" value="铁路工程"/>
+<Dict key="1050020002:I" value="三级"/>
+<Dict key="1050020364:I" value="二级"/>
+<Dict key="501006:I" value="扩建"/>
+<Dict key="22000401:I" value="施工员"/>
+<Dict key="501306005:I" value="地面设备工程"/>
+<Dict key="182001:I" value="租赁"/>
+<Dict key="118002:I" value="园林注册专业"/>
+<Dict key="330001:I" value="房地产估价机构资质"/>
+<Dict key="11800204:I" value="电气"/>
+<Dict key="31000002:I" value="消防设施工程设计与施工"/>
+<Dict key="10014:I" value="造价咨询企业管理信息系统"/>
+<Dict key="80661004:I" value="工业用地"/>
+<Dict key="133001:I" value="建造师所有序列"/>
+<Dict key="22001511:I" value="招标师"/>
+<Dict key="80130803:I" value="流速快"/>
+<Dict key="19803:I" value="框架结构"/>
+<Dict key="1050010021:I" value="三级"/>
+<Dict key="158006:I" value="石油天然气"/>
+<Dict key="22001211:I" value="招标师"/>
+<Dict key="108005:I" value="高级经济师"/>
+<Dict key="54:I" value="水利水电工程"/>
+<Dict key="267001001:I" value="所有专业"/>
+<Dict key="502356:I" value="轻型钢结构工程设计专项"/>
+<Dict key="220012:I" value="专业技术人员"/>
+<Dict key="2000708:I" value="其它"/>
+<Dict key="1050020554:I" value="一级"/>
+<Dict key="1050020490:I" value="二级"/>
+<Dict key="260888078:I" value="初步设计委托合同范本"/>
+<Dict key="1050010063:I" value="特级"/>
+<Dict key="50702:I" value="监理"/>
+<Dict key="2980308:I" value="勘察纲要、工程勘察有关数据、图表和原始资料等"/>
+<Dict key="1050030069:I" value="不分等级"/>
+<Dict key="158012:I" value="核工业"/>
+<Dict key="501:I" value="建设性质"/>
+<Dict key="110030:I" value="工程项目系统企业类型"/>
+<Dict key="1050020193:I" value="三级"/>
+<Dict key="17402:I" value="金属焊接、切割作业"/>
+<Dict key="50101:I" value="居住用地"/>
+<Dict key="2000808:I" value="公共交通工程"/>
+<Dict key="190003:I" value="工业"/>
+<Dict key="501320004:I" value="渔港\渔业工程"/>
+<Dict key="151003:I" value="起重车"/>
+<Dict key="144006:I" value="总会计师"/>
+<Dict key="1050010094:I" value="一级"/>
+<Dict key="508:I" value="用地情况"/>
+<Dict key="1008603:I" value="补正材料通知"/>
+<Dict key="1050020163:I" value="二级"/>
+<Dict key="22001110:I" value="城市规划师"/>
+<Dict key="27101:I" value="草稿"/>
+<Dict key="501010:I" value="绿地"/>
+<Dict key="1050020461:I" value="二级"/>
+<Dict key="509011:I" value="钢结构"/>
+<Dict key="501321001:I" value="建筑工程"/>
+<Dict key="1:I" value="工业与民用建筑工程"/>
+<Dict key="80130104:I" value="不防盗"/>
+<Dict key="1050020150:I" value="二级"/>
+<Dict key="770201:I" value="控规单元文本"/>
+<Dict key="17:I" value="给水排水工程"/>
+<Dict key="195008:I" value="材料员"/>
+<Dict key="501307009:I" value="表面处理"/>
+<Dict key="109018001:I" value="建筑"/>
+<Dict key="158010:I" value="机械"/>
+<Dict key="501305:I" value="冶金行业"/>
+<Dict key="26900401:I" value="一级"/>
+<Dict key="404006:I" value="渭南市建设工程质量安全监督中心站"/>
+<Dict key="1050020108:I" value="二级"/>
+<Dict key="2980303:I" value="规划许可证明"/>
+<Dict key="80130106:I" value="非铸铁井盖"/>
+<Dict key="128002:I" value="国有相对控股"/>
+<Dict key="501308006:I" value="油脂工程"/>
+<Dict key="80470104:I" value="加分项目（80）"/>
+<Dict key="50235501:I" value="建筑幕墙工程设计"/>
+<Dict key="1050020543:I" value="三级"/>
+<Dict key="80130108:I" value="D800"/>
+<Dict key="2000810:I" value="环境卫生工程（固体废弃物处理工程）"/>
+<Dict key="105003:I" value="劳务分包"/>
+<Dict key="22000810:I" value="城市规划师"/>
+<Dict key="1050030000:I" value="一级"/>
+<Dict key="1050020501:I" value="一级"/>
+<Dict key="50131012:I" value="电子基础产品项目工程"/>
+<Dict key="1320104:I" value="露天停车场"/>
+<Dict key="166004:I" value="2.2工程总承包完成合同额(万元)"/>
+<Dict key="124030003:I" value="中央在陕企业"/>
+<Dict key="26900302:I" value="二级"/>
+<Dict key="80070202:I" value="人工煤气储气能力"/>
+<Dict key="502:I" value="用地权属"/>
+<Dict key="105002003:I" value="建筑幕墙工程"/>
+<Dict key="155006:I" value="标准管理"/>
+<Dict key="7:I" value="建材建筑安装工程"/>
+<Dict key="2200051:I" value="国家级监理师"/>
+<Dict key="80130102:I" value="损坏"/>
+<Dict key="110002:I" value="国有企业"/>
+<Dict key="50131707:I" value="道路工程"/>
+<Dict key="1050010082:I" value="二级"/>
+<Dict key="10010:I" value="质量检测企业管理信息系统"/>
+<Dict key="210006:I" value="其他工程师"/>
+<Dict key="115003:I" value="工程总承包"/>
+<Dict key="2000701:I" value="城市道路"/>
+<Dict key="260888076:I" value="钻孔外业见证确认表"/>
+<Dict key="63:I" value="机电安装工程"/>
+<Dict key="2000801:I" value="给水工程"/>
+<Dict key="350001:I" value="三类人员所有序列"/>
+<Dict key="2000314:I" value="其它"/>
+<Dict key="19805:I" value="组合结构"/>
+<Dict key="161003:I" value="项目的中标通知书"/>
+<Dict key="50801:I" value="是否有名木古树"/>
+<Dict key="202000:I" value="所有序列"/>
+<Dict key="124006:I" value="国资委管理企业"/>
+<Dict key="80130503:I" value="错位"/>
+<Dict key="2660102:I" value="二级"/>
+<Dict key="155003:I" value="建设资讯"/>
+<Dict key="80760603:I" value="其他"/>
+<Dict key="151009:I" value="信息处理系统"/>
+<Dict key="1050020204:I" value="一级"/>
+<Dict key="7033:I" value="分支机构技术负责人"/>
+<Dict key="260888013:I" value="建设用地批准（使用）文件"/>
+<Dict key="220002:I" value="注册建造师"/>
+<Dict key="77010503:I" value="图纸"/>
+<Dict key="265002:I" value="乙级"/>
+<Dict key="1050020233:I" value="一级"/>
+<Dict key="77010104:I" value="备案审查汇报材料"/>
+<Dict key="196001:I" value="项目总监"/>
+<Dict key="123004:I" value="注册建筑师"/>
+<Dict key="1050020030:I" value="二级"/>
+<Dict key="135003001:I" value="房屋建筑工程"/>
+<Dict key="190004:I" value="商业、住宅"/>
+<Dict key="2200013:I" value="建造员"/>
+<Dict key="1050020433:I" value="三级"/>
+<Dict key="1050020555:I" value="二级"/>
+<Dict key="202000000:I" value="所有专业"/>
+<Dict key="80070204:I" value="天然气储气能力"/>
+<Dict key="109009001:I" value="水利"/>
+<Dict key="2200083:I" value="建筑师"/>
+<Dict key="80131305:I" value="行人多"/>
+<Dict key="29601:I" value="新办企业"/>
+<Dict key="5013102:I" value="通信工程"/>
+<Dict key="8813:I" value="用地文件核准"/>
+<Dict key="19807:I" value="钢架结构"/>
+<Dict key="29806:I" value="项目勘察委托（见证）"/>
+<Dict key="1050020082:I" value="一级"/>
+<Dict key="57:I" value="铁路工程"/>
+<Dict key="404011:I" value="榆林市建设工程质量安全监督中心站"/>
+<Dict key="1050030128:I" value="不分等级"/>
+<Dict key="1350030052:I" value="丙级"/>
+<Dict key="77011001:I" value="基础资料"/>
+<Dict key="26900303:I" value="三级"/>
+<Dict key="807505021:I" value="门票"/>
+<Dict key="105002040:I" value="水工建筑物基础处理工程"/>
+<Dict key="1320202:I" value="公交专用道路建设"/>
+<Dict key="502001:I" value="国有土地"/>
+<Dict key="1350030111:I" value="乙级"/>
+<Dict key="2000603:I" value="标准设防类"/>
+<Dict key="137001005:I" value="暂定级"/>
+<Dict key="124001:I" value="国家"/>
+<Dict key="110030005:I" value="联营企业"/>
+<Dict key="109009005:I" value="建筑"/>
+<Dict key="340001010:I" value="工程项目所有级别"/>
+<Dict key="123000:I" value="注册建造师"/>
+<Dict key="7032:I" value="分支机构企业负责人"/>
+<Dict key="134002004:I" value="工程设计专项资质"/>
+<Dict key="1350030032:I" value="丙级"/>
+<Dict key="105003008:I" value="模板作业"/>
+<Dict key="502352002:I" value="固体废物处理处置工程"/>
+<Dict key="1050020525:I" value="一级"/>
+<Dict key="128001:I" value="国有绝对控股"/>
+<Dict key="200070801:I" value="长度"/>
+<Dict key="2200085:I" value="造价师"/>
+<Dict key="260888072:I" value="工程勘察大纲（含工作计划、工作流程、组织机构、技术设计、关键工点措施、质量保证体系和安全与环境保护措施等）"/>
+<Dict key="5101398:I" value="农业行业(林业工程)"/>
+<Dict key="151001:I" value="喷药车"/>
+<Dict key="165002:I" value="勘察乙级"/>
+<Dict key="20900102:I" value="水利水电工程"/>
+<Dict key="2200151:I" value="建造师"/>
+<Dict key="80130405:I" value="铸铁"/>
+<Dict key="1050020000:I" value="一级"/>
+<Dict key="367010:I" value="陇县建设工程质量安全监督站"/>
+<Dict key="190002:I" value="商业"/>
+<Dict key="105002000:I" value="地基与基础工程"/>
+<Dict key="80131210:I" value="工地内"/>
+<Dict key="501314003:I" value="特长隧道"/>
+<Dict key="137001004:I" value="四级"/>
+<Dict key="31000000:I" value="建筑智能化工程设计与施工"/>
+<Dict key="260888038:I" value="对于工程勘察分级标准大型以上工程的各工作环节质量控制记录"/>
+<Dict key="22000402:I" value="质量员"/>
+<Dict key="80130901:I" value="建筑物"/>
+<Dict key="77010901:I" value="基础资料"/>
+<Dict key="1350030140:I" value="甲级"/>
+<Dict key="80070201:I" value="人工煤气生产能力"/>
+<Dict key="502354:I" value="消防设施工程设计专项"/>
+<Dict key="199004:I" value="法定代表人"/>
+<Dict key="191017:I" value="热力及燃气建筑安装工程"/>
+<Dict key="165004:I" value="勘察劳务"/>
+<Dict key="5200101:I" value="所有专业"/>
+<Dict key="80131204:I" value="人行道"/>
+<Dict key="1050020580:I" value="一级"/>
+<Dict key="3:I" value="县级"/>
+<Dict key="20900106:I" value="公路工程"/>
+<Dict key="1350030092:I" value="丙级"/>
+<Dict key="635003:I" value="工程技术资料"/>
+<Dict key="122000:I" value="正常运行"/>
+<Dict key="102009:I" value="住房和城乡建设部"/>
+<Dict key="1002:I" value="安装"/>
+<Dict key="51202:I" value="非保障性实用型住房"/>
+<Dict key="105001000:I" value="房屋建筑工程"/>
+<Dict key="10003:I" value="工程监理企业管理信息系统"/>
+<Dict key="1050020122:I" value="一级"/>
+<Dict key="509010:I" value="其他"/>
+<Dict key="260888005:I" value="规划设计条件"/>
+<Dict key="26900403:I" value="三级"/>
+<Dict key="191015:I" value="航空建筑工程"/>
+<Dict key="310000041:I" value="一级"/>
+<Dict key="17409:I" value="爆破作业"/>
+<Dict key="660105:I" value="测试企业"/>
+<Dict key="501320010:I" value="森林工业工程"/>
+<Dict key="1050020273:I" value="收费系统工程"/>
+<Dict key="1050030082:I" value="一级"/>
+<Dict key="17413:I" value="矿山提升运输作业"/>
+<Dict key="807506021:I" value="维护支出"/>
+<Dict key="504007:I" value="施工许可证"/>
+<Dict key="14:I" value="航空建筑工程"/>
+<Dict key="1350030102:I" value="丙级"/>
+<Dict key="1050020147:I" value="一级"/>
+<Dict key="105002031:I" value="机场场道工程"/>
+<Dict key="310000001:I" value="一级"/>
+<Dict key="146003:I" value="其他"/>
+<Dict key="191013:I" value="公路建筑工程"/>
+<Dict key="2200062:I" value="省级"/>
+<Dict key="77010502:I" value="总体规划纲要"/>
+<Dict key="50131703:I" value="给水工程"/>
+<Dict key="50235101:I" value="建筑装饰工程设计"/>
+<Dict key="440003:I" value="建造员"/>
+<Dict key="260888044:I" value="建筑设计防火审核"/>
+<Dict key="2000401:I" value="大型"/>
+<Dict key="109009000:I" value="公路"/>
+<Dict key="191011:I" value="水利建筑工程"/>
+<Dict key="112001:I" value="鲁班奖"/>
+<Dict key="1050010081:I" value="一级"/>
+<Dict key="19801:I" value="砖混结构"/>
+<Dict key="1050020221:I" value="二级"/>
+<Dict key="1050020175:I" value="一级"/>
+<Dict key="1050020499:I" value="一级"/>
+<Dict key="1050020270:I" value="安全设施(一级及以下公路)"/>
+<Dict key="10008:I" value="勘察设计企业管理信息系统"/>
+<Dict key="105002008:I" value="高耸构筑物工程"/>
+<Dict key="77010902:I" value="总体规划纲要"/>
+<Dict key="105002063:I" value="城市道路桥梁工程"/>
+<Dict key="2000311:I" value="风景园林"/>
+<Dict key="1050020488:I" value="三级"/>
+<Dict key="52:I" value="矿山工程"/>
+<Dict key="80130806:I" value="静止"/>
+<Dict key="2000902:I" value="使用国家融资、国际组织或者外国政府贷款、援助资金的市政基础设施建设项目"/>
+<Dict key="1050020376:I" value="一级"/>
+<Dict key="501304:I" value="电力行业"/>
+<Dict key="105002061:I" value="住宅室内装饰装修专业"/>
+<Dict key="50131700:I" value="市政"/>
+<Dict key="1050020275:I" value="通信、监控、收费综合系统工程"/>
+<Dict key="2200163:I" value="建筑师"/>
+<Dict key="1350030030:I" value="甲级"/>
+<Dict key="105001008:I" value="化工石油工程"/>
+<Dict key="105002058:I" value="体育场地设施工程"/>
+<Dict key="501310003:I" value="广电工程"/>
+<Dict key="158036:I" value="照明工程设计"/>
+<Dict key="80070302:I" value="集中供热能力：热水"/>
+<Dict key="502352005:I" value="物理污染防治工程"/>
+<Dict key="509001:I" value="砖混结构"/>
+<Dict key="501301003:I" value="选煤厂"/>
+<Dict key="1050010015:I" value="一级"/>
+<Dict key="80131001:I" value="混凝土"/>
+<Dict key="501320002:I" value="种植业工程"/>
+<Dict key="166002:I" value="1.2工程设计完成合同额(万元)"/>
+<Dict key="501315005:I" value="港口装卸工艺"/>
+<Dict key="1008602:I" value="不予受理通知"/>
+<Dict key="2000305:I" value="给水"/>
+<Dict key="123008:I" value="质量员"/>
+<Dict key="505:I" value="建设规模"/>
+<Dict key="501319001:I" value="水库枢纽"/>
+<Dict key="105001007:I" value="冶炼工程"/>
+<Dict key="20004:I" value="设计规模"/>
+<Dict key="501302001:I" value="炼油工程"/>
+<Dict key="501318004:I" value="海洋能利用"/>
+<Dict key="80130902:I" value="堆放物"/>
+<Dict key="2440101:I" value="壹级"/>
+<Dict key="134002006:I" value="设计施工一体化"/>
+<Dict key="1050020420:I" value="三级"/>
+<Dict key="501321003:I" value="建筑设计事务所"/>
+<Dict key="4820101:I" value="所有专业"/>
+<Dict key="1350030042:I" value="丙级"/>
+<Dict key="105002009:I" value="电梯安装工程"/>
+<Dict key="144002:I" value="总经理"/>
+<Dict key="51201:I" value="保障性住房"/>
+<Dict key="2000503:I" value="扩建"/>
+<Dict key="2200089:I" value="结构师"/>
+<Dict key="212004:I" value="法定代表人"/>
+<Dict key="112000:I" value="詹天佑奖"/>
+<Dict key="1050020541:I" value="一级"/>
+<Dict key="158022:I" value="市政"/>
+<Dict key="52106:I" value="其它"/>
+<Dict key="2980301:I" value="委托单"/>
+<Dict key="108012:I" value="政工员"/>
+<Dict key="806703013:I" value="居民家庭用水"/>
+<Dict key="501320003:I" value="兽医\畜牧工程"/>
+<Dict key="209009:I" value="结构师"/>
+<Dict key="2000811:I" value="生活垃圾焚烧（发电）工程"/>
+<Dict key="80551306:I" value="少年宫"/>
+<Dict key="158033:I" value="建筑智能化系统设计"/>
+<Dict key="141003:I" value="办公"/>
+<Dict key="105002025:I" value="公路路面工程"/>
+<Dict key="80470302:I" value="市容市貌、城市管理行政执法（230）"/>
+<Dict key="80131205:I" value="路牙上"/>
+<Dict key="26900402:I" value="二级"/>
+<Dict key="80661002:I" value="公共管理与公共服务用地"/>
+<Dict key="80070301:I" value="集中供热能力：蒸汽"/>
+<Dict key="50131024:I" value="通信铁塔"/>
+<Dict key="121004:I" value="调离"/>
+<Dict key="260888081:I" value="审查报告"/>
+<Dict key="2200023:I" value="建造员"/>
+<Dict key="80131207:I" value="绿地"/>
+<Dict key="77010101:I" value="基础资料"/>
+<Dict key="260888006:I" value="建筑设计方案批复"/>
+<Dict key="1004:I" value="园林"/>
+<Dict key="501307007:I" value="机械加工"/>
+<Dict key="1050020278:I" value="收费系统工程(一级及以下公路)"/>
+<Dict key="205001001:I" value="物业管理所有专业"/>
+<Dict key="80070502:I" value="道路新建、扩建长度"/>
+<Dict key="367012:I" value="麟游县建设工程质量安全监督站"/>
+<Dict key="110030008:I" value="港、澳、台投资企业"/>
+<Dict key="80071002:I" value="生活垃圾中转站座数"/>
+<Dict key="501308001:I" value="冷冻冷藏工程"/>
+<Dict key="1380010014:I" value="三级"/>
+<Dict key="260888018:I" value="城镇供水（水务）主管部门批复文件"/>
+<Dict key="80131304:I" value="机动车和非机动车都少"/>
+<Dict key="191007:I" value="电力工业建筑安装工程"/>
+<Dict key="29603:I" value="注销"/>
+<Dict key="1050020259:I" value="三级"/>
+<Dict key="2200165:I" value="造价师"/>
+<Dict key="195010:I" value="法定代表人"/>
+<Dict key="2000502:I" value="改建"/>
+<Dict key="404008:I" value="汉中市建设工程质量安全监督中心站"/>
+<Dict key="1050020067:I" value="二级"/>
+<Dict key="635004:I" value="其他"/>
+<Dict key="511004:I" value="设计合同"/>
+<Dict key="1050020219:I" value="三级"/>
+<Dict key="20900201:I" value="机电工程"/>
+<Dict key="260888042:I" value="建设工程规划许可证"/>
+<Dict key="2200012:I" value="二级建造师"/>
+<Dict key="8811:I" value="节能评估审查"/>
+<Dict key="1050010002:I" value="二级"/>
+<Dict key="1050020084:I" value="三级"/>
+<Dict key="80661006:I" value="交通设施用地"/>
+<Dict key="209001:I" value="建造师"/>
+<Dict key="77010903:I" value="图纸"/>
+<Dict key="77010305:I" value="CAD文件"/>
+<Dict key="770102:I" value="城市总体规划"/>
+<Dict key="2660101:I" value="一级"/>
+<Dict key="110030006:I" value="股份有限企业"/>
+<Dict key="260888073:I" value="工程勘察主要进场机械、设备、仪器报备表"/>
+<Dict key="105002:I" value="专业承包 "/>
+<Dict key="1008606:I" value="办结通知"/>
+<Dict key="80470102:I" value="城市规划编制及审批（120）"/>
+<Dict key="80070904:I" value="生产绿地面积"/>
+<Dict key="110030004:I" value="股份合作企业"/>
+<Dict key="130001:I" value="安全生产许可证序列"/>
+<Dict key="80470103:I" value="城市规划管理（210）"/>
+<Dict key="105002010:I" value="消防设施工程"/>
+<Dict key="113020:I" value="消防设施一体化"/>
+<Dict key="107003:I" value="本科"/>
+<Dict key="124008:I" value="铁道部直属企业"/>
+<Dict key="166006:I" value="3.工程技术管理服务(含工程咨询)"/>
+<Dict key="1050020378:I" value="三级"/>
+<Dict key="517:I" value="项目审批公开信息"/>
+<Dict key="105003009:I" value="焊接作业"/>
+<Dict key="114004:I" value="无"/>
+<Dict key="80670401:I" value="家庭用户"/>
+<Dict key="501311014:I" value="土建及公用"/>
+<Dict key="13201:I" value="停车场种类"/>
+<Dict key="501310:I" value="电子通信广电行业"/>
+<Dict key="340:I" value="工程项目序列"/>
+<Dict key="1050020013:I" value="一级"/>
+<Dict key="1050010066:I" value="三级"/>
+<Dict key="2000806:I" value="桥梁工程"/>
+<Dict key="80070802:I" value="再生水生产能力"/>
+<Dict key="260888017:I" value="建设（市政）主管部门批复文件"/>
+<Dict key="50104:I" value="仓储用地"/>
+<Dict key="80651201:I" value="生活垃圾无害化处理率"/>
+<Dict key="165012:I" value="工业小型"/>
+<Dict key="105002053:I" value="管道工程"/>
+<Dict key="195002:I" value="技术负责人"/>
+<Dict key="260888045:I" value="建筑工程防雷审核"/>
+<Dict key="107007:I" value="无"/>
+<Dict key="135003005:I" value="市政公用工程 "/>
+<Dict key="20006:I" value="抗震设防分类标准"/>
+<Dict key="80130507:I" value="混凝土预制"/>
+<Dict key="635001:I" value="建筑工程"/>
+<Dict key="501306008:I" value="地面制导站工程"/>
+<Dict key="2980206:I" value="工程勘察外业见证委托合同范本"/>
+<Dict key="1050020111:I" value="三级"/>
+<Dict key="117002:I" value="二级"/>
+<Dict key="2000707:I" value="城市跨河桥"/>
+<Dict key="509005:I" value="组合结构"/>
+<Dict key="19809:I" value="网架结构"/>
+<Dict key="501312004:I" value="非金属矿及原料设备工程"/>
+<Dict key="501319006:I" value="围垦"/>
+<Dict key="220014:I" value="专职专业人员"/>
+<Dict key="806703014:I" value="其他用水"/>
+<Dict key="105002032:I" value="机场空管工程及航站楼弱电系统工程"/>
+<Dict key="22000911:I" value="招标师"/>
+<Dict key="260888036:I" value="工程勘察成果报告书"/>
+<Dict key="501319007:I" value="水土保持"/>
+<Dict key="502355:I" value="建筑幕墙工程设计专项"/>
+<Dict key="1350030161:I" value="乙级"/>
+<Dict key="112007:I" value="省级文明工地"/>
+<Dict key="114002:I" value="中级"/>
+<Dict key="110030002:I" value="国有企业"/>
+<Dict key="1050020271:I" value="通信系统工程"/>
+<Dict key="2000102:I" value="市政基础"/>
+<Dict key="1050020234:I" value="二级"/>
+<Dict key="124003:I" value="市级"/>
+<Dict key="501306004:I" value="科研、靶场、试验、教育培训工程"/>
+<Dict key="1350010011:I" value="无"/>
+<Dict key="501318002:I" value="离岸工程"/>
+<Dict key="80131002:I" value="PE管"/>
+<Dict key="1050010003:I" value="三级"/>
+<Dict key="1050030083:I" value="二级"/>
+<Dict key="109018006:I" value="给水排水"/>
+<Dict key="77010203:I" value="图纸"/>
+<Dict key="109009004:I" value="机电"/>
+<Dict key="208001:I" value="建筑节能企业所有序列"/>
+<Dict key="124007:I" value="解放军总后直属企业"/>
+<Dict key="105002012:I" value="防腐保温工程"/>
+<Dict key="1050020027:I" value="二级"/>
+<Dict key="502351:I" value="建筑装饰工程设计专项"/>
+<Dict key="80760502:I" value="焚烧"/>
+<Dict key="109018010:I" value="其他"/>
+<Dict key="1050030094:I" value="一级"/>
+<Dict key="367011:I" value="凤县建设工程质量安全监督站"/>
+<Dict key="1350030131:I" value="乙级"/>
+<Dict key="80750601:I" value="固定资产投资"/>
+<Dict key="122001:I" value="退出生产"/>
+<Dict key="191016:I" value="邮电通讯及电子设备安装工程"/>
+<Dict key="2200021:I" value="一级"/>
+<Dict key="158003:I" value="煤炭"/>
+<Dict key="119003:I" value="高级"/>
+<Dict key="22000403:I" value="安全员"/>
+<Dict key="510002:I" value="自筹"/>
+<Dict key="404004:I" value="宝鸡市建设工程质量安全监督站"/>
+<Dict key="80070602:I" value="雨水管道长度"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0" leftParentDefault="false" left="A7"/>
+</C>
+<C c="1" r="8" cs="6" s="20">
+<O>
+<![CDATA[初审结果：□合格  □不合格    年   月   日]]></O>
+<Expand/>
+</C>
+<C c="7" r="8" cs="5" s="20">
+<O>
+<![CDATA[复审结果：□合格  □不合格   年   月   日]]></O>
+<Expand/>
+</C>
+<C c="1" r="9" cs="11" s="21">
+<O>
+<![CDATA[   请建设单位将审查结论及时送达勘察单位，勘察单位应对岩土工程勘察报告/岩土工程设计文]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" cs="11" s="15">
+<O>
+<![CDATA[件中存在的上述问题进行修改和完善，建设单位应将修改后的岩土工程勘察报告/岩土工程设计文]]></O>
+<Expand/>
+</C>
+<C c="1" r="11" cs="11" s="16">
+<O>
+<![CDATA[件重新报送审查机构进行复审。]]></O>
+<Expand/>
+</C>
+<C c="1" r="12" cs="2" rs="3" s="17">
+<O>
+<![CDATA[审查机构\\n技术负责人]]></O>
+<Expand/>
+</C>
+<C c="3" r="12" s="12">
+<Expand/>
+</C>
+<C c="4" r="12" s="13">
+<Expand/>
+</C>
+<C c="5" r="12" s="13">
+<Expand/>
+</C>
+<C c="6" r="12" s="14">
+<Expand/>
+</C>
+<C c="7" r="12" rs="3" s="17">
+<O>
+<![CDATA[审查人]]></O>
+<Expand/>
+</C>
+<C c="8" r="12" s="12">
+<Expand/>
+</C>
+<C c="9" r="12" s="13">
+<Expand/>
+</C>
+<C c="10" r="12" s="13">
+<Expand/>
+</C>
+<C c="11" r="12" s="14">
+<Expand/>
+</C>
+<C c="3" r="13" s="22">
+<Expand/>
+</C>
+<C c="4" r="13">
+<Expand/>
+</C>
+<C c="5" r="13">
+<Expand/>
+</C>
+<C c="6" r="13" s="23">
+<Expand/>
+</C>
+<C c="8" r="13" s="22">
+<Expand/>
+</C>
+<C c="9" r="13">
+<Expand/>
+</C>
+<C c="10" r="13">
+<Expand/>
+</C>
+<C c="11" r="13" s="23">
+<Expand/>
+</C>
+<C c="3" r="14" cs="4" s="24">
+<O>
+<![CDATA[（签字并盖人员审查专用章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="14" cs="4" s="24">
+<O>
+<![CDATA[（签字并盖人员审查专用章）]]></O>
+<Expand/>
+</C>
+<C c="1" r="15" cs="2" rs="5" s="17">
+<O>
+<![CDATA[审查机构]]></O>
+<Expand/>
+</C>
+<C c="3" r="15" cs="4" rs="3" s="25">
+<O t="DSColumn">
+<Attributes dsName="图审机构" columnName="FName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="7" r="15" rs="5" s="17">
+<O>
+<![CDATA[项目所\\n在地市\\n级建设\\n主管部\\n门备案\\n意见]]></O>
+<Expand/>
+</C>
+<C c="8" r="15" cs="4" rs="3" s="26">
+<O>
+<![CDATA[按规定完成审查，予以备案。]]></O>
+<Expand/>
+</C>
+<C c="3" r="18" cs="4" s="27">
+<O>
+<![CDATA[（打印机构全称并盖审查专用章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="18" s="28">
+<Expand/>
+</C>
+<C c="9" r="18" s="29">
+<Expand/>
+</C>
+<C c="10" r="18" cs="2" s="30">
+<O>
+<![CDATA[（公章）]]></O>
+<Expand/>
+</C>
+<C c="3" r="19" s="31">
+<Expand/>
+</C>
+<C c="4" r="19" cs="3" s="32">
+<O>
+<![CDATA[年    月    日 ]]></O>
+<Expand/>
+</C>
+<C c="8" r="19" s="31">
+<Expand/>
+</C>
+<C c="9" r="19" cs="3" s="32">
+<O>
+<![CDATA[年   月   日 ]]></O>
+<Expand/>
+</C>
+<C c="1" r="20" cs="11">
+<O>
+<![CDATA[注：1、本告知书一式三份，装订成册，建设单位、审查机构、建设主管部门各一份，具有同等效力。]]></O>
+<Expand/>
+</C>
+<C c="1" r="21" cs="11">
+<O>
+<![CDATA[2、在“□”内画“√”选择问题类别。]]></O>
+<Expand/>
+</C>
+<C c="1" r="22" cs="11">
+<O>
+<![CDATA[3、审查意见可加页，每页加盖审查机构和审查人员审查专用章，具有同等效力。]]></O>
+<Expand/>
+</C>
+<C c="1" r="23" cs="11">
+<O>
+<![CDATA[4、本告知书加盖审查专用章，并经建设主管部门备案后生效。]]></O>
+<Expand/>
+</C>
+<C c="1" r="24" cs="11">
+<O>
+<![CDATA[5、审查机构应当在审查后5个工作日内，将告知书及审查中发现的建设单位、勘察设计企业和注册执业人员违反法律、法]]></O>
+<Expand/>
+</C>
+<C c="1" r="25" cs="11">
+<O>
+<![CDATA[规和工程建设强制性标准的问题，报工程项目所在地市级建设主管部门做告知性备案。]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="576000">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.PageNumberHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[1]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页/共]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.NumberOfPageHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[100]]></HFElement>
+<HFElement className="com.fr.main.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="0"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="200"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+<DesignerVersion DesignerVersion="HAE"/>
+<PreviewType PreviewType="0"/>
+</WorkBook>

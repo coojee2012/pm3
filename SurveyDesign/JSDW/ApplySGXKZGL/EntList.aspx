@@ -44,6 +44,7 @@
     
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:HiddenField runat="server" ID="hf_enteid"  Value ="" />
         <asp:HiddenField  runat="server" ID="hf_FEntType" Value="0" />
         <asp:HiddenField  runat="server" ID="hf_FAppId" Value="" />
         <asp:HiddenField  runat="server" ID="hf_FId" Value="" />

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120203" releaseVersion="7.0.0">
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="1" r="3" cs="5" rs="19">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=TOIMAGE("http://172.16.0.111/FormImageServer/tempupload/20121205/61b6ed3f-bf9a-4ddb-9c6a-4b7d42dfa05b/公司组织机构框图.png")]]></Attributes>
+</O>
+<CellGUIAttr showAsImage="true"/>
+<CellPageAttr/>
+<CellInsertPolicy/>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting/>
+</ReportSettings>
+</ReportAttrSet>
+</Report>
+<StyleList/>
+</WorkBook>

@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select A.BBTM,F.QYMC,B.ZSBH,B.ZBS,B.FBS
+from YW_INFO A
+left join YW_GHBZQY_JBQK F ON A.YWBM=F.YWBM
+left join YW_QY_ZZZSQK B ON A.YWBM=B.YWBM
+WHERE a.YWBM='${YWBM}']]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[首页]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[上一页]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[下一页]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[末页]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons pdfPrint="false" appletPrint="false"/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,685800,1104900,723900,952500,3048000,571500,1333500,952500,990600,762000,1905000,1905000,1905000,762000,762000,1905000,1905000,1905000,762000,762000,1905000,1905000,1905000,762000,990600,457200,838200,876300,876300,914400,876300,381000,876300,876300,914400,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2933700,3314700,3238500,3390900,2514600,4152900,2171700,1104900,2819400,952500,990600,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="2" rs="2" s="0">
+<Expand/>
+</C>
+<C c="5" r="0" cs="6" rs="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="BBTM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Present class="com.fr.report.cellattr.BarcodePresent">
+<BarcodeAttr height="24" RCodeVersion="7" RCodeErrorCorrect="1" RcodeDrawPix="1"/>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="2" cs="3" s="2">
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" cs="9" rs="2" s="3">
+<O>
+<![CDATA[城市规划编制单位资质证书增补审核表]]></O>
+<Expand/>
+</C>
+<C c="4" r="5">
+<Expand/>
+</C>
+<C c="5" r="5">
+<Expand/>
+</C>
+<C c="6" r="5">
+<Expand/>
+</C>
+<C c="7" r="5">
+<Expand/>
+</C>
+<C c="8" r="5">
+<Expand/>
+</C>
+<C c="0" r="6" cs="4" rs="3" s="4">
+<O>
+<![CDATA[企业名称（单位公章）]]></O>
+<Expand/>
+</C>
+<C c="4" r="6" cs="6" rs="2" s="5">
+<O>
+<![CDATA[增补（含增加、更换、遗失补办） 资质证书数量 ]]></O>
+<Expand/>
+</C>
+<C c="4" r="8" cs="2" s="5">
+<O>
+<![CDATA[证书编号]]></O>
+<Expand/>
+</C>
+<C c="6" r="8" cs="2" s="5">
+<O>
+<![CDATA[正　本]]></O>
+<Expand/>
+</C>
+<C c="8" r="8" cs="2" s="5">
+<O>
+<![CDATA[副　本]]></O>
+<Expand/>
+</C>
+<C c="0" r="9" cs="4" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="QYMC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="9" cs="2" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="ZSBH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="9" cs="2" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="ZBS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="9" cs="2" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="FBS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="10" rs="5" s="7">
+<O>
+<![CDATA[县（市）级建设行政主管部门审核意见]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" s="8">
+<Expand/>
+</C>
+<C c="2" r="10" s="9">
+<Expand/>
+</C>
+<C c="3" r="10" s="9">
+<Expand/>
+</C>
+<C c="4" r="10" s="10">
+<Expand/>
+</C>
+<C c="5" r="10" s="10">
+<Expand/>
+</C>
+<C c="6" r="10" s="10">
+<Expand/>
+</C>
+<C c="7" r="10" s="10">
+<Expand/>
+</C>
+<C c="8" r="10" cs="2" s="11">
+<Expand/>
+</C>
+<C c="1" r="11" cs="2" s="12">
+<O>
+<![CDATA[审核人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="3" r="11" s="13">
+<Expand/>
+</C>
+<C c="4" r="11">
+<Expand/>
+</C>
+<C c="5" r="11" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="12" cs="3" s="12">
+<O>
+<![CDATA[业务部门负责人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="4" r="12">
+<Expand/>
+</C>
+<C c="5" r="12" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="13" cs="3" s="12">
+<O>
+<![CDATA[单位负责人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="4" r="13">
+<Expand/>
+</C>
+<C c="5" r="13" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="14" s="15">
+<Expand/>
+</C>
+<C c="2" r="14" s="16">
+<Expand/>
+</C>
+<C c="3" r="14" s="16">
+<Expand/>
+</C>
+<C c="4" r="14" s="17">
+<Expand/>
+</C>
+<C c="5" r="14" s="17">
+<Expand/>
+</C>
+<C c="6" r="14" cs="2" s="18">
+<O>
+<![CDATA[（公章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="14" cs="2" s="19">
+<Expand/>
+</C>
+<C c="0" r="15" rs="5" s="7">
+<O>
+<![CDATA[省级建设行政主管部门审核意见]]></O>
+<Expand/>
+</C>
+<C c="1" r="15" s="8">
+<Expand/>
+</C>
+<C c="2" r="15" s="9">
+<Expand/>
+</C>
+<C c="3" r="15" s="9">
+<Expand/>
+</C>
+<C c="4" r="15" s="10">
+<Expand/>
+</C>
+<C c="5" r="15" s="10">
+<Expand/>
+</C>
+<C c="6" r="15" s="10">
+<Expand/>
+</C>
+<C c="7" r="15" s="10">
+<Expand/>
+</C>
+<C c="8" r="15" cs="2" s="11">
+<Expand/>
+</C>
+<C c="1" r="16" cs="2" s="12">
+<O>
+<![CDATA[审核人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="3" r="16" s="13">
+<Expand/>
+</C>
+<C c="4" r="16">
+<Expand/>
+</C>
+<C c="5" r="16" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="17" cs="3" s="12">
+<O>
+<![CDATA[业务部门负责人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="4" r="17">
+<Expand/>
+</C>
+<C c="5" r="17" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="18" cs="3" s="12">
+<O>
+<![CDATA[单位负责人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="4" r="18">
+<Expand/>
+</C>
+<C c="5" r="18" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="19" s="15">
+<Expand/>
+</C>
+<C c="2" r="19" s="16">
+<Expand/>
+</C>
+<C c="3" r="19" s="16">
+<Expand/>
+</C>
+<C c="4" r="19" s="17">
+<Expand/>
+</C>
+<C c="5" r="19" s="17">
+<Expand/>
+</C>
+<C c="6" r="19" cs="2" s="18">
+<O>
+<![CDATA[（公章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="19" cs="2" s="19">
+<Expand/>
+</C>
+<C c="0" r="20" rs="5" s="7">
+<O>
+<![CDATA[建筑市场管理司审查意见]]></O>
+<Expand/>
+</C>
+<C c="1" r="20" s="8">
+<Expand/>
+</C>
+<C c="2" r="20" s="9">
+<Expand/>
+</C>
+<C c="3" r="20" s="9">
+<Expand/>
+</C>
+<C c="4" r="20" s="10">
+<Expand/>
+</C>
+<C c="5" r="20" s="10">
+<Expand/>
+</C>
+<C c="6" r="20" s="10">
+<Expand/>
+</C>
+<C c="7" r="20" s="10">
+<Expand/>
+</C>
+<C c="8" r="20" cs="2" s="11">
+<Expand/>
+</C>
+<C c="1" r="21" cs="3" s="12">
+<O>
+<![CDATA[资质处审查人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="4" r="21">
+<Expand/>
+</C>
+<C c="5" r="21" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="22" cs="3" s="12">
+<O>
+<![CDATA[资质处负责人（签字）：]]></O>
+<Expand/>
+</C>
+<C c="4" r="22">
+<Expand/>
+</C>
+<C c="5" r="22" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="23" cs="2" s="12">
+<O>
+<![CDATA[司领导（签字）：]]></O>
+<Expand/>
+</C>
+<C c="3" r="23" s="13">
+<Expand/>
+</C>
+<C c="4" r="23">
+<Expand/>
+</C>
+<C c="5" r="23" cs="5" s="14">
+<O>
+<![CDATA[年    月    日  ]]></O>
+<Expand/>
+</C>
+<C c="1" r="24" s="15">
+<Expand/>
+</C>
+<C c="2" r="24" s="16">
+<Expand/>
+</C>
+<C c="3" r="24" s="16">
+<Expand/>
+</C>
+<C c="4" r="24" s="17">
+<Expand/>
+</C>
+<C c="5" r="24" s="17">
+<Expand/>
+</C>
+<C c="6" r="24" cs="2" s="18">
+<O>
+<![CDATA[（公章）]]></O>
+<Expand/>
+</C>
+<C c="8" r="24" cs="2" s="19">
+<Expand/>
+</C>
+<C c="5" r="25" cs="4" s="13">
+<O>
+<![CDATA[（此表不够可另续表）]]></O>
+<Expand/>
+</C>
+<C c="0" r="26">
+<CellPageAttr pageBeforeRow="true"/>
+<CellInsertPolicy/>
+<Expand/>
+</C>
+<C c="0" r="27" s="20">
+<O>
+<![CDATA[注：]]></O>
+<Expand/>
+</C>
+<C c="1" r="27" s="20">
+<Expand/>
+</C>
+<C c="2" r="27" s="20">
+<Expand/>
+</C>
+<C c="3" r="27" s="20">
+<Expand/>
+</C>
+<C c="4" r="27" s="20">
+<Expand/>
+</C>
+<C c="5" r="27" s="20">
+<Expand/>
+</C>
+<C c="6" r="27" s="20">
+<Expand/>
+</C>
+<C c="7" r="27" s="20">
+<Expand/>
+</C>
+<C c="8" r="27" s="20">
+<Expand/>
+</C>
+<C c="0" r="28" cs="9" s="20">
+<O>
+<![CDATA[     1、省级建设行政主管部门的审核意见在表中注明，不再另行出具其]]></O>
+<Expand/>
+</C>
+<C c="0" r="29" cs="9" s="20">
+<O>
+<![CDATA[        他文件；]]></O>
+<Expand/>
+</C>
+<C c="0" r="30" cs="9" s="20">
+<O>
+<![CDATA[     2、省级建设行政主管部门在审查意见栏中的盖章为本单位公章（如]]></O>
+<Expand/>
+</C>
+<C c="0" r="31" cs="9" s="20">
+<O>
+<![CDATA[        省建委、建设厅等）或行政许可专用章，单位内设机构印章无效。]]></O>
+<Expand/>
+</C>
+<C c="0" r="32" s="21">
+<Expand/>
+</C>
+<C c="1" r="32" s="21">
+<Expand/>
+</C>
+<C c="2" r="32" s="21">
+<Expand/>
+</C>
+<C c="3" r="32" s="21">
+<Expand/>
+</C>
+<C c="4" r="32" s="21">
+<Expand/>
+</C>
+<C c="5" r="32" s="21">
+<Expand/>
+</C>
+<C c="6" r="32" s="21">
+<Expand/>
+</C>
+<C c="7" r="32" s="21">
+<Expand/>
+</C>
+<C c="8" r="32" s="21">
+<Expand/>
+</C>
+<C c="0" r="33" cs="3" s="20">
+<O>
+<![CDATA[相关附件材料：]]></O>
+<Expand/>
+</C>
+<C c="3" r="33" s="20">
+<Expand/>
+</C>
+<C c="4" r="33" s="20">
+<Expand/>
+</C>
+<C c="5" r="33" s="20">
+<Expand/>
+</C>
+<C c="6" r="33" s="20">
+<Expand/>
+</C>
+<C c="7" r="33" s="20">
+<Expand/>
+</C>
+<C c="8" r="33" s="20">
+<Expand/>
+</C>
+<C c="0" r="34" cs="9" s="20">
+<O>
+<![CDATA[    遗失补办证书的，需要提供全国性建筑行业报刊或省级以上（含省级]]></O>
+<Expand/>
+</C>
+<C c="0" r="35" cs="9" s="20">
+<O>
+<![CDATA[）综合类报刊上刊登的遗失作废声明。]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="719999">
+<PaperSetting>
+<Margin top="1151999" left="1728000" bottom="1439999" right="864000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="false" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+</ReportParameterAttr>
+<StyleList>
+<Style imageLayout="1">
+<FRFont name="仿宋_GB2312" style="0" size="144"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="1" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="仿宋_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="华文中宋" style="1" size="156"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="仿宋_GB2312" style="0" size="132"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="仿宋_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="宋体" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="楷体_GB2312" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

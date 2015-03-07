@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100331">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[cheshi_63]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT AA.* FROM
+(
+SELECT 1 as xh,'项目基本信息' AS NAME,COUNT(*) SL FROM 	XM_XMJBXX--项目基本信息
+UNION SELECT 2 as xh,'单位工程信息' AS NAME,COUNT(*) SL FROM	GC_DWGCXX--单位工程信息
+UNION SELECT 3 as xh,'选址意见书-房建' AS NAME,COUNT(*) SL FROM	XM_XZYJS--选址意见书
+UNION SELECT 4 as xh,'选址意见书-市政' AS NAME,COUNT(*) SL FROM	XM_XZYJS_SZ--选址意见书
+UNION SELECT 5 as xh,'用地规划许可证-房建' AS NAME,COUNT(*) SL FROM	XM_JSYDGH--建设用地规划许可证
+UNION SELECT 6 as xh,'用地规划许可证-市政' AS NAME,COUNT(*) SL FROM	XM_JSYDGH_SZ--建设用地规划许可证
+UNION SELECT 7 as xh,'工程规划许可证-房建' AS NAME,COUNT(*) SL FROM	XM_JSGCGH--建设工程规划许可证
+UNION SELECT 8 as xh,'工程规划许可证-市政' AS NAME,COUNT(*) SL FROM	XM_JSGCGH_SZ--建设工程规划许可证
+--规划信息	
+--    房建类规划信息	XM_FJGHXX
+--    市政类规划数据	XM_SZLGH
+--初步设计信息	XM_CBSJXX
+--施工图审查	
+--    施工图审查信息(房建)	XM_SGTSCXX
+--    施工图审查信息(市政)	XM_SGTSCSZXX
+
+
+UNION SELECT 9 as xh,'项目报建信息' AS NAME,COUNT(*) SL FROM	XM_XMBJXX--项目报建信息
+UNION SELECT 10 as xh,'招标基本信息' AS NAME,COUNT(*) SL FROM	XM_ZBJBXX--招标基本信息
+UNION SELECT 11 as xh,'中标结果信息' AS NAME,COUNT(*) SL FROM	XM_ZBJGXX--中标结果信息
+	
+UNION SELECT 12 as xh,'质量监督-房建' AS NAME,COUNT(*) SL FROM	GC_FJZLJDBA--质量监督备案--    房建类
+UNION SELECT 13 as xh,'质量监督-市政' AS NAME,COUNT(*) SL FROM	GC_SZZLJDBA--质量监督备案--    市政类
+	
+UNION SELECT 14 as xh,'安全监督-房建' AS NAME,COUNT(*) SL FROM	GC_FJAQJDBA--安全监督备案--    房建类
+UNION SELECT 15 as xh,'安全监督-市政' AS NAME,COUNT(*) SL FROM	GC_SZAQJDBA--安全监督备案--    市政类
+--UNION SELECT '' AS NAME,COUNT(*) SL FROM	GC_JQSBXX--机械设备信息
+UNION SELECT 16 as xh,'施工许可证' AS NAME,COUNT(*) SL FROM	GC_SGXKZ--施工许可证信息
+UNION SELECT 17 as xh,'竣工备案-房建' AS NAME,COUNT(*) SL FROM	XM_JGBAXX--竣工备案信息--房建类
+UNION SELECT 18 as xh,'竣工备案-市政' AS NAME,COUNT(*) SL FROM	XM_JGBAXX_SZ--竣工备案信息--市政类
+UNION SELECT 19 as xh,'建设各方责任主体' AS NAME,COUNT(*) SL FROM	GC_JSZRZTXX--建设各方责任主体信息
+UNION SELECT 29 as xh,'各方参建人员' AS NAME,COUNT(*) SL FROM	GC_ZRZTCJ--各方责任主体参建人员
+) AA ORDER BY AA.xh]]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<RowHeight defaultValue="19">
+<![CDATA[19,19,30,32,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="9" rs="2" s="0">
+<O>
+<![CDATA[项目标准库数据导入情况表]]></O>
+<Expand/>
+</C>
+<C c="0" r="2" s="1">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" cs="5" s="2">
+<O>
+<![CDATA[项目环节名称]]></O>
+<Expand/>
+</C>
+<C c="6" r="2" s="1">
+<O>
+<![CDATA[数量]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="xh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="3" cs="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SL"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+</CellElementList>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="20"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="14"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style paddingLeft="12">
+<FRFont name="SimSun" style="0" size="14"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" paddingRight="8">
+<FRFont name="SimSun" style="0" size="14"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>
