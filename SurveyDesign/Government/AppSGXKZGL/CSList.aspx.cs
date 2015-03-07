@@ -45,6 +45,11 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
         {
             sb.Append(" and dbo.isSuperDept(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
         }
+        else
+        {
+            sb.Append(" and qa.PrjAddressDept <> '' ");
+        }
+
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
             sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
