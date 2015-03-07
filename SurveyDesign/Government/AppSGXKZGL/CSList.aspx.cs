@@ -74,16 +74,16 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
         {
             switch (ddlState.SelectedValue.Trim())
             {
-                case "0": //待接件
+                case "0": //待接件 未初审
                     sb.Append(" and er.FMeasure=0 and ep.fstate<>2 ");
                     break;
-                case "1": //准予受理
+                case "1": //准予受理 初审通过
                     sb.Append(" and (er.FMeasure=5 and er.FResult=1) ");
                     break;
-                case "3": //不准予受理
+                case "3": //不准予受理 初审未通过
                     sb.Append(" and (ep.fstate=6 and er.FResult=3 and er.FMeasure<>0) ");
                     break;
-                case "5": //打回企业,重新上报
+                case "5": //打回企业,重新上报 已退回
                     sb.Append(" and (ep.fstate=2) ");
                     break;
             }
@@ -106,8 +106,8 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
         sb.Append("select * from ( ");
         sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case ep.fState when 1 then '未初审' when 2 then '已退回' when 3 then '打回下级' ");
-        sb.Append(" when 5 then '初审未通过' when 6 then case er.FResult when 1 then '初审已通过' when 3 then '初审未通过' end end as FStatedesc,");
+        sb.Append(" case  when ep.fState = 1 and er.FMeasure=0 then '未初审' when ep.fState = 2 then '已退回' when ep.fState = 3 then '打回下级' when  ep.fState = 1 and er.FMeasure=5 then '未知' ");
+        sb.Append(" when ep.fState = 5 then '初审未通过' when ep.fState = 6 then case er.FResult when 1 then '初审已通过' when 3 then '初审未通过' end end as FStatedesc,");
         sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
         sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, V_SGXKZ_YW qa, CF_APP_LIST ap");
@@ -122,8 +122,8 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
         sb.Append(" union all ");
         sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName, qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case ep.fState when 1 then '未初审' when 2 then '已退回' when 3 then '打回下级' ");
-        sb.Append(" when 5 then '初审未通过' when 6 then case er.FResult when 1 then '初审已通过' when 3 then '初审未通过' end end as FStatedesc,");
+        sb.Append(" case   when ep.fState = 1 and  er.FMeasure=0 then '未初审' when ep.fState = 2 then '已退回' when ep.fState = 3 then '打回下级' when  ep.fState = 1 and er.FMeasure=5 then '未知' ");
+        sb.Append(" when ep.fState = 5 then '初审未通过' when ep.fState = 6 then case er.FResult when 1 then '初审已通过' when 3 then '初审未通过' end end as FStatedesc,");
         sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, V_SGXKZ_YW qa, CF_APP_LIST ap");

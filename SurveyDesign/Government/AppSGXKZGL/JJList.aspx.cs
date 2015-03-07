@@ -51,6 +51,7 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
         {
             sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
         }
+
         if (ddlMType.SelectedValue != "-1")
         {
             switch (ddlMType.SelectedValue.Trim())
