@@ -213,9 +213,13 @@ public partial class Government_AppSGXKZGL_CCBLJJAuditInfo : System.Web.UI.Page
             //string fEntId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FEntId"));
             //string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
             //string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
+            e.Item.Cells[2].Text = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "CZR"));
+            if (string.IsNullOrEmpty(e.Item.Cells[2].Text)) {
+                e.Item.Cells[2].Text = "--";
+            }
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('YZInfo.aspx?FId=" + fId
                  + "&fAppId=" + fAppId
-                 + "&FPrjItemId=" + t_PrjItemId.Value; 
+                 + "&FPrjItemId=" + t_PrjItemId.Value + "');\">" + e.Item.Cells[2].Text + "</a>"; 
         }
     }
    protected void rep_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
