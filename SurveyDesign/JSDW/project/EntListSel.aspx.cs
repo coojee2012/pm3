@@ -66,7 +66,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  where b.QYLXBM == qylx && tt.SFZX == 1 && tt1.ZSLXBM =="150"
+                  where b.QYLXBM == qylx && tt.SFZX == 1 
                   
                   select  new
                   {
@@ -102,7 +102,6 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  where  tt1.ZSLXBM == "150"
                   
                   select new
                   {
