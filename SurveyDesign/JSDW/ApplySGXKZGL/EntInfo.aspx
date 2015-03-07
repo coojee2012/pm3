@@ -21,8 +21,14 @@
             txtCss();
             
         });
+
         function checkInfo() {
             return AutoCheckInfo();
+        }
+
+        //保存单位后，刷新人员信息
+        function reloadEmpList() {
+            $("#btnReload").click();
         }
         function addEmp() {
             var fid = document.getElementById("h_selEntId").value;
