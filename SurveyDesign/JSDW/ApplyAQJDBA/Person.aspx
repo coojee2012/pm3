@@ -30,15 +30,21 @@
             }
             else if (tagId == "t_FHumanId")
             {
-                qybm = document.getElementById("t_FHumanId").value;
+                qybm = '<%=ViewState["FJSDWID"] %>';
             }
             if (qybm != null && qybm != "") {
-                var url = "../project/EmpListSel.aspx";
-                url += "?qybm=" + qybm;
-                var pid = showWinByReturn(url, 1000, 600);
-                if (pid != null && pid != '') {
-                    $("#" + tagId).val(pid);
-                    __doPostBack(obj.id, '');
+                if (document.getElementById("<%=t_XMZW.ClientID%>").value != "") {
+                    var url = "../project/EmpListSel.aspx";
+                    url += "?qybm=" + qybm;
+                    var pid = showWinByReturn(url, 1000, 600);
+                    if (pid != null && pid != '') {
+                        $("#" + tagId).val(pid);
+                        __doPostBack(obj.id, '');
+                    }
+                }
+                else {
+                    alert('请先选择项目职位！');
+                    return;
                 }
             } else {
                 alert('请先选择单位！');
