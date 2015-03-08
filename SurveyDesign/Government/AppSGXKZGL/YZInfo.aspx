@@ -26,13 +26,19 @@
         }
         function selEmp(obj) {
             var fAppId = document.getElementById("h_FAppId").value;
-            var rv = showWinByReturn('EmpSel.aspx?FAppId=' + fAppId, 600, 500);           
-            if (rv != null && rv != '') {
-                var list = rv.toString().split("@");
-                $("#t_FEmpId").val(list[0]);
-                $("#t_CZR").val(list[1]);
-                 
-             }
+            if (!fAppId || fAppId == "") {
+                alert("参数错误！未获取到企业编号！");
+                return false;
+            } else {
+                var rv = showWinByReturn('EmpSel.aspx?FAppId=' + fAppId, 600, 500);
+                if (rv != null && rv != '') {
+                    var list = rv.toString().split("@");
+                    $("#t_FEmpId").val(list[0]);
+                    $("#t_CZR").val(list[1]);
+
+                }
+            }
+            
          }
     </script>
     <base target="_self">

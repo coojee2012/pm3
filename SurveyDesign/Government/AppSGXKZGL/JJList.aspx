@@ -16,6 +16,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            alert(11);
             txtCss();
             DynamicGrid(".m_dg1_i");
         });
@@ -33,6 +34,8 @@
             var idvalue = window.showModalDialog(url + '&rid=' + Math.random(), obj, sFeatures);
 
             if (idvalue == "1") {
+                //alert(idvalue);
+                //alert(form1);
                 form1.btnQuery.click();
             }
         }
@@ -81,7 +84,7 @@
 
             ShowWindow(url + '?e=0', 700, 600, obj);
 
-            return false
+            return false;
         }
         function app(url) {
             var tmpVal = ''; var fsubid = '';
@@ -146,11 +149,20 @@
                 if (fManageTypeId == '11225') {
                     url = "BGBLJJAuditInfo.aspx";
                 }
-                ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
+
+            ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
                     + '&fpid=' + fpid
                     + '&ferid=' + ferid, 900, 600, obj);
-                return false
-            }
+            
+          
+            return false;
+        }
+
+        function btnQueryClickClient() {
+            //alert(12);
+           // $("#btnQuery").attr("disabled", "disabled");
+            return true;
+        }
 
     </script>
 
@@ -185,7 +197,7 @@
             </td>
             
             <td colspan="2" rowspan="4" style="text-align: center; padding-right: 10px">
-                <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClick="btnQuery_Click"
+                <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClientClick="return btnQueryClickClient();" OnClick="btnQuery_Click"
                     Text="查询" />
                 &nbsp;
                 <input id="btnClear" class="m_btn_w2" style="margin-top: 3px;" type="button" value="重置"
@@ -253,6 +265,9 @@
             </td>
         </tr>
     </table>
+
+        
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:DataGrid ID="JustAppInfo_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
@@ -325,6 +340,16 @@
                 <asp:AsyncPostBackTrigger ControlID="btnQuery" EventName="Click" />
             </Triggers>
         </asp:UpdatePanel>
+
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server"  DisplayAfter="500" 
+            AssociatedUpdatePanelID="UpdatePanel1">
+        <ProgressTemplate>
+          <div style="text-align:center">
+                数据加载中，请稍后。。。
+           </div>
+        </ProgressTemplate>
+        </asp:UpdateProgress>
+
     
     <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
         <uc1:pager ID="Pager1" runat="server"></uc1:pager>

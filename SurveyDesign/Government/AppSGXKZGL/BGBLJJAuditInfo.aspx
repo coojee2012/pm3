@@ -251,8 +251,8 @@
                 <asp:BoundColumn HeaderText="序号">
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="持证人" DataField="CZR">
-                    <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                <asp:BoundColumn HeaderText="持证人2" DataField="SZR">
+                    <ItemStyle Wrap="False"  />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="证书名称" DataField="FCertificateName">
                     <ItemStyle Wrap="False" />
