@@ -21,8 +21,14 @@
             txtCss();
             
         });
+
         function checkInfo() {
             return AutoCheckInfo();
+        }
+
+        //保存单位后，刷新人员信息
+        function reloadEmpList() {
+            $("#btnReload").click();
         }
         function addEmp() {
             var fid = document.getElementById("h_selEntId").value;
@@ -193,7 +199,7 @@
                     资质项：
                 </td>
                 <td  >
-                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px" Enabled ="false"></asp:TextBox>
+                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">

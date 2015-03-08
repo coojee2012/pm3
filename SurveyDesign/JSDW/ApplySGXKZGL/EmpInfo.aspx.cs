@@ -147,14 +147,15 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FIdCard.Text = v.SFZH;
             t_FSex.SelectedValue = v.XB.ToString();
             t_FMobile.Text = v.GRDH;
-            t_ZC.Text = v.ZC;
+            t_ZC.SelectedItem.Text = v.ZC??"其他";
             t_ZW.Text = v.ZW;
             t_FTel.Text = v.BGDH;
+            t_ZGXL.SelectedItem.Text = "无";
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
             if (v1 != null)
             {
-                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? v1.ZCZSH : v1.ZCZSBH;
+                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
                 t_DJ.Text = v1.ZSJB;
                 t_ZCBH.Text = v1.ZCZSH;
                 t_ZCZY.Text = v1.ZCZY;

@@ -26,9 +26,12 @@
             showAddWindow('TKJLInfo.aspx?FAppId=' + FAppId, 600, 500, btn);
         }
         function addYZInfo() {
+
             var FAppId = document.getElementById("t_fLinkId").value;
             var btn = document.getElementById("btnReload");
             var FPrjItemId = document.getElementById("t_PrjItemId").value;
+
+            alert(FAppId + ","+FPrjItemId);
             //var FPrjId = document.getElementById("t_FPrjId").value;
             //var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             showAddWindow('YZInfo.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450,btn);
@@ -236,6 +239,7 @@
                 <asp:BoundColumn HeaderText="序号">
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
+            
                 <asp:BoundColumn HeaderText="持证人" DataField="CZR">
                     <ItemStyle Wrap="False" HorizontalAlign="Left" />
                 </asp:BoundColumn>
