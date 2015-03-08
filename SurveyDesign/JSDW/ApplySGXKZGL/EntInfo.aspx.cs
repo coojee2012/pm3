@@ -164,9 +164,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         hf_FId.Value = fId;
         txtFId.Value = fId;
 
-        // tool.showMessage("alert('保存成功');window.returnValue='1';");
-        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
-        showEmpList();
+        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "reloadEmpList();alert('保存成功');window.returnValue='1';", true);
     }
 
 
