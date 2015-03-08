@@ -59,7 +59,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                       a.RYBH,
                       a.XM,
                       a.SFZH,
-                      XBStr = a.XB =="1"?"男":"女",
+                      XBStr = a.XB =="0"?"男":"女",
                       c.ZCZSH,
                       c.ZCZY,
                       c.ZSYXQKSSJ,

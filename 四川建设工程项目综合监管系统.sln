@@ -1,11 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-<<<<<<< HEAD
 VisualStudioVersion = 12.0.21005.1
-=======
-VisualStudioVersion = 12.0.30723.0
->>>>>>> 8f49be568051ab472505fe8da4ed0b3ae95c3b09
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityBase", "Middle\Entity\ENTITYBASE\EntityBase.csproj", "{A5676341-D5C3-456F-943E-14D7D8F45883}"
 EndProject
@@ -228,8 +224,8 @@ Global
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Debug|x86.ActiveCfg = Debug|x86
-		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Debug|x86.Build.0 = Debug|x86
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Release|.NET.ActiveCfg = Release|x86
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Release|Any CPU.ActiveCfg = Release|x86
 		{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}.Release|Mixed Platforms.ActiveCfg = Release|x86
