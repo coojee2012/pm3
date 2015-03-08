@@ -16,7 +16,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            alert(11);
+           
             txtCss();
             DynamicGrid(".m_dg1_i");
         });
