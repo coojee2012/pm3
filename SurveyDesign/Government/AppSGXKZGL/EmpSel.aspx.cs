@@ -63,8 +63,10 @@ public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
         {
             if (e.CommandName == "Sel")
             {
-                string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-                string FHumanName = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FHumanName"));
+                //string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
+                //string FHumanName = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FHumanName"));
+                string fid = e.Item.Cells[6].Text;
+                string FHumanName = e.Item.Cells[2].Text;
                 pageTool tool = new pageTool(this.Page);
                 tool.ExecuteScript("window.returnValue='" + fid + "@" + FHumanName + "';window.close();");
             }

@@ -246,7 +246,7 @@
                     </div>
                     <div class="o_menu"  style="display:none;">
                         <a id="a17" class="o_m01_1" href='../ApplyBHGD/BHGDList.aspx' target="main"><span>
-                            标化工地申请111</span></a>
+                            标化工地申请</span></a>
                     </div>
                     <div class="o_menu" style="display:none;">
                         <a id="a18" class="o_m01_1" style="cursor: pointer" target="main"><span>停复工管理</span></a>

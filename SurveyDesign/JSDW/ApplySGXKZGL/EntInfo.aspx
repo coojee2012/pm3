@@ -33,12 +33,13 @@
         function addEmp() {
             var fid = document.getElementById("h_selEntId").value;
             var FPrjItemId = document.getElementById("t_FPrjItemId").value;
+            var t_FEntType = document.getElementById("t_FEntType").value;
             if (fid == null || fid == '') {
                 alert('请先保存上方的企业信息！');
                 return;
             }
             showAddWindow('EmpInfo.aspx?FEntId=' + fid + 
-                 '&FPrjItemId=' + FPrjItemId, 1000, 600);
+                 '&FPrjItemId=' + FPrjItemId + '&t_FEntType=' + t_FEntType, 1000, 600);
         }
         function showTr1() {
             $("td[name=td1]").show();
@@ -96,7 +97,6 @@
     
     <form id="form1" runat="server">
       <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-         
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv"> 
@@ -311,11 +311,11 @@
     </div>
     <input id="t_AddressDept" type="hidden" runat="server" />
     <input id="t_Province" type="hidden" runat="server" />
-    <input id="t_City" type="hidden" runat="server" />
-    <input id="t_County" type="hidden" runat="server" />
+    <input type="hidden"  runat="server" id="t_City" />
+    <input type="hidden"  runat="server"  id="t_County"/>
     <input type="hidden"  runat="server" ID="t_FEntType" value="0" />
     <input type="hidden"  runat="server" ID="t_FAppId" />
-    <input id="hf_FId" type="hidden" runat="server" />
+    <input type="hidden"  runat="server" id="hf_FId" />
     <input type="hidden"  runat="server" ID="t_FPrjId" />
     <input type="hidden"  runat="server" ID="t_FPrjItemId" />
     

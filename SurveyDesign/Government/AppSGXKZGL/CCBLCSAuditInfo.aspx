@@ -31,7 +31,7 @@
             var btn = document.getElementById("btnReload");
             var FPrjItemId = document.getElementById("t_PrjItemId").value;
 
-            alert(FAppId + ","+FPrjItemId);
+            //alert(FAppId + ","+FPrjItemId);
             //var FPrjId = document.getElementById("t_FPrjId").value;
             //var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             showAddWindow('YZInfo.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450,btn);
@@ -165,8 +165,8 @@
                 <asp:BoundColumn HeaderText="序号">
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="踏勘时间" DataField="TKSJ">
-                    <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                <asp:BoundColumn HeaderText="踏勘时间" DataField="TKSJ"  DataFormatString="{0:yyyy-MM-dd}">
+                    <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="踏勘部门" DataField="TKBM">
                     <ItemStyle Wrap="False" />
@@ -177,10 +177,10 @@
                 <asp:BoundColumn HeaderText="踏勘情况" DataField="TKQK">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="记录人" >
+                <asp:BoundColumn HeaderText="记录人" DataField="JLR">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="记录时间" DataFormatString="{0:yyyy-MM-dd}" >
+                <asp:BoundColumn HeaderText="记录时间" DataField="JLSJ" DataFormatString="{0:yyyy-MM-dd}" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="附件">

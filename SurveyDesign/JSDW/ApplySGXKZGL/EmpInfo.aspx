@@ -52,7 +52,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden"  runat="server" ID="t_FAppId" value="" />
-        
+        <input type="hidden"  runat="server" ID="t_FEntType" value="" />
         <input type="hidden"  runat="server" ID="h_selEmpId" value="" />
         <input type="hidden"  runat="server" ID="t_FEntId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
