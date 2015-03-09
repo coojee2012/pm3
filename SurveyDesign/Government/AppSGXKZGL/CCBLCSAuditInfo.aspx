@@ -166,7 +166,7 @@
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="踏勘时间" DataField="TKSJ"  DataFormatString="{0:yyyy-MM-dd}">
-                    <ItemStyle Wrap="False" />
+                    <ItemStyle Wrap="False" HorizontalAlign="Center" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="踏勘部门" DataField="TKBM">
                     <ItemStyle Wrap="False" />

@@ -231,7 +231,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            //string fEntId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FEntId"));
            //string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
            //string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
-           e.Item.Cells[1].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('TKJLInfo.aspx?FId=" + fId + "&FAppId=" + fAppId + "',600,450);\">" + e.Item.Cells[1].Text + "</a>";
+           e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('TKJLInfo.aspx?FId=" + fId + "&FAppId=" + fAppId + "',600,450);\">" + e.Item.Cells[2].Text + "</a>";
        }
    }
    protected void DG_ListYZ_ItemDataBound(object sender, DataGridItemEventArgs e)
