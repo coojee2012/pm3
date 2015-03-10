@@ -353,8 +353,8 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <tr>
-                <td class="t_r">发证机关
+            <tr style="display:none;">
+                <td class="t_r" >发证机关
                 </td>
                 <td>
                     <asp:TextBox ID="TextBox1" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
