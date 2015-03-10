@@ -18,6 +18,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+
             //应用编号
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             //企业类型

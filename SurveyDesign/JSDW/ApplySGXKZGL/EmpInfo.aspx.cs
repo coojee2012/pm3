@@ -16,6 +16,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     RCenter rc = new RCenter();
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!IsPostBack)
         {
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
