@@ -14,6 +14,7 @@ public partial class JSDW_APPSGXKZGL_YZInfo : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    string n = "Byte";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -71,5 +72,23 @@ public partial class JSDW_APPSGXKZGL_YZInfo : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+    }
+    protected void btnFileUpload_Click(object sender, EventArgs e) {
+
+        //附件url
+        string str = t_FilePath.Value;
+        //文件大小
+        float s = EConvert.ToInt(t_Size.Value);
+        if (s > 1024) { s = s / 1024; n = "KB"; }
+        if (s > 1024) { s = s / 1024; n = "MB"; }
+        //附件类型
+        t_FileType.Value = str.Split('.').ToList().Last();
+        //附件文件名
+        string m = str.Split('/').ToList().Last();
+        name.Text += m + "（大小：" + s.ToString("0.0") + n + "）<br/>";
+        //if (string.IsNullOrEmpty(t_FileName.Text))
+        //{
+        //    t_FileName.Text = m.Replace("." + m.Split('.').ToList().Last(), "");
+        //}
     }
 }
