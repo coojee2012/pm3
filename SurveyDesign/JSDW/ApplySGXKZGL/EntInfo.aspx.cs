@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,7 +36,11 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
 
                 tool.ExecuteScript("btnEnable();");
             }
-
+        }
+        else
+        {
+            //企业编号
+            
         }
     }
     //显示
@@ -78,7 +82,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         switch (t_FEntType.Value)
         {
             case "2":
-                lblTitle.InnerText = "11";
+                lblTitle.InnerText = "施工总承包商单位";
                 break;
             case "3":
                 lblTitle.InnerText = "专业承包单位";
@@ -159,6 +163,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             dbContext.TC_PrjItem_Ent.InsertOnSubmit(ent);
         }
         pageTool tool = new pageTool(this.Page);
+        //ytb 修改了企业需要为企业ID赋值
+        ent.QYID = h_selEntId.Value;
         ent = tool.getPageValue(ent);
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
@@ -234,6 +240,14 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         if (v1 != null)
             t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
 
+        //获取增项资质
+        var _v2 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId&&t.SFZX==0);
+        var _oZXZZ = new StringBuilder();
+        foreach (var i in _v2) {
+            _oZXZZ.Append(i.ZZLB + i.ZZMC + i.ZZDJ + "\r\n");
+        }
+        t_oZXZZ.Text = _oZXZZ.ToString();
+
         if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
@@ -242,7 +256,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
-
+        //刷新人员
+        showEmpList();
     }
     protected void btnAddEnt_Click(object sender, EventArgs e)
     {

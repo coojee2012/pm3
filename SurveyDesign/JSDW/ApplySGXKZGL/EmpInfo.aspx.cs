@@ -40,6 +40,10 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             case "2":
                 drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
                 break;
+            //承包单位
+            case "3":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
             //设计单位
             case "6":
                 drArr = dt.Select("FNumber in ('11220201','11220202','11220212')");
