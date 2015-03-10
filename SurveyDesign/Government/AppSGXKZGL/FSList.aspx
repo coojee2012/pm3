@@ -226,10 +226,14 @@
                 </asp:DropDownList>
             </td>
             <td class="t_r">
-
+是否补证：
             </td>
             <td>
-              
+                <asp:DropDownList ID="ddlIsBB" runat="server" CssClass="m_txt" Width="169px">
+              <asp:ListItem Value="-1" Selected="True">全部</asp:ListItem>
+                    <asp:ListItem Value="1" >是</asp:ListItem>
+                    <asp:ListItem Value="0">否</asp:ListItem> 
+                    </asp:DropDownList>
             </td>
         </tr>
         
@@ -288,6 +292,10 @@
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="业务类型" DataField="BisType" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="是否补证" DataField="isBB" >
+                                <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="项目地址" DataField="Address" >

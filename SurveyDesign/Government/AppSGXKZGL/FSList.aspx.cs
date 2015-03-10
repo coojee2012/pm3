@@ -65,6 +65,10 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
             }
         }
 
+        if (!string.IsNullOrEmpty(ddlIsBB.SelectedValue) && ddlIsBB.SelectedValue != "-1") {
+            sb.Append(" and qa.SGXKZBB= " + ddlIsBB.SelectedValue);
+        }
+
         if (ddlState.SelectedValue != "-1")
         {
             switch (ddlState.SelectedValue.Trim())
@@ -104,7 +108,8 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
         sb.Append(" case ep.fState when 1 then '未复审' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '复审未通过' when 6 then case er.FResult when 1 then '复审已通过' when 3 then '复审未通过' end end as FStatedesc,");
         sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
-        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
+        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime,");
+        sb.Append(" case qa.SGXKZBB when 0 then '否' when 1 then '是' end as isBB");
         sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, V_SGXKZ_YW qa, CF_APP_LIST ap");
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 and qa.SGXKZBB=0 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
@@ -120,7 +125,8 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
         sb.Append(" case ep.fState when 1 then '未复审' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '复审未通过' when 6 then case er.FResult when 1 then '复审已通过' when 3 then '复审未通过' end end as FStatedesc,");
         sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
-        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
+        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime,");
+        sb.Append(" case qa.SGXKZBB when 0 then '否' when 1 then '是' end as isBB");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, V_SGXKZ_YW qa, CF_APP_LIST ap");
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 and qa.SGXKZBB=0 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
