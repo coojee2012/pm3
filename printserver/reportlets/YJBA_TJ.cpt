@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="SBND"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="FNID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT CASE EGDG.FNAME WHEN '四川省' THEN '省直属' ELSE EGDG.FNAME END AS FNAME
+,EGDG.FNUMBER,
+ISNULL(FGF.A01,0) AS A01,ISNULL(FGF.A02,0) AS A02,ISNULL(FGF.A03,0) AS A03,ISNULL(FGF.A04,0) AS A04,
+ISNULL(FGF.A05,0) AS A05,ISNULL(FGF.A06,0) AS A06,ISNULL(FGF.A07,0) AS A07,ISNULL(FGF.A08,0) AS A08,
+ISNULL(FGF.A09,0) AS A09,ISNULL(FGF.A10,0) AS A10,ISNULL(FGF.A11,0) AS A11,ISNULL(FGF.A12,0) AS A12,
+ISNULL(FGF.A13,0) AS A13,ISNULL(FGF.A14,0) AS A14,ISNULL(FGF.A15,0) AS A15,ISNULL(FGF.A16,0) AS A16,
+ISNULL(FGF.A17,0) AS A17,ISNULL(FGF.A18,0) AS A18,ISNULL(FGF.A19,0) AS A19
+FROM LINKER_DBCENTERSC.DBCENTERSC.DBO.V_CF_SYS_MANAGEDEPT_SC EGDG
+LEFT JOIN (SELECT DQID,
+SUM(ISNULL(A01,0)) AS A01,SUM(ISNULL(A02,0)) AS A02,SUM(ISNULL(A03,0)) AS A03,SUM(ISNULL(A04,0)) AS A04,
+SUM(ISNULL(A05,0)) AS A05,SUM(ISNULL(A06,0)) AS A06,SUM(ISNULL(A07,0)) AS A07,SUM(ISNULL(A08,0)) AS A08,
+SUM(ISNULL(A09,0)) AS A09,SUM(ISNULL(A10,0)) AS A10,SUM(ISNULL(A11,0)) AS A11,SUM(ISNULL(A12,0)) AS A12,
+SUM(ISNULL(A13,0)) AS A13,SUM(ISNULL(A14,0)) AS A14,SUM(ISNULL(A15,0)) AS A15,SUM(ISNULL(A16,0)) AS A16,
+SUM(ISNULL(A17,0)) AS A17,SUM(ISNULL(A18,0)) AS A18,SUM(ISNULL(A19,0)) AS A19
+,SUM(ISNULL(NUM,0)) AS NUM
+ FROM (
+SELECT LEFT(FUPDEPTID,LEN(51)+2) AS DQID,
+SUM(ISNULL(A01,0)) AS A01,SUM(ISNULL(A02,0)) AS A02,SUM(ISNULL(A03,0)) AS A03,SUM(ISNULL(A04,0)) AS A04,
+SUM(ISNULL(A05,0)) AS A05,SUM(ISNULL(A06,0)) AS A06,SUM(ISNULL(A07,0)) AS A07,SUM(ISNULL(A08,0)) AS A08,
+SUM(ISNULL(A09,0)) AS A09,SUM(ISNULL(A10,0)) AS A10,SUM(ISNULL(A11,0)) AS A11,SUM(ISNULL(A12,0)) AS A12,
+SUM(ISNULL(A13,0)) AS A13,SUM(ISNULL(A14,0)) AS A14,SUM(ISNULL(A15,0)) AS A15,SUM(ISNULL(A16,0)) AS A16,
+SUM(ISNULL(A17,0)) AS A17,SUM(ISNULL(A18,0)) AS A18,SUM(ISNULL(A19,0)) AS A19
+,SUM(ISNULL(NUM,0)) AS NUM
+ FROM (
+SELECT FUPDEPTID
+,CASE GCLB WHEN '一般工业与民用建筑工程' THEN 1 ELSE 0 END AS A01
+,CASE GCLB WHEN '冶金有色工业建筑安装工程' THEN 1 ELSE 0 END AS A02
+,CASE GCLB WHEN '煤炭工业建筑安装工程' THEN 1 ELSE 0 END AS A03
+,CASE GCLB WHEN '石油工业建筑安装工程' THEN 1 ELSE 0 END AS A04
+,CASE GCLB WHEN '化学工业建筑安装工程' THEN 1 ELSE 0 END AS A05
+,CASE GCLB WHEN '电力工业建筑安装工程' THEN 1 ELSE 0 END AS A06
+,CASE GCLB WHEN '建材工业建筑安装工程' THEN 1 ELSE 0 END AS A07
+,CASE GCLB WHEN '森林工业建筑安装工程' THEN 1 ELSE 0 END AS A08
+,CASE GCLB WHEN '轻纺工业建筑安装工程' THEN 1 ELSE 0 END AS A09
+,CASE GCLB WHEN '森林工业建筑工程' THEN 1 ELSE 0 END AS A10
+,CASE GCLB WHEN '铁路建筑工程' THEN 1 ELSE 0 END AS A11
+,CASE GCLB WHEN '公路建筑工程' THEN 1 ELSE 0 END AS A12
+,CASE GCLB WHEN '港口建筑工程' THEN 1 ELSE 0 END AS A13
+,CASE GCLB WHEN '航空航天建筑安装工程' THEN 1 ELSE 0 END AS A14
+,CASE GCLB WHEN '邮电通讯电子设备安装工程' THEN 1 ELSE 0 END AS A15
+,CASE GCLB WHEN '热力及燃气建筑安装工程' THEN 1 ELSE 0 END AS A16
+,CASE GCLB WHEN '给水排水工程' THEN 1 ELSE 0 END AS A17
+,CASE GCLB WHEN '市政桥梁工程' THEN 1 ELSE 0 END AS A18
+,CASE GCLB WHEN '其他工程' THEN 1 ELSE 0 END AS A19
+,NUM
+ FROM 
+(SELECT QYID,GCLB,FUPDEPTID,COUNT(*) AS NUM
+  FROM (
+SELECT B.USERNAME AS QYID,A.YWLX AS GCLB,C.XMSZD AS FUPDEPTID FROM JKCWFDB_WORK_NJS.DBO.YW_YWINFO A 
+LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGQY_YJBA B ON A.YWBM=B.YWBM
+LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO C ON A.YWBM = C.YWBM
+WHERE ISNULL(A.DEALSTATE,0) IN (4,-2)
+ ${IF(LEN(SBND)==0,""," and year(isnull(SBRQ,getdate()))="+SBND)}
+) AA
+GROUP BY QYID,GCLB,FUPDEPTID
+) SSS
+) AAA
+GROUP BY FUPDEPTID) FFF
+GROUP BY DQID) FGF ON FGF.DQID=EGDG.FNUMBER
+WHERE (EGDG.FPARENTID=${FNID} OR EGDG.FNUMBER=${FNID})
+ORDER BY EGDG.FNUMBER]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<ServerPrinter/>
+<WebPageContent>
+<ToolBars/>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1828800,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1905000,1333500,1181100,1143000,1181100,1181100,1257300,1219200,1219200,1181100,1143000,1219200,1104900,1104900,1181100,1181100,1333500,1143000,1371600,1143000,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="20" s="0">
+<O>
+<![CDATA[业绩备案统计]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" s="1">
+<O>
+<![CDATA[属地]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" s="1">
+<O>
+<![CDATA[一般工业与民用建筑工程]]></O>
+<Expand/>
+</C>
+<C c="2" r="1" s="1">
+<O>
+<![CDATA[冶金有色工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="3" r="1" s="1">
+<O>
+<![CDATA[煤炭工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="4" r="1" s="1">
+<O>
+<![CDATA[石油工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="5" r="1" s="1">
+<O>
+<![CDATA[化学工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="6" r="1" s="1">
+<O>
+<![CDATA[电力工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="7" r="1" s="1">
+<O>
+<![CDATA[建材工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="8" r="1" s="1">
+<O>
+<![CDATA[森林工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="9" r="1" s="1">
+<O>
+<![CDATA[轻纺工业建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="10" r="1" s="1">
+<O>
+<![CDATA[森林工业建筑工程]]></O>
+<Expand/>
+</C>
+<C c="11" r="1" s="1">
+<O>
+<![CDATA[铁路建筑工程]]></O>
+<Expand/>
+</C>
+<C c="12" r="1" s="1">
+<O>
+<![CDATA[公路建筑工程]]></O>
+<Expand/>
+</C>
+<C c="13" r="1" s="1">
+<O>
+<![CDATA[港口建筑工程]]></O>
+<Expand/>
+</C>
+<C c="14" r="1" s="1">
+<O>
+<![CDATA[航空航天建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="15" r="1" s="1">
+<O>
+<![CDATA[邮电通讯电子设备安装工程]]></O>
+<Expand/>
+</C>
+<C c="16" r="1" s="1">
+<O>
+<![CDATA[热力及燃气建筑安装工程]]></O>
+<Expand/>
+</C>
+<C c="17" r="1" s="1">
+<O>
+<![CDATA[给水排水工程]]></O>
+<Expand/>
+</C>
+<C c="18" r="1" s="1">
+<O>
+<![CDATA[市政桥梁工程]]></O>
+<Expand/>
+</C>
+<C c="19" r="1" s="1">
+<O>
+<![CDATA[其他工程]]></O>
+<Expand/>
+</C>
+<C c="0" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="FNAME"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A01"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A02"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A03"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A04"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A05"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A06"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A07"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A08"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A09"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="10" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A10"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A11"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="12" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A12"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="13" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A13"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="14" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A14"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="15" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A15"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="16" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A16"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="17" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A17"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="18" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A18"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="19" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="A19"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="false" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="148"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>

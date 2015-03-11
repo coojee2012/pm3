@@ -17,7 +17,12 @@ public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
+            // t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
+            if (Request["FAppId"] != null && !string.IsNullOrEmpty(Request["FAppId"]))
+            {
+                t_FAppId.Value = Request["FAppId"];
+            }
+         
             showInfo();
         }
     }
@@ -25,7 +30,7 @@ public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
     void showInfo()
     {
         EgovaDB dbContext = new EgovaDB();
-        IQueryable<TC_PrjItem_Emp> App = dbContext.TC_PrjItem_Emp.Where(t => t.FAppId == CurrentEntUser.EntId).OrderByDescending(t => t.FEntId);
+        IQueryable<TC_PrjItem_Emp> App = dbContext.TC_PrjItem_Emp.Where(t => t.FAppId == t_FAppId.Value).OrderByDescending(t => t.FEntId);
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.FHumanName.Contains(t_FName.Text.Trim()));
         Pager1.RecordCount = App.Count();
@@ -58,8 +63,10 @@ public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
         {
             if (e.CommandName == "Sel")
             {
-                string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-                string FHumanName = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FHumanName"));
+                //string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
+                //string FHumanName = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FHumanName"));
+                string fid = e.Item.Cells[6].Text;
+                string FHumanName = e.Item.Cells[2].Text;
                 pageTool tool = new pageTool(this.Page);
                 tool.ExecuteScript("window.returnValue='" + fid + "@" + FHumanName + "';window.close();");
             }

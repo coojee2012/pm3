@@ -59,6 +59,10 @@
       <Project>{4010bcec-4eea-4c77-9184-72b1af975f9d}</Project>
       <Name>EgovaDAO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Log4netLibrary\Log4netLibrary.csproj">
+      <Project>{97596755-3e00-4fa6-b08d-2326e202ca5f}</Project>
+      <Name>Log4netLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Middle\Entity\ENTITYBASE\EntityBase.csproj">
       <Project>{a5676341-d5c3-456f-943e-14d7d8f45883}</Project>
       <Name>EntityBase</Name>

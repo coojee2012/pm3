@@ -874,6 +874,29 @@ namespace Tools
 
         #region
         /// <summary>
+        /// 批量删除DataGrid的所有行。删除提交之前调用委托DeletingDelegate绑定的方法用能在同一个事物内tool.DelInfoFromGrid(EntInfo_List, db.CF_Ent_BaseInfo, tool_Deleting);
+        /// </summary>
+        /// <typeparam name="TEntity">实体类型</typeparam>
+        /// <param name="grid">DataGrid</param>
+        /// <param name="table">实体</param>
+        /// <param name="Deleting">方法private void tool_Deleting(System.Collections.Generic.IList《string》 FIdList, System.Data.Linq.DataContext context)</param>
+        public void DelInfoFromGridForAll<TEntity>(DataGrid grid, Table<TEntity> table, DeletingDelegate Deleting) where TEntity : class
+        {
+
+            string FId = "";
+
+            int RowCount = grid.Items.Count;
+            IList<string> FIdList = new List<string>();
+            for (int i = 0; i < grid.Items.Count; i++)
+            {
+                FId = grid.Items[i].Cells[grid.Columns.Count - 1].Text.Trim();
+
+                FIdList.Add(FId);
+            }
+
+            DelInfoItem(FIdList, table, Deleting);
+        }
+        /// <summary>
         /// 批量删除DataGrid选中的行。删除提交之前调用委托DeletingDelegate绑定的方法用能在同一个事物内tool.DelInfoFromGrid(EntInfo_List, db.CF_Ent_BaseInfo, tool_Deleting);
         /// </summary>
         /// <typeparam name="TEntity">实体类型</typeparam>

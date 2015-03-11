@@ -134,9 +134,9 @@
                     资料名称
                 </th>
                 <th style="width: 60px;">
-                    需要文件数量
+                    份数
                 </th>
-                <th style="width: 60px;">
+                <th style="width: 60px;display:none;">
                     已上传<br />
                     文件个数
                 </th>
@@ -162,7 +162,7 @@
                         <td>
                             <%#Eval("FFileCount")%>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <asp:Literal ID="lit_Count" runat="server"></asp:Literal>
                         </td>
                         <td >

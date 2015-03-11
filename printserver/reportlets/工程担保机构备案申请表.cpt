@@ -1,0 +1,5820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT A.BBTM,A.TBSJ,B.QYMC
+FROM YW_INFO A
+LEFT JOIN YW_GCDBJG_JBQK B ON A.YWBM=B.YWBM
+LEFT JOIN V_GCDBJG_FR C ON A.YWBM=C.YWBM
+LEFT JOIN V_GCDBJG_ZJL D ON A.YWBM=D.YWBM
+WHERE A.YWBM='${YWBM}']]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM YW_GCDBJG_FRDBQZ
+WHERE YWBM='${YWBM}']]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT B.*,C.*,E.CT ZCC,D.*,F.CT ZCC ,jj.ct jjxz1,lxr.xm lxr1,lxr.dh dh1,lxr.DZYJ dzyx1,c.dh frdh,d.dh jldh,c.cz frcz,d.cz jlcz
+FROM YW_INFO A
+LEFT JOIN YW_GCDBJG_JBQK B ON A.YWBM=B.YWBM
+LEFT JOIN V_GCDBJG_FR C ON A.YWBM=C.YWBM
+LEFT JOIN V_GCDBJG_ZJL D ON A.YWBM=D.YWBM
+LEFT JOIN D_JSZC E ON C.ZC=E.BM
+LEFT JOIN D_JSZC F ON D.ZC=F.BM
+left join d_jjxz_new jj on jj.bm=b.jjxz 
+left join yw_qy_lxr lxr on lxr.ywbm=a.ywbm
+WHERE A.YWBM='${YWBM}'
+and jj.qylb=a.qylb and a.sfrc='0'
+]]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT A.*,B.CT ZCC,C.CT XBC,D.CT ZGXLC,
+CASE WHEN A.ZP IS NULL THEN NULL ELSE (SELECT IMAGEPATH FROM XT_SETINFO WHERE ROWNUM < 2) || A.ZP END AS ZPC
+,TO_CHAR(A.BYSJ,'YYYY-MM-DD')||'/'||A.BYXX||'/'||A.BYZY SJXXZY 
+FROM YW_GCDBJG_ZYLDR A
+LEFT JOIN D_JSZC B ON A.ZC=B.BM
+LEFT JOIN D_XB C ON A.XB=C.BM
+LEFT JOIN D_XL D ON A.ZGXL=D.BM
+WHERE A.YWBM='${YWBM}' AND RYLB=1]]></Query>
+</TableData>
+<TableData name="ds5" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT AA.*,HNHYQ||' — '||HNHYZ QZRQ FROM (
+SELECT to_char(to_date(HNHYQ,'yyyy-mm-dd'),'yyyy-mm-dd') HNHYQ,case  when HNHYz='至今' then HNHYz 
+ else to_char(to_date(HNHYz,'yyyy-mm-dd'),'yyyy-mm-dd') end HNHYZ,CSHDW||'，'||CSHZ||'，'||GZJJ 
+FROM YW_GCDBJG_ZYLDR A
+LEFT JOIN YW_GCDBJG_RYJL B ON A.RYID=B.RYID
+WHERE A.YWBM='${YWBM}' AND RYLB=1
+) AA]]></Query>
+</TableData>
+<TableData name="ds6" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT A.*,B.CT ZCC,C.CT XBC,D.CT ZGXLC,
+CASE WHEN A.ZP IS NULL THEN NULL ELSE (SELECT IMAGEPATH FROM XT_SETINFO WHERE ROWNUM < 2) || A.ZP END AS ZPC
+,TO_CHAR(A.BYSJ,'YYYY-MM-DD')||'/'||A.BYXX||'/'||A.BYZY SJXXZY 
+FROM YW_GCDBJG_ZYLDR A
+LEFT JOIN D_JSZC B ON A.ZC=B.BM
+LEFT JOIN D_XB C ON A.XB=C.BM
+LEFT JOIN D_XL D ON A.ZGXL=D.BM
+WHERE A.YWBM='${YWBM}' AND RYLB=2]]></Query>
+</TableData>
+<TableData name="ds7" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT AA.*,HNHYQ||' — '||HNHYZ QZRQ FROM (
+SELECT to_char(to_date(HNHYQ,'yyyy-mm-dd'),'yyyy-mm-dd') HNHYQ,case  when HNHYz='至今' then HNHYz 
+ else to_char(to_date(HNHYz,'yyyy-mm-dd'),'yyyy-mm-dd') end HNHYZ,CSHDW||'，'||CSHZ||'，'||GZJJ 
+FROM YW_GCDBJG_ZYLDR A
+LEFT JOIN YW_GCDBJG_RYJL B ON A.RYID=B.RYID
+WHERE A.YWBM='${YWBM}' AND RYLB=2
+) AA]]></Query>
+</TableData>
+<TableData name="ds8" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT QYJJ FROM YW_GCDBJG_JBQKBC WHERE YWBM='${YWBM}']]></Query>
+</TableData>
+<TableData name="ds9" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT ROWNUM ROWN,A.XM,B.CT ZGXL,C.CT ZC,TO_CHAR(A.BYSJ,'YYYY-MM-DD')||'/'||A.BYXX SJXX,A.ZJHM,A.JB,A.ZYZSBH,A.SXZY FROM YW_GCDBJG_RY A
+LEFT JOIN D_XL B ON A.ZGXL=B.BM
+LEFT JOIN D_JSZC C ON A.ZC=C.BM
+WHERE A.YWBM='${YWBM}']]></Query>
+</TableData>
+<TableData name="ds10" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT ROWNUM ROWN,A.* FROM V_GCDBG_ZBYE A WHERE A.YWBM='${YWBM}']]></Query>
+</TableData>
+<TableData name="ds11" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT TBDB||' '||YZGCKZFDB||' '||CBSLYDB||' '||CBSFKDB||' '||GZZFDB DBZL FROM
+(SELECT
+CASE WHEN TBDB=1 THEN '投标担保,' ELSE NULL END AS TBDB,
+CASE WHEN YZGCKZFDB=1 THEN '业主工程款支付担保,' ELSE NULL END AS YZGCKZFDB,
+CASE WHEN CBSLYDB=1 THEN '承包商履约担保,' ELSE NULL END AS CBSLYDB,
+CASE WHEN CBSFKDB=1 THEN '承包商付款担保,' ELSE NULL END AS CBSFKDB,
+CASE WHEN GZZFDB=1 THEN '农民工工资支付担保,' ELSE NULL END AS GZZFDB
+FROM YW_GCDBJG_ZBYE)A]]></Query>
+</TableData>
+<TableData name="ds12" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="YWBM"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select A.YWBM,ROWNUM RowN,B.CT DBZL,A.BHFW from YW_ZZSQ A
+LEFT JOIN V_GCDB_DBZL B ON A.ZZDJ=B.DBZL
+WHERE YWBM='${YWBM}']]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-First')}]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Previous')}]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Next')}]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('ReportServerP-Last')}]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Export')}]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.FlashPrint">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Utils-Print[Client]A')}]]></Text>
+<IconName>
+<![CDATA[flashprint]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[${i18n('Print')}]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[2019300,876300,723900,723900,723900,495300,723900,723900,1828800,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,4152900,952500,571500,1600200,1333500,723900,723900,723900,3467100,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[533400,342900,1219200,3162300,5372100,2819400,5334000,2095500,7886700,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="8" r="0" s="0">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="BBTM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Present class="com.fr.report.cellattr.BarcodePresent">
+<BarcodeAttr height="24" RCodeVersion="7" RCodeErrorCorrect="1" RcodeDrawPix="1"/>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="1" s="1">
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" cs="9" rs="2" s="2">
+<O>
+<![CDATA[四川省工程担保机构备案申请表]]></O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="19">
+<Expand/>
+</C>
+<C c="3" r="30" cs="2" rs="2" s="3">
+<O>
+<![CDATA[机 构 名 称：]]></O>
+<Expand/>
+</C>
+<C c="5" r="30" cs="4" rs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="QYMC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="33" cs="2" s="3">
+<O>
+<![CDATA[填 表 日 期：]]></O>
+<Expand/>
+</C>
+<C c="5" r="33" cs="4" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="TBSJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Widget class="com.fr.form.ui.DateEditor">
+<WidgetAttr/>
+<DateAttr format="yyyy 年 M 月 d 日"/>
+<widgetValue/>
+</Widget>
+<Expand dir="0"/>
+</C>
+<C c="0" r="38" cs="9" rs="2" s="6">
+<O>
+<![CDATA[四川省住房和城乡建设厅 制]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="554400" left="720000" bottom="720000" right="720000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet2">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,1104900,1440000,1440000,1440000,1440000,1440000,1152000,533400,876300,685800,990600,723900,723900,1028700,990600,723900,723900,723900,723900,1599840,1599840,1584000,1584000,1584000,1584000,1584000,838080,864000,723900,838080,838080,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[533400,1371600,152400,2743200,2743200,1866900,2743200,2743200,2743200,6591300,228600,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="10" rs="2" s="7">
+<O>
+<![CDATA[法定代表人声明]]></O>
+<Expand/>
+</C>
+<C c="0" r="2" s="8">
+<Expand/>
+</C>
+<C c="1" r="2" s="9">
+<Expand/>
+</C>
+<C c="2" r="2" s="9">
+<Expand/>
+</C>
+<C c="3" r="2" s="9">
+<Expand/>
+</C>
+<C c="4" r="2" s="10">
+<Expand/>
+</C>
+<C c="5" r="2" s="10">
+<Expand/>
+</C>
+<C c="6" r="2" s="10">
+<Expand/>
+</C>
+<C c="7" r="2" s="10">
+<Expand/>
+</C>
+<C c="8" r="2" s="10">
+<Expand/>
+</C>
+<C c="9" r="2" s="10">
+<Expand/>
+</C>
+<C c="10" r="2" s="11">
+<Expand/>
+</C>
+<C c="0" r="3" s="12">
+<Expand/>
+</C>
+<C c="1" r="3">
+<Expand/>
+</C>
+<C c="2" r="3" cs="9" s="13">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[="本人" + ds2.select(XM) + " (法定代表人)" + ds2.select(SFZH) + "(身份证号码)郑重声明，"]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="4" s="14">
+<Expand/>
+</C>
+<C c="1" r="4" cs="10" s="15">
+<O>
+<![CDATA[本企业此次填报的四川省《工程担保机构备案申请表》及附件材料的全部数据、内容是真实]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" s="14">
+<Expand/>
+</C>
+<C c="1" r="5" cs="10" s="15">
+<O>
+<![CDATA[的，同样我在此所做的声明也是真实有效的。我知道虚假的声明与资料是严重的违法行为，]]></O>
+<Expand/>
+</C>
+<C c="0" r="6" s="14">
+<Expand/>
+</C>
+<C c="1" r="6" cs="10" s="15">
+<O>
+<![CDATA[此次备案提供的资料如有虚假，本企业愿接受建设行政主管部门及其他有关部门依据有关法]]></O>
+<Expand/>
+</C>
+<C c="0" r="7" s="14">
+<Expand/>
+</C>
+<C c="1" r="7" cs="9" s="16">
+<O>
+<![CDATA[律法规给予的处罚。]]></O>
+<Expand/>
+</C>
+<C c="10" r="7" s="17">
+<Expand/>
+</C>
+<C c="0" r="8" s="14">
+<Expand/>
+</C>
+<C c="1" r="8">
+<Expand/>
+</C>
+<C c="2" r="8">
+<Expand/>
+</C>
+<C c="3" r="8">
+<Expand/>
+</C>
+<C c="4" r="8">
+<Expand/>
+</C>
+<C c="5" r="8">
+<Expand/>
+</C>
+<C c="6" r="8">
+<Expand/>
+</C>
+<C c="7" r="8">
+<Expand/>
+</C>
+<C c="8" r="8">
+<Expand/>
+</C>
+<C c="9" r="8">
+<Expand/>
+</C>
+<C c="10" r="8" s="17">
+<Expand/>
+</C>
+<C c="0" r="9" s="18">
+<Expand/>
+</C>
+<C c="1" r="9">
+<Expand/>
+</C>
+<C c="2" r="9">
+<Expand/>
+</C>
+<C c="3" r="9">
+<Expand/>
+</C>
+<C c="4" r="9" s="19">
+<Expand/>
+</C>
+<C c="5" r="9" s="19">
+<Expand/>
+</C>
+<C c="6" r="9" s="19">
+<Expand/>
+</C>
+<C c="7" r="9" s="19">
+<Expand/>
+</C>
+<C c="8" r="9" s="19">
+<Expand/>
+</C>
+<C c="9" r="9" s="19">
+<Expand/>
+</C>
+<C c="10" r="9" s="17">
+<Expand/>
+</C>
+<C c="0" r="10" s="18">
+<Expand/>
+</C>
+<C c="1" r="10">
+<Expand/>
+</C>
+<C c="2" r="10">
+<Expand/>
+</C>
+<C c="3" r="10" s="20">
+<Expand/>
+</C>
+<C c="4" r="10" s="20">
+<Expand/>
+</C>
+<C c="5" r="10" s="20">
+<Expand/>
+</C>
+<C c="6" r="10" s="20">
+<Expand/>
+</C>
+<C c="7" r="10" s="20">
+<Expand/>
+</C>
+<C c="8" r="10" s="20">
+<Expand/>
+</C>
+<C c="9" r="10" s="20">
+<Expand/>
+</C>
+<C c="10" r="10" s="17">
+<Expand/>
+</C>
+<C c="0" r="11" s="18">
+<Expand/>
+</C>
+<C c="1" r="11">
+<Expand/>
+</C>
+<C c="2" r="11">
+<Expand/>
+</C>
+<C c="3" r="11" s="20">
+<Expand/>
+</C>
+<C c="4" r="11" s="20">
+<Expand/>
+</C>
+<C c="5" r="11" s="20">
+<Expand/>
+</C>
+<C c="6" r="11" s="20">
+<Expand/>
+</C>
+<C c="7" r="11" s="20">
+<Expand/>
+</C>
+<C c="8" r="11" s="20">
+<Expand/>
+</C>
+<C c="9" r="11" s="20">
+<Expand/>
+</C>
+<C c="10" r="11" s="17">
+<Expand/>
+</C>
+<C c="0" r="12" s="18">
+<Expand/>
+</C>
+<C c="1" r="12">
+<Expand/>
+</C>
+<C c="2" r="12">
+<Expand/>
+</C>
+<C c="3" r="12" cs="3" s="21">
+<O>
+<![CDATA[法定代表人：（签名）  ]]></O>
+<Expand/>
+</C>
+<C c="6" r="12" s="21">
+<Expand/>
+</C>
+<C c="7" r="12">
+<Expand/>
+</C>
+<C c="8" r="12" cs="2" s="22">
+<O>
+<![CDATA[（公章）]]></O>
+<Expand/>
+</C>
+<C c="10" r="12" s="17">
+<Expand/>
+</C>
+<C c="0" r="13" s="18">
+<Expand/>
+</C>
+<C c="1" r="13">
+<Expand/>
+</C>
+<C c="2" r="13">
+<Expand/>
+</C>
+<C c="3" r="13" s="20">
+<Expand/>
+</C>
+<C c="4" r="13" s="20">
+<Expand/>
+</C>
+<C c="5" r="13" s="20">
+<Expand/>
+</C>
+<C c="6" r="13" s="20">
+<Expand/>
+</C>
+<C c="7" r="13" s="20">
+<Expand/>
+</C>
+<C c="8" r="13" s="20">
+<Expand/>
+</C>
+<C c="9" r="13" s="20">
+<Expand/>
+</C>
+<C c="10" r="13" s="17">
+<Expand/>
+</C>
+<C c="0" r="14" s="18">
+<Expand/>
+</C>
+<C c="1" r="14">
+<Expand/>
+</C>
+<C c="2" r="14">
+<Expand/>
+</C>
+<C c="3" r="14" s="20">
+<Expand/>
+</C>
+<C c="4" r="14" s="20">
+<Expand/>
+</C>
+<C c="5" r="14" s="20">
+<Expand/>
+</C>
+<C c="6" r="14" s="20">
+<Expand/>
+</C>
+<C c="7" r="14" s="20">
+<Expand/>
+</C>
+<C c="8" r="14" s="20">
+<Expand/>
+</C>
+<C c="9" r="14" s="20">
+<Expand/>
+</C>
+<C c="10" r="14" s="17">
+<Expand/>
+</C>
+<C c="0" r="15" s="18">
+<Expand/>
+</C>
+<C c="1" r="15">
+<Expand/>
+</C>
+<C c="2" r="15">
+<Expand/>
+</C>
+<C c="3" r="15" s="20">
+<Expand/>
+</C>
+<C c="4" r="15" s="20">
+<Expand/>
+</C>
+<C c="5" r="15">
+<Expand/>
+</C>
+<C c="6" r="15">
+<Expand/>
+</C>
+<C c="7" r="15">
+<Expand/>
+</C>
+<C c="8" r="15" cs="2" s="22">
+<O>
+<![CDATA[年   月   日]]></O>
+<Expand/>
+</C>
+<C c="10" r="15" s="17">
+<Expand/>
+</C>
+<C c="0" r="16" s="23">
+<Expand/>
+</C>
+<C c="1" r="16" s="24">
+<Expand/>
+</C>
+<C c="2" r="16" s="24">
+<Expand/>
+</C>
+<C c="3" r="16" s="24">
+<Expand/>
+</C>
+<C c="4" r="16" s="24">
+<Expand/>
+</C>
+<C c="5" r="16" s="24">
+<Expand/>
+</C>
+<C c="6" r="16" s="24">
+<Expand/>
+</C>
+<C c="7" r="16" s="24">
+<Expand/>
+</C>
+<C c="8" r="16" s="24">
+<Expand/>
+</C>
+<C c="9" r="16" s="24">
+<Expand/>
+</C>
+<C c="10" r="16" s="25">
+<Expand/>
+</C>
+<C c="0" r="19" cs="10" rs="2" s="7">
+<O>
+<![CDATA[申请备案的类别和范围]]></O>
+<Expand/>
+</C>
+<C c="0" r="21" cs="4" s="26">
+<O>
+<![CDATA[企业名称：]]></O>
+<Expand/>
+</C>
+<C c="4" r="21" cs="7" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="QYMC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="22" cs="8" s="28">
+<O>
+<![CDATA[企业申请工程担保的种类]]></O>
+<Expand/>
+</C>
+<C c="8" r="22" cs="3" s="28">
+<O>
+<![CDATA[本企业申请业务开展范围]]></O>
+<Expand/>
+</C>
+<C c="0" r="23" cs="2" s="29">
+<O>
+<![CDATA[1.]]></O>
+<Expand/>
+</C>
+<C c="2" r="23" cs="3" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[1]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="23" s="29">
+<O>
+<![CDATA[6.]]></O>
+<Expand/>
+</C>
+<C c="6" r="23" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[6]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="23" cs="3" rs="5" s="31">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="BHFW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="24" cs="2" s="29">
+<O>
+<![CDATA[2.]]></O>
+<Expand/>
+</C>
+<C c="2" r="24" cs="3" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[2]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="24" s="29">
+<O>
+<![CDATA[7.]]></O>
+<Expand/>
+</C>
+<C c="6" r="24" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[7]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="25" cs="2" s="29">
+<O>
+<![CDATA[3.]]></O>
+<Expand/>
+</C>
+<C c="2" r="25" cs="3" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[3]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="25" s="29">
+<O>
+<![CDATA[8.]]></O>
+<Expand/>
+</C>
+<C c="6" r="25" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[8]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="26" cs="2" s="29">
+<O>
+<![CDATA[4.]]></O>
+<Expand/>
+</C>
+<C c="2" r="26" cs="3" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[4]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="26" s="29">
+<O>
+<![CDATA[9.]]></O>
+<Expand/>
+</C>
+<C c="6" r="26" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[9]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="27" cs="2" s="29">
+<O>
+<![CDATA[5.]]></O>
+<Expand/>
+</C>
+<C c="2" r="27" cs="3" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[5]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="27" s="29">
+<O>
+<![CDATA[10.]]></O>
+<Expand/>
+</C>
+<C c="6" r="27" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[10]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="28" s="32">
+<Expand/>
+</C>
+<C c="1" r="28" s="33">
+<Expand/>
+</C>
+<C c="2" r="28" s="33">
+<Expand/>
+</C>
+<C c="3" r="28" s="33">
+<Expand/>
+</C>
+<C c="4" r="28" s="34">
+<Expand/>
+</C>
+<C c="5" r="28" s="34">
+<Expand/>
+</C>
+<C c="6" r="28" s="34">
+<Expand/>
+</C>
+<C c="7" r="28" s="34">
+<Expand/>
+</C>
+<C c="8" r="28" s="34">
+<Expand/>
+</C>
+<C c="9" r="28" s="34">
+<Expand/>
+</C>
+<C c="10" r="28" s="35">
+<Expand/>
+</C>
+<C c="0" r="29" s="36">
+<Expand/>
+</C>
+<C c="1" r="29" s="20">
+<Expand/>
+</C>
+<C c="2" r="29" s="20">
+<Expand/>
+</C>
+<C c="3" r="29" s="20">
+<Expand/>
+</C>
+<C c="4" r="29" cs="3" s="20">
+<O>
+<![CDATA[ 法定代表人签字：]]></O>
+<Expand/>
+</C>
+<C c="7" r="29" s="20">
+<Expand/>
+</C>
+<C c="8" r="29" s="20">
+<Expand/>
+</C>
+<C c="9" r="29" s="22">
+<O>
+<![CDATA[(公章)]]></O>
+<Expand/>
+</C>
+<C c="10" r="29" s="37">
+<Expand/>
+</C>
+<C c="0" r="30" s="14">
+<Expand/>
+</C>
+<C c="1" r="30">
+<Expand/>
+</C>
+<C c="2" r="30">
+<Expand/>
+</C>
+<C c="3" r="30">
+<Expand/>
+</C>
+<C c="4" r="30">
+<Expand/>
+</C>
+<C c="5" r="30">
+<Expand/>
+</C>
+<C c="6" r="30">
+<Expand/>
+</C>
+<C c="7" r="30">
+<Expand/>
+</C>
+<C c="8" r="30">
+<Expand/>
+</C>
+<C c="9" r="30">
+<Expand/>
+</C>
+<C c="10" r="30" s="17">
+<Expand/>
+</C>
+<C c="0" r="31" s="38">
+<Expand/>
+</C>
+<C c="1" r="31" s="20">
+<Expand/>
+</C>
+<C c="2" r="31" s="20">
+<Expand/>
+</C>
+<C c="3" r="31" s="20">
+<Expand/>
+</C>
+<C c="4" r="31" s="39">
+<Expand/>
+</C>
+<C c="5" r="31" s="39">
+<Expand/>
+</C>
+<C c="6" r="31" s="39">
+<Expand/>
+</C>
+<C c="7" r="31" s="20">
+<Expand/>
+</C>
+<C c="8" r="31" s="20">
+<Expand/>
+</C>
+<C c="9" r="31" s="22">
+<O>
+<![CDATA[年    月   日]]></O>
+<Expand/>
+</C>
+<C c="10" r="31" s="37">
+<Expand/>
+</C>
+<C c="0" r="32" s="40">
+<Expand/>
+</C>
+<C c="1" r="32" s="24">
+<Expand/>
+</C>
+<C c="2" r="32" s="24">
+<Expand/>
+</C>
+<C c="3" r="32" s="24">
+<Expand/>
+</C>
+<C c="4" r="32" s="41">
+<Expand/>
+</C>
+<C c="5" r="32" s="41">
+<Expand/>
+</C>
+<C c="6" r="32" s="41">
+<Expand/>
+</C>
+<C c="7" r="32" s="41">
+<Expand/>
+</C>
+<C c="8" r="32" s="41">
+<Expand/>
+</C>
+<C c="9" r="32" s="41">
+<Expand/>
+</C>
+<C c="10" r="32" s="25">
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet4">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1485900,1440000,1440000,1440000,1440000,1440000,1440000,1440000,3924300,1440000,1440000,1440000,1440000,1440000,1440000,1447800,1447800,1440000,1440000,1440000,1440000,1440000,1440000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1295400,3581400,1562100,3048000,3200400,2743200,2095500,1028700,2133600,1104900,1409700,1028700,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="12" s="7">
+<O>
+<![CDATA[一、工程担保机构基本情况]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" cs="2" s="29">
+<O>
+<![CDATA[机 构 名 称]]></O>
+<Expand/>
+</C>
+<C c="2" r="1" cs="10" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="QYMC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="2" cs="2" s="29">
+<O>
+<![CDATA[注 册 地 址]]></O>
+<Expand/>
+</C>
+<C c="2" r="2" cs="3" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCDZ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="2" cs="2" s="29">
+<O>
+<![CDATA[邮 政 编 码]]></O>
+<Expand/>
+</C>
+<C c="7" r="2" cs="5" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="YZBM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" cs="2" s="29">
+<O>
+<![CDATA[营业执照注册号]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" cs="3" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="YYZZZCH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="3" cs="2" s="29">
+<O>
+<![CDATA[注 册 机 关]]></O>
+<Expand/>
+</C>
+<C c="7" r="3" cs="5" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCJG"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="4" cs="2" s="29">
+<O>
+<![CDATA[机构代码证号]]></O>
+<Expand/>
+</C>
+<C c="2" r="4" cs="3" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="JGDMMC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="4" cs="2" s="29">
+<O>
+<![CDATA[颁 发 部 门]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" cs="5" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="BFBM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="5" cs="2" s="29">
+<O>
+<![CDATA[注 册 资 本]]></O>
+<Expand/>
+</C>
+<C c="2" r="5" cs="3" s="42">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=ds3.select(ZCJBJ) + " 万元"]]></Attributes>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="5" cs="2" s="29">
+<O>
+<![CDATA[其       他]]></O>
+<Expand/>
+</C>
+<C c="7" r="5" cs="5" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="QT"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="6" cs="2" s="29">
+<O>
+<![CDATA[开 户 银 行]]></O>
+<Expand/>
+</C>
+<C c="2" r="6" cs="3" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="KHYX"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="6" cs="2" s="29">
+<O>
+<![CDATA[开户行帐号]]></O>
+<Expand/>
+</C>
+<C c="7" r="6" cs="5" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" cs="2" s="29">
+<O>
+<![CDATA[注 册 类 型]]></O>
+<Expand/>
+</C>
+<C c="2" r="7" cs="3" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="JJXZ1"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="7" cs="2" s="29">
+<O>
+<![CDATA[建 立 时 间]]></O>
+<Expand/>
+</C>
+<C c="7" r="7" cs="5" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="JJSJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="8" cs="2" s="29">
+<O>
+<![CDATA[经 营 范 围]]></O>
+<Expand/>
+</C>
+<C c="2" r="8" cs="10" s="43">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="YWFW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="9" cs="2" s="29">
+<O>
+<![CDATA[ 联 系 人 ]]></O>
+<Expand/>
+</C>
+<C c="2" r="9" cs="2" s="42">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LXR1"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="9" s="29">
+<O>
+<![CDATA[联系电话]]></O>
+<Expand/>
+</C>
+<C c="5" r="9" cs="2" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="DH1"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="9" cs="2" s="29">
+<O>
+<![CDATA[传  真]]></O>
+<Expand/>
+</C>
+<C c="9" r="9" cs="3" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="DZYX1"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="10" cs="2" s="29">
+<O>
+<![CDATA[企 业 网 址]]></O>
+<Expand/>
+</C>
+<C c="2" r="10" cs="3" s="45">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="QYWZ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="10" cs="2" s="29">
+<O>
+<![CDATA[电 子 信 箱]]></O>
+<Expand/>
+</C>
+<C c="7" r="10" cs="5" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="DZYX"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="11" cs="2" s="29">
+<O>
+<![CDATA[法定代表人]]></O>
+<Expand/>
+</C>
+<C c="2" r="11" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="XM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="11" s="29">
+<O>
+<![CDATA[职   务]]></O>
+<Expand/>
+</C>
+<C c="5" r="11" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="11" cs="2" s="29">
+<O>
+<![CDATA[职  称]]></O>
+<Expand/>
+</C>
+<C c="9" r="11" cs="3" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="12" cs="2" s="29">
+<O>
+<![CDATA[办 公 电 话]]></O>
+<Expand/>
+</C>
+<C c="2" r="12" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="FRDH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="12" s="29">
+<O>
+<![CDATA[移动电话]]></O>
+<Expand/>
+</C>
+<C c="5" r="12" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="SJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="12" cs="2" s="29">
+<O>
+<![CDATA[传  真]]></O>
+<Expand/>
+</C>
+<C c="9" r="12" cs="3" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="FRCZ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="13" cs="2" s="29">
+<O>
+<![CDATA[总 经 理 ]]></O>
+<Expand/>
+</C>
+<C c="2" r="13" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="XM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="13" s="29">
+<O>
+<![CDATA[职   务]]></O>
+<Expand/>
+</C>
+<C c="5" r="13" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="ZW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="13" cs="2" s="29">
+<O>
+<![CDATA[职  称]]></O>
+<Expand/>
+</C>
+<C c="9" r="13" cs="3" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="ZCC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="14" cs="2" s="29">
+<O>
+<![CDATA[办 公 电 话]]></O>
+<Expand/>
+</C>
+<C c="2" r="14" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="JLDH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="14" s="29">
+<O>
+<![CDATA[移动电话]]></O>
+<Expand/>
+</C>
+<C c="5" r="14" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="SJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="14" cs="2" s="29">
+<O>
+<![CDATA[传  真]]></O>
+<Expand/>
+</C>
+<C c="9" r="14" cs="3" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="JLCZ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="15" rs="8" s="47">
+<O>
+<![CDATA[从业人员状况]]></O>
+<Expand/>
+</C>
+<C c="1" r="15" cs="2" s="48">
+<O>
+<![CDATA[从业人员年末人数]]></O>
+<Expand/>
+</C>
+<C c="3" r="15" s="49">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="CYRYNMRS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="15" s="50">
+<O>
+<![CDATA[人；其中：]]></O>
+<Expand/>
+</C>
+<C c="5" r="15" cs="7" s="27">
+<Expand/>
+</C>
+<C c="1" r="16" s="48">
+<O>
+<![CDATA[有职称人员 ]]></O>
+<Expand/>
+</C>
+<C c="2" r="16" cs="2" s="51">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="YZCRY"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="16" s="27">
+<O>
+<![CDATA[人，其中：]]></O>
+<Expand/>
+</C>
+<C c="5" r="16" cs="2" s="48">
+<O>
+<![CDATA[有执业资格人员共]]></O>
+<Expand/>
+</C>
+<C c="7" r="16" cs="2" s="51">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="YZYZGRY"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="16" cs="3" s="27">
+<O>
+<![CDATA[人，其中：]]></O>
+<Expand/>
+</C>
+<C c="1" r="17" s="48">
+<O>
+<![CDATA[中级职称]]></O>
+<Expand/>
+</C>
+<C c="2" r="17" cs="2" s="51">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZJZC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="17" s="52">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="5" r="17" cs="2" s="44">
+<O>
+<![CDATA[注册监理工程师 ]]></O>
+<Expand/>
+</C>
+<C c="7" r="17" cs="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCJLGCS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="17" s="27">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="1" r="18" s="48">
+<O>
+<![CDATA[高级职称]]></O>
+<Expand/>
+</C>
+<C c="2" r="18" cs="2" s="51">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="GJZC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="18" s="52">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="5" r="18" cs="2" s="44">
+<O>
+<![CDATA[注册建造师 ]]></O>
+<Expand/>
+</C>
+<C c="7" r="18" cs="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCJZS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="18" s="27">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="1" r="19" cs="4" s="29">
+<Expand/>
+</C>
+<C c="5" r="19" cs="2" s="44">
+<O>
+<![CDATA[注册造价师  ]]></O>
+<Expand/>
+</C>
+<C c="7" r="19" cs="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCZJS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="19" s="27">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="1" r="20" cs="4" s="29">
+<Expand/>
+</C>
+<C c="5" r="20" cs="2" s="44">
+<O>
+<![CDATA[注册会计师]]></O>
+<Expand/>
+</C>
+<C c="7" r="20" cs="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ZCHJS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="20" s="27">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="1" r="21" cs="4" s="29">
+<Expand/>
+</C>
+<C c="5" r="21" cs="2" s="44">
+<O>
+<![CDATA[律师]]></O>
+<Expand/>
+</C>
+<C c="7" r="21" cs="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LS"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="21" s="27">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+<C c="1" r="22" cs="4" s="29">
+<Expand/>
+</C>
+<C c="5" r="22" cs="2" s="44">
+<O>
+<![CDATA[其他注册人员]]></O>
+<Expand/>
+</C>
+<C c="7" r="22" cs="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="QTZCRY"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="22" s="27">
+<O>
+<![CDATA[人]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet5">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1440000,1440000,1440000,1440000,1440000,1440000,1728000,1440000,723900,723900,723900,723900,723900,723900,723900,723900,1440000,1440000,1257300,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1485900,1104900,2781300,1104900,2552700,4076700,2819400,4229100,1752600,2514600,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="10" s="7">
+<O>
+<![CDATA[二、法定代表人简历]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" cs="2" s="29">
+<O>
+<![CDATA[姓   名]]></O>
+<Expand/>
+</C>
+<C c="2" r="1" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="XM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="1" s="29">
+<O>
+<![CDATA[性   别]]></O>
+<Expand/>
+</C>
+<C c="5" r="1" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="XBC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="1" s="29">
+<O>
+<![CDATA[出生年月]]></O>
+<Expand/>
+</C>
+<C c="7" r="1" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="CSRQ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="1" cs="2" rs="4" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="ZPC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[TOIMAGE(if(len($$$)=0,"",$$$))]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="2" cs="2" s="29">
+<O>
+<![CDATA[职   务]]></O>
+<Expand/>
+</C>
+<C c="2" r="2" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="ZW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="2" s="29">
+<O>
+<![CDATA[职   称]]></O>
+<Expand/>
+</C>
+<C c="5" r="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="ZCC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="2" s="29">
+<O>
+<![CDATA[最高学历]]></O>
+<Expand/>
+</C>
+<C c="7" r="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="ZGXLC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" cs="4" s="54">
+<O>
+<![CDATA[何时／何校／何专业]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" cs="4" s="55">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="SJXXZY"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="4" cs="2" s="29">
+<O>
+<![CDATA[管理资历]]></O>
+<Expand/>
+</C>
+<C c="2" r="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="GLZL"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="4" s="56">
+<O>
+<![CDATA[年]]></O>
+<Expand/>
+</C>
+<C c="4" r="4" s="29">
+<O>
+<![CDATA[电   话]]></O>
+<Expand/>
+</C>
+<C c="5" r="4" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="DH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="4" s="29">
+<O>
+<![CDATA[移动电话]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="SJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="5" rs="2" s="47">
+<O>
+<![CDATA[工    作    简    历]]></O>
+<CellGUIAttr showAsDefault="true"/>
+<CellPageAttr/>
+<CellInsertPolicy/>
+<Expand/>
+</C>
+<C c="1" r="5" cs="4" s="29">
+<O>
+<![CDATA[由何年、月至何年、月]]></O>
+<Expand/>
+</C>
+<C c="5" r="5" cs="5" s="29">
+<O>
+<![CDATA[在何单位、从事何工作、任何职]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" cs="4" s="57">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="QZRQ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<CellGUIAttr showAsDefault="true"/>
+<CellPageAttr/>
+<CellInsertPolicy/>
+<Expand dir="0" multiNumber="9"/>
+</C>
+<C c="5" r="6" cs="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="CSHDW||&apos;，&apos;||CSHZ||&apos;，&apos;||GZJJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" s="58">
+<Expand/>
+</C>
+<C c="1" r="7" s="33">
+<Expand/>
+</C>
+<C c="2" r="7" s="33">
+<Expand/>
+</C>
+<C c="3" r="7" s="33">
+<Expand/>
+</C>
+<C c="4" r="7" s="33">
+<Expand/>
+</C>
+<C c="5" r="7" s="33">
+<Expand/>
+</C>
+<C c="6" r="7" s="33">
+<Expand/>
+</C>
+<C c="7" r="7" s="33">
+<Expand/>
+</C>
+<C c="8" r="7" s="33">
+<Expand/>
+</C>
+<C c="9" r="7" s="35">
+<Expand/>
+</C>
+<C c="0" r="8" s="14">
+<Expand/>
+</C>
+<C c="1" r="8">
+<Expand/>
+</C>
+<C c="2" r="8">
+<Expand/>
+</C>
+<C c="3" r="8">
+<Expand/>
+</C>
+<C c="4" r="8">
+<Expand/>
+</C>
+<C c="5" r="8">
+<Expand/>
+</C>
+<C c="6" r="8">
+<Expand/>
+</C>
+<C c="7" r="8">
+<Expand/>
+</C>
+<C c="8" r="8">
+<Expand/>
+</C>
+<C c="9" r="8" s="17">
+<Expand/>
+</C>
+<C c="0" r="9" s="14">
+<Expand/>
+</C>
+<C c="1" r="9">
+<Expand/>
+</C>
+<C c="2" r="9">
+<Expand/>
+</C>
+<C c="3" r="9">
+<Expand/>
+</C>
+<C c="4" r="9">
+<Expand/>
+</C>
+<C c="5" r="9">
+<Expand/>
+</C>
+<C c="6" r="9">
+<Expand/>
+</C>
+<C c="7" r="9">
+<Expand/>
+</C>
+<C c="8" r="9">
+<Expand/>
+</C>
+<C c="9" r="9" s="17">
+<Expand/>
+</C>
+<C c="0" r="10" s="14">
+<Expand/>
+</C>
+<C c="1" r="10">
+<Expand/>
+</C>
+<C c="2" r="10">
+<Expand/>
+</C>
+<C c="3" r="10">
+<Expand/>
+</C>
+<C c="4" r="10">
+<Expand/>
+</C>
+<C c="5" r="10">
+<Expand/>
+</C>
+<C c="6" r="10">
+<Expand/>
+</C>
+<C c="7" r="10">
+<Expand/>
+</C>
+<C c="8" r="10">
+<Expand/>
+</C>
+<C c="9" r="10" s="17">
+<Expand/>
+</C>
+<C c="0" r="11" s="14">
+<Expand/>
+</C>
+<C c="1" r="11">
+<Expand/>
+</C>
+<C c="2" r="11">
+<Expand/>
+</C>
+<C c="3" r="11">
+<Expand/>
+</C>
+<C c="4" r="11">
+<Expand/>
+</C>
+<C c="5" r="11">
+<Expand/>
+</C>
+<C c="6" r="11">
+<Expand/>
+</C>
+<C c="7" r="11">
+<Expand/>
+</C>
+<C c="8" r="11">
+<Expand/>
+</C>
+<C c="9" r="11" s="17">
+<Expand/>
+</C>
+<C c="0" r="12" s="14">
+<Expand/>
+</C>
+<C c="1" r="12">
+<Expand/>
+</C>
+<C c="2" r="12">
+<Expand/>
+</C>
+<C c="3" r="12">
+<Expand/>
+</C>
+<C c="4" r="12">
+<Expand/>
+</C>
+<C c="5" r="12">
+<Expand/>
+</C>
+<C c="6" r="12">
+<Expand/>
+</C>
+<C c="7" r="12">
+<Expand/>
+</C>
+<C c="8" r="12">
+<Expand/>
+</C>
+<C c="9" r="12" s="17">
+<Expand/>
+</C>
+<C c="0" r="13" s="14">
+<Expand/>
+</C>
+<C c="1" r="13">
+<Expand/>
+</C>
+<C c="2" r="13">
+<Expand/>
+</C>
+<C c="3" r="13">
+<Expand/>
+</C>
+<C c="4" r="13">
+<Expand/>
+</C>
+<C c="5" r="13">
+<Expand/>
+</C>
+<C c="6" r="13">
+<Expand/>
+</C>
+<C c="7" r="13">
+<Expand/>
+</C>
+<C c="8" r="13">
+<Expand/>
+</C>
+<C c="9" r="13" s="17">
+<Expand/>
+</C>
+<C c="0" r="14" s="14">
+<Expand/>
+</C>
+<C c="1" r="14">
+<Expand/>
+</C>
+<C c="2" r="14">
+<Expand/>
+</C>
+<C c="3" r="14">
+<Expand/>
+</C>
+<C c="4" r="14">
+<Expand/>
+</C>
+<C c="5" r="14">
+<Expand/>
+</C>
+<C c="6" r="14">
+<Expand/>
+</C>
+<C c="7" r="14">
+<Expand/>
+</C>
+<C c="8" r="14">
+<Expand/>
+</C>
+<C c="9" r="14" s="17">
+<Expand/>
+</C>
+<C c="0" r="15" s="14">
+<Expand/>
+</C>
+<C c="1" r="15">
+<Expand/>
+</C>
+<C c="2" r="15">
+<Expand/>
+</C>
+<C c="3" r="15">
+<Expand/>
+</C>
+<C c="4" r="15">
+<Expand/>
+</C>
+<C c="5" r="15">
+<Expand/>
+</C>
+<C c="6" r="15">
+<Expand/>
+</C>
+<C c="7" r="15">
+<Expand/>
+</C>
+<C c="8" r="15">
+<Expand/>
+</C>
+<C c="9" r="15" s="17">
+<Expand/>
+</C>
+<C c="0" r="16" s="36">
+<Expand/>
+</C>
+<C c="1" r="16" s="20">
+<Expand/>
+</C>
+<C c="2" r="16" s="20">
+<Expand/>
+</C>
+<C c="3" r="16" s="20">
+<Expand/>
+</C>
+<C c="4" r="16" cs="2" s="21">
+<O>
+<![CDATA[ 本人签字：]]></O>
+<Expand/>
+</C>
+<C c="6" r="16" s="59">
+<Expand/>
+</C>
+<C c="7" r="16" cs="2" s="21">
+<O>
+<![CDATA[年  月  日]]></O>
+<Expand/>
+</C>
+<C c="9" r="16" s="37">
+<Expand/>
+</C>
+<C c="0" r="17" s="60">
+<Expand/>
+</C>
+<C c="1" r="17" s="61">
+<Expand/>
+</C>
+<C c="2" r="17" s="61">
+<Expand/>
+</C>
+<C c="3" r="17" s="61">
+<Expand/>
+</C>
+<C c="4" r="17" s="61">
+<Expand/>
+</C>
+<C c="5" r="17" s="61">
+<Expand/>
+</C>
+<C c="6" r="17" s="61">
+<Expand/>
+</C>
+<C c="7" r="17" s="61">
+<Expand/>
+</C>
+<C c="8" r="17" s="61">
+<Expand/>
+</C>
+<C c="9" r="17" s="62">
+<Expand/>
+</C>
+<C c="0" r="18" cs="7" s="63">
+<O>
+<![CDATA[注：工作简历从参加工作开始连续填写。]]></O>
+<Expand/>
+</C>
+<C c="8" r="18" s="19">
+<Expand/>
+</C>
+<C c="9" r="18" s="19">
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet6">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1447800,1440000,1440000,1440000,1440000,1524000,1584000,1440000,864000,723900,723900,723900,723900,723900,723900,864000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1447200,1333500,1637280,1599840,3238500,4076700,2781300,4229100,1752600,2362200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="10" s="7">
+<O>
+<![CDATA[三、总经理简历]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" cs="2" s="29">
+<O>
+<![CDATA[姓   名]]></O>
+<Expand/>
+</C>
+<C c="2" r="1" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="XM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="1" s="29">
+<O>
+<![CDATA[性   别]]></O>
+<Expand/>
+</C>
+<C c="5" r="1" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="XBC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="1" s="29">
+<O>
+<![CDATA[出生年月]]></O>
+<Expand/>
+</C>
+<C c="7" r="1" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="CSRQ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="1" cs="2" rs="4" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="ZPC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[TOIMAGE(if(len($$$)=0,"",$$$))]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="2" cs="2" s="29">
+<O>
+<![CDATA[职   务]]></O>
+<Expand/>
+</C>
+<C c="2" r="2" cs="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="ZW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="2" s="29">
+<O>
+<![CDATA[职   称]]></O>
+<Expand/>
+</C>
+<C c="5" r="2" s="64">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="ZCC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="2" s="29">
+<O>
+<![CDATA[最高学历]]></O>
+<Expand/>
+</C>
+<C c="7" r="2" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="ZGXLC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" cs="4" s="54">
+<O>
+<![CDATA[何时／何校／何专业]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" cs="4" s="55">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="SJXXZY"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="4" cs="2" s="29">
+<O>
+<![CDATA[管理资历]]></O>
+<Expand/>
+</C>
+<C c="2" r="4" s="53">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="GLZL"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="4" s="56">
+<O>
+<![CDATA[年]]></O>
+<Expand/>
+</C>
+<C c="4" r="4" s="29">
+<O>
+<![CDATA[电   话]]></O>
+<Expand/>
+</C>
+<C c="5" r="4" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="DH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="4" s="29">
+<O>
+<![CDATA[移动电话]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" s="44">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="SJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="5" rs="2" s="47">
+<O>
+<![CDATA[工   作   简    历]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" cs="4" s="29">
+<O>
+<![CDATA[由何年、月至何年、月]]></O>
+<Expand/>
+</C>
+<C c="5" r="5" cs="5" s="29">
+<O>
+<![CDATA[在何单位、从事何工作、任何职]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" cs="4" s="57">
+<O t="DSColumn">
+<Attributes dsName="ds7" columnName="QZRQ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<CellGUIAttr showAsDefault="true"/>
+<CellPageAttr/>
+<CellInsertPolicy/>
+<Expand dir="0" multiNumber="9"/>
+</C>
+<C c="5" r="6" cs="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds7" columnName="CSHDW||&apos;，&apos;||CSHZ||&apos;，&apos;||GZJJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" s="58">
+<Expand/>
+</C>
+<C c="1" r="7" s="33">
+<Expand/>
+</C>
+<C c="2" r="7" s="33">
+<Expand/>
+</C>
+<C c="3" r="7" s="33">
+<Expand/>
+</C>
+<C c="4" r="7" s="33">
+<Expand/>
+</C>
+<C c="5" r="7" s="33">
+<Expand/>
+</C>
+<C c="6" r="7" s="33">
+<Expand/>
+</C>
+<C c="7" r="7" s="33">
+<Expand/>
+</C>
+<C c="8" r="7" s="33">
+<Expand/>
+</C>
+<C c="9" r="7" s="35">
+<Expand/>
+</C>
+<C c="0" r="8" s="14">
+<Expand/>
+</C>
+<C c="1" r="8">
+<Expand/>
+</C>
+<C c="2" r="8">
+<Expand/>
+</C>
+<C c="3" r="8">
+<Expand/>
+</C>
+<C c="4" r="8">
+<Expand/>
+</C>
+<C c="5" r="8">
+<Expand/>
+</C>
+<C c="6" r="8">
+<Expand/>
+</C>
+<C c="7" r="8">
+<Expand/>
+</C>
+<C c="8" r="8">
+<Expand/>
+</C>
+<C c="9" r="8" s="17">
+<Expand/>
+</C>
+<C c="0" r="9" s="14">
+<Expand/>
+</C>
+<C c="1" r="9">
+<Expand/>
+</C>
+<C c="2" r="9">
+<Expand/>
+</C>
+<C c="3" r="9">
+<Expand/>
+</C>
+<C c="4" r="9">
+<Expand/>
+</C>
+<C c="5" r="9">
+<Expand/>
+</C>
+<C c="6" r="9">
+<Expand/>
+</C>
+<C c="7" r="9">
+<Expand/>
+</C>
+<C c="8" r="9">
+<Expand/>
+</C>
+<C c="9" r="9" s="17">
+<Expand/>
+</C>
+<C c="0" r="10" s="14">
+<Expand/>
+</C>
+<C c="1" r="10">
+<Expand/>
+</C>
+<C c="2" r="10">
+<Expand/>
+</C>
+<C c="3" r="10">
+<Expand/>
+</C>
+<C c="4" r="10">
+<Expand/>
+</C>
+<C c="5" r="10">
+<Expand/>
+</C>
+<C c="6" r="10">
+<Expand/>
+</C>
+<C c="7" r="10">
+<Expand/>
+</C>
+<C c="8" r="10">
+<Expand/>
+</C>
+<C c="9" r="10" s="17">
+<Expand/>
+</C>
+<C c="0" r="11" s="14">
+<Expand/>
+</C>
+<C c="1" r="11">
+<Expand/>
+</C>
+<C c="2" r="11">
+<Expand/>
+</C>
+<C c="3" r="11">
+<Expand/>
+</C>
+<C c="4" r="11">
+<Expand/>
+</C>
+<C c="5" r="11">
+<Expand/>
+</C>
+<C c="6" r="11">
+<Expand/>
+</C>
+<C c="7" r="11">
+<Expand/>
+</C>
+<C c="8" r="11">
+<Expand/>
+</C>
+<C c="9" r="11" s="17">
+<Expand/>
+</C>
+<C c="0" r="12" s="14">
+<Expand/>
+</C>
+<C c="1" r="12">
+<Expand/>
+</C>
+<C c="2" r="12">
+<Expand/>
+</C>
+<C c="3" r="12">
+<Expand/>
+</C>
+<C c="4" r="12">
+<Expand/>
+</C>
+<C c="5" r="12">
+<Expand/>
+</C>
+<C c="6" r="12">
+<Expand/>
+</C>
+<C c="7" r="12">
+<Expand/>
+</C>
+<C c="8" r="12">
+<Expand/>
+</C>
+<C c="9" r="12" s="17">
+<Expand/>
+</C>
+<C c="0" r="13" s="14">
+<Expand/>
+</C>
+<C c="1" r="13">
+<Expand/>
+</C>
+<C c="2" r="13">
+<Expand/>
+</C>
+<C c="3" r="13">
+<Expand/>
+</C>
+<C c="4" r="13">
+<Expand/>
+</C>
+<C c="5" r="13">
+<Expand/>
+</C>
+<C c="6" r="13">
+<Expand/>
+</C>
+<C c="7" r="13">
+<Expand/>
+</C>
+<C c="8" r="13">
+<Expand/>
+</C>
+<C c="9" r="13" s="17">
+<Expand/>
+</C>
+<C c="0" r="14" s="14">
+<Expand/>
+</C>
+<C c="1" r="14">
+<Expand/>
+</C>
+<C c="2" r="14">
+<Expand/>
+</C>
+<C c="3" r="14">
+<Expand/>
+</C>
+<C c="4" r="14">
+<Expand/>
+</C>
+<C c="5" r="14">
+<Expand/>
+</C>
+<C c="6" r="14">
+<Expand/>
+</C>
+<C c="7" r="14">
+<Expand/>
+</C>
+<C c="8" r="14">
+<Expand/>
+</C>
+<C c="9" r="14" s="17">
+<Expand/>
+</C>
+<C c="0" r="15" s="14">
+<Expand/>
+</C>
+<C c="1" r="15">
+<Expand/>
+</C>
+<C c="2" r="15">
+<Expand/>
+</C>
+<C c="3" r="15">
+<Expand/>
+</C>
+<C c="4" r="15">
+<Expand/>
+</C>
+<C c="5" r="15">
+<Expand/>
+</C>
+<C c="6" r="15">
+<Expand/>
+</C>
+<C c="7" r="15">
+<Expand/>
+</C>
+<C c="8" r="15">
+<Expand/>
+</C>
+<C c="9" r="15" s="17">
+<Expand/>
+</C>
+<C c="0" r="16" s="14">
+<Expand/>
+</C>
+<C c="1" r="16">
+<Expand/>
+</C>
+<C c="2" r="16">
+<Expand/>
+</C>
+<C c="3" r="16">
+<Expand/>
+</C>
+<C c="4" r="16">
+<Expand/>
+</C>
+<C c="5" r="16">
+<Expand/>
+</C>
+<C c="6" r="16">
+<Expand/>
+</C>
+<C c="7" r="16">
+<Expand/>
+</C>
+<C c="8" r="16">
+<Expand/>
+</C>
+<C c="9" r="16" s="17">
+<Expand/>
+</C>
+<C c="0" r="17" s="14">
+<Expand/>
+</C>
+<C c="1" r="17">
+<Expand/>
+</C>
+<C c="2" r="17">
+<Expand/>
+</C>
+<C c="3" r="17">
+<Expand/>
+</C>
+<C c="4" r="17">
+<Expand/>
+</C>
+<C c="5" r="17">
+<Expand/>
+</C>
+<C c="6" r="17">
+<Expand/>
+</C>
+<C c="7" r="17">
+<Expand/>
+</C>
+<C c="8" r="17">
+<Expand/>
+</C>
+<C c="9" r="17" s="17">
+<Expand/>
+</C>
+<C c="0" r="18" s="14">
+<Expand/>
+</C>
+<C c="1" r="18">
+<Expand/>
+</C>
+<C c="2" r="18">
+<Expand/>
+</C>
+<C c="3" r="18">
+<Expand/>
+</C>
+<C c="4" r="18">
+<Expand/>
+</C>
+<C c="5" r="18">
+<Expand/>
+</C>
+<C c="6" r="18">
+<Expand/>
+</C>
+<C c="7" r="18">
+<Expand/>
+</C>
+<C c="8" r="18">
+<Expand/>
+</C>
+<C c="9" r="18" s="17">
+<Expand/>
+</C>
+<C c="0" r="19" s="36">
+<Expand/>
+</C>
+<C c="1" r="19" s="20">
+<Expand/>
+</C>
+<C c="2" r="19" s="20">
+<Expand/>
+</C>
+<C c="3" r="19" s="20">
+<Expand/>
+</C>
+<C c="4" r="19" cs="2" s="21">
+<O>
+<![CDATA[ 本人签字：]]></O>
+<Expand/>
+</C>
+<C c="6" r="19" s="59">
+<Expand/>
+</C>
+<C c="7" r="19" cs="2" s="21">
+<O>
+<![CDATA[年  月  日]]></O>
+<Expand/>
+</C>
+<C c="9" r="19" s="37">
+<Expand/>
+</C>
+<C c="0" r="20" s="60">
+<Expand/>
+</C>
+<C c="1" r="20" s="61">
+<Expand/>
+</C>
+<C c="2" r="20" s="61">
+<Expand/>
+</C>
+<C c="3" r="20" s="61">
+<Expand/>
+</C>
+<C c="4" r="20" s="61">
+<Expand/>
+</C>
+<C c="5" r="20" s="61">
+<Expand/>
+</C>
+<C c="6" r="20" s="61">
+<Expand/>
+</C>
+<C c="7" r="20" s="61">
+<Expand/>
+</C>
+<C c="8" r="20" s="61">
+<Expand/>
+</C>
+<C c="9" r="20" s="62">
+<Expand/>
+</C>
+<C c="0" r="21" cs="7" s="63">
+<O>
+<![CDATA[注：工作简历从参加工作开始连续填写。]]></O>
+<Expand/>
+</C>
+<C c="8" r="21" s="19">
+<Expand/>
+</C>
+<C c="9" r="21" s="19">
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet7">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[38100,1104900,266700,533400,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,304800,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[266700,1600200,5143500,2400300,4533900,2667000,3048000,1866900,266700,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="1" r="1" cs="7" s="7">
+<O>
+<![CDATA[四、企 业 简 介]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" s="65">
+<Expand/>
+</C>
+<C c="1" r="3" s="9">
+<Expand/>
+</C>
+<C c="2" r="3" s="9">
+<Expand/>
+</C>
+<C c="3" r="3" s="9">
+<Expand/>
+</C>
+<C c="4" r="3" s="9">
+<Expand/>
+</C>
+<C c="5" r="3" s="9">
+<Expand/>
+</C>
+<C c="6" r="3" s="9">
+<Expand/>
+</C>
+<C c="7" r="3" s="9">
+<Expand/>
+</C>
+<C c="8" r="3" s="11">
+<Expand/>
+</C>
+<C c="0" r="4" s="14">
+<Expand/>
+</C>
+<C c="1" r="4" cs="7" rs="47" s="66">
+<O t="DSColumn">
+<Attributes dsName="ds8" columnName="QYJJ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="4" s="17">
+<Expand/>
+</C>
+<C c="0" r="5" s="14">
+<Expand/>
+</C>
+<C c="8" r="5" s="17">
+<Expand/>
+</C>
+<C c="0" r="6" s="14">
+<Expand/>
+</C>
+<C c="8" r="6" s="17">
+<Expand/>
+</C>
+<C c="0" r="7" s="14">
+<Expand/>
+</C>
+<C c="8" r="7" s="17">
+<Expand/>
+</C>
+<C c="0" r="8" s="14">
+<Expand/>
+</C>
+<C c="8" r="8" s="17">
+<Expand/>
+</C>
+<C c="0" r="9" s="14">
+<Expand/>
+</C>
+<C c="8" r="9" s="17">
+<Expand/>
+</C>
+<C c="0" r="10" s="14">
+<Expand/>
+</C>
+<C c="8" r="10" s="17">
+<Expand/>
+</C>
+<C c="0" r="11" s="14">
+<Expand/>
+</C>
+<C c="8" r="11" s="17">
+<Expand/>
+</C>
+<C c="0" r="12" s="14">
+<Expand/>
+</C>
+<C c="8" r="12" s="17">
+<Expand/>
+</C>
+<C c="0" r="13" s="14">
+<Expand/>
+</C>
+<C c="8" r="13" s="17">
+<Expand/>
+</C>
+<C c="0" r="14" s="14">
+<Expand/>
+</C>
+<C c="8" r="14" s="17">
+<Expand/>
+</C>
+<C c="0" r="15" s="14">
+<Expand/>
+</C>
+<C c="8" r="15" s="17">
+<Expand/>
+</C>
+<C c="0" r="16" s="14">
+<Expand/>
+</C>
+<C c="8" r="16" s="17">
+<Expand/>
+</C>
+<C c="0" r="17" s="14">
+<Expand/>
+</C>
+<C c="8" r="17" s="17">
+<Expand/>
+</C>
+<C c="0" r="18" s="14">
+<Expand/>
+</C>
+<C c="8" r="18" s="17">
+<Expand/>
+</C>
+<C c="0" r="19" s="14">
+<Expand/>
+</C>
+<C c="8" r="19" s="17">
+<Expand/>
+</C>
+<C c="0" r="20" s="14">
+<Expand/>
+</C>
+<C c="8" r="20" s="17">
+<Expand/>
+</C>
+<C c="0" r="21" s="14">
+<Expand/>
+</C>
+<C c="8" r="21" s="17">
+<Expand/>
+</C>
+<C c="0" r="22" s="14">
+<Expand/>
+</C>
+<C c="8" r="22" s="17">
+<Expand/>
+</C>
+<C c="0" r="23" s="14">
+<Expand/>
+</C>
+<C c="8" r="23" s="17">
+<Expand/>
+</C>
+<C c="0" r="24" s="14">
+<Expand/>
+</C>
+<C c="8" r="24" s="17">
+<Expand/>
+</C>
+<C c="0" r="25" s="14">
+<Expand/>
+</C>
+<C c="8" r="25" s="17">
+<Expand/>
+</C>
+<C c="0" r="26" s="14">
+<Expand/>
+</C>
+<C c="8" r="26" s="17">
+<Expand/>
+</C>
+<C c="0" r="27" s="14">
+<Expand/>
+</C>
+<C c="8" r="27" s="17">
+<Expand/>
+</C>
+<C c="0" r="28" s="14">
+<Expand/>
+</C>
+<C c="8" r="28" s="17">
+<Expand/>
+</C>
+<C c="0" r="29" s="14">
+<Expand/>
+</C>
+<C c="8" r="29" s="17">
+<Expand/>
+</C>
+<C c="0" r="30" s="14">
+<Expand/>
+</C>
+<C c="8" r="30" s="17">
+<Expand/>
+</C>
+<C c="0" r="31" s="14">
+<Expand/>
+</C>
+<C c="8" r="31" s="17">
+<Expand/>
+</C>
+<C c="0" r="32" s="14">
+<Expand/>
+</C>
+<C c="8" r="32" s="17">
+<Expand/>
+</C>
+<C c="0" r="33" s="14">
+<Expand/>
+</C>
+<C c="8" r="33" s="17">
+<Expand/>
+</C>
+<C c="0" r="34" s="14">
+<Expand/>
+</C>
+<C c="8" r="34" s="17">
+<Expand/>
+</C>
+<C c="0" r="35" s="14">
+<Expand/>
+</C>
+<C c="8" r="35" s="17">
+<Expand/>
+</C>
+<C c="0" r="36" s="14">
+<Expand/>
+</C>
+<C c="8" r="36" s="17">
+<Expand/>
+</C>
+<C c="0" r="37" s="14">
+<Expand/>
+</C>
+<C c="8" r="37" s="17">
+<Expand/>
+</C>
+<C c="0" r="38" s="14">
+<Expand/>
+</C>
+<C c="8" r="38" s="17">
+<Expand/>
+</C>
+<C c="0" r="39" s="14">
+<Expand/>
+</C>
+<C c="8" r="39" s="17">
+<Expand/>
+</C>
+<C c="0" r="40" s="14">
+<Expand/>
+</C>
+<C c="8" r="40" s="17">
+<Expand/>
+</C>
+<C c="0" r="41" s="14">
+<Expand/>
+</C>
+<C c="8" r="41" s="17">
+<Expand/>
+</C>
+<C c="0" r="42" s="14">
+<Expand/>
+</C>
+<C c="8" r="42" s="17">
+<Expand/>
+</C>
+<C c="0" r="43" s="14">
+<Expand/>
+</C>
+<C c="8" r="43" s="17">
+<Expand/>
+</C>
+<C c="0" r="44" s="14">
+<Expand/>
+</C>
+<C c="8" r="44" s="17">
+<Expand/>
+</C>
+<C c="0" r="45" s="14">
+<Expand/>
+</C>
+<C c="8" r="45" s="17">
+<Expand/>
+</C>
+<C c="0" r="46" s="14">
+<Expand/>
+</C>
+<C c="8" r="46" s="17">
+<Expand/>
+</C>
+<C c="0" r="47" s="14">
+<Expand/>
+</C>
+<C c="8" r="47" s="17">
+<Expand/>
+</C>
+<C c="0" r="48" s="14">
+<Expand/>
+</C>
+<C c="8" r="48" s="17">
+<Expand/>
+</C>
+<C c="0" r="49" s="14">
+<Expand/>
+</C>
+<C c="8" r="49" s="17">
+<Expand/>
+</C>
+<C c="0" r="50" s="23">
+<Expand/>
+</C>
+<C c="8" r="50" s="25">
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet8">
+<ReportPageAttr>
+<HR F="0" T="4"/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,495300,990600,914400,1562100,685800,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1447800,2781300,2590800,3695700,4381500,7162800,7658100,2438400,4648200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="9" rs="2" s="7">
+<O>
+<![CDATA[五、企业有职称的工程技术和经济管理人员名单]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" rs="2" s="67">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" rs="2" s="67">
+<O>
+<![CDATA[姓名]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" rs="2" s="67">
+<O>
+<![CDATA[学历]]></O>
+<Expand/>
+</C>
+<C c="3" r="3" rs="2" s="67">
+<O>
+<![CDATA[职称]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" rs="2" s="67">
+<O>
+<![CDATA[专业]]></O>
+<Expand/>
+</C>
+<C c="5" r="3" rs="2" s="67">
+<O>
+<![CDATA[毕业时间/院校]]></O>
+<Expand/>
+</C>
+<C c="6" r="3" rs="2" s="67">
+<O>
+<![CDATA[身份证号码]]></O>
+<Expand/>
+</C>
+<C c="7" r="3" rs="2" s="67">
+<O>
+<![CDATA[级别]]></O>
+<Expand/>
+</C>
+<C c="8" r="3" rs="2" s="67">
+<O>
+<![CDATA[执业证书编号]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="ROWN"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="10"/>
+</C>
+<C c="1" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="XM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="ZGXL"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="ZC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="SXZY"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="SJXX"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="ZJHM"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="ZC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="5" s="46">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="ZYZSBH"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="6" cs="9" s="68">
+<O>
+<![CDATA[     注：1本表按工程技术和经济序列分类、分专业填写；    2、本表可复制加页。]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting orientation="1">
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet9">
+<ReportPageAttr>
+<HR F="0" T="4"/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,342900,152400,1104900,495300,1728000,838200,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1447800,6324600,5867400,2857500,5372100,2590800,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="6" rs="2" s="7">
+<O>
+<![CDATA[六、企业在保余额一览表]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" rs="2" s="29">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" rs="2" s="29">
+<O>
+<![CDATA[单位名称]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" rs="2" s="29">
+<O>
+<![CDATA[受保单位]]></O>
+<Expand/>
+</C>
+<C c="3" r="3" rs="2" s="29">
+<O>
+<![CDATA[在保余额（万元）]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" rs="2" s="29">
+<O>
+<![CDATA[担保种类]]></O>
+<Expand/>
+</C>
+<C c="5" r="3" rs="2" s="29">
+<O>
+<![CDATA[备注]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="ROWN"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="18"/>
+</C>
+<C c="1" r="5" s="69">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="DWMC"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="5" s="69">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="SBDW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="5" s="70">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="ZBYE"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="5" s="69">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="DBZL"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<CellGUIAttr showAsImage="true"/>
+<CellPageAttr/>
+<CellInsertPolicy/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="5" s="69">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="BZ"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="6" cs="6" s="68">
+<O>
+<![CDATA[注：本表可复制加页]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet10">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1295400,1752600,1485900,1584000,1584000,1584000,1584000,1584000,1584000,914400,1257300,723900,266700,381000,1584000,1828800,1447800,1584000,1584000,1584000,1584000,1584000,1584000,1219200,1066800,1181100,266700,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1104900,723900,5943600,1104900,4610100,2171700,2819400,2743200,3200400,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="9" s="7">
+<O>
+<![CDATA[市级(扩权县)住房城乡建设部门审查意见]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" s="71">
+<Expand/>
+</C>
+<C c="1" r="1" s="72">
+<Expand/>
+</C>
+<C c="2" r="1" cs="7" s="27">
+<O>
+<![CDATA[经审查，该企业符合下列工程担保种类的备案条件，同意上报省住房城乡建设厅。]]></O>
+<Expand/>
+</C>
+<C c="0" r="2" cs="6" s="73">
+<O>
+<![CDATA[本企业备案的工程担保种类]]></O>
+<Expand/>
+</C>
+<C c="6" r="2" cs="3" s="74">
+<O>
+<![CDATA[本企业开展工程担保业务的范围]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" s="29">
+<O>
+<![CDATA[1.]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[1]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="3" s="29">
+<O>
+<![CDATA[7.]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[7]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="3" cs="3" rs="6" s="75">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="BHFW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="4" s="29">
+<O>
+<![CDATA[2.]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[2]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="4" s="29">
+<O>
+<![CDATA[8.]]></O>
+<Expand/>
+</C>
+<C c="4" r="4" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[8]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="5" s="29">
+<O>
+<![CDATA[3.]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[3]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="5" s="29">
+<O>
+<![CDATA[9.]]></O>
+<Expand/>
+</C>
+<C c="4" r="5" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[9]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="6" s="29">
+<O>
+<![CDATA[4.]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[4]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="6" s="29">
+<O>
+<![CDATA[10.]]></O>
+<Expand/>
+</C>
+<C c="4" r="6" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[10]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" s="29">
+<O>
+<![CDATA[5.]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[5]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="7" s="29">
+<O>
+<![CDATA[11.]]></O>
+<Expand/>
+</C>
+<C c="4" r="7" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[11]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="8" s="29">
+<O>
+<![CDATA[6.]]></O>
+<Expand/>
+</C>
+<C c="1" r="8" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[6]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="8" s="29">
+<Expand/>
+</C>
+<C c="4" r="8" cs="2" s="55">
+<Expand/>
+</C>
+<C c="0" r="9" s="32">
+<Expand/>
+</C>
+<C c="1" r="9" s="34">
+<Expand/>
+</C>
+<C c="2" r="9" s="34">
+<Expand/>
+</C>
+<C c="3" r="9" s="34">
+<Expand/>
+</C>
+<C c="4" r="9" s="34">
+<Expand/>
+</C>
+<C c="5" r="9" s="34">
+<Expand/>
+</C>
+<C c="6" r="9" s="34">
+<Expand/>
+</C>
+<C c="7" r="9" s="34">
+<Expand/>
+</C>
+<C c="8" r="9" s="76">
+<Expand/>
+</C>
+<C c="0" r="10" s="38">
+<Expand/>
+</C>
+<C c="1" r="10" s="39">
+<Expand/>
+</C>
+<C c="2" r="10" s="20">
+<Expand/>
+</C>
+<C c="3" r="10" s="20">
+<Expand/>
+</C>
+<C c="4" r="10" s="21">
+<O>
+<![CDATA[负责人签字：]]></O>
+<Expand/>
+</C>
+<C c="5" r="10" cs="2" s="20">
+<Expand/>
+</C>
+<C c="7" r="10" s="20">
+<O>
+<![CDATA[(公章)]]></O>
+<Expand/>
+</C>
+<C c="8" r="10" s="77">
+<Expand/>
+</C>
+<C c="0" r="11" s="38">
+<Expand/>
+</C>
+<C c="1" r="11" s="39">
+<Expand/>
+</C>
+<C c="2" r="11" s="39">
+<Expand/>
+</C>
+<C c="3" r="11" s="39">
+<Expand/>
+</C>
+<C c="4" r="11" s="39">
+<Expand/>
+</C>
+<C c="5" r="11" s="20">
+<Expand/>
+</C>
+<C c="6" r="11" cs="2" s="78">
+<O>
+<![CDATA[年    月   日]]></O>
+<Expand/>
+</C>
+<C c="8" r="11" s="77">
+<Expand/>
+</C>
+<C c="0" r="12" s="40">
+<Expand/>
+</C>
+<C c="1" r="12" s="41">
+<Expand/>
+</C>
+<C c="2" r="12" s="41">
+<Expand/>
+</C>
+<C c="3" r="12" s="41">
+<Expand/>
+</C>
+<C c="4" r="12" s="41">
+<Expand/>
+</C>
+<C c="5" r="12" s="41">
+<Expand/>
+</C>
+<C c="6" r="12" s="41">
+<Expand/>
+</C>
+<C c="7" r="12" s="41">
+<Expand/>
+</C>
+<C c="8" r="12" s="79">
+<Expand/>
+</C>
+<C c="0" r="14" cs="9" s="7">
+<O>
+<![CDATA[四川省住房和城乡建设厅审批意见]]></O>
+<Expand/>
+</C>
+<C c="0" r="15" s="71">
+<Expand/>
+</C>
+<C c="1" r="15" s="72">
+<Expand/>
+</C>
+<C c="2" r="15" cs="7" s="52">
+<O>
+<![CDATA[经审查，该企业符合下列工程担保种类的备案条件，同意予以备案。]]></O>
+<Expand/>
+</C>
+<C c="0" r="16" cs="6" s="74">
+<O>
+<![CDATA[本企业备案的工程担保种类]]></O>
+<Expand/>
+</C>
+<C c="6" r="16" cs="3" s="74">
+<O>
+<![CDATA[本企业开展工程担保业务的范围]]></O>
+<Expand/>
+</C>
+<C c="0" r="17" s="29">
+<O>
+<![CDATA[1.]]></O>
+<Expand/>
+</C>
+<C c="1" r="17" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[1]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="17" s="29">
+<O>
+<![CDATA[7.]]></O>
+<Expand/>
+</C>
+<C c="4" r="17" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[7]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="17" cs="3" rs="6" s="75">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="BHFW"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="18" s="29">
+<O>
+<![CDATA[2.]]></O>
+<Expand/>
+</C>
+<C c="1" r="18" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[2]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="18" s="29">
+<O>
+<![CDATA[8.]]></O>
+<Expand/>
+</C>
+<C c="4" r="18" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[8]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="19" s="29">
+<O>
+<![CDATA[3.]]></O>
+<Expand/>
+</C>
+<C c="1" r="19" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[3]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="19" s="29">
+<O>
+<![CDATA[9.]]></O>
+<Expand/>
+</C>
+<C c="4" r="19" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[9]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="20" s="29">
+<O>
+<![CDATA[4.]]></O>
+<Expand/>
+</C>
+<C c="1" r="20" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[4]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="20" s="29">
+<O>
+<![CDATA[10.]]></O>
+<Expand/>
+</C>
+<C c="4" r="20" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[10]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="21" s="29">
+<O>
+<![CDATA[5.]]></O>
+<Expand/>
+</C>
+<C c="1" r="21" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[5]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="21" s="29">
+<O>
+<![CDATA[11.]]></O>
+<Expand/>
+</C>
+<C c="4" r="21" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[11]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="22" s="29">
+<O>
+<![CDATA[6.]]></O>
+<Expand/>
+</C>
+<C c="1" r="22" cs="2" s="30">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="DBZL"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[ROWN]]></CNAME>
+<Compare op="0">
+<O>
+<![CDATA[6]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="22" s="29">
+<Expand/>
+</C>
+<C c="4" r="22" cs="2" s="55">
+<Expand/>
+</C>
+<C c="0" r="23" s="32">
+<Expand/>
+</C>
+<C c="1" r="23" s="34">
+<Expand/>
+</C>
+<C c="2" r="23" s="34">
+<Expand/>
+</C>
+<C c="3" r="23" s="34">
+<Expand/>
+</C>
+<C c="4" r="23" s="34">
+<Expand/>
+</C>
+<C c="5" r="23" s="34">
+<Expand/>
+</C>
+<C c="6" r="23" s="34">
+<Expand/>
+</C>
+<C c="7" r="23" s="34">
+<Expand/>
+</C>
+<C c="8" r="23" s="76">
+<Expand/>
+</C>
+<C c="0" r="24" s="38">
+<Expand/>
+</C>
+<C c="1" r="24" s="39">
+<Expand/>
+</C>
+<C c="2" r="24" s="20">
+<Expand/>
+</C>
+<C c="3" r="24" s="20">
+<Expand/>
+</C>
+<C c="4" r="24" s="21">
+<O>
+<![CDATA[负责人签字：]]></O>
+<Expand/>
+</C>
+<C c="5" r="24" cs="2" s="20">
+<Expand/>
+</C>
+<C c="7" r="24" s="20">
+<O>
+<![CDATA[(公章)]]></O>
+<Expand/>
+</C>
+<C c="8" r="24" s="77">
+<Expand/>
+</C>
+<C c="0" r="25" s="38">
+<Expand/>
+</C>
+<C c="1" r="25" s="39">
+<Expand/>
+</C>
+<C c="2" r="25" s="39">
+<Expand/>
+</C>
+<C c="3" r="25" s="39">
+<Expand/>
+</C>
+<C c="4" r="25" s="39">
+<Expand/>
+</C>
+<C c="5" r="25" s="20">
+<Expand/>
+</C>
+<C c="6" r="25" cs="2" s="78">
+<O>
+<![CDATA[年    月   日]]></O>
+<Expand/>
+</C>
+<C c="8" r="25" s="77">
+<Expand/>
+</C>
+<C c="0" r="26" s="40">
+<Expand/>
+</C>
+<C c="1" r="26" s="41">
+<Expand/>
+</C>
+<C c="2" r="26" s="41">
+<Expand/>
+</C>
+<C c="3" r="26" s="41">
+<Expand/>
+</C>
+<C c="4" r="26" s="41">
+<Expand/>
+</C>
+<C c="5" r="26" s="41">
+<Expand/>
+</C>
+<C c="6" r="26" s="41">
+<Expand/>
+</C>
+<C c="7" r="26" s="41">
+<Expand/>
+</C>
+<C c="8" r="26" s="79">
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<Report class="com.fr.report.WorkSheet" name="sheet11">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,1562100,1440000,1440000,1440000,1440000,1440000,1440000,720000,720000,1440000,1440000,1440000,1440000,1440000,1440000,1440000,1440000,1440000,720000,720000,1440000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[685800,2743200,2743200,3924300,2743200,2743200,2743200,2743200,3657600,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="1" cs="9" s="80">
+<O>
+<![CDATA[附件材料]]></O>
+<Expand/>
+</C>
+<C c="0" r="2">
+<Expand/>
+</C>
+<C c="1" r="2" cs="8" s="19">
+<O>
+<![CDATA[（一）工程担保机构备案申请表；]]></O>
+<Expand/>
+</C>
+<C c="0" r="3">
+<Expand/>
+</C>
+<C c="1" r="3" cs="8" s="19">
+<O>
+<![CDATA[（二）工程担保机构法人营业执照、组织机构代码（查验原件留存复印件）；]]></O>
+<Expand/>
+</C>
+<C c="0" r="4">
+<Expand/>
+</C>
+<C c="1" r="4" cs="8" s="19">
+<O>
+<![CDATA[（三）工程担保机构的章程；]]></O>
+<Expand/>
+</C>
+<C c="0" r="5">
+<Expand/>
+</C>
+<C c="1" r="5" cs="8" s="19">
+<O>
+<![CDATA[（四）法人授权委托书（委托书明确被委托人、委托范围、责任）；]]></O>
+<Expand/>
+</C>
+<C c="0" r="6">
+<Expand/>
+</C>
+<C c="1" r="6" cs="8" s="19">
+<O>
+<![CDATA[（五）拟开展工程担保业务使用的印鉴图签、经办人签名字样；]]></O>
+<Expand/>
+</C>
+<C c="0" r="7">
+<Expand/>
+</C>
+<C c="1" r="7" cs="8" s="19">
+<O>
+<![CDATA[（六）开展工程担保业务的董事会或者股东会、股东大会决议；]]></O>
+<Expand/>
+</C>
+<C c="0" r="8">
+<Expand/>
+</C>
+<C c="1" r="8" cs="8" s="19">
+<O>
+<![CDATA[（七）企业法人代表、财务负责人、技术负责人的工作简历、任职文件、身份证等有]]></O>
+<Expand/>
+</C>
+<C c="0" r="9" cs="9" s="81">
+<O>
+<![CDATA[关材料；]]></O>
+<Expand/>
+</C>
+<C c="0" r="10">
+<Expand/>
+</C>
+<C c="1" r="10" cs="8" s="19">
+<O>
+<![CDATA[（八）企业上一年度财务审计报表复印件（交原件核验）；]]></O>
+<Expand/>
+</C>
+<C c="0" r="11">
+<Expand/>
+</C>
+<C c="1" r="11" cs="8" s="19">
+<O>
+<![CDATA[（九）开展担保业务的在保余额和代偿情况说明；]]></O>
+<Expand/>
+</C>
+<C c="0" r="12">
+<Expand/>
+</C>
+<C c="1" r="12" cs="8" s="19">
+<O>
+<![CDATA[（十）与开展业务行政区域内的银行签订银行合作协议，及取得的授信额度。]]></O>
+<Expand/>
+</C>
+<C c="0" r="13">
+<Expand/>
+</C>
+<C c="1" r="13" cs="8" s="19">
+<O>
+<![CDATA[（十一）业务流程及工程风险控制制度；]]></O>
+<Expand/>
+</C>
+<C c="0" r="14">
+<Expand/>
+</C>
+<C c="1" r="14" cs="8" s="19">
+<O>
+<![CDATA[（十二）兼营工程担保业务的担保机构须提供其它担保业务的在保余额和代偿情况说明。]]></O>
+<Expand/>
+</C>
+<C c="0" r="15">
+<Expand/>
+</C>
+<C c="1" r="15" cs="8" s="19">
+<O>
+<![CDATA[（十三）从业人员的相关材料：]]></O>
+<Expand/>
+</C>
+<C c="0" r="16">
+<Expand/>
+</C>
+<C c="1" r="16" cs="8" s="82">
+<O>
+<![CDATA[1.从业人员的劳动合同；]]></O>
+<Expand/>
+</C>
+<C c="0" r="17">
+<Expand/>
+</C>
+<C c="1" r="17" cs="8" s="82">
+<O>
+<![CDATA[2.从业人员的职称证书及专业资格证书复印件（交原件核验）；]]></O>
+<Expand/>
+</C>
+<C c="0" r="18">
+<Expand/>
+</C>
+<C c="1" r="18" cs="8" s="82">
+<O>
+<![CDATA[3.从业人员的社会保险证明（个人交费清单）；]]></O>
+<Expand/>
+</C>
+<C c="0" r="19">
+<Expand/>
+</C>
+<C c="1" r="19" cs="8" s="82">
+<O>
+<![CDATA[4.从业人员人事档案关系由国家认可的人事代理机构代为管理的，出具人事代理机构的]]></O>
+<Expand/>
+</C>
+<C c="0" r="20" cs="9" s="83">
+<O>
+<![CDATA[证明信；]]></O>
+<Expand/>
+</C>
+<C c="0" r="21">
+<Expand/>
+</C>
+<C c="1" r="21" cs="8" s="82">
+<O>
+<![CDATA[5. 具有注册资格的执业人员未在其他单位注册的说明。]]></O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="720000">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.FormulaHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<Formula content="$$page_number-1"/>
+</HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="false" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.FormParameterUI">
+<Layout class="com.fr.form.ui.container.WAbsoluteLayout">
+<WidgetName name="para"/>
+<WidgetAttr/>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="LabelYWBM"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="0" autoline="true"/>
+<FRFont name="SimSun" style="0" size="72"/>
+<widgetValue>
+<O>
+<![CDATA[YWBM:]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="50" y="25" width="80" height="21"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.EditorHolder">
+<WidgetName name="YWBM"/>
+<WidgetAttr/>
+<widgetValue>
+<O>
+<![CDATA[]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="130" y="25" width="80" height="21"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetName name="Search"/>
+<WidgetAttr/>
+<Text>
+<![CDATA[查询]]></Text>
+<Hotkeys>
+<![CDATA[enter]]></Hotkeys>
+</InnerWidget>
+<BoundsAttr x="560" y="25" width="80" height="21"/>
+</Widget>
+<LCAttr vgap="0" hgap="0"/>
+</Layout>
+<DesignAttr width="800" height="64"/>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="1" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="仿宋_GB2312" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="华文中宋" style="1" size="224"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" vertical_alignment="3" imageLayout="1">
+<FRFont name="宋体" style="1" size="132"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" vertical_alignment="3" imageLayout="1">
+<FRFont name="宋体" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" vertical_alignment="3" imageLayout="1">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy 年 M 月 d 日]]></Format>
+<FRFont name="SimSun" style="0" size="120"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="宋体" style="1" size="132"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="32" paddingRight="9">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="0" paddingRight="9">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="5" paddingRight="9">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="5" paddingRight="9">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="8">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="8">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="6" paddingRight="6">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" vertical_alignment="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="10">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" vertical_alignment="1" imageLayout="1" paddingLeft="10">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="4">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="5">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="6">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="4">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="8">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="8">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1" paddingLeft="6">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" vertical_alignment="1" imageLayout="1" paddingLeft="10" paddingRight="10">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="1" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="6" paddingRight="4">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1" paddingLeft="4" paddingRight="6">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="7">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="6">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" vertical_alignment="1" imageLayout="1" paddingLeft="8" paddingRight="8">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="136"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1" paddingLeft="5">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1" paddingLeft="18">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1" paddingLeft="10">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

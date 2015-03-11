@@ -105,6 +105,7 @@ public partial class JSDW_ApplyAQJDBA_PrjFile : System.Web.UI.Page
         //附件类型
         t_FFileType.Value = str.Split('.').ToList().Last();
         Emp.FFileType = t_FFileType.Value;
+        Emp.FFilePath = t_FFilePath.Value;
         Emp.FCreateTime = DateTime.Now;
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;

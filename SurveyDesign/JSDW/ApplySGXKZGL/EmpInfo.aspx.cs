@@ -21,7 +21,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             txtFId.Value = EConvert.ToString(Request["FId"]);
             t_FEntId.Value = EConvert.ToString(Request["FEntId"]);
-            //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
+            t_FEntType.Value = EConvert.ToString(Request["t_FEntType"]);
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             BindControl();
             showInfo();
@@ -31,11 +31,37 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     {
         //人员类型
         DataTable dt = rc.getDicTbByFNumber("112202");
-        t_EmpType.DataSource = dt;
+        DataTable dtNew = dt.Clone();
+        DataRow[] drArr;
+        drArr = dt.Select();
+        switch (t_FEntType.Value)
+        {
+            //设计单位
+            case "2":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
+            //承包单位
+            case "3":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
+            //设计单位
+            case "6":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220212')");
+                break;
+            //监理单位
+            case "7":
+                drArr = dt.Select("FNumber in ('11220209','11220210','11220211')");
+                break;
+        }
+        for (int i = 0; i < drArr.Length; i++)
+        {
+            dtNew.ImportRow(drArr[i]);
+        }
+        t_EmpType.DataSource = dtNew;
         t_EmpType.DataTextField = "FName";
         t_EmpType.DataValueField = "FNumber";
         t_EmpType.DataBind();
-       
+
         //学历
         dt = rc.getDicTbByFNumber("107");
         t_ZGXL.DataSource = dt;
@@ -64,7 +90,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     //保存
     private void saveInfo()
     {
-        
+
         string sql = @" select count(*) from TC_PrjItem_Emp
                             where EmpType='11220201'
                             and FAppId='{0}'";
@@ -121,15 +147,15 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             txtFId.Value = fId;
             ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
         }
-        
-    //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
-    //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
+
+        //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
+        //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
     public void Alert(string str_Message)
-         {
-             ClientScriptManager scriptManager =((Page)System.Web.HttpContext.Current.Handler).ClientScript;
-            scriptManager.RegisterStartupScript(typeof(string), "", "alert('" + str_Message + "');", true);
-         }
+    {
+        ClientScriptManager scriptManager = ((Page)System.Web.HttpContext.Current.Handler).ClientScript;
+        scriptManager.RegisterStartupScript(typeof(string), "", "alert('" + str_Message + "');", true);
+    }
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
     {
@@ -147,20 +173,21 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FIdCard.Text = v.SFZH;
             t_FSex.SelectedValue = v.XB.ToString();
             t_FMobile.Text = v.GRDH;
-            t_ZC.Text = v.ZC;
+            t_ZC.SelectedItem.Text = v.ZC ?? "其他";
             t_ZW.Text = v.ZW;
             t_FTel.Text = v.BGDH;
+            t_ZGXL.SelectedItem.Text = "无";
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
             if (v1 != null)
             {
-                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? v1.ZCZSH : v1.ZCZSBH;
+                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
                 t_DJ.Text = v1.ZSJB;
                 t_ZCBH.Text = v1.ZCZSH;
                 t_ZCZY.Text = v1.ZCZY;
                 t_ZCRQ.Text = v1.FZSJ.ToString();
             }
-            
+
         }
     }
     protected void btnAddEmp_Click(object sender, EventArgs e)
