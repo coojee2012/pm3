@@ -25,7 +25,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "InterfaceKCSJ", "http://loc
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
-		ProjectReferences = "{53fce8e4-268c-4020-ad94-11196a5a0bfa}|EgovaBLL.dll;{4010BCEC-4EEA-4C77-9184-72B1AF975F9D}|EgovaDAO.dll;{B2225F4C-646D-483D-8D23-6F209959A93C}|Tools.dll;{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}|EntityCenter.dll;{A5676341-D5C3-456F-943E-14D7D8F45883}|EntityBase.dll;{77356EC7-801D-4826-BAFE-DE0E2E537776}|EntityQuali.dll;{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}|RuleAppCode.dll;{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}|EntitySys.dll;{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}|ProjectData.dll;{1A9A9632-151F-411F-9B65-95EF20B7230E}|RuleCenter.dll;{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}|RuleBase.dll;"
+		ProjectReferences = "{53fce8e4-268c-4020-ad94-11196a5a0bfa}|EgovaBLL.dll;{4010BCEC-4EEA-4C77-9184-72B1AF975F9D}|EgovaDAO.dll;{B2225F4C-646D-483D-8D23-6F209959A93C}|Tools.dll;{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}|EntityCenter.dll;{A5676341-D5C3-456F-943E-14D7D8F45883}|EntityBase.dll;{77356EC7-801D-4826-BAFE-DE0E2E537776}|EntityQuali.dll;{11DDCD5C-5B5F-4658-A174-8DBE255DF4D8}|RuleAppCode.dll;{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}|EntitySys.dll;{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}|ProjectData.dll;{1A9A9632-151F-411F-9B65-95EF20B7230E}|RuleCenter.dll;{71ADB301-FD30-46D8-BE51-6B4EB7F954AF}|RuleBase.dll;{97596755-3E00-4FA6-B08D-2326E202CA5F}|Log4netLibrary.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_20357"
 		Debug.AspNetCompiler.PhysicalPath = "InterfaceKCSJ\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_20357\"
@@ -54,7 +54,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SurveyDesign", "SurveyDesign\", "{D8086D1F-A1DB-45DF-BE1F-867158226FAC}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
-		ProjectReferences = "{71adb301-fd30-46d8-be51-6b4eb7f954af}|RuleBase.dll;{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}|EntitySys.dll;{A5676341-D5C3-456F-943E-14D7D8F45883}|EntityBase.dll;{4010bcec-4eea-4c77-9184-72b1af975f9d}|EgovaDAO.dll;{cfda0b71-47e2-436c-82fa-4ff143933053}|ProjectBLL.dll;{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}|ProjectData.dll;{B2225F4C-646D-483D-8D23-6F209959A93C}|Tools.dll;{11ddcd5c-5b5f-4658-a174-8dbe255df4d8}|RuleAppCode.dll;{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}|EntityCenter.dll;{1A9A9632-151F-411F-9B65-95EF20B7230E}|RuleCenter.dll;{77356EC7-801D-4826-BAFE-DE0E2E537776}|EntityQuali.dll;{53fce8e4-268c-4020-ad94-11196a5a0bfa}|EgovaBLL.dll;"
+		ProjectReferences = "{71adb301-fd30-46d8-be51-6b4eb7f954af}|RuleBase.dll;{3E783F57-1E18-4A68-801E-FD0AF7AC44BA}|EntitySys.dll;{A5676341-D5C3-456F-943E-14D7D8F45883}|EntityBase.dll;{4010bcec-4eea-4c77-9184-72b1af975f9d}|EgovaDAO.dll;{cfda0b71-47e2-436c-82fa-4ff143933053}|ProjectBLL.dll;{08AA7D6F-F5E6-4D18-8543-103A5A1D0FED}|ProjectData.dll;{B2225F4C-646D-483D-8D23-6F209959A93C}|Tools.dll;{11ddcd5c-5b5f-4658-a174-8dbe255df4d8}|RuleAppCode.dll;{70F3229C-33C9-4A5E-8CCF-C9C223AC218F}|EntityCenter.dll;{1A9A9632-151F-411F-9B65-95EF20B7230E}|RuleCenter.dll;{77356EC7-801D-4826-BAFE-DE0E2E537776}|EntityQuali.dll;{53fce8e4-268c-4020-ad94-11196a5a0bfa}|EgovaBLL.dll;{97596755-3E00-4FA6-B08D-2326E202CA5F}|Log4netLibrary.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_20361"
 		Debug.AspNetCompiler.PhysicalPath = "SurveyDesign\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_20361\"

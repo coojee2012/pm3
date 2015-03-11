@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -36,7 +36,11 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
 
                 tool.ExecuteScript("btnEnable();");
             }
-
+        }
+        else
+        {
+            //企业编号
+            
         }
     }
     //显示
@@ -78,7 +82,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         switch (t_FEntType.Value)
         {
             case "2":
-                lblTitle.InnerText = "11";
+                lblTitle.InnerText = "施工总承包商单位";
                 break;
             case "3":
                 lblTitle.InnerText = "专业承包单位";
@@ -159,6 +163,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             dbContext.TC_PrjItem_Ent.InsertOnSubmit(ent);
         }
         pageTool tool = new pageTool(this.Page);
+        //ytb 修改了企业需要为企业ID赋值
+        ent.QYID = h_selEntId.Value;
         ent = tool.getPageValue(ent);
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
@@ -229,10 +235,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             t_FTel.Text = v.LXDH;
             t_FOrgCode.Text = v.JGDM;
         }
-        //如果企业发生变化就删除历史的企业的相关人员  add by psq 2015-3-5
-
-        //
-
+       
         var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
             t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
@@ -253,7 +256,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
-
+        //刷新人员
+        showEmpList();
     }
     protected void btnAddEnt_Click(object sender, EventArgs e)
     {
