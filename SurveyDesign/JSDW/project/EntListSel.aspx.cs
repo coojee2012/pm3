@@ -67,7 +67,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
                   where b.QYLXBM == qylx && tt.SFZX == 1 
-                  && tt1.ZSLXBM =="150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
+                 // && tt1.ZSLXBM =="150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
                   
                   select  new
                   {
