@@ -256,7 +256,7 @@
                 立项时间：
             </td>
             <td>
-                <asp:TextBox ID="pj_ProjectTime" onfocus="WdatePicker()" runat="server" Width="195px" Enabled="false" CssClass="m_txt"></asp:TextBox>
+                <asp:TextBox ID="pj_ProjectTime" onfocus="WdatePicker()" runat="server" Width="195px"  CssClass="m_txt"></asp:TextBox>
                 <tt>*</tt>
             </td>
         </tr>

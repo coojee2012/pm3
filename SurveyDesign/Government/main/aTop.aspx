@@ -244,7 +244,7 @@
         </div>
     </div>
     <div class="top_bar">
-        <div style="width:120px;height:28px;background-color:Orange;font-weight:bold;text-align:center;">管理版</div>
+        <div style="width:120px;height:28px;background-color:Orange;font-weight:bold;text-align:center;">主管部门</div>
         <div id="bar_user" style="float:left">
             <b>
                 <asp:Literal ID="lab_User" runat="server" Text=""></asp:Literal>&nbsp;&nbsp;&nbsp;<span id="currentDate"></span>&nbsp;&nbsp;&nbsp;<span id="time"></span></b>
