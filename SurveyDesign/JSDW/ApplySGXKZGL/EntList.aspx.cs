@@ -17,7 +17,7 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
-        {
+        { 
             this.hf_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             this.hf_FEntType.Value = EConvert.ToString(Request["FEntType"]);
             showTitle();
