@@ -487,7 +487,7 @@ function showAddWindow_rv(sUrl, width, height) {
 
 //弹出窗口，有返回值
 function showWinByReturn(sUrl, width, height) {
-    return window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;');
+    return window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:yes; help:no;scroll:auto;');
 }
 
 //弹出窗口，有返回值，不可改变窗口大小

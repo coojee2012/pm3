@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="SFYX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT ROW_NUMBER() OVER (ORDER BY AA.XH) AS RN,AA.XH
+,CASE WHEN GROUPING(AA.XH)=1 THEN '合计' ELSE MAX(AA.FSYSTEMID) END AS FNAME
+,sum(nvl(AA.SL_SN,0)) as SL_SN
+,sum(nvl(AA.SL_RC,0)) as SL_RC
+,sum(nvl(AA.SL_AXZ,0)) as SL_AXZ
+,sum(nvl(AA.SL_SN,0))+sum(nvl(AA.SL_RC,0)) AS XJ
+FROM 
+(
+select 1 AS XH, '施工企业' as fsystemid,sum(decode(nvl(B.SFRC,0),0,1,0)) AS  SL_SN,sum(decode(nvl(B.SFRC,0),1,1,0)) AS  SL_RC
+    ,COUNT(C.JGDM) AS SL_AXZ
+    FROM  QY_SG_zzzsqk A,QY_SG_JBQK B,(SELECT DISTINCT JGDM FROM qy_aqscxkz) C where A.JGDM=B.JGDM AND B.JGDM=C.JGDM(+) ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")} 
+  UNION
+  select 2 AS XH, '施工设计一体化' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,COUNT(C.JGDM) AS SL_AXZ
+    FROM  QY_SGSJ_zzzsqk A,(SELECT DISTINCT JGDM FROM qy_aqscxkz) C where ${IF(LEN(SFYX)=0,""," nvl(A.Sfyx,0)="+SFYX+" AND ")}    A.JGDM=C.JGDM(+)
+  UNION
+  select 3 AS XH, '监理企业' as fsystemid,sum(decode(nvl(B.SFRC,0),0,1,0)) AS  SL_SN,sum(decode(nvl(B.SFRC,0),1,1,0)) AS  SL_RC
+    ,COUNT(C.JGDM) AS SL_AXZ
+    FROM  QY_JL_zzzsqk A,QY_JL_JBQK B,(SELECT DISTINCT JGDM FROM qy_aqscxkz) C where A.JGDM=B.JGDM AND B.JGDM=C.JGDM(+) ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}  
+  UNION
+  select 4 AS XH, '质量检测机构' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_JC_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 5 AS XH, '勘察企业' as fsystemid,sum(decode(nvl(B.SFRC,0),0,1,0)) AS  SL_SN,sum(decode(nvl(B.SFRC,0),1,1,0)) AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_KC_zzzsqk A,QY_KC_JBQK B where A.JGDM=B.JGDM ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}  
+  UNION
+  select 6 AS XH, '设计企业' as fsystemid,sum(decode(nvl(B.SFRC,0),0,1,0)) AS  SL_SN,sum(decode(nvl(B.SFRC,0),1,1,0)) AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_SJ_zzzsqk A,QY_SJ_JBQK B where A.JGDM=B.JGDM ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 7 AS XH, '房地产开发企业' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_FDC_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+ select 8 AS XH, '房地产估价机构' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_FDCGJ_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 9 AS XH, '物业服务' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_WYFW_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}    
+  UNION
+select 10 AS XH, '规划编制单位' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_GHBZ_zzzsqk A  ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}    
+  UNION
+  select 11 AS XH, '招标代理机构' as fsystemid,sum(decode(nvl(B.SFRC,0),0,1,0)) AS  SL_SN,sum(decode(nvl(B.SFRC,0),1,1,0)) AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_ZBDL_zzzsqk A,QY_ZBDL_JBQK B where A.JGDM=B.JGDM ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+"  ")}   
+  UNION
+  select 12 AS XH, '园林绿化企业' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,count(C.JGDM) AS SL_AXZ
+    FROM  QY_YLLH_zzzsqk A,(SELECT DISTINCT JGDM FROM qy_aqscxkz) C where ${IF(LEN(SFYX)=0,""," nvl(A.Sfyx,0)="+SFYX+" AND ")}  A.JGDM=C.JGDM(+)
+  UNION
+  select 13 AS XH, '造价咨询机构' as fsystemid,sum(decode(nvl(B.SFRC,0),0,1,0)) AS  SL_SN,sum(decode(nvl(B.SFRC,0),1,1,0)) AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_ZJZX_zzzsqk A,QY_ZJZX_JBQK B where A.JGDM=B.JGDM ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}     
+  UNION
+  select 14 AS XH, '施工图审查机构' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC
+    ,0 AS SL_AXZ
+    FROM  QY_STJG_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}    
+  UNION
+ select 15 AS XH,'项目管理企业' as fsystemid,0 AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM qy_xmgl_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 16 AS XH, '燃气许可证' as fsystemid,0 AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM qy_rq_zzzsqk A ${IF(LEN(SFYX)=0,""," where nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 18 AS XH, '入川施工' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM QY_SG_zzzsqk A,QY_SG_JBQK B,(SELECT DISTINCT JGDM FROM qy_aqscxkz) C where A.JGDM=B.JGDM AND B.JGDM=C.JGDM(+) AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}  
+  UNION
+  select 19 AS XH, '入川招标代理' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM QY_ZBDL_zzzsqk A,QY_ZBDL_JBQK B where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 20 AS XH, '入川造价咨询' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM QY_ZJZX_zzzsqk A,QY_ZJZX_JBQK B where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}    
+  UNION
+  select 21 AS XH, '入川监理' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM QY_JL_zzzsqk A,QY_JL_JBQK B where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 22 AS XH, '入川勘察' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM QY_KC_zzzsqk A,QY_KC_JBQK B where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+  select 23 AS XH, '入川设计' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM QY_SJ_zzzsqk A,QY_SJ_JBQK B where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}   
+  UNION
+ select 24 AS XH,'入川项目管理' as fsystemid,COUNT(A.JGDM) AS  SL_SN,0 AS  SL_RC 
+    ,0 AS SL_AXZ
+FROM qy_xmgl_zzzsqk A,QY_xmgl_JBQK B where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 ${IF(LEN(SFYX)=0,""," AND nvl(A.Sfyx,0)="+SFYX+" ")}     
+  ) AA
+ group by ROLLUP( AA.XH) 
+]]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="SFYX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT ROW_NUMBER() OVER (ORDER BY AA.XH) AS RN,AA.XH
+,CASE WHEN GROUPING(AA.XH)=1 THEN '合计' ELSE MAX(AA.FSYSTEMID) END AS FNAME
+,sum(nvl(AA.ZH_SN,0)) as ZH_SN
+,sum(nvl(AA.QY_SN,0)) as QY_SN
+FROM 
+(
+select 1 AS XH, '施工企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_SG_zzzsqk A,QY_SG_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E    
+    where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='101'
+    AND E.PERID=D.PERID
+    AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}   
+  UNION
+  select 2 AS XH, '施工设计一体化' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_SGSJ_zzzsqk A
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}    
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='208'
+    AND E.PERID=D.PERID    
+  UNION
+  select 3 AS XH, '监理企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_JL_zzzsqk A,QY_JL_JBQK B
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E
+    where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='103'
+    AND E.PERID=D.PERID 
+  UNION
+  select 4 AS XH, '质量检测机构' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_JC_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}    
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='201'
+    AND E.PERID=D.PERID     
+  UNION
+  select 5 AS XH, '勘察企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_KC_zzzsqk A,QY_KC_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E
+    where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='102'
+    AND E.PERID=D.PERID       
+  UNION
+  select 6 AS XH, '设计企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_SJ_zzzsqk A,QY_SJ_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E    
+    where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='207'
+    AND E.PERID=D.PERID  
+  UNION
+  select 7 AS XH, '房地产开发企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_FDC_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E      
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}    
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='106'
+    AND E.PERID=D.PERID  
+  UNION
+ select 8 AS XH, '房地产估价机构' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_FDCGJ_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E      
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}    
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='300'
+    AND E.PERID=D.PERID 
+  UNION
+  select 9 AS XH, '物业服务' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_WYFW_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E      
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}    
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='301'
+    AND E.PERID=D.PERID 
+  UNION
+select 10 AS XH, '规划编制单位' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_GHBZ_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E       
+    where  ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='302'
+    AND E.PERID=D.PERID 
+  UNION
+  select 11 AS XH, '招标代理机构' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_ZBDL_zzzsqk A,QY_ZBDL_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E    
+    where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}     
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='105'
+    AND E.PERID=D.PERID 
+  UNION
+  select 12 AS XH, '园林绿化企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_YLLH_zzzsqk A
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E     
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}     
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='304'
+    AND E.PERID=D.PERID 
+  UNION
+  select 13 AS XH, '造价咨询机构' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_ZJZX_zzzsqk A,QY_ZJZX_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E        
+    where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}     
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='104'
+    AND E.PERID=D.PERID 
+  UNION
+  select 14 AS XH, '施工图审查机构' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+    FROM  QY_STJG_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E      
+    where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1 ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+" "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='303'
+    AND E.PERID=D.PERID 
+  UNION
+ select 15 AS XH,'项目管理企业' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN
+FROM qy_xmgl_zzzsqk A,QY_xmgl_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}   
+    AND A.JGDM=B.JGDM AND nvl(B.SFRC,0)=0 
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='206'
+    AND E.PERID=D.PERID 
+  UNION
+  select 16 AS XH, '燃气许可证' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM qy_rq_zzzsqk A 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='305'
+    AND E.PERID=D.PERID 
+  UNION
+  select 18 AS XH, '入川施工' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM QY_SG_zzzsqk A,QY_SG_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}  
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='101'
+    AND E.PERID=D.PERID 
+  UNION
+  select 19 AS XH, '入川招标代理' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM QY_ZBDL_zzzsqk A,QY_ZBDL_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='105'
+    AND E.PERID=D.PERID 
+  UNION
+  select 20 AS XH, '入川造价咨询' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM QY_ZJZX_zzzsqk A,QY_ZJZX_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}     
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='104'
+    AND E.PERID=D.PERID 
+  UNION
+  select 21 AS XH, '入川监理' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM QY_JL_zzzsqk A,QY_JL_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='103'
+    AND E.PERID=D.PERID 
+  UNION
+  select 22 AS XH, '入川勘察' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM QY_KC_zzzsqk A,QY_KC_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}  
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='102'
+    AND E.PERID=D.PERID 
+  UNION
+  select 23 AS XH, '入川设计' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM QY_SJ_zzzsqk A,QY_SJ_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}   
+    AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='207'
+    AND E.PERID=D.PERID 
+  UNION
+ select 24 AS XH,'入川项目管理' as fsystemid,COUNT(DISTINCT E.YHM) AS ZH_SN,COUNT(DISTINCT C.QYID) AS QY_SN 
+FROM qy_xmgl_zzzsqk A,QY_xmgl_JBQK B 
+    ,jstyw.yw_qy_jbqk C,jstyw.yw_qy_qykglb D,jstyw.yw_qy_qyzf E  
+where A.JGDM=B.JGDM AND nvl(B.SFRC,0)=1 AND ${IF(LEN(SFYX)=0," nvl(A.Sfyx,0)=1  ",IF(SFYX=2," "," nvl(A.Sfyx,0)="+SFYX+"  "))}     
+     AND A.JGDM=C.JGDM
+    AND C.QYID =D.QYID AND D.qylb='206'
+    AND E.PERID=D.PERID    
+  ) AA
+ group by ROLLUP( AA.XH) 
+]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[首页]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[上一页]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[下一页]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[末页]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+<WebWriteContent>
+<ToolBars/>
+<SelectedColor color="-10033153"/>
+</WebWriteContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,723900,723900,1104900,1152000,1152000,1219200,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2057400,8191500,4320000,4320000,3505200,3619500,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0">
+<Expand/>
+</C>
+<C c="0" r="2" cs="6" rs="2" s="0">
+<O>
+<![CDATA[旧系统证书导入情况统计]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" rs="2" s="1">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" rs="2" s="1">
+<O>
+<![CDATA[企业类型]]></O>
+<Expand/>
+</C>
+<C c="2" r="5" cs="2" s="1">
+<O>
+<![CDATA[企业证书]]></O>
+<Expand/>
+</C>
+<C c="4" r="5" rs="2" s="1">
+<O>
+<![CDATA[企业帐号数量]]></O>
+<Expand/>
+</C>
+<C c="5" r="5" rs="2" s="1">
+<O>
+<![CDATA[企业数量]]></O>
+<Expand/>
+</C>
+<C c="2" r="6" s="1">
+<O>
+<![CDATA[数量]]></O>
+<Expand/>
+</C>
+<C c="3" r="6" s="1">
+<O>
+<![CDATA[其中：有安许证]]></O>
+<Expand/>
+</C>
+<C c="0" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RN"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="27"/>
+</C>
+<C c="1" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="FNAME"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SL_SN"/>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SL_AXZ"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[3]]></CNUMBER>
+<CNAME>
+<![CDATA[FNAME]]></CNAME>
+<Compare op="7">
+<O>
+<![CDATA[入川]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="ZH_SN"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[XH]]></CNAME>
+<Compare op="0">
+<SimpleDSColumn dsName="ds1" columnName="XH"/>
+</Compare>
+</Condition>
+<Complex reselect="true"/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A8"/>
+</C>
+<C c="5" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="QY_SN"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[XH]]></CNAME>
+<Compare op="0">
+<SimpleDSColumn dsName="ds1" columnName="XH"/>
+</Compare>
+</Condition>
+<Complex reselect="true"/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="A8"/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="719999">
+<PaperSetting>
+<Margin top="1008000" left="2160000" bottom="864000" right="1439999"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="false" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.FormParameterUI">
+<Layout class="com.fr.form.ui.container.WAbsoluteLayout">
+<WidgetName name="para"/>
+<WidgetAttr/>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="label7_copy"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="4" autoline="true"/>
+<FRFont name="SimSun" style="0" size="72" foreground="-13408513"/>
+<widgetValue>
+<O>
+<![CDATA[证书状态：]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="206" y="8" width="120" height="23"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetName name="widget6_copy"/>
+<WidgetAttr/>
+<Text>
+<![CDATA[查询]]></Text>
+<Hotkeys>
+<![CDATA[enter]]></Hotkeys>
+</InnerWidget>
+<BoundsAttr x="578" y="4" width="60" height="32"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="label1_copy"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="0" autoline="true"/>
+<FRFont name="宋体" style="1" size="84"/>
+<widgetValue>
+<O>
+<![CDATA[查 询 条 件]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="0" y="0" width="120" height="38"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.ComboBox">
+<WidgetName name="SFYX"/>
+<WidgetAttr/>
+<DirectEdit>
+<![CDATA[false]]></DirectEdit>
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="" value="全部"/>
+<Dict key="1" value="有效"/>
+<Dict key="0" value="无效"/>
+</CustomDictAttr>
+</Dictionary>
+<widgetValue>
+<O>
+<![CDATA[]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="361" y="10" width="139" height="21"/>
+</Widget>
+<LCAttr vgap="0" hgap="0"/>
+</Layout>
+<DesignAttr width="800" height="38"/>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="黑体" style="1" size="156"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="12">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>

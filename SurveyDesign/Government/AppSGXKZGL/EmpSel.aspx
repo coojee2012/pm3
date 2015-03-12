@@ -69,7 +69,9 @@
             <asp:BoundColumn DataField="FHumanName" HeaderText="姓名" ></asp:BoundColumn>
             <asp:BoundColumn DataField="EmpType" HeaderText="人员类型"></asp:BoundColumn>
             <asp:BoundColumn DataField="FEntName" HeaderText="所在企业"></asp:BoundColumn>
-            <asp:ButtonColumn HeaderText="选择" CommandName="Sel" Text="选择" ></asp:ButtonColumn>
+            <asp:ButtonColumn HeaderText="选择" CommandName="Sel" Text="选择" >
+
+            </asp:ButtonColumn>
             <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>

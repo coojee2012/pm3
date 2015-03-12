@@ -9,11 +9,15 @@ using Approve.RuleCenter;
 using Tools;
 using System.Data;
 using EgovaBLL;
+using System.Text;
+using Approve.PersistBase;
 
 public partial class JSDW_APPSGXKZGL_YZInfo : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    string n = "Byte";
+    private IConnection Cn_e;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -63,13 +67,60 @@ public partial class JSDW_APPSGXKZGL_YZInfo : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         dbContext.SubmitChanges();
         t_FId.Value = fId;
+
+        addFj();
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
     //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
+    }
+
+    private void addFj() { 
+   // TC_Prj_XCTKJL_File 
+      
+       
+        string fId = Guid.NewGuid().ToString();
+        StringBuilder sb = new StringBuilder();
+        sb.Append("DELETE FROM TC_Prj_XCTKJL_File WHERE FlinkId='" + t_FId.Value + "';");
+        sb.Append("INSERT INTO  TC_Prj_XCTKJL_File (FId,FAppId,FlinkId,FFileName,FNum,FReportor,FFilePath) VALUES ");
+        string[] filePaths = t_FilePath.Value.Split('|');
+        for (int i = 0; i < filePaths.Count(); i++)
+        {
+            if (!string.IsNullOrEmpty(filePaths[i]))
+            {
+                string filename = filePaths[i].Split('/').ToList().Last();
+                if (i > 0)
+                    sb.Append(",");
+                sb.Append("('" + Guid.NewGuid().ToString() + "','" + h_FAppId.Value + "','" + t_FId.Value + "','");
+                sb.Append(filename + "',0,'root','" + filePaths[i] + "')");
+            }
+            
+        }
+
+        this.Cn_e.Execute(sb.ToString(), SqlResultEnum.No);
+
+          
     }
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+    }
+    protected void btnFileUpload_Click(object sender, EventArgs e) {
+
+        //附件url
+        string str = t_FilePath.Value;
+        //文件大小
+        float s = EConvert.ToInt(t_Size.Value);
+        if (s > 1024) { s = s / 1024; n = "KB"; }
+        if (s > 1024) { s = s / 1024; n = "MB"; }
+        //附件类型
+        t_FileType.Value = str.Split('.').ToList().Last();
+        //附件文件名
+        string m = str.Split('/').ToList().Last();
+        name.Text += m + "（大小：" + s.ToString("0.0") + n + "）<br/>";
+        //if (string.IsNullOrEmpty(t_FileName.Text))
+        //{
+        //    t_FileName.Text = m.Replace("." + m.Split('.').ToList().Last(), "");
+        //}
     }
 }

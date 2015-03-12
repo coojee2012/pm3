@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT AAAA.WT,AAAA.ZCFL
+,count(distinct AAAA.RN) as RN
+FROM
+(
+	SELECT AAA.*	
+	,case when NVL(AAA.WT,' ')=' ' AND AAA.ZZNum=0 AND LENGTH(AAA.FNAME)=7 AND NVL(AAA.YWNAME,' ')=' ' AND NVL(AAA.FCERTIID,' ')=' ' THEN '新办未申报'
+		WHEN NVL(AAA.WT,' ')=' ' AND AAA.ZZNum=0 AND LENGTH(AAA.FNAME)=7 AND NVL(AAA.YWNAME,'')<> '' AND NVL(AAA.FCERTIID,' ')=' ' THEN '新办已申报'
+		WHEN NVL(AAA.WT,' ')=' ' AND LENGTH(AAA.FNAME)<>7 AND NVL(AAA.FCERTIID,' ')<>' ' AND (NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd'))= to_date('1900-01-01','yyyy-mm-dd') OR ROUND(TO_NUMBER(NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd')) - SYSDATE))>=0) THEN '证书信息完整'      
+		WHEN NVL(AAA.WT,' ')=' ' AND LENGTH(AAA.FNAME)<>7 AND NVL(AAA.FCERTIID,' ')<>' ' AND NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd'))<> to_date('1900-01-01','yyyy-mm-dd') AND ROUND(TO_NUMBER(NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd')) - SYSDATE))<0 THEN '过期' 
+		WHEN NVL(AAA.WT,' ')=' ' AND NVL(AAA.FCERTIID,' ')=' ' AND AAA.ZZNum>0 THEN '资质注销'  
+		WHEN NVL(AAA.WT,' ')=' ' AND NVL(AAA.FCERTIID,' ')=' ' AND AAA.FISFIRST=1 THEN '帐号注销'   
+	          ELSE CASE WHEN NVL(AAA.WT,' ')=' ' THEN '资质注销' END		                     
+	END AS ZCFL
+	FROM
+	(
+		SELECT AA.*
+		,YWLX.CT AS YWNAME,AF.ACTIONFLAG as ZPHJ
+		,f_QY_CheckCertiError(AA.QYID,AA.FCERTIID,AA.FSystemId,AA.FISVALID,AA.FISDELETED,AA.JGDM,AA.FCERTINO, AA.MULTIZS,AA.ZZNum,AA.FISFIRST,AA.FName) AS WT
+		FROM 
+		(
+			SELECT A.*
+		    ,(SELECT YWBM FROM JSTYW.YW_INFO WHERE JGDM=A.JGDM AND YWZT=1 ${IF(LEN(QYLX)=0," AND 1=2 "," AND QYLB='"+LEFT(QYLX,3)+"' ")} AND NVL(LX,0)=0 AND ROWNUM=1) as YWBM
+			,C.XH AS FCERTIID,C.ZSBH AS FCERTINO,C.YXJSRQ AS FENDTIME,C.SFYX as FISVALID,0 as FISDELETED
+			,(SELECT COUNT(*) FROM 
+			${IF(LEN(QYLX)=0," QY_JL_zzzsqk QT ","")} 
+			${IF(QYLX='103'," QY_JL_zzzsqk QT ","")} 
+			${IF(QYLX='104'," QY_ZJZX_zzzsqk QT ","")} 
+			${IF(QYLX='105'," QY_ZBDL_zzzsqk QT ","")} 
+			${IF(QYLX='106'," QY_FDC_zzzsqk QT ","")} 
+			${IF(QYLX='201'," QY_JC_zzzsqk QT ","")} 
+			${IF(QYLX='208'," QY_SGSJ_zzzsqk QT ","")} 
+			${IF(QYLX='300'," QY_FDCGJ_zzzsqk QT ","")} 
+			${IF(QYLX='301'," QY_WYFW_zzzsqk QT ","")} 
+			${IF(QYLX='302'," QY_GHBZ_zzzsqk QT ","")} 
+			${IF(QYLX='304'," QY_YLLH_zzzsqk QT ","")} 
+			${IF(QYLX='1011'," QY_SG_zzzsqk QT ","")} 
+			${IF(QYLX='1031'," QY_JL_zzzsqk QT ","")} 
+			${IF(QYLX='1051'," QY_ZBDL_zzzsqk QT ","")} 
+			${IF(QYLX='1041'," QY_ZJZX_zzzsqk QT ","")}  			
+			WHERE QT.JGDM=A.JGDM) AS MULTIZS
+			,0 as ZZNum			
+			FROM
+			(
+				SELECT ROW_NUMBER() OVER(ORDER BY C.QYID) AS RN,C.JGDM,C.QYID,C.QYMC,D.QYLB AS FSystemId
+									,E.YHM AS FName,E.SX AS FISFIRST
+				FROM JSTYW.YW_QY_JBQK C
+				,JSTYW.YW_QY_QYKGLB D,JSTYW.YW_QY_QYZF E
+				WHERE C.QYID=D.QYID AND D.PERID=E.PERID 
+				${IF(QYLX='1011'," AND nvl(C.SFRC,0)=1 AND D.QYLB='101'","")} 
+				${IF(QYLX='1031'," AND nvl(C.SFRC,0)=1 AND D.QYLB='103' ","")}
+				${IF(QYLX='1051'," AND nvl(C.SFRC,0)=1 AND D.QYLB='105' ","")}
+				${IF(QYLX='1041'," AND nvl(C.SFRC,0)=1 AND D.QYLB='104' ","")}
+				${IF(QYLX='101' || QYLX='103' || QYLX='105' || QYLX='104'," AND nvl(C.SFRC,0)=0 ","")} 
+				${IF(LEN(QYLX)=0," AND 1=2 "," AND D.QYLB='"+LEFT(QYLX,3)+"' ")} 
+			) A
+			${IF(LEN(QYLX)=0," ,QY_JL_zzzsqk C ","")} 
+			${IF(QYLX='103'," ,QY_JL_zzzsqk C ","")} 
+			${IF(QYLX='104'," ,QY_ZJZX_zzzsqk C ","")} 
+			${IF(QYLX='105'," ,QY_ZBDL_zzzsqk C ","")} 
+			${IF(QYLX='106'," ,QY_FDC_zzzsqk C ","")} 
+			${IF(QYLX='201'," ,QY_JC_zzzsqk C ","")} 
+			${IF(QYLX='208'," ,QY_SGSJ_zzzsqk C ","")} 
+			${IF(QYLX='300'," ,QY_FDCGJ_zzzsqk C ","")} 
+			${IF(QYLX='301'," ,QY_WYFW_zzzsqk C ","")} 
+			${IF(QYLX='302'," ,QY_GHBZ_zzzsqk C ","")} 
+			${IF(QYLX='304'," ,QY_YLLH_zzzsqk C ","")} 
+			${IF(QYLX='1011'," ,QY_SG_zzzsqk C ","")} 
+			${IF(QYLX='1031'," ,QY_JL_zzzsqk C ","")} 
+			${IF(QYLX='1051'," ,QY_ZBDL_zzzsqk C ","")} 
+			${IF(QYLX='1041'," ,QY_ZJZX_zzzsqk C ","")} 			
+			WHERE A.JGDM=C.JGDM(+)	
+		) AA
+		LEFT JOIN JSTYW.YW_INFO YW ON YW.YWBM=AA.YWBM
+		LEFT JOIN JSTYW.C05 C05 ON YW.YWBM=C05.PROCESSKEYVALUE
+		LEFT JOIN JSTYW.C06 C06 ON C05.PROJECTID=C06.PROJECTID AND C06.ACTIONSTATE<>3
+		LEFT JOIN JSTYW.JM_ACTIONINFO AF ON C06.ACTIONID=AF.ID AND AF.ACTIONFLAG IN ('县窗口接件','县初定','扩权县窗口接件','扩权县初定','市州窗口接件','市州初定','厅窗口接件','厅初审','厅复审','领导审批')		
+		LEFT JOIN JSTYW.D_YWLX YWLX ON YWLX.BM=YW.YWLX AND YW.QYLB=YWLX.QYLB	
+	) AAA
+) AAAA	
+group by AAAA.WT,AAAA.ZCFL]]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT COUNT(C.QYID) AS ZHZS
+FROM JSTYW.YW_QY_JBQK C
+,JSTYW.YW_QY_QYKGLB D,JSTYW.YW_QY_QYZF E
+WHERE C.QYID=D.QYID AND D.PERID=E.PERID 
+${IF(QYLX='1011'," AND nvl(C.SFRC,0)=1 AND D.QYLB='101'","")} 
+${IF(QYLX='1031'," AND nvl(C.SFRC,0)=1 AND D.QYLB='103' ","")}
+${IF(QYLX='1051'," AND nvl(C.SFRC,0)=1 AND D.QYLB='105' ","")}
+${IF(QYLX='1041'," AND nvl(C.SFRC,0)=1 AND D.QYLB='104' ","")}
+${IF(QYLX='101' || QYLX='103' || QYLX='105' || QYLX='104'," AND nvl(C.SFRC,0)=0 ","")} 
+${IF(LEN(QYLX)=0," AND 1=2 "," AND D.QYLB='"+LEFT(QYLX,3)+"' ")} ]]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT FNAME
+FROM
+(
+SELECT CT AS FNAME FROM JSTYW.D_QYLB
+${IF(LEN(QYLX)=0," WHERE 1=2 "," WHERE QYLB="+QYLX+" ")} 
+UNION SELECT '入川施工企业' FROM DUAL ${IF(QYLX!='1011'," WHERE 1=2 ","")} 
+UNION SELECT '入川监理企业' FROM DUAL ${IF(QYLX!='1031'," WHERE 1=2 ","")} 
+UNION SELECT '入川招标代理' FROM DUAL ${IF(QYLX!='1051'," WHERE 1=2 ","")} 
+UNION SELECT '入川造价咨询' FROM DUAL ${IF(QYLX!='1041'," WHERE 1=2 ","")} 
+) A]]></Query>
+</TableData>
+<TableData name="动态SQL1" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT FSYSTEMID,fname FROM
+(
+SELECT ROW_NUMBER() OVER(ORDER BY QYLB) RN,QYLB AS FSYSTEMID,CT AS fname FROM JSTYW.D_QYLB
+WHERE QYLB IN ('105','103','106','304','201','104','300','301','208','302')
+UNION SELECT 1,'1011','入川施工企业' FROM DUAL
+UNION SELECT 1,'1031','入川监理企业' FROM DUAL
+UNION SELECT 3,'1051','入川招标代理' FROM DUAL
+UNION SELECT 2,'1041','入川造价咨询' FROM DUAL
+) A
+ORDER BY RN]]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT FNUMBER,FVALUE,FNAME,LX 
+FROM v_QY_CheckCertiError 
+${IF(QYLX='1011' || QYLX='208',""," WHERE FNAME<>'证书无主项' ")}
+order by FNUMBER]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[首页]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[上一页]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[下一页]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[末页]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet2">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1066800,723900,723900,2476500,1524000,723900,1181100,1485900,723900,1181100,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[3086100,16192500,5181600,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="3" s="0">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=IF(LEN(ds4.select(fname))=0,"",ds4.select(fname))+"数据清理表"]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="1" cs="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[="总计 " + ds3.select(ZHZS) + " 家"]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="3" rs="4" s="2">
+<O>
+<![CDATA[待清理数据]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" s="3">
+<O>
+<![CDATA[类  别]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" s="3">
+<O>
+<![CDATA[数  量]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="FNAME"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[LX]]></CNAME>
+<Compare op="0">
+<O t="I">
+<![CDATA[1]]></O>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="11"/>
+</C>
+<C c="2" r="4" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RN"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[WT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="4"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="0">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=NULL]]></Attributes>
+</O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[(LEN(B5)>0)]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.ValueHighlightAction">
+<O t="I">
+<![CDATA[0]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性2]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.FRFontHighlightAction">
+<FRFont name="宋体" style="0" size="84" foreground="-16777088"/>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性3]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='208')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[208]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="WT"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B5]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_SJSGQY_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性4]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='105' || $QYLX='106' || $QYLX='304' || $QYLX='3041' || $QYLX='104' || $QYLX='300' || $QYLX='301' || $QYLX='302')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="WT"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B5]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_QY_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性5]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='103' || $QYLX='201')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="WT"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B5]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_JL_JC_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性6]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='1011' || $QYLX='1031' || $QYLX='1041' || $QYLX='1051')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="WT"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B5]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_RC_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="5" rs="2" s="6">
+<O>
+<![CDATA[小计]]></O>
+<Expand/>
+</C>
+<C c="2" r="5" rs="2" s="7">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C5)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="7" rs="3" s="2">
+<O>
+<![CDATA[规范数据]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="FNAME"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[LX]]></CNAME>
+<Compare op="0">
+<O t="I">
+<![CDATA[2]]></O>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="6"/>
+</C>
+<C c="2" r="7" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RN"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[ZCFL]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="7"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="0">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=NULL]]></Attributes>
+</O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.ValueHighlightAction">
+<O t="I">
+<![CDATA[0]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性2]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.FRFontHighlightAction">
+<FRFont name="宋体" style="0" size="84" foreground="-16777088"/>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性3]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='208')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="I">
+<![CDATA[208]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ZCFL"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B8]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_SJSGQY_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性4]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='105' || $QYLX='106' || $QYLX='304' || $QYLX='3041' || $QYLX='104' || $QYLX='300' || $QYLX='301' || $QYLX='302')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="ZCFL"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B8]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_QY_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性5]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='103' || $QYLX='201')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="ZCFL"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B8]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_JL_JC_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性6]]></Name>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+</JoinCondition>
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.FormulaCondition">
+<Formula>
+<![CDATA[($QYLX='1011' || $QYLX='1031' || $QYLX='1041' || $QYLX='1051')]]></Formula>
+</Condition>
+</JoinCondition>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="ZCFL"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B8]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_RC_DZS_Detail.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="8" rs="2" s="6">
+<O>
+<![CDATA[小计]]></O>
+<Expand/>
+</C>
+<C c="2" r="8" rs="2" s="7">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C8)]]></Attributes>
+</O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="719999">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="false" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.FormParameterUI">
+<Layout class="com.fr.form.ui.container.WAbsoluteLayout">
+<WidgetName name="para"/>
+<WidgetAttr/>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="label1"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="0" autoline="true"/>
+<FRFont name="宋体" style="1" size="84"/>
+<widgetValue>
+<O>
+<![CDATA[查 询 条 件]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="0" y="0" width="103" height="21"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="label2"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="4" autoline="true"/>
+<FRFont name="SimSun" style="0" size="72" foreground="-16764058"/>
+<widgetValue>
+<O>
+<![CDATA[企业类型：]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="0" y="25" width="103" height="19"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.ComboBox">
+<WidgetName name="QYLX"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.TableDataDictionary">
+<FormulaDictAttr ki="0" vi="1"/>
+<TableDataDictAttr>
+<TableData class="com.fr.data.impl.NameTableData">
+<Name>
+<![CDATA[动态SQL1]]></Name>
+</TableData>
+</TableDataDictAttr>
+</Dictionary>
+<widgetValue/>
+</InnerWidget>
+<BoundsAttr x="103" y="25" width="271" height="19"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetName name="widget4"/>
+<WidgetAttr/>
+<Text>
+<![CDATA[查询]]></Text>
+<Hotkeys>
+<![CDATA[enter]]></Hotkeys>
+</InnerWidget>
+<BoundsAttr x="441" y="25" width="72" height="19"/>
+</Widget>
+<LCAttr vgap="0" hgap="0"/>
+</Layout>
+<DesignAttr width="548" height="58"/>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="108"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="6">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1" paddingRight="15">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1" paddingRight="11">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1" paddingRight="15">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>

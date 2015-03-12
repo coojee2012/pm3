@@ -1,0 +1,1321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="SFYX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT ROW_NUMBER() OVER (ORDER BY CT) AS RN
+,CASE WHEN GROUPING(CT)=1 THEN '合计' ELSE CT END AS CT,SUM(SL_SN),SUM(SL_RC),SUM(SL_AXZ),SUM(XJ)
+FROM 
+(
+SELECT LB.CT
+,(SELECT COUNT(A.QYID)
+FROM YW_QY_JBQK A,YW_QY_QYKGLB B,YW_QY_QYZF C
+WHERE A.QYID=B.QYID AND B.PERID=C.PERID
+   AND B.QYLB=LB.QYLB
+   and nvl(a.sfrc,'0')='0'
+   AND A.BZ like '老系统导入' ${IF(LEN(SFYX)=0,"",IF(SFYX=1,"  AND nvl(C.SX,0)=0 ","  AND nvl(C.SX,0)=1 "))} ) AS SL_SN
+   
+,(SELECT COUNT(A.QYID)
+FROM YW_QY_JBQK A,YW_QY_QYKGLB B,YW_QY_QYZF C
+WHERE A.QYID=B.QYID AND B.PERID=C.PERID
+   AND B.QYLB=LB.QYLB
+   and nvl(a.sfrc,'0')='1'
+   AND A.BZ like '老系统导入' ${IF(LEN(SFYX)=0,"",IF(SFYX=1,"  AND nvl(C.SX,0)=0 ","  AND nvl(C.SX,0)=1 "))} ) AS SL_RC  
+
+,(SELECT COUNT(A.QYID)
+FROM YW_QY_JBQK A,YW_QY_QYKGLB B,YW_QY_QYZF C
+WHERE A.QYID=B.QYID AND B.PERID=C.PERID
+   AND B.QYLB=LB.QYLB
+   and NVL(C.SFAQSCXKZ,0)=1 
+   AND A.BZ like '老系统导入' ${IF(LEN(SFYX)=0,"",IF(SFYX=1,"  AND nvl(C.SX,0)=0 ","  AND nvl(C.SX,0)=1 "))} ) AS SL_AXZ  
+     
+,(SELECT COUNT(A.QYID)
+FROM YW_QY_JBQK A,YW_QY_QYKGLB B,YW_QY_QYZF C
+WHERE A.QYID=B.QYID AND B.PERID=C.PERID 
+   AND B.QYLB=LB.QYLB
+   --and nvl(a.sfrc,'0')='0'
+   AND A.BZ like '老系统导入' ${IF(LEN(SFYX)=0,"",IF(SFYX=1,"  AND nvl(C.SX,0)=0 ","  AND nvl(C.SX,0)=1 "))} ) AS XJ
+        
+FROM D_QYLB LB
+) AA
+GROUP BY ROLLUP(CT)]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[首页]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[上一页]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[下一页]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[末页]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+<WebWriteContent>
+<ToolBars/>
+<SelectedColor color="-10033153"/>
+</WebWriteContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,723900,723900,838200,1152000,1152000,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,1218240,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2895600,6819900,7200000,7200000,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0">
+<Expand/>
+</C>
+<C c="0" r="2" cs="4" rs="2" s="0">
+<O>
+<![CDATA[旧系统账号导入情况统计]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" rs="2" s="1">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" rs="2" s="1">
+<O>
+<![CDATA[企业类型]]></O>
+<Expand/>
+</C>
+<C c="2" r="5" cs="2" s="1">
+<O>
+<![CDATA[企业帐号]]></O>
+<Expand/>
+</C>
+<C c="2" r="6" s="1">
+<O>
+<![CDATA[数量]]></O>
+<Expand/>
+</C>
+<C c="3" r="6" s="1">
+<O>
+<![CDATA[其中：有安许证帐号数量]]></O>
+<Expand/>
+</C>
+<C c="0" r="7" s="1">
+<O t="I">
+<![CDATA[1]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" s="2">
+<O>
+<![CDATA[施工企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="7"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="7" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="7"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="8" s="1">
+<O t="I">
+<![CDATA[2]]></O>
+<Expand/>
+</C>
+<C c="1" r="8" s="2">
+<O>
+<![CDATA[设计施工一体化]]></O>
+<Expand/>
+</C>
+<C c="2" r="8" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="8"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="8" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="8"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="9" s="1">
+<O t="I">
+<![CDATA[3]]></O>
+<Expand/>
+</C>
+<C c="1" r="9" s="2">
+<O>
+<![CDATA[监理企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="9" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="9"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="9" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="9"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="10" s="1">
+<O t="I">
+<![CDATA[4]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" s="2">
+<O>
+<![CDATA[质量检测机构]]></O>
+<Expand/>
+</C>
+<C c="2" r="10" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="10"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="10" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="10"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="11" s="1">
+<O t="I">
+<![CDATA[5]]></O>
+<Expand/>
+</C>
+<C c="1" r="11" s="2">
+<O>
+<![CDATA[勘察企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="11" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="11"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="11" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="11"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="12" s="1">
+<O t="I">
+<![CDATA[6]]></O>
+<Expand/>
+</C>
+<C c="1" r="12" s="2">
+<O>
+<![CDATA[设计企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="12" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="12"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="12" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="12"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="13" s="1">
+<O t="I">
+<![CDATA[7]]></O>
+<Expand/>
+</C>
+<C c="1" r="13" s="2">
+<O>
+<![CDATA[房地产企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="13" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="13"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="13" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="13"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="14" s="1">
+<O t="I">
+<![CDATA[8]]></O>
+<Expand/>
+</C>
+<C c="1" r="14" s="2">
+<O>
+<![CDATA[房地产估价机构]]></O>
+<Expand/>
+</C>
+<C c="2" r="14" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="14"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="14" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="14"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="15" s="1">
+<O t="I">
+<![CDATA[9]]></O>
+<Expand/>
+</C>
+<C c="1" r="15" s="2">
+<O>
+<![CDATA[物业企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="15" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="15"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="15" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="15"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="16" s="1">
+<O t="I">
+<![CDATA[10]]></O>
+<Expand/>
+</C>
+<C c="1" r="16" s="2">
+<O>
+<![CDATA[规划编制]]></O>
+<Expand/>
+</C>
+<C c="2" r="16" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="16"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="16" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="16"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="17" s="1">
+<O t="I">
+<![CDATA[11]]></O>
+<Expand/>
+</C>
+<C c="1" r="17" s="2">
+<O>
+<![CDATA[招标代理]]></O>
+<Expand/>
+</C>
+<C c="2" r="17" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="17"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="17" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="17"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="18" s="1">
+<O t="I">
+<![CDATA[12]]></O>
+<Expand/>
+</C>
+<C c="1" r="18" s="2">
+<O>
+<![CDATA[园林绿化]]></O>
+<Expand/>
+</C>
+<C c="2" r="18" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="18"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="18" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="18"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="19" s="1">
+<O t="I">
+<![CDATA[13]]></O>
+<Expand/>
+</C>
+<C c="1" r="19" s="2">
+<O>
+<![CDATA[造价咨询]]></O>
+<Expand/>
+</C>
+<C c="2" r="19" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="19"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="19" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="19"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="20" s="1">
+<O t="I">
+<![CDATA[14]]></O>
+<Expand/>
+</C>
+<C c="1" r="20" s="2">
+<O>
+<![CDATA[施工图审查]]></O>
+<Expand/>
+</C>
+<C c="2" r="20" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="20"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="20" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="20"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="21" s="1">
+<O t="I">
+<![CDATA[15]]></O>
+<Expand/>
+</C>
+<C c="1" r="21" s="2">
+<O>
+<![CDATA[项目管理企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="21" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="21"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="21" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="21"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="22" s="1">
+<O t="I">
+<![CDATA[16]]></O>
+<Expand/>
+</C>
+<C c="1" r="22" s="2">
+<O>
+<![CDATA[燃气经营企业]]></O>
+<Expand/>
+</C>
+<C c="2" r="22" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_SN)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="22"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="22" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_AXZ)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="22"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="0" r="23" s="1">
+<O t="I">
+<![CDATA[17]]></O>
+<Expand/>
+</C>
+<C c="1" r="23" s="2">
+<O>
+<![CDATA[入川施工]]></O>
+<Expand/>
+</C>
+<C c="2" r="23" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.ListCondition">
+<JoinCondition join="0">
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="7"/>
+</Compare>
+</Condition>
+</JoinCondition>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="23" s="1">
+<Expand/>
+</C>
+<C c="0" r="24" s="1">
+<O t="I">
+<![CDATA[18]]></O>
+<Expand/>
+</C>
+<C c="1" r="24" s="2">
+<O>
+<![CDATA[入川招标代理]]></O>
+<Expand/>
+</C>
+<C c="2" r="24" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="17"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="24" s="1">
+<Expand/>
+</C>
+<C c="0" r="25" s="1">
+<O t="I">
+<![CDATA[19]]></O>
+<Expand/>
+</C>
+<C c="1" r="25" s="2">
+<O>
+<![CDATA[入川造价咨询]]></O>
+<Expand/>
+</C>
+<C c="2" r="25" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="19"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="25" s="1">
+<Expand/>
+</C>
+<C c="0" r="26" s="1">
+<O t="I">
+<![CDATA[20]]></O>
+<Expand/>
+</C>
+<C c="1" r="26" s="2">
+<O>
+<![CDATA[入川监理]]></O>
+<Expand/>
+</C>
+<C c="2" r="26" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="9"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="26" s="1">
+<Expand/>
+</C>
+<C c="0" r="27" s="1">
+<O t="I">
+<![CDATA[21]]></O>
+<Expand/>
+</C>
+<C c="1" r="27" s="2">
+<O>
+<![CDATA[入川勘察]]></O>
+<Expand/>
+</C>
+<C c="2" r="27" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="11"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="27" s="1">
+<Expand/>
+</C>
+<C c="0" r="28" s="1">
+<O t="I">
+<![CDATA[22]]></O>
+<Expand/>
+</C>
+<C c="1" r="28" s="2">
+<O>
+<![CDATA[入川设计]]></O>
+<Expand/>
+</C>
+<C c="2" r="28" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="12"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="28" s="1">
+<Expand/>
+</C>
+<C c="0" r="29" s="1">
+<O t="I">
+<![CDATA[23]]></O>
+<Expand/>
+</C>
+<C c="1" r="29" s="2">
+<O>
+<![CDATA[入川项目管理]]></O>
+<Expand/>
+</C>
+<C c="2" r="29" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SUM(SL_RC)"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[2]]></CNUMBER>
+<CNAME>
+<![CDATA[CT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="21"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="29" s="1">
+<Expand/>
+</C>
+<C c="0" r="30" s="1">
+<Expand/>
+</C>
+<C c="1" r="30" s="2">
+<O>
+<![CDATA[合计]]></O>
+<Expand/>
+</C>
+<C c="2" r="30" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,C21,C22,C23,C24,C28,C30)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="3" r="30" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(D8,D9,D10,D11,D12,D13,D14,D15,D16,D17,D18,D19,D20,D21,D22,D23)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="31" s="1">
+<Expand/>
+</C>
+<C c="1" r="31" s="2">
+<Expand/>
+</C>
+<C c="2" r="31" s="1">
+<Expand/>
+</C>
+<C c="3" r="31" s="1">
+<Expand/>
+</C>
+<C c="0" r="32" s="1">
+<Expand/>
+</C>
+<C c="1" r="32" s="2">
+<Expand/>
+</C>
+<C c="2" r="32" s="1">
+<Expand/>
+</C>
+<C c="3" r="32" s="1">
+<Expand/>
+</C>
+<C c="0" r="33" s="1">
+<Expand/>
+</C>
+<C c="1" r="33" s="2">
+<Expand/>
+</C>
+<C c="2" r="33" s="1">
+<Expand/>
+</C>
+<C c="3" r="33" s="1">
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="719999">
+<PaperSetting>
+<Margin top="1008000" left="2160000" bottom="864000" right="1439999"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[第]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.PageNumberHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[1]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页/共]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.NumberOfPageHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[100]]></HFElement>
+<HFElement className="com.fr.report.headerfooter.TextHFElement">
+<FRFont name="SimSun" style="0" size="72"/>
+<![CDATA[页]]></HFElement>
+</CenterList>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="false" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.FormParameterUI">
+<Layout class="com.fr.form.ui.container.WAbsoluteLayout">
+<WidgetName name="para"/>
+<WidgetAttr/>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.ComboBox">
+<WidgetName name="SFYX"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="" value="全部"/>
+<Dict key="1" value="有效"/>
+<Dict key="0" value="无效"/>
+</CustomDictAttr>
+</Dictionary>
+<widgetValue>
+<O>
+<![CDATA[]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="276" y="10" width="119" height="21"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetName name="Search"/>
+<WidgetAttr/>
+<Text>
+<![CDATA[查询]]></Text>
+<Hotkeys>
+<![CDATA[enter]]></Hotkeys>
+</InnerWidget>
+<BoundsAttr x="534" y="10" width="80" height="21"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="label7_copy_copy"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="4" autoline="true"/>
+<FRFont name="SimSun" style="0" size="72" foreground="-13408513"/>
+<widgetValue>
+<O>
+<![CDATA[帐号状态：]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="145" y="8" width="85" height="23"/>
+</Widget>
+<Widget class="com.fr.form.ui.container.WAbsoluteLayout$BoundsWidget">
+<InnerWidget class="com.fr.form.ui.Label">
+<WidgetName name="label1_copy_copy"/>
+<WidgetAttr/>
+<LabelAttr verticalcenter="true" textalign="0" autoline="true"/>
+<FRFont name="宋体" style="1" size="84"/>
+<widgetValue>
+<O>
+<![CDATA[查 询 条 件]]></O>
+</widgetValue>
+</InnerWidget>
+<BoundsAttr x="0" y="0" width="120" height="38"/>
+</Widget>
+<LCAttr vgap="0" hgap="0"/>
+</Layout>
+<DesignAttr width="634" height="39"/>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="黑体" style="1" size="156"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1" paddingLeft="12">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>
