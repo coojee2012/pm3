@@ -16,8 +16,15 @@
     <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             txtCss();
+            //如果有“锁定” 就把行颜色设置为灰色
+            $("td").each(function (i) {
+                if ($.trim($(this).text()) == "锁定") {
+                    $(this).parents("tr").css('color', '#BEBFC3');
+                }
+
+            });
         });
         function CheckInfo() {
             return AutoCheckInfo();
