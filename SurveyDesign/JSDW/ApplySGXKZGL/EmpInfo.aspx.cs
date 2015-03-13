@@ -40,9 +40,17 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             case "2":
                 drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
                 break;
-            //承包单位
+            //专业承包单位
             case "3":
                 drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
+            //劳动分包
+            case "4":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
+            //勘察单位
+            case "5":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220212')");
                 break;
             //设计单位
             case "6":
@@ -75,6 +83,12 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
+        //证书等级
+        dt = rc.getDicTbByFNumber("920");
+        t_DJ.DataSource = dt;
+        t_DJ.DataTextField = "FName";
+        t_DJ.DataValueField = "FNumber";
+        t_DJ.DataBind();
     }
     //显示
     private void showInfo()
@@ -90,66 +104,58 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     //保存
     private void saveInfo()
     {
-
-        string sql = @" select count(*) from TC_PrjItem_Emp
-                            where EmpType='11220201'
-                            and FAppId='{0}'";
-        sql = string.Format(sql, t_FAppId.Value);
-        int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
-        dbContext = new EgovaDB();
-        string sql1 = @" select count(*) from TC_PrjItem_Emp
-                            where FIdCard='{0}'
-                            and FAppId='{1}'";
-        sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value);
+        string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'";
+        sql1 = string.Format(sql1, t_FIdCard.Text);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
-        dbContext = new EgovaDB();
-        string sql2 = @" select count(*) from TC_PrjItem_Emp
-                            where EmpType='11220209'
-                            and FAppId='{0}'";
-        sql2 = string.Format(sql2, t_FAppId.Value);
-        int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql2).FirstOrDefault());
-        if (t_EmpType.SelectedValue == "11220201" && count > 0)
-        {
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
-        }
-        else if (count1 > 0)
+        if (count1 > 0)
         {
             ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('人员不允许重复添加');window.returnValue='1';", true);
+            return;
         }
-        else if (count2 > 0)
+
+        string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}'";
+        sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value);
+        int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        if (count > 0)
         {
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
+            switch (t_EmpType.SelectedValue)
+            {
+                //项目负责人
+                case "11220201":
+                    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
+                    return;
+                //总监理工程师
+                case "11220209":
+                    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
+                    return;
+            }
+        }
+
+        dbContext = new EgovaDB();
+        string fId = txtFId.Value;
+        TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
+        if (!string.IsNullOrEmpty(fId))
+        {
+            Emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == fId).FirstOrDefault();
         }
         else
         {
-            dbContext = new EgovaDB();
-            string fId = txtFId.Value;
-            TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
-            if (!string.IsNullOrEmpty(fId))
-            {
-                Emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == fId).FirstOrDefault();
-            }
-            else
-            {
-                fId = Guid.NewGuid().ToString();
-                Emp.FId = fId;
-                Emp.FEmpId = h_selEmpId.Value;
-                Emp.FPrjItemId = t_FPrjItemId.Value;
-                Emp.FAppId = t_FAppId.Value;
-                Emp.FTime = DateTime.Now;
-                Emp.FCreateTime = DateTime.Now;
-                Emp.FEntId = t_FEntId.Value;
-                dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
-            }
-            pageTool tool = new pageTool(this.Page);
-            Emp = tool.getPageValue(Emp);
-            dbContext.SubmitChanges();
-            txtFId.Value = fId;
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+            fId = Guid.NewGuid().ToString();
+            Emp.FId = fId;
+            Emp.FEmpId = h_selEmpId.Value;
+            Emp.FPrjItemId = t_FPrjItemId.Value;
+            Emp.FAppId = t_FAppId.Value;
+            Emp.FTime = DateTime.Now;
+            Emp.FCreateTime = DateTime.Now;
+            Emp.FEntId = t_FEntId.Value;
+            dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
         }
+        pageTool tool = new pageTool(this.Page);
+        Emp = tool.getPageValue(Emp);
+        dbContext.SubmitChanges();
+        txtFId.Value = fId;
+        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
 
-        //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
-        //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
     public void Alert(string str_Message)
     {
@@ -173,16 +179,17 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FIdCard.Text = v.SFZH;
             t_FSex.SelectedValue = v.XB.ToString();
             t_FMobile.Text = v.GRDH;
-            t_ZC.SelectedItem.Text = v.ZC ?? "其他";
+            t_ZC.SelectedValue = ((v.ZC == null) ? this.t_ZC.Items.FindByText("其他").Value : (this.t_ZC.Items.FindByText(v.ZC) == null ? this.t_ZC.Items.FindByText("其他").Value : this.t_ZC.Items.FindByText(v.ZC).Value));
             t_ZW.Text = v.ZW;
             t_FTel.Text = v.BGDH;
-            t_ZGXL.SelectedItem.Text = "无";
+            t_ZGXL.SelectedValue = this.t_ZGXL.Items.FindByText("无").Value;
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
             if (v1 != null)
             {
                 t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
-                t_DJ.Text = v1.ZSJB;
+
+                t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
                 t_ZCBH.Text = v1.ZCZSH;
                 t_ZCZY.Text = v1.ZCZY;
                 t_ZCRQ.Text = v1.FZSJ.ToString();

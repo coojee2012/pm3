@@ -180,9 +180,9 @@
                 <asp:BoundColumn HeaderText="记录时间"  DataField="JLSJ" DataFormatString="{0:yyyy-MM-dd}" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="附件">
+               <%-- <asp:BoundColumn HeaderText="附件">
                     <ItemStyle Wrap="False" />
-                </asp:BoundColumn>
+                </asp:BoundColumn>--%>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
             </Columns>
         </asp:DataGrid>

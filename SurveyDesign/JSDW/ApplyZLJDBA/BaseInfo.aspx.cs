@@ -132,6 +132,82 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
     protected void btnSel_Click(object sender, EventArgs e)
     {
     }
+
+    //人员选择:建造师
+    protected void btnSel_JCS_Click(object sender, EventArgs e)
+    {
+
+        string selEmpid = sj_ZCJCS.Value; //注册建造师
+
+        EgovaDB1 db1 = new EgovaDB1();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        if (v != null)
+        {
+            q_JZS.Text = v.XM;;
+        }
+
+    }
+
+    //人员选择：结构师
+    protected void btnSel_JGS_Click(object sender, EventArgs e)
+    {
+
+        string selEmpid = sj_ZCJGS.Value; //注册结构师
+
+        EgovaDB1 db1 = new EgovaDB1();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        if (v != null)
+        {
+            q_JGS.Text = v.XM; ;
+        }
+
+    }
+
+    //人员选择：岩土工程师
+    protected void btnSel_YTG_Click(object sender, EventArgs e)
+    {
+
+        string selEmpid = kc_YTGCS.Value; //岩土工程师
+
+        EgovaDB1 db1 = new EgovaDB1();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        if (v != null)
+        {
+            q_YTGCS.Text = v.XM;
+            q_CCDWZS.Text = v.ZCZSBH;
+        }
+
+    }
+    //人员选择：项目经理
+    protected void btnSel_XMJ_Click(object sender, EventArgs e)
+    {
+
+        string selEmpid = sj_XMJL.Value; //项目经理
+
+        EgovaDB1 db1 = new EgovaDB1();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        if (v != null)
+        {
+            q_XMJL.Text = v.XM; ;
+        }
+
+    }
+
+    //人员选择：项目总监
+    protected void btnSel_XMZ_Click(object sender, EventArgs e)
+    {
+
+        string selEmpid = jl_XMZJ.Value; //项目总监
+
+        EgovaDB1 db1 = new EgovaDB1();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        if (v != null)
+        {
+            q_XMZJ.Text = v.XM; ;
+        }
+
+    }
+
     protected void btnSel_sj_Click(object sender, EventArgs e)
     {
         string selEntId = sj_FBaseInfoId.Value;

@@ -17,10 +17,27 @@
     <script type="text/javascript">
         $(document).ready(function () {
             txtCss();
+            var filepath = $("#t_FilePath").val();
+            //alert(filepath);
+            var patchs = filepath.split("|");
+            for (var i = 0; i < patchs.length; i++) {
+                if (patchs[i] != '') {
+                    var filename = patchs[i].split('/');
+                    filename = filename[filename.length - 1];
 
+                    var trHTML = "<tr id='id" + i + "'><td>" + filename + "</td>";
+                   
+                    trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + patchs[i] + "','id" + i + "');\">删除</a></td></tr>";
+
+                    $("#fileTables").append(trHTML);//在table最后面添加一行
+                }
+                
+
+            }
             
 
         });
+        var tmpid = 0;
         function SelectFiles() {
             var width = 600;
             var height = 400;
@@ -28,13 +45,15 @@
             var rv = window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;');
             if (rv != null && rv.split('|')[0] != 'undefined') {
                 var fileInfo = rv.split('|');
-                $('#t_FilePath').val(fileInfo[0]);
+                $('#t_FilePath').val($('#t_FilePath').val()+fileInfo[0]+"|");
                 var filename = fileInfo[0].split('/');
                 filename = filename[filename.length - 1];
                 $('#t_Size').val(fileInfo[1]);
-                var trHTML = "<tr id='" + filename + "'><td>" + filename + "</td>";
-                trHTML += "<td align=\"center\">" + (fileInfo[1] / 1024).toFixed(2) + "</td>";
-                trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + fileInfo[0] + "','" + filename + "');\">删除</a></td></tr>";
+                var filename2 = 'id' + tmpid;
+                tmpid += 1;
+                var trHTML = "<tr id='" + filename2 + "'><td>" + filename + "</td>";
+               // trHTML += "<td align=\"center\">" + (fileInfo[1] / 1024).toFixed(2) + "</td>";
+                trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + fileInfo[0] + "','" + filename2+ "');\">删除</a></td></tr>";
                
                 $("#fileTables").append(trHTML);//在table最后面添加一行
                 //$("#btnFileUpload").click();
@@ -45,8 +64,12 @@
 
         function removeRow(filePath,id) {
             var self = this;
-            alert(id);
-            alert($("#" + id));
+            //alert(id);
+            //alert($("#" + id));
+            var filePathnew = $("#t_FilePath").val();
+            filePathnew = filePathnew.replace(filePath + '|', '');
+            $("#t_FilePath").val(filePathnew);
+            //alert(filePathnew);
             $("#"+id).remove();
         }
 
@@ -194,8 +217,7 @@
         </table>
         <table id="fileTables" class="m_table" width="95%" align="center">
              <tr>
-                 <td class="t_c t_bg" align="center" style="width:50%;"><b>文件名</b></td>
-                 <td class="t_c t_bg" align="center" style="width:30%;"><b>大小(kb)</b></td>
+                 <td class="t_c t_bg" align="center" style="width:80%;"><b>文件名</b></td>    
                  <td class="t_c t_bg" align="center" style="width:20%;"><b>操作</b></td>
              </tr>
             

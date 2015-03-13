@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,14 +13,35 @@ public partial class JSDW_ApplyZLJDBA_PrjBaseInfo : System.Web.UI.Page
     EgovaDB db = new EgovaDB();
     string fAppId = "";
     string fPrjItemType = "";
+    string fPrjid = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            
             fAppId = EConvert.ToString(Session["FAppId"]);
             TC_QA_Record qa = db.TC_QA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
-            fPrjItemType = qa.PrjItemType;
-            ViewState["FPrjItemType"] = qa.PrjItemType;
+
+
+            if (string.IsNullOrEmpty(fPrjItemType))  //备案表的数据没有保存，直接切换到项目基本表中，则取不到相应的类型，则从项目基本信息表中获取。
+            {
+               
+                var pj = (from t in db.TC_PrjItem_Info
+                         join a in db.TC_QA_Record on t.FPrjId equals a.FPrjId
+                         where (a.FAppId == fAppId)
+                         select new 
+                         { 
+                            t.PrjItemType 
+                          }).FirstOrDefault();
+
+                fPrjItemType = pj.PrjItemType;
+
+            }
+            else {
+                fPrjItemType = qa.PrjItemType;
+            }
+
+            ViewState["FPrjItemType"] = fPrjItemType;
             if (fPrjItemType == "2000101")//房屋建筑
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "showDiv2", "<script>showDiv2();</script>");

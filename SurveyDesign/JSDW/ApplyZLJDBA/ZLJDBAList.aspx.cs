@@ -160,6 +160,7 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
         Session["FAppId"] = FAppId;
         Session["FManageTypeId"] = fMType;
         Session["FIsApprove"] = 0;
+        this.Session["FPrjid"] = t_FPrjId.Value;
         tool.ExecuteScript("top.document.location='../Appmain/aindex.aspx';");
     }
     protected void btnOk_Click(object sender, EventArgs e)
@@ -398,6 +399,8 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
             string FId = Convert.ToString(e.CommandArgument);
             this.Session["FAppId"] = FId;
             this.Session["FManageTypeId"] = fMType;
+   
+
             //if (fState != 0 && fState != 2)
             //    Session["FIsApprove"] = 1;
             //else

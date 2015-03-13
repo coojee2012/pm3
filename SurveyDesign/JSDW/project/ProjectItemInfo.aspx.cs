@@ -108,6 +108,8 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
+
+ 
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
     //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
