@@ -112,7 +112,7 @@
             </tr>
         </table>
         <div style="margin: 20px auto 0 auto; width: 500px; height: 20px;">
-            <tt>提示：系统已经接收到您的注册信息，待管理员审核成功后，你便可登陆系统</tt>
+            <tt>提示：系统已经接收到您的注册信息，你便可登陆系统</tt>
         </div>
         <div style="margin: 20px auto 0 auto; width: 400px; height: 50px;">
             <asp:Button ID="btnREG" runat="server" CssClass="reg_btn0" Text="返回注册页" OnClick="btnREG_Click" />

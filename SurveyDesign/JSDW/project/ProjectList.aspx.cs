@@ -29,7 +29,7 @@ public partial class JSDW_project_ProjectList : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         var v = from t in dbContext.TC_Prj_Info
-                join t1 in dbContext.CF_Sys_ManageDept on t.AddressDept equals t1.FCNumber
+                join t1 in dbContext.CF_Sys_ManageDept on t.AddressDept equals t1.FNumber.ToString()
                 orderby t.ProjectTime
                 select new
                 {

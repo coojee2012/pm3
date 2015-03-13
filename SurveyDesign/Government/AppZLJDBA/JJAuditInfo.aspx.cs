@@ -107,7 +107,8 @@ public partial class Government_AppZLJDBA_JJAuditInfo : System.Web.UI.Page
 
         var v = from t in dbContext.CF_Sys_PrjList
                 orderby t.FId
-                where t.FManageType == 11221
+                //where t.FManageType == 11221   
+                where t.FManageType == 11222   
                 select new
                 {
                     t.FId,
