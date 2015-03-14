@@ -79,12 +79,12 @@ public partial class JSDW_ApplyAQJDBA_PrjFile : System.Web.UI.Page
             dbContext.TC_AJBA_PrjFile.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
-        if (string.IsNullOrEmpty(t_FFilePath.Value))
+        if (string.IsNullOrEmpty(t_FFilePath.Value) && string.IsNullOrEmpty(fileName.Text.Trim()))
         {
             tool.showMessage("请选择文件");
             return;
         }
-        if (string.IsNullOrEmpty(t_FFileName.Text))
+        if (string.IsNullOrEmpty(t_FFileName.Text) && string.IsNullOrEmpty(fileName.Text.Trim()))
         {
             tool.showMessage("请填写附件名称");
             t_FFileName.Focus();
@@ -97,6 +97,15 @@ public partial class JSDW_ApplyAQJDBA_PrjFile : System.Web.UI.Page
         }
         //Emp = tool.getPageValue(Emp);
         Emp.FFileName = t_FFileName.Text;
+        Emp.FRemarks = t_FRemarks.Text;
+        Emp.FSize = EConvert.ToInt(t_FSize.Value);
+
+        //附件url
+        string str = t_FFilePath.Value;
+        //附件类型
+        t_FFileType.Value = str.Split('.').ToList().Last();
+        Emp.FFileType = t_FFileType.Value;
+        Emp.FFilePath = t_FFilePath.Value;
         Emp.FCreateTime = DateTime.Now;
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;

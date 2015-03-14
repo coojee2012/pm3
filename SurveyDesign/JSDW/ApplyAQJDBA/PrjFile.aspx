@@ -27,14 +27,19 @@
         }
 
         function check() {
-            if ($("#t_FFilePath").val() == "") {
-                alert("请选择文件");
-                return false;
-            }
-            if ($("#t_FName").val() == "") {
-                alert("请填写附件名称");
-                $("#t_FName").focus();
-                return false;
+            var filenames = $("#fileName").val();
+            alert(filenames);
+            if ($("#fileName").val() == "") {
+
+                if ($("#t_FFilePath").val() == "") {
+                    alert("请选择文件");
+                    return false;
+                }
+                if ($("#t_FName").val() == "") {
+                    alert("请填写附件名称");
+                    $("#t_FName").focus();
+                    return false;
+                }
             }
             return trim;
         }
