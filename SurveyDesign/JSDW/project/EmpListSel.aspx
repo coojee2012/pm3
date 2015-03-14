@@ -24,11 +24,12 @@
                     $(this).parents("tr").css('color', '#0000ff');
                 }
             });
+            SetDDLEmpType();
         });
         function CheckInfo() {
             return AutoCheckInfo();
         }
-
+        
         function selEmp(item) {
 
             var trNode = item.parentNode.parentNode.childNodes[3];
@@ -43,7 +44,18 @@
                     return true;
                 }
             }
+            return confirm('确认要选择该人员吗?');
             return true;
+        }
+        function SetDDLEmpType()
+        {
+            var rylx = document.getElementById("<%=lblRylx.ClientID%>").value;
+                if (rylx == "t_SGRYId") {
+                    document.getElementById("<%=ddlEmpType.ClientID%>").value = "2";
+                }
+                if (rylx == "t_JLRYId") {
+                    document.getElementById("<%=ddlEmpType.ClientID%>").value = "1";
+                }
         }
     </script>
 
@@ -54,6 +66,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="3">
+                <input type="hidden" name="lblRylx" id="lblRylx" runat="server" />
                 <asp:Label ID="lTitle" runat="server" Text="单位" ></asp:Label>人员列表
             </th>
         </tr>
@@ -83,7 +96,7 @@
                 人员类型
             </td>
             <td colspan="1" class="t_l">
-              <asp:DropDownList ID="ddlEmpType" runat="server" Width="200px">
+              <asp:DropDownList ID="ddlEmpType" runat="server" Width="200px" Enabled="false">
                     <asp:ListItem Value="-1">--全部--</asp:ListItem>
                     <asp:ListItem Value="1">项目技术负责人</asp:ListItem>
                     <asp:ListItem Value="2">项目负责人</asp:ListItem>

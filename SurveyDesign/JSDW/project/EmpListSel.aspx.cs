@@ -24,6 +24,11 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         {
             string qybm = EConvert.ToString(Request.QueryString["qybm"]);
             string prjItemid = EConvert.ToString(Request.QueryString["FPrjItemId"]);
+            lblRylx.Value = EConvert.ToString(Request.QueryString["rylx"]);
+            if (lblRylx.Value == "t_SGRYId")
+                ddlEmpType.SelectedValue = "-1";
+            if (lblRylx.Value == "t_JLRYId")
+                ddlEmpType.SelectedValue = "-1";
             ViewState["qybm"] = qybm;
             ViewState["FPrjItemId"] = prjItemid;
             BindControl();
