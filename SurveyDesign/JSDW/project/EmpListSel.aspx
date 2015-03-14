@@ -20,23 +20,30 @@
             txtCss();
             //如果有“锁定” 就把行颜色设置为灰色
             $("td").each(function (i) {
-                if ($.trim($(this).text()) == "锁定") {
-                    $(this).parents("tr").css('color', '#BEBFC3');
+                if ($.trim($(this).text()) === "锁定") {
+                    $(this).parents("tr").css('color', '#0000ff');
                 }
-
             });
         });
         function CheckInfo() {
             return AutoCheckInfo();
         }
-        function selEmp() {
-            var tr = $(this).parent().parent();
-            var hLock = $('[id$="h_lock"]');
-            if (hLock && hLock.val()=="1") {
-                alert("所选人员已参与其他区域在建工程，不允许选入！");
-                return false;
+
+        function selEmp(item) {
+
+            var trNode = item.parentNode.parentNode.childNodes[3];
+           
+            if (trNode) {
+                var nodetext = trNode.innerText;
+
+                if ($.trim(nodetext) == "锁定") {
+                    alert("所选人员已参与其他区域在建工程，不允许选入！");
+                    return false;
+                } else {
+                    return true;
+                }
             }
-            return confirm('确认要选择该人员吗?');
+            return true;
         }
     </script>
 
