@@ -192,7 +192,7 @@
                     等级：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_DJ" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:DropDownList ID="t_DJ" runat="server"  CssClass="m_txt" Width="200px"></asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
                     注册编号：

@@ -21,6 +21,7 @@ using EgovaDAO;
 using EgovaBLL;
 using ProjectBLL;
 using Tools;
+using System.Data.SqlClient;
 
 public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
 {
@@ -321,19 +322,54 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        var v = from a in db.TC_PrjItem_Emp
                where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)
                select a;
-       foreach(var item in v.ToList<TC_PrjItem_Emp>()){
-           TC_PrjItem_Emp_Lock lockInfo = new TC_PrjItem_Emp_Lock();
-           lockInfo.FId = new Guid().ToString();
-           lockInfo.FIdCard = item.FIdCard;
-           lockInfo.FHumanName = item.FHumanName;
-           lockInfo.FAppId = item.FAppId;
-           lockInfo.FPrjId = item.FPrjId;
-           lockInfo.FPrjItemId = item.FPrjItemId;
-           lockInfo.FEntId = item.FEntId;
-           lockInfo.FEntName = item.FEntName;
-           db.TC_PrjItem_Emp_Lock.InsertOnSubmit(lockInfo);
+       string sql = "";
+       try {
+           using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+           {
+               if (conn.State == ConnectionState.Closed)
+                   conn.Open();
+
+               foreach (var item in v.ToList<TC_PrjItem_Emp>())
+               {
+                   sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName) VALUES ";
+                   sql += "('" + Guid.NewGuid().ToString();
+                   sql += "','" + item.FIdCard;
+                   sql += "','" + item.FHumanName;
+                   sql += "','" + item.FAppId;
+                   sql += "','" + item.FPrjId;
+                   sql += "','" + item.FPrjItemId;
+                   sql += "','" + item.FEntId;
+                   sql += "','" + item.FEntName;
+                   sql += "')";
+                   //TC_PrjItem_Emp_Lock lockInfo = new TC_PrjItem_Emp_Lock();
+                   //lockInfo.FId = Guid.NewGuid().ToString();
+                   //lockInfo.FIdCard = item.FIdCard;
+                   //lockInfo.FHumanName = item.FHumanName;
+                   //lockInfo.FAppId = item.FAppId;
+                   //lockInfo.FPrjId = item.FPrjId;
+                   //lockInfo.FPrjItemId = item.FPrjItemId;
+                   //lockInfo.FEntId = item.FEntId;
+                   //lockInfo.FEntName = item.FEntName;
+                   //db.TC_PrjItem_Emp_Lock.InsertOnSubmit(lockInfo);
+
+                   SqlCommand cmd = new SqlCommand(sql, conn);
+
+                   int a = cmd.ExecuteNonQuery();
+
+
+
+               }
+           }
        }
-       db.SubmitChanges();
+       catch(Exception ex){
+           string test=sql;
+           throw ex;
+           }
+       
+      // sql = sql.Substring(0, sql.Length - 1);
+
+      
+      // db.SubmitChanges();
        
    }
    

@@ -92,6 +92,11 @@ public partial class JSDW_ApplyAQJDBA_PrjPic : System.Web.UI.Page
             return;
         }
         Emp = tool.getPageValue(Emp);
+        Emp.FFilePath = t_FFilePath.Value;
+        Emp.FFileType = t_FFileType.Value;
+        Emp.FFileName = t_FFileName.Text;
+        Emp.FRemarks = t_FRemarks.Text;
+
         Emp.FCreateTime = DateTime.Now;
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;

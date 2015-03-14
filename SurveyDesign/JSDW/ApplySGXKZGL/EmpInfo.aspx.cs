@@ -41,9 +41,17 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             case "2":
                 drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
                 break;
-            //承包单位
+            //专业承包单位
             case "3":
                 drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
+            //劳动分包
+            case "4":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208')");
+                break;
+            //勘察单位
+            case "5":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220212')");
                 break;
             //设计单位
             case "6":
@@ -76,6 +84,12 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
+        //证书等级
+        dt = rc.getDicTbByFNumber("920");
+        t_DJ.DataSource = dt;
+        t_DJ.DataTextField = "FName";
+        t_DJ.DataValueField = "FNumber";
+        t_DJ.DataBind();
     }
     //显示
     private void showInfo()
@@ -166,16 +180,17 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FIdCard.Text = v.SFZH;
             t_FSex.SelectedValue = v.XB.ToString();
             t_FMobile.Text = v.GRDH;
-            t_ZC.SelectedItem.Text = v.ZC ?? "其他";
+            t_ZC.SelectedValue = ((v.ZC == null) ? this.t_ZC.Items.FindByText("其他").Value : (this.t_ZC.Items.FindByText(v.ZC) == null ? this.t_ZC.Items.FindByText("其他").Value : this.t_ZC.Items.FindByText(v.ZC).Value));
             t_ZW.Text = v.ZW;
             t_FTel.Text = v.BGDH;
-            t_ZGXL.SelectedItem.Text = "无";
+            t_ZGXL.SelectedValue = this.t_ZGXL.Items.FindByText("无").Value;
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
             if (v1 != null)
             {
                 t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
-                t_DJ.Text = v1.ZSJB;
+
+                t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
                 t_ZCBH.Text = v1.ZCZSH;
                 t_ZCZY.Text = v1.ZCZY;
                 t_ZCRQ.Text = v1.FZSJ.ToString();
