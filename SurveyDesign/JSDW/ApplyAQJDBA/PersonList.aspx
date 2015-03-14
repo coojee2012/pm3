@@ -21,7 +21,6 @@
         });
         function addPerson() {
             var fid = '<%=ViewState["FAppId"] %>';
-            alert(fid);
             if (fid == null || fid == '') {
                 return;
             }

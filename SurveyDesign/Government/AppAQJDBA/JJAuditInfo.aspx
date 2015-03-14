@@ -263,7 +263,7 @@
                 Text="退回建设单位"  OnClick="btnBackToEnt_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />
+           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = 1;window.close();" />
         </div>
  
         <input id="t_fLinkId" runat="server" type="hidden" />

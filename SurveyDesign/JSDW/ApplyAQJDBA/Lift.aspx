@@ -21,6 +21,24 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+        function selEmp(obj, tagId) {
+            var url = "../project/JqsbxxSel.aspx?1=1";
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
+
+        }
+        function addCZRY() {
+            var fid = document.getElementById("txtFId").value;;
+            if (fid == null || fid == '') {
+                alert('请先保存上方的起重设备信息！');
+                return;
+            }
+            showAddWindow('Lift_CZRY.aspx?fLinkId=' + fid, 800, 550);
+            //  alert('dd')
+        }
     </script>
     <base target="_self">
     </base>
@@ -51,6 +69,9 @@
                 <td colspan="1">
                     <asp:TextBox ID="t_SBMC" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                     <tt>*</tt>
+                    <input type="hidden"  runat="server" ID="t_SBID" value="" />
+                    <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_SBID');"
+                    UseSubmitBehavior="false" CommandName="SGT" Style="margin-bottom: 4px;margin-left:5px;" OnClick="btnAdd_Click" />
                 </td>
                 <td class="t_r t_bg">
                     备案编号：
@@ -123,9 +144,69 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_BAJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <input id="txtFId" type="hidden" runat="server" />
                 </td>
             </tr>  
         </table>
+        
+        <table width="98%" align="center" class="m_bar">
+            <tr>
+                <td class="m_bar_l">
+                </td>
+                <td>
+                    操作人员列表
+                </td>
+                <td class="t_r">
+
+                    <input type="button" id="Button1" runat="server" value="新增" class="m_btn_w2" onclick="addCZRY();" />
+
+                    <asp:Button ID="btnDel" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
+                        OnClick="btnDel_Click" />
+                    <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click" />
+                </td>
+                <td class="m_bar_r">
+                </td>
+            </tr>
+        </table>
+        <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
+            HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBound" Style="margin-top: 6px;
+            margin-bottom: 1px;" Width="98%">
+            <HeaderStyle CssClass="m_dg1_h" />
+            <ItemStyle CssClass="m_dg1_i" />
+            <Columns>
+                <asp:TemplateColumn>
+                    <HeaderStyle Width="30px" />
+                    <HeaderTemplate>
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="CheckItem" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:BoundColumn HeaderText="序号">
+                    <HeaderStyle Width="30px" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="姓名" DataField="Name">
+                    <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="工种" DataField="Trades">
+                    <ItemStyle Wrap="False"/>
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="操作证号" DataField="CZZH">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn DataField="ID" Visible="false"></asp:BoundColumn>
+            </Columns>
+        </asp:DataGrid>
+        <div style="padding-left: 1%">
+            <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
+                CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
+                CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" layouttype="Table"
+                NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
+                pageindexboxtype="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
+                showpageindexbox="Always" SubmitButtonText="Go" textafterpageindexbox="页" textbeforepageindexbox="转到">
+            </webdiyer:AspNetPager>
+        </div>
     </div>
     </form>
 </body>

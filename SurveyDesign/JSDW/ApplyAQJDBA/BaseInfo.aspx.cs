@@ -73,6 +73,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         TC_AJBA_Record qa = new TC_AJBA_Record();
         qa = db.TC_AJBA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
         qa.JSDW = p_JSDW.Text;
+        qa.FJSDWID = p_FJSDWID.Value;
         pageTool tool = new pageTool(this.Page,"p_");
         qa = tool.getPageValue(qa);
         tool = new pageTool(this.Page, "pj_");
