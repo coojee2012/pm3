@@ -19,13 +19,13 @@ public partial class JSDW_project_ProjectItemSel : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            showInfo();
+           // showInfo();  根据测试要求，默认时不显示数据，需按查询条件显示数据
         }
     }
     //显示 
     void showInfo()
     {
-        IQueryable<TC_PrjItem_Info> App = dbContext.TC_PrjItem_Info.Where(t => t.FJSDWID == CurrentEntUser.EntId).OrderByDescending(t => t.FId);        
+        IQueryable<TC_PrjItem_Info> App = dbContext.TC_PrjItem_Info.OrderByDescending(t => t.FId);          //去掉本单位的条件.Where(t => t.FJSDWID == CurrentEntUser.EntId)
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
         Pager1.RecordCount = App.Count();

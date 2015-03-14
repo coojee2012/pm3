@@ -1,0 +1,3361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20141222" releaseVersion="7.1.1">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select a.*,b.cost,
+  case b.PrjItemType when '2000102' then '市政基础设施工程' else '' end  as Prjtypename 
+  from TC_QA_Record a,TC_PrjItem_Info b 
+ where  a. FPrjId = b.FPrjId  and  a.FAppId='${FAppId}']]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[1ecb84a1-8f4a-40d0-89e8-2afc56aafa8e]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select YEAR(FReportDate) year,MONTH(FReportDate) month,DAY(FReportDate) day 
+ from CF_App_List a,TC_QA_Record b 
+where b.FAppId=a.FId and a.FId='${FAppId}']]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[DECLARE	@return_value int,
+		@FBriBaseType varchar(500),
+		@BriBaseType varchar(500),
+		@FBriBottomType varchar(500),
+		@BriBottomType varchar(500),
+		@FBriTopType varchar(500),
+		@BriTopType varchar(500),
+		@FBriLoadLevel varchar(500),
+		@BriLoadLevel varchar(500),
+		@FRBBaseType varchar(500),
+		@RBBaseType varchar(500),
+		@FRBMainType varchar(500),
+		@RBMainType varchar(500),
+		@FTunnelBaseType varchar(500),
+		@TunnelBaseType varchar(500),
+		@FTunnelMainType varchar(500),
+		@TunnelMainType varchar(500),
+		@FTunnelPumpHouse varchar(500),
+		@TunnelPumpHouse varchar(500),
+		@FRoadLayerType varchar(500),
+		@RoadLayerType varchar(500),
+		@FDrainagePipeType varchar(500),
+		@DrainagePipeType varchar(500),
+		@FWSPipeType varchar(500),
+		@WSPipeType varchar(500),
+		@FECConstrType varchar(500),
+		@ECConstrType varchar(500),
+		@FGasPipeType varchar(500),
+		@GasPipeType varchar(500),
+		@FWTBaseType varchar(500),
+		@WTBaseType varchar(500),
+		@FWTMainType varchar(500),
+		@WTMainType varchar(500)
+		
+		
+		
+select @FBriBaseType = BriBaseType
+,@FBriBottomType = BriBottomType
+,@FBriTopType = BriTopType
+,@FBriLoadLevel = BriLoadLevel
+,@FRBBaseType = RBBaseType
+,@FRBMainType = RBMainType
+,@FTunnelBaseType = TunnelBaseType
+,@FTunnelMainType = TunnelMainType
+,@FTunnelPumpHouse = TunnelPumpHouse
+,@FRoadLayerType = RoadLayerType
+,@FDrainagePipeType = DrainagePipeType
+,@FWSPipeType = WSPipeType
+,@FECConstrType = ECConstrType
+,@FGasPipeType = GasPipeType
+,@FWTBaseType = WTBaseType
+,@FWTMainType = WTMainType
+
+
+from TC_QA_PrjAddition where FAppId='${FAppId}'
+
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FBriBaseType,
+		@sType = N'BriBaseType',
+		@fAppId ='${FAppId}',
+		@sExtField = N'BriBaseTxt',
+		@sOutput = @BriBaseType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FBriBottomType,
+		@sType = N'BriBottomType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @BriBottomType OUTPUT
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FBriTopType,
+		@sType = N'BriTopType',
+		@fAppId ='${FAppId}',
+		@sExtField = N'BriTopTxt',
+		@sOutput = @BriTopType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FBriLoadLevel,
+		@sType = N'BriLoadLevel',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @BriLoadLevel OUTPUT
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FRBBaseType,
+		@sType = N'RBBaseType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @RBBaseType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FRBMainType,
+		@sType = N'RBMainType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @RBMainType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FTunnelBaseType,
+		@sType = N'TunnelBaseType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @TunnelBaseType OUTPUT		
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FTunnelMainType,
+		@sType = N'TunnelMainType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @TunnelMainType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FTunnelPumpHouse,
+		@sType = N'TunnelPumpHouse',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @TunnelPumpHouse OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FRoadLayerType,
+		@sType = N'RoadLayerType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @RoadLayerType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FDrainagePipeType,
+		@sType = N'DrainagePipeType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @DrainagePipeType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FWSPipeType,
+		@sType = N'WSPipeType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @WSPipeType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FECConstrType,
+		@sType = N'ECConstrType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @ECConstrType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FGasPipeType,
+		@sType = N'GasPipeType',
+		@fAppId ='${FAppId}',
+		@sExtField = N'GasPipeTxt',
+		@sOutput = @GasPipeType OUTPUT
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FWTBaseType,
+		@sType = N'WTBaseType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @WTBaseType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToTextExt]A
+		@sInput = @FWTMainType,
+		@sType = N'WTMainType',
+		@fAppId ='${FAppId}',
+		@sExtField = null,
+		@sOutput = @WTMainType OUTPUT																																						
+		
+
+SELECT	@BriBaseType as N'BriBaseType'
+,@BriBottomType as N'BriBottomType'
+,@BriTopType as N'BriTopType'
+,@BriLoadLevel as N'BriLoadLevel'
+,@RBBaseType as N'RBBaseType'
+,@RBMainType as N'RBMainType'
+,@TunnelBaseType as N'TunnelBaseType'
+,@TunnelMainType as N'TunnelMainType'
+,@TunnelPumpHouse as N'TunnelPumpHouse'
+,@RoadLayerType as N'RoadLayerType'
+,@DrainagePipeType as N'DrainagePipeType'
+,@WSPipeType as N'WSPipeType'
+,@ECConstrType as N'ECConstrType'
+,@GasPipeType as N'GasPipeType'
+,@WTBaseType as N'WTBaseType'
+,@WTMainType as N'WTMainType'
+]]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select *
+from TC_QA_PrjAddition where FAppId='${FAppId}']]></Query>
+</TableData>
+<TableData name="ds5" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[DECLARE	@return_value int,
+		@BriLength varchar(500),
+		@str1 varchar(50),
+		@str2 varchar(50)
+		
+		
+select 
+@str1 = ltrim(rtrim(SUBSTRING(BriLength,1,1))),
+@str2 = ltrim(rtrim(SUBSTRING(BriLength,3,LEN(BriLength)-2)))
+from TC_QA_PrjAddition where FAppId='${FAppId}'	
+
+if @str1 like '1'
+begin
+  set @BriLength = '单跨(联):' + @str2
+end 
+else
+begin
+  set @BriLength = '多跨(联):' + @str2
+end 
+
+SELECT	@BriLength as N'BriLength'
+
+]]></Query>
+</TableData>
+<TableData name="ds6" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[DECLARE	@return_value int,
+		@DrainageDiameter varchar(500),
+		@str1 varchar(50),
+		@str2 varchar(50)
+		
+		
+select 
+@str1 = ltrim(rtrim(SUBSTRING(DrainageDiameter,1,1))),
+@str2 = ltrim(rtrim(SUBSTRING(DrainageDiameter,3,LEN(DrainageDiameter)-2)))
+from TC_QA_PrjAddition where FAppId='${FAppId}'	
+
+if @str1 like '1'
+begin
+  set @DrainageDiameter = '雨水主管:' + @str2
+end 
+else
+begin
+  set @DrainageDiameter = '污水主管:' + @str2
+end 
+
+SELECT	@DrainageDiameter as N'DrainageDiameter']]></Query>
+</TableData>
+<TableData name="ds_bri" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fAppId"/>
+<O>
+<![CDATA[1ecb84a1-8f4a-40d0-89e8-2afc56aafa8e]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+	case CHARINDEX('1', bribasetype) when 0 then null else 1 end  as bribasetype1,
+	case CHARINDEX('2', bribasetype) when 0 then null else 1 end  as bribasetype2,
+
+	case CHARINDEX('1', bribottomtype) when 0 then null else 1 end  as bribottomtype1,
+	case CHARINDEX('2', bribottomtype) when 0 then null else 1 end  as bribottomtype2,
+	case CHARINDEX('3', bribottomtype) when 0 then null else 1 end  as bribottomtype3,
+	case CHARINDEX('4', bribottomtype) when 0 then null else 1 end  as bribottomtype4,
+
+	case CHARINDEX('1', BriTopType) when 0 then null else 1 end  as BriTopType1,
+	case CHARINDEX('2', BriTopType) when 0 then null else 1 end  as BriTopType2,
+	case CHARINDEX('3', BriTopType) when 0 then null else 1 end  as BriTopType3,
+	case CHARINDEX('4', BriTopType) when 0 then null else 1 end  as BriTopType4,
+	case CHARINDEX('5', BriTopType) when 0 then null else 1 end  as BriTopType5,
+	case CHARINDEX('6', BriTopType) when 0 then null else 1 end  as BriTopType6,
+	case CHARINDEX('7', BriTopType) when 0 then null else 1 end  as BriTopType7,
+	case CHARINDEX('8', BriTopType) when 0 then null else 1 end  as BriTopType8,
+	case CHARINDEX('9', BriTopType) when 0 then null else 1 end  as BriTopType9,
+	case CHARINDEX('10', BriTopType) when 0 then null else 1 end  as BriTopType10,
+
+	case when CHARINDEX('1', brilength) = 1 then substring(brilength,3,len(brilength) - 2) end as brilength1,
+	case when CHARINDEX('2', brilength) = 1 then substring(brilength,3,len(brilength) - 2) end as brilength2,
+
+	case CHARINDEX('1', briloadlevel) when 0 then null else 1 end  as briloadlevel1,
+	case CHARINDEX('2', briloadlevel) when 0 then null else 1 end  as briloadlevel2,
+	brimaxspan, briremarks,
+
+	case CHARINDEX('1', rbbasetype) when 0 then null else 1 end  as rbbasetype1,
+	case CHARINDEX('2', rbbasetype) when 0 then null else 1 end  as rbbasetype2,
+
+	case CHARINDEX('1', rbmaintype) when 0 then null else 1 end  as rbmaintype1,
+	case CHARINDEX('2', rbmaintype) when 0 then null else 1 end  as rbmaintype2,
+	rblength, rbremarks,
+
+	case CHARINDEX('1', tunnelbasetype) when 0 then null else 1 end  as tunnelbasetype1,
+	case CHARINDEX('2', tunnelbasetype) when 0 then null else 1 end  as tunnelbasetype2,
+	
+	case CHARINDEX('1', tunnelmaintype) when 0 then null else 1 end  as tunnelmaintype1,
+	case CHARINDEX('2', tunnelmaintype) when 0 then null else 1 end  as tunnelmaintype2,
+	
+	case CHARINDEX('1', tunnelpumphouse) when 0 then null else 1 end  as tunnelpumphouse1,
+	case CHARINDEX('2', tunnelpumphouse) when 0 then null else 1 end  as tunnelpumphouse2,
+	tunnellength, tunneldig, tunnelremarks,
+
+	case CHARINDEX('1', roadlayertype) when 0 then null else 1 end  as roadlayertype1,
+	case CHARINDEX('2', roadlayertype) when 0 then null else 1 end  as roadlayertype2,
+	roadlength, roadwidth, roadremarks,
+	
+	isnull(case when CHARINDEX('1,', drainagediameter) = 1 and CHARINDEX('2,',drainagediameter) > 0
+	then substring(left(drainagediameter,CHARINDEX('2,',drainagediameter) - 2),3,len(drainagediameter) - 2 ) end ,'') +
+	   isnull(case when CHARINDEX('1,', drainagediameter) = 1 and CHARINDEX('2,',drainagediameter) = 0 
+	               then substring(drainagediameter,3,len(drainagediameter) -  2) end , '') as drainagediameter1,
+	   isnull(case when CHARINDEX('1,', drainagediameter) > 0 and CHARINDEX('2,',drainagediameter) > 0
+	               then substring(drainagediameter,CHARINDEX('2,',drainagediameter) + 2 ,len(drainagediameter) -  CHARINDEX('2,',drainagediameter) - 1) end ,'') +
+	   isnull(case when CHARINDEX('1,', drainagediameter) = 0 and CHARINDEX('2,',drainagediameter) = 1 
+	               then substring(drainagediameter,3,len(drainagediameter) -  2) end , '') as drainagediameter2,
+	               	
+	case CHARINDEX('1', drainagepipetype) when 0 then null else 1 end  as drainagepipetype1,
+	case CHARINDEX('2', drainagepipetype) when 0 then null else 1 end  as drainagepipetype2,
+	case CHARINDEX('3', drainagepipetype) when 0 then null else 1 end  as drainagepipetype3,
+	drainagelength, drainageremarks,
+	
+	case CHARINDEX('1', wspipetype) when 0 then null else 1 end  as wspipetype1,
+	case CHARINDEX('2', wspipetype) when 0 then null else 1 end  as wspipetype2,
+	case CHARINDEX('3', wspipetype) when 0 then null else 1 end  as wspipetype3,
+	wsdiameter, wspressure, wsremarks,
+
+	
+	case CHARINDEX('1', ecconstrtype) when 0 then null else 1 end  as ecconstrtype1,
+	case CHARINDEX('2', ecconstrtype) when 0 then null else 1 end  as ecconstrtype2,
+	case CHARINDEX('3', ecconstrtype) when 0 then null else 1 end  as ecconstrtype3,
+	eclength, ecremarks,
+
+	case CHARINDEX('1', gaspipetype) when 0 then null else 1 end  as gaspipetype1,
+	case CHARINDEX('2', gaspipetype) when 0 then null else 1 end  as gaspipetype2,
+	case CHARINDEX('3', gaspipetype) when 0 then null else 1 end  as gaspipetype3,
+	gasdiameter, gaslength, gaspressure, gasremarks, gasspan,
+
+	case CHARINDEX('1', wtbasetype) when 0 then null else 1 end  as wtbasetype1,
+	case CHARINDEX('2', wtbasetype) when 1 then WTBaseTxt else '' end as wtbasetype2,
+	case CHARINDEX('1', wtmaintype) when 0 then null else 1 end  as wtmaintype1,
+	case CHARINDEX('2', wtmaintype) when 0 then null else 1 end  as wtmaintype2,
+	case CHARINDEX('3', wtmaintype) when 0 then null else 1 end  as wtmaintype3,
+	case CHARINDEX('4', wtmaintype) when 0 then null else 1 end  as wtmaintype4,
+	wtremarks, wtsize,
+	NewTecUse, OtherDescription 
+from TC_QA_PrjAddition where fAppId = '${fAppId}']]></Query>
+</TableData>
+<TableData name="ds_bri_plus" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fappid"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select BriBaseTxt from TC_QA_PrjAddition where charindex('3', BriBaseType) != 0 and fappid = '${fappid}']]></Query>
+</TableData>
+<TableData name="ds_britop" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fappid"/>
+<O>
+<![CDATA[1ecb84a1-8f4a-40d0-89e8-2afc56aafa8e]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select britoptxt from TC_QA_PrjAddition where charindex('11', britoptype) != 0 and fappid = '${fappid}']]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.worksheet.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<ColumnPrivilegeControl/>
+<RowPrivilegeControl/>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,1524000,1638300,723900,723900,152400,0,723900,990600,2933700,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,1728000,2160000,2160000,2160000,2160000,1728000,1981200,1728000,1728000,1728000,2160000,2160000,1143000,1152000,1152000,723900,2857500,7543800,914400,876300,1152000,1152000,914400,952500,1752600,876300,762000,1409700,1295400,1028700,838200,1714500,1790700,1866900,1409700,1152000,1152000,609600,1447800,1152000,990600,1295400,1600200,1152000,1028700,762000,1104900,1752600,1152000,762000,914400,1295400,1152000,1152000,1152000,1152000,1676400,1152000,876300,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2095500,2857500,1524000,1143000,800100,1562100,990600,1143000,1371600,1295400,762000,647700,647700,647700,952500,914400,1066800,571500,457200,800100,1333500,1104900,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="21" rs="2" s="0">
+<O>
+<![CDATA[四川省建筑工程和市政基础设施工程]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="4" cs="21" rs="4" s="1">
+<O>
+<![CDATA[质量监督备案表]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="8" cs="21" rs="2" s="2">
+<O>
+<![CDATA[（市政基础设施工程）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="17" cs="3" rs="3" s="2">
+<O>
+<![CDATA[监督备案号]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="17" cs="17" rs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RecordNo"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="17">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="18">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="19">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="20" cs="3" rs="3" s="2">
+<O>
+<![CDATA[工程名称]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="20" cs="17" rs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="PrjItemName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="20">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="21">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="22">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="23" cs="3" rs="3" s="2">
+<O>
+<![CDATA[建设单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="23" cs="17" rs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JSDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="24">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="25">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="5" r="26" cs="5" rs="2" s="4">
+<O>
+<![CDATA[（盖章）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="31" cs="2" rs="2" s="2">
+<O>
+<![CDATA[备案日期]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="31">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="31" cs="3" rs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="year"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="31" cs="2" rs="2" s="2">
+<O>
+<![CDATA[年]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="31" cs="2" rs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="month"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="31" cs="3" rs="2" s="2">
+<O>
+<![CDATA[月]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="13" r="31" cs="3" rs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="day"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="16" r="31" cs="4" rs="2" s="2">
+<O>
+<![CDATA[日]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="31">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="32">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="32">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="42" cs="21" rs="3" s="5">
+<O>
+<![CDATA[四川省住房和城乡建设厅制]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="52" cs="21" rs="3" s="6">
+<O>
+<![CDATA[工程概况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="55" cs="2" s="7">
+<O>
+<![CDATA[工程地址]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="55" cs="20" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Address"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="56" cs="2" s="7">
+<O>
+<![CDATA[勘察单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="56" cs="8" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="CCDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="56" cs="2" rs="4" s="9">
+<O>
+<![CDATA[资质等级]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="12" r="56" cs="10" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="CCDWZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="57" cs="2" s="7">
+<O>
+<![CDATA[设计单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="57" cs="8" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SJDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="12" r="57" cs="10" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SJDWZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="58" cs="2" s="7">
+<O>
+<![CDATA[施工单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="58" cs="8" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="12" r="58" cs="10" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGDWZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="59" cs="2" s="7">
+<O>
+<![CDATA[监理单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="59" cs="8" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JLDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="12" r="59" cs="10" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JLZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="60" cs="2" s="10">
+<O>
+<![CDATA[工程规模（长度、管径或面积）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="60" cs="20" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Scale"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="61" cs="2" s="7">
+<O>
+<![CDATA[工程类别]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="61" cs="7" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Prjtypename"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="9" r="61" cs="6" s="7">
+<O>
+<![CDATA[计划开竣工日期]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="61" cs="3" s="11">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="StartDate"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="18" r="61" s="12">
+<O>
+<![CDATA[至]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="19" r="61" cs="3" s="13">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="EndDate"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="62" cs="2" s="10">
+<O>
+<![CDATA[工程造价（万元）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="62" cs="7" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="cost"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="9" r="62" cs="6" s="7">
+<O>
+<![CDATA[监督费（元）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="62" cs="7" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SupervisionCost"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="63" cs="2" s="7">
+<O>
+<![CDATA[勘察文件]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="63" cs="7" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="KCWJ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="9" r="63" cs="6" s="7">
+<O>
+<![CDATA[施工图设计文件]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="63" cs="7" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGTSJWJ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="64" cs="2" s="7">
+<O>
+<![CDATA[施工图设计文件审查机构]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="64" cs="7" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGTSJWJSCJG"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="9" r="64" cs="6" s="7">
+<O>
+<![CDATA[施工图设计文件审查批准书号]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="64" cs="7" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGTSJWJSCPZWH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="65" cs="2" s="7">
+<O>
+<![CDATA[施工项目经理、资质等级和证号]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="65" cs="7" s="8">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="XMJL"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="9" r="65" cs="2" rs="2" s="9">
+<O>
+<![CDATA[联系电话]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="65" cs="11" s="15">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGDWDH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="66" cs="2" s="7">
+<O>
+<![CDATA[总监理工程师、资质等级和证号]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="66" cs="7" s="15">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="XMZJ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="11" r="66" cs="11" s="15">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JLDWDH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="67" cs="21" s="16">
+<O>
+<![CDATA[    以下表格需要根据相关设计文件、勘察文件填写，在所选的相关项目大“√”或填]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="68" cs="21" s="17">
+<O>
+<![CDATA[写具体内容]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="5" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="19" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="69">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="5" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="19" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="73" rs="34" s="18">
+<O>
+<![CDATA[工程基本情况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="73" rs="10" s="19">
+<O>
+<![CDATA[桥梁]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="73" cs="4" rs="2" s="7">
+<O>
+<![CDATA[基础类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="73" cs="4" rs="2" s="7">
+<O>
+<![CDATA[下部结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="73" cs="12" s="20">
+<O>
+<![CDATA[上部结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="74" cs="12" s="21">
+<O>
+<![CDATA[（有预应力选1，无预应力选2）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="75" rs="2" s="9">
+<O>
+<![CDATA[桩基础]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="75" cs="2" rs="2" s="7">
+<O>
+<![CDATA[刚性扩大基础]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="75" rs="2" s="9">
+<O>
+<![CDATA[其它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="75" rs="2" s="9">
+<O>
+<![CDATA[桥墩]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="7" r="75" rs="2" s="9">
+<O>
+<![CDATA[桥台]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="75" rs="2" s="9">
+<O>
+<![CDATA[承台]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="75" rs="2" s="9">
+<O>
+<![CDATA[盖梁]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="75" cs="2" rs="2" s="9">
+<O>
+<![CDATA[简支梁]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="12" r="75" cs="2" rs="2" s="9">
+<O>
+<![CDATA[连续梁]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="75" cs="2" rs="2" s="9">
+<O>
+<![CDATA[拱桥]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="75" cs="2" rs="2" s="9">
+<O>
+<![CDATA[刚架桥]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="18" r="75" cs="2" rs="2" s="9">
+<O>
+<![CDATA[斜拉桥]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="75" rs="2" s="9">
+<O>
+<![CDATA[刚结构]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="21" r="75" rs="2" s="9">
+<O>
+<![CDATA[其它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="77" rs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="bribasetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="77" cs="2" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="bribasetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="5" r="77" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri_plus" columnName="BriBaseTxt"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr/>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="6" r="77" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="bribottomtype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="7" r="77" rs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="bribottomtype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="77" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="bribottomtype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="9" r="77" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="bribottomtype4"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="10" r="77" s="7">
+<O t="I">
+<![CDATA[1]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="77" s="7">
+<O t="I">
+<![CDATA[2]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="12" r="77" s="7">
+<O t="I">
+<![CDATA[1]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="13" r="77" s="7">
+<O t="I">
+<![CDATA[2]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="77" s="7">
+<O t="I">
+<![CDATA[1]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="77" s="7">
+<O t="I">
+<![CDATA[2]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="77" s="7">
+<O t="I">
+<![CDATA[1]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="17" r="77" s="7">
+<O t="I">
+<![CDATA[2]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="18" r="77" cs="2" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType9"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="20" r="77" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType10"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="21" r="77" rs="2" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds_britop" columnName="britoptxt"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="78" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="11" r="78" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="12" r="78" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="13" r="78" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType4"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="14" r="78" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType5"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="15" r="78" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType6"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="16" r="78" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType7"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="17" r="78" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="BriTopType8"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="2" r="79" cs="4" s="7">
+<O>
+<![CDATA[桥梁全长（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="79" cs="4" s="7">
+<O>
+<![CDATA[荷载等级]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="79" cs="10" s="7">
+<O>
+<![CDATA[桥梁最大跨径（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="79" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="80" cs="2" s="23">
+<O>
+<![CDATA[单跨]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="80" cs="2" s="23">
+<O>
+<![CDATA[多跨]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="80" cs="2" rs="2" s="7">
+<O>
+<![CDATA[城-A级]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="80" cs="2" rs="2" s="7">
+<O>
+<![CDATA[城-B级]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="80" cs="10" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="brimaxspan"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="80" cs="2" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="briremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="2" r="81" cs="2" s="24">
+<O>
+<![CDATA[（联）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="81" cs="2" s="24">
+<O>
+<![CDATA[（联）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="82" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="brilength1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="4" r="82" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="brilength2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="6" r="82" cs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="briloadlevel1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="82" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="briloadlevel2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="83" rs="4" s="19">
+<O>
+<![CDATA[河堤]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="83" cs="4" s="7">
+<O>
+<![CDATA[基础类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="83" cs="4" s="7">
+<O>
+<![CDATA[主体结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="83" cs="10" s="7">
+<O>
+<![CDATA[全长（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="83" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="84" cs="2" rs="2" s="8">
+<O>
+<![CDATA[桩基础]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="84" cs="2" rs="2" s="8">
+<O>
+<![CDATA[砼基础]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="84" cs="2" s="21">
+<O>
+<![CDATA[有卸]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="84" cs="2" s="23">
+<O>
+<![CDATA[无卸]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="84" cs="10" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="rblength"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="84" cs="2" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="rbremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="85" cs="2" s="25">
+<O>
+<![CDATA[荷台]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="85" cs="2" s="26">
+<O>
+<![CDATA[荷台]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="86" cs="2" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="rbbasetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="4" r="86" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="rbbasetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="6" r="86" cs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="rbmaintype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="86" cs="2" s="28">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="rbmaintype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="87" rs="3" s="19">
+<O>
+<![CDATA[下穿隧道]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="87" cs="4" s="7">
+<O>
+<![CDATA[基础类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="87" cs="4" s="7">
+<O>
+<![CDATA[主体结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="87" cs="4" s="7">
+<O>
+<![CDATA[泵房]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="87" cs="3" s="15">
+<O>
+<![CDATA[全长（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="17" r="87" cs="3" s="7">
+<O>
+<![CDATA[开挖方式]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="87" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="88" cs="2" s="7">
+<O>
+<![CDATA[桩基础]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="88" cs="2" s="8">
+<O>
+<![CDATA[钢筋砼底  板]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="88" cs="2" s="7">
+<O>
+<![CDATA[框架]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="88" cs="2" s="7">
+<O>
+<![CDATA[U型槽]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="88" cs="2" s="7">
+<O>
+<![CDATA[有]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="12" r="88" cs="2" s="7">
+<O>
+<![CDATA[无]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="88" cs="3" rs="2" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnellength"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="17" r="88" cs="3" rs="2" s="28">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunneldig"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="88" cs="2" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="2" r="89" cs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelbasetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="4" r="89" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelbasetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="6" r="89" cs="2" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelmaintype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="89" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelmaintype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="10" r="89" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelpumphouse1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="12" r="89" cs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="tunnelpumphouse2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="90" rs="4" s="19">
+<O>
+<![CDATA[道路]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="90" cs="4" s="7">
+<O>
+<![CDATA[面层结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="90" cs="4" s="7">
+<O>
+<![CDATA[道路全长（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="90" cs="10" s="7">
+<O>
+<![CDATA[道路宽度（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="90" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="91" cs="2" rs="2" s="7">
+<O>
+<![CDATA[水泥砼]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="91" cs="2" rs="2" s="7">
+<O>
+<![CDATA[沥青砼]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="91" cs="4" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="roadlength"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="91" cs="10" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="roadwidth"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="91" cs="2" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="roadremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="2" r="93" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="roadlayertype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="4" r="93" cs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="roadlayertype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="94" rs="4" s="19">
+<O>
+<![CDATA[排水]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="94" cs="4" s="7">
+<O>
+<![CDATA[管径（mm）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="94" cs="4" s="7">
+<O>
+<![CDATA[管道类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="94" cs="10" s="7">
+<O>
+<![CDATA[全长（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="94" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="95" cs="2" rs="2" s="8">
+<O>
+<![CDATA[雨水主管]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="95" cs="2" rs="2" s="30">
+<O>
+<![CDATA[污水主管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="95" cs="2" rs="2" s="7">
+<O>
+<![CDATA[砼平口管]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="95" rs="2" s="7">
+<O>
+<![CDATA[承插管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="95" rs="2" s="7">
+<O>
+<![CDATA[塑料管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="95" cs="10" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainagelength"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="20" r="95" cs="2" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainageremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="2" r="97" cs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainagediameter1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="4" r="97" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainagediameter2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="6" r="97" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainagepipetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="97" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainagepipetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="9" r="97" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="drainagepipetype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="98" rs="4" s="19">
+<O>
+<![CDATA[给水]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="98" cs="4" s="7">
+<O>
+<![CDATA[设计压力（Mpa）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="98" cs="4" s="7">
+<O>
+<![CDATA[管径（mm）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="98" cs="10" s="7">
+<O>
+<![CDATA[管道类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="98" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="99" cs="4" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wspressure"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="99" cs="4" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wsdiameter"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="99" cs="3" rs="2" s="7">
+<O>
+<![CDATA[钢管]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="13" r="99" cs="3" rs="2" s="7">
+<O>
+<![CDATA[PCCP管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="99" cs="4" rs="2" s="7">
+<O>
+<![CDATA[  球墨   铸铁管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="99" cs="2" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wsremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="101" cs="3" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wspipetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="13" r="101" cs="3" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wspipetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="16" r="101" cs="4" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wspipetype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="102" rs="5" s="18">
+<O>
+<![CDATA[电力浅沟]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="102" cs="8" s="7">
+<O>
+<![CDATA[全长（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="102" cs="10" s="7">
+<O>
+<![CDATA[结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="102" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="103" cs="8" rs="4" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="eclength"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="103" cs="3" rs="2" s="7">
+<O>
+<![CDATA[U型槽]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="13" r="103" cs="3" rs="2" s="7">
+<O>
+<![CDATA[排 管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="103" cs="4" rs="2" s="7">
+<O>
+<![CDATA[砖砌体]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="103" cs="2" rs="4" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="ecremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="105" cs="3" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="ecconstrtype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="13" r="105" cs="3" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="ecconstrtype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="16" r="105" cs="4" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="ecconstrtype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="0" r="107" rs="13" s="18">
+<O>
+<![CDATA[工程基本情况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="107" rs="4" s="19">
+<O>
+<![CDATA[煤气]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="107" cs="2" rs="2" s="7">
+<O>
+<![CDATA[设计压力 （MPa）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="107" cs="2" rs="2" s="7">
+<O>
+<![CDATA[管  径 (mm)]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="107" cs="2" s="31">
+<O>
+<![CDATA[全长]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="107" cs="2" rs="2" s="7">
+<O>
+<![CDATA[重要穿跨越]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="107" cs="10" s="7">
+<O>
+<![CDATA[管  道  类  型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="107" cs="2" s="7">
+<O>
+<![CDATA[备  注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="108" cs="2" s="32">
+<O>
+<![CDATA[（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="108" cs="3" s="7">
+<O>
+<![CDATA[钢 管]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="13" r="108" cs="3" s="7">
+<O>
+<![CDATA[PE 管]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="108" cs="4" s="7">
+<O>
+<![CDATA[其 它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="108" cs="2" rs="3" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gasremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="2" r="109" cs="2" rs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gaspressure"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="109" cs="2" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gasdiameter"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="109" cs="2" rs="2" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gaslength"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="109" cs="2" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gasspan"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="109" cs="3" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gaspipetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="13" r="109" cs="3" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gaspipetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="16" r="109" cs="4" rs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="gaspipetype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="111" rs="5" s="18">
+<O>
+<![CDATA[水处理构筑物]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="111" cs="4" s="7">
+<O>
+<![CDATA[几何尺寸（m）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="111" cs="4" s="7">
+<O>
+<![CDATA[基础类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="111" cs="10" s="7">
+<O>
+<![CDATA[主体结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="111" cs="2" s="7">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="112" cs="4" rs="4" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtsize"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="112" cs="2" rs="2" s="7">
+<O>
+<![CDATA[钢筋砼底板]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="112" cs="2" rs="2" s="7">
+<O>
+<![CDATA[其它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="112" cs="5" rs="2" s="7">
+<O>
+<![CDATA[现浇]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="15" r="112" cs="5" rs="2" s="7">
+<O>
+<![CDATA[预制安装]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="20" r="112" cs="2" rs="4" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtremarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="114" cs="2" rs="2" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtbasetype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="8" r="114" cs="2" rs="2" s="29">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtbasetype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="10" r="114" cs="3" s="7">
+<O t="I">
+<![CDATA[1]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="13" r="114" cs="2" s="7">
+<O t="I">
+<![CDATA[2]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="114" cs="2" s="33">
+<O t="I">
+<![CDATA[1]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="17" r="114" cs="3" s="33">
+<O t="I">
+<![CDATA[2]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="10" r="115" cs="3" s="28">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtmaintype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="13" r="115" cs="2" s="22">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtmaintype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="15" r="115" cs="2" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtmaintype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="17" r="115" cs="3" s="27">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="wtmaintype4"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="116" cs="5" rs="2" s="7">
+<O>
+<![CDATA[新技术、新工艺、 新材料采用情况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="116" cs="16" rs="2" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="NewTecUse"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="118" cs="5" rs="2" s="7">
+<O>
+<![CDATA[其它需要说明的问题]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="118" cs="16" rs="2" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds_bri" columnName="OtherDescription"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="120" cs="22" s="34">
+<O>
+<![CDATA[备注：]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="121" cs="22" rs="5" s="35">
+<PrivilegeControl/>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+<PrivilegeControl/>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="0"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[1ecb84a1-8f4a-40d0-89e8-2afc56aafa8e]]></O>
+</Parameter>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="黑体" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="200"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="112"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="112"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="104"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="黑体" style="0" size="160"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style vertical_alignment="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="112"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" textStyle="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" vertical_alignment="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" vertical_alignment="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" vertical_alignment="3" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style vertical_alignment="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+<DesignerVersion DesignerVersion="HBB"/>
+<PreviewType PreviewType="0"/>
+</WorkBook>
