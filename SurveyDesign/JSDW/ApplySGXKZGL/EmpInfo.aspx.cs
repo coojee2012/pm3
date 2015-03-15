@@ -104,6 +104,18 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     //保存
     private void saveInfo()
     {
+        var manualVal = t_IsManual.Value;
+        if (manualVal == "1")//手工录入
+        {
+            var countSQL = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where SFZH='{0}'";
+            countSQL = string.Format(countSQL, t_FIdCard.Text);
+            int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countSQL).FirstOrDefault());
+            if (count2 > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('归档库已存在该证书，请采用选择方式添加。');window.returnValue='1';", true);
+                return;
+            }
+        }
         string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'";
         sql1 = string.Format(sql1, t_FIdCard.Text);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
