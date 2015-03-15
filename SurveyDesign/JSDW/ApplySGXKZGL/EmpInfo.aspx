@@ -23,8 +23,10 @@
         });
         function selEmp(obj,tagId) {
             var qybm = document.getElementById("t_FEntId").value;
+            var prjItemId = $("#t_FPrjItemId").val();
+           
             var url = "../project/EmpListSel.aspx";
-            url += "?qybm=" + qybm;
+            url += "?qybm=" + qybm + "&FPrjItemId="+prjItemId+"&t="+Math.random();
             var pid = showWinByReturn( url, 800, 500);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
@@ -54,9 +56,9 @@
         <input type="hidden"  runat="server" ID="t_FAppId" value="" />
         <input type="hidden"  runat="server" ID="t_FEntType" value="" />
         <input type="hidden"  runat="server" ID="h_selEmpId" value="" />
-        <input type="hidden"  runat="server" ID="t_FEntId" value="" />
-        <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
-        <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
+        <input type="hidden" runat="server" ID="t_FEntId" value="" />
+        <input type="hidden" runat="server" ID="t_FPrjId" value="" />
+        <input type="hidden" runat="server" ID="t_FPrjItemId" value="" />
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up_Main" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv" style="display:none;"> 

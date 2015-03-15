@@ -75,7 +75,6 @@ public partial class JSDW_ApplyAQJDBA_VideoSupply : System.Web.UI.Page
             dbContext.TC_AJBA_Video.DeleteAllOnSubmit(video);
         }
     }
-
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
