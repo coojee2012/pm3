@@ -180,12 +180,12 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         ViewState["FID"] = fId;
         txtFId.Value = fId;
 
-        
         //showInfo();
         //tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
        // ScriptManager.RegisterClientScriptBlock(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     //    ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('保存成功');window.returnValue='1';", true);
-        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "$('#btnSave').css('color','#BEBFC3');$('#btnSave').attr('disabled',true);;alert('保存成功');window.returnValue='1';", true);
+
         //tool.showMessage("alert('保存成功');window.returnValue='1';");
     }
     

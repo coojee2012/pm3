@@ -23,8 +23,10 @@
         });
         function selEmp(obj,tagId) {
             var qybm = document.getElementById("t_FEntId").value;
+            var prjItemId = $("#t_FPrjItemId").val();
+           
             var url = "../project/EmpListSel.aspx";
-            url += "?qybm=" + qybm;
+            url += "?qybm=" + qybm + "&FPrjItemId="+prjItemId+"&t="+Math.random();
             var pid = showWinByReturn( url, 800, 500);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
@@ -52,11 +54,11 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden"  runat="server" ID="t_FAppId" value="" />
-        
+        <input type="hidden"  runat="server" ID="t_FEntType" value="" />
         <input type="hidden"  runat="server" ID="h_selEmpId" value="" />
-        <input type="hidden"  runat="server" ID="t_FEntId" value="" />
-        <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
-        <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
+        <input type="hidden" runat="server" ID="t_FEntId" value="" />
+        <input type="hidden" runat="server" ID="t_FPrjId" value="" />
+        <input type="hidden" runat="server" ID="t_FPrjItemId" value="" />
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up_Main" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv" style="display:none;"> 
@@ -192,7 +194,7 @@
                     等级：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_DJ" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:DropDownList ID="t_DJ" runat="server"  CssClass="m_txt" Width="200px"></asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
                     注册编号：

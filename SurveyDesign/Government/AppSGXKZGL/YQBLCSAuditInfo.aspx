@@ -124,27 +124,28 @@
             <td>
                 <asp:TextBox ID="y_SGXKZBH" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 <input id="HSeeReportInfo0" type="button" runat="server" class="m_btn_w6" value="查看延期申报"  /></td>
-            <td class="t_r">
+            <%--<td class="t_r">
                 发证机关：
             </td>
             <td>
                 <asp:TextBox ID="y_FZJG" Enabled="false" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
-            </td>
-        </tr>
-               <tr>
-            <td class="t_r">
-                发证日期：
-            </td>
-            <td>
-                <asp:TextBox ID="y_FZTime" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
-            </td>
-            <td class="t_r">
+            </td>--%>
+                    <td class="t_r">
                 上次延期申请日期：
             </td>
             <td>
                 <asp:TextBox ID="y_LastYQTime" Enabled="false" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
         </tr>
+             <%--  <tr>
+            <td class="t_r">
+                发证日期：
+            </td>
+            <td>
+                <asp:TextBox ID="y_FZTime" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+            </td>
+           
+        </tr>--%>
                <tr>
             <td class="t_r">
                 本次延期开始日期：

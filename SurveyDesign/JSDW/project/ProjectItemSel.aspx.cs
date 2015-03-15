@@ -19,13 +19,13 @@ public partial class JSDW_project_ProjectItemSel : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            showInfo();
+           // showInfo();  根据测试要求，默认时不显示数据，需按查询条件显示数据
         }
     }
     //显示 
     void showInfo()
     {
-        IQueryable<TC_PrjItem_Info> App = dbContext.TC_PrjItem_Info.Where(t => t.FJSDWID == CurrentEntUser.EntId).OrderByDescending(t => t.FId);        
+        IQueryable<TC_PrjItem_Info> App = dbContext.TC_PrjItem_Info.OrderByDescending(t => t.FId);          //去掉本单位的条件.Where(t => t.FJSDWID == CurrentEntUser.EntId)
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
         Pager1.RecordCount = App.Count();
@@ -39,6 +39,7 @@ public partial class JSDW_project_ProjectItemSel : System.Web.UI.Page
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             String PrjItemType = e.Item.Cells[3].Text;
             e.Item.Cells[3].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(PrjItemType)).Select(d => d.FName).FirstOrDefault();
+
             LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 2].Controls[0] as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该项目吗?');");

@@ -162,8 +162,8 @@
                 <asp:BoundColumn HeaderText="序号">
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="踏勘时间" DataField="TKSJ">
-                    <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                <asp:BoundColumn HeaderText="踏勘时间" DataField="TKSJ" DataFormatString="{0:yyyy-MM-dd}">
+                    <ItemStyle Wrap="False"  />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="踏勘部门" DataField="TKBM">
                     <ItemStyle Wrap="False" />
@@ -174,15 +174,15 @@
                 <asp:BoundColumn HeaderText="踏勘情况" DataField="TKQK">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="记录人" >
+                <asp:BoundColumn HeaderText="记录人"  DataField="JLR">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="记录时间" DataFormatString="{0:yyyy-MM-dd}" >
+                <asp:BoundColumn HeaderText="记录时间"  DataField="JLSJ" DataFormatString="{0:yyyy-MM-dd}" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="附件">
+               <%-- <asp:BoundColumn HeaderText="附件">
                     <ItemStyle Wrap="False" />
-                </asp:BoundColumn>
+                </asp:BoundColumn>--%>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
             </Columns>
         </asp:DataGrid>
@@ -328,6 +328,7 @@
                 </td>
             </tr>
         </table>
+
         <table width="95%" align="center" class="m_title" id="accept" runat="server" visible="true">
             <tr>
                 <th colspan="4" style="text-align: left;">本级审查意见
@@ -354,12 +355,19 @@
                 <td class="t_r">发证机关
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBox1" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_fAppFZJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 </td>
                 <td class="t_r">发证日期</td>
                 <td>
-                    <asp:TextBox ID="TextBox2" runat="server" CssClass="m_txt" Width="195px" onblur="isDate(this);"
+                    <asp:TextBox ID="t_fAppFZRQ" runat="server" CssClass="m_txt" Width="195px" onblur="isDate(this);"
                         onfocus="WdatePicker()"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+<td class="t_r">施工许可证编号
+                </td>
+                <td colspan="3"  >
+                     <asp:TextBox ID="t_fAppSGXKZBH" runat="server" CssClass="m_txt" Width="395px" ReadOnly="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>

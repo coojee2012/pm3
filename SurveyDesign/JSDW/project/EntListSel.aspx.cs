@@ -61,20 +61,27 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   join c in db.QY_QYZZXX              
                   on b.QYBM equals c.QYBM
                   into temp
+                  join d in db.QY_QYZSXX
+                  on b.QYBM equals d.QYBM
+                  into temp1
                   from tt in temp.DefaultIfEmpty()
-                  where b.QYLXBM == qylx && tt.SFZX == 1
+                  from tt1 in temp1.DefaultIfEmpty()
+                  where b.QYLXBM == qylx && tt.SFZX == 1 
+                 // && tt1.ZSLXBM =="150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
                   
                   select  new
                   {
                       b.QYBM,
                       b.QYMC,
                       b.QYLXBM,
+                      b.RegAdrProvinceName,
                       b.QYXXDZ,
                       b.FRDB,
                       b.LXR,
                       b.LXDH,
                       ZSBH = tt==null?"":tt.ZSBH,
-                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ
+                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                      AXBH = tt1==null?"":tt1.ZSBH
                    };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
@@ -91,19 +98,26 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
         var App = from b in db.QY_JBXX
                   join c in db.QY_QYZZXX
                   on b.QYBM equals c.QYBM into temp
+                  join d in db.QY_QYZSXX
+                  on b.QYBM equals d.QYBM
+                  into temp1
                   from tt in temp.DefaultIfEmpty()
+                  from tt1 in temp1.DefaultIfEmpty()
+                  where  tt1.ZSLXBM == "150"
                   
                   select new
                   {
                       b.QYBM,
                       b.QYMC,
                       b.QYLXBM,
+                      b.RegAdrProvinceName,
                       b.QYXXDZ,
                       b.FRDB,
                       b.LXR,
                       b.LXDH,
                       ZSBH = tt == null ? "" : tt.ZSBH,
-                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ
+                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                      AXBH = tt1 == null ? "" : tt1.ZSBH
                   };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
@@ -171,5 +185,6 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             }
         }
     }
+
 
 }

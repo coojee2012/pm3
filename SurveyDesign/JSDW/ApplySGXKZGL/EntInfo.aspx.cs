@@ -18,10 +18,14 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+
+            //应用编号
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
+            //企业类型
             t_FEntType.Value = EConvert.ToString(Request["FEntType"]);
+            //企业编号
             txtFId.Value = EConvert.ToString(Request["FId"]);
-            
+
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
             //t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             showTitle();
@@ -33,6 +37,10 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
 
                 tool.ExecuteScript("btnEnable();");
             }
+        }
+        else
+        {
+            //企业编号
             
         }
     }
@@ -41,10 +49,10 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         TC_PrjItem_Ent ent = null;
-        if(t_FEntType.Value=="2")
+        if (t_FEntType.Value == "2")
         {
             ent = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == t_FAppId.Value && t.FEntType.Equals(t_FEntType.Value)).FirstOrDefault();
-            
+
         }
         else
         {
@@ -75,7 +83,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         switch (t_FEntType.Value)
         {
             case "2":
-                lblTitle.InnerText = "施工总承包单位";
+                lblTitle.InnerText = "施工总承包商单位";
                 break;
             case "3":
                 lblTitle.InnerText = "专业承包单位";
@@ -93,8 +101,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
                 lblTitle.InnerText = "监理单位";
                 break;
         }
-      
-        
+
+
     }
     private void showEmpList()
     {
@@ -140,7 +148,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             {
                 var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == ent.QYID);
                 dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
-                
+
             }
         }
         else
@@ -156,17 +164,17 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             dbContext.TC_PrjItem_Ent.InsertOnSubmit(ent);
         }
         pageTool tool = new pageTool(this.Page);
+        //ytb 修改了企业需要为企业ID赋值
+        ent.QYID = h_selEntId.Value;
         ent = tool.getPageValue(ent);
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
         txtFId.Value = fId;
-        
-       // tool.showMessage("alert('保存成功');window.returnValue='1';");
-        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
-        showEmpList();
+
+        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "reloadEmpList();alert('保存成功');window.returnValue='1';", true);
     }
-    
-  
+
+
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
     {
@@ -177,7 +185,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_PrjItem_Emp, tool_Deleting);
-        
+
         showEmpList();
     }
     //单项工程删除
@@ -191,7 +199,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     protected void btnReload_Click(object sender, EventArgs e)
     {
         showEmpList();
-        
+
     }
     protected void App_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
@@ -209,7 +217,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
-        
+
     }
 
     private void selEnt()
@@ -228,11 +236,18 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             t_FTel.Text = v.LXDH;
             t_FOrgCode.Text = v.JGDM;
         }
-        
-
+       
         var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
             t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
+
+        //获取增项资质
+        var _v2 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId&&t.SFZX==0);
+        var _oZXZZ = new StringBuilder();
+        foreach (var i in _v2) {
+            _oZXZZ.Append(i.ZZLB + i.ZZMC + i.ZZDJ + "\r\n");
+        }
+        t_oZXZZ.Text = _oZXZZ.ToString();
 
         if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
         {
@@ -242,14 +257,15 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
-
+        //刷新人员
+        showEmpList();
     }
     protected void btnAddEnt_Click(object sender, EventArgs e)
     {
         selEnt();
     }
-   
 
-  
+
+
 
 }

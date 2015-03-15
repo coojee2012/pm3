@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20120529" releaseVersion="7.0.0">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT AAAA.WT,AAAA.ZCFL
+,count(distinct AAAA.RN) as RN
+FROM
+(
+	SELECT AAA.*	
+	,case when NVL(AAA.WT,' ')=' ' AND AAA.ZZNum=0 AND LENGTH(AAA.FNAME)=7 AND NVL(AAA.YWNAME,' ')=' ' AND NVL(AAA.FCERTIID,' ')=' ' THEN '新办未申报'
+		WHEN NVL(AAA.WT,' ')=' ' AND AAA.ZZNum=0 AND LENGTH(AAA.FNAME)=7 AND NVL(AAA.YWNAME,'')<> '' AND NVL(AAA.FCERTIID,' ')=' ' THEN '新办已申报'
+		WHEN NVL(AAA.WT,' ')=' ' AND LENGTH(AAA.FNAME)<>7 AND NVL(AAA.FCERTIID,' ')<>' ' AND (NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd'))= to_date('1900-01-01','yyyy-mm-dd') OR ROUND(TO_NUMBER(NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd')) - SYSDATE))>=0) THEN '证书信息完整'      
+		WHEN NVL(AAA.WT,' ')=' ' AND LENGTH(AAA.FNAME)<>7 AND NVL(AAA.FCERTIID,' ')<>' ' AND NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd'))<> to_date('1900-01-01','yyyy-mm-dd') AND ROUND(TO_NUMBER(NVL(AAA.FENDTIME,to_date('1900-01-01','yyyy-mm-dd')) - SYSDATE))<0 THEN '过期' 
+		WHEN NVL(AAA.WT,' ')=' ' AND NVL(AAA.FCERTIID,' ')=' ' AND AAA.ZZNum>0 THEN '资质注销'  
+		WHEN NVL(AAA.WT,' ')=' ' AND NVL(AAA.FCERTIID,' ')=' ' AND AAA.FISFIRST=1 THEN '帐号注销'   
+	          ELSE CASE WHEN NVL(AAA.WT,' ')=' ' THEN '资质注销' END 	                     
+	END AS ZCFL
+	FROM
+	(
+		SELECT AA.*
+		,YWLX.CT AS YWNAME,AF.ACTIONFLAG as ZPHJ
+		,f_QY_CheckCertiError(AA.QYID,AA.FCERTIID,AA.FSystemId,AA.FISVALID,AA.FISDELETED,AA.JGDM,AA.FCERTINO, AA.MULTIZS,AA.ZZNum,AA.FISFIRST,AA.FName) AS WT
+		FROM 
+		(
+			SELECT A.*
+		    ,(SELECT YWBM FROM JSTYW.YW_INFO WHERE JGDM=A.JGDM AND YWZT=1 ${IF(LEN(QYLX)=0," AND 1=2 "," AND QYLB='"+QYLX+"' ")} AND NVL(LX,0)=0 AND ROWNUM=1) as YWBM
+			,C.XH AS FCERTIID,C.ZSBH AS FCERTINO,C.YXJSRQ AS FENDTIME,C.SFYX as FISVALID,0 as FISDELETED
+			,(SELECT COUNT(*) FROM QY_SG_zzzsqk QT WHERE QT.JGDM=A.JGDM) AS MULTIZS
+			,0 as ZZNum			
+			FROM
+			(
+				SELECT ROW_NUMBER() OVER(ORDER BY C.QYID) AS RN,C.JGDM,C.QYID,C.QYMC,D.QYLB AS FSystemId
+					,E.YHM AS FName,E.SX AS FISFIRST
+				FROM JSTYW.YW_QY_JBQK C,JSTYW.YW_QY_QYKGLB D,JSTYW.YW_QY_QYZF E
+				WHERE C.QYID=D.QYID AND D.PERID=E.PERID AND nvl(C.SFRC,0)=0
+				${IF(LEN(QYLX)=0," AND 1=2 "," AND D.QYLB='"+QYLX+"' ")} 
+			) A,QY_SG_zzzsqk C
+			WHERE A.JGDM=C.JGDM(+)	
+		) AA
+		LEFT JOIN JSTYW.YW_INFO YW ON YW.YWBM=AA.YWBM
+		LEFT JOIN JSTYW.C05 C05 ON YW.YWBM=C05.PROCESSKEYVALUE
+		LEFT JOIN JSTYW.C06 C06 ON C05.PROJECTID=C06.PROJECTID AND C06.ACTIONSTATE<>3
+		LEFT JOIN JSTYW.JM_ACTIONINFO AF ON C06.ACTIONID=AF.ID AND AF.ACTIONFLAG IN ('县窗口接件','县初定','扩权县窗口接件','扩权县初定','市州窗口接件','市州初定','厅窗口接件','厅初审','厅复审','领导审批')		
+		LEFT JOIN JSTYW.D_YWLX YWLX ON YWLX.BM=YW.YWLX AND YW.QYLB=YWLX.QYLB	
+	) AAA
+) AAAA	
+group by AAAA.WT,AAAA.ZCFL]]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_ZS_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT FNUMBER,FVALUE,FNAME,LX 
+FROM v_QY_CheckCertiError
+order by FNUMBER]]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="QYLX"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[XZSPoracle_113]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT COUNT(C.QYID) AS ZHZS
+FROM JSTYW.YW_QY_JBQK C,JSTYW.YW_QY_QYKGLB D,JSTYW.YW_QY_QYZF E
+WHERE C.QYID=D.QYID AND D.PERID=E.PERID AND nvl(C.SFRC,0)=0
+${IF(LEN(QYLX)=0," AND 1=2 "," AND D.QYLB='"+QYLX+"' ")} ]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.page.First">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[首页]]></Text>
+<IconName>
+<![CDATA[first]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Previous">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[上一页]]></Text>
+<IconName>
+<![CDATA[previous]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.PageNavi">
+<WidgetAttr/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Next">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[下一页]]></Text>
+<IconName>
+<![CDATA[next]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.page.Last">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[末页]]></Text>
+<IconName>
+<![CDATA[last]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true" image="true" html="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="true" isShowAsImage="false" isAutoScale="false" isTDHeavy="false"/>
+</WebPageContent>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet2">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1066800,723900,723900,2019300,1524000,723900,800100,1485900,723900,876300,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[3086100,16192500,5181600,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="3" s="0">
+<O>
+<![CDATA[施工企业数据清理表]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" cs="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[="总计 " + ds3.select(ZHZS) + " 家"]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="3" rs="4" s="2">
+<O>
+<![CDATA[待清理数据]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" s="3">
+<O>
+<![CDATA[类  别]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" s="3">
+<O>
+<![CDATA[数  量]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="FNAME"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[LX]]></CNAME>
+<Compare op="0">
+<O t="I">
+<![CDATA[1]]></O>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="11"/>
+</C>
+<C c="2" r="4" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RN"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[WT]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="4"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="0">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=NULL]]></Attributes>
+</O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.ValueHighlightAction">
+<O t="I">
+<![CDATA[0]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性2]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.FRFontHighlightAction">
+<FRFont name="宋体" style="0" size="84" foreground="-16777088"/>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性3]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="WT"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B5]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_SQQY_Detail_.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="5" rs="2" s="6">
+<O>
+<![CDATA[小计]]></O>
+<Expand/>
+</C>
+<C c="2" r="5" rs="2" s="7">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C5)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="7" rs="3" s="2">
+<O>
+<![CDATA[规范数据]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="FNAME"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[LX]]></CNAME>
+<Compare op="0">
+<O t="I">
+<![CDATA[2]]></O>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" multiNumber="6"/>
+</C>
+<C c="2" r="7" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RN"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNUMBER>
+<![CDATA[0]]></CNUMBER>
+<CNAME>
+<![CDATA[ZCFL]]></CNAME>
+<Compare op="0">
+<ColumnRow column="1" row="7"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellattr.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="0">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=NULL]]></Attributes>
+</O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.ValueHighlightAction">
+<O t="I">
+<![CDATA[0]]></O>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性2]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.FRFontHighlightAction">
+<FRFont name="宋体" style="0" size="84" foreground="-16777088"/>
+</HighlightAction>
+</Highlight>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性3]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<O t="I">
+<![CDATA[0]]></O>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.HyperlinkHighlightAction">
+<NameJavaScriptGroup>
+<NameJavaScript name="网络报表1">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<JavaScript class="com.fr.base.js.ReportletHyperlink">
+<Parameters>
+<Parameter>
+<Attributes name="ZCFL"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=B8]]></Attributes>
+</O>
+</Parameter>
+<Parameter>
+<Attributes name="QYLX"/>
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=$QYLX]]></Attributes>
+</O>
+</Parameter>
+</Parameters>
+<TargetFrame>
+<![CDATA[_self]]></TargetFrame>
+<Features width="600" height="400"/>
+<ReportletName extendParameters="true" showPI="true" byPost="true">
+<![CDATA[/DataStatistic/DataImport_SQQY_Detail_.cpt]]></ReportletName>
+</JavaScript>
+</JavaScript>
+</NameJavaScript>
+</NameJavaScriptGroup>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="8" rs="2" s="6">
+<O>
+<![CDATA[小计]]></O>
+<Expand/>
+</C>
+<C c="2" r="8" rs="2" s="7">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C8)]]></Attributes>
+</O>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="719999">
+<PaperSetting>
+<Margin top="4032000" left="2880000" bottom="2160000" right="2880000"/>
+</PaperSetting>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="false" delayPlaying="false" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="108"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1" paddingLeft="6">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1" paddingRight="15">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1" paddingRight="11">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4" imageLayout="1" paddingRight="15">
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>
