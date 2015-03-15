@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-﻿
-=======
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,13 +52,13 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
 
         return sys;
     }
-    
+
     //显示 
     void showInfo(string qylx)
     {
         EgovaDB1 db = new EgovaDB1();
         var App = from b in db.QY_JBXX
-                  join c in db.QY_QYZZXX              
+                  join c in db.QY_QYZZXX
                   on b.QYBM equals c.QYBM
                   into temp
                   join d in db.QY_QYZSXX
@@ -70,51 +66,9 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-<<<<<<< HEAD
                   where b.QYLXBM == qylx && tt.SFZX == 1
                   //&& tt1.ZSLXBM == "150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
 
-=======
-                  where b.QYLXBM == qylx && tt.SFZX == 1 
-                 // && tt1.ZSLXBM =="150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
-                  
-                  select  new
-                  {
-                      b.QYBM,
-                      b.QYMC,
-                      b.QYLXBM,
-                      b.RegAdrProvinceName,
-                      b.QYXXDZ,
-                      b.FRDB,
-                      b.LXR,
-                      b.LXDH,
-                      ZSBH = tt==null?"":tt.ZSBH,
-                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      AXBH = tt1==null?"":tt1.ZSBH
-                   };
-        if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
-        {
-            App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
-        }
-        Pager1.RecordCount = App.Count();
-        dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
-        dg_List.DataBind();
-    }
-    //显示 
-    void showInfo()
-    {
-        EgovaDB1 db = new EgovaDB1();
-        var App = from b in db.QY_JBXX
-                  join c in db.QY_QYZZXX
-                  on b.QYBM equals c.QYBM into temp
-                  join d in db.QY_QYZSXX
-                  on b.QYBM equals d.QYBM
-                  into temp1
-                  from tt in temp.DefaultIfEmpty()
-                  from tt1 in temp1.DefaultIfEmpty()
-                  where  tt1.ZSLXBM == "150"
-                  
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
                   select new
                   {
                       b.QYBM,
@@ -137,7 +91,6 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
         dg_List.DataBind();
     }
-<<<<<<< HEAD
     //显示 
     void showInfo()
     {
@@ -150,43 +103,35 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  //where 
-                  //tt1.ZSLXBM == "150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
+                  //where  tt1.ZSLXBM == "150"
+                  select new
+                  {
+                      b.QYBM,
+                      b.QYMC,
+                      b.QYLXBM,
+                      b.RegAdrProvinceName,
+                      b.QYXXDZ,
+                      b.FRDB,
+                      b.LXR,
+                      b.LXDH,
+                      ZSBH = tt == null ? "" : tt.ZSBH,
+                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                      AXBH = tt1 == null ? "" : tt1.ZSBH
+                  };
+        if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+        {
+            App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+        }
+        Pager1.RecordCount = App.Count();
+        dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+        dg_List.DataBind();
+    }
 
-                  select new
-                  {
-                      b.QYBM,
-                      b.QYMC,
-                      b.QYLXBM,
-                      b.RegAdrProvinceName,
-                      b.QYXXDZ,
-                      b.FRDB,
-                      b.LXR,
-                      b.LXDH,
-                      ZSBH = tt == null ? "" : tt.ZSBH,
-                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      AXBH = tt1 == null ? "" : tt1.ZSBH
-                  };
-        if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
-        {
-            App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
-        }
-        Pager1.RecordCount = App.Count();
-        dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
-        dg_List.DataBind();
-    }
-=======
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
     //protected void dg_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     //{
     //    if (e.Item.ItemIndex > -1)
     //    {
     //        e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
     //    }
     //}
     //分页面控件翻页事件
@@ -197,19 +142,12 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
         {
             string qylx = EConvert.ToString(ViewState["qylx"]);
             showInfo(qylx);
-<<<<<<< HEAD
         }
         else
         {
             showInfo();
         }
 
-=======
-        }else {
-            showInfo();
-        }
-        
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
@@ -236,11 +174,7 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
 
     protected void dg_List_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-<<<<<<< HEAD
         if (e.Item.ItemIndex > -1)
-=======
-         if (e.Item.ItemIndex > -1)
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
         {
             if (e.CommandName == "Sel")
             {
@@ -248,17 +182,10 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                 string fid = hfFBaseInfoId.Value;
                 pageTool tool = new pageTool(this.Page);
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
-<<<<<<< HEAD
+
                 // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
             }
         }
     }
-=======
-               // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
-            }
-        }
-    }
 
-
->>>>>>> d834fe926ad8120ce4c43e3d5c041db8b9a33dec
 }
