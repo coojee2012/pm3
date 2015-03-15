@@ -75,6 +75,6 @@ public partial class EvaluateEntApp_main_top : System.Web.UI.Page
         Session.Remove("EntUserId");
         Session.Remove("FManageTypeId");
         Session.Remove("fly");
-        this.RegisterStartupScript(Guid.NewGuid().ToString(), "<script>top.close();</script>");
+        ClientScript.RegisterStartupScript(this.GetType(),Guid.NewGuid().ToString(), "<script>top.close();</script>");
     }
 }
