@@ -23,7 +23,14 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         if (!IsPostBack)
         {
             string qybm = EConvert.ToString(Request.QueryString["qybm"]);
+            string prjItemid = EConvert.ToString(Request.QueryString["FPrjItemId"]);
+            lblRylx.Value = EConvert.ToString(Request.QueryString["rylx"]);
+            if (lblRylx.Value == "t_SGRYId")
+                ddlEmpType.SelectedValue = "-1";
+            if (lblRylx.Value == "t_JLRYId")
+                ddlEmpType.SelectedValue = "-1";
             ViewState["qybm"] = qybm;
+            ViewState["FPrjItemId"] = prjItemid;
             BindControl();
             showInfo(qybm);
         }
@@ -134,10 +141,10 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             //TimeSpan ts = dt2 - dt1;
             //yxq.Text = ts.Days.ToString() + "天";
             string idCard = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SFZH"));
-            var v = db.TC_PrjItem_Emp_Lock.Where(t => t.FIdCard == idCard).FirstOrDefault();
-            if (v != null)
+            var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
+            if (v != null && EConvert.ToBool(LockBusiness(v)))
             {
-                lblLock.Text = EConvert.ToBool(v.IsLock) ? "锁定" : "";
+                lblLock.Text = "锁定";
                 hLock.Value = "1";
             }
             else
@@ -147,8 +154,30 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             }
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
-            lb.Attributes.Add("onclick", "selEmp();");
+            lb.Attributes.Add("onclick", "return selEmp(this);");
         }
+    }
+
+    /// <summary>
+    /// 是否满足锁定业务
+    /// true:已锁定
+    /// false:未锁定
+    /// </summary>
+    /// 如果人员状态是已锁定（以身份证号为准进行判断，15位18位自动识别）
+    /// 则当前业务的工程所在地与已锁定的工程所在地完全一致才允许选入（且只能允许选入3次），否则不允许选入
+    /// <returns></returns>
+    private bool LockBusiness(TC_PrjItem_Emp_Lock empLock) {
+        if (empLock == null) return false;
+        EgovaDB db = new EgovaDB();
+        //是否锁定
+        if (!EConvert.ToBool(empLock.IsLock)) return false;
+        //已锁定的项目地区
+        var lockArea = db.TC_PrjItem_Info.FirstOrDefault(item => item.FId == empLock.FPrjItemId).AddressDept;   
+        //当前项目地区
+        var prjItemid = EConvert.ToString(ViewState["FPrjItemId"]);
+        var area = db.TC_PrjItem_Info.FirstOrDefault(item => item.FId == prjItemid).AddressDept;
+
+        return ((lockArea!=area)||empLock.SelectedCount>=3);
     }
 
     //protected void subList_ItemCommand(object source, RepeaterCommandEventArgs e)

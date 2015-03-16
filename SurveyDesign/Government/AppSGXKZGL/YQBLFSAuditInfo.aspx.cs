@@ -317,7 +317,7 @@ public partial class Government_AppSGXKZGL_YQBLFSAuditInfo : System.Web.UI.Page
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批成功');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');", true);
            }
            else
            {
@@ -327,7 +327,7 @@ public partial class Government_AppSGXKZGL_YQBLFSAuditInfo : System.Web.UI.Page
        }
        catch (Exception ee)
        {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批失败');", true);
+           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结失败');", true);
        }
    }
   

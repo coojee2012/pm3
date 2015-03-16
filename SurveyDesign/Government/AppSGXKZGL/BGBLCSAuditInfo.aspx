@@ -121,6 +121,78 @@
         </tr>
          
     </table>
+         <br />
+
+        <div style="width: 95%; margin: 0px auto;">
+        <table class="m_dg1" width="100%" align="center">
+            <tr class="m_dg1_h">
+                <th colspan="5" align="left" >接件材料
+                </th>
+            </tr>
+            <tr class="m_dg1_h">
+                <th style="width: 30px;">
+                    序号
+                </th>
+                 <th style="width: 50px;">
+                    具备
+                </th>
+                <th>
+                     文件或证明材料名称
+                </th>
+                
+               
+                <th style="width: 200px;">
+                    文件或证明材料情况</th>
+
+                  <th style="width: 50px;">
+                    操作
+                </th>
+            </tr>
+            <asp:Repeater ID="rep_List" runat="server" OnItemDataBound="rep_List_ItemDataBound" OnItemCommand="rep_List_ItemCommand">
+                <ItemTemplate>
+                    <tr class="m_dg1_select">
+                        <td>
+                            <%# Container.ItemIndex+1 %>
+                        </td>
+                         <td >
+                            <asp:CheckBox ID="chkIsReady"  runat="server" />
+                        </td>
+                        <td class="t_l">
+                            <%#Eval("FFileName")%>
+                        </td>
+                      
+                       
+                        <td>
+                            <asp:TextBox ID="txtFileRemark" width="98%" runat="server" TextMode="MultiLine"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CommandName="update" CommandArgument='<%#Eval("FId")%>'>保存</asp:LinkButton>
+                        </td>
+                    </tr>
+                    <asp:Repeater ID="rep_File" runat="server">
+                        <ItemTemplate>
+                            <tr class="m_dg1_i">
+                                <td colspan="7" class="t_l" style="padding-left: 50px;">
+                                    (<%# Container.ItemIndex+1 %>)、 <a href='<%#Eval("FFilePath") %>' target="_blank"
+                                        title="点击查看该文件">
+                                        <%#Eval("FFileName")%>
+                                    </a>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
+        </table>
+        <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
+            CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
+            CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" layouttype="Table"
+            NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
+            pageindexboxtype="TextBox" PageSize="3" PrevPageText="上一页" ShowCustomInfoSection="Right"
+            showpageindexbox="Always" SubmitButtonText="Go" textafterpageindexbox="页" textbeforepageindexbox="转到">
+        </webdiyer:AspNetPager>
+    </div>
+        <br />
         <br />
         <br />
         <div style="width: 95%; margin: 0px auto;">       
