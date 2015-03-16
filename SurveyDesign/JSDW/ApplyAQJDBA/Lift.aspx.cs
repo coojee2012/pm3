@@ -13,7 +13,6 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
-    private RCenter rcXM = new RCenter("XM_BaseInfo");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -66,74 +65,11 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
-        txtFId.Value = fId;
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
     }
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
-    }
-    protected void btnAdd_Click(object sender, EventArgs e)
-    {
-        string selSBId = t_SBID.Value;
-        string sql = @"select * from GC_JQSBXX where SBID='" + selSBId + "'";
-        DataTable dt = rcXM.GetTable(sql);
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            DataRow row = dt.Rows[0];
-            t_SBMC.Text = row["SBMC"].ToString();
-            t_BABH.Text = row["SBBABH"].ToString();
-            t_SBXH.Text = row["GGXH"].ToString();
-            t_CCBH.Text = row["CCBH"].ToString(); 
-        }
-
-    }
-    void ShowPrjItemInfo()
-    {
-        var App = dbContext.TC_AJBA_QZSB_CZRY.Where(t => t.FLinkID == EConvert.ToString(ViewState["FID"]) && t.FAppID == EConvert.ToString(ViewState["FAppId"])).Select(t => new
-        {
-            t.Name,
-            t.Trades,
-            t.ID,
-            t.CZZH
-        }).ToList();
-        Pager1.RecordCount = App.Count();
-        dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
-        dg_List.DataBind();
-        Pager1.Visible = (Pager1.RecordCount > Pager1.PageSize);
-    }
-    protected void btnDel_Click(object sender, EventArgs e)
-    {
-        EgovaDB dbContext = new EgovaDB();
-        pageTool tool = new pageTool(this.Page);
-        tool.DelInfoFromGrid(dg_List, dbContext.TC_AJBA_QZSB_CZRY, tool_Deleting);
-        ShowPrjItemInfo();
-    }
-    //视频删除
-    private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
-    {
-        EgovaDB dbContext = new EgovaDB();
-        //视频
-        var para = dbContext.TC_AJBA_QZSB_CZRY.Where(t => FIdList.ToArray().Contains(t.ID));
-        dbContext.TC_AJBA_QZSB_CZRY.DeleteAllOnSubmit(para);
-    }
-    protected void btnReload_Click(object sender, EventArgs e)
-    {
-        ShowPrjItemInfo();
-    }
-    protected void App_List_ItemDataBound(object sender, DataGridItemEventArgs e)
-    {
-        if (e.Item.ItemIndex > -1)
-        {
-            e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
-            string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "ID"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('Lift_CZRY.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
-        }
-    }
-    protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
-    {
-        Pager1.CurrentPageIndex = e.NewPageIndex;
-        ShowPrjItemInfo();
     }
 }

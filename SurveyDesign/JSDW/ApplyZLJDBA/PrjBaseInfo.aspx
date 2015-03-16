@@ -883,12 +883,7 @@
             </td>
                      
         </tr>
-    </table>
-    </div>
-    <div id="div3">
-    <table class="m_table" width="98%" align="center">       
-         <tr >
-            <td class="t_r t_bg" style="width:19.8%;">
+             <td class="t_r t_bg" style="width:19.8%;">
                新技术、新工艺、新材料采用情况：
             </td>
             <td colspan="3">
@@ -913,9 +908,14 @@
                 <asp:TextBox ID="t_Remarks" runat="server" CssClass="m_txt" TextMode="MultiLine" Width="608px" Height="43px" ></asp:TextBox>
             </td>
                      
-        </tr>
-     
+        </tr> 
     </table>
+    </div>
+    <div id="div3">
+        <table id="tableCP" width="98%" align="center" class="m_bar" style="display:none">
+                          <tr >
+ 
+        </table>
     </div>
     </form>
 </body>

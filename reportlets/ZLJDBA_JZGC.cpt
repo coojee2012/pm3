@@ -1,0 +1,2050 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20141222" releaseVersion="7.1.1">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select a.*, b.Cost, '地下' + a.UnderGround + '层 地上' + a.ground + '层' as floor from TC_QA_Record a, TC_PrjItem_Info b  where a.FPrjItemId = b.Fid and  FAppId='${FAppId}']]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select YEAR(FReportDate) year,MONTH(FReportDate) month,DAY(FReportDate) day 
+ from CF_App_List a,TC_QA_Record b 
+where b.FAppId=a.FId and a.FId='${FAppId}']]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[0]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[DECLARE	@return_value int,
+		@FBaseConstrType varchar(500),
+		@BaseConstrType varchar(500),
+		@BaseConstrTxt varchar(500),
+		@FFoundationType varchar(500),
+		@FoundationType varchar(500),
+		@FMixFoundationType varchar(500),
+		@MixFoundationType varchar(500),
+		@MixFoundationTxt  varchar(500),
+		@FPileBaseType  varchar(500),
+		@PileBaseType  varchar(500),
+		@PileBaseTxt varchar(500),
+		@FStealStruct varchar(500),
+		@StealStruct varchar(500),
+		@StructEngin varchar(500),
+		@EnergySaving varchar(500),
+		@Decorate varchar(500),
+		@Intercom varchar(500),
+		@ConstrTrans varchar(500),
+		@FCurtainWall varchar(500),
+		@CurtainWall varchar(500),
+		@CurtainWallTxt varchar(500)
+		
+		
+select @FBaseConstrType = BaseConstrType
+,@BaseConstrTxt = BaseConstrTxt
+,@FFoundationType = FoundationType
+,@FMixFoundationType = MixFoundationType
+,@MixFoundationTxt = MixFoundationTxt
+,@FPileBaseType = PileBaseType
+,@PileBaseTxt = PileBaseTxt
+,@FStealStruct = StealStruct
+,@StructEngin = StructEngin
+,@EnergySaving = EnergySaving
+,@Decorate = Decorate
+,@Intercom = Intercom
+,@ConstrTrans = ConstrTrans
+,@FCurtainWall = CurtainWall
+,@CurtainWallTxt = CurtainWallTxt
+from TC_QA_PrjAddition where FAppId='${FAppId}'
+
+EXEC	@return_value = [dbo]A.[po_PrjFieldToText]A
+		@sInput = @FBaseConstrType,
+		@sType = N'BaseConstrType',
+		@sOutput = @BaseConstrType OUTPUT
+EXEC	@return_value = [dbo]A.[po_PrjFieldToText]A
+		@sInput = @FFoundationType,
+		@sType = N'FoundationType',
+		@sOutput = @FoundationType OUTPUT		
+EXEC	@return_value = [dbo]A.[po_PrjFieldToText]A
+		@sInput = @FMixFoundationType,
+		@sType = N'MixFoundationType',
+		@sOutput = @MixFoundationType OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToText]A
+		@sInput = @FPileBaseType,
+		@sType = N'PileBaseType',
+		@sOutput = @PileBaseType OUTPUT
+EXEC	@return_value = [dbo]A.[po_PrjFieldToText]A
+		@sInput = @FStealStruct,
+		@sType = N'StealStruct',
+		@sOutput = @StealStruct OUTPUT	
+EXEC	@return_value = [dbo]A.[po_PrjFieldToText]A
+		@sInput = @FCurtainWall,
+		@sType = N'CurtainWall',
+		@sOutput = @CurtainWall OUTPUT											
+
+SELECT	@BaseConstrType + ',' + @BaseConstrTxt as N'BaseConstrType'
+,@FoundationType as N'FoundationType'
+,@MixFoundationType + ',' + @MixFoundationTxt as N'MixFoundationType'
+,@PileBaseType + ',' + @PileBaseTxt as N'PileBaseType'
+,@CurtainWall + ',' + @CurtainWallTxt as N'CurtainWall'
+,@StealStruct as N'StealStruct'
+,@StructEngin  as N'StructEngin'
+,@EnergySaving as N'EnergySaving'
+,@Decorate  as N'Decorate'
+,@Intercom as N'Intercom'
+,@ConstrTrans as N'ConstrTrans']]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[e887b3a1-00c0-4206-8d40-58b67002d3f9]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select *
+from TC_QA_PrjAddition where FAppId='${FAppId}']]></Query>
+</TableData>
+<TableData name="ds_constrType" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[b69ffada-3aa2-44d7-a1a7-56df9e5e36d0]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select Fname from cf_sys_dic where FNumber = (select ConstrType from dbo.TC_QA_Record  where FAppId='${FAppId}')
+]]></Query>
+</TableData>
+<TableData name="ds_PriItemType" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[b69ffada-3aa2-44d7-a1a7-56df9e5e36d0]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select Fname from cf_sys_dic where FNumber = (select prjitemtype from dbo.TC_QA_Record  where FAppId='${FAppId}')]]></Query>
+</TableData>
+<TableData name="ds_baseconstrtype1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+	case CHARINDEX('1', BaseConstrType) when 0 then null else 1 end  as baseconstrtype1,
+	case CHARINDEX('2', BaseConstrType) when 0 then null else 1 end  as baseconstrtype2,
+	case CHARINDEX('3', BaseConstrType) when 0 then null else 1 end  as baseconstrtype3,
+	case CHARINDEX('4', BaseConstrType) when 0 then null else 1 end  as baseconstrtype4,
+	case CHARINDEX('5', BaseConstrType) when 0 then null else 1 end  as baseconstrtype5
+from TC_QA_PrjAddition where fAppId = '${fAppId}']]></Query>
+</TableData>
+<TableData name="ds_baseconstrtypeplus" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fappid"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select baseconstrtxt from TC_QA_PrjAddition where charindex('6', baseconstrtype) != 0 and fappid = '${fappid}']]></Query>
+</TableData>
+<TableData name="ds_FoundationType" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+	case CHARINDEX('1', FoundationType) when 0 then null else 1 end  as FoundationType1,
+	case CHARINDEX('2', FoundationType) when 0 then null else 1 end  as FoundationType2
+from TC_QA_PrjAddition where fAppId = '${fAppId}']]></Query>
+</TableData>
+<TableData name="ds_mixfoundationtype" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+	case CHARINDEX('1', mixfoundationtype) when 0 then null else 1 end  as mixfoundationtype1,
+	case CHARINDEX('2', mixfoundationtype) when 0 then null else 1 end  as mixfoundationtype2,
+	case CHARINDEX('3', mixfoundationtype) when 0 then null else 1 end  as mixfoundationtype3,
+	case CHARINDEX('4', mixfoundationtype) when 0 then null else 1 end  as mixfoundationtype4,
+	case CHARINDEX('5', mixfoundationtype) when 0 then null else 1 end  as mixfoundationtype5
+from TC_QA_PrjAddition where fAppId = '${fAppId}']]></Query>
+</TableData>
+<TableData name="ds_mixfoundationtype_plus" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fappid"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select MixFoundationTxt from TC_QA_PrjAddition where charindex('6', mixfoundationtype) != 0 and fappid = '${fappid}']]></Query>
+</TableData>
+<TableData name="ds_PileBaseType" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+	case CHARINDEX('1', PileBaseType) when 0 then null else 1 end  as PileBaseType1,
+	case CHARINDEX('2', PileBaseType) when 0 then null else 1 end  as PileBaseType2,
+	case CHARINDEX('3', PileBaseType) when 0 then null else 1 end  as PileBaseType3,
+	case CHARINDEX('4', PileBaseType) when 0 then null else 1 end  as PileBaseType4
+from TC_QA_PrjAddition where fAppId = '${fAppId}']]></Query>
+</TableData>
+<TableData name="ds_PileBaseType_plus" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fappid"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select PileBaseTxt from TC_QA_PrjAddition where charindex('5', PileBaseType) != 0 and fappid = '${fappid}']]></Query>
+</TableData>
+<TableData name="ds_stealstruct" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fAppId"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+	case CHARINDEX('1', StealStruct) when 0 then null else 1 end  as StealStruct1,
+	case CHARINDEX('2', StealStruct) when 0 then null else 1 end  as StealStruct2,
+
+	case CHARINDEX('1', EquipInstall) when 0 then null else 1 end  as EquipInstall1,
+	case CHARINDEX('2', EquipInstall) when 0 then null else 1 end  as EquipInstall2,
+	case CHARINDEX('3', EquipInstall) when 0 then null else 1 end  as EquipInstall3,
+
+	case CHARINDEX('1', CurtainWall) when 0 then null else 1 end  as CurtainWall1,
+	case CHARINDEX('2', CurtainWall) when 0 then null else 1 end  as CurtainWall2,
+	case CHARINDEX('3', CurtainWall) when 0 then null else 1 end  as CurtainWall3
+from TC_QA_PrjAddition where fAppId = '${fAppId}']]></Query>
+</TableData>
+<TableData name="ds_curtainwall_plus" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="fappid"/>
+<O>
+<![CDATA[f3d82c25-69f0-4db1-9c64-22af28218027]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[JST_XMJG]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select CurtainWallTxt from TC_QA_PrjAddition where charindex('4', CurtainWall) != 0 and fappid = '${fappid}']]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.worksheet.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<ColumnPrivilegeControl/>
+<RowPrivilegeControl/>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,1872000,1872000,1872000,1872000,1872000,1872000,1872000,1872000,1872000,2019300,2095500,1872000,1872000,1943100,723900,723900,723900,2133600,1257300,723900,723900,723900,723900,723900,723900,578880,1562100,1447800,1371600,1447800,1560960,1485900,1371600,1560960,1560960,1485900,1560960,1560960,1560960,1560960,1560960,1560960,1560960,1560960,1560960,1560960,1409700,723900,723900,723900,723900,723900,723900,1409700,1562100,1560960,723900,723900,723900,723900,723900,723900,1562100,1560960,1560960,1560960,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2743200,2743200,4000500,762000,3581400,2743200,2743200,2743200,2667000,2743200,2743200]]></ColumnWidth>
+<FloatElementList>
+<com.fr.report.cell.FloatElement>
+<FloatElementName name="Float14"/>
+<PrivilegeControl/>
+<Location leftDistance="23660100" topDistance="56065500" width="762000" height="1333500"/>
+<O>
+<![CDATA[m]]></O>
+<Style index="0"/>
+</com.fr.report.cell.FloatElement>
+<com.fr.report.cell.FloatElement>
+<FloatElementName name="Float19"/>
+<PrivilegeControl/>
+<Location leftDistance="12611100" topDistance="54221400" width="952500" height="1219200"/>
+<O>
+<![CDATA[m2]]></O>
+<Style index="0"/>
+</com.fr.report.cell.FloatElement>
+<com.fr.report.cell.FloatElement>
+<FloatElementName name="Float14-Copy"/>
+<PrivilegeControl/>
+<Location leftDistance="12649200" topDistance="56065500" width="762000" height="1333500"/>
+<O>
+<![CDATA[m]]></O>
+<Style index="0"/>
+</com.fr.report.cell.FloatElement>
+<com.fr.report.cell.FloatElement>
+<FloatElementName name="Float14-Copy-Copy"/>
+<PrivilegeControl/>
+<Location leftDistance="23545800" topDistance="54221400" width="762000" height="1333500"/>
+<O>
+<![CDATA[m]]></O>
+<Style index="0"/>
+</com.fr.report.cell.FloatElement>
+</FloatElementList>
+<CellElementList>
+<C c="0" r="0" cs="9" rs="2" s="1">
+<O>
+<![CDATA[四川省建筑工程和市政基础设施工程]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="4" cs="9" rs="4" s="2">
+<O>
+<![CDATA[质量监督备案表]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="8" cs="9" rs="2" s="3">
+<O>
+<![CDATA[（建 筑 工 程）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="17" cs="3" rs="3" s="4">
+<O>
+<![CDATA[监督备案号]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="17" cs="5" rs="3" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="RecordNo"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="17">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="18">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="19">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="20" cs="3" rs="3" s="4">
+<O>
+<![CDATA[工程名称]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="20" cs="5" rs="3" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="PrjItemName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="20">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="21">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="22">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="23" cs="3" rs="3" s="4">
+<O>
+<![CDATA[建设单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="23" cs="5" rs="3" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JSDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="26" cs="2" rs="2" s="6">
+<O>
+<![CDATA[（盖章）]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="31" cs="3" rs="2" s="4">
+<O>
+<![CDATA[备案日期]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="31" rs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="year"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="4" r="31" rs="2" s="3">
+<O>
+<![CDATA[年]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="5" r="31" rs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="month"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="31" rs="2" s="3">
+<O>
+<![CDATA[月]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="31" rs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="day"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="8" r="31" rs="2" s="3">
+<O>
+<![CDATA[日]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="42" cs="9" rs="3" s="7">
+<O>
+<![CDATA[四川省住房和城乡建设厅制]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="56" cs="9" rs="3" s="8">
+<O>
+<![CDATA[工程概况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="59" cs="2" s="9">
+<O>
+<![CDATA[工程地址]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="59" cs="7" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Address"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="60" cs="2" s="9">
+<O>
+<![CDATA[勘察单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="60" cs="4" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="CCDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="60" rs="4" s="11">
+<O>
+<![CDATA[资质等级]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="60" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="CCDWZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="61" cs="2" s="9">
+<O>
+<![CDATA[设计单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="61" cs="4" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SJDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="7" r="61" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SJDWZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="62" cs="2" s="9">
+<O>
+<![CDATA[施工单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="62" cs="4" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="7" r="62" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGDWZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="63" cs="2" s="9">
+<O>
+<![CDATA[监理单位]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="63" cs="4" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JLDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="7" r="63" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JLZS"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="64" cs="2" s="9">
+<O>
+<![CDATA[建筑面积]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="64" cs="3" s="12">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Area"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="64" cs="2" s="9">
+<O>
+<![CDATA[结构类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="64" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds_constrType" columnName="Fname"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="65" cs="2" s="9">
+<O>
+<![CDATA[层数]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="65" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="floor"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="65" cs="2" s="9">
+<O>
+<![CDATA[总高]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="65" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Height"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="66" cs="2" s="9">
+<O>
+<![CDATA[电梯]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="66" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Elevator"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="66" cs="2" s="9">
+<O>
+<![CDATA[自动扶梯]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="66" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Escalator"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="67" cs="2" s="9">
+<O>
+<![CDATA[工程类别]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="67" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds_PriItemType" columnName="Fname"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="67" cs="2" s="9">
+<O>
+<![CDATA[投资性质]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="67" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="InvestmentType"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="68" cs="2" s="9">
+<O>
+<![CDATA[计划开竣工日期]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="68" s="13">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="StartDate"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0" extendable="3"/>
+</C>
+<C c="3" r="68" s="14">
+<O>
+<![CDATA[至]]></O>
+<PrivilegeControl/>
+<Expand extendable="3"/>
+</C>
+<C c="4" r="68" s="13">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="EndDate"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<CellGUIAttr adjustmode="0"/>
+<CellPageAttr/>
+<Expand dir="0" extendable="3"/>
+</C>
+<C c="5" r="68" cs="2" s="9">
+<O>
+<![CDATA[工程造价（万元）]]></O>
+<PrivilegeControl/>
+<CellGUIAttr adjustmode="2"/>
+<CellPageAttr/>
+<Expand/>
+</C>
+<C c="7" r="68" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="Cost"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="69" cs="2" s="9">
+<O>
+<![CDATA[勘察文件]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="69" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="KCWJ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="69" cs="2" s="9">
+<O>
+<![CDATA[施工图设计文件]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="69" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGTSJWJ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="70" cs="2" s="9">
+<O>
+<![CDATA[施工图设计文件审查机构]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="70" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGTSJWJSCJG"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="5" r="70" cs="2" s="9">
+<O>
+<![CDATA[施工图设计文件审查备案号]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="70" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGTSJWJSCPZWH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="71" cs="2" s="9">
+<O>
+<![CDATA[施工项目经理]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="71" cs="4" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="XMJL"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="71" rs="2" s="11">
+<O>
+<![CDATA[联系电话]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="71" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="SGDWDH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="72" cs="2" s="9">
+<O>
+<![CDATA[总监理工程师]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="72" cs="4" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="XMZJ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="7" r="72" cs="2" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JLDWDH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="73" cs="9" rs="2" s="15">
+<O>
+<![CDATA[      以下内容需根据施工图审查机构审查通过的设计文件和勘察资料在所选项目打“√”]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="75" cs="9" rs="2" s="16">
+<O>
+<![CDATA[，凡属“其它”的项目，需填写具体的内容。]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="5" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="7" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="8" r="84">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="85" rs="49" s="17">
+<O>
+<![CDATA[工程基本情况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="85" cs="2" rs="6" s="9">
+<O>
+<![CDATA[基础结构型式]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="85" cs="3" s="9">
+<O>
+<![CDATA[筏板或箱型基础]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="85" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_baseconstrtype1" columnName="baseconstrtype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="86" cs="3" s="9">
+<O>
+<![CDATA[独  立  柱  基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="86" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_baseconstrtype1" columnName="baseconstrtype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="87" cs="3" s="9">
+<O>
+<![CDATA[条  型  基  础]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="87" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_baseconstrtype1" columnName="baseconstrtype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="88" cs="3" s="9">
+<O>
+<![CDATA[墩    基    础]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="88" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_baseconstrtype1" columnName="baseconstrtype4"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="89" cs="3" s="9">
+<O>
+<![CDATA[桩    基    础]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="89" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_baseconstrtype1" columnName="baseconstrtype5"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="90" cs="3" s="9">
+<O>
+<![CDATA[其          它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="90" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_baseconstrtypeplus" columnName="baseconstrtxt"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="91" cs="2" rs="2" s="9">
+<O>
+<![CDATA[地基类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="91" cs="3" s="9">
+<O>
+<![CDATA[天  然  地  基]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="91" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_FoundationType" columnName="FoundationType1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="92" cs="3" s="6">
+<O>
+<![CDATA[复  合  地  基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="92" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_FoundationType" columnName="FoundationType2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="93" cs="2" rs="6" s="9">
+<O>
+<![CDATA[复合地基类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="93" cs="3" s="9">
+<O>
+<![CDATA[C F G 复合地基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="93" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_mixfoundationtype" columnName="mixfoundationtype1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="94" cs="3" s="9">
+<O>
+<![CDATA[振冲 复合 地基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="94" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_mixfoundationtype" columnName="mixfoundationtype2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="95" cs="3" s="6">
+<O>
+<![CDATA[高压旋喷复合地基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="95" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_mixfoundationtype" columnName="mixfoundationtype3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="96" cs="3" s="9">
+<O>
+<![CDATA[压力灌浆复合地基]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="96" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_mixfoundationtype" columnName="mixfoundationtype4"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="97" cs="3" s="9">
+<O>
+<![CDATA[换  填  地  基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="97" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_mixfoundationtype" columnName="mixfoundationtype5"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="98" cs="3" s="6">
+<O>
+<![CDATA[其          它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="98" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_mixfoundationtype_plus" columnName="MixFoundationTxt"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="99" cs="2" rs="5" s="9">
+<O>
+<![CDATA[桩基础类型]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="99" cs="3" s="9">
+<O>
+<![CDATA[普 通 预 制 桩]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="99" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_PileBaseType" columnName="PileBaseType1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="100" cs="3" s="9">
+<O>
+<![CDATA[预 应 力 管 桩]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="100" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_PileBaseType" columnName="PileBaseType2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="101" cs="3" s="9">
+<O>
+<![CDATA[振动沉管灌注桩]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="101" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_PileBaseType" columnName="PileBaseType3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="102" cs="3" s="9">
+<O>
+<![CDATA[大直径人工挖孔桩]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="102" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_PileBaseType" columnName="PileBaseType4"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="103" cs="3" s="9">
+<O>
+<![CDATA[其他 类型 桩基]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="103" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_PileBaseType_plus" columnName="PileBaseTxt"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="104" cs="2" rs="2" s="9">
+<O>
+<![CDATA[钢结构（包括网架结构）子分部]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="104" cs="3" s="9">
+<O>
+<![CDATA[普 通 钢 结 构]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="104" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="StealStruct1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="105" cs="3" s="9">
+<O>
+<![CDATA[网          架]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="105" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="StealStruct2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="106" cs="2" rs="3" s="9">
+<O>
+<![CDATA[预应力结构工程]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="106" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="StructEngin"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="109" cs="2" rs="3" s="9">
+<O>
+<![CDATA[建筑节能]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="109" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="EnergySaving"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="112" cs="2" rs="3" s="18">
+<O>
+<![CDATA[设备安装]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="112" cs="3" s="9">
+<O>
+<![CDATA[配  电  系  统]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="112" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="EquipInstall1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="113" cs="3" s="9">
+<O>
+<![CDATA[给    排    水]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="113" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="EquipInstall2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="114" cs="3" s="9">
+<O>
+<![CDATA[自  动  喷  淋]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="114" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="EquipInstall3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value=""/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="115" cs="2" rs="3" s="9">
+<O>
+<![CDATA[公用建筑装饰及吊顶]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="115" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="Decorate"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="118" cs="2" rs="3" s="9">
+<O>
+<![CDATA[楼宇对讲系统]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="118" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="Intercom"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="121" cs="2" rs="4" s="9">
+<O>
+<![CDATA[建筑幕墙]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="121" cs="3" s="6">
+<O>
+<![CDATA[石          材]]></O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="6" r="121" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="CurtainWall1"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand/>
+</C>
+<C c="3" r="122" cs="3" s="19">
+<O>
+<![CDATA[玻          璃]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="122" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="CurtainWall2"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="123" cs="3" s="9">
+<O>
+<![CDATA[铝    塑    板]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="123" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_stealstruct" columnName="CurtainWall3"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="3" r="124" cs="3" s="9">
+<O>
+<![CDATA[其          它]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="6" r="124" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds_curtainwall_plus" columnName="CurtainWallTxt"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Present class="com.fr.base.present.DictPresent">
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="√"/>
+<Dict key="0" value="null:null"/>
+</CustomDictAttr>
+</Dictionary>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="1" r="125" cs="2" rs="3" s="9">
+<O>
+<![CDATA[结构转换层]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="125" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="ConstrTrans"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="128" cs="2" rs="3" s="9">
+<O>
+<![CDATA[新技术、新工艺、 新材料采用情况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="128" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="NewTecUse"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="1" r="131" cs="2" rs="3" s="9">
+<O>
+<![CDATA[其它需要说明的情况]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="131" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="OtherDescription"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="134" cs="3" rs="3" s="9">
+<O>
+<![CDATA[备注]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="3" r="134" cs="6" rs="3" s="14">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="Remarks"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+</ReportAttrSet>
+<PrivilegeControl/>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="0"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<Parameter>
+<Attributes name="FAppId"/>
+<O>
+<![CDATA[b69ffada-3aa2-44d7-a1a7-56df9e5e36d0]]></O>
+</Parameter>
+</ReportParameterAttr>
+<StyleList>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="ColorBackground" color="-1"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="黑体" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="224"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="112"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="112"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="104"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="144"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" isVerticalText="1" textDirection="1" imageLayout="1">
+<FRFont name="SimSun" style="0" size="112"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="0" size="96"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+</StyleList>
+<DesignerVersion DesignerVersion="HBB"/>
+<PreviewType PreviewType="0"/>
+</WorkBook>

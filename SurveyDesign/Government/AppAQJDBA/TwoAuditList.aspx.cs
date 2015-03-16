@@ -98,8 +98,8 @@ public partial class Government_AppAQJDBA_TwoAuditList : govBasePage
         sb.Append("select * from ( ");
         sb.Append(" select qa.ProjectName,qa.PrjItemName,qa.RecordNo,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case when er.FMeasure=0 and ep.fstate<>2  then '未复审' when er.FMeasure=5 and er.FResult=1 then '复审已通过' when ep.fstate=6 and er.FResult=3 and er.FMeasure<>0 then '复审未通过' ");
-        sb.Append(" when ep.fstate=2 then '已退回' end as FStatedesc,");
+        sb.Append(" case ep.fState when 1 then '上报审批中' when 2 then '打回企业' when 3 then '打回下级' ");
+        sb.Append(" when 5 then '未审批证书' when 6 then '审批完成' end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime ");
         sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, TC_AJBA_Record qa, CF_APP_LIST ap ");
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 ");
@@ -113,8 +113,8 @@ public partial class Government_AppAQJDBA_TwoAuditList : govBasePage
         sb.Append(" union all ");
         sb.Append(" select qa.ProjectName,qa.PrjItemName,qa.RecordNo,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case when er.FMeasure=0 and ep.fstate<>2  then '未复审' when er.FMeasure=5 and er.FResult=1 then '复审已通过' when ep.fstate=6 and er.FResult=3 and er.FMeasure<>0 then '复审未通过' ");
-        sb.Append(" when ep.fstate=2 then '已退回' end as FStatedesc,");
+        sb.Append(" case ep.fState when 1 then '上报审批中' when 2 then '打回企业' when 3 then '打回下级' ");
+        sb.Append(" when 5 then '未审批证书' when 6 then case er.FResult when 1 then '审批完成,通过' when 3 then '审批完成,不通过' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, TC_AJBA_Record qa, CF_APP_LIST ap");
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 ");
