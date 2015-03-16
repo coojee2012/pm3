@@ -114,7 +114,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
 
         var v = from t in dbContext.CF_Sys_PrjList
                 orderby t.FId
-                where t.FManageType == 11223
+                where t.FManageType == 11225
                 select new
                 {
                     t.FId,
@@ -214,6 +214,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         var v = dbContext.TC_Prj_YZ.Where(t => t.FPrjItemId == t_PrjItemId.Value);
+        Pager2.RecordCount = v.Count();
         dg_List.DataSource = v;
         dg_List.DataBind();
     }
@@ -270,7 +271,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
            IQueryable<TC_QA_File> AppFile = DataBinder.Eval(e.Item.DataItem, "AppFile") as IQueryable<TC_QA_File>;
            if (AppFile != null && AppFile.Count() > 0)
            {
-               ((Literal)e.Item.FindControl("lit_Count")).Text = AppFile.Count().ToString();
+               //((Literal)e.Item.FindControl("lit_Count")).Text = AppFile.Count().ToString();
                Repeater rep_File = (Repeater)e.Item.FindControl("rep_File");
                rep_File.DataSource = AppFile;
                rep_File.DataBind();
@@ -293,6 +294,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        EgovaDB dbContext = new EgovaDB();
        var v = dbContext.TC_SGXKZ_BGJG.Where(t => t.FAppId == t_fLinkId.Value);
+       pagerPrj.RecordCount = v.Count();
        dgPrj.DataSource = v;
        dgPrj.DataBind();
    }
@@ -301,6 +303,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        EgovaDB dbContext = new EgovaDB();
        var v = dbContext.TC_SGXKZ_QYBGJG.Where(t => t.FAppId == t_fLinkId.Value);
+       pagerEnt.RecordCount = v.Count();
        dgEnt.DataSource = v;
        dgEnt.DataBind();
    }
@@ -309,6 +312,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        EgovaDB dbContext = new EgovaDB();
        var v = dbContext.TC_SGXKZ_RYBGJG.Where(t => t.FAppId == t_fLinkId.Value);
+       pagerEmp.RecordCount = v.Count();
        dgEmp.DataSource = v;
        dgEmp.DataBind();
    }
@@ -316,7 +320,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        if (e.Item.ItemIndex > -1)
        {
-           e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.pagerPrj.PageSize * (this.pagerPrj.CurrentPageIndex - 1)).ToString();
+           e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerPrj.PageSize * (this.pagerPrj.CurrentPageIndex - 1)).ToString();
        }
    }
    protected void pagerPrj_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -329,7 +333,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        if (e.Item.ItemIndex > -1)
        {
-           e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.pagerEnt.PageSize * (this.pagerEnt.CurrentPageIndex - 1)).ToString();
+           e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerEnt.PageSize * (this.pagerEnt.CurrentPageIndex - 1)).ToString();
        }
    }
    protected void pagerEnt_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -342,7 +346,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        if (e.Item.ItemIndex > -1)
        {
-           e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.dgEmp.PageSize * (this.dgEmp.CurrentPageIndex - 1)).ToString();
+           e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerEmp.PageSize * (this.pagerEmp.CurrentPageIndex - 1)).ToString();
        }
    }
    protected void pagerEmp_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
