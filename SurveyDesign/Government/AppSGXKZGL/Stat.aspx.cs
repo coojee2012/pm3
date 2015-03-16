@@ -18,14 +18,6 @@ using Approve.RuleCenter;
 public partial class Government_AppAQJDBA_Stat : govBasePage
 {
     RCenter rc = new RCenter();
-    //string FType = Session["FType"].ToString();
-    //string FSystemId = Session["DFSystemId"].ToString();
-    //string DFName = Session["DFName"].ToString();
-    //string DFUserId = Session["DFUserId"].ToString();
-    //string DFUserRightId = Session["DFUserRightId"].ToString();
-    //string DFRoleId = Session["DFRoleId"].ToString();
-    //string DFMenuRoleId = Session["DFMenuRoleId"].ToString();
-    //string DFId = Session["DFId"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -40,33 +32,11 @@ public partial class Government_AppAQJDBA_Stat : govBasePage
     protected void showStatInfo()
     {
         EgovaDB db = new EgovaDB();
-        string DFId = Session["DFId"].ToString();
-        string DFId2= EConvert.ToString(Request.QueryString["PrjAddressDept"]);
         var v = from t in db.V_SGXKZ_TJ
                      select t;
-        if (DFId.Length == 2 && string.IsNullOrEmpty(DFId2))
-            v = v.Where(t => t.PrjAddressDept.Length == 4);
-        else if (DFId.Length == 4 && string.IsNullOrEmpty(DFId2))
-        {
-            v = v.Where(t => t.PrjAddressDept.Contains(DFId) );
-        }
-        else if (!string.IsNullOrEmpty(DFId2))
-        {
-            v = v.Where(t => t.PrjAddressDept.Contains(DFId2) && t.PrjAddressDept != DFId2);
-        }
-        if (DFId2.Length == 6)
-        {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('已经是最低区域');", true);
-        }
-        else
-        {
-            Pager1.RecordCount = v.Count();
-
-            this.rep_List.DataSource = v.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
-            rep_List.DataBind();
-        }
-
-       
+        Pager1.RecordCount = v.Count();
+        this.rep_List.DataSource = v.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+        rep_List.DataBind();
 
     }
     protected void showDetailInfo()

@@ -99,7 +99,7 @@
                             <%# Container.ItemIndex+1 %>
                         </td>
                         <td class="t_l">
-                           <a href='Stat.aspx?PrjAddressDept=<%#Eval("PrjAddressDept")%>'><%#Eval("SD")%></a> 
+                            <%#Eval("SD")%>
                         </td>
                         <td>
                            
