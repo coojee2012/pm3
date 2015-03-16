@@ -13,7 +13,6 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
-    private RCenter rcXM = new RCenter("XM_BaseInfo");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -73,7 +72,6 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
-        txtFId.Value = fId;
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
     }
     //保存按钮
@@ -81,6 +79,7 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
     {
         saveInfo();
     }
+<<<<<<< HEAD
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         string selSBId = t_SBID.Value;
@@ -144,4 +143,6 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         Pager1.CurrentPageIndex = e.NewPageIndex;
         ShowPrjItemInfo();
     }
+=======
+>>>>>>> b646eaa254b545154b595435e5add8a67cbbf5c6
 }

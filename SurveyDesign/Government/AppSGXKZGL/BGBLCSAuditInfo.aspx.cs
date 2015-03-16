@@ -222,6 +222,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         var v = dbContext.TC_Prj_YZ.Where(t => t.FPrjItemId == t_PrjItemId.Value);
+        Pager2.RecordCount = v.Count();
         DG_ListYZ.DataSource = v;
         DG_ListYZ.DataBind();
     }
@@ -275,6 +276,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
    {
        EgovaDB dbContext = new EgovaDB();
        var v = dbContext.TC_SGXKZ_BGJG.Where(t => t.FAppId == t_fLinkId.Value);
+       pagerPrj.RecordCount = v.Count();
        dgPrj.DataSource = v;
        dgPrj.DataBind();
    }
@@ -283,6 +285,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
    {
        EgovaDB dbContext = new EgovaDB();
        var v = dbContext.TC_SGXKZ_QYBGJG.Where(t => t.FAppId == t_fLinkId.Value);
+       pagerEnt.RecordCount = v.Count();
        dgEnt.DataSource = v;
        dgEnt.DataBind();
    }
@@ -291,6 +294,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
    {
        EgovaDB dbContext = new EgovaDB();
        var v = dbContext.TC_SGXKZ_RYBGJG.Where(t => t.FAppId == t_fLinkId.Value);
+       pagerEmp.RecordCount = v.Count();
        dgEmp.DataSource = v;
        dgEmp.DataBind();
    }
@@ -298,7 +302,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
    {
        if (e.Item.ItemIndex > -1)
        {
-           e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.pagerPrj.PageSize * (this.pagerPrj.CurrentPageIndex - 1)).ToString();
+           e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerPrj.PageSize * (this.pagerPrj.CurrentPageIndex - 1)).ToString();
        }
    }
    protected void pagerPrj_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -311,7 +315,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
    {
        if (e.Item.ItemIndex > -1)
        {
-           e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.pagerEnt.PageSize * (this.pagerEnt.CurrentPageIndex - 1)).ToString();
+           e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerEnt.PageSize * (this.pagerEnt.CurrentPageIndex - 1)).ToString();
        }
    }
    protected void pagerEnt_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -324,7 +328,7 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
    {
        if (e.Item.ItemIndex > -1)
        {
-           e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.dgEmp.PageSize * (this.dgEmp.CurrentPageIndex - 1)).ToString();
+           e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerEmp.PageSize * (this.pagerEmp.CurrentPageIndex - 1)).ToString();
        }
    }
    protected void pagerEmp_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -436,6 +440,74 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
        catch (Exception ee)
        {
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('回退到建设单位失败');", true);
+       }
+   }
+
+
+   protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
+   {
+       Pager1.CurrentPageIndex = e.NewPageIndex;
+       bindFileInfo();
+   }
+   protected void rep_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
+   {
+       if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+       {
+           string FId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
+           string FFileName = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FFileName"));
+           TextBox txtFileRemark = e.Item.FindControl("txtFileRemark") as TextBox;
+           CheckBox chkIsReady = e.Item.FindControl("chkIsReady") as CheckBox;
+           EgovaDB db = new EgovaDB();
+           TC_Prj_FileReady data = db.TC_Prj_FileReady.Where(t => t.FAppId == t_fLinkId.Value
+                                   && t.FMaterialTypeId == FId).FirstOrDefault();
+           if (data != null)
+           {
+               txtFileRemark.Text = data.FRemarks;
+               chkIsReady.Checked = EConvert.ToBool(data.FIsReady);
+
+           }
+
+           IQueryable<TC_QA_File> AppFile = DataBinder.Eval(e.Item.DataItem, "AppFile") as IQueryable<TC_QA_File>;
+           if (AppFile != null && AppFile.Count() > 0)
+           {
+               //((Literal)e.Item.FindControl("lit_Count")).Text = AppFile.Count().ToString();
+               Repeater rep_File = (Repeater)e.Item.FindControl("rep_File");
+               rep_File.DataSource = AppFile;
+               rep_File.DataBind();
+           }
+       }
+
+   }
+
+   protected void rep_List_ItemCommand(object source, RepeaterCommandEventArgs e)
+   {
+       switch (e.CommandName)
+       {
+           case "update":
+               string fMaterialTypeId = e.CommandArgument.ToString();//取得参数
+               TextBox txtFileRemark = e.Item.FindControl("txtFileRemark") as TextBox;
+               CheckBox chkIsReady = e.Item.FindControl("chkIsReady") as CheckBox;
+               EgovaDB db = new EgovaDB();
+               TC_Prj_FileReady data = db.TC_Prj_FileReady.Where(t => t.FAppId == t_fLinkId.Value
+                                       && t.FMaterialTypeId == fMaterialTypeId).FirstOrDefault();
+               if (data == null)
+               {
+                   data = new TC_Prj_FileReady();
+                   data.FId = Guid.NewGuid().ToString();
+                   data.FMaterialTypeId = fMaterialTypeId;
+                   data.FAppId = t_fLinkId.Value;
+                   data.FIsReady = chkIsReady.Checked;
+                   data.FRemarks = txtFileRemark.Text;
+                   db.TC_Prj_FileReady.InsertOnSubmit(data);
+               }
+               else
+               {
+                   data.FIsReady = chkIsReady.Checked;
+                   data.FRemarks = txtFileRemark.Text;
+               }
+               db.SubmitChanges();
+               MyPageTool.showMessage("保存成功", this.Page);
+               break;
        }
    }
    

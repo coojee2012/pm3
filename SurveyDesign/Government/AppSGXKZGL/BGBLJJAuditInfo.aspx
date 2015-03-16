@@ -148,20 +148,26 @@
         <div style="width: 95%; margin: 0px auto;">
         <table class="m_dg1" width="100%" align="center">
             <tr class="m_dg1_h">
+                <th colspan="5" align="left" >接件材料
+                </th>
+            </tr>
+            <tr class="m_dg1_h">
                 <th style="width: 30px;">
                     序号
                 </th>
+                 <th style="width: 50px;">
+                    具备
+                </th>
                 <th>
-                    资料名称
+                     文件或证明材料名称
                 </th>
                 
-                <th style="width: 50px;">
-                    是否具备
-                </th>
+               
                 <th style="width: 200px;">
                     文件或证明材料情况</th>
-                <th style="width: 50px;">
-                 
+
+                  <th style="width: 50px;">
+                    操作
                 </th>
             </tr>
             <asp:Repeater ID="rep_List" runat="server" OnItemDataBound="rep_List_ItemDataBound" OnItemCommand="rep_List_ItemCommand">
@@ -170,13 +176,14 @@
                         <td>
                             <%# Container.ItemIndex+1 %>
                         </td>
+                         <td >
+                            <asp:CheckBox ID="chkIsReady"  runat="server" />
+                        </td>
                         <td class="t_l">
                             <%#Eval("FFileName")%>
                         </td>
                       
-                        <td >
-                            <asp:CheckBox ID="chkIsReady"  runat="server" />
-                        </td>
+                       
                         <td>
                             <asp:TextBox ID="txtFileRemark" width="98%" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </td>
@@ -251,7 +258,7 @@
                 <asp:BoundColumn HeaderText="序号">
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="持证人2" DataField="SZR">
+                <asp:BoundColumn HeaderText="持证人" DataField="CZR">
                     <ItemStyle Wrap="False"  />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="证书名称" DataField="FCertificateName">

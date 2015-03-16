@@ -14,7 +14,7 @@ using Approve.Common;
 using Approve.EntityBase;
 using Approve.EntitySys;
 
-public partial class EvaluateEntApp_main_top : System.Web.UI.Page
+public partial class JSDW_ApplyJGYSSZ_AppMain_aTop : System.Web.UI.Page
 {
     RCenter rc = new RCenter();
     RQuali rq = new RQuali();
@@ -75,6 +75,6 @@ public partial class EvaluateEntApp_main_top : System.Web.UI.Page
         Session.Remove("EntUserId");
         Session.Remove("FManageTypeId");
         Session.Remove("fly");
-        this.RegisterStartupScript(Guid.NewGuid().ToString(), "<script>top.close();</script>");
+        ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString(), "<script>top.close();</script>");
     }
 }
