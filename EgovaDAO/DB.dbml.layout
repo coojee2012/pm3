@@ -554,10 +554,10 @@
         <elementListCompartment Id="d3d07220-30a1-4210-8a37-e594cd8fbf31" absoluteBounds="0.51500000000000057, 6.46, 1.9700000000000002, 13.173716227213541" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f19b27d5-1558-4b1f-a17b-0915814ed508" isExpanded="false" absoluteBounds="0.5, 15.625, 2, 0.45">
+    <classShape Id="75193c56-911b-48b5-9023-ae9a1fc1eea4" isExpanded="false" absoluteBounds="0.5, 15.625, 2, 0.45">
       <DataClassMoniker Name="/DBDataContext/TC_AJBA_QZSB_CZRY" />
       <nestedChildShapes>
-        <elementListCompartment Id="67ac9b35-3bae-4053-ad72-7a73784e2ba4" absoluteBounds="0.51500000000000012, 16.085, 1.9700000000000002, 1.5316874186197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b9aacb77-345a-45a8-9f22-7b8996d891f1" absoluteBounds="0.51500000000000012, 16.085, 1.9700000000000002, 1.5316874186197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

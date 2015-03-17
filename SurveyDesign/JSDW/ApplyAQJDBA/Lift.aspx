@@ -23,11 +23,11 @@
         }
         function selEmp(obj, tagId) {
             var url = "../project/JqsbxxSel.aspx?1=1";
-            var pid = showWinByReturn(url, 1000, 600);
-            if (pid != null && pid != '') {
-                $("#" + tagId).val(pid);
-                __doPostBack(obj.id, '');
-            }
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
 
         }
         function addCZRY() {

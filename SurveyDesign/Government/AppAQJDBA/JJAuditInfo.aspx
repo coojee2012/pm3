@@ -134,9 +134,9 @@
                     资料名称
                 </th>
                 <th style="width: 60px;">
-                    需要文件数量
+                    份数
                 </th>
-                <th style="width: 60px;">
+                <th style="width: 60px;display:none;">
                     已上传<br />
                     文件个数
                 </th>
@@ -162,7 +162,7 @@
                         <td>
                             <%#Eval("FFileCount")%>
                         </td>
-                        <td>
+                        <td style="display:none">
                             <asp:Literal ID="lit_Count" runat="server"></asp:Literal>
                         </td>
                         <td >
@@ -263,7 +263,7 @@
                 Text="退回建设单位"  OnClick="btnBackToEnt_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />
+           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = 1;window.close();" />
         </div>
  
         <input id="t_fLinkId" runat="server" type="hidden" />

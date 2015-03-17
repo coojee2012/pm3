@@ -303,7 +303,7 @@ namespace EgovaDAO
     #endregion
 		
 		public DBDataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString4, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.dbCenter_scConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

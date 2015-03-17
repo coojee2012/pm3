@@ -85,7 +85,7 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
             t_SBMC.Text = row["SBMC"].ToString();
             t_BABH.Text = row["SBBABH"].ToString();
             t_SBXH.Text = row["GGXH"].ToString();
-            t_CCBH.Text = row["CCBH"].ToString();
+            t_CCBH.Text = row["CCBH"].ToString(); 
         }
 
     }
