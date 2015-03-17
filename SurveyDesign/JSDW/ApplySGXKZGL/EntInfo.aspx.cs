@@ -115,8 +115,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
         EgovaDB dbContext = new EgovaDB();
-        var v = from t in dbContext.TC_PrjItem_Emp
-                where t.FAppId == t_FAppId.Value && t.FEntId == h_selEntId.Value
+        var v = from t in dbContext.TC_PrjItem_Emp 
+                where t.FAppId == t_FAppId.Value && t.FEntId == h_selEntId.Value  && t.FEntType==EConvert.ToInt(t_FEntType.Value)                
                 orderby t.FId
                 select new
                 {
@@ -129,8 +129,10 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
                     t.FAppId,
                     t.FEntId,
                     t.FPrjItemId,
-                    t.FPrjId
+                    t.FPrjId,
+                    t.FEntType
                 };
+
         dg_List.DataSource = v;
         dg_List.DataBind();
     }

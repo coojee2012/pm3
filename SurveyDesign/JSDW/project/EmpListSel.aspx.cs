@@ -165,6 +165,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     /// </summary>
     /// 如果人员状态是已锁定（以身份证号为准进行判断，15位18位自动识别）
     /// 则当前业务的工程所在地与已锁定的工程所在地完全一致才允许选入（且只能允许选入3次），否则不允许选入
+    /// <param name="empLock"></param>
     /// <returns></returns>
     private bool LockBusiness(TC_PrjItem_Emp_Lock empLock) {
         if (empLock == null) return false;
