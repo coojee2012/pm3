@@ -79,7 +79,7 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
     {
         saveInfo();
     }
-<<<<<<< HEAD
+
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         string selSBId = t_SBID.Value;
@@ -143,6 +143,5 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         Pager1.CurrentPageIndex = e.NewPageIndex;
         ShowPrjItemInfo();
     }
-=======
->>>>>>> b646eaa254b545154b595435e5add8a67cbbf5c6
+
 }
