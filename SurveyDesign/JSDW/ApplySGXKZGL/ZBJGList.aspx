@@ -17,7 +17,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             txtCss();
-
+            showTr1();
         });
         function checkInfo() {
             return AutoCheckInfo();
@@ -85,6 +85,10 @@
                 //$("input").removeAttr("disabled");
                 $("tr[name=tr1]").hide();
             }
+            var thisVal = $("select[name='t_JLZBLX']").val();
+            alert(thisVal);
+            alert(value);
+           
         }
         function selEnt(obj, tagId) {
             var url = "../project/EntListSel.aspx?e=1";

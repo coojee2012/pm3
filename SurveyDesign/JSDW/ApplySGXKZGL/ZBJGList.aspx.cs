@@ -18,7 +18,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             BindControl();
-            
+
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                 ViewState["FID"] = Request.QueryString["fid"];
@@ -97,7 +97,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         t_ConstrScale.Text = qa.ConstrScale;
         TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
         t_ProjectNo.Text = p.ProjectNo;
-        
+
 
         //pageTool tool = new pageTool(this.Page, "t_");
         //tool.fillPageControl(sp);
@@ -144,41 +144,45 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        var isNew = true;
         string fId = txtFId.Value;
-        //string KCId = txtKCId.Value;
-        //string SJId = txtSJId.Value;
-        //string JLId = txtJLId.Value;
-        //string SGId = txtSGId.Value;
         TC_SGXKZ_ZBJG qa = new TC_SGXKZ_ZBJG();
         pageTool tool = new pageTool(this.Page);
         if (!string.IsNullOrEmpty(fId))
         {
             qa = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FId == fId).FirstOrDefault();
+            isNew = false;
         }
         else
         {
+
             fId = Guid.NewGuid().ToString();
-            //KCId = Guid.NewGuid().ToString();
-            //SJId = Guid.NewGuid().ToString();
-            //JLId = Guid.NewGuid().ToString();
-            //SGId = Guid.NewGuid().ToString();
             qa.FId = fId;
-            //qa.KCId = KCId;
-            //qa.SJId = SJId;
-            //qa.JLId = JLId;
-            //qa.SGId = SGId;
             qa.FprjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
             qa.FAppId = EConvert.ToString(ViewState["FAppId"]);
             dbContext.TC_SGXKZ_ZBJG.InsertOnSubmit(qa);
         }
         qa = tool.getPageValue(qa);
+        if (qa.JLId != null && qa.JLId.Length > 36)//这里不知道是什么原因 这个长度超出了。暂时这样处理。
+        {
+            qa.JLId = qa.JLId.Substring(0, 36);
+        }
+        if (qa.SGId != null && qa.SGId.Length > 36)//这里不知道是什么原因 这个长度超出了。暂时这样处理。
+        {
+            qa.SGId = qa.SGId.Substring(0, 36);
+        }
+        if (isNew)
+        {
+            var count1 = dbContext.TC_SGXKZ_ZBJG.Count(t => t.FAppId == EConvert.ToString(ViewState["FAppId"]) && t.JLId == qa.JLId);
+            if (count1 > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('请不要重复添加该中标单位');window.returnValue='1';", true);
+                return;
+            }
+        }
+
         dbContext.SubmitChanges();
         txtFId.Value = fId;
-        //txtKCId.Value = KCId;
-        //txtSJId.Value = SJId;
-        //txtJLId.Value = JLId;
-        //txtSGId.Value = SGId;
-        //ShowTitle();
         ShowFile(t_JLId.Value, "JL");
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     }
@@ -320,7 +324,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                     t_JLZBQYZZZSH.Text = v1.ZSBH;
                 }
             }
-            
+
 
         }
         else if (type == "SG")
@@ -333,7 +337,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 t_ZBDLDWMC.Text = v.QYMC;
                 t_ZBDLDWZZJGDM.Text = v.JGDM;
             }
-            
+
         }
         else if (type == "SJ")
         {
@@ -345,7 +349,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 t_JLGCS.Text = v.XM;
                 t_JLGCSZJHM.Text = v.SFZH;
             }
-            
+
         }
         if (!string.IsNullOrEmpty(t_BL.SelectedValue))
         {

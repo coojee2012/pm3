@@ -95,7 +95,7 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
                 ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(prjInfo.AddressDept)).Select(d => d.FName).FirstOrDefault(), prjInfo.AddressDept));
             }
         }
-        
+
     }
     //显示
     private void showInfo()
@@ -137,17 +137,11 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
     /// <returns></returns>
     bool IsUploadFile(int? FMTypeId, string FAppId)
     {
-        //var v = db.CF_Sys_PrjList.Count(t => t.FIsMust == 1
-        //    && t.FManageType == FMTypeId
-        //    && db.CF_AppPrj_FileOther.Count(o => o.FPrjFileId == t.FId
-        //        && o.FAppId == FAppId) < 1) > 0;
-        //return v;
         return false;
     }
-    
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        //  this.saveInfo();
         this.Report();
     }
     private void Report()
@@ -163,51 +157,68 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             MyPageTool.showMessage("该条业务已经上报或者不符合上报条件，不能继续上报操作", this.Page);
             return;
         }
-        //if (!ValidateCallVideo(fAppId))
-        //{
-        //    MyPageTool.showMessage("是否点名处未设置或者设置超过1个点位，不能上报", this.Page);
-        //    return;
-        //}
-        //if (!ValidateVideo(fAppId))
-        //{
-        //    MyPageTool.showMessage("摄像头个数如果未达到规定数量，不能上报", this.Page);
-        //    return;
-        //}
+
         string fSystemId = CurrentEntUser.URSystemId;
         if (string.IsNullOrEmpty(fSystemId))
         {
             MyPageTool.showMessage("系统出错,获取不到当前登录系统的编码", this.Page);
             return;
         }
+
+        //验证各个项目环节
+        var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FId == fAppId);
+        if (dataOne == null || string.IsNullOrEmpty(dataOne.YDGHXKZBH))
+        {
+            MyPageTool.showMessage("请完善项目环节:[建设用地规划许可证]", this.Page);
+            return;
+        }
+        var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FId == fAppId);
+        if (dataTwo == null || string.IsNullOrEmpty(dataTwo.GCGHXKZBH))
+        {
+            MyPageTool.showMessage("请完善项目环节:[建设工程规划许可证]", this.Page);
+            return;
+        }
+
+        var dataThree = db.TC_SGXKZ_SGTSC.FirstOrDefault(t => t.FId == fAppId);
+        if (dataThree == null
+            || string.IsNullOrEmpty(dataThree.SGTSCHGSBH)
+            || string.IsNullOrEmpty(dataThree.SGTSCJGId)
+            || string.IsNullOrEmpty(dataThree.SGTSCZZJGDM)
+            || dataThree.SCWCRQ == null
+            || string.IsNullOrEmpty(dataThree.KCDWId)
+            || string.IsNullOrEmpty(dataThree.KCDWZZJGDM)
+            || string.IsNullOrEmpty(dataThree.SJDWId)
+            || string.IsNullOrEmpty(dataThree.SJDWZZJGDM)
+            || dataThree.YCSCSFTG == null
+            || dataThree.YCSCWFTS == null
+            || string.IsNullOrEmpty(dataThree.YCSCWFTM))
+        {
+            MyPageTool.showMessage("请完善项目环节:[施工图审查信息]", this.Page);
+            return;
+        }
+
+        var dataFour = db.TC_SGXKZ_JDSX.FirstOrDefault(t => t.FId == fAppId);
+        if (dataFour == null || string.IsNullOrEmpty(dataFour.ZLBABH) || string.IsNullOrEmpty(dataFour.AQBABH))
+        {
+            MyPageTool.showMessage("请完善项目环节:[质量安全监督手续]", this.Page);
+            return;
+        }
+
+        var dataFive = db.TC_SGXKZ_ZJBH.FirstOrDefault(t => t.FId == fAppId);
+        if (dataFive == null || dataFive.ISDBS == null || string.IsNullOrEmpty(dataFive.ZJBH) || string.IsNullOrEmpty(dataFive.JF) || string.IsNullOrEmpty(dataFive.YF))
+        {
+            MyPageTool.showMessage("请完善项目环节:[资金保函或证明]", this.Page);
+            return;
+        }
+        var dataSix = db.TC_SGXKZ_QTZL.FirstOrDefault(t => t.FId == fAppId);
+        if (dataSix == null || string.IsNullOrEmpty(dataSix.SGTJ) || string.IsNullOrEmpty(dataSix.CNS))
+        {
+            MyPageTool.showMessage("请完善项目环节:[其它材料]", this.Page);
+            return;
+        }
+
         string fNumber = ddlLevel.SelectedValue;
-        //if (ddlLevel.SelectedValue == "1")//省级
-        //{
-        //    if (fNumber.Length < 2)
-        //    {
-        //        MyPageTool.showMessage("上报部门不存在省级", this.Page);
-        //        return;
-        //    }
-        //    fNumber = fNumber.Substring(0, 2);
-        //}
-        //else if (ddlLevel.SelectedValue == "2")//市级
-        //{
-        //    if (fNumber.Length < 4)
-        //    {
-        //        MyPageTool.showMessage("上报部门不存在市级", this.Page);
-        //        return;
-        //    }
-        //    fNumber = fNumber.Substring(0, 4);
-        //}
-        //else if (ddlLevel.SelectedValue == "3")//县级
-        //{
-        //    if (fNumber.Length < 6)
-        //    {
-        //        MyPageTool.showMessage("上报部门不存在县级", this.Page);
-        //        return;
-        //    }
-        //    fNumber = fNumber.Substring(0, 6);
-        //}
-        
+
         if (WFApp.Report(fAppId, fSystemId, fDeptNumber, fNumber))
         {
             Session["FIsApprove"] = 1;
