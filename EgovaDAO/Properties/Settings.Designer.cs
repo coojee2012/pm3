@@ -103,8 +103,7 @@ namespace EgovaDAO.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115;" +
-            "Password=jkc115")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115")]
         public string dbCenterConnectionString4 {
             get {
                 return ((string)(this["dbCenterConnectionString4"]));
