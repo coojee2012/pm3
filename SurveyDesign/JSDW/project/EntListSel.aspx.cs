@@ -67,7 +67,6 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
                   where b.QYLXBM == qylx && tt.SFZX == 1 
-                  && tt1.ZSLXBM =="150"
                   
                   select  new
                   {

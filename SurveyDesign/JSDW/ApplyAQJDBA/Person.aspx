@@ -32,7 +32,6 @@
             {
                 qybm = '<%=ViewState["FJSDWID"] %>';
             }
-            alert(qybm);
             if (qybm != null && qybm != "") {
                 if (document.getElementById("<%=t_XMZW.ClientID%>").value != "") {
                     var url = "../project/EmpListSel.aspx";
