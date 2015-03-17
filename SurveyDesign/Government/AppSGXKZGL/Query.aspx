@@ -221,7 +221,7 @@
             </td>
         </tr>
     </table>
-    <table width="98%" align="center" class="m_bar">
+  <%--  <table width="98%" align="center" class="m_bar">
         <tr>
             <td class="m_bar_l">
             </td>
@@ -237,7 +237,7 @@
             <td class="m_bar_r">
             </td>
         </tr>
-    </table>
+    </table>--%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:DataGrid ID="JustAppInfo_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
@@ -272,10 +272,10 @@
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             
-                            <asp:BoundColumn HeaderText="备案编号" DataField="RecordNo" >
+                          <%--  <asp:BoundColumn HeaderText="备案编号" DataField="RecordNo" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                            </asp:BoundColumn>--%>
                             <asp:BoundColumn HeaderText="建设单位" DataField="JSDW" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
