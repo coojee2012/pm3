@@ -123,7 +123,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                 var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
                 if (v1 != null)
                 {
-                    q_SGDWZGZH.Text = v1.ZGZSH;
+                    q_SGDWZGZH.Text = v1.ZCZSH;
                 }
             }
 
