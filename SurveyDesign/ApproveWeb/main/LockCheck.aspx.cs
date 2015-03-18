@@ -26,6 +26,7 @@ public partial class ApproveWeb_Main_LockCheck : System.Web.UI.Page
     Share sh = new Share();
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!Page.IsPostBack)
         {
             if (!string.IsNullOrEmpty(Request.QueryString["key"]))
@@ -319,6 +320,7 @@ public partial class ApproveWeb_Main_LockCheck : System.Web.UI.Page
                 Session["DFSystemId"] = FSystemId;
                 Session["DFName"] = dt.Rows[0]["fcompany"].ToString();
                 Session["DFUserId"] = dt.Rows[0]["uFID"].ToString();
+                Session["FUserId"] = dt.Rows[0]["uFID"].ToString();
                 Session["DFUserRightId"] = dt.Rows[0]["FId"].ToString();
                 Session["DFRoleId"] = dt.Rows[0]["FRoleId"].ToString();
                 Session["DFMenuRoleId"] = dt.Rows[0]["FMenuRoleId"].ToString();

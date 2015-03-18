@@ -81,7 +81,8 @@ namespace EgovaDAO.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.101.9\\MSSQLSERVER08;Initial Catalog=dbCenter_sc;Persist Secur" +
+            "ity Info=True;User ID=sa;Password=sql2008")]
         public string dbCenter_scConnectionString {
             get {
                 return ((string)(this["dbCenter_scConnectionString"]));
@@ -96,6 +97,26 @@ namespace EgovaDAO.Properties {
         public string JST_XZSPBaseInfoConnectionString1 {
             get {
                 return ((string)(this["JST_XZSPBaseInfoConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115")]
+        public string dbCenterConnectionString4 {
+            get {
+                return ((string)(this["dbCenterConnectionString4"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Integrated Security=True")]
+        public string dbCenterConnectionString5 {
+            get {
+                return ((string)(this["dbCenterConnectionString5"]));
             }
         }
     }
