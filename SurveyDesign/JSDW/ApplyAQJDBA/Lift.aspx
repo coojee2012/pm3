@@ -67,7 +67,7 @@
                     设备名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_SBMC" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_SBMC" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                     <input type="hidden"  runat="server" ID="t_SBID" value="" />
                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_SBID');"
@@ -77,7 +77,7 @@
                     备案编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BABH" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_BABH" runat="server" CssClass="m_txt" Width="195px"  Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -86,13 +86,13 @@
                     设备型号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_SBXH" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_SBXH" runat="server" CssClass="m_txt" Width="195px"  Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     出厂编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_CCBH" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_CCBH" runat="server" CssClass="m_txt" Width="195px"  Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
