@@ -119,7 +119,7 @@ public partial class Government_AppSGXKZGL_YQBLJJAuditInfo : System.Web.UI.Page
 
         var v = from t in dbContext.CF_Sys_PrjList
                 orderby t.FId
-                where t.FManageType == 11223
+                where t.FManageType == 11225
                 select new
                 {
                     t.FId,

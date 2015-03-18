@@ -43,7 +43,7 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
 
         if (this.govd_FRegistDeptId.FNumber != null )
         {
-            sb.Append(" and dbo.isSuperDept(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
         }
         else
         {
