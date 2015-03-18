@@ -288,31 +288,30 @@ and b.ProjectName   like '%-招标备案导入'
 
 --------------------------------------------------------------------------------------------------------------------------
 --6、导入中标结果业务主表  根据[TC_ZBJG_Record]进行反向导入
---导入中标结果业务主表（还为完成)--20150314
+--导入中标结果业务主表
 INSERT INTO dbCenter.dbo.CF_App_List
 SELECT 
-  newid() as  FId,    --业务编码
-  newid() FBaseinfoId, --企业id 报建信息表中没有企业编号，新生成一个GUID
- newid()  FPrjId,--项目编码     报建信息表中没有项目编号，新生成一个GUID
- case when bj.jihuakaigong_time is not null and bj.jihuakaigong_time <> ''
- then CONVERT(char(4),year(convert(datetime,bj.jihuakaigong_time)))+'年 ' ELSE '' END +'项目报建' FName    --业务名称
-,11223 FManageTypeId    --业务编码
-,bj.tianbao_time   FwriteDate    --写入时间
-,bj.tongyi_time FReportDate    --上报时间 (暂时以同意时间为准)
+ a.FAppId as  FId,    --业务编码
+ newid() FBaseinfoId, --企业id 中标结果备案表中没有企业编号，新生成一个GUID
+ a.FPrjId  FPrjId,--项目编码     中标结果备案表中没有项目编号，新生成一个GUID
+ CONVERT(char(4),year(convert(datetime,a.KBSJ)))+'年 '+'中标结果备案' FName    --业务名称
+,11235 FManageTypeId    --业务编码(中标结果备案)
+,a.KBSJ   FwriteDate    --写入时间
+,a.KBSJ FReportDate    --上报时间 (暂时以同意时间为准)
 ,NULL FIsSign    --是否签字
 ,0 FState    --业务状态
 ,NULL FResult    --审批结论
-,YEAR(convert(datetime,isnull(bj.tianbao_time,''))) FYear    --年度
-,MONTH(convert(datetime,isnull(bj.tianbao_time,''))) FMonth    --月份
-,bj.baojian_id FLinkId    --外键工程编码(暂时以报建id为工程外键id）
-,bj.jianshedawei FBaseName    --建设单位名称
+,YEAR(convert(datetime,isnull(a.KBSJ,''))) FYear    --年度
+,MONTH(convert(datetime,isnull(a.KBSJ,''))) FMonth    --月份
+,SUBSTRING(b.Address,CHARINDEX('-',Address)+3,13) FLinkId    --外键工程编码(暂时以报建id为工程外键id）
+,a.ZHAOBR FBaseName    --建设单位名称
 ,NULL FUpDeptId    --上报部门地区编码
 ,NULL FRemark    --暂不考虑
 ,NULL FIsCheck    --暂不考虑
 ,NULL FCount    --暂不考虑
-,bj.lasttime FTime    --最后更新时间,业务暂时没有上报，没走流程
+,a.KBSJ FTime    --最后更新时间,业务暂时没有上报，没走流程
 ,NULL FIsDeleted    --是否删除
-, convert(datetime,isnull(bj.tianbao_time,'')) FCreateTime    --创建时间
+, convert(datetime,isnull(a.KBSJ,'')) FCreateTime    --创建时间
 ,1 FReportCount    --暂不考虑
 ,NULL FToBaseinfoId    --暂不考虑
 ,NULL FAppDate    --暂不考虑
@@ -320,8 +319,22 @@ SELECT
 ,NULL FBarCode    --暂不考虑
 ,NULL FCreateUser    --暂不考虑
 ,NULL FgfTime    --暂不考虑
-from bjxx_psq as bj
+from  TC_ZBJG_Record  a 
+left join TC_Prj_Info b
+on a.FPrjId = b.FId
+and b.Address like '%-ps%'
+and b.ProjectName   like '%-招标备案导入'
+and a.FAppId not in
+(select fid from CF_App_List)
+
+
+
+
+--select  *  from  TC_ZBJG_Record  where FAppId = '2a3b3c2e-b2bd-4fb6-8929-00f6fc3da8de'
+--select  *  from  CF_Sys_ManageType  where  fname like '%中标结果%'   --查询业务类型编码
 --------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
