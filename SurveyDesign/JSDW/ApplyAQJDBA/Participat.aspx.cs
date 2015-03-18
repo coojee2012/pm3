@@ -95,11 +95,23 @@ public partial class JSDW_ApplyAQJDBA_Participat : System.Web.UI.Page
         var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v != null)
         {
-            var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            if (v1 != null)
+            if (t_CJJS.Text == "11220102")
             {
-                t_ZZZS.Text = v1.ZSBH;
-                t_ZZDJ.Text = v1.ZZDJ;
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX==1).FirstOrDefault();
+                if (v1 != null)
+                {
+                    t_ZZZS.Text = v1.ZSBH;
+                    t_ZZDJ.Text = v1.ZZMC+v1.ZZDJ;
+                }
+            }
+            else
+            {
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+                if (v1 != null)
+                {
+                    t_ZZZS.Text = v1.ZSBH;
+                    t_ZZDJ.Text = v1.ZZMC + v1.ZZDJ;
+                }
             }
         }
         t_QYMC.Text = v.QYMC;
