@@ -52,7 +52,7 @@
         <HeaderStyle CssClass="m_dg1_h" />
         <ItemStyle CssClass="m_dg1_i" />
         <Columns>
-            <asp:TemplateColumn Visible="false">
+            <asp:TemplateColumn >
                 <ItemStyle Width="30px" />
                 <HeaderTemplate>
                     <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
@@ -71,8 +71,8 @@
             </asp:BoundColumn>
             <asp:BoundColumn DataField="InstallUnit" HeaderText="安装单位"></asp:BoundColumn>
             <asp:BoundColumn HeaderText="安装日期" DataField="InstallDate" DataFormatString="{0:yyyy-MM-dd}"/>
-            <asp:BoundColumn DataField="FId" HeaderText="FId" Visible="False"></asp:BoundColumn>
             <asp:BoundColumn DataField="FAppId" HeaderText="FId" Visible="False"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FId" HeaderText="FId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
     <div style="padding-left: 1%">

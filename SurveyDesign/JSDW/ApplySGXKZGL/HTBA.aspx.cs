@@ -29,7 +29,7 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
                 this.hf_FAppId.Value = EConvert.ToString(Request["FAppId"]);
                 showInfo();
             }
-            
+
             pageTool tool = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
@@ -58,24 +58,28 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
             tool.fillPageControl(emp);
             hf_FId.Value = emp.FId;
         }
-        else{
+        else
+        {
             TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
-            if (sp != null) {
+            if (sp != null)
+            {
                 t_ProjectNo.Text = sp.ProjectNo;
                 t_ConstrScale.Text = sp.ConstrScale;
                 t_FPrjItemId.Value = sp.PrjItemId;
             }
-            
+
         }
-        
+
     }
     //保存
     private void saveInfo()
     {
+        var isNew = true;
         string fId = hf_FId.Value;
         TC_SGXKZ_HTBA Emp = new TC_SGXKZ_HTBA();
         if (!string.IsNullOrEmpty(fId))
         {
+            isNew = false;
             Emp = dbContext.TC_SGXKZ_HTBA.Where(t => t.FId == fId).FirstOrDefault();
         }
         else
@@ -88,11 +92,18 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
         }
         pageTool tool = new pageTool(this.Page);
         Emp = tool.getPageValue(Emp);
+        if (isNew)
+        {
+            var count = dbContext.TC_SGXKZ_HTBA.Count(t => t.FAppId == hf_FAppId.Value && t.HTBABH == Emp.HTBABH);
+            if (count > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('已存在该合同');window.returnValue='1';", true);
+                return;
+            }
+        }
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
-        //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
-        //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
@@ -153,6 +164,6 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
             }
 
         }
-        
+
     }
 }

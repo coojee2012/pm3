@@ -297,10 +297,13 @@ namespace EgovaDAO
     partial void InsertTC_PrjItem_Emp(TC_PrjItem_Emp instance);
     partial void UpdateTC_PrjItem_Emp(TC_PrjItem_Emp instance);
     partial void DeleteTC_PrjItem_Emp(TC_PrjItem_Emp instance);
+    partial void InsertTC_AJBA_QZSB_CZRY(TC_AJBA_QZSB_CZRY instance);
+    partial void UpdateTC_AJBA_QZSB_CZRY(TC_AJBA_QZSB_CZRY instance);
+    partial void DeleteTC_AJBA_QZSB_CZRY(TC_AJBA_QZSB_CZRY instance);
     #endregion
 		
 		public DBDataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString4, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1062,6 +1065,14 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<TC_PrjItem_Emp>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TC_AJBA_QZSB_CZRY> TC_AJBA_QZSB_CZRY
+		{
+			get
+			{
+				return this.GetTable<TC_AJBA_QZSB_CZRY>();
 			}
 		}
 	}
@@ -49450,6 +49461,212 @@ namespace EgovaDAO
 					this._FEntType = value;
 					this.SendPropertyChanged("FEntType");
 					this.OnFEntTypeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TC_AJBA_QZSB_CZRY")]
+	public partial class TC_AJBA_QZSB_CZRY : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ID;
+		
+		private string _FAppID;
+		
+		private string _FPrjItemID;
+		
+		private string _FLinkID;
+		
+		private string _Name;
+		
+		private string _Trades;
+		
+		private string _CZZH;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(string value);
+    partial void OnIDChanged();
+    partial void OnFAppIDChanging(string value);
+    partial void OnFAppIDChanged();
+    partial void OnFPrjItemIDChanging(string value);
+    partial void OnFPrjItemIDChanged();
+    partial void OnFLinkIDChanging(string value);
+    partial void OnFLinkIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnTradesChanging(string value);
+    partial void OnTradesChanged();
+    partial void OnCZZHChanging(string value);
+    partial void OnCZZHChanged();
+    #endregion
+		
+		public TC_AJBA_QZSB_CZRY()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAppID", DbType="NVarChar(50)")]
+		public string FAppID
+		{
+			get
+			{
+				return this._FAppID;
+			}
+			set
+			{
+				if ((this._FAppID != value))
+				{
+					this.OnFAppIDChanging(value);
+					this.SendPropertyChanging();
+					this._FAppID = value;
+					this.SendPropertyChanged("FAppID");
+					this.OnFAppIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FPrjItemID", DbType="NVarChar(50)")]
+		public string FPrjItemID
+		{
+			get
+			{
+				return this._FPrjItemID;
+			}
+			set
+			{
+				if ((this._FPrjItemID != value))
+				{
+					this.OnFPrjItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._FPrjItemID = value;
+					this.SendPropertyChanged("FPrjItemID");
+					this.OnFPrjItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLinkID", DbType="NVarChar(50)")]
+		public string FLinkID
+		{
+			get
+			{
+				return this._FLinkID;
+			}
+			set
+			{
+				if ((this._FLinkID != value))
+				{
+					this.OnFLinkIDChanging(value);
+					this.SendPropertyChanging();
+					this._FLinkID = value;
+					this.SendPropertyChanged("FLinkID");
+					this.OnFLinkIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Trades", DbType="NVarChar(50)")]
+		public string Trades
+		{
+			get
+			{
+				return this._Trades;
+			}
+			set
+			{
+				if ((this._Trades != value))
+				{
+					this.OnTradesChanging(value);
+					this.SendPropertyChanging();
+					this._Trades = value;
+					this.SendPropertyChanged("Trades");
+					this.OnTradesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CZZH", DbType="NVarChar(50)")]
+		public string CZZH
+		{
+			get
+			{
+				return this._CZZH;
+			}
+			set
+			{
+				if ((this._CZZH != value))
+				{
+					this.OnCZZHChanging(value);
+					this.SendPropertyChanging();
+					this._CZZH = value;
+					this.SendPropertyChanged("CZZH");
+					this.OnCZZHChanged();
 				}
 			}
 		}

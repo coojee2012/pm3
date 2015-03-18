@@ -28,13 +28,10 @@
             } else if (tagId == "t_JLRYId") {
                 qybm = document.getElementById("t_JLId").value;
             }
-<<<<<<< HEAD
             else if (tagId == "t_FHumanId")
             {
                 qybm = '<%=ViewState["FJSDWID"] %>';
             }
-=======
->>>>>>> 5eb77c67f14cdf8e3d85cf648d489454e12e47b4
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
                 url += "?qybm=" + qybm;
