@@ -116,8 +116,8 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
                 return;
             }
         }
-        string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'";
-        sql1 = string.Format(sql1, t_FIdCard.Text);
+        string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}' and EmpType='{1}' and FAppId='{2}' and FEntType='{3}'";
+        sql1 = string.Format(sql1, t_FIdCard.Text, t_EmpType.SelectedValue, t_FAppId.Value, t_FEntType.Value);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
         if (count1 > 0)
         {
@@ -125,8 +125,8 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             return;
         }
 
-        string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}'";
-        sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value);
+        string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}' and FEntType='{2}'";
+        sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value,t_FEntType.Value);
         int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
         if (count > 0)
         {
@@ -164,6 +164,8 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         }
         pageTool tool = new pageTool(this.Page);
         Emp = tool.getPageValue(Emp);
+        //为添加的人员绑定，人员所在的单位，用来确定人员的类型
+        Emp.FEntType = EConvert.ToInt(t_FEntType.Value);
         dbContext.SubmitChanges();
         txtFId.Value = fId;
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);

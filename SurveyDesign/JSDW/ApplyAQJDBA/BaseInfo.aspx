@@ -91,7 +91,7 @@
             }
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
-                url += "?qybm=" + qybm;
+                url += "?qybm=" + qybm + "&rylx=" + tagId;
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {
                     $("#" + tagId).val(pid);
@@ -261,13 +261,13 @@
                 联系人：
             </td>
             <td>
-                <asp:TextBox ID="pj_Contacts" runat="server" CssClass="m_txt" Enabled="false" Width="195px"></asp:TextBox><tt>*</tt>
+                <asp:TextBox ID="pj_Contacts" runat="server" CssClass="m_txt"  Width="195px"></asp:TextBox><tt>*</tt>
             </td>
             <td class="t_r t_bg">
                 联系电话：
             </td>
             <td>
-                <asp:TextBox ID="pj_Mobile" runat="server" CssClass="m_txt" Enabled="false" Width="195px"></asp:TextBox><tt>*</tt>
+                <asp:TextBox ID="pj_Mobile" runat="server" CssClass="m_txt"  Width="195px"></asp:TextBox><tt>*</tt>
             </td>
         </tr>
     </table>
@@ -313,7 +313,7 @@
                 联系电话：
             </td>
             <td>
-                <asp:TextBox ID="q_SGDWDH" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>&nbsp;</td>
+                <asp:TextBox ID="q_SGDWDH" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>&nbsp;</td>
             
         </tr>
         <tr>
@@ -404,7 +404,7 @@
                 联系电话：
             </td>
             <td>
-                <asp:TextBox ID="q_JLDWDH" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>&nbsp;</td>
+                <asp:TextBox ID="q_JLDWDH" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>&nbsp;</td>
             
         </tr>
         <tr>
