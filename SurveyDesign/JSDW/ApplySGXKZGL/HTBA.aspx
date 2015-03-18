@@ -122,7 +122,7 @@
                     建设规模：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ConstrScale" runat="server" CssClass="m_txt" Width="675px" Height="40px" TextMode="MultiLine" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_ConstrScale" runat="server" CssClass="m_txt" Width="705px" Height="40px" TextMode="MultiLine" Enabled="false"></asp:TextBox>
                 </td>
                
             </tr>

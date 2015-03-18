@@ -46,6 +46,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             {
                 tool1.ExecuteScript("btnEnable();");
             }
+
+            ShowFile(t_JLId.Value, "JL");
         }
     }
 

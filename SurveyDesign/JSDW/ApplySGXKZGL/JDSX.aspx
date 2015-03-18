@@ -17,8 +17,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            txtCss();
-
+            txtCss(); hideTr1();
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
@@ -41,7 +40,6 @@
                 return;
             }
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
-            //  alert('dd')
         }
         function showTr1() {
             $("tr[name=tr1]").show();

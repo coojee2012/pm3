@@ -36,7 +36,8 @@
         }
         function addEnt() {
             var FAppId = document.getElementById("hf_FAppId").value;
-            showAddWindow('HTBA.aspx?FAppId=' + FAppId , 1100, 700);
+            showAddWindow('HTBA.aspx?FAppId=' + FAppId, 1100, 700);
+            $("tr[name=tr1]").hide();
         }
         function showTr1() {
             $("tr[name=tr1]").show();
