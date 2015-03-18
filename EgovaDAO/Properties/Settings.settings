@@ -45,10 +45,10 @@
     <Setting Name="dbCenter_scConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=192.168.101.9\MSSQLSERVER08;Initial Catalog=dbCenter_sc;Persist Security Info=True;User ID=sa;Password=sql2008&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa;Password=123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=192.168.101.9\MSSQLSERVER08;Initial Catalog=dbCenter_sc;Persist Security Info=True;User ID=sa;Password=sql2008</Value>
+      <Value Profile="(Default)">Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa;Password=123</Value>
     </Setting>
     <Setting Name="JST_XZSPBaseInfoConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -57,14 +57,6 @@
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=192.168.101.9\MSSQLSERVER08;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=sa;Password=sql2008</Value>
-    </Setting>
-    <Setting Name="dbCenterConnectionString4" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115</Value>
     </Setting>
   </Settings>
 </SettingsFile>
