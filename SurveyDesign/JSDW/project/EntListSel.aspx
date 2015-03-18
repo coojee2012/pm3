@@ -61,7 +61,7 @@
                     <th>
                         安许证编号
                     </th>
-                    <th>
+                    <th runat="server" id="dengji">
                         资质及等级
                     </th>
                     <th>
