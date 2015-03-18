@@ -41,7 +41,8 @@
         function SelectFiles() {
             var width = 600;
             var height = 400;
-            alert('<%= Session["FUserId"] %>');
+            //alert('<%= Session["DFUserId"] %>');
+            //alert('<%= Session["FUserId"] %>');
             sUrl = '<%=ProjectBLL.RBase.GetSysObjectName("FileServerPath") %>tiny_mce/plugins/ajaxfilemanager/filemanager.aspx?type=file&iseditor=1&p=<%=SecurityEncryption.DesEncrypt("../../|"+Session["FUserId"]+"|" + SecurityEncryption.ConvertDateTimeInt(DateTime.Now.AddHours(1)),"12345687")%>';
             var rv = window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;');
             if (rv != null && rv.split('|')[0] != 'undefined') {
