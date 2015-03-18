@@ -1,0 +1,1 @@
+alter table [TC_PrjItem_Emp] add FEntType int

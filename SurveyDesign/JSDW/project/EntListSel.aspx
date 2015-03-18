@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             txtCss();
         });
         function CheckInfo() {
@@ -61,8 +61,8 @@
                     <th>
                         安许证编号
                     </th>
-                    <th>
-                        主项资质
+                    <th runat="server" id="dengji">
+                        资质及等级
                     </th>
                     <th>
                        属地

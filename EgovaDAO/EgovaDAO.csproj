@@ -46,7 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DB.designer.cs">
+    <Compile Include="DB2.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.dbml</DependentUpon>
@@ -72,8 +72,8 @@
     </None>
     <None Include="DB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DB2.designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

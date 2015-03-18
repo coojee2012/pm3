@@ -405,7 +405,7 @@
                 施工单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
                 <asp:Button ID="Button2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_SGDWId','SG');"
                     UseSubmitBehavior="false" OnClick="btnSel_sg_Click" />
                 <input id="q_SGDWId" runat="server" type="hidden" />
@@ -442,7 +442,7 @@
             <td class="t_r t_bg">
                 项目经理：</td>
             <td>
-                <asp:TextBox ID="q_XMJL" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_XMJL" runat="server" CssClass="m_txt" Width="195px" ReadOnly="True"></asp:TextBox>
                 
                 <asp:Button ID="btnMod2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEmp(this, 'sj_XMJL','XMJ');"
                     UseSubmitBehavior="false" OnClick="btnSel_XMJ_Click" />
@@ -468,7 +468,7 @@
                 监理单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="q_JLDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="q_JLDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
                 <asp:Button ID="Button3" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_JLDWId','JL');"
                     UseSubmitBehavior="false" OnClick="btnSel_jl_Click" />
                 <input id="q_JLDWId" runat="server" type="hidden" />
@@ -499,7 +499,7 @@
             <td class="t_r t_bg">
                 项目总监：</td>
             <td>
-                <asp:TextBox ID="q_XMZJ" runat="server" CssClass="m_txt" MaxLength="20" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_XMZJ" runat="server" CssClass="m_txt" MaxLength="20" Width="195px" ReadOnly="True"></asp:TextBox>
                 
                 <asp:Button ID="btnMod4" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEmp(this, 'jl_XMZJ','XMZ');"
                     UseSubmitBehavior="false" OnClick="btnSel_XMZ_Click" /> 
@@ -532,7 +532,7 @@
                 勘察单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="q_CCDW" runat="server" CssClass="m_txt"  Width="195px" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="q_CCDW" runat="server" CssClass="m_txt"  Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
                 
                 <asp:Button ID="Button1" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_KCDWId','KC');"
                     UseSubmitBehavior="false" OnClick="btnSel_kc_Click" />
@@ -604,7 +604,7 @@
                 设计单位名称：
             </td>
             <td class="auto-style1" colspan="1" style="width:29%;">
-                <asp:TextBox ID="sj_FName" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                <asp:TextBox ID="sj_FName" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
                 
                 <asp:Button ID="btnMod" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'sj_FBaseInfoId','SJ');"
                     UseSubmitBehavior="false" OnClick="btnSel_sj_Click" />

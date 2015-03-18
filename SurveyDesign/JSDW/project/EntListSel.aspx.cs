@@ -14,7 +14,7 @@ using Approve.EntityBase;
 using System.Collections;
 using EgovaDAO;
 
-public partial class JSDW_project_EntListSel : System.Web.UI.Page
+public partial class JSDW_project_EntListSel: System.Web.UI.Page
 {
     RCenter rc = new RCenter();
     ShareTool st = new ShareTool();
@@ -32,9 +32,9 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
             {
                 showInfo();
             }
-
+            
             BindControl();
-
+            
         }
     }
     void BindControl()
@@ -42,7 +42,7 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
         int iMType = EConvert.ToInt(Request.QueryString["fsysId"]);
         if (iMType > 0)
         {
-            //   lTitle.Text = db.CF_Sys_SystemName.Where(t => t.FNumber == iMType).Select(t => t.FName).FirstOrDefault();
+         //   lTitle.Text = db.CF_Sys_SystemName.Where(t => t.FNumber == iMType).Select(t => t.FName).FirstOrDefault();
         }
     }
     string GetQYLX()
@@ -52,13 +52,13 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
 
         return sys;
     }
-
+    
     //显示 
     void showInfo(string qylx)
     {
         EgovaDB1 db = new EgovaDB1();
         var App = from b in db.QY_JBXX
-                  join c in db.QY_QYZZXX
+                  join c in db.QY_QYZZXX              
                   on b.QYBM equals c.QYBM
                   into temp
                   join d in db.QY_QYZSXX
@@ -66,10 +66,10 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  where b.QYLXBM == qylx && tt.SFZX == 1
-                  //&& tt1.ZSLXBM == "150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
-
-                  select new
+                  where b.QYLXBM == qylx && tt.SFZX == 1 
+                 // && tt1.ZSLXBM =="150" //没有对应的证书类型编码，是否写错？ 2015年3月8日
+                  
+                  select  new
                   {
                       b.QYBM,
                       b.QYMC,
@@ -79,10 +79,10 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                       b.FRDB,
                       b.LXR,
                       b.LXDH,
-                      ZSBH = tt == null ? "" : tt.ZSBH,
+                      ZSBH = tt==null?"":tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      AXBH = tt1 == null ? "" : tt1.ZSBH
-                  };
+                      AXBH = tt1==null?"":tt1.ZSBH
+                   };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
             App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
@@ -103,7 +103,8 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  //where  tt1.ZSLXBM == "150"
+                  where  tt1.ZSLXBM == "150"
+                  
                   select new
                   {
                       b.QYBM,
@@ -122,23 +123,22 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
         {
             App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
         }
+       
         Pager1.RecordCount = App.Count();
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
         dg_List.DataBind();
     }
-    protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
+ protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
         if (!string.IsNullOrEmpty(EConvert.ToString(ViewState["qylx"])))
         {
             string qylx = EConvert.ToString(ViewState["qylx"]);
             showInfo(qylx);
-        }
-        else
-        {
+        }else {
             showInfo();
         }
-
+        
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
@@ -165,7 +165,7 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
 
     protected void dg_List_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.Item.ItemIndex > -1)
+         if (e.Item.ItemIndex > -1)
         {
             if (e.CommandName == "Sel")
             {
@@ -173,10 +173,10 @@ public partial class JSDW_project_EntListSel : System.Web.UI.Page
                 string fid = hfFBaseInfoId.Value;
                 pageTool tool = new pageTool(this.Page);
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
-
-                // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
+               // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
             }
         }
     }
+
 
 }

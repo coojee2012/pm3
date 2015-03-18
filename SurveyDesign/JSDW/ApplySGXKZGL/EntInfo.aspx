@@ -49,7 +49,7 @@
         function showTr2() {
             $("td[name=td1]").hide();
             $("tr[name=tr1]").hide();
-            $("td[name=td2]").show();
+            $("td[name=td2]").show();       
         }
         function selEnt(obj, tagId) {
             var type = document.getElementById("t_FEntType").value;
@@ -199,7 +199,7 @@
                     资质项：
                 </td>
                 <td  >
-                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px"  TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
