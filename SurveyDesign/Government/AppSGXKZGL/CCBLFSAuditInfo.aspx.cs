@@ -71,6 +71,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
         bindAuditList();
         showYZList();
         showTKJLList();
+        BuildSGXKZBH();
         
     }
    //初始化各种信息
@@ -90,6 +91,8 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        {
            pageTool tool = new pageTool(this.Page, "t_");
            tool.fillPageControl(info);
+
+        
        }
    }
     //绑定项目附件信息
@@ -305,6 +308,19 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        {
            WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
+           //MODIFY 林勇
+           //委婉的实现保存额外的信息
+           using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+           {
+               string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_fAppFZJG.Text + "',FZTime='" + t_fAppFZRQ.Text + "',SGXKZBH='" + t_fAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
+
+               if (conn.State == ConnectionState.Closed)
+                   conn.Open();
+               DataSet ds = new DataSet();
+               SqlCommand cmd = new SqlCommand(sql, conn);
+               //conn.Open();
+               int a = cmd.ExecuteNonQuery();
+           }
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
        }
        catch (Exception ee)
@@ -372,7 +388,11 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
       // db.SubmitChanges();
        
    }
-   
+   /// <summary>
+   /// 提交打证
+   /// </summary>
+   /// <param name="sender"></param>
+   /// <param name="e"></param>
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
        try
@@ -386,17 +406,17 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                lockEmp();
                DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批成功');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
            }
            else
            {
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行接件操作');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行相关操作');", true);
            }
 
        }
        catch (Exception ee)
        {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批失败');", true);
+           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理失败！');", true);
        }
    }
   
@@ -460,5 +480,91 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    }
    
    #endregion
-   
+
+   #region 生成施工许可证编号
+   protected void BuildSGXKZBH() {
+       //EgovaDB db = new EgovaDB();
+       //TC_SGXKZ_PrjInfo info = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_fLinkId.Value).FirstOrDefault();
+       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+       {
+           string sql = " select top 1 PrjAddressDept,PrjItemType, getdate() as today,(select COUNT(1) from TC_SGXKZ_PrjInfo where DATEDIFF(DAY,FZTime,GETDATE()) = 0)  AS  YBL from TC_SGXKZ_PrjInfo WHERE FAppId ='" + t_fLinkId.Value + "'";
+
+           if (conn.State == ConnectionState.Closed)
+               conn.Open();
+           DataSet ds = new DataSet();
+           SqlCommand cmd = new SqlCommand(sql, conn);
+           //conn.Open();
+           //int a = cmd.ExecuteNonQuery();
+
+           SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+           da.Fill(ds, "ds");
+           DataTable dt = ds.Tables[0];
+           string PrjAddressDept = "";
+           string PrjItemType = "";
+           string date = "";
+           string BH = "";
+           for (int i = 0; i < dt.Rows.Count; i++)
+           {
+               PrjAddressDept = dt.Rows[0]["PrjAddressDept"].ToString();
+              
+               switch (dt.Rows[0]["PrjItemType"].ToString())
+               { 
+                   case "2000103":
+                       PrjItemType = "03";
+                       break;
+                   case "2000101":
+                       PrjItemType = "01";
+                       break;
+                   case "2000102":
+                       PrjItemType = "02";
+                       break;
+                   default:
+                       PrjItemType = "03";
+                       break;
+               }
+               DateTime today = DateTime.Parse(dt.Rows[0]["today"].ToString());
+               date = today.ToString("yyyyMMdd");
+               if (string.IsNullOrEmpty(PrjAddressDept))
+               {
+                   throw new Exception("项目所属地不能为空");
+               }
+               else if (PrjAddressDept.Length == 2) {
+                   BH = PrjAddressDept + "0000";
+               }
+               else if (PrjAddressDept.Length == 4)
+               {
+                   BH = PrjAddressDept + "00";
+               }
+               else
+               {
+                   BH = PrjAddressDept;
+               }
+               BH += date;
+               int xh = int.Parse(dt.Rows[0]["YBL"].ToString());
+
+               if (xh > 9)
+               {
+                   BH += xh.ToString();
+               }
+               else {
+                   BH += "0"+xh.ToString();
+               }
+               
+               BH += PrjItemType;
+
+
+
+           }
+
+           t_fAppSGXKZBH.Text = BH;
+           
+       }
+ 
+       
+       
+
+
+   }
+    #endregion
+
 }
