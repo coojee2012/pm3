@@ -46,11 +46,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DB.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB.dbml</DependentUpon>
-    </Compile>
     <Compile Include="DB2.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
