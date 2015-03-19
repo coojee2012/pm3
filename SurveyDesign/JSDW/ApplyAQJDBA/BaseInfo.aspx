@@ -67,8 +67,26 @@
                 return selEnt(tagId, fsysid, obj, oTagId);
             }
         }
+        //选择勘察、设计、监理类企业
         function selEnt(obj, tagId) {
             var url = "../project/EntListSel.aspx";
+            var qylx = "101";
+            if (tagId == "t_SGId") {
+                qylx = "101";
+            } else if (tagId == "t_JLId") {
+                qylx = "125";
+            }
+            url += "?qylx=" + qylx;
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                $("#" + tagId).val(pid);
+                __doPostBack(obj.id, '');
+            }
+        }
+
+        //选择施工、专业、劳务类单位
+        function selEntSg(obj, tagId) {
+            var url = "../project/EntListSelSg.aspx";
             var qylx = "101";
             if (tagId == "t_SGId") {
                 qylx = "101";
@@ -298,7 +316,7 @@
             <td class="auto-style1" colspan="3" >
                 <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                 <input type="hidden"  runat="server" ID="t_SGId" value="" />
-                <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_SGId');"
+                <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEntSg(this,'t_SGId');"
                 UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSG_Click" Style="margin-bottom: 4px;margin-left:5px;" />
             </td>
         </tr>
