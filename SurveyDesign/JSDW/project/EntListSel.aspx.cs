@@ -57,38 +57,77 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
     void showInfo(string qylx)
     {
         EgovaDB1 db = new EgovaDB1();
-        var App = from b in db.QY_JBXX
-                  join c in db.QY_QYZZXX              
-                  on b.QYBM equals c.QYBM
-                  into temp
-                  join d in db.QY_QYZSXX
-                  on b.QYBM equals d.QYBM
-                  into temp1
-                  from tt in temp.DefaultIfEmpty()
-                  from tt1 in temp1.DefaultIfEmpty()
-                  where b.QYLXBM == qylx && tt.SFZX == 1 
-                  
-                  select  new
-                  {
-                      b.QYBM,
-                      b.QYMC,
-                      b.QYLXBM,
-                      b.RegAdrProvinceName,
-                      b.QYXXDZ,
-                      b.FRDB,
-                      b.LXR,
-                      b.LXDH,
-                      ZSBH = tt==null?"":tt.ZSBH,
-                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      AXBH = tt1==null?"":tt1.ZSBH
-                   };
-        if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+        //如果是勘察、设计、监理类企业则列出企业所有的资质及等级信息，没有主项的说法
+        if ((qylx == "155") || (qylx == "125"))
         {
-            App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+            var App = from b in db.QY_JBXX
+                      join c in db.QY_QYZZXX
+                      on b.QYBM equals c.QYBM
+                      into temp
+                      join d in db.QY_QYZSXX
+                      on b.QYBM equals d.QYBM
+                      into temp1
+                      from tt in temp.DefaultIfEmpty()
+                      from tt1 in temp1.DefaultIfEmpty()
+                      where b.QYLXBM == qylx
+
+                      select new
+                      {
+                          b.QYBM,
+                          b.QYMC,
+                          b.QYLXBM,
+                          b.RegAdrProvinceName,
+                          b.QYXXDZ,
+                          b.FRDB,
+                          b.LXR,
+                          b.LXDH,
+                          ZSBH = tt == null ? "" : tt.ZSBH,
+                          ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                          AXBH = tt1 == null ? "" : tt1.ZSBH
+                      };
+            if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+            {
+                App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+            }
+            Pager1.RecordCount = App.Count();
+            dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+            dg_List.DataBind();
         }
-        Pager1.RecordCount = App.Count();
-        dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
-        dg_List.DataBind();
+        else    //如果是施工、专业、劳务类企业则列出企业主项资质
+        {
+            var App = from b in db.QY_JBXX
+                      join c in db.QY_QYZZXX
+                      on b.QYBM equals c.QYBM
+                      into temp
+                      join d in db.QY_QYZSXX
+                      on b.QYBM equals d.QYBM
+                      into temp1
+                      from tt in temp.DefaultIfEmpty()
+                      from tt1 in temp1.DefaultIfEmpty()
+                      where b.QYLXBM == qylx && tt.SFZX == 1
+
+                      select new
+                      {
+                          b.QYBM,
+                          b.QYMC,
+                          b.QYLXBM,
+                          b.RegAdrProvinceName,
+                          b.QYXXDZ,
+                          b.FRDB,
+                          b.LXR,
+                          b.LXDH,
+                          ZSBH = tt == null ? "" : tt.ZSBH,
+                          ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                          AXBH = tt1 == null ? "" : tt1.ZSBH
+                      };
+            if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+            {
+                App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+            }
+            Pager1.RecordCount = App.Count();
+            dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+            dg_List.DataBind();
+        }       
     }
     //显示 
     void showInfo()
