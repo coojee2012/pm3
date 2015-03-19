@@ -38,8 +38,15 @@ public partial class JSDW_project_ProjectItemSel : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             String PrjItemType = e.Item.Cells[3].Text;
-            e.Item.Cells[3].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(PrjItemType)).Select(d => d.FName).FirstOrDefault();
-
+           
+            if(PrjItemType.ToString().Trim() != "")  //存在项目类型的才转换       modify by psq 20150319
+            {
+                e.Item.Cells[3].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(PrjItemType)).Select(d => d.FName).FirstOrDefault();
+            }
+            else
+            {
+                e.Item.Cells[3].Text = "未知";
+            }
             LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 2].Controls[0] as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该项目吗?');");

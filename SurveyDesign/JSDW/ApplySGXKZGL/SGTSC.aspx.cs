@@ -58,6 +58,9 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             }
+            t_BL.SelectedItem.Text = "已办";
+            t_BL.SelectedItem.Value = "3";
+            t_BL.Enabled = false;
         }
         else
         {
@@ -95,8 +98,6 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
         txtFId.Value = fId;
         showInfo();
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');", true);
-        //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
-        //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
@@ -132,7 +133,7 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
 
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
     {
-        
+
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {

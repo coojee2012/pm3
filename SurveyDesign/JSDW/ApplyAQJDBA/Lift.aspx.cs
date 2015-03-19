@@ -13,6 +13,7 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    private RCenter rcXM = new RCenter("XM_BaseInfo");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -28,21 +29,14 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
                 {
                     pageTool tool = new pageTool(this.Page);
                     tool.fillPageControl(emp);
-
-                    ViewState["FAppId"] = emp.FAppId;
                 }
                 ViewState["FID"] = Request.QueryString["fid"];
-
-                txtFId.Value = Request.QueryString["fid"];
-                ShowPrjItemInfo();
             }
             if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
             {
                 TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
                 ViewState["FAppId"] = aj.FAppId;
                 ViewState["FPrjItemId"] = aj.FPrjItemId;
-                txtFId.Value = aj.FId;
-                ShowPrjItemInfo();
             }
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
@@ -72,6 +66,7 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
+        txtFId.Value = fId;
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
     }
     //保存按钮
@@ -79,7 +74,6 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
     {
         saveInfo();
     }
-<<<<<<< HEAD
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         string selSBId = t_SBID.Value;
@@ -91,7 +85,7 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
             t_SBMC.Text = row["SBMC"].ToString();
             t_BABH.Text = row["SBBABH"].ToString();
             t_SBXH.Text = row["GGXH"].ToString();
-            t_CCBH.Text = row["CCBH"].ToString(); 
+            t_CCBH.Text = row["CCBH"].ToString();
         }
 
     }
@@ -123,7 +117,6 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         //视频
         var para = dbContext.TC_AJBA_QZSB_CZRY.Where(t => FIdList.ToArray().Contains(t.ID));
         dbContext.TC_AJBA_QZSB_CZRY.DeleteAllOnSubmit(para);
-        ShowPrjItemInfo();
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
@@ -143,6 +136,4 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         Pager1.CurrentPageIndex = e.NewPageIndex;
         ShowPrjItemInfo();
     }
-=======
->>>>>>> b646eaa254b545154b595435e5add8a67cbbf5c6
 }

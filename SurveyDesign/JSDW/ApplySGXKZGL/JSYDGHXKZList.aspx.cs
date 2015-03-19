@@ -23,6 +23,7 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
             }
             ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             ShowTitle();
+            BindControl();
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
@@ -30,7 +31,15 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
             }
         }
     }
-
+    void BindControl()
+    {
+        //用地性质
+        DataTable dt = rc.getDicTbByFNumber("500");
+        t_YDXZ.DataSource = dt;
+        t_YDXZ.DataTextField = "FName";
+        t_YDXZ.DataValueField = "FNumber";
+        t_YDXZ.DataBind();
+    }
     private void ShowTitle()
     {
         EgovaDB dbContext = new EgovaDB();
@@ -60,6 +69,12 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             }
+
+
+            t_YDXZ.SelectedValue = sp.YDXZ;
+            t_BL.SelectedItem.Text = "已办";
+            t_BL.SelectedItem.Value = "3";
+            t_BL.Enabled = false;
         }
 
         pageTool tool = new pageTool(this.Page, "t_");

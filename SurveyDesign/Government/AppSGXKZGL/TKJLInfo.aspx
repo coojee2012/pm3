@@ -25,7 +25,7 @@
                     var filename = patchs[i].split('/');
                     filename = filename[filename.length - 1];
 
-                    var trHTML = "<tr id='id" + i + "'><td>" + filename + "</td>";
+                    var trHTML = "<tr id='id" + i + "'><td><a href='" + patchs[i] + "' target='_blank' title='点击查看文件'>" + filename + "</a></td>";
                    
                     trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + patchs[i] + "','id" + i + "');\">删除</a></td></tr>";
 
@@ -51,9 +51,9 @@
                 var filename = fileInfo[0].split('/');
                 filename = filename[filename.length - 1];
                 $('#t_Size').val(fileInfo[1]);
-                var filename2 = 'id' + tmpid;
+                var filename2 = 'id' + tmpid;//
                 tmpid += 1;
-                var trHTML = "<tr id='" + filename2 + "'><td>" + filename + "</td>";
+                var trHTML = "<tr id='" + filename2 + "'><td><a href='" + fileInfo[0]  + "' target='_blank' title='点击查看文件'>" + filename + "</a></td>";
                // trHTML += "<td align=\"center\">" + (fileInfo[1] / 1024).toFixed(2) + "</td>";
                 trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + fileInfo[0] + "','" + filename2+ "');\">删除</a></td></tr>";
                
