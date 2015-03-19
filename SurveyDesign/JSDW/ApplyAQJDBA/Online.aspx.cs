@@ -43,6 +43,7 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
                 TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
                 ViewState["FAppId"] = aj.FAppId;
                 ViewState["FPrjItemId"] = aj.FPrjItemId;
+                t_FHumanId.Value = aj.FJSDWID;
             }
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
