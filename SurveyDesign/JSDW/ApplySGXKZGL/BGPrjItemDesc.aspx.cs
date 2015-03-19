@@ -110,7 +110,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
             b_PrjGovdeptid.fNumber = sp.PrjAddressDept;
             JSDW_DeptID.fNumber = t_JSDWAddressDept.Value;
             PrjGovdeptid.fNumber = t_PrjAddressDept.Value;
-            
+
             h_FId.Value = sbg.FId;
             h_FPrjInfoId.Value = sbg.FPrjInfoId;
             h_FPrjItemId.Value = sbg.FPrjItemId;
@@ -163,23 +163,23 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         //System.Web.UI.Control myform = tool;
         //System.Web.UI.Control myform1 = tool1;
         //System.Web.UI.Control myform2 = tool2;
-        
+
         //PropertyInfo[] p2 = sbg2.GetType().GetProperties();
         for (int i = 0; i < p1.Count(); i++)
         {
             string Id1 = p1[i].Name;
-            string value1 = EConvert.ToString(p1[i].GetValue(sbg1,null));
+            string value1 = EConvert.ToString(p1[i].GetValue(sbg1, null));
             //string value2 = EConvert.ToString(p2[i].GetValue(sbg2, null));
-            compareValueToSortedList(value1, Id1); 
+            compareValueToSortedList(value1, Id1);
         }
-        
+
     }
     private bool compareValueToSortedList(string value1, string Id1)
     {
         bool result = true;
         System.Web.UI.HtmlControls.HtmlForm myform1 = (System.Web.UI.HtmlControls.HtmlForm)this.Page.FindControl("Form1");
         System.Web.UI.Control control1 = myform1.FindControl("t_" + Id1);
-        
+
         if (control1 != null)
         {
             string value2 = "";
@@ -191,7 +191,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
             {
                 value2 = EConvert.ToString(((System.Web.UI.WebControls.DropDownList)control1).SelectedValue);
             }
-            
+
             if (Id1 == "PrjAddressDept")
             {
                 value2 = t_PrjAddressDept.Value;
@@ -204,10 +204,10 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
             if (Id1 == "StartDate" || Id1 == "EndDate")
             {
                 value1 = value1.Substring(0, 10).Replace("-", "/");
-                value2 = value2.Substring(0, 10).Replace("-","/");
+                value2 = value2.Substring(0, 10).Replace("-", "/");
             }
             result = value1 == value2;
-            
+
             if (!result)
             {
                 if (Id1 == "PrjAddressDept")
@@ -227,14 +227,25 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
                 }
                 System.Web.UI.HtmlControls.HtmlForm myform = (System.Web.UI.HtmlControls.HtmlForm)this.Page.FindControl("Form1");
                 System.Web.UI.Control control = myform.FindControl("n_" + Id1);
-                var para = dbContext.TC_SGXKZ_BGJG.Where(t => t.BGNR == ((System.Web.UI.WebControls.HiddenField)control).Value);
-                dbContext.TC_SGXKZ_BGJG.DeleteAllOnSubmit(para);
+                if (control !=null)
+                {
+                    var para = dbContext.TC_SGXKZ_BGJG.FirstOrDefault(t => t.BGNR == ((System.Web.UI.WebControls.HiddenField)control).Value);
+                    if (para != null)
+                    {
+                        dbContext.TC_SGXKZ_BGJG.DeleteOnSubmit(para);
+                    }
+                }
+                
+                
                 string fId = Guid.NewGuid().ToString();
                 Emp.FId = fId;
                 Emp.FAppId = h_FAppId.Value;
                 Emp.FPrjInfoId = h_FPrjInfoId.Value;
                 Emp.FPrjItemId = h_FPrjItemId.Value;
-                Emp.BGNR = ((System.Web.UI.WebControls.HiddenField)control).Value;
+                if (control != null)
+                {
+                    Emp.BGNR = ((System.Web.UI.WebControls.HiddenField)control).Value;
+                }
                 Emp.BeforeBG = value1;
                 Emp.AfterBG = value2;
                 Emp.BGTime = EConvert.ToShortDateString(DateTime.Now);
@@ -258,7 +269,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
                             where FAppId='{0}' and BGQK='退出'";
         sql = string.Format(sql, h_FAppId.Value);
         int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
-        lblRY.InnerText = "增加" + count1 + "个，退出" + count2 + "个";
+        lblRY.InnerText = "(增加" + count1 + "个，退出" + count2 + "个)";
         var App = dbContext.TC_SGXKZ_BGJG.Where(t => t.FAppId == h_FAppId.Value).Select(t => new
         {
             t.BeforeBG,
@@ -295,7 +306,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
                             where FAppId='{0}' and BGQK='退出'";
         sql = string.Format(sql, h_FAppId.Value);
         int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
-        lblQY.InnerText = "增加"+count1+"个，退出"+count2+"个";
+        lblQY.InnerText = "(增加" + count1 + "个，退出" + count2 + "个)";
         var App = dbContext.TC_SGXKZ_QYBGJG.Where(t => t.FAppId == h_FAppId.Value).Select(t => new
         {
             t.YQLX,

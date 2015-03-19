@@ -166,20 +166,20 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
         }
 
         //验证各个项目环节
-        var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FId == fAppId);
+        var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FAppId == fAppId);
         if (dataOne == null || string.IsNullOrEmpty(dataOne.YDGHXKZBH))
         {
             MyPageTool.showMessage("请完善项目环节:[建设用地规划许可证]", this.Page);
             return;
         }
-        var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FId == fAppId);
+        var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FAppId == fAppId);
         if (dataTwo == null || string.IsNullOrEmpty(dataTwo.GCGHXKZBH))
         {
             MyPageTool.showMessage("请完善项目环节:[建设工程规划许可证]", this.Page);
             return;
         }
 
-        var dataThree = db.TC_SGXKZ_SGTSC.FirstOrDefault(t => t.FId == fAppId);
+        var dataThree = db.TC_SGXKZ_SGTSC.FirstOrDefault(t => t.FAppId == fAppId);
         if (dataThree == null
             || string.IsNullOrEmpty(dataThree.SGTSCHGSBH)
             || string.IsNullOrEmpty(dataThree.SGTSCJGId)
@@ -197,20 +197,20 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             return;
         }
 
-        var dataFour = db.TC_SGXKZ_JDSX.FirstOrDefault(t => t.FId == fAppId);
+        var dataFour = db.TC_SGXKZ_JDSX.FirstOrDefault(t => t.FAppId == fAppId);
         if (dataFour == null || string.IsNullOrEmpty(dataFour.ZLBABH) || string.IsNullOrEmpty(dataFour.AQBABH))
         {
             MyPageTool.showMessage("请完善项目环节:[质量安全监督手续]", this.Page);
             return;
         }
 
-        var dataFive = db.TC_SGXKZ_ZJBH.FirstOrDefault(t => t.FId == fAppId);
+        var dataFive = db.TC_SGXKZ_ZJBH.FirstOrDefault(t => t.FAppId == fAppId);
         if (dataFive == null || dataFive.ISDBS == null || string.IsNullOrEmpty(dataFive.ZJBH) || string.IsNullOrEmpty(dataFive.JF) || string.IsNullOrEmpty(dataFive.YF))
         {
             MyPageTool.showMessage("请完善项目环节:[资金保函或证明]", this.Page);
             return;
         }
-        var dataSix = db.TC_SGXKZ_QTZL.FirstOrDefault(t => t.FId == fAppId);
+        var dataSix = db.TC_SGXKZ_QTZL.FirstOrDefault(t => t.FAppId == fAppId);
         if (dataSix == null || string.IsNullOrEmpty(dataSix.SGTJ) || string.IsNullOrEmpty(dataSix.CNS))
         {
             MyPageTool.showMessage("请完善项目环节:[其它材料]", this.Page);

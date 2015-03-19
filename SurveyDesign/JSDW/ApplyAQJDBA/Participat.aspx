@@ -22,11 +22,14 @@
             return AutoCheckInfo();
         }
         function selEnt(obj, tagId) {
+            //默认为选择勘察、设计、监理类企业
             var url = "../project/EntListSel.aspx";
             var qylx = "101";
             var type = document.getElementById("t_CJJS").value;
             if (type == "11220102" || type == "11220103" || type == "11220104") {
                 qylx = "101";
+                //施工总承包、专业承包、劳务分包使用新的选择单位窗口 modify by psq 20150319
+                url = "../project/EntListSelSg.aspx";
             } else if (type == "11220105" || type == "11220106") {
                 qylx = "155";
             } else if (type == "11220107") {
@@ -41,7 +44,7 @@
                 $("#" + tagId).val(pid);
                 __doPostBack(obj.id, '');
             }
-        }
+        }        
     </script>
     <base target="_self">
     </base>
