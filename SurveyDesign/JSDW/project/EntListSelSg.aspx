@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EntListSelSg .aspx.cs"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EntListSelSg.aspx.cs"
     Inherits="JSDW_project_EntListSelSg" %>
 
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
