@@ -99,15 +99,5 @@ namespace EgovaDAO.Properties {
                 return ((string)(this["JST_XZSPBaseInfoConnectionString1"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Integrated Security=True")]
-        public string dbCenterConnectionString5 {
-            get {
-                return ((string)(this["dbCenterConnectionString5"]));
-            }
-        }
     }
 }

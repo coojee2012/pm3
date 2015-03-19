@@ -2336,6 +2336,17 @@
       <Column Name="FFilePath" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TC_AJBA_QZSB_CZRY" Member="TC_AJBA_QZSB_CZRY">
+    <Type Name="TC_AJBA_QZSB_CZRY">
+      <Column Name="ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FPrjItemID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FLinkID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Trades" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CZZH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.TC_PrjItem_Emp" Member="TC_PrjItem_Emp">
     <Type Name="TC_PrjItem_Emp">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2371,17 +2382,6 @@
       <Column Name="PId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FEntType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_AJBA_QZSB_CZRY" Member="TC_AJBA_QZSB_CZRY">
-    <Type Name="TC_AJBA_QZSB_CZRY">
-      <Column Name="ID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FPrjItemID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FLinkID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Trades" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CZZH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
