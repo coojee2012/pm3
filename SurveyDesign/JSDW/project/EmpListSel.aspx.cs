@@ -131,7 +131,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         EgovaDB db = new EgovaDB();
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            Label lblLock = e.Item.Controls[0].FindControl("lblLock") as Label;
+            //MODIFY:ytb 修改锁定按钮显示
+            LinkButton lblLock = e.Item.Controls[0].FindControl("lkb_Lock") as LinkButton;
             HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;
             //Label yxq = e.Item.Controls[0].FindControl("yxq") as Label;
             //HiddenField yxqks = e.Item.Controls[0].FindControl("yxqks") as HiddenField;
@@ -146,6 +147,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             {
                 lblLock.Text = "锁定";
                 hLock.Value = "1";
+                //MODIFY:YTB 为锁定按钮注册点击事件
+                lblLock.Attributes.Add("onclick", "showEmpinfo('" + idCard + "');");
             }
             else
             {
