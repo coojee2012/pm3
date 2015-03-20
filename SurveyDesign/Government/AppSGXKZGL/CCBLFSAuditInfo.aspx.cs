@@ -87,6 +87,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    {
        EgovaDB db = new EgovaDB();
        TC_SGXKZ_PrjInfo info = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_fLinkId.Value).FirstOrDefault();
+      
        if (info != null)
        {
            pageTool tool = new pageTool(this.Page, "t_");
@@ -312,7 +313,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            //委婉的实现保存额外的信息
            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
            {
-               string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_fAppFZJG.Text + "',FZTime='" + t_fAppFZRQ.Text + "',SGXKZBH='" + t_fAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
+               string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text + "',SGXKZBH='" + t_FAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
 
                if (conn.State == ConnectionState.Closed)
                    conn.Open();
@@ -556,7 +557,10 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
 
            }
 
-           t_fAppSGXKZBH.Text = BH;
+           if (string.IsNullOrEmpty(t_FAppSGXKZBH.Text)) {
+               t_FAppSGXKZBH.Text = BH;
+           }
+           
            
        }
  

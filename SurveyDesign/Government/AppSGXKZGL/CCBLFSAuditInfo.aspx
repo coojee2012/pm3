@@ -355,11 +355,11 @@
                 <td class="t_r">发证机关
                 </td>
                 <td>
-                    <asp:TextBox ID="t_fAppFZJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:TextBox ID="t_FAppFZJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 </td>
                 <td class="t_r">发证日期</td>
                 <td>
-                    <asp:TextBox ID="t_fAppFZRQ" runat="server" CssClass="m_txt" Width="195px" onblur="isDate(this);"
+                    <asp:TextBox ID="t_FAppFZRQ" runat="server" CssClass="m_txt" Width="195px" onblur="isDate(this);"
                         onfocus="WdatePicker()"></asp:TextBox>
                 </td>
             </tr>
@@ -367,7 +367,7 @@
 <td class="t_r">施工许可证编号
                 </td>
                 <td colspan="3"  >
-                     <asp:TextBox ID="t_fAppSGXKZBH" runat="server" CssClass="m_txt" Width="395px" ReadOnly="true"></asp:TextBox>
+                     <asp:TextBox ID="t_FAppSGXKZBH" runat="server" CssClass="m_txt" Width="395px" ReadOnly="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
