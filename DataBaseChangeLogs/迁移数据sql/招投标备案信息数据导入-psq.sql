@@ -209,7 +209,7 @@ SELECT  --*
 ,newid()  FBaseinfoId    --企业id  (暂时无法找到企业信息,临时new一个guid)
 ,a.FPrjId FPrjId    --项目编码
 ,CASE WHEN ISNULL(a.BATime,'')<>'' THEN CONVERT(CHAR(4),YEAR(a.BATime))+'年 ' ELSE '' END +'招投标备案' FName    --业务名称
-,11223 FManageTypeId    --业务编码
+,11232 FManageTypeId    --业务编码   11232是招标文件备案
 ,a.BATime FwriteDate    --写入时间
 ,a.BATime FReportDate    --上报时间
 ,NULL FIsSign    --是否签字
@@ -295,7 +295,7 @@ SELECT
  newid() FBaseinfoId, --企业id 中标结果备案表中没有企业编号，新生成一个GUID
  a.FPrjId  FPrjId,--项目编码     中标结果备案表中没有项目编号，新生成一个GUID
  CONVERT(char(4),year(convert(datetime,a.KBSJ)))+'年 '+'中标结果备案' FName    --业务名称
-,11235 FManageTypeId    --业务编码(中标结果备案)
+,11235 FManageTypeId    --业务编码(中标结果备案)  业务编码是11235
 ,a.KBSJ   FwriteDate    --写入时间
 ,a.KBSJ FReportDate    --上报时间 (暂时以同意时间为准)
 ,NULL FIsSign    --是否签字
