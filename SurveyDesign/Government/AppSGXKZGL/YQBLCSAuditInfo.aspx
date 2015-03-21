@@ -28,6 +28,12 @@
             //var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             showAddWindow('YZInfo.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450, btn);
         }
+        function LockEmpInfo() {
+
+            var FAppId = document.getElementById("t_fLinkId").value;
+            var FPrjItemId = document.getElementById("t_PrjItemId").value;
+            showApproveWindow('SDRYSC.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+        }
     </script>
     <style type="text/css">
         .cBtn7 {
