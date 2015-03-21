@@ -95,6 +95,9 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
 
         
        }
+       t_FAppSGXKZBH.Text = info.SGXKZBH;
+       t_FAppFZJG.Text = info.FZJG;
+       t_FAppFZRQ.Text = info.FZTime == null ? "" : info.FZTime.Value.ToString("yyyy-MM-dd");
    }
     //绑定项目附件信息
     private void bindFileInfo()
@@ -335,29 +338,42 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
     /// </summary>
    private void lockEmp()
    {
-       EgovaDB db = new EgovaDB();
-       var v = from a in db.TC_PrjItem_Emp
-               where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)
-               select a;
+       //EgovaDB db = new EgovaDB();
+       //var v = from a in db.TC_PrjItem_Emp
+       //        where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)  
+       //        select a;
        string sql = "";
        try {
            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
            {
                if (conn.State == ConnectionState.Closed)
                    conn.Open();
+               DataSet ds = new DataSet();
+               sql = "select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            da.Fill(ds, "ds");
+            DataTable dt = ds.Tables[0];
+            
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount) VALUES ";
+                sql += "('" + Guid.NewGuid().ToString();
+                sql += "','" + dt.Rows[i]["FIdCard"].ToString();
+                sql += "','" + dt.Rows[i]["FHumanName"].ToString();//item.FHumanName;
+                sql += "','" + dt.Rows[i]["FAppId"].ToString();
+                sql += "','" + dt.Rows[i]["FPrjId"].ToString(); 
+                sql += "','" + dt.Rows[i]["FPrjItemId"].ToString(); 
+                sql += "','" + dt.Rows[i]["FEntId"].ToString(); 
+                sql += "','" + dt.Rows[i]["FEntName"].ToString();
+                sql += "',1,1)";
 
-               foreach (var item in v.ToList<TC_PrjItem_Emp>())
-               {
-                   sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName) VALUES ";
-                   sql += "('" + Guid.NewGuid().ToString();
-                   sql += "','" + item.FIdCard;
-                   sql += "','" + item.FHumanName;
-                   sql += "','" + item.FAppId;
-                   sql += "','" + item.FPrjId;
-                   sql += "','" + item.FPrjItemId;
-                   sql += "','" + item.FEntId;
-                   sql += "','" + item.FEntName;
-                   sql += "')";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                int a = cmd.ExecuteNonQuery();
+            }
+
+              // foreach (var item in v.ToList<TC_PrjItem_Emp>())
+             //  {
+                  
                    //TC_PrjItem_Emp_Lock lockInfo = new TC_PrjItem_Emp_Lock();
                    //lockInfo.FId = Guid.NewGuid().ToString();
                    //lockInfo.FIdCard = item.FIdCard;
@@ -369,13 +385,10 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                    //lockInfo.FEntName = item.FEntName;
                    //db.TC_PrjItem_Emp_Lock.InsertOnSubmit(lockInfo);
 
-                   SqlCommand cmd = new SqlCommand(sql, conn);
-
-                   int a = cmd.ExecuteNonQuery();
 
 
 
-               }
+              // }
            }
        }
        catch(Exception ex){
@@ -401,11 +414,12 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
            {
                string dfUserId = this.Session["DFUserId"].ToString();
+               lockEmp();
                dResult.SelectedValue = "1";//接件操作强制选中同意项
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               lockEmp();
+               
                DisableButton();
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
            }
