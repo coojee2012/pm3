@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>质量监督备案接件</title>
+    <title>标准化工地申请</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -69,7 +69,7 @@
             <table width="98%" align="center" class="m_title">
                 <tr>
                     <th colspan="5">
-                        <asp:Literal ID="lPostion" runat="server">质量监督备案统计</asp:Literal>
+                        <asp:Literal ID="lPostion" runat="server">标准化工地统计</asp:Literal>
                     </th>
                 </tr> 
                 <tr>
@@ -161,7 +161,7 @@
             <table width="98%" align="center" class="m_title">
                 <tr>
                     <th colspan="5">
-                        <asp:Literal ID="Literal1" runat="server">质量监督备案明细</asp:Literal>
+                        <asp:Literal ID="Literal1" runat="server">标准化工地明细</asp:Literal>
                     </th>
                 </tr> 
                 <tr>

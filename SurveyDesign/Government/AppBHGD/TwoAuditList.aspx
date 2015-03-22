@@ -119,11 +119,11 @@
                     fMeasure = fMeasure.substring(0, fMeasure.length - 1);
                 }
                 else {
-                    alert("请选择一条质量监督备案信息审核！");
+                    alert("请选择一条标准化工地信息审核！");
                     return false;
                 }
                 if (cou > 1 || cou <= 0) {
-                    alert("只能选择一条质量监督备案信息审核！");
+                    alert("只能选择一条标准化工地信息审核！");
                     return false;
                 }
                 if (fMeasure != '0') {
