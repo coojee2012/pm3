@@ -47,6 +47,12 @@
             //var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             showAddWindow('YZInfo.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450, btn);
         }
+        function LockEmpInfo() {
+
+            var FAppId = document.getElementById("t_fLinkId").value;
+            var FPrjItemId = document.getElementById("t_PrjItemId").value;
+            showApproveWindow('SDRYSC.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+        }
     </script>
     <style type="text/css">
         .cBtn7 {
@@ -209,17 +215,22 @@
 
         <div style="width: 95%; margin: 0px auto;">
         <table class="m_dg1" width="100%" align="center">
+             <tr class="m_dg1_h">
+                <th colspan="5" align="left" >接件材料
+                </th>
+            </tr>
             <tr class="m_dg1_h">
                 <th style="width: 30px;">
                     序号
+                </th>
+                <th style="width: 50px;">
+                    具备
                 </th>
                 <th>
                     资料名称
                 </th>
                 
-                <th style="width: 50px;">
-                    是否具备
-                </th>
+                
                 <th style="width: 200px;">
                     文件或证明材料情况</th>
                 <th style="width: 50px;">
@@ -232,13 +243,14 @@
                         <td>
                             <%# Container.ItemIndex+1 %>
                         </td>
+                        <td >
+                            <asp:CheckBox ID="chkIsReady"  runat="server" />
+                        </td>
                         <td class="t_l">
                             <%#Eval("FFileName")%>
                         </td>
                       
-                        <td >
-                            <asp:CheckBox ID="chkIsReady"  runat="server" />
-                        </td>
+                        
                         <td>
                             <asp:TextBox ID="txtFileRemark" width="98%" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </td>
@@ -402,8 +414,8 @@
                     &nbsp;&nbsp;<asp:Button ID="bthEndApp" runat="server" Text="不予受理" class="m_btn_w6" OnClick="bthEndApp_Click"/>
             &nbsp;&nbsp;<asp:Button ID="btnBackToEnt" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                 Text="退回建设单位"  OnClick="btnBackToEnt_Click" />
-            &nbsp;&nbsp;<asp:Button ID="btnLockCheck" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
-                Text="锁定人员核查"   />
+            &nbsp;&nbsp;<input id="btnLockCheck" type="button" runat="server" style="margin-left: 5px;" class="m_btn_w6" onclick="LockEmpInfo();"
+                value="锁定人员核查"   />
                 </ContentTemplate>
             </asp:UpdatePanel>
            &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = '1'; window.close(); " />

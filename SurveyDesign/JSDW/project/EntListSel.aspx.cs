@@ -93,7 +93,38 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
             dg_List.DataBind();
         }
-        else    //如果是施工、专业、劳务类企业则列出企业主项资质
+        else if (qylx == "145")  //审图机构 目前为145.  modify by psq 20150319 审图机构没有资质信息，只有证书信息。
+        {
+            var App = from b in db.QY_JBXX
+                      join d in db.QY_QYZSXX
+                      on b.QYBM equals d.QYBM
+                      into temp1
+                      from tt1 in temp1.DefaultIfEmpty()
+                      where b.QYLXBM == qylx 
+
+                      select new
+                      {
+                          b.QYBM,
+                          b.QYMC,
+                          b.QYLXBM,
+                          b.RegAdrProvinceName,
+                          b.QYXXDZ,
+                          b.FRDB,
+                          b.LXR,
+                          b.LXDH,
+                          ZSBH = tt1 == null ? "" : tt1.ZSBH,
+                          ZZMC = tt1 == null ? "" : tt1.ZSLXMC,
+                          AXBH = tt1 == null ? "" : tt1.ZSBH
+                      };
+            if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+            {
+                App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+            }
+            Pager1.RecordCount = App.Count();
+            dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+            dg_List.DataBind();
+        }
+        else//如果是施工、专业、劳务类企业则列出企业主项资质
         {
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
