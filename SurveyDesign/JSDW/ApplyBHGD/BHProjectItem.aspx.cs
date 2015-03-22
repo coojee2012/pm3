@@ -129,7 +129,8 @@ public partial class JSDW_APPLYBHGD_BHProjectItem : System.Web.UI.Page
         {
             fId = Guid.NewGuid().ToString();
             Emp.FId = fId;
-            Emp.PrjItemId = t_PrjItemId.Value; 
+            Emp.PrjItemId = t_PrjItemId.Value;
+            Emp.FAppId = hf_FAppId.Value; 
             dbContext.TC_BZGD_PrjInfo.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);

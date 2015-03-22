@@ -127,11 +127,11 @@
                     fMeasure = fMeasure.substring(0, fMeasure.length - 1);
                 }
                 else {
-                    alert("请选择一条质量监督备案信息接件！");
+                    alert("请选择一条申请信息接件！");
                     return false;
                 }
                 if (cou > 1 || cou <= 0) {
-                    alert("只能选择一条质量监督备案信息接件！");
+                    alert("只能选择一条申请信息接件！");
                     return false;
                 }
                 if (fMeasure != '0')

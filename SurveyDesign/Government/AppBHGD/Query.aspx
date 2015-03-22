@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>质量监督备案接件</title>
+    <title>标准化工地查询</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -119,11 +119,11 @@
                     fMeasure = fMeasure.substring(0, fMeasure.length - 1);
                 }
                 else {
-                    alert("请选择一条质量监督备案信息接件！");
+                    alert("请选择一条标准化工地申请接件！");
                     return false;
                 }
                 if (cou > 1 || cou <= 0) {
-                    alert("只能选择一条质量监督备案信息接件！");
+                    alert("只能选择一条标准化工地申请信息接件！");
                     return false;
                 }
                 if (fMeasure != '0')
@@ -148,7 +148,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">质量监督备案接件</asp:Literal>
+                <asp:Literal ID="lPostion" runat="server">标准化工地申请接件</asp:Literal>
             </th>
         </tr>
         <tr>
