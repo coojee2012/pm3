@@ -349,7 +349,10 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                if (conn.State == ConnectionState.Closed)
                    conn.Open();
                DataSet ds = new DataSet();
-               sql = "select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
+               //sql = @"select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
+               //modify by psq  20150322  锁定人员限制范围是本业务id的，并且没有被锁定的
+               sql = @"select * from TC_PrjItem_Emp where FAppId = '"+t_fLinkId.Value + "'"
+                   +" and FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='" + t_fLinkId.Value + "')";
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(ds, "ds");
             DataTable dt = ds.Tables[0];
