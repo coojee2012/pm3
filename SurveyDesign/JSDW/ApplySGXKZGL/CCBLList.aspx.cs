@@ -191,11 +191,42 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
     {
         this.SaveInfo();
     }
+    /// <summary>
+    /// 获取企业信息
+    /// </summary>
+    /// <param name="entId">企业ID</param>
+    /// <returns>企业实体</returns>
+    private EgovaDAO.CF_Ent_BaseInfo EntInfo(string entId)
+    { 
+        //MODIFY:YTB 根据企业ID获取企业信息
+        EgovaDB egovaDb = new EgovaDB();
+        return egovaDb.CF_Ent_BaseInfo.SingleOrDefault(item => item.FId == entId);
+    }
 
-    protected QY_JBXX EntInfo(string entId)
+    /// <summary>
+    /// 获取企业所属地编码
+    /// </summary>
+    /// <param name="entId">企业ID</param>
+    /// <returns>企业所属地，只取前4位</returns>
+    private string EntyRegistDeptId(string entId)
     {
-        EgovaDB1 egovaDb1 = new EgovaDB1();
-        return egovaDb1.QY_JBXX.SingleOrDefault(item => item.QYBM == entId);
+        //MODIFY:YTB 获取企业所属地；
+        var enty = EntInfo(entId);
+        var registDeptId = enty.FRegistDeptId;
+        if (registDeptId==null)
+            return "";
+        if (registDeptId.ToString().Length>=4)
+        {
+            return registDeptId.ToString().Substring(0, 4);
+        }
+        else if (registDeptId.ToString().Length<=4&&registDeptId.ToString().Length>=2)
+        {
+            return registDeptId.ToString().Substring(0, 2);
+        }
+        else
+        {
+            return "";
+        }
     }
 
     //分页面控件翻页事件
@@ -360,6 +391,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         dbContext.SubmitChanges();
     }
 
+
     protected void btnSel_Click(object sender, EventArgs e)
     {
         EgovaDB dbContext = new EgovaDB();
@@ -374,7 +406,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         t_AddressDept.Value = result.AddressDept;
         t_PrjItemType.Value = result.PrjItemType;
         t_JSDW.Value = result.JSDW;
-        t_JSDWAddressDept.Value = EntInfo(result.FJSDWID).SSDBM;//MODIFY:YTB 为建设单位所属地赋值到控件
+        t_JSDWAddressDept.Value = EntyRegistDeptId(result.FJSDWID);//MODIFY:YTB 为建设单位所属地赋值到控件
     }
 
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)
