@@ -258,7 +258,7 @@
                 施工单位名称：
             </td>
             <td class="auto-style8" colspan="1">
-                <asp:TextBox ID="b_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="b_SGDW" runat="server" CssClass="m_txt" Width="195px" ReadOnly="True"></asp:TextBox>
                 <input id="b_SGDWId" runat="server" type="hidden" />
             </td>
         </tr>
@@ -267,7 +267,7 @@
                 建设单位名称：
             </td>
             <td colspan="1" class="auto-style3">
-                <asp:TextBox ID="b_JSDW" runat="server" CssClass="m_txt" Enabled="false" Width="195px" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="b_JSDW" runat="server" CssClass="m_txt" Width="195px" ReadOnly="True"></asp:TextBox>
                 <tt>*</tt>
             </td>
             <td class="t_r t_bg">
@@ -283,7 +283,7 @@
                 监理单位名称：
             </td>
             <td class="auto-style8" colspan="1">
-                <asp:TextBox ID="b_JLDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="b_JLDW" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 <input id="b_JLDWId" runat="server" type="hidden" />
             </td>
         </tr>
@@ -307,7 +307,7 @@
                 安全生产许可证编号：
             </td>
             <td colspan="2">
-                <asp:TextBox ID="b_SGDWAQSCXKZ" runat="server" CssClass="m_txt" Enabled="false"  Width="97%"></asp:TextBox><tt>*</tt>
+                <asp:TextBox ID="b_SGDWAQSCXKZ" runat="server" CssClass="m_txt"  Width="97%"></asp:TextBox><tt>*</tt>
             </td>
             <tr>
             <td class="t_r t_bg">安全生产业绩评价手册</td><td colspan ="2">

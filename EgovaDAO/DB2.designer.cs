@@ -291,9 +291,6 @@ namespace EgovaDAO
     partial void InsertTC_QA_Record(TC_QA_Record instance);
     partial void UpdateTC_QA_Record(TC_QA_Record instance);
     partial void DeleteTC_QA_Record(TC_QA_Record instance);
-    partial void InsertTC_BZGD_PrjInfo(TC_BZGD_PrjInfo instance);
-    partial void UpdateTC_BZGD_PrjInfo(TC_BZGD_PrjInfo instance);
-    partial void DeleteTC_BZGD_PrjInfo(TC_BZGD_PrjInfo instance);
     partial void InsertTC_BZGD_Record(TC_BZGD_Record instance);
     partial void UpdateTC_BZGD_Record(TC_BZGD_Record instance);
     partial void DeleteTC_BZGD_Record(TC_BZGD_Record instance);
@@ -309,10 +306,13 @@ namespace EgovaDAO
     partial void InsertTC_SGXKZ_PrjInfo(TC_SGXKZ_PrjInfo instance);
     partial void UpdateTC_SGXKZ_PrjInfo(TC_SGXKZ_PrjInfo instance);
     partial void DeleteTC_SGXKZ_PrjInfo(TC_SGXKZ_PrjInfo instance);
+    partial void InsertTC_BZGD_PrjInfo(TC_BZGD_PrjInfo instance);
+    partial void UpdateTC_BZGD_PrjInfo(TC_BZGD_PrjInfo instance);
+    partial void DeleteTC_BZGD_PrjInfo(TC_BZGD_PrjInfo instance);
     #endregion
 		
 		public DBDataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString4, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.dbCenter_scConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1061,14 +1061,6 @@ namespace EgovaDAO
 			}
 		}
 		
-		public System.Data.Linq.Table<TC_BZGD_PrjInfo> TC_BZGD_PrjInfo
-		{
-			get
-			{
-				return this.GetTable<TC_BZGD_PrjInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TC_BZGD_Record> TC_BZGD_Record
 		{
 			get
@@ -1106,6 +1098,14 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<TC_SGXKZ_PrjInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TC_BZGD_PrjInfo> TC_BZGD_PrjInfo
+		{
+			get
+			{
+				return this.GetTable<TC_BZGD_PrjInfo>();
 			}
 		}
 	}
@@ -47599,908 +47599,6 @@ namespace EgovaDAO
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TC_BZGD_PrjInfo")]
-	public partial class TC_BZGD_PrjInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _FId;
-		
-		private string _FAppId;
-		
-		private string _JSDW;
-		
-		private System.Nullable<int> _JProvince;
-		
-		private System.Nullable<int> _JCity;
-		
-		private System.Nullable<int> _JCounty;
-		
-		private string _JSDWAddressDept;
-		
-		private string _JSDWDZ;
-		
-		private string _JSDWXZ;
-		
-		private string _FDDBR;
-		
-		private string _FRDH;
-		
-		private string _LZR;
-		
-		private string _LXDH;
-		
-		private string _JSFZR;
-		
-		private string _JSFZRZC;
-		
-		private string _JSFZRDH;
-		
-		private string _PrjId;
-		
-		private string _PrjItemId;
-		
-		private string _ProjectName;
-		
-		private string _PrjItemName;
-		
-		private string _PrjItemType;
-		
-		private System.Nullable<System.DateTime> _ProjectTime;
-		
-		private System.Nullable<System.DateTime> _ReportTime;
-		
-		private System.Nullable<int> _PProvince;
-		
-		private System.Nullable<int> _PCity;
-		
-		private System.Nullable<int> _PCounty;
-		
-		private string _PrjAddressDept;
-		
-		private string _Address;
-		
-		private string _ConstrScale;
-		
-		private string _ConstrType;
-		
-		private string _Price;
-		
-		private string _Currency;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private string _FResult;
-		
-		private string _Remark;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnFIdChanging(string value);
-    partial void OnFIdChanged();
-    partial void OnFAppIdChanging(string value);
-    partial void OnFAppIdChanged();
-    partial void OnJSDWChanging(string value);
-    partial void OnJSDWChanged();
-    partial void OnJProvinceChanging(System.Nullable<int> value);
-    partial void OnJProvinceChanged();
-    partial void OnJCityChanging(System.Nullable<int> value);
-    partial void OnJCityChanged();
-    partial void OnJCountyChanging(System.Nullable<int> value);
-    partial void OnJCountyChanged();
-    partial void OnJSDWAddressDeptChanging(string value);
-    partial void OnJSDWAddressDeptChanged();
-    partial void OnJSDWDZChanging(string value);
-    partial void OnJSDWDZChanged();
-    partial void OnJSDWXZChanging(string value);
-    partial void OnJSDWXZChanged();
-    partial void OnFDDBRChanging(string value);
-    partial void OnFDDBRChanged();
-    partial void OnFRDHChanging(string value);
-    partial void OnFRDHChanged();
-    partial void OnLZRChanging(string value);
-    partial void OnLZRChanged();
-    partial void OnLXDHChanging(string value);
-    partial void OnLXDHChanged();
-    partial void OnJSFZRChanging(string value);
-    partial void OnJSFZRChanged();
-    partial void OnJSFZRZCChanging(string value);
-    partial void OnJSFZRZCChanged();
-    partial void OnJSFZRDHChanging(string value);
-    partial void OnJSFZRDHChanged();
-    partial void OnPrjIdChanging(string value);
-    partial void OnPrjIdChanged();
-    partial void OnPrjItemIdChanging(string value);
-    partial void OnPrjItemIdChanged();
-    partial void OnProjectNameChanging(string value);
-    partial void OnProjectNameChanged();
-    partial void OnPrjItemNameChanging(string value);
-    partial void OnPrjItemNameChanged();
-    partial void OnPrjItemTypeChanging(string value);
-    partial void OnPrjItemTypeChanged();
-    partial void OnProjectTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnProjectTimeChanged();
-    partial void OnReportTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnReportTimeChanged();
-    partial void OnPProvinceChanging(System.Nullable<int> value);
-    partial void OnPProvinceChanged();
-    partial void OnPCityChanging(System.Nullable<int> value);
-    partial void OnPCityChanged();
-    partial void OnPCountyChanging(System.Nullable<int> value);
-    partial void OnPCountyChanged();
-    partial void OnPrjAddressDeptChanging(string value);
-    partial void OnPrjAddressDeptChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnConstrScaleChanging(string value);
-    partial void OnConstrScaleChanged();
-    partial void OnConstrTypeChanging(string value);
-    partial void OnConstrTypeChanged();
-    partial void OnPriceChanging(string value);
-    partial void OnPriceChanged();
-    partial void OnCurrencyChanging(string value);
-    partial void OnCurrencyChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnFResultChanging(string value);
-    partial void OnFResultChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    #endregion
-		
-		public TC_BZGD_PrjInfo()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FId", DbType="VarChar(36) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string FId
-		{
-			get
-			{
-				return this._FId;
-			}
-			set
-			{
-				if ((this._FId != value))
-				{
-					this.OnFIdChanging(value);
-					this.SendPropertyChanging();
-					this._FId = value;
-					this.SendPropertyChanged("FId");
-					this.OnFIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAppId", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
-		public string FAppId
-		{
-			get
-			{
-				return this._FAppId;
-			}
-			set
-			{
-				if ((this._FAppId != value))
-				{
-					this.OnFAppIdChanging(value);
-					this.SendPropertyChanging();
-					this._FAppId = value;
-					this.SendPropertyChanged("FAppId");
-					this.OnFAppIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDW", DbType="VarChar(200)")]
-		public string JSDW
-		{
-			get
-			{
-				return this._JSDW;
-			}
-			set
-			{
-				if ((this._JSDW != value))
-				{
-					this.OnJSDWChanging(value);
-					this.SendPropertyChanging();
-					this._JSDW = value;
-					this.SendPropertyChanged("JSDW");
-					this.OnJSDWChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JProvince", DbType="Int")]
-		public System.Nullable<int> JProvince
-		{
-			get
-			{
-				return this._JProvince;
-			}
-			set
-			{
-				if ((this._JProvince != value))
-				{
-					this.OnJProvinceChanging(value);
-					this.SendPropertyChanging();
-					this._JProvince = value;
-					this.SendPropertyChanged("JProvince");
-					this.OnJProvinceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JCity", DbType="Int")]
-		public System.Nullable<int> JCity
-		{
-			get
-			{
-				return this._JCity;
-			}
-			set
-			{
-				if ((this._JCity != value))
-				{
-					this.OnJCityChanging(value);
-					this.SendPropertyChanging();
-					this._JCity = value;
-					this.SendPropertyChanged("JCity");
-					this.OnJCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JCounty", DbType="Int")]
-		public System.Nullable<int> JCounty
-		{
-			get
-			{
-				return this._JCounty;
-			}
-			set
-			{
-				if ((this._JCounty != value))
-				{
-					this.OnJCountyChanging(value);
-					this.SendPropertyChanging();
-					this._JCounty = value;
-					this.SendPropertyChanged("JCounty");
-					this.OnJCountyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWAddressDept", DbType="VarChar(50)")]
-		public string JSDWAddressDept
-		{
-			get
-			{
-				return this._JSDWAddressDept;
-			}
-			set
-			{
-				if ((this._JSDWAddressDept != value))
-				{
-					this.OnJSDWAddressDeptChanging(value);
-					this.SendPropertyChanging();
-					this._JSDWAddressDept = value;
-					this.SendPropertyChanged("JSDWAddressDept");
-					this.OnJSDWAddressDeptChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWDZ", DbType="VarChar(200)")]
-		public string JSDWDZ
-		{
-			get
-			{
-				return this._JSDWDZ;
-			}
-			set
-			{
-				if ((this._JSDWDZ != value))
-				{
-					this.OnJSDWDZChanging(value);
-					this.SendPropertyChanging();
-					this._JSDWDZ = value;
-					this.SendPropertyChanged("JSDWDZ");
-					this.OnJSDWDZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWXZ", DbType="VarChar(50)")]
-		public string JSDWXZ
-		{
-			get
-			{
-				return this._JSDWXZ;
-			}
-			set
-			{
-				if ((this._JSDWXZ != value))
-				{
-					this.OnJSDWXZChanging(value);
-					this.SendPropertyChanging();
-					this._JSDWXZ = value;
-					this.SendPropertyChanged("JSDWXZ");
-					this.OnJSDWXZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDDBR", DbType="VarChar(50)")]
-		public string FDDBR
-		{
-			get
-			{
-				return this._FDDBR;
-			}
-			set
-			{
-				if ((this._FDDBR != value))
-				{
-					this.OnFDDBRChanging(value);
-					this.SendPropertyChanging();
-					this._FDDBR = value;
-					this.SendPropertyChanged("FDDBR");
-					this.OnFDDBRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRDH", DbType="VarChar(50)")]
-		public string FRDH
-		{
-			get
-			{
-				return this._FRDH;
-			}
-			set
-			{
-				if ((this._FRDH != value))
-				{
-					this.OnFRDHChanging(value);
-					this.SendPropertyChanging();
-					this._FRDH = value;
-					this.SendPropertyChanged("FRDH");
-					this.OnFRDHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LZR", DbType="VarChar(50)")]
-		public string LZR
-		{
-			get
-			{
-				return this._LZR;
-			}
-			set
-			{
-				if ((this._LZR != value))
-				{
-					this.OnLZRChanging(value);
-					this.SendPropertyChanging();
-					this._LZR = value;
-					this.SendPropertyChanged("LZR");
-					this.OnLZRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXDH", DbType="VarChar(50)")]
-		public string LXDH
-		{
-			get
-			{
-				return this._LXDH;
-			}
-			set
-			{
-				if ((this._LXDH != value))
-				{
-					this.OnLXDHChanging(value);
-					this.SendPropertyChanging();
-					this._LXDH = value;
-					this.SendPropertyChanged("LXDH");
-					this.OnLXDHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSFZR", DbType="VarChar(50)")]
-		public string JSFZR
-		{
-			get
-			{
-				return this._JSFZR;
-			}
-			set
-			{
-				if ((this._JSFZR != value))
-				{
-					this.OnJSFZRChanging(value);
-					this.SendPropertyChanging();
-					this._JSFZR = value;
-					this.SendPropertyChanged("JSFZR");
-					this.OnJSFZRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSFZRZC", DbType="VarChar(50)")]
-		public string JSFZRZC
-		{
-			get
-			{
-				return this._JSFZRZC;
-			}
-			set
-			{
-				if ((this._JSFZRZC != value))
-				{
-					this.OnJSFZRZCChanging(value);
-					this.SendPropertyChanging();
-					this._JSFZRZC = value;
-					this.SendPropertyChanged("JSFZRZC");
-					this.OnJSFZRZCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSFZRDH", DbType="VarChar(50)")]
-		public string JSFZRDH
-		{
-			get
-			{
-				return this._JSFZRDH;
-			}
-			set
-			{
-				if ((this._JSFZRDH != value))
-				{
-					this.OnJSFZRDHChanging(value);
-					this.SendPropertyChanging();
-					this._JSFZRDH = value;
-					this.SendPropertyChanged("JSFZRDH");
-					this.OnJSFZRDHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjId", DbType="VarChar(36)")]
-		public string PrjId
-		{
-			get
-			{
-				return this._PrjId;
-			}
-			set
-			{
-				if ((this._PrjId != value))
-				{
-					this.OnPrjIdChanging(value);
-					this.SendPropertyChanging();
-					this._PrjId = value;
-					this.SendPropertyChanged("PrjId");
-					this.OnPrjIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemId", DbType="VarChar(36)")]
-		public string PrjItemId
-		{
-			get
-			{
-				return this._PrjItemId;
-			}
-			set
-			{
-				if ((this._PrjItemId != value))
-				{
-					this.OnPrjItemIdChanging(value);
-					this.SendPropertyChanging();
-					this._PrjItemId = value;
-					this.SendPropertyChanged("PrjItemId");
-					this.OnPrjItemIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(200)")]
-		public string ProjectName
-		{
-			get
-			{
-				return this._ProjectName;
-			}
-			set
-			{
-				if ((this._ProjectName != value))
-				{
-					this.OnProjectNameChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectName = value;
-					this.SendPropertyChanged("ProjectName");
-					this.OnProjectNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemName", DbType="VarChar(200)")]
-		public string PrjItemName
-		{
-			get
-			{
-				return this._PrjItemName;
-			}
-			set
-			{
-				if ((this._PrjItemName != value))
-				{
-					this.OnPrjItemNameChanging(value);
-					this.SendPropertyChanging();
-					this._PrjItemName = value;
-					this.SendPropertyChanged("PrjItemName");
-					this.OnPrjItemNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemType", DbType="VarChar(50)")]
-		public string PrjItemType
-		{
-			get
-			{
-				return this._PrjItemType;
-			}
-			set
-			{
-				if ((this._PrjItemType != value))
-				{
-					this.OnPrjItemTypeChanging(value);
-					this.SendPropertyChanging();
-					this._PrjItemType = value;
-					this.SendPropertyChanged("PrjItemType");
-					this.OnPrjItemTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTime", DbType="Date")]
-		public System.Nullable<System.DateTime> ProjectTime
-		{
-			get
-			{
-				return this._ProjectTime;
-			}
-			set
-			{
-				if ((this._ProjectTime != value))
-				{
-					this.OnProjectTimeChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectTime = value;
-					this.SendPropertyChanged("ProjectTime");
-					this.OnProjectTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportTime", DbType="Date")]
-		public System.Nullable<System.DateTime> ReportTime
-		{
-			get
-			{
-				return this._ReportTime;
-			}
-			set
-			{
-				if ((this._ReportTime != value))
-				{
-					this.OnReportTimeChanging(value);
-					this.SendPropertyChanging();
-					this._ReportTime = value;
-					this.SendPropertyChanged("ReportTime");
-					this.OnReportTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PProvince", DbType="Int")]
-		public System.Nullable<int> PProvince
-		{
-			get
-			{
-				return this._PProvince;
-			}
-			set
-			{
-				if ((this._PProvince != value))
-				{
-					this.OnPProvinceChanging(value);
-					this.SendPropertyChanging();
-					this._PProvince = value;
-					this.SendPropertyChanged("PProvince");
-					this.OnPProvinceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PCity", DbType="Int")]
-		public System.Nullable<int> PCity
-		{
-			get
-			{
-				return this._PCity;
-			}
-			set
-			{
-				if ((this._PCity != value))
-				{
-					this.OnPCityChanging(value);
-					this.SendPropertyChanging();
-					this._PCity = value;
-					this.SendPropertyChanged("PCity");
-					this.OnPCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PCounty", DbType="Int")]
-		public System.Nullable<int> PCounty
-		{
-			get
-			{
-				return this._PCounty;
-			}
-			set
-			{
-				if ((this._PCounty != value))
-				{
-					this.OnPCountyChanging(value);
-					this.SendPropertyChanging();
-					this._PCounty = value;
-					this.SendPropertyChanged("PCounty");
-					this.OnPCountyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjAddressDept", DbType="VarChar(50)")]
-		public string PrjAddressDept
-		{
-			get
-			{
-				return this._PrjAddressDept;
-			}
-			set
-			{
-				if ((this._PrjAddressDept != value))
-				{
-					this.OnPrjAddressDeptChanging(value);
-					this.SendPropertyChanging();
-					this._PrjAddressDept = value;
-					this.SendPropertyChanged("PrjAddressDept");
-					this.OnPrjAddressDeptChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(500)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrScale", DbType="VarChar(500)")]
-		public string ConstrScale
-		{
-			get
-			{
-				return this._ConstrScale;
-			}
-			set
-			{
-				if ((this._ConstrScale != value))
-				{
-					this.OnConstrScaleChanging(value);
-					this.SendPropertyChanging();
-					this._ConstrScale = value;
-					this.SendPropertyChanged("ConstrScale");
-					this.OnConstrScaleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrType", DbType="VarChar(50)")]
-		public string ConstrType
-		{
-			get
-			{
-				return this._ConstrType;
-			}
-			set
-			{
-				if ((this._ConstrType != value))
-				{
-					this.OnConstrTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ConstrType = value;
-					this.SendPropertyChanged("ConstrType");
-					this.OnConstrTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="VarChar(50)")]
-		public string Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Currency", DbType="VarChar(50)")]
-		public string Currency
-		{
-			get
-			{
-				return this._Currency;
-			}
-			set
-			{
-				if ((this._Currency != value))
-				{
-					this.OnCurrencyChanging(value);
-					this.SendPropertyChanging();
-					this._Currency = value;
-					this.SendPropertyChanged("Currency");
-					this.OnCurrencyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FResult", DbType="VarChar(20)")]
-		public string FResult
-		{
-			get
-			{
-				return this._FResult;
-			}
-			set
-			{
-				if ((this._FResult != value))
-				{
-					this.OnFResultChanging(value);
-					this.SendPropertyChanging();
-					this._FResult = value;
-					this.SendPropertyChanged("FResult");
-					this.OnFResultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TC_BZGD_Record")]
 	public partial class TC_BZGD_Record : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -52547,6 +51645,908 @@ namespace EgovaDAO
 					this._DZZT = value;
 					this.SendPropertyChanged("DZZT");
 					this.OnDZZTChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TC_BZGD_PrjInfo")]
+	public partial class TC_BZGD_PrjInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _FId;
+		
+		private string _FAppId;
+		
+		private string _JSDW;
+		
+		private System.Nullable<int> _JProvince;
+		
+		private System.Nullable<int> _JCity;
+		
+		private System.Nullable<int> _JCounty;
+		
+		private string _JSDWAddressDept;
+		
+		private string _JSDWDZ;
+		
+		private string _JSDWXZ;
+		
+		private string _FDDBR;
+		
+		private string _FRDH;
+		
+		private string _LZR;
+		
+		private string _LXDH;
+		
+		private string _JSFZR;
+		
+		private string _JSFZRZC;
+		
+		private string _JSFZRDH;
+		
+		private string _PrjId;
+		
+		private string _PrjItemId;
+		
+		private string _ProjectName;
+		
+		private string _PrjItemName;
+		
+		private string _PrjItemType;
+		
+		private System.Nullable<System.DateTime> _ProjectTime;
+		
+		private System.Nullable<System.DateTime> _ReportTime;
+		
+		private System.Nullable<int> _PProvince;
+		
+		private System.Nullable<int> _PCity;
+		
+		private System.Nullable<int> _PCounty;
+		
+		private string _PrjAddressDept;
+		
+		private string _Address;
+		
+		private string _ConstrScale;
+		
+		private string _ConstrType;
+		
+		private string _Price;
+		
+		private string _Currency;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private string _FResult;
+		
+		private string _Remark;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFIdChanging(string value);
+    partial void OnFIdChanged();
+    partial void OnFAppIdChanging(string value);
+    partial void OnFAppIdChanged();
+    partial void OnJSDWChanging(string value);
+    partial void OnJSDWChanged();
+    partial void OnJProvinceChanging(System.Nullable<int> value);
+    partial void OnJProvinceChanged();
+    partial void OnJCityChanging(System.Nullable<int> value);
+    partial void OnJCityChanged();
+    partial void OnJCountyChanging(System.Nullable<int> value);
+    partial void OnJCountyChanged();
+    partial void OnJSDWAddressDeptChanging(string value);
+    partial void OnJSDWAddressDeptChanged();
+    partial void OnJSDWDZChanging(string value);
+    partial void OnJSDWDZChanged();
+    partial void OnJSDWXZChanging(string value);
+    partial void OnJSDWXZChanged();
+    partial void OnFDDBRChanging(string value);
+    partial void OnFDDBRChanged();
+    partial void OnFRDHChanging(string value);
+    partial void OnFRDHChanged();
+    partial void OnLZRChanging(string value);
+    partial void OnLZRChanged();
+    partial void OnLXDHChanging(string value);
+    partial void OnLXDHChanged();
+    partial void OnJSFZRChanging(string value);
+    partial void OnJSFZRChanged();
+    partial void OnJSFZRZCChanging(string value);
+    partial void OnJSFZRZCChanged();
+    partial void OnJSFZRDHChanging(string value);
+    partial void OnJSFZRDHChanged();
+    partial void OnPrjIdChanging(string value);
+    partial void OnPrjIdChanged();
+    partial void OnPrjItemIdChanging(string value);
+    partial void OnPrjItemIdChanged();
+    partial void OnProjectNameChanging(string value);
+    partial void OnProjectNameChanged();
+    partial void OnPrjItemNameChanging(string value);
+    partial void OnPrjItemNameChanged();
+    partial void OnPrjItemTypeChanging(string value);
+    partial void OnPrjItemTypeChanged();
+    partial void OnProjectTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnProjectTimeChanged();
+    partial void OnReportTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnReportTimeChanged();
+    partial void OnPProvinceChanging(System.Nullable<int> value);
+    partial void OnPProvinceChanged();
+    partial void OnPCityChanging(System.Nullable<int> value);
+    partial void OnPCityChanged();
+    partial void OnPCountyChanging(System.Nullable<int> value);
+    partial void OnPCountyChanged();
+    partial void OnPrjAddressDeptChanging(string value);
+    partial void OnPrjAddressDeptChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnConstrScaleChanging(string value);
+    partial void OnConstrScaleChanged();
+    partial void OnConstrTypeChanging(string value);
+    partial void OnConstrTypeChanged();
+    partial void OnPriceChanging(string value);
+    partial void OnPriceChanged();
+    partial void OnCurrencyChanging(string value);
+    partial void OnCurrencyChanged();
+    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndDateChanged();
+    partial void OnFResultChanging(string value);
+    partial void OnFResultChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    #endregion
+		
+		public TC_BZGD_PrjInfo()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FId", DbType="VarChar(36) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FId
+		{
+			get
+			{
+				return this._FId;
+			}
+			set
+			{
+				if ((this._FId != value))
+				{
+					this.OnFIdChanging(value);
+					this.SendPropertyChanging();
+					this._FId = value;
+					this.SendPropertyChanged("FId");
+					this.OnFIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FAppId", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		public string FAppId
+		{
+			get
+			{
+				return this._FAppId;
+			}
+			set
+			{
+				if ((this._FAppId != value))
+				{
+					this.OnFAppIdChanging(value);
+					this.SendPropertyChanging();
+					this._FAppId = value;
+					this.SendPropertyChanged("FAppId");
+					this.OnFAppIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDW", DbType="VarChar(200)")]
+		public string JSDW
+		{
+			get
+			{
+				return this._JSDW;
+			}
+			set
+			{
+				if ((this._JSDW != value))
+				{
+					this.OnJSDWChanging(value);
+					this.SendPropertyChanging();
+					this._JSDW = value;
+					this.SendPropertyChanged("JSDW");
+					this.OnJSDWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JProvince", DbType="Int")]
+		public System.Nullable<int> JProvince
+		{
+			get
+			{
+				return this._JProvince;
+			}
+			set
+			{
+				if ((this._JProvince != value))
+				{
+					this.OnJProvinceChanging(value);
+					this.SendPropertyChanging();
+					this._JProvince = value;
+					this.SendPropertyChanged("JProvince");
+					this.OnJProvinceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JCity", DbType="Int")]
+		public System.Nullable<int> JCity
+		{
+			get
+			{
+				return this._JCity;
+			}
+			set
+			{
+				if ((this._JCity != value))
+				{
+					this.OnJCityChanging(value);
+					this.SendPropertyChanging();
+					this._JCity = value;
+					this.SendPropertyChanged("JCity");
+					this.OnJCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JCounty", DbType="Int")]
+		public System.Nullable<int> JCounty
+		{
+			get
+			{
+				return this._JCounty;
+			}
+			set
+			{
+				if ((this._JCounty != value))
+				{
+					this.OnJCountyChanging(value);
+					this.SendPropertyChanging();
+					this._JCounty = value;
+					this.SendPropertyChanged("JCounty");
+					this.OnJCountyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWAddressDept", DbType="VarChar(50)")]
+		public string JSDWAddressDept
+		{
+			get
+			{
+				return this._JSDWAddressDept;
+			}
+			set
+			{
+				if ((this._JSDWAddressDept != value))
+				{
+					this.OnJSDWAddressDeptChanging(value);
+					this.SendPropertyChanging();
+					this._JSDWAddressDept = value;
+					this.SendPropertyChanged("JSDWAddressDept");
+					this.OnJSDWAddressDeptChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWDZ", DbType="VarChar(200)")]
+		public string JSDWDZ
+		{
+			get
+			{
+				return this._JSDWDZ;
+			}
+			set
+			{
+				if ((this._JSDWDZ != value))
+				{
+					this.OnJSDWDZChanging(value);
+					this.SendPropertyChanging();
+					this._JSDWDZ = value;
+					this.SendPropertyChanged("JSDWDZ");
+					this.OnJSDWDZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWXZ", DbType="VarChar(50)")]
+		public string JSDWXZ
+		{
+			get
+			{
+				return this._JSDWXZ;
+			}
+			set
+			{
+				if ((this._JSDWXZ != value))
+				{
+					this.OnJSDWXZChanging(value);
+					this.SendPropertyChanging();
+					this._JSDWXZ = value;
+					this.SendPropertyChanged("JSDWXZ");
+					this.OnJSDWXZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FDDBR", DbType="VarChar(50)")]
+		public string FDDBR
+		{
+			get
+			{
+				return this._FDDBR;
+			}
+			set
+			{
+				if ((this._FDDBR != value))
+				{
+					this.OnFDDBRChanging(value);
+					this.SendPropertyChanging();
+					this._FDDBR = value;
+					this.SendPropertyChanged("FDDBR");
+					this.OnFDDBRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRDH", DbType="VarChar(50)")]
+		public string FRDH
+		{
+			get
+			{
+				return this._FRDH;
+			}
+			set
+			{
+				if ((this._FRDH != value))
+				{
+					this.OnFRDHChanging(value);
+					this.SendPropertyChanging();
+					this._FRDH = value;
+					this.SendPropertyChanged("FRDH");
+					this.OnFRDHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LZR", DbType="VarChar(50)")]
+		public string LZR
+		{
+			get
+			{
+				return this._LZR;
+			}
+			set
+			{
+				if ((this._LZR != value))
+				{
+					this.OnLZRChanging(value);
+					this.SendPropertyChanging();
+					this._LZR = value;
+					this.SendPropertyChanged("LZR");
+					this.OnLZRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXDH", DbType="VarChar(50)")]
+		public string LXDH
+		{
+			get
+			{
+				return this._LXDH;
+			}
+			set
+			{
+				if ((this._LXDH != value))
+				{
+					this.OnLXDHChanging(value);
+					this.SendPropertyChanging();
+					this._LXDH = value;
+					this.SendPropertyChanged("LXDH");
+					this.OnLXDHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSFZR", DbType="VarChar(50)")]
+		public string JSFZR
+		{
+			get
+			{
+				return this._JSFZR;
+			}
+			set
+			{
+				if ((this._JSFZR != value))
+				{
+					this.OnJSFZRChanging(value);
+					this.SendPropertyChanging();
+					this._JSFZR = value;
+					this.SendPropertyChanged("JSFZR");
+					this.OnJSFZRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSFZRZC", DbType="VarChar(50)")]
+		public string JSFZRZC
+		{
+			get
+			{
+				return this._JSFZRZC;
+			}
+			set
+			{
+				if ((this._JSFZRZC != value))
+				{
+					this.OnJSFZRZCChanging(value);
+					this.SendPropertyChanging();
+					this._JSFZRZC = value;
+					this.SendPropertyChanged("JSFZRZC");
+					this.OnJSFZRZCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSFZRDH", DbType="VarChar(50)")]
+		public string JSFZRDH
+		{
+			get
+			{
+				return this._JSFZRDH;
+			}
+			set
+			{
+				if ((this._JSFZRDH != value))
+				{
+					this.OnJSFZRDHChanging(value);
+					this.SendPropertyChanging();
+					this._JSFZRDH = value;
+					this.SendPropertyChanged("JSFZRDH");
+					this.OnJSFZRDHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjId", DbType="VarChar(36)")]
+		public string PrjId
+		{
+			get
+			{
+				return this._PrjId;
+			}
+			set
+			{
+				if ((this._PrjId != value))
+				{
+					this.OnPrjIdChanging(value);
+					this.SendPropertyChanging();
+					this._PrjId = value;
+					this.SendPropertyChanged("PrjId");
+					this.OnPrjIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemId", DbType="VarChar(36)")]
+		public string PrjItemId
+		{
+			get
+			{
+				return this._PrjItemId;
+			}
+			set
+			{
+				if ((this._PrjItemId != value))
+				{
+					this.OnPrjItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._PrjItemId = value;
+					this.SendPropertyChanged("PrjItemId");
+					this.OnPrjItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(200)")]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this.OnProjectNameChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectName = value;
+					this.SendPropertyChanged("ProjectName");
+					this.OnProjectNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemName", DbType="VarChar(200)")]
+		public string PrjItemName
+		{
+			get
+			{
+				return this._PrjItemName;
+			}
+			set
+			{
+				if ((this._PrjItemName != value))
+				{
+					this.OnPrjItemNameChanging(value);
+					this.SendPropertyChanging();
+					this._PrjItemName = value;
+					this.SendPropertyChanged("PrjItemName");
+					this.OnPrjItemNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemType", DbType="VarChar(50)")]
+		public string PrjItemType
+		{
+			get
+			{
+				return this._PrjItemType;
+			}
+			set
+			{
+				if ((this._PrjItemType != value))
+				{
+					this.OnPrjItemTypeChanging(value);
+					this.SendPropertyChanging();
+					this._PrjItemType = value;
+					this.SendPropertyChanged("PrjItemType");
+					this.OnPrjItemTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTime", DbType="Date")]
+		public System.Nullable<System.DateTime> ProjectTime
+		{
+			get
+			{
+				return this._ProjectTime;
+			}
+			set
+			{
+				if ((this._ProjectTime != value))
+				{
+					this.OnProjectTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectTime = value;
+					this.SendPropertyChanged("ProjectTime");
+					this.OnProjectTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReportTime", DbType="Date")]
+		public System.Nullable<System.DateTime> ReportTime
+		{
+			get
+			{
+				return this._ReportTime;
+			}
+			set
+			{
+				if ((this._ReportTime != value))
+				{
+					this.OnReportTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ReportTime = value;
+					this.SendPropertyChanged("ReportTime");
+					this.OnReportTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PProvince", DbType="Int")]
+		public System.Nullable<int> PProvince
+		{
+			get
+			{
+				return this._PProvince;
+			}
+			set
+			{
+				if ((this._PProvince != value))
+				{
+					this.OnPProvinceChanging(value);
+					this.SendPropertyChanging();
+					this._PProvince = value;
+					this.SendPropertyChanged("PProvince");
+					this.OnPProvinceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PCity", DbType="Int")]
+		public System.Nullable<int> PCity
+		{
+			get
+			{
+				return this._PCity;
+			}
+			set
+			{
+				if ((this._PCity != value))
+				{
+					this.OnPCityChanging(value);
+					this.SendPropertyChanging();
+					this._PCity = value;
+					this.SendPropertyChanged("PCity");
+					this.OnPCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PCounty", DbType="Int")]
+		public System.Nullable<int> PCounty
+		{
+			get
+			{
+				return this._PCounty;
+			}
+			set
+			{
+				if ((this._PCounty != value))
+				{
+					this.OnPCountyChanging(value);
+					this.SendPropertyChanging();
+					this._PCounty = value;
+					this.SendPropertyChanged("PCounty");
+					this.OnPCountyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjAddressDept", DbType="VarChar(50)")]
+		public string PrjAddressDept
+		{
+			get
+			{
+				return this._PrjAddressDept;
+			}
+			set
+			{
+				if ((this._PrjAddressDept != value))
+				{
+					this.OnPrjAddressDeptChanging(value);
+					this.SendPropertyChanging();
+					this._PrjAddressDept = value;
+					this.SendPropertyChanged("PrjAddressDept");
+					this.OnPrjAddressDeptChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(500)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrScale", DbType="VarChar(500)")]
+		public string ConstrScale
+		{
+			get
+			{
+				return this._ConstrScale;
+			}
+			set
+			{
+				if ((this._ConstrScale != value))
+				{
+					this.OnConstrScaleChanging(value);
+					this.SendPropertyChanging();
+					this._ConstrScale = value;
+					this.SendPropertyChanged("ConstrScale");
+					this.OnConstrScaleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrType", DbType="VarChar(50)")]
+		public string ConstrType
+		{
+			get
+			{
+				return this._ConstrType;
+			}
+			set
+			{
+				if ((this._ConstrType != value))
+				{
+					this.OnConstrTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ConstrType = value;
+					this.SendPropertyChanged("ConstrType");
+					this.OnConstrTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="VarChar(50)")]
+		public string Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Currency", DbType="VarChar(50)")]
+		public string Currency
+		{
+			get
+			{
+				return this._Currency;
+			}
+			set
+			{
+				if ((this._Currency != value))
+				{
+					this.OnCurrencyChanging(value);
+					this.SendPropertyChanging();
+					this._Currency = value;
+					this.SendPropertyChanged("Currency");
+					this.OnCurrencyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FResult", DbType="VarChar(20)")]
+		public string FResult
+		{
+			get
+			{
+				return this._FResult;
+			}
+			set
+			{
+				if ((this._FResult != value))
+				{
+					this.OnFResultChanging(value);
+					this.SendPropertyChanging();
+					this._FResult = value;
+					this.SendPropertyChanged("FResult");
+					this.OnFResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
 				}
 			}
 		}
