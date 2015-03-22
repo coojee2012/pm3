@@ -22,7 +22,7 @@
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
-            if (value == "1") {
+            if (value == "1" || value == "3") {
                 return AutoCheckInfo();
             } else {
                 var ly = document.getElementById("t_YL").value;
@@ -122,7 +122,7 @@
                 <td></td>
                 <td class="t_r">
                     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
-                        OnClientClick="return checkInfo();" />
+                        />  <!--  暂时屏蔽OnClientClick="return checkInfo();" -->
                 </td>
                 <td class="m_bar_r"></td>
             </tr>

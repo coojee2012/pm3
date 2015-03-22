@@ -64,7 +64,9 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DB1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DB1.designer.cs</LastGenOutput>

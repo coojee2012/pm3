@@ -162,18 +162,21 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         dbContext.CF_App_List.InsertOnSubmit(app);
 
         //添加初次办理信息
-        TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo();
-        record.FId = Guid.NewGuid().ToString();
-        record.FAppId = FAppId;
-        record.PrjId = t_FPrjId.Value;
-        record.PrjItemId = t_FPriItemId.Value;
-        record.FPrjItemId = t_FPriItemId.Value;
-        record.PrjItemName = t_FPrjItemName.Text;
-        record.ProjectName = t_FPrjName.Value;
-        record.PrjAddressDept = t_AddressDept.Value;
-        record.PrjItemType = t_PrjItemType.Value;
-        record.ReportTime = DateTime.Now;
-        record.JSDW = t_JSDW.Value;
+        TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo
+        {
+            FId = Guid.NewGuid().ToString(),
+            FAppId = FAppId,
+            PrjId = t_FPrjId.Value,
+            PrjItemId = t_FPriItemId.Value,
+            FPrjItemId = t_FPriItemId.Value,
+            PrjItemName = t_FPrjItemName.Text,
+            ProjectName = t_FPrjName.Value,
+            PrjAddressDept = t_AddressDept.Value,
+            PrjItemType = t_PrjItemType.Value,
+            JSDWAddressDept = t_JSDWAddressDept.Value,//MODIFY:YTB 从控件取值赋值建设单位所属地
+            ReportTime = DateTime.Now,
+            JSDW = t_JSDW.Value
+        };
         dbContext.TC_SGXKZ_PrjInfo.InsertOnSubmit(record);
         //提交修改
         dbContext.SubmitChanges();
@@ -188,7 +191,43 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
     {
         this.SaveInfo();
     }
+    /// <summary>
+    /// 获取企业信息
+    /// </summary>
+    /// <param name="entId">企业ID</param>
+    /// <returns>企业实体</returns>
+    private EgovaDAO.CF_Ent_BaseInfo EntInfo(string entId)
+    { 
+        //MODIFY:YTB 根据企业ID获取企业信息
+        EgovaDB egovaDb = new EgovaDB();
+        return egovaDb.CF_Ent_BaseInfo.SingleOrDefault(item => item.FId == entId);
+    }
 
+    /// <summary>
+    /// 获取企业所属地编码
+    /// </summary>
+    /// <param name="entId">企业ID</param>
+    /// <returns>企业所属地，只取前4位</returns>
+    private string EntyRegistDeptId(string entId)
+    {
+        //MODIFY:YTB 获取企业所属地；
+        var enty = EntInfo(entId);
+        var registDeptId = enty.FRegistDeptId;
+        if (registDeptId==null)
+            return "";
+        if (registDeptId.ToString().Length>=4)
+        {
+            return registDeptId.ToString().Substring(0, 4);
+        }
+        else if (registDeptId.ToString().Length<=4&&registDeptId.ToString().Length>=2)
+        {
+            return registDeptId.ToString().Substring(0, 2);
+        }
+        else
+        {
+            return "";
+        }
+    }
 
     //分页面控件翻页事件
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -352,12 +391,14 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         dbContext.SubmitChanges();
     }
 
+
     protected void btnSel_Click(object sender, EventArgs e)
     {
         EgovaDB dbContext = new EgovaDB();
         var result = (from t in dbContext.TC_PrjItem_Info
                       where t.FId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
+        if (result == null) return;
         t_FPrjItemName.Text = result.PrjItemName;
         t_FPrjId.Value = result.FPrjId;
         t_FJSDW.Text = result.JSDW;
@@ -365,6 +406,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         t_AddressDept.Value = result.AddressDept;
         t_PrjItemType.Value = result.PrjItemType;
         t_JSDW.Value = result.JSDW;
+        t_JSDWAddressDept.Value = EntyRegistDeptId(result.FJSDWID);//MODIFY:YTB 为建设单位所属地赋值到控件
     }
 
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)

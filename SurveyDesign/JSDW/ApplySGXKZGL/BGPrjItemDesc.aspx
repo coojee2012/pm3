@@ -449,7 +449,7 @@
                 <td class="m_bar_l">
                 </td>
                 <td>
-                    变更信息
+                    项目基本信息变更结果
                 </td>
                 <td class="t_r">
                     

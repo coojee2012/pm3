@@ -71,6 +71,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
         bindAuditList();
         showYZList();
         showTKJLList();
+        BuildSGXKZBH();
         
     }
    //初始化各种信息
@@ -86,11 +87,17 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    {
        EgovaDB db = new EgovaDB();
        TC_SGXKZ_PrjInfo info = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_fLinkId.Value).FirstOrDefault();
+      
        if (info != null)
        {
            pageTool tool = new pageTool(this.Page, "t_");
            tool.fillPageControl(info);
+
+        
        }
+       t_FAppSGXKZBH.Text = info.SGXKZBH;
+       t_FAppFZJG.Text = info.FZJG;
+       t_FAppFZRQ.Text = info.FZTime == null ? "" : info.FZTime.Value.ToString("yyyy-MM-dd");
    }
     //绑定项目附件信息
     private void bindFileInfo()
@@ -305,6 +312,19 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        {
            WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
+           //MODIFY 林勇
+           //委婉的实现保存额外的信息
+           using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+           {
+               string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text + "',SGXKZBH='" + t_FAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
+
+               if (conn.State == ConnectionState.Closed)
+                   conn.Open();
+               DataSet ds = new DataSet();
+               SqlCommand cmd = new SqlCommand(sql, conn);
+               //conn.Open();
+               int a = cmd.ExecuteNonQuery();
+           }
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
        }
        catch (Exception ee)
@@ -318,29 +338,46 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
     /// </summary>
    private void lockEmp()
    {
-       EgovaDB db = new EgovaDB();
-       var v = from a in db.TC_PrjItem_Emp
-               where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)
-               select a;
+       //EgovaDB db = new EgovaDB();
+       //var v = from a in db.TC_PrjItem_Emp
+       //        where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)  
+       //        select a;
        string sql = "";
        try {
            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
            {
                if (conn.State == ConnectionState.Closed)
                    conn.Open();
+               DataSet ds = new DataSet();
+               //sql = @"select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
+               //modify by psq  20150322  锁定人员限制范围是本业务id的，并且没有被锁定的
+               sql = @"select * from TC_PrjItem_Emp where FAppId = '"+t_fLinkId.Value + "'"
+                   +" and FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='" + t_fLinkId.Value + "')";
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            da.Fill(ds, "ds");
+            DataTable dt = ds.Tables[0];
+            
+            for (int i = 0; i < dt.Rows.Count; i++) {
+                sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount) VALUES ";
+                sql += "('" + Guid.NewGuid().ToString();
+                sql += "','" + dt.Rows[i]["FIdCard"].ToString();
+                sql += "','" + dt.Rows[i]["FHumanName"].ToString();//item.FHumanName;
+                sql += "','" + dt.Rows[i]["FAppId"].ToString();
+                sql += "','" + dt.Rows[i]["FPrjId"].ToString(); 
+                sql += "','" + dt.Rows[i]["FPrjItemId"].ToString(); 
+                sql += "','" + dt.Rows[i]["FEntId"].ToString(); 
+                sql += "','" + dt.Rows[i]["FEntName"].ToString();
+                sql += "',1,1)";
 
-               foreach (var item in v.ToList<TC_PrjItem_Emp>())
-               {
-                   sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName) VALUES ";
-                   sql += "('" + Guid.NewGuid().ToString();
-                   sql += "','" + item.FIdCard;
-                   sql += "','" + item.FHumanName;
-                   sql += "','" + item.FAppId;
-                   sql += "','" + item.FPrjId;
-                   sql += "','" + item.FPrjItemId;
-                   sql += "','" + item.FEntId;
-                   sql += "','" + item.FEntName;
-                   sql += "')";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                int a = cmd.ExecuteNonQuery();
+                sql = "";//每次执行完成sql后清空sql
+            }
+
+              // foreach (var item in v.ToList<TC_PrjItem_Emp>())
+             //  {
+                  
                    //TC_PrjItem_Emp_Lock lockInfo = new TC_PrjItem_Emp_Lock();
                    //lockInfo.FId = Guid.NewGuid().ToString();
                    //lockInfo.FIdCard = item.FIdCard;
@@ -352,13 +389,10 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                    //lockInfo.FEntName = item.FEntName;
                    //db.TC_PrjItem_Emp_Lock.InsertOnSubmit(lockInfo);
 
-                   SqlCommand cmd = new SqlCommand(sql, conn);
-
-                   int a = cmd.ExecuteNonQuery();
 
 
 
-               }
+              // }
            }
        }
        catch(Exception ex){
@@ -372,7 +406,11 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
       // db.SubmitChanges();
        
    }
-   
+   /// <summary>
+   /// 提交打证
+   /// </summary>
+   /// <param name="sender"></param>
+   /// <param name="e"></param>
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
        try
@@ -380,23 +418,24 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
            {
                string dfUserId = this.Session["DFUserId"].ToString();
+               lockEmp();
                dResult.SelectedValue = "1";//接件操作强制选中同意项
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               lockEmp();
+               
                DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批成功');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
            }
            else
            {
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行接件操作');", true);
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行相关操作');", true);
            }
 
        }
        catch (Exception ee)
        {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('上报审批失败');", true);
+           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理失败！');", true);
        }
    }
   
@@ -460,5 +499,94 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    }
    
    #endregion
-   
+
+   #region 生成施工许可证编号
+   protected void BuildSGXKZBH() {
+       //EgovaDB db = new EgovaDB();
+       //TC_SGXKZ_PrjInfo info = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_fLinkId.Value).FirstOrDefault();
+       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+       {
+           string sql = " select top 1 PrjAddressDept,PrjItemType, getdate() as today,(select COUNT(1) from TC_SGXKZ_PrjInfo where DATEDIFF(DAY,FZTime,GETDATE()) = 0)  AS  YBL from TC_SGXKZ_PrjInfo WHERE FAppId ='" + t_fLinkId.Value + "'";
+
+           if (conn.State == ConnectionState.Closed)
+               conn.Open();
+           DataSet ds = new DataSet();
+           SqlCommand cmd = new SqlCommand(sql, conn);
+           //conn.Open();
+           //int a = cmd.ExecuteNonQuery();
+
+           SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+           da.Fill(ds, "ds");
+           DataTable dt = ds.Tables[0];
+           string PrjAddressDept = "";
+           string PrjItemType = "";
+           string date = "";
+           string BH = "";
+           for (int i = 0; i < dt.Rows.Count; i++)
+           {
+               PrjAddressDept = dt.Rows[0]["PrjAddressDept"].ToString();
+              
+               switch (dt.Rows[0]["PrjItemType"].ToString())
+               { 
+                   case "2000103":
+                       PrjItemType = "03";
+                       break;
+                   case "2000101":
+                       PrjItemType = "01";
+                       break;
+                   case "2000102":
+                       PrjItemType = "02";
+                       break;
+                   default:
+                       PrjItemType = "03";
+                       break;
+               }
+               DateTime today = DateTime.Parse(dt.Rows[0]["today"].ToString());
+               date = today.ToString("yyyyMMdd");
+               if (string.IsNullOrEmpty(PrjAddressDept))
+               {
+                   throw new Exception("项目所属地不能为空");
+               }
+               else if (PrjAddressDept.Length == 2) {
+                   BH = PrjAddressDept + "0000";
+               }
+               else if (PrjAddressDept.Length == 4)
+               {
+                   BH = PrjAddressDept + "00";
+               }
+               else
+               {
+                   BH = PrjAddressDept;
+               }
+               BH += date;
+               int xh = int.Parse(dt.Rows[0]["YBL"].ToString());
+
+               if (xh > 9)
+               {
+                   BH += xh.ToString();
+               }
+               else {
+                   BH += "0"+xh.ToString();
+               }
+               
+               BH += PrjItemType;
+
+
+
+           }
+
+           if (string.IsNullOrEmpty(t_FAppSGXKZBH.Text)) {
+               t_FAppSGXKZBH.Text = BH;
+           }
+           
+           
+       }
+ 
+       
+       
+
+
+   }
+    #endregion
+
 }

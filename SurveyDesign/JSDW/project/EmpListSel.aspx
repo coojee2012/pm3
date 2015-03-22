@@ -47,6 +47,10 @@
             return confirm('确认要选择该人员吗?');
             return true;
         }
+        //MODIFY:YTB 增加显示锁定人员信息函数
+        function showEmpinfo(idcard) {
+            showAddWindow('EmpLockInfo.aspx?idCard=' + idcard, 700, 300);
+        }
         function SetDDLEmpType()
         {
             var rylx = document.getElementById("<%=lblRylx.ClientID%>").value;
@@ -154,7 +158,7 @@
                             <%# Container.ItemIndex + 1%> 
                         </td>
                         <td>
-                            <asp:Label ID="lblLock" runat="server" Text="Label" ></asp:Label>
+                            <asp:LinkButton ID="lkb_Lock" runat="server" Text="Label"></asp:LinkButton>                            
                             <asp:HiddenField ID="h_lock"  runat="server" />
                         </td>
                         <td>
