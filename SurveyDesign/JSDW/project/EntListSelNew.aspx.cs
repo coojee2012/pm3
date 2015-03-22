@@ -20,7 +20,7 @@ public partial class JSDW_project_EntListSelNew : System.Web.UI.Page
     ShareTool st = new ShareTool();
     /// <summary>
     /// 1- 项目环节[施工图审查信息]:施工图审查机构查询
-    /// 1- 项目环节[施工图审查信息]:施工图审查机构查询
+    /// 2- 筛选招标代理机构 （）
     /// 1- 项目环节[施工图审查信息]:施工图审查机构查询
     /// </summary>
     private static int queryType = 1;
@@ -77,7 +77,7 @@ public partial class JSDW_project_EntListSelNew : System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  where b.QYLXBM == qylx 
+                  where b.QYLXBM == qylx
                   select new
                   {
                       b.QYBM,
@@ -92,9 +92,7 @@ public partial class JSDW_project_EntListSelNew : System.Web.UI.Page
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
                       AXBH = tt1 == null ? "" : tt1.ZSBH
                   };
-        if(queryType == 1){
-        
-        }
+       
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
             App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
@@ -114,7 +112,7 @@ public partial class JSDW_project_EntListSelNew : System.Web.UI.Page
                   on b.QYBM equals d.QYBM
                   into temp1
                   from tt in temp.DefaultIfEmpty()
-                  from tt1 in temp1.DefaultIfEmpty() 
+                  from tt1 in temp1.DefaultIfEmpty()
                   select new
                   {
                       b.QYBM,
