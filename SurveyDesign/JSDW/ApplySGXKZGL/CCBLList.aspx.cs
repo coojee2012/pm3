@@ -158,6 +158,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         app.FBaseinfoId = CurrentEntUser.EntId;//单位ID
         app.FTime = dTime;
         app.FCreateTime = dTime;
+        //app.FPrjId = t_FPrjId.Value;
         app.FReportCount = 1;
         dbContext.CF_App_List.InsertOnSubmit(app);
 
