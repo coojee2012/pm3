@@ -49,7 +49,7 @@
         function showTr2() {
             $("td[name=td1]").hide();
             $("tr[name=tr1]").hide();
-            $("td[name=td2]").show();
+            $("td[name=td2]").show();       
         }
         function selEnt(obj, tagId) {
             var type = document.getElementById("t_FEntType").value;
@@ -74,13 +74,29 @@
                     qylx = "125";
                     break;
             }
-            var url = "../project/EntListSel.aspx";
-            url += "?qylx=" + qylx;
-            var pid = showWinByReturn(url, 1000, 600);
-            if (pid != null && pid != '') {
-                $("#" + tagId).val(pid);
-                __doPostBack(obj.id, '');
+            //根据企业类型跳转到不同的企业选择页面
+            if (qylx = "101")//施工总承包、专业承包、劳务分包
+            {
+                var url = "../project/EntListSelSg.aspx";
+                url += "?qylx=" + qylx;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
             }
+            else//勘察、设计、建立类企业
+            {
+                var url = "../project/EntListSel.aspx";
+                url += "?qylx=" + qylx;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
+            }
+
+           
         }
     </script>
 
@@ -199,7 +215,7 @@
                     资质项：
                 </td>
                 <td  >
-                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px"  TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">

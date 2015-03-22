@@ -131,7 +131,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         EgovaDB db = new EgovaDB();
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            Label lblLock = e.Item.Controls[0].FindControl("lblLock") as Label;
+            //MODIFY:ytb 修改锁定按钮显示
+            LinkButton lblLock = e.Item.Controls[0].FindControl("lkb_Lock") as LinkButton;
             HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;
             //Label yxq = e.Item.Controls[0].FindControl("yxq") as Label;
             //HiddenField yxqks = e.Item.Controls[0].FindControl("yxqks") as HiddenField;
@@ -146,6 +147,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             {
                 lblLock.Text = "锁定";
                 hLock.Value = "1";
+                //MODIFY:YTB 为锁定按钮注册点击事件
+                lblLock.Attributes.Add("onclick", "showEmpinfo('" + idCard + "');");
             }
             else
             {
@@ -165,6 +168,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     /// </summary>
     /// 如果人员状态是已锁定（以身份证号为准进行判断，15位18位自动识别）
     /// 则当前业务的工程所在地与已锁定的工程所在地完全一致才允许选入（且只能允许选入3次），否则不允许选入
+    /// <param name="empLock"></param>
     /// <returns></returns>
     private bool LockBusiness(TC_PrjItem_Emp_Lock empLock) {
         if (empLock == null) return false;

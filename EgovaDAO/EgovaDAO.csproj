@@ -46,7 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DB.designer.cs">
+    <Compile Include="DB2.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.dbml</DependentUpon>
@@ -64,7 +64,9 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DB1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DB1.designer.cs</LastGenOutput>
@@ -72,8 +74,8 @@
     </None>
     <None Include="DB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DB2.designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

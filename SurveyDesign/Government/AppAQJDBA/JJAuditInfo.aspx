@@ -134,14 +134,13 @@
                     资料名称
                 </th>
                 <th style="width: 60px;">
-                    需要文件数量
-                </th>
-                <th style="width: 60px;">
-                    已上传<br />
-                    文件个数
+                    份数
                 </th>
                 <th style="width: 50px;">
                     是否具备
+                </th>
+                <th style="width: 60px;">
+                    电子件
                 </th>
                 <th style="width: 200px;">
                     备注
@@ -162,11 +161,11 @@
                         <td>
                             <%#Eval("FFileCount")%>
                         </td>
-                        <td>
-                            <asp:Literal ID="lit_Count" runat="server"></asp:Literal>
-                        </td>
                         <td >
                             <asp:CheckBox ID="chkIsReady"  runat="server" />
+                        </td>
+                        <td >
+                            <asp:Literal ID="lit_Count" runat="server"></asp:Literal>
                         </td>
                         <td>
                             <asp:TextBox ID="txtFileRemark" width="98%" runat="server" TextMode="MultiLine"></asp:TextBox>
@@ -263,7 +262,7 @@
                 Text="退回建设单位"  OnClick="btnBackToEnt_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
-           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />
+           &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = 1; window.close();" />
         </div>
  
         <input id="t_fLinkId" runat="server" type="hidden" />

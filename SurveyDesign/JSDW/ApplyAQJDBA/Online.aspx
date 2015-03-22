@@ -27,6 +27,8 @@
                 qybm = document.getElementById("t_XMZW").value;
             } else if (tagId == "t_JLRYId") {
                 qybm = document.getElementById("t_JLId").value;
+            } else if (tagId == "t_FHumanId") {
+                qybm = document.getElementById("t_FHumanId").value;
             }
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";

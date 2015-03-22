@@ -107,7 +107,8 @@ public partial class Government_AppAQJDBA_JJAuditInfo : System.Web.UI.Page
 
         var v = from t in dbContext.CF_Sys_PrjList
                 orderby t.FId
-                where t.FManageType == 11221
+                //where t.FManageType == 11221
+                where t.FManageType == 11222  //安监的材料数据源应该和企业上报端的类型一致，modify by psq 20150319
                 select new
                 {
                     t.FId,

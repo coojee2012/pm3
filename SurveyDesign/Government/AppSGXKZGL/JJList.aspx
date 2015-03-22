@@ -166,13 +166,7 @@
 
     </script>
 
-    <style type="text/css">
-        .auto-style1 {
-            height: 23px;
-        }
-    </style>
-
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -253,11 +247,9 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CCBLJJAuditInfo.aspx')" OnClick="btnAccept_Click" />
+                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('Print.aspx')" OnClick="btnAccept_Click" />
                 <asp:Button ID="btnAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
-                    Text="受理单打印" OnClientClick="return app('BackSeeOneReportInfo.aspx')" Visible="false" />
-                <asp:Button ID="btnNotAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w8"
-                    Text="不予受理通知书打印" OnClientClick="return app('BackSeeOneReportInfo.aspx')" Visible="false"/>
+                    Text="打印通知书" OnClientClick="return app('BackSeeOneReportInfo.aspx')" />
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
                     OnClick="btnOut_Click" Text="导出" />
             </td>

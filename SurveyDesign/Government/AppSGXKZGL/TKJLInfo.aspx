@@ -25,7 +25,7 @@
                     var filename = patchs[i].split('/');
                     filename = filename[filename.length - 1];
 
-                    var trHTML = "<tr id='id" + i + "'><td>" + filename + "</td>";
+                    var trHTML = "<tr id='id" + i + "'><td><a href='" + patchs[i] + "' target='_blank' title='点击查看文件'>" + filename + "</a></td>";
                    
                     trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + patchs[i] + "','id" + i + "');\">删除</a></td></tr>";
 
@@ -41,6 +41,8 @@
         function SelectFiles() {
             var width = 600;
             var height = 400;
+            //alert('<%= Session["DFUserId"] %>');
+            //alert('<%= Session["FUserId"] %>');
             sUrl = '<%=ProjectBLL.RBase.GetSysObjectName("FileServerPath") %>tiny_mce/plugins/ajaxfilemanager/filemanager.aspx?type=file&iseditor=1&p=<%=SecurityEncryption.DesEncrypt("../../|"+Session["FUserId"]+"|" + SecurityEncryption.ConvertDateTimeInt(DateTime.Now.AddHours(1)),"12345687")%>';
             var rv = window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;');
             if (rv != null && rv.split('|')[0] != 'undefined') {
@@ -49,9 +51,9 @@
                 var filename = fileInfo[0].split('/');
                 filename = filename[filename.length - 1];
                 $('#t_Size').val(fileInfo[1]);
-                var filename2 = 'id' + tmpid;
+                var filename2 = 'id' + tmpid;//
                 tmpid += 1;
-                var trHTML = "<tr id='" + filename2 + "'><td>" + filename + "</td>";
+                var trHTML = "<tr id='" + filename2 + "'><td><a href='" + fileInfo[0]  + "' target='_blank' title='点击查看文件'>" + filename + "</a></td>";
                // trHTML += "<td align=\"center\">" + (fileInfo[1] / 1024).toFixed(2) + "</td>";
                 trHTML += "<td align=\"center\"><a href=\"javascript:removeRow('" + fileInfo[0] + "','" + filename2+ "');\">删除</a></td></tr>";
                
