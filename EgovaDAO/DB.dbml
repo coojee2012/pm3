@@ -2170,7 +2170,6 @@
     <Type Name="TC_BZGD_PrjInfo">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
       <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="JProvince" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="JCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
