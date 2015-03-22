@@ -372,6 +372,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 int a = cmd.ExecuteNonQuery();
+                sql = "";//每次执行完成sql后清空sql
             }
 
               // foreach (var item in v.ToList<TC_PrjItem_Emp>())
