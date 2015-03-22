@@ -52,6 +52,14 @@ public partial class JSDW_ApplySGXKZGL_PrjItemDescForYQ : System.Web.UI.Page
         t_Currency.DataTextField = "FName";
         t_Currency.DataValueField = "FNumber";
         t_Currency.DataBind();
+
+
+        //所有制
+        dt = rc.getDicTbByFNumber("112212");
+        t_JSDWXZ.DataSource = dt;
+        t_JSDWXZ.DataTextField = "FName";
+        t_JSDWXZ.DataValueField = "FNumber";
+        t_JSDWXZ.DataBind();
     }
     //显示
     private void showInfo()
@@ -62,14 +70,23 @@ public partial class JSDW_ApplySGXKZGL_PrjItemDescForYQ : System.Web.UI.Page
             pageTool tool1 = new pageTool(this.Page, "p_");
             tool1.fillPageControl(yq);
             TC_SGXKZ_PrjInfo emp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == yq.FPrjInfoId).FirstOrDefault();
+            TC_SGXKZ_BGPrjInfo empA = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FPrjItemId == emp.PrjItemId).OrderByDescending(q => q.BGTime).FirstOrDefault();
             if (emp != null)
             {
                 pageTool tool = new pageTool(this.Page, "t_");
                 tool.fillPageControl(emp);
-                
-                JSDW_DeptID.fNumber = emp.JSDWAddressDept;
-                PrjGovdeptid.fNumber = emp.PrjAddressDept;
-                
+                //显示变更后的数据
+                if (empA != null)
+                {
+                    JSDW_DeptID.fNumber = empA.JSDWAddressDept;
+                    t_PrjItemName.Text = empA.PrjItemName;
+                    PrjGovdeptid.fNumber = empA.PrjAddressDept;
+                    t_ConstrScale.Text = empA.ConstrScale;
+                    t_StartDate.Text = empA.StartDate.HasValue ? empA.StartDate.Value.ToString("yyyy-MM-dd") : "";
+                    t_EndDate.Text = empA.EndDate.HasValue ? empA.EndDate.Value.ToString("yyyy-MM-dd") : "";
+                }
+
+
             }
             hf_FprjItemId.Value = yq.FprjItemId;
             hf_FId.Value = yq.FId;
