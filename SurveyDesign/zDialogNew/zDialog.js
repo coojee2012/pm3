@@ -566,7 +566,7 @@ Dialog.getBgdiv = function () {
         if (ielt7) {
             var bgIframeDoc = bgdiv.getElementsByTagName("IFRAME")[0].contentWindow.document;
             bgIframeDoc.open();
-            bgIframeDoc.write("<body style='background-color:#333' oncontextmenu='return false;'></body>");
+            bgIframeDoc.write("<body style='background-color:#333' oncontextmenu='return false'></body>");
             bgIframeDoc.close();
 			bgIframeDoc=null;
         }
