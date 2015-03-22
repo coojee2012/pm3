@@ -31,6 +31,9 @@
     <style type="text/css">
         .modalDiv { position: absolute; top: 1px; left: 1px; width: 100%; height: 100%; z-index:9999; background-color:gray; opacity:.50; filter: alpha(opacity=50); }
         .m_txt {}
+        .auto-style1 {
+            height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -79,7 +82,7 @@
         </table>
         <table class="m_table" width="98%" align="center">
             <tr>
-                <td class="t_l t_bg" colspan="4">
+                <td class="auto-style1" colspan="4">
                     建设单位基本信息
                 </td>
              </tr>
@@ -213,7 +216,7 @@
                 
             </tr>
             <tr>
-                <td class="t_r t_bg">
+                <td>
                     建设规模：
                 </td>
                 <td colspan="3">

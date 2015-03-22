@@ -244,7 +244,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="o_menu"  style="display:none;">
+                    <div class="o_menu" >
                         <a id="a17" class="o_m01_1" href='../ApplyBHGD/BHGDList.aspx' target="main"><span>
                             标化工地申请</span></a>
                     </div>
