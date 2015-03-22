@@ -162,18 +162,21 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         dbContext.CF_App_List.InsertOnSubmit(app);
 
         //添加初次办理信息
-        TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo();
-        record.FId = Guid.NewGuid().ToString();
-        record.FAppId = FAppId;
-        record.PrjId = t_FPrjId.Value;
-        record.PrjItemId = t_FPriItemId.Value;
-        record.FPrjItemId = t_FPriItemId.Value;
-        record.PrjItemName = t_FPrjItemName.Text;
-        record.ProjectName = t_FPrjName.Value;
-        record.PrjAddressDept = t_AddressDept.Value;
-        record.PrjItemType = t_PrjItemType.Value;
-        record.ReportTime = DateTime.Now;
-        record.JSDW = t_JSDW.Value;
+        TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo
+        {
+            FId = Guid.NewGuid().ToString(),
+            FAppId = FAppId,
+            PrjId = t_FPrjId.Value,
+            PrjItemId = t_FPriItemId.Value,
+            FPrjItemId = t_FPriItemId.Value,
+            PrjItemName = t_FPrjItemName.Text,
+            ProjectName = t_FPrjName.Value,
+            PrjAddressDept = t_AddressDept.Value,
+            PrjItemType = t_PrjItemType.Value,
+            JSDWAddressDept = t_JSDWAddressDept.Value,//MODIFY:YTB 从控件取值赋值建设单位所属地
+            ReportTime = DateTime.Now,
+            JSDW = t_JSDW.Value
+        };
         dbContext.TC_SGXKZ_PrjInfo.InsertOnSubmit(record);
         //提交修改
         dbContext.SubmitChanges();
@@ -189,6 +192,11 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         this.SaveInfo();
     }
 
+    protected QY_JBXX EntInfo(string entId)
+    {
+        EgovaDB1 egovaDb1 = new EgovaDB1();
+        return egovaDb1.QY_JBXX.SingleOrDefault(item => item.QYBM == entId);
+    }
 
     //分页面控件翻页事件
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
@@ -358,6 +366,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         var result = (from t in dbContext.TC_PrjItem_Info
                       where t.FId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
+        if (result == null) return;
         t_FPrjItemName.Text = result.PrjItemName;
         t_FPrjId.Value = result.FPrjId;
         t_FJSDW.Text = result.JSDW;
@@ -365,6 +374,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         t_AddressDept.Value = result.AddressDept;
         t_PrjItemType.Value = result.PrjItemType;
         t_JSDW.Value = result.JSDW;
+        t_JSDWAddressDept.Value = EntInfo(result.FJSDWID).SSDBM;//MODIFY:YTB 为建设单位所属地赋值到控件
     }
 
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)
