@@ -75,7 +75,7 @@
                                                         </td>
                                                         <td align="left">
                                                             
-                                                            <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                                                            <asp:TextBox ID="txtFProjectName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
                                                         </td>
                                                         <td class="t_r">
                                                             工程所属地：
@@ -139,13 +139,13 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="工程名称">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="btnItemSee" runat="server" CommandName="See" Text='<%# Bind("PrjItemName") %>' CommandArgument='<%#Eval("FID")%>'>
+                                                                <asp:LinkButton ID="btnItemSee" runat="server" CommandName="See" Text='<%# Bind("ProjectName") %>' CommandArgument='<%#Eval("FID")%>'>
                                                                 </asp:LinkButton>
                                                                 <asp:Literal ID="lit_Count" runat="server"></asp:Literal>
                                                                 <asp:Literal ID="prj_Count" runat="server"></asp:Literal>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="工程所属地" DataField="ProjectName" />
+                                                        <asp:BoundField HeaderText="工程所属地" DataField="FAddres" />
                                                         <asp:BoundField HeaderText="建设地址" />
                                                         <asp:BoundField HeaderText="申报日期" DataField="FCreateTime" DataFormatString="{0:d}">
                                                             <HeaderStyle Width="80" />
@@ -199,7 +199,7 @@
                                 <td class="t_r">工程名称：<tt>*</tt>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="t_FPrjItemName" runat="server" CssClass="m_txt" Width="300px" MaxLength="30"></asp:TextBox>
+                                    <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="300px" MaxLength="30"></asp:TextBox>
                                     <input id="t_FPriItemId" type="hidden" runat="server" />
                                     <input id="t_FPrjId" type="hidden" runat="server" />
                                     <input id="t_FPrjName" type="hidden" runat="server" />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrjItemDesc.aspx.cs" Inherits="JSDW_APPLYSGXKZGL_PrjItemDesc" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BHProjectItem.aspx.cs" Inherits="JSDW_APPLYBHGD_BHProjectItem" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <%@ Register Src="../../common/govdeptidfalse2.ascx" TagName="govdeptid1" TagPrefix="uc1" %>
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc2" %>
@@ -146,7 +146,7 @@
                     <asp:TextBox ID="t_LXDH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
-                    建设单位项目负责人：
+                    技术负责人：
                 </td>
                 <td >
                     <asp:TextBox ID="t_JSFZR" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
@@ -154,13 +154,13 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">
-                    建设单位项目负责人职称：
+                    技术负责人职称：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_JSFZRZC" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
-                    建设单位项目负责人电话：
+                    技术负责人电话：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_JSFZRDH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
@@ -187,7 +187,7 @@
                 <td >
                     <asp:TextBox ID="t_PrjItemName" runat="server" CssClass="m_txt" Width="200px" Enabled="false" ></asp:TextBox><tt>*</tt>
                     <input id="t_PrjItemId" type="hidden" runat="server" />
-                    <input id="t_ProjectNo" type="hidden" runat="server" />
+                    <input id="t_PrjId" type="hidden" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -204,6 +204,21 @@
                 <td colspan="1">
                     <input type="hidden" runat="server" ID="t_PrjAddressDept" value="" />
                     <uc1:govdeptid1 ID="PrjGovdeptid" runat="server" />                   
+                </td>
+            </tr>
+
+            <tr>
+                <td class="t_r t_bg">
+                    报建时间：
+                </td>
+                <td colspan="1">
+                    <asp:TextBox ID="t_ProjectTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox><tt>*</tt>
+                </td>
+                <td class="t_r t_bg">
+                    申报时间：
+                </td>
+                <td colspan="1">
+                     <asp:TextBox ID="t_ReportTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -224,81 +239,6 @@
                     <tt>*</tt>
                 </td>
                
-            </tr>
-            <tr>
-                <td class="t_r t_bg">
-                    报建时间：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ProjectTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox><tt>*</tt>
-                </td>
-                <td class="t_r t_bg">
-                    申报时间：
-                </td>
-                <td colspan="1">
-                     <asp:TextBox ID="t_ReportTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
-                </td>
-            </tr>
-            <tr>
-                <td class="t_r t_bg">
-                    立项文号：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ProjectNumber" runat="server" CssClass="m_txt" 
-                        Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
-                </td>
-                <td class="t_r t_bg">
-                    立项文件：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_ProjectFile" runat="server" CssClass="m_txt"
-                        Width="200px"></asp:TextBox>
-                    <tt>*</tt>
-                </td>
-            </tr>
-            <tr>
-                <td class="t_r t_bg">
-                    立项级别：
-                </td>
-                <td colspan="1">
-                    <asp:DropDownList ID="t_ProjectLevel" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
-                        <asp:ListItem Value="-1">--请选择--</asp:ListItem>
-                    </asp:DropDownList><tt>*</tt>
-                </td>
-            </tr>
-            <tr>
-                <td class="t_r t_bg">
-                    总面积：
-                </td>
-                <td colspan="1">
-                      <asp:TextBox ID="t_Area" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                         Width="200px" Enabled="false"></asp:TextBox>（m2）<tt>*</tt>
-                </td>
-                <td class="t_r t_bg">
-                    总投资：
-                </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_Cost" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                        Width="200px" Enabled="false"></asp:TextBox>(万元) <tt>*</tt>
-                </td>
-            </tr>
-            <tr>
-                <td class="t_r t_bg">
-                    建筑性质：
-                </td>
-                <td >
-                    <asp:DropDownList ID="t_BuildType" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
-                    </asp:DropDownList>
-                    <tt>*</tt>
-                </td>
-                <td class="t_r t_bg">
-                    工程用途：
-                </td>
-                <td >
-                    <asp:DropDownList ID="t_ProjectUse" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
-                    </asp:DropDownList>
-                    <tt>*</tt>
-                </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">

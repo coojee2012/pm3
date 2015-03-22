@@ -222,7 +222,8 @@
                                     <input id="t_FPriItemId" type="hidden" runat="server" />
                                     <input id="t_FPrjId" type="hidden" runat="server" />
                                     <input id="t_FPrjName" type="hidden" runat="server" />
-                                    <input id="t_AddressDept" type="hidden" runat="server" />
+                                    <input id="t_AddressDept" type="hidden"  runat="server" />
+                                    <input id="t_JSDWAddressDept" type="hidden" runat="server"/>
                                     <input id="t_PrjItemType" type="hidden" runat="server" />
                                     <input id="t_JSDW" type="hidden" runat="server" />
                                     <input id="t_OldFAppId" type="hidden" runat="server" />

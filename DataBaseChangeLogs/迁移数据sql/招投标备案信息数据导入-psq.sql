@@ -334,9 +334,12 @@ and a.FAppId not in
 --select  *  from  CF_Sys_ManageType  where  fname like '%中标结果%'   --查询业务类型编码
 --------------------------------------------------------------------------------------------------------------------------
 
+--导入最终招标备案的过程数据
+--CF_App_ProcessInstanceBackup   备案主流程表
+--CF_App_ProcessRecordBackup     备案子流程表
 
-
-
+select  a.*  from  CF_App_ProcessRecordBackup a,CF_App_ProcessInstanceBackup  b
+where a.FProcessInstanceID = b.FID
 
 
 
