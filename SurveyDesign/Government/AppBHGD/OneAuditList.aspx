@@ -126,7 +126,7 @@
                     alert("只能选择一条信息审核！");
                     return false;
                 }
-                if (fMeasure != '5') {
+                if (fMeasure != '0') {
                     alert("非未初审案件，不能在此阶段处理！");
                     return false;
                 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TwoAuditList.aspx.cs" Inherits="Government_AppZLJDBA_TwoAuditList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TwoAuditList.aspx.cs" Inherits="Government_AppBZGD_TwoAuditList" %>
 
 <%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -146,7 +146,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">质量监督备案复审</asp:Literal>
+                <asp:Literal ID="lPostion" runat="server" Text="复审"></asp:Literal>
             </th>
         </tr>
         <tr>
@@ -255,14 +255,6 @@
                 <HeaderStyle Wrap="False" />
             </asp:BoundColumn>
             <asp:BoundColumn HeaderText="项目名称" DataField="ProjectName">
-                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                <HeaderStyle Font-Underline="False" Wrap="False" />
-            </asp:BoundColumn>
-            <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName" >
-                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                <HeaderStyle Font-Underline="False" Wrap="False" />
-            </asp:BoundColumn>
-            <asp:BoundColumn HeaderText="备案编号" DataField="RecordNo" >
                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>

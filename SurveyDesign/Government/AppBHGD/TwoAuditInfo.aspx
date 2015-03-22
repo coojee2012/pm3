@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TwoAuditInfo.aspx.cs"
-    Inherits="Government_AppZLJDBA_TwoAuditInfo" %>
+    Inherits="Government_AppBZGD_TwoAuditInfo" %>
 <%@ Register Src="../../common/govdeptid.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <html xmlns="http://www.w3.org/1999/xhtml">

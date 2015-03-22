@@ -16,7 +16,7 @@ using Approve.EntityCenter;
 using Approve.EntityBase;
 using ProjectBLL;
 
-public partial class Government_AppZLJDBA_TwoAuditInfo : System.Web.UI.Page
+public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
 {
     RCenter rc = new RCenter();
     RQuali rq = new RQuali();
@@ -113,7 +113,7 @@ public partial class Government_AppZLJDBA_TwoAuditInfo : System.Web.UI.Page
         }
         sb.Remove(0, sb.Length);
         sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName, qa.PrjItemName, qa.ProjectType, qa.RecordNo, i.JSDW, i.JSDWDZ ");
-        sb.Append(" from TC_QA_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
+        sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
         sb.Append(" where pi.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and qa.FID = '" + fpid + "'");
         dt = rc.GetTable(sb.ToString());
@@ -121,9 +121,9 @@ public partial class Government_AppZLJDBA_TwoAuditInfo : System.Web.UI.Page
         {
             ViewState["FAppId"] = dt.Rows[0]["FAppID"].ToString();
             t_ProjectName.Text = dt.Rows[0]["ProjectName"].ToString();
-            t_RecordNo.Text = dt.Rows[0]["RecordNo"].ToString();
-            t_PrjItemName.Text = dt.Rows[0]["PrjItemName"].ToString();
-            t_PrjItemType.SelectedValue = dt.Rows[0]["ProjectType"].ToString();
+            //t_RecordNo.Text = dt.Rows[0]["RecordNo"].ToString();
+            //t_PrjItemName.Text = dt.Rows[0]["PrjItemName"].ToString();
+            //t_PrjItemType.SelectedValue = dt.Rows[0]["ProjectType"].ToString();
             t_JSDW.Text = dt.Rows[0]["JSDW"].ToString();
             t_Address.Text = dt.Rows[0]["JSDWDZ"].ToString();
             t_FAppIdea.Text = dt.Rows[0]["FIdea"].ToString();

@@ -133,7 +133,7 @@ public partial class Government_AppBZGD_OneAuditList : govBasePage
             switch (ddlState.SelectedValue.Trim())
             {
                 case "0": //未初审
-                    sb.Append(" and er.FMeasure=5 and ep.fstate<>2 ");   //FMeasure 为0 ，肯定是错了哇，接件后就变成5了，修改为5 by zyd  3.22
+                    sb.Append(" and er.FMeasure=0 and ep.fstate<>2 ");   
                     break;
                 case "1": //初审已通过
                     sb.Append(" and (er.FMeasure=5 and er.FResult=1) ");
@@ -172,7 +172,7 @@ public partial class Government_AppBZGD_OneAuditList : govBasePage
         sb.Append(" when 5 then '初审未通过' when 6 then case er.FResult when 1 then '初审已通过' when 3 then '初审未通过' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
         sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, TC_BZGD_Record qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");   //为什么是10呢？ 改成1试试，因为接件都是1   by zyd
+        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=10 ");   //为什么是10呢？ 哦10 表示初审。。。   by zyd
       //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId ");
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
       //  sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")"); 啥子权限，暂时屏蔽一下 by zyd 3.22
@@ -187,7 +187,7 @@ public partial class Government_AppBZGD_OneAuditList : govBasePage
         sb.Append(" when 5 then '初审未通过' when 6 then case er.FResult when 1 then '初审已通过' when 3 then '初审未通过' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, TC_BZGD_Record qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");
+        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=10 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId ");
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");

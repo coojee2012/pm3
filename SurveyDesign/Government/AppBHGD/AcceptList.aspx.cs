@@ -125,7 +125,7 @@ public partial class Government_AppBHGD_AcceptList : govBasePage
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case er.FMeasure when 0 then '待接件' when 5 then case when er.FResult = 1 then '准予受理' else case ep.fState when 2 then '已退回' when 3 then '打回下级'  when 5 then '不予受理' ");
         sb.Append(" when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end end end as FStatedesc, ");
-
+        //发现不对，改了试一下
         //sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
        // sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");

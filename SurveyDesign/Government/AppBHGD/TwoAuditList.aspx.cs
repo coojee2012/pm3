@@ -17,7 +17,7 @@ using Approve.RuleApp;
 using System.Drawing;
 using ProjectData;
 
-public partial class Government_AppZLJDBA_TwoAuditList : govBasePage
+public partial class Government_AppBZGD_TwoAuditList : govBasePage
 {
     RCenter rc = new RCenter();
     SaveAsBase sab = new SaveAsBase();
@@ -100,14 +100,14 @@ public partial class Government_AppZLJDBA_TwoAuditList : govBasePage
         {
             sb.Append(" and qa.ProjectName like '%" + this.txtFProjectName.Text.Trim() + "%' ");
         }
-        if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
-        {
-            sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
-        }
-        if (this.txtRecordNo.Text.Trim() != "" && this.txtRecordNo.Text.Trim() != null)
-        {
-            sb.Append(" and qa.RecordNo like '%" + this.txtRecordNo.Text.Trim() + "%' ");
-        }
+        //if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
+        //}
+        //if (this.txtRecordNo.Text.Trim() != "" && this.txtRecordNo.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.RecordNo like '%" + this.txtRecordNo.Text.Trim() + "%' ");
+        //}
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
             sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
@@ -167,31 +167,31 @@ public partial class Government_AppZLJDBA_TwoAuditList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.ProjectName,qa.PrjItemName,qa.RecordNo,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.ProjectName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未复审' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '复审未通过' when 6 then case er.FResult when 1 then '复审已通过' when 3 then '复审未通过' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime ");
-        sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, TC_QA_Record qa, CF_APP_LIST ap ");
+        sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, TC_BZGD_Record qa, CF_APP_LIST ap ");
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 ");
      //   sb.Append(" and ep.FSubFlowId = er.FSubFlowId ");
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+  //      sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");           //暂时屏蔽掉 by zyd 3.22
         sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
         //下面的查询备份表
         sb.Append(" union all ");
-        sb.Append(" select qa.ProjectName,qa.PrjItemName,qa.RecordNo,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
+        sb.Append(" select qa.ProjectName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
         sb.Append(" case ep.fState when 1 then '未复审' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '复审未通过' when 6 then case er.FResult when 1 then '复审已通过' when 3 then '复审未通过' end end as FStatedesc,");
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
-        sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, TC_QA_Record qa, CF_APP_LIST ap");
+        sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, TC_BZGD_Record qa, CF_APP_LIST ap");
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=10 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId ");
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+//        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());

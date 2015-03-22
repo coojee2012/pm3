@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FSAuditInfo.aspx.cs" Inherits="Government_AppZLJDBA_FSAuditInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FSAuditInfo.aspx.cs" Inherits="Government_AppBHGD_FSAuditInfo" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <!DOCTYPE html>
 
