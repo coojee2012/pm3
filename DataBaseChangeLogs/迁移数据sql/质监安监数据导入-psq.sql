@@ -225,6 +225,9 @@ WHERE B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
 AND ISNULL(B.XMMC,'') <>'' 
   AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (391,392));
+
+
+
 -----------------------------------------------------------------------------------------------------------------
 --导入质监备案数据信息
 insert into dbCenter.dbo.TC_QA_Record

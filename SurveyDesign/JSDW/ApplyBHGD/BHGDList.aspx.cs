@@ -26,7 +26,7 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
     ProjectDB db = new ProjectDB();
     WorkFlowApp wfApp = new WorkFlowApp();
     
-    public int fMType = 11222;
+    public int fMType = 11236;  //标准化工地
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -49,7 +49,7 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
         EgovaDB dbContext = new EgovaDB();
         string FBaseinfoID = CurrentEntUser.EntId;
         var v = from t in dbContext.CF_App_List
-                join a in dbContext.TC_AJBA_Record
+                join a in dbContext.TC_BZGD_Record
                 on t.FId equals a.FAppId
                 where t.FBaseinfoId == FBaseinfoID && t.FManageTypeId == fMType
                 orderby t.FReportDate
@@ -63,13 +63,12 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
                     t.FResult,
                     a.FPrjId,
                     t.FLinkId,
-                    a.RecordNo,
-                    a.PrjItemName,
+                    a.FAddres,
                     a.ProjectName
                 };
-        if (!string.IsNullOrEmpty(this.txtFPrjItemName.Text.Trim()))
+        if (!string.IsNullOrEmpty(this.t_ProjectName.Text.Trim()))
         {
-            v = v.Where(t => t.ProjectName.Contains(this.txtFPrjItemName.Text.Trim()));
+            v = v.Where(t => t.ProjectName.Contains(this.t_ProjectName.Text.Trim()));
         }
         //if (!string.IsNullOrEmpty(govd_FRegistDeptId.FNumber.Trim()))
         //{
@@ -103,6 +102,7 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
         appTab.Visible = false;
         applyInfo.Visible = true;
     }
+
     //取消
     protected void btnCancel_ServerClick(object sender, EventArgs e)
     {
@@ -116,9 +116,10 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
         EgovaDB dbContext = new EgovaDB();
         if (!wfApp.ValidateNewBiz(t_FPriItemId.Value, fMType))
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "js", "alert('同一个工程不能创建两条备案信息！');", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "js", "alert('同一个工程不能创建两条标准化工地信息！');", true);
             return;
         }
+
         if (string.IsNullOrEmpty(CurrentEntUser.EntId))
             return;
         //添加业务
@@ -143,16 +144,19 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
         dbContext.SubmitChanges();
         //添加备案信息
         dbContext = new EgovaDB();
-        TC_AJBA_Record record = new TC_AJBA_Record();
+
+        TC_BZGD_Record record = new TC_BZGD_Record();
         string FRecordId = Guid.NewGuid().ToString();
+        
         record.FId = FRecordId;
         record.FAppId = FAppId;
         record.FPrjId = t_FPrjId.Value;
         record.FPrjItemId = t_FPriItemId.Value;
-        record.PrjItemName = t_FPrjItemName.Text;
-        record.RecordNo = getBANumber();
-        record.ProjectName = t_FPrjName.Value;
-        dbContext.TC_AJBA_Record.InsertOnSubmit(record);
+        record.ProjectName = t_ProjectName.Text;
+//        record.RecordNo = getBANumber();
+//        record.ProjectName = t_FPrjName.Value;
+        dbContext.TC_BZGD_Record.InsertOnSubmit(record);
+
         //提交修改
         dbContext.SubmitChanges();
 
@@ -229,21 +233,13 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
         var result = (from t in dbContext.TC_PrjItem_Info
                       where t.FId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
-        t_FPrjItemName.Text = result.PrjItemName;
+        t_ProjectName.Text = result.ProjectName;
         t_FPrjId.Value = result.FPrjId;
         t_FJSDW.Text = result.JSDW;
-        t_FPrjName.Value = result.ProjectName;
+//        t_FPrjName.Value = result.ProjectName;
     }
-    private string getBANumber()
-    {
-        EgovaDB dbContext = new EgovaDB();
-        string recordNo = "AQJD" + string.Format("{0:yyyyMMdd}", DateTime.Now);
-        var result = (from t in dbContext.TC_QA_Record
-                      where t.RecordNo.Contains(recordNo)
-                      select t).Count();
-        return recordNo + (result + 1);
 
-    }
+ 
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "See")
