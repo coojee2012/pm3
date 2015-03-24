@@ -82,7 +82,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
             {
                 v = v.Where(t => t.PrjAddressDept.Equals(this.govd_FRegistDeptId.FNumber.Trim()));
             }
-            
+
         }
         if (!string.IsNullOrEmpty(this.txtJSDZ.Text.Trim()))
         {
@@ -300,37 +300,37 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
             //        n = "<font color='red'>不通过</font>";
             //        saveFResult("3", FID);
             //    }
-                //if (pr.FRoleDesc.Contains("接件"))
-                //{
-                //    if (pr.FResult == "1")//通过
-                //    {
-                //        n += "，<font color='green'>同意接件</font>";
-                //    }
-                //    else//不通过
-                //    {
-                //        n += "，<font color='red'>不同意接件</font>";
-                //    }
-                //} else if (pr.FRoleDesc.Contains("初审"))
-                //{
-                //    if (pr.FResult == "1")//通过
-                //    {
-                //        n += "，<font color='green'>初审通过</font>";
-                //    }
-                //    else//不通过
-                //    {
-                //        n += "，<font color='red'>初审不通过</font>";
-                //    }
-                //} else if (pr.FRoleDesc.Contains("复审"))
-                //{
-                //    if (pr.FResult == "1")//通过
-                //    {
-                //        n += "，<font color='green'>复审通过</font>";
-                //    }
-                //    else//不通过
-                //    {
-                //        n += "，<font color='red'>复审不通过</font>";
-                //    }
-                //}
+            //if (pr.FRoleDesc.Contains("接件"))
+            //{
+            //    if (pr.FResult == "1")//通过
+            //    {
+            //        n += "，<font color='green'>同意接件</font>";
+            //    }
+            //    else//不通过
+            //    {
+            //        n += "，<font color='red'>不同意接件</font>";
+            //    }
+            //} else if (pr.FRoleDesc.Contains("初审"))
+            //{
+            //    if (pr.FResult == "1")//通过
+            //    {
+            //        n += "，<font color='green'>初审通过</font>";
+            //    }
+            //    else//不通过
+            //    {
+            //        n += "，<font color='red'>初审不通过</font>";
+            //    }
+            //} else if (pr.FRoleDesc.Contains("复审"))
+            //{
+            //    if (pr.FResult == "1")//通过
+            //    {
+            //        n += "，<font color='green'>复审通过</font>";
+            //    }
+            //    else//不通过
+            //    {
+            //        n += "，<font color='red'>复审不通过</font>";
+            //    }
+            //}
             //}
             e.Row.Cells[7].Text = n;
         }
@@ -389,9 +389,18 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
             var v = db.CF_App_List.Where(t => t.FId == FId);
             if (v != null)
             {
+                var entList = db.TC_PrjItem_Ent.Where(q => q.FAppId == FId);
+                if (entList != null)
+                {
+                    db.TC_PrjItem_Ent.DeleteAllOnSubmit(entList);
+                }
+                var entBGList = db.TC_SGXKZ_QYBGJG.Where(q => q.FAppId == FId);
+                if (entBGList != null)
+                {
+                    db.TC_SGXKZ_QYBGJG.DeleteAllOnSubmit(entBGList);
+                }
                 db.CF_App_List.DeleteAllOnSubmit(v);
 
-                //   this.ShowInfo();
             }
             var v1 = db.TC_QA_Record.Where(t => t.FAppId == FId);
             if (v1 != null)

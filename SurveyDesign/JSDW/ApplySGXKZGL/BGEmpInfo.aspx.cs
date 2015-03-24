@@ -87,12 +87,16 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     private void showInfo()
     {
         EgovaDB dbContext = new EgovaDB();
-        TC_PrjItem_Emp emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == txtFId.Value).FirstOrDefault();
-        if (emp != null)
+        if (!string.IsNullOrEmpty(txtFId.Value))
         {
-            pageTool tool = new pageTool(this.Page, "t_");
-            tool.fillPageControl(emp);
+            TC_PrjItem_Emp emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == txtFId.Value).FirstOrDefault();
+            if (emp != null)
+            {
+                pageTool tool = new pageTool(this.Page, "t_");
+                tool.fillPageControl(emp);
+            }
         }
+        
     }
     //保存
     private void saveInfo()
