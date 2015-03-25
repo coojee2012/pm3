@@ -108,7 +108,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             var entList1 = entList.Where(q => q.FAppId == h_AppId.Value).ToList();
             if (entList1 == null || entList1.Count == 0)
             {
-                h_OldAppId.Value = entList[1].FAppId;
+                h_OldAppId.Value = entList[0].FAppId;
             }
             else
             {
