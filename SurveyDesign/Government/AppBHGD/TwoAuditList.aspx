@@ -227,7 +227,7 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('FSAuditInfo.aspx')" />
+                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('TwoAuditInfo.aspx')" />
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
                     OnClick="btnOut_Click" Text="导出Excel" />
             </td>

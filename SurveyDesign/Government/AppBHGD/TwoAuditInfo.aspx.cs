@@ -30,6 +30,7 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
     private string fBaseInfoId = null;
     private string fpid = null;
     private string ferid = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         BindControl();
@@ -40,7 +41,7 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
         }
         if (Request["fpid"] != null && !string.IsNullOrEmpty(Request["fpid"]))
         {
-            fpid = Request["fpid"].ToString();
+            fpid = Request["fpid"].ToString();     //流程fpid
         }
         if (Request["ferid"] != null && !string.IsNullOrEmpty(Request["ferid"]))
         {
@@ -89,10 +90,6 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
         string fQurl = rc.getMTypeQurl(ea.FManageTypeId); ;
 
         string fUrl = fQurl;
-        HSeeReportInfo.Attributes.Add("onclick", "openWinNew('" + fUrl + "?sysid=" + fsid + "&fbid=" + fbid + "&faid=" + faid + "&frid=" + frid + "&fmid=" + fmid + "&fly=1&fuid=" + Session["DFUserId"].ToString() + "')");
-        //    fUrl = fQurl;
-        //    HSeePrintInfo.Attributes.Add("onclick", "openWinNew('" + fUrl + "?sysid=" + fsid + "&fBaseId=" + fbid + "&faid=" + faid + "&frid=" + frid + "&fmid=" + fmid + "&fly=1&isPrint=1')");
-
     }
 
     private void ShowInfo()
@@ -112,10 +109,10 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
             t_FAppPersonUnit.Text = RBase.GetDepartmentName(dt.Rows[0]["FDepartmentID"].ToString()) + RBase.GetDepartmentName(dt.Rows[0]["FCompany"].ToString());
         }
         sb.Remove(0, sb.Length);
-        sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName, qa.PrjItemName, qa.ProjectType, qa.RecordNo, i.JSDW, i.JSDWDZ ");
+        sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName, i.JSDW, i.JSDWDZ ");
         sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
         sb.Append(" where pi.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
-        sb.Append(" and pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and qa.FID = '" + fpid + "'");
+        sb.Append(" and pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and pi.FID = '" + fpid + "'");
         dt = rc.GetTable(sb.ToString());
         if (dt != null && dt.Rows.Count > 0)
         {

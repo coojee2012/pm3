@@ -245,7 +245,7 @@
                     结构类型：
                 </td>
                 <td >
-                    <asp:DropDownList ID="t_ConstrType" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
+                    <asp:DropDownList ID="t_ConstrType" runat="server" CssClass="m_txt" Width="203px">
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>

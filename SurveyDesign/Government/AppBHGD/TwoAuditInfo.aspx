@@ -74,6 +74,11 @@
     </script>
 
     <base target="_self"></base>
+    <style type="text/css">
+        .auto-style1 {
+            width: 202px;
+        }
+    </style>
 </head>
 <body style="margin-left: 5px; margin-right: 5px;">
     <form id="form1" runat="server">
@@ -86,13 +91,7 @@
                 <asp:HiddenField  runat="server" ID="t_fBaseInfoId" Value=""/>            
             </td>
             <td class="m_bar_m" style="text-align: right; padding-right: 3px">
-                <input id="HSeeReportInfo" type="button" runat="server" class="m_btn_w2" value="上报资料" onclick="window.close();" />
-                <input id="btnSave" type="button" runat="server" class="m_btn_w2" value="保存" onserverclick="btnSave_Click"  />
-                <input id="btnReport" runat="server" class="m_btn_w4" onserverclick="btnAccept_Click" 
-                    type="button" value="通过" />
-                <input id="btnRefuse" type="button" runat="server" class="m_btn_w4" value="不通过" onserverclick="btnEndApp_Click" onclick="window.close();" />
-                <input id="btnReturnJSDW" type="button" runat="server" class="m_btn_w6" value="退回建设单位" onserverclick="btnBack_Click"/>
-                <input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.close();" />&nbsp;
+                &nbsp;&nbsp;&nbsp; &nbsp;
             </td>
             <td class="m_bar_r">
             </td>
@@ -112,28 +111,19 @@
                 <asp:TextBox ID="t_ProjectName" ReadOnly="true" runat="server" CssClass="m_txt"></asp:TextBox>
             </td>
             <td class="t_r">
-                工程名称：
-            </td>
-            <td>
-                <asp:TextBox ID="t_PrjItemName" ReadOnly="true" runat="server" CssClass="m_txt"></asp:TextBox>
-            </td>
-            <td class="t_r">
-                工程类别：
-            </td>
-            <td>
+                工程类别：</td>
+            <td class="auto-style1">
                 <asp:DropDownList ID="t_PrjItemType" runat="server" ReadOnly="true" CssClass="m_txt" Width="151px">
                 </asp:DropDownList>
             </td>
+            <td class="t_r">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
         </tr>
         <tr>
             <td class="t_r">
-                备案编号：
-            </td>
-            <td>
-                <asp:TextBox ID="t_RecordNo" Enabled="false" runat="server" CssClass="m_txt"></asp:TextBox>
-            </td>
-            <td class="t_r">
-                建设单位：
+                &nbsp;建设单位：
             </td>
             <td>
                 <asp:TextBox ID="t_JSDW" ReadOnly="true" runat="server" CssClass="m_txt"></asp:TextBox>
@@ -141,10 +131,15 @@
             <td class="t_r">
                 建设地址：
             </td>
-            <td colspan="3">
+            <td class="auto-style1">
                     
                     <asp:TextBox ID="t_Address" runat="server" CssClass="m_txt" Width="224px" MaxLength="30" ReadOnly="true"></asp:TextBox>
             </td>
+            <td class="t_r">
+                &nbsp;</td>
+            <td colspan="3">
+                    
+                    &nbsp;</td>
         </tr>
     </table>
     <div id="diva_1" margin-top: 4px">
@@ -237,35 +232,15 @@
                         Width="98%" Style="word-break: break-all; word-wrap: break-word; text-align: left"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
+                <td colspan =" 4">
+                                    <input id="btnSave" type="button" runat="server" class="m_btn_w2" value="保存" onserverclick="btnSave_Click"  /><input id="btnReport" runat="server" class="m_btn_w4" onserverclick="btnAccept_Click"  type="button" value="通过" /><input id="btnRefuse" type="button" runat="server" class="m_btn_w4" value="不通过" onserverclick="btnEndApp_Click" onclick="window.close();" /><input id="btnReturnJSDW" type="button" runat="server" class="m_btn_w6" value="退回建设单位" onserverclick="btnBack_Click"/><input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="    window.close();" />
+                </td>
+            </tr>
         </table>
     </div>
     </form>
 </body>
 </html>
 
-<script language="javascript">
-    if (document.getElementById("HFID").value == "INIT") {
-        getValue();
-    }
-    else {
-        document.getElementById("HFID").value = "";
-    }
-    if (document.getElementById("HFID").value != "") {
-        document.getElementById("HFID1").value = document.getElementById("HFID").value;
-        document.getElementById("btnShowInfo").click();
-    }
-    function checkAllItem() {
-        var form = form1;
-        for (var i = 0; i < form.elements.length; i++) {
-            if (form.elements[i].type == "checkbox" && !form.elements[i].disabled) {
-                if (form.elements[i].id.indexOf('CheckItem') > -1) {
-                    var e = form.elements[i];
-                    e.checked = true;
-
-                }
-            }
-        }
-    }
-    checkAllItem();
-</script>
 
