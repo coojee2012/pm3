@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CertifiList.aspx.cs" Inherits="Government_AppBHGD_FZList" %>
 
-<%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
+<%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -125,7 +125,7 @@
                 alert("只能选择一条标准化工地信息审核！");
                 return false;
             }
-            if (fMeasure != '0') {
+            if (fMeasure != '5') {
                 alert("非未复审案件，不能在此阶段处理！");
                 return false;
             }
@@ -153,7 +153,7 @@
                 <td class="t_r">工程名称
                 </td>
                 <td>
-                    <input runat="server" cssclass="m_txt" width="130px" />
+                  <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
                 </td>
                 <td class="t_r">工程所属地
                 </td>
@@ -183,7 +183,7 @@
                 <td class="t_r">办理状态
                 </td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddl_state">
+                    <asp:DropDownList runat="server" ID="ddlState">
                         <asp:ListItem runat="server" Value="-1">--全部--</asp:ListItem>
                         <asp:ListItem runat="server" Value="0">未审核</asp:ListItem>
                         <asp:ListItem runat="server" Value="1">已审核</asp:ListItem>
@@ -195,7 +195,7 @@
             <tr>
                 <td class="m_bar_l"></td>
                 <td class="t_r">
-                    <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('FZAuditInfo.aspx')"  />
+                    <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('FSAuditInfo.aspx')"  />
                     <asp:Button runat="server" CssClass="m_btn_w4" Text="分配批次" />
                     <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
                         Text="导出Excel" />
@@ -228,27 +228,27 @@
                             <ItemStyle Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="工程所属地" DataField="GCSSD">
+                        <asp:BoundColumn HeaderText="工程所属地" >
                             <ItemStyle Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="申报单位" DataField="SBDW">
+                        <asp:BoundColumn HeaderText="申报单位" DataField="JSDW">
                             <ItemStyle Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="申报日期" DataField="SBRQ" DataFormatString="{0:yyyy-MM-dd}">
+                        <asp:BoundColumn HeaderText="申报日期" DataField="FReporttime" DataFormatString="{0:yyyy-MM-dd}">
                             <ItemStyle Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="不良行为记录" DataField="BLJL">
+                        <asp:BoundColumn HeaderText="不良行为记录" >
                             <ItemStyle Font-Underline="False" Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="上报时间" DataField="FReportTime">
+                        <asp:BoundColumn HeaderText="上报时间" DataField="FSeeTime">
                             <ItemStyle Font-Underline="False" Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="办理状态" DataField="BLZT">
+                        <asp:BoundColumn HeaderText="办理状态" DataField="FStateDesc">
 
                             <ItemStyle Font-Underline="False" Wrap="False"></ItemStyle>
                             <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -267,13 +267,9 @@
                     <PagerStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
                         Font-Underline="False" Wrap="False" />
                 </asp:DataGrid>
-                <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
-                    CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
-                    CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" LayoutType="Table"
-                    NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
-                    PageIndexBoxType="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
-                    ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到">
-                </webdiyer:AspNetPager>
+               <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
+                    <uc1:pager ID="Pager1" runat="server"></uc1:pager>
+                </div>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnQuery" EventName="Click" />

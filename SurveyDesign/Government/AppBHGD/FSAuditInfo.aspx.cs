@@ -84,7 +84,7 @@ public partial class Government_AppBHGD_FSAuditInfo : System.Web.UI.Page
        StringBuilder sb = new StringBuilder();
        DataTable dt = new DataTable();
        sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName, i.JSDW, i.JSDWDZ,i.Address  ");
-       sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
+       sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstanceBackup pi, TC_Prj_Info i, CF_App_ProcessRecordBackup pr ");
        sb.Append(" where pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and pi.FID = '" + t_fProcessInstanceID.Value + "'");
        dt = rc.GetTable(sb.ToString());
        if (dt != null && dt.Rows.Count > 0)
@@ -189,7 +189,7 @@ public partial class Government_AppBHGD_FSAuditInfo : System.Web.UI.Page
         sb.Append(" p.FManageTypeId,");
         sb.Append(" case r.fresult when 1 then '通过' when 3 then '不通过' end fresult,");
         sb.Append(" r.FCompany,r.FFunction,r.FAppPerson,s.FName ");
-        sb.Append(" from CF_App_ProcessInstance p,CF_App_ProcessRecord r,CF_App_SubFlow s where ");
+        sb.Append(" from CF_App_ProcessInstanceBackup p,CF_App_ProcessRecordBackup r,CF_App_SubFlow s where ");
         sb.Append(" p.fid=r.FProcessInstanceID ");
         sb.Append(" and p.FProcessId=s.FProcessId and r.FTypeId=s.FTypeId ");
         sb.Append(" and p.fid='" + t_fProcessInstanceID.Value + "' ");
@@ -243,83 +243,21 @@ public partial class Government_AppBHGD_FSAuditInfo : System.Web.UI.Page
    //复审
    protected void btnUPCS_Click(object sender, EventArgs e)
    {
-       try
-       {
-           if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
-           {
-               string dfUserId = this.Session["DFUserId"].ToString();
-               dResult.SelectedValue = "1";//接件操作强制选中同意项
-               WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
-                   t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
-                  t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('复审成功！');", true);
-           }
-           else
-           {
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行接件操作');", true);
-           }
 
-       }
-       catch (Exception ee)
-       {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结失败');", true);
-       }
+       ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('暂缺该功能，需确定打印页面');", true);
+
    }
   
     //审核不通过，直接结案
    protected void bthEndApp_Click(object sender, EventArgs e)
    {
-       try
-       {
-           if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
-           {
-               string dfUserId = SConvert.ToString(Session["DFUserId"]);
-               string sIdea = t_FAppIdea.Text;
-               dResult.SelectedValue = "3";//强制选中不同意项
-               WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
-                      t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               WFApp.EndApp(t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId, sIdea);
-               DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('操作成功');", true);
-           }
-           else
-           {
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行该操作');", true);
-           }
 
-       }
-       catch (Exception ee)
-       {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('操作失败');", true);
-       }
+       ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该功能待确定');", true);
    }
    //回退到企业
    protected void btnBackToEnt_Click(object sender, EventArgs e)
    {
-       try
-       {
-           if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
-           {
-               string dfUserId = SConvert.ToString(Session["DFUserId"]);
-               string fLevel = SConvert.ToString(Session["FLevel"]);
-               dResult.SelectedValue = "3";//强制选中不同意项
-               WFApp.BackToEnt(t_fProcessInstanceID.Value, dfUserId, fLevel,
-                   t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
-                       t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               DisableButton();
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('回退到建设单位成功');", true);
-           }
-           else
-           {
-               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行该操作');", true);
-           }
-
-       }
-       catch (Exception ee)
-       {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('回退到建设单位失败');", true);
-       }
+       ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该功能待确定');", true);
    }
    
    #endregion
