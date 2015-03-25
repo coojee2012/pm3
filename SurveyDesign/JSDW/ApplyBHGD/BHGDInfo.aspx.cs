@@ -116,6 +116,7 @@ public partial class JSDW_ApplyBHGD_BHGDInfo : System.Web.UI.Page
                 b_JSDWMC.Text = jsdw.JSDW;
                 b_JSDW.Text = jsdw.JSDW;
                 b_Address.Text = jsdw.Address;
+                govd_FRegistDeptId.fNumber = jsdw.AddressDept;
             }
         }
         b_JSDWID.Value = jsdwid;
@@ -141,7 +142,7 @@ public partial class JSDW_ApplyBHGD_BHGDInfo : System.Web.UI.Page
                 b_SGDWAQSCXKZ.Text = qyzs.ZSBH;
             }
         }
-
+        
         //报送单位信息  SBDWID b_SBDWMC
         if (string.IsNullOrEmpty(bh.SBDWMC))
         {

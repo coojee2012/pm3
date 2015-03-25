@@ -5,14 +5,139 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>发证审核</title>
+    <title>发证审核列表</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
     <script type="text/javascript" language="javascript" src="../../script/default.js"></script>
 
     <script src="../../script/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            txtCss();
+            DynamicGrid(".m_dg1_i");
+        });
+
+        function showApproveWindow1(sUrl, width, height) {
+            var ret = window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;')
+
+            if (ret === "1") {
+                form1.btnQuery.click();
+            }
+        }
+        function ShowWindow(url, width, hieght, obj) {
+            var sFeatures = "status:no;dialogHeight:" + hieght + "px;dialogwidth:" + width + "px;scroll=no;center:yes; resizable:yes; status:no; help:no;scroll:auto;";
+
+            var idvalue = window.showModalDialog(url + '&rid=' + Math.random(), obj, sFeatures);
+
+            if (idvalue === "1") {
+                form1.btnQuery.click();
+            }
+        }
+        function Request(strName) {
+            var strHref = window.document.location.href;
+            var intPos = strHref.indexOf("?");
+            var strRight = strHref.substr(intPos + 1);
+
+            var arrTmp = strRight.split("&");
+            for (var i = 0; i < arrTmp.length; i++) {
+                var arrTemp = arrTmp[i].split("=");
+
+                if (arrTemp[0].toUpperCase() == strName.toUpperCase()) return arrTemp[1];
+            }
+            return "";
+        }
+
+        function app1(url) {
+            var tmpVal = '';
+            $(":checkbox[id$=CheckItem]").each(function () {
+                if ($(this).attr("checked")) {
+                    var id = $("#span" + $(this).attr("id")).attr("name");
+                    if (tmpVal.indexOf(id + ",") === -1) {
+                        tmpVal += id + ",";
+                    }
+                }
+            });
+
+            var obj = new Object();
+            if (tmpVal.length > 1) {
+                tmpVal = tmpVal.substring(0, tmpVal.length - 1);
+            }
+            else {
+                alert("请选择");
+                return false;
+            }
+            obj.name = '';
+            obj.id = tmpVal;
+
+            var dbSystemId = document.getElementById("dbSystemId");
+            if (dbSystemId) {
+                obj.fsystemid = dbSystemId.value;
+            }
+
+            //'批量审批'; 
+            ShowWindow(url + '?e=0', 700, 600, obj);
+
+            return false;
+        }
+        function app(url) {
+            var tmpVal = ''; var fsubid = '';
+            var fbaseInfoid = '';
+            var ferid = '';
+            var fpid = '';
+            var fMeasure = '';
+            var cou = 0;
+            var chkColl = document.getElementsByTagName("input");
+            for (var i = 0; i < chkColl.length; i++) {
+                if (chkColl[i].type === "checkbox" && chkColl[i].id.indexOf("CheckItem") > -1) {
+                    if (!chkColl[i].disabled && chkColl[i].checked === true) {
+                        cou += 1;
+                        var span = document.getElementById("span" + chkColl[i].id);
+                        if (span) {
+                            if (tmpVal.indexOf(span.getAttribute("name") + ",") === -1) {
+                                tmpVal += span.getAttribute("name") + ",";
+                                fsubid += span.getAttribute("fSubFlowId") + ",";
+                                fbaseInfoid += span.getAttribute("fBaseInfoId") + ",";
+                                fpid += span.getAttribute("fpid") + ",";
+                                ferid += span.getAttribute("ferid") + ",";
+                                fMeasure += span.getAttribute("fMeasure") + ",";
+                            }
+                        }
+                    }
+                }
+            }
+            var obj = new Object();
+            if (tmpVal.length > 1) {
+                tmpVal = tmpVal.substring(0, tmpVal.length - 1);
+                fsubid = fsubid.substring(0, fsubid.length - 1);
+                fbaseInfoid = fbaseInfoid.substring(0, fbaseInfoid.length - 1);
+                fpid = fpid.substring(0, fpid.length - 1);
+                ferid = ferid.substring(0, ferid.length - 1);
+                fMeasure = fMeasure.substring(0, fMeasure.length - 1);
+            }
+            else {
+                alert("请选择一条标准化工地信息审核！");
+                return false;
+            }
+            if (cou > 1 || cou <= 0) {
+                alert("只能选择一条标准化工地信息审核！");
+                return false;
+            }
+            if (fMeasure != '0') {
+                alert("非未复审案件，不能在此阶段处理！");
+                return false;
+            }
+            obj.name = '';
+            obj.id = tmpVal;
+            ShowWindow(url + '?ftype=5&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
+                + '&fpid=' + fpid
+                + '&ferid=' + ferid, 1000, 800, obj);
+            return false;
+        }
+
+    </script>
     <base target="_self" />
 </head>
 <body>
@@ -70,7 +195,7 @@
             <tr>
                 <td class="m_bar_l"></td>
                 <td class="t_r">
-                    <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" />
+                    <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('FZAuditInfo.aspx')"  />
                     <asp:Button runat="server" CssClass="m_btn_w4" Text="分配批次" />
                     <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
                         Text="导出Excel" />
@@ -81,7 +206,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:DataGrid ID="gv_list" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
-                    HorizontalAlign="Center" Width="98%">
+                    HorizontalAlign="Center" OnItemDataBound="JustAppInfo_List_ItemDataBound" Width="98%">
                     <HeaderStyle CssClass="m_dg1_h" />
                     <ItemStyle CssClass="m_dg1_i" />
                     <Columns>
