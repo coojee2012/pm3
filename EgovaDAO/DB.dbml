@@ -2395,4 +2395,11 @@
       <Column Name="FState" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.TC_BHGD_PrjItemMappingBatch" Member="TC_BHGD_PrjItemMappingBatch">
+    <Type Name="TC_BHGD_PrjItemMappingBatch">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FBatchId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

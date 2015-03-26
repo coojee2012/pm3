@@ -312,6 +312,9 @@ namespace EgovaDAO
     partial void InsertTC_BHGD_Batch(TC_BHGD_Batch instance);
     partial void UpdateTC_BHGD_Batch(TC_BHGD_Batch instance);
     partial void DeleteTC_BHGD_Batch(TC_BHGD_Batch instance);
+    partial void InsertTC_BHGD_PrjItemMappingBatch(TC_BHGD_PrjItemMappingBatch instance);
+    partial void UpdateTC_BHGD_PrjItemMappingBatch(TC_BHGD_PrjItemMappingBatch instance);
+    partial void DeleteTC_BHGD_PrjItemMappingBatch(TC_BHGD_PrjItemMappingBatch instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -1117,6 +1120,14 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<TC_BHGD_Batch>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TC_BHGD_PrjItemMappingBatch> TC_BHGD_PrjItemMappingBatch
+		{
+			get
+			{
+				return this.GetTable<TC_BHGD_PrjItemMappingBatch>();
 			}
 		}
 	}
@@ -52692,6 +52703,116 @@ namespace EgovaDAO
 					this._FState = value;
 					this.SendPropertyChanged("FState");
 					this.OnFStateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TC_BHGD_PrjItemMappingBatch")]
+	public partial class TC_BHGD_PrjItemMappingBatch : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _FId;
+		
+		private string _FBatchId;
+		
+		private string _FPrjItemId;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFIdChanging(string value);
+    partial void OnFIdChanged();
+    partial void OnFBatchIdChanging(string value);
+    partial void OnFBatchIdChanged();
+    partial void OnFPrjItemIdChanging(string value);
+    partial void OnFPrjItemIdChanged();
+    #endregion
+		
+		public TC_BHGD_PrjItemMappingBatch()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FId", DbType="VarChar(36) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FId
+		{
+			get
+			{
+				return this._FId;
+			}
+			set
+			{
+				if ((this._FId != value))
+				{
+					this.OnFIdChanging(value);
+					this.SendPropertyChanging();
+					this._FId = value;
+					this.SendPropertyChanged("FId");
+					this.OnFIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FBatchId", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		public string FBatchId
+		{
+			get
+			{
+				return this._FBatchId;
+			}
+			set
+			{
+				if ((this._FBatchId != value))
+				{
+					this.OnFBatchIdChanging(value);
+					this.SendPropertyChanging();
+					this._FBatchId = value;
+					this.SendPropertyChanged("FBatchId");
+					this.OnFBatchIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FPrjItemId", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		public string FPrjItemId
+		{
+			get
+			{
+				return this._FPrjItemId;
+			}
+			set
+			{
+				if ((this._FPrjItemId != value))
+				{
+					this.OnFPrjItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._FPrjItemId = value;
+					this.SendPropertyChanged("FPrjItemId");
+					this.OnFPrjItemIdChanged();
 				}
 			}
 		}
