@@ -125,7 +125,7 @@
                 alert("只能选择一条标准化工地信息审核！");
                 return false;
             }
-            if (fMeasure != '5') {
+            if (fMeasure !== '5') {
                 alert("非未复审案件，不能在此阶段处理！");
                 return false;
             }
@@ -196,7 +196,7 @@
                 <td class="m_bar_l"></td>
                 <td class="t_r">
                     <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('FSAuditInfo.aspx')"  />
-                    <asp:Button runat="server" CssClass="m_btn_w4" Text="分配批次" />
+                    <asp:Button runat="server" CssClass="m_btn_w4" Text="分配批次" OnClientClick="return app('ChooseBatch.aspx')" />
                     <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
                         Text="导出Excel" />
                 </td>

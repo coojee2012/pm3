@@ -110,8 +110,6 @@ public partial class Government_AppBHGD_FZList : System.Web.UI.Page
         //}
 
         sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
-
-
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "gv_list";

@@ -14,7 +14,7 @@
     <script src="../../script/jquery.js" type="text/javascript"></script>
     <base target="_self" />
     <script type="text/javascript">
-      $(document).ready(function () {
+        $(document).ready(function () {
             txtCss();
             DynamicGrid(".m_dg1_i");
         });
@@ -32,7 +32,7 @@
             var idvalue = window.showModalDialog(url + '&rid=' + Math.random(), obj, sFeatures);
 
             if (idvalue === "1") {
-                form1.btnQuery.click();
+                $("#<%=btnQuery.ClientID %>").click();
             }
         }
         function Request(strName) {
@@ -82,14 +82,14 @@
             return false;
         }
         function app(url) {
-            ShowWindow(url, 1000, 800, '');
-      
+            ShowWindow(url + '?type=1', 1000, 800, '');
+
         }
-        </script>
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
-      <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <table width="98%" align="center" class="m_title">
             <tr>
                 <th colspan="7">
@@ -103,7 +103,7 @@
                     <asp:TextBox runat="server" ID="txt_Year"></asp:TextBox>
                 </td>
                 <td align="center" rowspan="3" colspan="2">
-                    <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" />
+                    <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="BtnQuery" CssClass="m_btn_w2" />
                 </td>
             </tr>
         </table>
@@ -111,66 +111,72 @@
             <tr>
                 <td class="m_bar_l"></td>
                 <td class="t_r">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="m_btn_w4" Text="添加批次"  OnClientClick="return app('')" />
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline">
+                        <ContentTemplate>
+                            <asp:Button ID="btnAdd" runat="server" CssClass="m_btn_w4" Text="添加批次" OnClientClick="return app('AddBatch.aspx')" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                     <asp:Button runat="server" ID="btn_Edit" CssClass="m_btn_w4" Text="编辑批次" />
-                    <asp:Button ID="btn_Del" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
-                        Text="删除批次" />
+                    <asp:Button ID="btn_Del" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4" OnClientClick="return confirm('确认要删除吗?');"
+                        OnClick="BtnDel_Click" Text="删除批次" />
+
                 </td>
                 <td class="m_bar_r"></td>
             </tr>
         </table>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <asp:DataGrid ID="gv_list" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
-                    HorizontalAlign="Center" Width="98%">
-                    <HeaderStyle CssClass="m_dg1_h" />
-                    <ItemStyle CssClass="m_dg1_i" />
-                    <Columns>
-                        <asp:TemplateColumn>
-                            <ItemStyle Width="20px" />
-                            <HeaderTemplate>
-                                <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:CheckBox ID="CheckItem" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateColumn>
-                        <asp:BoundColumn HeaderText="序号">
-                            <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
-                                Font-Strikeout="False" Font-Underline="False" Wrap="False" />
-                            <HeaderStyle Wrap="False" />
-                        </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="工程名称" DataField="ProjectName">
-                            <ItemStyle Wrap="False" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="申报单位" >
-                             <ItemStyle Wrap="False" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="年度" >
-                             <ItemStyle Wrap="False" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="批次" >
-                             <ItemStyle Wrap="False" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="审批环节" >
-                             <ItemStyle Wrap="False" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                    </Columns>
-                </asp:DataGrid>
-                  <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
-                    CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
-                    CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" LayoutType="Table"
-                    NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
-                    PageIndexBoxType="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
-                    ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到">
-                </webdiyer:AspNetPager>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+
+
+        <asp:DataGrid ID="gv_list" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
+            HorizontalAlign="Center" Width="98%" OnItemDataBound="App_List_ItemDataBound">
+            <HeaderStyle CssClass="m_dg1_h" />
+            <ItemStyle CssClass="m_dg1_i" />
+            <Columns>
+                <asp:TemplateColumn>
+                    <ItemStyle Width="20px" />
+                    <HeaderTemplate>
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="CheckItem" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+                <asp:BoundColumn HeaderText="序号">
+                    <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
+                        Font-Strikeout="False" Font-Underline="False" Wrap="False" />
+                    <HeaderStyle Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="工程名称">
+                    <ItemStyle Wrap="False" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="申报单位">
+                    <ItemStyle Wrap="False" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="年度" DataField="FYear">
+                    <ItemStyle Wrap="False" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="批次" DataField="FBatchNumber">
+                    <ItemStyle Wrap="False" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="审批环节">
+                    <ItemStyle Wrap="False" />
+                    <HeaderStyle Font-Underline="False" Wrap="False" />
+                </asp:BoundColumn>
+                <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
+            </Columns>
+        </asp:DataGrid>
+        <div style="padding-left: 1%">
+            <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
+                CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
+                CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" LayoutType="Table"
+                NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
+                PageIndexBoxType="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
+                ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到">
+            </webdiyer:AspNetPager>
+        </div>
     </form>
 </body>
 </html>
