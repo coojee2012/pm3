@@ -54,6 +54,7 @@
         function selEnt(obj, tagId) {
             var type = document.getElementById("t_FEntType").value;
             var qylx = "101";
+            alert(type);
             switch (type) {
                 case "2":
                     qylx = "101";
@@ -72,6 +73,7 @@
                     break;
                 case "7":
                     qylx = "125";
+                    alert(qylx);
                     break;
             }
             //根据企业类型跳转到不同的企业选择页面
@@ -87,8 +89,11 @@
             }
             else//勘察、设计、建立类企业
             {
+              
                 var url = "../project/EntListSel.aspx";
+               
                 url += "?qylx=" + qylx;
+                alert(url);
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {
                     $("#" + tagId).val(pid);
