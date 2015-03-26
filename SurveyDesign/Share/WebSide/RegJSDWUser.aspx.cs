@@ -608,7 +608,7 @@ public partial class Share_WebSide_RegJSDWUser : System.Web.UI.Page
 
             var v = (from s in db.CF_Sys_SystemName
                      where !s.FIsDeleted.Value && rSysList.Split(',').ToArray().Contains(s.FNumber.ToString())
-                             && s.FNumber != 167//排除“注册城市规划师管理信息系统”，这个被合到“规划企业”系统了。
+                             && s.FNumber != 167 && s.FNumber != 1261//排除“注册城市规划师管理信息系统”，这个被合到“规划企业”系统了。应测试人员反馈要求，去掉“项目见证管理系统”  20150326。
                      orderby s.FOrder
                      select new { s.FNumber, FName = s.FName == "建设单位" ? "选址意见管理" : s.FName }).ToList();
 
