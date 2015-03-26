@@ -13,6 +13,79 @@
     <script type="text/javascript" language="javascript" src="../../script/default.js"></script>
     <script src="../../script/jquery.js" type="text/javascript"></script>
     <base target="_self" />
+    <script type="text/javascript">
+      $(document).ready(function () {
+            txtCss();
+            DynamicGrid(".m_dg1_i");
+        });
+
+        function showApproveWindow1(sUrl, width, height) {
+            var ret = window.showModalDialog(sUrl + '&rid=' + Math.random(), '', 'dialogWidth:' + width + 'px; dialogHeight:' + height + 'px; center:yes; resizable:yes; status:no; help:no;scroll:auto;')
+
+            if (ret === "1") {
+                form1.btnQuery.click();
+            }
+        }
+        function ShowWindow(url, width, hieght, obj) {
+            var sFeatures = "status:no;dialogHeight:" + hieght + "px;dialogwidth:" + width + "px;scroll=no;center:yes; resizable:yes; status:no; help:no;scroll:auto;";
+
+            var idvalue = window.showModalDialog(url + '&rid=' + Math.random(), obj, sFeatures);
+
+            if (idvalue === "1") {
+                form1.btnQuery.click();
+            }
+        }
+        function Request(strName) {
+            var strHref = window.document.location.href;
+            var intPos = strHref.indexOf("?");
+            var strRight = strHref.substr(intPos + 1);
+
+            var arrTmp = strRight.split("&");
+            for (var i = 0; i < arrTmp.length; i++) {
+                var arrTemp = arrTmp[i].split("=");
+
+                if (arrTemp[0].toUpperCase() == strName.toUpperCase()) return arrTemp[1];
+            }
+            return "";
+        }
+
+        function app1(url) {
+            var tmpVal = '';
+            $(":checkbox[id$=CheckItem]").each(function () {
+                if ($(this).attr("checked")) {
+                    var id = $("#span" + $(this).attr("id")).attr("name");
+                    if (tmpVal.indexOf(id + ",") === -1) {
+                        tmpVal += id + ",";
+                    }
+                }
+            });
+
+            var obj = new Object();
+            if (tmpVal.length > 1) {
+                tmpVal = tmpVal.substring(0, tmpVal.length - 1);
+            }
+            else {
+                alert("请选择");
+                return false;
+            }
+            obj.name = '';
+            obj.id = tmpVal;
+
+            var dbSystemId = document.getElementById("dbSystemId");
+            if (dbSystemId) {
+                obj.fsystemid = dbSystemId.value;
+            }
+
+            //'批量审批'; 
+            ShowWindow(url + '?e=0', 700, 600, obj);
+
+            return false;
+        }
+        function app(url) {
+            ShowWindow(url, 1000, 800, '');
+      
+        }
+        </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -38,7 +111,7 @@
             <tr>
                 <td class="m_bar_l"></td>
                 <td class="t_r">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="m_btn_w4" Text="添加批次" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="m_btn_w4" Text="添加批次"  OnClientClick="return app('')" />
                     <asp:Button runat="server" ID="btn_Edit" CssClass="m_btn_w4" Text="编辑批次" />
                     <asp:Button ID="btn_Del" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
                         Text="删除批次" />

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>标化工地—发证审核</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
     <base target="_self"></base>
@@ -227,7 +227,7 @@
                 <ContentTemplate>
 
                  <asp:Button ID="btnSave" runat="server" CssClass="m_btn_w2" Text="保存" OnClick="btnSave_Click" />
-                    &nbsp;&nbsp;<asp:Button id="btnUPCS" runat="server" class="m_btn_w4"  type="button" Text="通过" OnClick="btnUPCS_Click" />
+                    &nbsp;&nbsp;<asp:Button id="btnUPCS" runat="server" class="m_btn_w4"  type="button" Text="打印证书" OnClick="btnUPCS_Click" />
                     &nbsp;&nbsp;<asp:Button ID="bthEndApp" runat="server" Text="不通过" class="m_btn_w6" OnClick="bthEndApp_Click"/>
             &nbsp;&nbsp;<asp:Button ID="btnBackToEnt" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                 Text="退回建设单位" OnClick="btnBackToEnt_Click" />
