@@ -126,7 +126,7 @@
                             <input id="txtFId" type="hidden" runat="server" />
                         </ContentTemplate>
                     </asp:UpdatePanel>    
-                            <asp:Button ID="btnRefresh" runat="server" Text="同步到标准库"  CssClass="m_btn_w6"
+                            <asp:Button ID="btnRefresh" runat="server" Text="确认"  CssClass="m_btn_w6"
                                 onclick="btnRefresh_Click" />
                     <input type="button" id="btnLink" runat="server" value="定位" class="m_btn_w2" onclick="openLink();" />              
                     <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />

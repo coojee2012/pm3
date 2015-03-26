@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenter_scConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2385,6 +2385,14 @@
       <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_BHGD_Batch" Member="TC_BHGD_Batch">
+    <Type Name="TC_BHGD_Batch">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FYear" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FBatchNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FState" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

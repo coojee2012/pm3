@@ -24,6 +24,12 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
             {
                 ViewState["FID"] = Request.QueryString["fid"];
                 txtFId.Value = Request.QueryString["fid"];
+                //判断项目是否已经同步到标准库，如果已经同步则不能再保存，并且也不能同步
+                if (IsExistProject(ViewState["FID"].ToString()))
+                {
+                    this.btnSave.Enabled = false;
+                    this.btnRefresh.Enabled = false;
+                }
                 showInfo();
                 ShowPrjItemInfo();
             }
@@ -146,6 +152,26 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
             t_ProjectType_SelectedIndexChanged();
         }
     }
+
+    /// <summary>
+    /// 检测项目是否已经存在在标准库中
+    /// </summary>
+    /// <param name="fid"></param>
+    /// <returns></returns>
+    private bool IsExistProject(string fid)
+    {
+        string sql = @"select  count(1)  from  XM_BaseInfo.[dbo].[GC_DWGCXX]  where [DWGCBH]='"+fid+"'";
+        DataTable dt = new DataTable();
+        dt = rc.GetTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     //保存
     private void saveInfo()
     {
@@ -184,7 +210,9 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         //tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
        // ScriptManager.RegisterClientScriptBlock(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     //    ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('保存成功');window.returnValue='1';", true);
-        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "$('#btnSave').css('color','#BEBFC3');$('#btnSave').attr('disabled',true);;alert('保存成功');window.returnValue='1';", true);
+        //ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "$('#btnSave').css('color','#BEBFC3');$('#btnSave').attr('disabled',true);;alert('保存成功');window.returnValue='1';", true);
+
+        ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('保存成功');window.returnValue='1';", true);
 
         //tool.showMessage("alert('保存成功');window.returnValue='1';");
     }
@@ -295,6 +323,11 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// 确认同步后项目信息不能再进行修改调整
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void btnRefresh_Click(object sender, EventArgs e)
     {
         object obj = ViewState["FID"];
@@ -304,6 +337,8 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
             string sql = @"exec SP_XM_TO_BZK @FID";
             rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('操作成功')</script>");
+            this.btnSave.Enabled = false;
+            this.btnRefresh.Enabled = false;
         }
         else
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请先保存')</script>");
