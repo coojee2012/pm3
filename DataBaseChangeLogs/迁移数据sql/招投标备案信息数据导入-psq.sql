@@ -182,7 +182,7 @@ INSERT INTO datatemp.dbo.TC_Prj_Info
 --2、导入单项工程项目信息
 declare @d dec(10,2),@date date
 
-if exists (select 1
+if not exists (select 1
             from  sysobjects
            where  id = object_id('_PrjItem_Info')
             and   type = 'U')
@@ -428,18 +428,65 @@ INSERT INTO dbo.CF_App_List
 	   from _App_List a 
 	  where not exists (select 1 from CF_App_List b where a.FId = b.FId)
 
---select  *  from  TC_ZBJG_Record  where FAppId = '2a3b3c2e-b2bd-4fb6-8929-00f6fc3da8de'
---select  *  from  CF_Sys_ManageType  where  fname like '%中标结果%'   --查询业务类型编码
---------------------------------------------------------------------------------------------------------------------------
-
 --导入最终招标备案的过程数据
 --CF_App_ProcessInstanceBackup   备案主流程表
 --CF_App_ProcessRecordBackup     备案子流程表
+if not exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo._App_ProcessInstance')
+            and   type = 'U')
+begin 
+SELECT * into _App_ProcessInstance from CF_App_ProcessInstance where 1=2  --只取表结构
+alter table _App_ProcessInstance alter column FentName varchar(200) null       
+alter table CF_App_ProcessInstanceBackup alter column FentName varchar(200) null 
 
-select  a.*  from  CF_App_ProcessRecordBackup a,
+	   insert into _App_ProcessInstance
+	   (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
+			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
+			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
+			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode)
+       select newid(),0,a.FwriteDate,a.FwriteDate,a.FBaseinfoId,a.FBaseName,a.FLinkId as FEmpId,a.Fid,1,0,
+	          0,'19301','1930100','1930100','4263983a-ba52-42ce-9c44-65280e4c22a1','51','11232',
+			  '',year(a.FwriteDate),month(a.FwriteDate),a.FReportDate,a.FReportDate,'51','8804','8804',5,1,'1122',0,null,null,null,null,null
+	     from _App_List a
+		where  not exists(select 1 from CF_App_ProcessInstanceBackup b where a.FId = b.FLinkId)
+end 
 
-CF_App_ProcessInstanceBackup  b
-where a.FProcessInstanceID = b.FID
+  insert into CF_App_ProcessInstanceBackup
+             (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
+			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
+			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
+			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode)
+       select fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
+			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
+			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
+			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode
+         from _App_ProcessInstance a
+		where not exists(select 1 from CF_App_ProcessInstanceBackup b where a.FId = b.fid)
 
 
 
+if not exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo._App_ProcessRecordBackup')
+            and   type = 'U')
+begin
+
+  select * into _App_ProcessRecordBackup from CF_App_ProcessRecordBackup where 1=2
+
+  insert into _App_ProcessRecordBackup
+              (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
+			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint )
+	   select newid(),a.FSubmitDate,0,a.fid,a.FLinkId,a.FSubFlowId,5,1,'51',
+	          a.FReportDate,5,'8804',1,1,'管理部门审核',3,2,1
+	     from _App_ProcessInstance a
+		where  not exists(select 1 from CF_App_ProcessRecordBackup b where a.FId = b.FProcessInstanceID)
+end 
+
+  insert into CF_App_ProcessRecordBackup
+              (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
+			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint )
+       select fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
+			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint
+		 from _App_ProcessRecordBackup a
+	    where not exists(select 1 from CF_App_ProcessRecordBackup b where a.FId = b.fid)
