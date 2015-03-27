@@ -68,13 +68,13 @@
                     qylx = "101";
                     break;
                 case "SJ":
-                    qylx = "155";
+                    qylx = "103";
                     break;
                 case "KC":
-                    qylx = "155";
+                    qylx = "102";
                     break;
                 case "JL":
-                    qylx = "125";
+                    qylx = "104";
                     break;
             }
             var url = "../project/EntListSel.aspx";
