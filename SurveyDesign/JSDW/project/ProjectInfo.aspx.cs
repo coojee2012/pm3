@@ -11,6 +11,8 @@ using Tools;
 using System.Text;
 using System.Web.Services;
 using System.Configuration;
+using System.Windows.Forms;
+
 
 public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
 {
@@ -179,6 +181,7 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
         if (CheckPrjIsExist(projname))
         {           
             ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('系统中已经有同名项目，请从系统中选取对应项目！');window.returnValue='1';", true);
+            this.t_ProjectName.Focus();
             return;
         }
         EgovaDB dbContext = new EgovaDB();
@@ -338,18 +341,20 @@ public partial class JSDW_project_ProjectInfo : System.Web.UI.Page
     /// <param name="e"></param>
     protected void btnRefresh_Click(object sender, EventArgs e)
     {
-        object obj = ViewState["FID"];
-        if (obj!=null)
-        {
-            //System.IO.File.AppendAllText("C:\\yujiajun.log", ViewState["FID"].ToString(), Encoding.Default);
-            string sql = @"exec SP_GCPRJ_TO_BZK @FID";
-            rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('操作成功')</script>");
-            this.btnSave.Enabled = false;
-            this.btnRefresh.Enabled = false;
-        }
-        else
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请先保存')</script>");
+      
+            object obj = ViewState["FID"];
+            if (obj != null)
+            {
+                //System.IO.File.AppendAllText("C:\\yujiajun.log", ViewState["FID"].ToString(), Encoding.Default);
+                string sql = @"exec SP_GCPRJ_TO_BZK @FID";
+                rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('操作成功')</script>");
+                this.btnSave.Enabled = false;
+                this.btnRefresh.Enabled = false;
+            }
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('请先保存')</script>");
+      
     }
 
     /// <summary>
