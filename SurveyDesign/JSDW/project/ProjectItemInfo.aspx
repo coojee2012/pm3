@@ -24,6 +24,14 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+
+        //确认项目之前向操作者发出提醒。
+        function confirmrefresh() {
+            if (window.confirm('当前信息确定填写完整无误吗？确认后将不能修改！'))
+                return true;
+            else
+                return false;
+        }
     </script>
     <base target="_self">
     </base>
@@ -67,7 +75,7 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>              
                         <asp:Button ID="btnRefresh" runat="server" Text="确认"  CssClass="m_btn_w6"
-                                onclick="btnRefresh_Click" />  
+                                onclick="btnRefresh_Click"  OnClientClick ="return confirmrefresh();"/>  
                     <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
                 </td>
                 <td class="m_bar_r">
