@@ -87,12 +87,16 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     private void showInfo()
     {
         EgovaDB dbContext = new EgovaDB();
-        TC_PrjItem_Emp emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == txtFId.Value).FirstOrDefault();
-        if (emp != null)
+        if (!string.IsNullOrEmpty(txtFId.Value))
         {
-            pageTool tool = new pageTool(this.Page, "t_");
-            tool.fillPageControl(emp);
+            TC_PrjItem_Emp emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == txtFId.Value).FirstOrDefault();
+            if (emp != null)
+            {
+                pageTool tool = new pageTool(this.Page, "t_");
+                tool.fillPageControl(emp);
+            }
         }
+        
     }
     //保存
     private void saveInfo()
@@ -118,14 +122,17 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         if (t_EmpType.SelectedValue == "11220201" && count > 0)
         {
             ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
+            return;
         }
         else if (count1 > 0)
         {
             ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('人员不允许重复添加');window.returnValue='1';", true);
+            return;
         }
         else if (count2 > 0)
         {
             ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
+            return;
         }
         else
         {

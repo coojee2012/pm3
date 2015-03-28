@@ -17,8 +17,9 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
-        {
+        {           
             BindControl();
+            //项目id
             if (string.IsNullOrEmpty(Request.QueryString["fprjId"]))
             {
                
@@ -38,13 +39,40 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
                     t_PrjItemType.SelectedValue = emp.ProjectType;
                 }
                 ViewState["FPrjId"] = Request.QueryString["fprjId"];
-            }
-            
+                
+            }            
+            //工程项目id
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
+                //判断工程项目是否已经同步到标准库，如果已经同步则不能再保存，并且也不能同步
+                if (IsExistProjectItem(Request.QueryString["fid"].ToString()))
+                {
+                    this.btnSave.Enabled = false;
+                    this.btnRefresh.Enabled = false;
+                }
                 ViewState["FID"] = Request.QueryString["fid"];
                 showInfo();
-            }
+            }         
+        }
+    }
+
+    /// <summary>
+    /// 检测项目是否已经存在在标准库中
+    /// </summary>
+    /// <param name="fid"></param>
+    /// <returns></returns>
+    private bool IsExistProjectItem(string fid)
+    {
+        string sql = @"select  *  from  XM_BaseInfo.[dbo].[GC_DWGCXX]  where [dwgcbh]='" + fid + "'";
+        DataTable dt = new DataTable();
+        dt = rc.GetTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     void BindControl()
@@ -110,7 +138,9 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
         ViewState["FID"] = fId;
 
  
-        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        //ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "$('#btnSave').css('color','#BEBFC3');$('#btnSave').attr('disabled',true);;alert('保存成功');window.returnValue='1';", true);
+
     //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
     //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
@@ -127,6 +157,9 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
         {
             string sql = @"exec SP_GC_TO_BZK @FID";
             rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
+            //数据同步到标准库后不能进行同步、重新同步的操作。
+            this.btnSave.Enabled = false;
+            this.btnRefresh.Enabled = false;
             tool.showMessage("操作成功");
         }
         else

@@ -12,6 +12,7 @@ public partial class JSDW_ApplyAQJDBA_LiftList : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    private RCenter rcXM = new RCenter("XM_BaseInfo");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -77,6 +78,7 @@ public partial class JSDW_ApplyAQJDBA_LiftList : System.Web.UI.Page
         EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_AJBA_QZSB, tool_Deleting);
+
         ShowTitle();
     }
     //设备删除
@@ -86,7 +88,14 @@ public partial class JSDW_ApplyAQJDBA_LiftList : System.Web.UI.Page
         {
             EgovaDB dbContext = (EgovaDB)context;
             var para = dbContext.TC_AJBA_QZSB.Where(t => FIdList.ToArray().Contains(t.FId));
+            var paras = dbContext.TC_AJBA_QZSB.Where(t => FIdList.ToArray().Contains(t.FId)).Select(t=>t.BABH).ToList();
+            foreach (string s in paras)
+            {
+                string sql = @"update GC_JQSBXX set syzt = 0 where sbbabh = '" + s + "'";
+                rcXM.PExcute(sql);
+            }
             dbContext.TC_AJBA_QZSB.DeleteAllOnSubmit(para);
+
         }
     }
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)

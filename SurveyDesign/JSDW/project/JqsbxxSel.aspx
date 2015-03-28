@@ -22,9 +22,15 @@
         function CheckInfo() {
             return AutoCheckInfo();
         }
-        function Verify(Fid) {
-            window.close();
-            window.returnValue = Fid;
+        function Verify(Fid, syzt) {
+            if (syzt == 1) {
+                alert("该设备正在其它工程项目中使用");
+                return;
+            }
+            else {
+                window.close();
+                window.returnValue = Fid;
+            }
         }
     </script>
 
@@ -76,7 +82,7 @@
                 </asp:BoundColumn>
                 <asp:TemplateColumn HeaderStyle-Width="100">
                     <ItemTemplate>
-                        <a href="javascript:void(0)" onclick="Verify('<%#Eval("SBID") %>')">选择</a>
+                        <a href="javascript:void(0)" onclick="Verify('<%#Eval("SBID") %>','<%#Eval("SYZT") %>')">选择</a>
                     </ItemTemplate>
                 </asp:TemplateColumn>
         </Columns>

@@ -67,6 +67,9 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         dbContext.SubmitChanges();
         ViewState["FID"] = fId;
         txtFId.Value = fId;
+
+        string sql = @"update GC_JQSBXX set syzt = 1 where sbbabh='" + t_BABH.Text + "'";
+        rcXM.PExcute(sql);
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
     }
     //保存按钮

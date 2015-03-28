@@ -58,7 +58,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
     {
         EgovaDB1 db = new EgovaDB1();
         //如果是勘察、设计、监理类企业则列出企业所有的资质及等级信息，没有主项的说法
-        if ((qylx == "155") || (qylx == "125"))
+        if ((qylx == "102") || (qylx == "103") || (qylx == "104"))
         {
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
@@ -93,7 +93,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
             dg_List.DataBind();
         }
-        else if (qylx == "145")  //审图机构 目前为145.  modify by psq 20150319 审图机构没有资质信息，只有证书信息。
+        else if (qylx == "109")  //审图机构 目前为145.  modify by psq 20150319 审图机构没有资质信息，只有证书信息。
         {
             var App = from b in db.QY_JBXX
                       join d in db.QY_QYZSXX

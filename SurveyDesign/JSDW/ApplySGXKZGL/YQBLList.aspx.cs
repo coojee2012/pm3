@@ -26,8 +26,8 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
     RCenter rc = new RCenter();
     ProjectDB db = new ProjectDB();
     WorkFlowApp wfApp = new WorkFlowApp();
-    
-    
+
+
     public int fMType = 11224;//施工许可证延期办理
 
     protected void Page_Load(object sender, EventArgs e)
@@ -85,7 +85,7 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
             {
                 v = v.Where(t => t.PrjAddressDept.Equals(this.govd_FRegistDeptId.FNumber.Trim()));
             }
-            
+
         }
         if (!string.IsNullOrEmpty(this.txtJSDZ.Text.Trim()))
         {
@@ -93,11 +93,11 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
         }
         if (!string.IsNullOrEmpty(this.txtSDate.Text.Trim()))
         {
-            v = v.Where(t => t.FReportDate >= DateTime.Parse(this.txtSDate.Text.Trim()+" "+"00:00:00"));
+            v = v.Where(t => t.FReportDate >= DateTime.Parse(this.txtSDate.Text.Trim() + " " + "00:00:00"));
         }
         if (!string.IsNullOrEmpty(this.txtEDate.Text.Trim()))
         {
-            v = v.Where(t => t.FReportDate <= DateTime.Parse(this.txtEDate.Text.Trim()+" "+"23:59:59"));
+            v = v.Where(t => t.FReportDate <= DateTime.Parse(this.txtEDate.Text.Trim() + " " + "23:59:59"));
         }
         if (this.ddlFState.SelectedIndex > 0)
         {
@@ -266,76 +266,35 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
                     break;
             }
             //查询办结备案通过没
-            var v = (from i in dbContext.CF_App_ProcessRecordBackup
-                     where i.FLinkId == FID
-                     select new
-                     {
-                         i.FID,
-                         i.FResult,
-                     }).FirstOrDefault();
-            if (v != null)
+            if (FState == "6")
             {
-                if (v.FResult == "1")//正常办结
+                var v = (from i in dbContext.CF_App_ProcessRecordBackup
+                         where i.FLinkId == FID
+                         select new
+                         {
+                             i.FID,
+                             i.FResult,
+                         }).FirstOrDefault();
+                if (v != null)
                 {
-                    s = "<font color='green'>已办结</font>";
-                    n = "<font color='green'>通过</font>";
-                    saveFResult("1", FID);
-                }
-                else//不予受理
-                {
-                    s = "<font color='red'>已办结</font>";
-                    n = "<font color='red'>不通过</font>";
-                    saveFResult("3", FID);
+                    if (v.FResult == "1")//正常办结
+                    {
+                        s = "<font color='green'>已办结</font>";
+                        n = "<font color='green'>通过</font>";
+                        saveFResult("1", FID);
+                    }
+                    else//不予受理
+                    {
+                        s = "<font color='red'>已办结</font>";
+                        n = "<font color='red'>不通过</font>";
+                        saveFResult("3", FID);
+                    }
                 }
             }
 
             e.Row.Cells[4].Text = t;
             e.Row.Cells[5].Text = s;
-            //var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
-            //if (pr != null)
-            //{
-            //    if (pr.FResult == "1")//通过
-            //    {
-            //        n = "<font color='green'>通过</font>";
-            //        saveFResult("1", FID);
-            //    }
-            //    else//不通过
-            //    {
-            //        n = "<font color='red'>不通过</font>";
-            //        saveFResult("3", FID);
-            //    }
-                //if (pr.FRoleDesc.Contains("接件"))
-                //{
-                //    if (pr.FResult == "1")//通过
-                //    {
-                //        n += "，<font color='green'>同意接件</font>";
-                //    }
-                //    else//不通过
-                //    {
-                //        n += "，<font color='red'>不同意接件</font>";
-                //    }
-                //} else if (pr.FRoleDesc.Contains("初审"))
-                //{
-                //    if (pr.FResult == "1")//通过
-                //    {
-                //        n += "，<font color='green'>初审通过</font>";
-                //    }
-                //    else//不通过
-                //    {
-                //        n += "，<font color='red'>初审不通过</font>";
-                //    }
-                //} else if (pr.FRoleDesc.Contains("复审"))
-                //{
-                //    if (pr.FResult == "1")//通过
-                //    {
-                //        n += "，<font color='green'>复审通过</font>";
-                //    }
-                //    else//不通过
-                //    {
-                //        n += "，<font color='red'>复审不通过</font>";
-                //    }
-                //}
-            //}
+
             e.Row.Cells[7].Text = n;
         }
     }

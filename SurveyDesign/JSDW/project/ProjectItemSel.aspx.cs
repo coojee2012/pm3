@@ -38,8 +38,8 @@ public partial class JSDW_project_ProjectItemSel : System.Web.UI.Page
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             String PrjItemType = e.Item.Cells[3].Text;
-           
-            if(PrjItemType.ToString().Trim() != "")  //存在项目类型的才转换       modify by psq 20150319
+
+            if (PrjItemType.ToString().Trim() != "" && PrjItemType.ToString().Trim() != "&nbsp;")  //存在项目类型的才转换       modify by psq 20150319
             {
                 e.Item.Cells[3].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(PrjItemType)).Select(d => d.FName).FirstOrDefault();
             }

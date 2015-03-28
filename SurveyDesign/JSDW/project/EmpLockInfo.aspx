@@ -64,15 +64,23 @@
 
                         <%# Eval("SDRQ")%>
                     </td>
+                    
+                    <td>
+                        <%#Eval("SDZT") %>
+                    </td>
+                    <td>
+                        <%#Eval("HTKGRQ") %>
+                    </td>
+                     <td>
+                        <%# Eval("HTJGRQ")%>
+                    </td>
                     <td>
                         <%# Eval("SJKGRQ")%>
                     </td>
                     <td>
                         <%# Eval("SJJGRQ")%>
                     </td>
-                    <td>
-                        <%# Eval("HTJGRQ")%>
-                    </td>
+                   
                     
                 </tr>
 
