@@ -219,6 +219,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
 
         if (entType == 2)//施工总承包
         {
+            #region 施工总承包
             var shigongEnt = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_AppId.Value && t.FEntType == entType).OrderByDescending(q => q.FCreateTime).FirstOrDefault();
             var oldEnt = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_OldAppId.Value && t.FEntType == entType).FirstOrDefault();
             //如果无当前这个施工企业，则证明没有变更过
@@ -232,6 +233,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     entity.FPrjItemId = t_FPrjItemId.Value;
                     entity.YQLX = lblTitle.InnerText;
                     entity.YQMC = oldEnt.FName;
+                    entity.FLinkId = h_OldQYID.Value;
                     entity.BGTime = DateTime.Now;
                     entity.BGQK = "退出";
                     dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
@@ -243,6 +245,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     entity.YQLX = lblTitle.InnerText;
                     entity.YQMC = t_FName.Text;
                     entity.BGTime = DateTime.Now;
+                    entity.FLinkId = h_selEntId.Value;
                     entity.BGQK = "新增";
                     dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
 
@@ -259,7 +262,27 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     dbContext.TC_PrjItem_Ent.InsertOnSubmit(shigongEnt);
                     dbContext.SubmitChanges();
                     //当前人员全部退出
-                    //..
+                    var oldEmpList = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == oldEnt.FId).ToList();
+                    if (oldEmpList != null && oldEmpList.Count > 0)
+                    {
+                        oldEmpList.ForEach(q =>
+                        {
+                            TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
+                            sr.FId = Guid.NewGuid().ToString();
+                            sr.FAppId = t_FAppId.Value;
+                            sr.FPrjItemId = t_FPrjItemId.Value;
+                            sr.RYLX = getEmpType(sr.RYLX.ToString());
+                            sr.XM = q.FHumanName;
+                            sr.ZSBH = q.ZSBH;
+                            sr.QYMC = q.FEntName;
+                            sr.BGQK = "退出";
+                            sr.BGTime = DateTime.Now;
+                            sr.FLinkId = q.FLinkId;
+                            dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
+                            dbContext.SubmitChanges();
+                        });
+                    }
+
                 }
                 else
                 {
@@ -271,6 +294,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             //如果当前有这个施工企业，则证明已变更过
             else
             {
+
                 if (h_selEntId.Value != h_OldQYID.Value)//企业变更了
                 {
                     //已退出的企业不要管，把以前新增的那条信息更新了。
@@ -279,9 +303,31 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     {
                         yibiangengEnt.YQMC = t_FName.Text;
                         yibiangengEnt.BGTime = DateTime.Now;
+                        yibiangengEnt.FLinkId = h_selEntId.Value;
+
+                        //当前人员全部直接删除
+                        var empList = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == yibiangengEnt.FId).ToList();
+                        if (empList == null || empList.Count == 0)
+                        {
+                            return;
+                        }
+
+                        empList.ForEach(q =>
+                        {
+                            //如果有新增的 则把新增的删除了
+                            var addEmpList = dbContext.TC_SGXKZ_RYBGJG.Where(t => t.FAppId == h_AppId.Value && t.FLinkId == q.FLinkId && t.BGQK == "增加").ToList();
+                            if (addEmpList != null && addEmpList.Count > 0)
+                            {
+                                addEmpList.ForEach(t =>
+                                {
+                                    dbContext.TC_SGXKZ_RYBGJG.DeleteOnSubmit(t);
+                                });
+                            }
+
+                            //删除现在有的人员
+                            dbContext.TC_PrjItem_Emp.DeleteOnSubmit(q);
+                        });
                     }
-                    //当前人员全部直接删除
-                    //..
                 }
                 else
                 {
@@ -290,6 +336,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 }
 
             }
+            #endregion
             dbContext.SubmitChanges();
         }
         else
@@ -304,6 +351,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 entity.YQLX = lblTitle.InnerText;
                 entity.YQMC = t_FName.Text;
                 entity.BGTime = DateTime.Now;
+                entity.FLinkId = h_selEntId.Value;
                 entity.BGQK = "新增";
                 dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
             }
@@ -324,6 +372,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                         entity.YQLX = lblTitle.InnerText;
                         entity.YQMC = dangqianEnt.FName;
                         entity.BGTime = DateTime.Now;
+                        entity.FLinkId = h_OldQYID.Value;
                         entity.BGQK = "退出";
                         dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
 
@@ -334,6 +383,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                         entity.YQLX = lblTitle.InnerText;
                         entity.YQMC = t_FName.Text;
                         entity.BGTime = DateTime.Now;
+                        entity.FLinkId = h_selEntId.Value;
                         entity.BGQK = "新增";
                         dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
 
@@ -350,7 +400,26 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                         dbContext.TC_PrjItem_Ent.InsertOnSubmit(shangyiciEnt);
 
                         //当前人员全部退出
-                        //..
+                        var oldEmpList = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == dangqianEnt.FId).ToList();
+                        if (oldEmpList != null && oldEmpList.Count > 0)
+                        {
+                            oldEmpList.ForEach(q =>
+                            {
+                                TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
+                                sr.FId = Guid.NewGuid().ToString();
+                                sr.FAppId = t_FAppId.Value;
+                                sr.FPrjItemId = t_FPrjItemId.Value;
+                                sr.RYLX = getEmpType(sr.RYLX.ToString());
+                                sr.XM = q.FHumanName;
+                                sr.ZSBH = q.ZSBH;
+                                sr.QYMC = q.FEntName;
+                                sr.BGQK = "退出";
+                                sr.BGTime = DateTime.Now;
+                                sr.FLinkId = q.FLinkId;
+                                dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
+                                dbContext.SubmitChanges();
+                            });
+                        }
                     }
                     else
                     {
@@ -364,6 +433,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                         {
                             yibiangengEnt.YQMC = t_FName.Text;
                             yibiangengEnt.BGTime = DateTime.Now;
+                            yibiangengEnt.FLinkId = h_selEntId.Value;
                         }
                     }
                 }
@@ -380,12 +450,6 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         showEmpList();
     }
 
-    private void DelEmp()
-    {
-        EgovaDB dbContext = new EgovaDB();
-        var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == h_OldQYID.Value);
-        dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
-    }
     //保存按钮
     protected void btnSave_Click(object sender, EventArgs e)
     {
