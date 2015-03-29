@@ -58,7 +58,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
     {
         EgovaDB1 db = new EgovaDB1();
         //如果是勘察、设计、监理类企业则列出企业所有的资质及等级信息，没有主项的说法
-        if ((qylx == "102") || (qylx == "103") || (qylx == "104"))
+        if ((qylx == "102") || (qylx == "103") || (qylx == "104") ||(qylx == "105"))
         {
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
@@ -171,8 +171,9 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   on b.QYBM equals d.QYBM
                   into temp1
                   from tt in temp.DefaultIfEmpty()
-                  from tt1 in temp1.DefaultIfEmpty()
-                  where  tt1.ZSLXBM == "150"
+                  from tt1 in temp1.DefaultIfEmpty().Distinct()
+                  where tt.SFZX == 1
+                  //where  tt1.ZSLXBM == "150"
                   
                   select new
                   {
