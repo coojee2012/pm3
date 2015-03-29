@@ -1,0 +1,2 @@
+ALTER TABLE TC_SGXKZ_PrjInfo ADD SJStartDate datetime NULL
+ALTER TABLE TC_SGXKZ_PrjInfo ADD SJEndDate datetime NULL
