@@ -247,7 +247,7 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('Print.aspx')" OnClick="btnAccept_Click" />
+                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="接件" OnClientClick="return app('Print.aspx')" OnClick="btnAccept_Click" />
                 <asp:Button ID="btnAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                     Text="打印通知书" OnClientClick="return app('BackSeeOneReportInfo.aspx')" />
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"

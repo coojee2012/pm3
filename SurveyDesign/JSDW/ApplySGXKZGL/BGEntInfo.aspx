@@ -25,7 +25,7 @@
         }
         function addEmp() {
             var fid = document.getElementById("h_selEntId").value;
-            var FPrjItemId = document.getElementById("t_FPrjItemId").value;
+            var FPrjItemId = document.getElementById("h_ProjectItemId").value;
             if (fid == null || fid == '') {
                 alert('请先保存上方的企业信息！');
                 return;
@@ -57,10 +57,10 @@
                     qylx = "101";
                     break;
                 case "5":
-                    qylx = "155";
+                    qylx = "102";
                     break;
                 case "6":
-                    qylx = "155";
+                    qylx = "103";
                     break;
                 case "7":
                     qylx = "125";
@@ -305,13 +305,13 @@
             <input type="hidden" runat="server" id="t_FAppId" />
             <input type="hidden" runat="server" id="hf_FId" />
             <input type="hidden" runat="server" id="t_FPrjId" />
-            <input type="hidden" runat="server" id="t_FPrjItemId" />
 
             <input type="hidden" runat="server" id="h_IsAdd" />
             <input type="hidden" runat="server" id="h_AppId" />
             <input type="hidden" runat="server" id="h_OldAppId" />
             <input type="hidden" runat="server" id="h_OldQYID" />
             <input type="hidden" runat="server" id="h_OldQYName" />
+            <input type="hidden" runat="server" id="h_ProjectItemId" />
 
         </div>
 
