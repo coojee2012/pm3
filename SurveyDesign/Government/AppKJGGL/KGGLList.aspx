@@ -246,6 +246,20 @@
        
         
     </table>
+
+        <table width="98%" align="center" class="m_bar">
+        <tr>
+            <td class="m_bar_l">
+            </td>
+            <td class="t_r">
+            
+                <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
+                    OnClick="btnOut_Click" Text="导出" />
+            </td>
+            <td class="m_bar_r">
+            </td>
+        </tr>
+    </table>
  
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
@@ -266,7 +280,7 @@
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="施工许可证号" DataField="SGXKZBH" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="建设单位" DataField="JSDW" >
@@ -280,7 +294,7 @@
                             </asp:BoundColumn>
 
                             <asp:BoundColumn HeaderText="合同价格(万元)" DataField="Price" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
 
