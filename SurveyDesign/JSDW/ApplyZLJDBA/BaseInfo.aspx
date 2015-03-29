@@ -83,6 +83,16 @@
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
                 __doPostBack(obj.id, '');
+                //企业变化清空人员
+                if (tagId == "q_SGDWId") {
+                    if ($("#q_SGDWoldId").val() != pid) {
+                        $("#sj_XMJL").val("");
+                        $("#q_XMJL").val("");
+                        $("#Button4").click();
+                    }
+
+                }
+                
             }
         }
 
@@ -408,7 +418,10 @@
                 <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
                 <asp:Button ID="Button2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_SGDWId','SG');"
                     UseSubmitBehavior="false" OnClick="btnSel_sg_Click" />
+                <asp:Button  ID="Button4" Style=" display:none;" runat="server" Text="删除项目经理" OnClick="Button4_Click"  />
+
                 <input id="q_SGDWId" runat="server" type="hidden" />
+                <input id="q_SGDWoldId" runat="server" type="hidden" />
             </td>
         </tr>
         <tr>
@@ -447,6 +460,7 @@
                 <asp:Button ID="btnMod2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEmp(this, 'sj_XMJL','XMJ');"
                     UseSubmitBehavior="false" OnClick="btnSel_XMJ_Click" />
                 <input id="sj_XMJL" runat="server" type="hidden" />
+                
                 &nbsp;</td>
         </tr>
         

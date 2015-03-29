@@ -30,107 +30,61 @@ begin
    set @xmsd = @province;
 end
 ---------------------------------------------------
-INSERT INTO XM_BaseInfo.[dbo].[XM_XMBJXX]
-           ([BJID]  --未知id,newid
-           ,[XMBH]  --项目编号
-           ,[XMMC]  --项目名称
-           ,[XMSD]  --项目属地
-           ,[XMDZ]  --项目地址
-           ,[JSDW]  --建设单位
+INSERT INTO XM_BaseInfo.[dbo].[XM_XMJBXX]
+           ([XMBH]   --项目编号
+           ,[XMMC]   --项目名称
+           ,[XMSD]   --项目属地
+           ,[XMDZ]   --项目地址
+           ,[JSDW]   --建设单位
            ,[JSDWDZ] --建设单位地址
-           ,[JSDWFR] --建设单位法人
-           ,[JSDWXZ] --建设单位性质
-           ,[JSWDXDZM] --建设单位(未知)
-           ,[GCLB]     --工程类别
-           ,[JGLX]     --什么类型
-           ,[ZFTZ]     --政府投资
-           ,[ZCTZ]     --什么投资 
-           ,[WSTZ]    --外商投资
-           ,[DKTZ]    --贷款总额
-           ,[QTTZ]    --其他投资
-           ,[ZTZE]    --总投资额
-           ,[YDMJ]    --未知
-           ,[JZMJ]    --未知
-           ,[DS]      --未知
-           ,[DSCS]     --未知
-           ,[DXCS]      --未知
-           ,[ZDGD]       --未知
-           ,[ZDKD]    --未知
-           ,[CD]        --未知
-           ,[KD]        --未知
-           ,[JHKGRQ]    --计划开工日期
-           ,[JHJGRQ]    --计划竣工日期
-           ,[FBFS]      --发布方式
-           ,[JSXZ]      --建设性质
-           ,[XMJSNR]    --项目建设内容
-           ,[JSGCYDXKZ] --建设工地用户许可证
-           ,[JSGCGHXKZ] --建设工程规划许可证
-           ,[LXJB]      --未知
-           ,[LXWJ]      --未知
-           ,[LXWH]      --未知
-           ,[PZDW]      --批准单位
-           ,[PZRQ]      --批准日期
-           ,[BJBH]      --报建编号
-           ,[BJRQ]      --报建日期
-           ,[LXPZMJ]    --未知
-           ,[LXPZGM]    --未知
-           ,[SFSW]      --未知
-           ,[BZ]        --备注
-           ,[BH]        --编号
-           ,[CreateTime]  --创建日期
-           ,[Ftime])      --创建日期
-	SELECT TOP 1 
-	newid(),                     
+           ,[XMLX]   --项目类型
+           ,[XMZLX]  --建设模式
+           ,[JSXZ]   --建设性质
+           ,[JSMS]   --建设模式
+           ,[XMZTZ]  --项目总投资
+           ,[JSGM]   --建设规模
+           ,[JSNR]   --建设内容
+           ,[BH]     --编号  
+           ,[JSDWZZJFDM]  --建设单位组织机构代码
+           ,[JSDWFR]      --建设单位法人
+           ,[JSDWFRDH]    --建设单位法人电话
+           ,[JSDWJSFZR]   --建设单位技术负责人
+           ,[JSDWJSFZRZC]  --建设单位技术负责人职称
+           ,[JSDWJSFZRDH]  --建设单位技术负责人电话
+           ,[SFSW]         --是否涉外
+           ,[CreateTime]   --创建时间
+           ,[Ftime]        --更新时间
+           ,[YDXZ]         --用地性质
+           ,[IsZHCJ])      --是否政府采购
+	SELECT TOP 1 	           
  	a.FId,                        
  	a.ProjectName,                
  	@xmsd,                     
  	a.Address,                     
  	a.jsdw,                       
- 	a.JSDWDZ,                     
- 	a.JSDWFR,                     
- 	null,                   
- 	C.DWXZ,                       
- 	A.ProjectType,                
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	A.Investment,                 
- 	NULL,                         
- 	NULL,                         
- 	NULL AS DS,                   
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	NULL,                         
- 	A.StartDate,                  
- 	A.EndDate,                    
- 	NULL AS FBFS,                 
-   NULL AS JSXZ,                 
- 	A.ConstrContent AS XMJSNR,    
- 	A.JSYDXKZ,                    
- 	A.JSGCXKZ,                    
- 	NULL,                         
- 	A.ConstrBasis,                
- 	NULL,                         
- 	NULL AS PZDW,                 
- 	NULL AS PZRQ,                 
- 	NULL AS BJBH,                 
- 	NULL AS BJRQ,                 
- 	NULL AS LXPZMJ,               
- 	NULL AS LXPZGM,               
- 	NULL AS SFSW,                 
- 	NULL AS BZ,                   
- 	NULL AS BH,                   
+ 	a.JSDWDZ,
+	a.ProjectType,
+	null,
+	null as jsxz,
+	null as jsms,
+	a.Investment,
+	a.ConstrScale,
+	a.ConstrContent,
+	a.ProjectNo,
+	a.JSDWDM,
+	a.JSDWFR,                  
+ 	null JSDWFRDH,
+	null JSDWJSFZR,
+	null as JSDWJSFZRZC,
+	null as JSDWJSFZRDH,
+	a.IsForeign,	           
  	GETDATE(),                    
- 	GETDATE()                     
-
+ 	GETDATE(),
+	a.LandType,
+	null   
 	FROM TC_Prj_Info A 
 	LEFT JOIN CF_SYS_DIC B ON A.CONSTRTYPE=B.FNUMBER
 	LEFT JOIN TC_JSDW_USER C ON a.FJSDWID  = c.FID
 	WHERE A.FID=@FID;
 END
+
