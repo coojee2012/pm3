@@ -240,6 +240,9 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             {
                 HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
                 string fid = hfFBaseInfoId.Value;
+                //HiddenField hxmjl = new HiddenField();
+                //hxmjl.ID = "q_XMJL";
+                //hxmjl.Value = "";
                 pageTool tool = new pageTool(this.Page);
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
                // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
@@ -248,4 +251,4 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
     }
 
 
-}
+};
