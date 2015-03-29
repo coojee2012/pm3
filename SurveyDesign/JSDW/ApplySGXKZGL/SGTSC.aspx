@@ -72,11 +72,11 @@
         function selEnt(obj, tagId) {
             var qylx = "";
             if (tagId == "t_SGTSCJGId") {
-                qylx = "145";
+                qylx = "109";
             } else if (tagId == "t_KCDWId") {
-                qylx = "155";
+                qylx = "102";
             } else if (tagId == "t_SJDWId") {
-                qylx = "155";
+                qylx = "103";
             }
             var url = "../project/EntListSel.aspx";
             url += "?qylx=" + qylx;
