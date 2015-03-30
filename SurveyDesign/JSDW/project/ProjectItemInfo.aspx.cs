@@ -17,8 +17,9 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
-        {
+        {           
             BindControl();
+            //项目id
             if (string.IsNullOrEmpty(Request.QueryString["fprjId"]))
             {
                
@@ -38,13 +39,40 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
                     t_PrjItemType.SelectedValue = emp.ProjectType;
                 }
                 ViewState["FPrjId"] = Request.QueryString["fprjId"];
-            }
-            
+                
+            }            
+            //工程项目id
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
+                //判断工程项目是否已经同步到标准库，如果已经同步则不能再保存，并且也不能同步
+                if (IsExistProjectItem(Request.QueryString["fid"].ToString()))
+                {
+                    this.btnSave.Enabled = false;
+                    this.btnRefresh.Enabled = false;
+                }
                 ViewState["FID"] = Request.QueryString["fid"];
                 showInfo();
-            }
+            }         
+        }
+    }
+
+    /// <summary>
+    /// 检测项目是否已经存在在标准库中
+    /// </summary>
+    /// <param name="fid"></param>
+    /// <returns></returns>
+    private bool IsExistProjectItem(string fid)
+    {
+        string sql = @"select  *  from  XM_BaseInfo.[dbo].[GC_DWGCXX]  where [dwgcbh]='" + fid + "'";
+        DataTable dt = new DataTable();
+        dt = rc.GetTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     void BindControl()
@@ -89,6 +117,13 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
     //保存
     private void saveInfo()
     {
+        string projitemname = this.t_PrjItemName.Text.Trim();
+        if (CheckPrjItemIsExist(projitemname))
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('系统中已经有同名工程项目，请从系统中选取对应工程项目！');window.returnValue='1';", true);
+            this.t_PrjItemName.Focus();
+            return;
+        }
         string fId = EConvert.ToString(ViewState["FID"]);
        // t_AddressDept.Value = govd_FRegistDeptId.fNumber;
         TC_PrjItem_Info Emp = new TC_PrjItem_Info();
@@ -110,8 +145,8 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
         ViewState["FID"] = fId;
 
  
-        //ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
-        ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "$('#btnSave').css('color','#BEBFC3');$('#btnSave').attr('disabled',true);;alert('保存成功');window.returnValue='1';", true);
+        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        //ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "$('#btnSave').css('color','#BEBFC3');$('#btnSave').attr('disabled',true);;alert('保存成功');window.returnValue='1';", true);
 
     //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
     //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
@@ -125,13 +160,37 @@ public partial class JSDW_project_ProjectItemInfo : System.Web.UI.Page
     {
         object obj = ViewState["FID"];
         pageTool tool = new pageTool(this.Page);
+        
         if (obj!=null)
         {
             string sql = @"exec SP_GC_TO_BZK @FID";
             rc.PExcute(sql, new System.Data.SqlClient.SqlParameter() { ParameterName = "@FID", Value = obj.ToString(), SqlDbType = SqlDbType.VarChar });
+            //数据同步到标准库后不能进行同步、重新同步的操作。
+            this.btnSave.Enabled = false;
+            this.btnRefresh.Enabled = false;
             tool.showMessage("操作成功");
         }
         else
             tool.showMessage("请先保存");
     }
+
+    /// <summary>
+    /// 判断单项工程项目在标准库中是否已经存在，如果已经存在则不允许添加单项，让操作者到标准库中选择
+    /// </summary>
+    /// <param name="projname">项目名称</param>
+    /// <returns></returns>
+    private bool CheckPrjItemIsExist(string projitemname)
+    {
+        string sql = @"select  *  from  XM_BaseInfo.[dbo].[GC_DWGCXX]  where ltrim(rtrim(DWGCMC))='" + projitemname.Trim() + "'";
+        DataTable dt = new DataTable();
+        dt = rc.GetTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+     }
 }

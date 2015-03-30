@@ -32,6 +32,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         }
 
     }
+     
     void BindControl()
     {
         string deptId = ComFunction.GetDefaultDept();
@@ -68,6 +69,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             tool.fillPageControl(prjInfo);
             tool = new pageTool(this.Page, "q_");
             tool.fillPageControl(qa);
+            q_SGDWoldId.Value = qa.SGDWId; 
             sj_FName.Text = qa.SJDW;
             sj_FRegistAddress.Text = qa.SJDWDZ;
             sj_FLinkMan.Text = qa.SJDWFR;
@@ -353,5 +355,9 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
                 showOtherEnt(6);
             }
         }
+    }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        this.q_XMJL.Text = "";
     }
 }

@@ -591,5 +591,11 @@
         <elementListCompartment Id="68dec947-ca28-419e-b4ce-ec5472e6cb76" absoluteBounds="8.39, 3.335, 1.9700000000000002, 1.0115458170572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="8bca2b42-b10d-436c-95b9-a2b1a160c433" isExpanded="false" absoluteBounds="8.125, 4.125, 2, 0.45">
+      <DataClassMoniker Name="/DBDataContext/TC_BHGD_PrjItemMappingBatch" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ed8df530-fdb6-46eb-8f90-5eeb1e5cca7c" absoluteBounds="8.14, 4.585, 1.9700000000000002, 0.820526123046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

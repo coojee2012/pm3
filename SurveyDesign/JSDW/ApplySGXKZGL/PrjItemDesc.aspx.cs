@@ -103,7 +103,12 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
             }
             else if (p.ProjectType == "2000103")
             {
-                t_ProjectUse.Items.Clear();
+                DataTable dt = rc.getDicTbByFNumber("2000102");
+                t_ProjectUse.DataSource = dt;
+                t_ProjectUse.DataTextField = "FName";
+                t_ProjectUse.DataValueField = "FNumber";
+                t_ProjectUse.DataBind();
+                //t_ProjectUse.Items.Clear();
             }
 
             pageTool tool = new pageTool(this.Page,"t_");
