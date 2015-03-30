@@ -168,14 +168,16 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
         //验证各个项目环节
         //var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FId == fAppId);
         var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FAppId == fAppId);   //修改为fappid,应该是业务id  modify  by  psq 20150319
-        if (dataOne == null || string.IsNullOrEmpty(dataOne.YDGHXKZBH))
+        //if (dataOne == null || string.IsNullOrEmpty(dataOne.YDGHXKZBH))
+        if (dataOne == null)  //只要上报过，不管是不许办理还是完整办理都可以上报
         {
             MyPageTool.showMessage("请完善项目环节:[建设用地规划许可证]", this.Page);
             return;
         }
         //var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FId == fAppId);  //修改为fappid,应该是业务id  modify  by  psq 20150319
         var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FAppId == fAppId);
-        if (dataTwo == null || string.IsNullOrEmpty(dataTwo.GCGHXKZBH))
+        //if (dataTwo == null || string.IsNullOrEmpty(dataTwo.GCGHXKZBH))
+        if (dataTwo == null)  //只要上报过，不管是不许办理还是完整办理都可以上报
         {
             MyPageTool.showMessage("请完善项目环节:[建设工程规划许可证]", this.Page);
             return;
