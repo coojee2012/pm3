@@ -118,6 +118,8 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
             t.ZCZY,
             t.FId
         };
+        //记录当前候选人数量，前端判断候选人大于三个则不能继续添加.
+        this.hxrcount.Value = App1.Count().ToString();
         PagerHXR.RecordCount = App1.Count();
         dg_ListHXR.DataSource = App1.Skip((PagerHXR.CurrentPageIndex - 1) * PagerHXR.PageSize).Take(PagerHXR.PageSize);
         dg_ListHXR.DataBind();

@@ -90,8 +90,8 @@
                 <td class="t_r t_bg">
                     企业资质等级：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_QYZZDJ" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                <td colspan="3">
+                    <asp:TextBox ID="t_QYZZDJ" runat="server" CssClass="m_txt" Width="600px"></asp:TextBox>
                 </td>
                 <%--<td class="t_r t_bg">
                     企业资质及等级（等级）：
@@ -163,8 +163,8 @@
                 <td class="t_r t_bg">
                     联合体企业资质等级：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_LHTQYZZDJ" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                <td colspan="3">
+                    <asp:TextBox ID="t_LHTQYZZDJ" runat="server" CssClass="m_txt" Width="600px"></asp:TextBox>
                 </td>
                 <%--<td class="t_r t_bg">
                     联合体企业资质及等级（等级）：
