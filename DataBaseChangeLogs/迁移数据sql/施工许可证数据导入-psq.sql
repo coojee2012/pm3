@@ -1,4 +1,6 @@
------------------------------------------------------------------------------------------------------------------------------------------------------
+
+begin
+----------------------------------------------------------------------------------------------------------------------------------------------------
 --删除施工许可证相关信息
 --业务主表
 Delete dbCenter.dbo.CF_App_List where FId in 
@@ -248,9 +250,12 @@ WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码
   AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
+end 
 
+/**delete end **/
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --导入施工许可证业务主表
+
 INSERT INTO dbCenter.dbo.CF_App_List
 SELECT 
 BA.YWBM FId    --业务编码
@@ -989,6 +994,10 @@ WHEN ISNULL(BA.GCLB,'0')='18' THEN '200010206'
 WHEN ISNULL(BA.GCLB,'0')='19' THEN '2000103'
 ELSE NULL END ProjectUse --工程用途 
 ,NULL ProjectNumber --立项文号
+,null SGXKZBH --施工许可证编号
+,NULL FZJG  --
+,NULl FZTime
+,null DZZT
 FROM JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQINFO AS FQ ON FQ.YWBM=BA.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
@@ -1372,6 +1381,9 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_SGZCBDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
@@ -1441,6 +1453,9 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_ZYCBDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
@@ -1509,6 +1524,9 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_LWFBDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
@@ -1578,14 +1596,17 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_KCDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
   AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
-
+                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
+  and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 
 
 --设计人员
@@ -1648,14 +1669,17 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_SJDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
   AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
-
+                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
+  and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 
 
 --监理人员
@@ -1718,13 +1742,16 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_JLDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
   AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
-
+                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
+  and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --施工许可证人员锁定需要增加导入
