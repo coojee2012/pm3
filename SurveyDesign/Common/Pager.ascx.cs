@@ -597,7 +597,7 @@ namespace Approve.Common
             int counts = ClassType.GetCount(sql, ClassType.ConvertParameters(Parameters));
 
             TotleCount.Text = counts.ToString();
-
+            //TotleCount.Text = "221";
             this.ViewState["RecordCount"] = counts;
             int pc = (counts % pageCount == 0) ? counts / pageCount : counts / pageCount + 1;//总页数
             if (curPage > 1)//传入的当前页码超过总页码,转到最后一页
