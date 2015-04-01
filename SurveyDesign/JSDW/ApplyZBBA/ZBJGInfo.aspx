@@ -33,6 +33,18 @@
             showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
             //  alert('dd')
         }
+        function selEnt(obj, tagId)
+        {
+            var url = "../project/EntListSel.aspx?qylx=105";
+            var pid = showWinByReturn(url, 1000, 600);
+            if (pid != null && pid != '') {
+                       $("#" + tagId).val(pid);
+                       $("#t_QYId").val(pid);
+                __doPostBack(obj.id, '');
+            }
+
+        }
+
         function selHXR(obj) {
             var fBDId = '<%=ViewState["BDId"] %>';
             var pid = showWinByReturn('../ApplyZBBA/HXRSel.aspx?fBDId=' + fBDId, 1000, 500);
@@ -41,7 +53,7 @@
                 __doPostBack(obj.id, '');
             }
         }
-    </script>
+      </script>
     <base target="_self">
     </base>
     <style type="text/css">
@@ -136,8 +148,9 @@
                    招标代理单位：
                 </td>
                 <td colspan="1" class="auto-style1">
-                    <asp:TextBox ID="t_ZBDLDW" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox> 
-                    <asp:Button ID="btnSelEnt" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selHXR(this);"
+                    <asp:TextBox ID="t_ZBDLDW" runat="server" CssClass="m_txt" Width="200px"  Enabled="false"></asp:TextBox> 
+                    <input type="hidden"  runat="server" ID="h_selEntId" value="" />
+                    <asp:Button ID="btnSelEnt" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'h_selEntId');"
                                         UseSubmitBehavior="false" OnClick="btnSel_Click" />
                 </td>
                 <td class="t_r t_bg">
@@ -166,9 +179,9 @@
                     中标人：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_ZHONGBR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_ZHONGBR" runat="server" CssClass="m_txt" Width="200px" Enabled="false" ReadOnly="true"></asp:TextBox><tt>*</tt>
                     <asp:Button ID="btnSel" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selHXR(this);"
-                                        UseSubmitBehavior="false" OnClick="btnSel_Click" />
+                                        UseSubmitBehavior="false" OnClick="btnSelhxr_Click" />
                     <input id="t_QYId" type="hidden" runat="server" />
                 </td>
                 

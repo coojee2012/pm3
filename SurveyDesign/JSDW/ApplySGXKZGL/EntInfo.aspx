@@ -62,7 +62,7 @@
                     url += "?qylx=" + qylx;
                     var pid = showWinByReturn(url, 1000, 600);
                     if (pid != null && pid != '') {
-                        $("#" + tagId).val(pid);
+                        $(tagId).val(pid);
                         __doPostBack(obj.id, '');
                     }
                     break;

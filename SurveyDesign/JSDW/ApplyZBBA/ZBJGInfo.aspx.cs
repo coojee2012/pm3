@@ -12,6 +12,7 @@ using System.Data;
 
 public partial class JSDW_ApplyZBBA_ZBJGINFO : System.Web.UI.Page
 {
+    EgovaDB1 dbcontext1 = new EgovaDB1();
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
     protected void Page_Load(object sender, EventArgs e)
@@ -142,11 +143,26 @@ public partial class JSDW_ApplyZBBA_ZBJGINFO : System.Web.UI.Page
         ShowFile(txtFId.Value);
     }
 
-    protected void btnSel_Click(object sender, EventArgs e)
+
+    protected void btnSelhxr_Click(object sender, EventArgs e)
     {
         var result = (from t in dbContext.TC_PBBG_ZBHXR
                       where t.QYId == this.t_QYId.Value
                       select t).SingleOrDefault();
-        t_ZHONGBR.Text = result.HXRMC;
+        t_ZHONGBR.Text = result.HXRMC;    
+    }
+    protected void btnSel_Click(object sender, EventArgs e)
+    {
+        //var result = (from t in dbContext.TC_PBBG_ZBHXR
+        //              where t.QYId == this.t_QYId.Value
+        //              select t).SingleOrDefault();
+        //t_ZHONGBR.Text = result.HXRMC;
+
+        string qybh = this.h_selEntId.Value.ToString();
+        var result = (from tb in dbcontext1.QY_JBXX
+                      where tb.QYBM == qybh
+                      select tb
+       ).SingleOrDefault();
+        t_ZBDLDW.Text = result.QYMC.ToString();
     }
 }
