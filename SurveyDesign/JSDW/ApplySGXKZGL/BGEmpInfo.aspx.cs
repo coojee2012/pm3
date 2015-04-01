@@ -20,7 +20,8 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         {
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             txtFId.Value = EConvert.ToString(Request["FId"]);
-            t_FEntId.Value = EConvert.ToString(Request["FEntId"]);
+            t_FEntId.Value = EConvert.ToString(Request["entId"]);
+            t_qyId.Value = EConvert.ToString(Request["qyId"]);
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             BindControl();
@@ -114,19 +115,19 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             string sql = @" select count(*) from TC_PrjItem_Emp
                             where EmpType='11220201'
                             and FAppId='{0}' and FEntId = '{1}'";
-            sql = string.Format(sql, t_FAppId.Value, t_FEntId.Value);
+            sql = string.Format(sql, t_FAppId.Value, t_qyId.Value);
             int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
             dbContext = new EgovaDB();
             string sql1 = @" select count(*) from TC_PrjItem_Emp
                             where FIdCard='{0}'
                             and FAppId='{1}' and FEntId = '{2}'";
-            sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_FEntId.Value);
+            sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_qyId.Value);
             int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
             dbContext = new EgovaDB();
             string sql2 = @" select count(*) from TC_PrjItem_Emp
                             where EmpType='11220209'
                             and FAppId='{0}' and FEntId = '{1}'";
-            sql2 = string.Format(sql2, t_FAppId.Value, t_FEntId.Value);
+            sql2 = string.Format(sql2, t_FAppId.Value, t_qyId.Value);
             int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql2).FirstOrDefault());
             if (t_EmpType.SelectedValue == "11220201" && count > 0)
             {
@@ -151,7 +152,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             Emp.FAppId = t_FAppId.Value;
             Emp.FTime = DateTime.Now;
             Emp.FCreateTime = DateTime.Now;
-            Emp.FEntId = t_FEntId.Value;
+            Emp.FEntId = t_qyId.Value;
             Emp.FLinkId = t_FEntId.Value;
             dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
         }
@@ -183,7 +184,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         sr.QYMC = ent.FEntName;
         sr.BGQK = "增加";
         sr.BGTime = DateTime.Now;
-        sr.FLinkId = ent.FEntId;//把linkid 当企业的主键使用
+        sr.FLinkId = ent.FId;
         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
         dbContext.SubmitChanges();
     }

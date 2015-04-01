@@ -1,84 +1,37 @@
-﻿using System;
+﻿using Approve.RuleCenter;
+using EgovaDAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Approve.RuleCenter;
-using System.Data;
-using EgovaDAO;
 using Tools;
-using System.Text;
-using System.Web.Services;
 
-public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
+public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
 {
-    RCenter rc = new RCenter();
-    pageTool tool;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            txtFId.Value = EConvert.ToString(Request["FId"]);
-            t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             h_AppId.Value = EConvert.ToString(Session["FAppId"]);
-            t_FEntType.Value = EConvert.ToString(Request["FEntType"]);
-            tool = new pageTool(this.Page);
-            showTitle();
-            showInfo();
+            bindData();
             bindEmpList();
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
+                pageTool tool = new pageTool(this.Page);
                 tool.ExecuteScript("btnEnable();");
             }
         }
     }
 
     /// <summary>
-    /// 显示标题
-    /// </summary>
-    private void showTitle()
-    {
-        switch (t_FEntType.Value)
-        {
-            case "2":
-                lblTitle.InnerText = "施工总承包单位";
-                break;
-            case "3":
-                lblTitle.InnerText = "专业承包单位";
-                break;
-            case "4":
-                lblTitle.InnerText = "劳务分包单位";
-                break;
-            case "5":
-                lblTitle.InnerText = "勘察单位";
-                break;
-            case "6":
-                lblTitle.InnerText = "设计单位";
-                break;
-            case "7":
-                lblTitle.InnerText = "监理单位";
-                break;
-        }
-
-
-    }
-    /// <summary>
     /// 绑定数据
     /// </summary>
-    private void showInfo()
+    private void bindData()
     {
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
         EgovaDB dbContext = new EgovaDB();
-        TC_PrjItem_Ent entInfo = null;
-        var entType = Convert.ToInt32(t_FEntType.Value);
-        if (string.IsNullOrEmpty(txtFId.Value))
-        {
-            h_IsAdd.Value = "1";//新增
-        }
-        else
-        {
-            h_IsAdd.Value = "0";//修改
-        }
         var bgProInfo = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == h_AppId.Value).FirstOrDefault();
         if (bgProInfo == null)
         {
@@ -94,94 +47,29 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         }
         h_OldAppId.Value = oldAppIds[1];
 
-        if (!string.IsNullOrEmpty(txtFId.Value))
+        //取这次
+        var entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_AppId.Value && t.FEntType == 2).FirstOrDefault();
+        if (entInfo == null)
         {
-            entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FId == txtFId.Value).FirstOrDefault();
+            entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_OldAppId.Value && t.FEntType == 2).FirstOrDefault();
         }
-        else
-        {
-            if (entType == 2)
-            {
-                entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_AppId.Value && t.FEntType == 2).FirstOrDefault();
-                if (entInfo == null)
-                {
-                    entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_OldAppId.Value && t.FEntType == 2).FirstOrDefault();
-                }
-                if (entInfo != null)
-                {
-                    pageTool tool = new pageTool(this.Page, "t_");
-                    tool.fillPageControl(entInfo);
-                    h_selEntId.Value = entInfo.QYID;
-                    txtFId.Value = entInfo.FId;
-                }
-            }
-        }
-
-
-        if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
-        }
-        else
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
-        }
-
-
-
-
-
-
-
         if (entInfo != null)
         {
             pageTool tool = new pageTool(this.Page, "t_");
             tool.fillPageControl(entInfo);
             h_selEntId.Value = entInfo.QYID;
-            h_OldQYID.Value = entInfo.QYID;
-            h_OldQYName.Value = entInfo.FName;
-
-            var v = from t in dbContext.TC_PrjItem_Emp
-                    where (t.FAppId == h_AppId.Value || t.FAppId == h_OldAppId.Value) && t.FEntId == entInfo.QYID
-                    orderby t.FId
-                    select new
-                    {
-                        t.FHumanName,
-                        t.ZCZY,
-                        EmpTypeStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(t.EmpType)).Select(d => d.FName).FirstOrDefault(),
-                        t.ZCRQ,
-                        t.ZCBH,
-                        t.FId,
-                        t.FAppId,
-                        t.FEntId,
-                        t.FPrjItemId,
-                        t.FPrjId
-                    };
-            dg_List.DataSource = v;
-            dg_List.DataBind();
+            h_Id.Value = entInfo.FId;
         }
 
     }
     private void bindEmpList()
     {
         EgovaDB dbContext = new EgovaDB();
-        var entType = Convert.ToInt32(t_FEntType.Value);
-        TC_PrjItem_Ent entInfo = null;
-        if (!string.IsNullOrEmpty(txtFId.Value))
+        //取这次
+        var entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_AppId.Value && t.FEntType == 2).FirstOrDefault();
+        if (entInfo == null)
         {
-            entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FId == txtFId.Value).FirstOrDefault();
-        }
-        else
-        {
-            if (entType == 2)
-            {
-                entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_AppId.Value && t.FEntType == entType).FirstOrDefault();
-                if (entInfo == null)
-                {
-                    entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_OldAppId.Value && t.FEntType == entType).FirstOrDefault();
-                }
-
-            }
+            entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == h_OldAppId.Value && t.FEntType == 2).FirstOrDefault();
         }
         if (entInfo != null)
         {
@@ -243,17 +131,16 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
     private void saveInfo()
     {
         EgovaDB dbContext = new EgovaDB();
-        var entType = Convert.ToInt32(t_FEntType.Value);
-        var id = txtFId.Value;
+        var id = h_Id.Value;
         TC_PrjItem_Ent entInfo = new TC_PrjItem_Ent();
         if (string.IsNullOrEmpty(id))
         {
             entInfo.FId = Guid.NewGuid().ToString();
-            txtFId.Value = entInfo.FId;
+            h_Id.Value = entInfo.FId;
             entInfo.FPrjItemId = h_ProjectItemId.Value;
             entInfo.FAppId = h_AppId.Value;
             entInfo.QYID = h_selEntId.Value;
-            entInfo.FEntType = entType;
+            entInfo.FEntType = 2;
             entInfo.FName = t_FName.Text;
             entInfo.FOrgCode = t_FOrgCode.Text;
             entInfo.FAddress = t_FAddress.Text;
@@ -281,7 +168,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         }
         else
         {
-            entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FId == txtFId.Value).FirstOrDefault();
+            entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FId == h_Id.Value).FirstOrDefault();
             if (entInfo == null)
             {
                 ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('获取企业信息失败');window.returnValue='1';", true);
@@ -289,18 +176,18 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             }
         }
         //如果企业发生了变更
-        if (!string.IsNullOrEmpty(h_OldQYID.Value) && h_selEntId.Value.Trim() != h_OldQYID.Value.Trim())
+        if (!string.IsNullOrEmpty(t_QYID.Value) && h_selEntId.Value.Trim() != t_QYID.Value.Trim())
         {
             //新增一个企业 | 增加一个增加企业 | 把以前企业退出 | 人员全部退出
             if (entInfo.FAppId == h_OldAppId.Value)
             {
                 var newEntInfo = new TC_PrjItem_Ent();
                 newEntInfo.FId = Guid.NewGuid().ToString();
-                txtFId.Value = newEntInfo.FId;
+                h_Id.Value = newEntInfo.FId;
                 newEntInfo.FPrjItemId = h_ProjectItemId.Value;
                 newEntInfo.FAppId = h_AppId.Value;
                 newEntInfo.QYID = h_selEntId.Value;
-                newEntInfo.FEntType = entType;
+                newEntInfo.FEntType = 2;
                 newEntInfo.FName = t_FName.Text;
                 newEntInfo.FOrgCode = t_FOrgCode.Text;
                 newEntInfo.FAddress = t_FAddress.Text;
@@ -392,13 +279,14 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+        bindEmpList();
     }
     protected void btnDel_Click(object sender, EventArgs e)
     {
         EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_PrjItem_Emp, tool_Deleting);
-        showInfo();
+        bindEmpList();
     }
 
     //删除
@@ -424,13 +312,13 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     sr.ZSBH = q.ZSBH;
                     sr.QYMC = q.FEntName;
                     sr.BGQK = "退出";
-                    sr.FLinkId = txtFId.Value;
+                    sr.FLinkId = h_Id.Value;
                     sr.BGTime = DateTime.Now;
                     dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
                 }
                 else
                 {
-                    var info = dbContext.TC_SGXKZ_RYBGJG.Where(m => m.FAppId == q.FAppId && m.FLinkId == txtFId.Value && m.XM == q.FHumanName && m.BGQK == "增加");
+                    var info = dbContext.TC_SGXKZ_RYBGJG.Where(m => m.FAppId == q.FAppId && m.FLinkId == h_Id.Value && m.XM == q.FHumanName && m.BGQK == "增加");
                     dbContext.TC_SGXKZ_RYBGJG.DeleteAllOnSubmit(info);
                 }
             });
@@ -440,7 +328,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
-        showInfo();
+        bindEmpList();
     }
     protected void App_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
@@ -483,22 +371,12 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         if (v1 != null)
             t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
 
-        if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
-        }
-        else
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
-        }
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
 
     }
     protected void btnAddEnt_Click(object sender, EventArgs e)
     {
         selEnt();
     }
-
-
-
 
 }
