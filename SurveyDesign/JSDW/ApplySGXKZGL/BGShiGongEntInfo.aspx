@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BGEntInfo.aspx.cs" Inherits="JSDW_ApplySGXKZGL_EntInfoForBG" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="BGShiGongEntInfo.aspx.cs" Inherits="JSDW_ApplySGXKZGL_BGShiGongEntInfo" %>
 
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
@@ -24,14 +24,13 @@
             return AutoCheckInfo();
         }
         function addEmp() {
-            var id = document.getElementById("txtFId").value;
-            var qyid = document.getElementById("h_selEntId").value;
+            var fid = document.getElementById("h_Id").value;
             var FPrjItemId = document.getElementById("h_ProjectItemId").value;
-            if (id == null || id == '') {
+            if (fid == null || fid == '') {
                 alert('请先保存上方的企业信息！');
                 return;
             }
-            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +
+            showAddWindow('BGEmpInfo.aspx?FEntId=' + fid +
                  '&FPrjItemId=' + FPrjItemId, 1000, 600);
         }
         function showTr1() {
@@ -45,30 +44,8 @@
             $("td[name=td2]").show();
         }
         function selEnt(obj, tagId) {
-            var type = document.getElementById("t_FEntType").value;
-            var qylx = "101";
-            switch (type) {
-                case "2":
-                    qylx = "101";
-                    break;
-                case "3":
-                    qylx = "101";
-                    break;
-                case "4":
-                    qylx = "101";
-                    break;
-                case "5":
-                    qylx = "102";
-                    break;
-                case "6":
-                    qylx = "103";
-                    break;
-                case "7":
-                    qylx = "125";
-                    break;
-            }
             var url = "../project/EntListSel.aspx";
-            url += "?qylx=" + qylx;
+            url += "?qylx=101";
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
@@ -120,7 +97,6 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
         <div style="height: 100%; width: 100%;">
-
             <table width="98%" align="center" class="m_title">
                 <tr>
                     <th colspan="2">
@@ -138,9 +114,6 @@
                                 <ContentTemplate>
                                     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                                         OnClientClick="return checkInfo();" />
-                                    <input id="txtFId" type="hidden" runat="server" />
-                                    <input id="t_QYID" type="hidden" runat="server" />
-                                    <input type="hidden" runat="server" id="h_selEntId" value="" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
 
@@ -154,6 +127,8 @@
                         </td>
                         <td colspan="1" width="45%">
                             <asp:TextBox ID="t_FName" runat="server" CssClass="m_txt" Width="195px" MaxLength="40" Enabled="false"></asp:TextBox>
+                            <input id="t_QYID" type="hidden" runat="server" />
+                            <input type="hidden" runat="server" id="h_selEntId" value="" />
                             <tt>*</tt>
                             <asp:Button ID="btnAddEnt" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'h_selEntId');"
                                 UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
@@ -298,22 +273,13 @@
                     </webdiyer:AspNetPager>
                 </div>
             </div>
-            <input type="hidden" runat="server" id="t_AddressDept" />
-            <input type="hidden" runat="server" id="t_Province"  />
-            <input type="hidden" runat="server" id="t_City" />
-            <input type="hidden" runat="server" id="t_County"  />
-            <input type="hidden" runat="server" id="t_FEntType" value="0" />
-            <input type="hidden" runat="server" id="t_FAppId" />
-            <input type="hidden" runat="server" id="hf_FId" />
-            <input type="hidden" runat="server" id="t_FPrjId" />
 
-            <input type="hidden" runat="server" id="h_IsAdd" />
-            <input type="hidden" runat="server" id="h_AppId" />
-            <input type="hidden" runat="server" id="h_OldAppId" />
-            <input type="hidden" runat="server" id="h_OldQYID" />
-            <input type="hidden" runat="server" id="h_OldQYName" />
-            <input type="hidden" runat="server" id="h_ProjectItemId" />
-
+            <div id="hiddenView" style="display: none">
+                <input id="h_Id" type="hidden" runat="server" />
+                <input id="h_AppId" type="hidden" runat="server" />
+                <input id="h_OldAppId" type="hidden" runat="server" />
+                <input id="h_ProjectItemId" type="hidden" runat="server" />
+            </div>
         </div>
 
 
