@@ -1,3 +1,4 @@
+use dbCenter 
 
 --1、导入招标项目信息
 begin
