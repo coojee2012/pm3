@@ -44,6 +44,7 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
                 ViewState["FAppId"] = aj.FAppId;
                 ViewState["FPrjItemId"] = aj.FPrjItemId;
                 t_FHumanId.Value = aj.FJSDWID;
+                hdfprjitemid.Value = aj.FPrjItemId;
             }
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
@@ -142,7 +143,7 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
     }
     protected void btnAddEmpSG_Click(object sender, EventArgs e)
     {
-
+        selEmp();
     }
     protected void btnQuery_Click(object sender, EventArgs e)
     {
@@ -182,5 +183,51 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
         Byte[] FileByteArray = new Byte[FileLength];    //图象文件临时储存Byte数组  
         stream.Read(FileByteArray, 0, FileLength);
         return FileByteArray;
+    }
+
+
+    /// <summary>
+    /// 选择人员
+    /// </summary>
+    private void selEmp()
+    {
+        string selEmpId = t_FHumanId.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v = (from a in db.RY_RYJBXX
+                 join c in db.RY_RYZSXX
+                 on a.RYBH equals c.RYBH
+                 join d in db.QY_JBXX
+                 on a.QYBM equals d.QYBM
+                 where a.RYBH == selEmpId
+                 select new
+                 {
+                     a.XM,
+                     a.XB,
+                     a.SFZH,
+                     c.ZCZSBH,
+                     c.ZCZSH,
+                     a.CSRQ,
+                     d.QYMC,
+                     c.ZCZY,
+                     a.GRDH
+
+                 }
+                ).FirstOrDefault();
+
+        if (v != null)
+        {
+            t_FHumanName.Text = v.XM;  //姓名
+            t_FSex.SelectedValue = v.XB.ToString(); //性别
+            t_FBirthDay.Text = v.CSRQ.ToString();  //出生日期
+            t_ZJHM.Text = v.SFZH;   //身份证号
+            t_SZQY.Text = v.QYMC;   //企业名称
+            t_ZCZY.Text = v.ZCZY;  //职称专业
+            t_ZCZSH.Text = v.ZCZSH;//职称证书号
+            t_ZGXL.SelectedValue = this.t_ZGXL.Items.FindByText("无").Value; //最高学历
+            t_ZHUCZY.Text = "";
+            t_ZHUCZSH.Text = v.ZCZSBH;
+            //t_AQKHHGZH.Text = "";
+            t_Mobile.Text = v.GRDH;//联系电话
+        }
     }
 }

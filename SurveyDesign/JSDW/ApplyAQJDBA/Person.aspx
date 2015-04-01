@@ -23,21 +23,26 @@
         }
         function selEmp(obj, tagId) {
             var zw = document.getElementById("t_XMZW").value;;
-            if (tagId == "t_SGRYId") {
+            var priitemid = document.getElementById("hdfprjitemid").value;
+            if (tagId == "t_SGRYId")
+            {
                 qybm = document.getElementById("t_XMZW").value;
-            } else if (tagId == "t_JLRYId") {
-                qybm = document.getElementById("t_JLId").value;
+            }
+            else if (tagId == "t_JLRYId")//监理人员ID
+           {
+                qybm = document.getElementById("t_JLId").value;              
             }
             else if (tagId == "t_FHumanId")
             {
-                qybm = document.getElementById("t_FHumanId").value;
+                qybm = document.getElementById("t_FHumanId").value;              
             }
+            //去掉单位的限制  modify by psq 201503401
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
-                url += "?qybm=" + qybm;
+                url += "?qybm=" + qybm + "&emptype=aqjd" + "&FPrjItemId=" + priitemid;
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {
-                    $("#" + tagId).val(pid);
+                    $("#" + tagId).val(pid);                    
                     __doPostBack(obj.id, '');
                 }
             } else {
@@ -82,6 +87,7 @@
             </tr>
         </table>
         <table class="m_table" width="98%" align="center">
+            <input type="hidden"  runat="server" ID="hdfprjitemid" value="" />
             <tr>
                 <td class="t_r t_bg">
                     姓名：

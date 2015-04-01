@@ -28,7 +28,7 @@ public partial class Government_AppZBBA_ZBJGBAList : govBasePage
     {
         if (!Page.IsPostBack)
         {
-            base.Page_Load(sender, e);
+            //base.Page_Load(sender, e);
          //   ControlBind();
             ShowInfo();
             //ShowPostion();
@@ -136,16 +136,12 @@ public partial class Government_AppZBBA_ZBJGBAList : govBasePage
         //}
 
         sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
-
-
+        this.Pager1.className = "dbCenter";       
         this.Pager1.sql = sb.ToString();
-        this.Pager1.controltype = "DataGrid";
-        this.Pager1.controltopage = "JustAppInfo_List";
         this.Pager1.pagecount = 15;
-        this.Pager1.dataBind();
-
-
-
+        this.Pager1.controltype = "DataGrid";
+        this.Pager1.controltopage = "JustAppInfo_List";       
+        this.Pager1.dataBind();       
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)

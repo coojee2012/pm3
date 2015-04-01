@@ -1,4 +1,6 @@
------------------------------------------------------------------------------------------------------------------------------------------------------
+
+begin
+----------------------------------------------------------------------------------------------------------------------------------------------------
 --删除施工许可证相关信息
 --业务主表
 Delete dbCenter.dbo.CF_App_List where FId in 
@@ -11,7 +13,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_YWInfo YW ON YW.YWBM=B.YWBM 
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
   );
 
@@ -24,7 +26,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=A.JSDW
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(A.XMBM,'')<>'' --保证项目编码有值 
   AND A.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -38,7 +40,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW 
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -51,7 +53,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -65,7 +67,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -79,7 +81,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=KC.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=KC.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -96,7 +98,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_ZBJG_JLDW JL ON JL.YWBM=KC.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_ZBJG_SGDW SG ON SG.YWBM=KC.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -110,7 +112,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -124,7 +126,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -137,7 +139,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -151,7 +153,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW 
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -164,7 +166,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -178,7 +180,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -192,7 +194,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -205,7 +207,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -219,7 +221,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -232,7 +234,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
 
@@ -245,52 +247,94 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
 );
+end 
 
+/**delete end **/
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --导入施工许可证业务主表
-INSERT INTO dbCenter.dbo.CF_App_List
-SELECT 
-BA.YWBM FId    --业务编码
-,B.JSDW FBaseinfoId    --企业id
-,B.GuidId FPrjId    --项目编码
-,CASE WHEN ISNULL(YW.CreateTime,'')<>'' THEN CONVERT(CHAR(4),YEAR(YW.CreateTime))+'年 ' ELSE '' END +'施工许可证管理初次办理' FName    --业务名称
-,11223 FManageTypeId    --业务编码
-,YW.CreateTime FwriteDate    --写入时间
-,BA.SBSJ FReportDate    --上报时间
-,NULL FIsSign    --是否签字
-,0 FState    --业务状态
-,NULL FResult    --审批结论
-,YEAR(YW.CreateTime) FYear    --年度
-,MONTH(YW.CreateTime) FMonth    --月份
-,FQ.FQBM FLinkId    --外键工程编码
-,JS.FCompany FBaseName    --建设单位名称
-,NULL FUpDeptId    --上报部门地区编码
-,NULL FRemark    --暂不考虑
-,NULL FIsCheck    --暂不考虑
-,NULL FCount    --暂不考虑
-,YW.CreateTime FTime    --最后更新时间,业务暂时没有上报，没走流程
-,NULL FIsDeleted    --是否删除
-,YW.CreateTime FCreateTime    --创建时间
-,1 FReportCount    --暂不考虑
-,NULL FToBaseinfoId    --暂不考虑
-,NULL FAppDate    --暂不考虑
-,NULL FLinkAppId    --暂不考虑
-,NULL FBarCode    --暂不考虑
-,NULL FCreateUser    --暂不考虑
-,NULL FgfTime    --暂不考虑
-FROM JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA
-LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQINFO AS FQ ON FQ.YWBM=BA.YWBM
-LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
-LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW 
-LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_YWInfo YW ON YW.YWBM=B.YWBM 
-WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
-  AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
+
+if not exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo._App_List_SGXK')
+            and   type = 'U')
+begin
+    select * into _App_List_SGXK from dbCenter.dbo.CF_App_List where 1=2
+end
+else
+begin
+   delete _App_List_SGXK
+end 
+	INSERT INTO dbCenter.dbo._App_List_SGXK
+	SELECT 
+	BA.YWBM FId    --业务编码
+	,B.JSDW FBaseinfoId    --企业id
+	,B.GuidId FPrjId    --项目编码
+	,CASE WHEN ISNULL(YW.CreateTime,'')<>'' THEN CONVERT(CHAR(4),YEAR(YW.CreateTime))+'年 ' ELSE '' END +'施工许可证管理初次办理' FName    --业务名称
+	,11223 FManageTypeId    --业务编码
+	,YW.CreateTime FwriteDate    --写入时间
+	,BA.SBSJ FReportDate    --上报时间
+	,NULL FIsSign    --是否签字
+	,0 FState    --业务状态
+	,NULL FResult    --审批结论
+	,YEAR(YW.CreateTime) FYear    --年度
+	,MONTH(YW.CreateTime) FMonth    --月份
+	,FQ.FQBM FLinkId    --外键工程编码
+	,JS.FCompany FBaseName    --建设单位名称
+	,isnull(b.SDC,'51') FUpDeptId    --上报部门地区编码
+	,NULL FRemark    --暂不考虑
+	,NULL FIsCheck    --暂不考虑
+	,NULL FCount    --暂不考虑
+	,YW.CreateTime FTime    --最后更新时间,业务暂时没有上报，没走流程
+	,NULL FIsDeleted    --是否删除
+	,YW.CreateTime FCreateTime    --创建时间
+	,1 FReportCount    --暂不考虑
+	,NULL FToBaseinfoId    --暂不考虑
+	,NULL FAppDate    --暂不考虑
+	,NULL FLinkAppId    --暂不考虑
+	,NULL FBarCode    --暂不考虑
+	,NULL FCreateUser    --暂不考虑
+	,NULL FgfTime    --暂不考虑
+	FROM JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA
+	LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQINFO AS FQ ON FQ.YWBM=BA.YWBM
+	LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
+	LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW 
+	LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_YWInfo YW ON YW.YWBM=B.YWBM 
+	WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
+	  AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
+	  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
+					 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
+
+     update [CF_App_List]
+          set FManageTypeId = b.FManageTypeId,
+              Fresult  = b.FResul,
+			  fstate   = b.fstate
+    from [CF_App_List] a,
+	(select ba.ywbm ,c.actionid,
+       case c.actionid when 257 then '11223' when 258 then '11223' when 259 then '11223'
+	                   when 269 then '11224' when 270 then '11224' when 271 then '11224'
+					   when 277 then '11225' when 278 then '11225' when 279 then '11225' end as FManageTypeId,  --类型
+       case c.actionid when 257 then 0 when 258 then 0 when 259 then 0
+	                   when 269 then 0 when 270 then 0 when 271 then 0
+					   when 277 then 0 when 278 then 0 when 279 then 0                   end as FMeasure,          --
+       1  as fstate,         --
+       null as FResul	   		--   	   
+ from JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA,JKCWFDB_WORK_NJS.DBO.c05 b ,JKCWFDB_WORK_NJS.DBO.c06 c
+where ba.ywbm = b.ProcessKeyValue 
+  and b.ProjectID=c.ProjectID
+  and c.ActionState in (0,1,2)
+  and b.ProcessTimeB>='2014-01-01'
+  and c.actionid in (257,258,259,269,270,271,277,278,279)
+    ) b 
+  where a.fid = b.ywbm 
+
   
+  INSERT INTO dbCenter.dbo.CF_App_List
+       select * 
+	     from dbCenter.dbo._App_List_SGXK a
+        where not exists(select 1 from dbCenter.dbo.CF_App_List b where a.FId = b.Fid)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --导入施工许可证相关项目表
@@ -351,7 +395,7 @@ ELSE NULL END ProjectUse         --工程用途：200010201--给水；200010205--道路
 ,NULL  ConstrBasis         --建设依据
 ,NULL ConstrContent         --建设内容
 ,A.JSDW FJSDWID --建设单位外键
-,A.XMSZD AddressDept    --地址外键
+,isnull(A.XMSZD,'51') AddressDept    --地址外键
 ,CONVERT(VARCHAR(20),BA.JSGM) + BA.JSGM_DW + ', ' + BA.JSGMQT ConstrScale--建设规模
 ,NULL LandType  --用地性质
 --新建	2000501
@@ -367,7 +411,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=A.JSDW
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(A.XMBM,'')<>'' --保证项目编码有值 
   AND A.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -406,7 +450,7 @@ ELSE NULL END PrjItemType --工程类别          --工程类别：2000101--房屋建筑;2000
 ,NULL Scale         --工程规模
 ,NULL PrjItemDesc         --工程描述
 ,JS.FID FJSDWID         --建设单位外键
-,B.XMSZD AddressDept         --地址外键
+,isnull(B.XMSZD,'51') AddressDept         --地址外键
 ,CONVERT(VARCHAR(20),BA.JSGM) + BA.JSGM_DW + ', ' + BA.JSGMQT ConstrScale--建设规模
 FROM JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQINFO AS FQ ON FQ.YWBM=BA.YWBM
@@ -414,7 +458,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW 
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -437,7 +481,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 --保证金2
@@ -458,7 +502,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 --保证金3
@@ -479,7 +523,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -501,7 +545,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -523,7 +567,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -545,7 +589,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -567,7 +611,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -589,7 +633,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -611,7 +655,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -633,7 +677,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -667,7 +711,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -686,7 +730,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=KC.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=KC.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -822,7 +866,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_ZBJG_JLDW JL ON JL.YWBM=KC.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_ZBJG_SGDW SG ON SG.YWBM=KC.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -850,7 +894,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -879,7 +923,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo BA ON BA.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --选址意见书
@@ -905,7 +949,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -919,7 +963,7 @@ BA.WYBM FId  --主键
 ,NULL JProvince --省
 ,NULL JCity --市
 ,NULL JCounty --县
-,BA.JSDWSDX JSDWAddressDept --建设单位属地
+,isnull(BA.JSDWSDX,'51') JSDWAddressDept --建设单位属地
 ,BA.JSDWDZ JSDWDZ --建设单位地址
 ,CASE WHEN ISNULL(BA.SYZXZ,'0')='有限责任' THEN '11221201'
       WHEN ISNULL(BA.SYZXZ,'0')='集体' THEN '11221202'
@@ -962,7 +1006,7 @@ ELSE NULL END PrjItemType --工程类别
 ,NULL PProvince --省
 ,NULL PCity --市
 ,NULL PCounty --县
-,B.SDC PrjAddressDept --工程属地
+,isnull(B.SDC,'51') PrjAddressDept --工程属地
 ,BA.JSDD Address --建设地址
 ,CONVERT(VARCHAR(20),BA.JSGM) + BA.JSGM_DW + ', ' + BA.JSGMQT ConstrScale--建设规模
 ,NULL ConstrType --结构类型
@@ -989,13 +1033,17 @@ WHEN ISNULL(BA.GCLB,'0')='18' THEN '200010206'
 WHEN ISNULL(BA.GCLB,'0')='19' THEN '2000103'
 ELSE NULL END ProjectUse --工程用途 
 ,NULL ProjectNumber --立项文号
+,null SGXKZBH --施工许可证编号
+,NULL FZJG  --
+,NULl FZTime
+,null DZZT
 FROM JKCWFDB_WORK_NJS.DBO.YW_SGXKZInfo AS BA
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQINFO AS FQ ON FQ.YWBM=BA.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMINFO AS B ON BA.YWBM=B.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.xm_JSDW_USER AS JS ON JS.FID=B.JSDW 
 WHERE ISNULL(JS.FID,'')<>'' AND ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND BA.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1017,7 +1065,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1038,7 +1086,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1059,7 +1107,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 --设计附件材料
@@ -1079,7 +1127,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1100,7 +1148,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
 AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1135,7 +1183,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1170,7 +1218,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 --劳务
@@ -1203,7 +1251,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1238,7 +1286,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1272,7 +1320,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1307,7 +1355,7 @@ LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1372,12 +1420,15 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_SGZCBDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1441,12 +1492,15 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_ZYCBDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 --劳务分包人员
@@ -1509,12 +1563,15 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_LWFBDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
 
@@ -1578,14 +1635,17 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_KCDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
-
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
+                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
+  and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 
 
 --设计人员
@@ -1648,14 +1708,17 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_SJDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
-
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
+                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
+  and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 
 
 --监理人员
@@ -1718,13 +1781,81 @@ ELSE NULL END ZC --职称
 ,NULL FTime
 ,NULL Remark
 ,A.RYID FEmpId --人员外键
+,null Pid
+,null FlinkId
+,null FentType 
 FROM JKCWFDB_WORK_NJS.dbo.YW_JLDW_RYXX A
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMFQInfo FQ ON FQ.YWBM=A.YWBM
 LEFT JOIN JKCWFDB_WORK_NJS.DBO.YW_XMInfo B ON B.YWBM=A.YWBM
 WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码都有值 
   AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
-  AND A.YWBM in (select distinct C05.ProcessKeyValue from C06 Left Join C05 on C05.ProjectID=C06.ProjectID
-                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
-
+  AND A.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
+                 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
+  and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --施工许可证人员锁定需要增加导入
+
+
+
+--导入最终招标备案的过程数据
+--CF_App_ProcessInstance   备案主流程表
+--CF_App_ProcessRecord     备案子流程表
+if not exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo._App_ProcessInstance_SGXK')
+            and   type = 'U')
+begin 
+    SELECT * into _App_ProcessInstance_SGXK from CF_App_ProcessInstance where 1=2  --只取表结构
+    alter table _App_ProcessInstance_SGXK alter column FentName varchar(200) null       
+
+	   insert into _App_ProcessInstance_SGXK
+	   (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
+			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
+			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
+			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode)
+       select newid(),0,a.FwriteDate,a.FwriteDate,a.FBaseinfoId,a.FBaseName,a.FLinkId as FEmpId,a.Fid,1,0,
+	          0,'19301','1930100','1930100','72aac054-972a-473a-b03d-d878f622dc3f',isnull(a.fupdeptid,'51'),a.FManageTypeId,
+			  '',year(a.FwriteDate),month(a.FwriteDate),a.FReportDate,a.FReportDate,isnull(a.fupdeptid,'51'),'8801','8801',1,1,'1122',0,null,null,null,null,null
+	     from _App_List_SGXK a
+		where  not exists(select 1 from CF_App_ProcessInstance b where a.FId = b.FLinkId)
+end 
+
+  insert into CF_App_ProcessInstance
+             (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
+			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
+			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
+			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode)
+       select fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
+			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
+			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
+			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode
+         from _App_ProcessInstance_SGXK a
+		where not exists(select 1 from CF_App_ProcessInstance b where a.FId = b.fid)
+
+
+if not exists (select 1
+            from  sysobjects
+           where  id = object_id('dbo._App_ProcessRecord_SGXK')
+            and   type = 'U')
+begin
+
+  select * into _App_ProcessRecord_SGXK from CF_App_ProcessRecord where 1=2
+
+  insert into _App_ProcessRecord_SGXK
+              (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
+			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint )
+	   select newid(),a.FSubmitDate,0,a.fid,a.FLinkId,a.FSubFlowId,0,null,isnull(FManageDeptId,'51'),
+	          a.FReportDate,1,'8801',1,1,'管理部门审核',1,2,1
+	     from _App_ProcessInstance_SGXK a
+		where  not exists(select 1 from CF_App_ProcessRecord b where a.FId = b.FProcessInstanceID)
+
+
+end 
+
+  insert into CF_App_ProcessRecord
+              (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
+			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint )
+       select fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
+			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint
+		 from _App_ProcessRecord_SGXK a
+	    where not exists(select 1 from CF_App_ProcessRecord b where a.FId = b.fid)

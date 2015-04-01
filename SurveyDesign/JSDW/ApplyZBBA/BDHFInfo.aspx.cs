@@ -96,12 +96,14 @@ public partial class JSDW_ApplyZBBA_BDHFInfo : System.Web.UI.Page
         //t_ZBFW.DataValueField = "FNumber";
         //t_ZBFW.DataBind();
 
-        //招标备案名称
-        dt = rc.getDicTbByFNumber("112213");
-        t_ZBBAMC.DataSource = dt;
-        t_ZBBAMC.DataTextField = "FName";
-        t_ZBBAMC.DataValueField = "FNumber";
-        t_ZBBAMC.DataBind();
+        //招标备案名称   根据测试反馈，更换为输入框。  modify by psq 20150331
+        //dt = rc.getDicTbByFNumber("112213");
+        //t_ZBBAMC.DataSource = dt;
+        //t_ZBBAMC.DataTextField = "FName";
+        //t_ZBBAMC.DataValueField = "FNumber";
+        //t_ZBBAMC.DataBind();
+
+
     }
     //显示
     private void showInfo()

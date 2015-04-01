@@ -74,7 +74,7 @@
             if (tagId == "t_SGId") {
                 qylx = "101";
             } else if (tagId == "t_JLId") {
-                qylx = "125";
+                qylx = "104";
             }
             url += "?qylx=" + qylx;
             var pid = showWinByReturn(url, 1000, 600);
@@ -91,7 +91,7 @@
             if (tagId == "t_SGId") {
                 qylx = "101";
             } else if (tagId == "t_JLId") {
-                qylx = "125";
+                qylx = "104";
             }
             url += "?qylx=" + qylx;
             var pid = showWinByReturn(url, 1000, 600);

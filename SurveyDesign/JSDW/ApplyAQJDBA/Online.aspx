@@ -23,6 +23,7 @@
         }
         function selEmp(obj, tagId) {
             var zw = document.getElementById("t_XMZW").value;;
+            var priitemid = document.getElementById("hdfprjitemid").value;//当前工程编号
             if (tagId == "t_SGRYId") {
                 qybm = document.getElementById("t_XMZW").value;
             } else if (tagId == "t_JLRYId") {
@@ -32,7 +33,7 @@
             }
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
-                url += "?qybm=" + qybm;
+                url += "?qybm=" + qybm + "&emptype=aqjd" + "&FPrjItemId=" + priitemid; //安全监督的人员不能选择证书过期的人员
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {
                     $("#" + tagId).val(pid);
@@ -64,6 +65,7 @@
 <body>
     <form id="form1" runat="server">
     <div id="divSetup2" runat="server">
+          <input type="hidden"  runat="server" ID="hdfprjitemid" value="" />
         <table width="98%" align="center" class="m_bar">
             <tr>
                 <td class="m_bar_l">
