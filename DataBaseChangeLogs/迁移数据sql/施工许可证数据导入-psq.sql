@@ -339,6 +339,39 @@ where ba.ywbm = b.ProcessKeyValue
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --导入施工许可证相关项目表
 INSERT INTO dbCenter.dbo.TC_Prj_Info
+([FId]
+           ,[JSDW]
+           ,[JSDWDM]
+           ,[JSDWDZ]
+           ,[Contacts]
+           ,[Mobile]
+           ,[ProjectName]
+           ,[Province]
+           ,[City]
+           ,[County]
+           ,[ProjectType]
+           ,[Address]
+           ,[ProjectNumber]
+           ,[ProjectLevel]
+           ,[ProjectTime]
+           ,[ProjectNo]
+           ,[IsForeign]
+           ,[JSYDXKZ]
+           ,[JSGCXKZ]
+           ,[Area]
+           ,[Investment]
+           ,[ConstrType]
+           ,[ProjectUse]
+           ,[StartDate]
+           ,[EndDate]
+           ,[RegisterTime]
+           ,[ConstrBasis]
+           ,[ConstrContent]
+           ,[FJSDWID]
+           ,[AddressDept]
+           ,[ConstrScale]
+           ,[LandType]
+           ,[JSDWFR])
 SELECT --A.*
 A.GuidId FId         --项目id
 ,A.XMJSDW  JSDW         --建设单位名称
@@ -393,7 +426,7 @@ ELSE NULL END ProjectUse         --工程用途：200010201--给水；200010205--道路
 ,BA.SJJGRQ EndDate         --实际竣工日期
 ,NULL RegisterTime         --记录登记时间
 ,NULL  ConstrBasis         --建设依据
-,NULL ConstrContent         --建设内容
+,''  ConstrContent         --建设内容
 ,A.JSDW FJSDWID --建设单位外键
 ,isnull(A.XMSZD,'51') AddressDept    --地址外键
 ,CONVERT(VARCHAR(20),BA.JSGM) + BA.JSGM_DW + ', ' + BA.JSGMQT ConstrScale--建设规模

@@ -140,7 +140,7 @@ newid() FId         --项目id
 ,null as  EndDate         --实际竣工日期
 ,null RegisterTime         --记录登记时间
 ,''  ConstrBasis         --建设依据
-,NULL ConstrContent         --建设内容
+,'' ConstrContent         --建设内容
 ,null as  FJSDWID --建设单位外键
 ,null as  AddressDept    --地址外键
 ,null ConstrScale--建设规模
@@ -177,6 +177,39 @@ alter table _Prj_Info alter column Jsdwfr varchar(50) null
 end
 
 INSERT INTO dbcenter.dbo.TC_Prj_Info
+           ([FId]
+           ,[JSDW]
+           ,[JSDWDM]
+           ,[JSDWDZ]
+           ,[Contacts]
+           ,[Mobile]
+           ,[ProjectName]
+           ,[Province]
+           ,[City]
+           ,[County]
+           ,[ProjectType]
+           ,[Address]
+           ,[ProjectNumber]
+           ,[ProjectLevel]
+           ,[ProjectTime]
+           ,[ProjectNo]
+           ,[IsForeign]
+           ,[JSYDXKZ]
+           ,[JSGCXKZ]
+           ,[Area]
+           ,[Investment]
+           ,[ConstrType]
+           ,[ProjectUse]
+           ,[StartDate]
+           ,[EndDate]
+           ,[RegisterTime]
+           ,[ConstrBasis]
+           ,[ConstrContent]
+           ,[FJSDWID]
+           ,[AddressDept]
+           ,[ConstrScale]
+           ,[LandType]
+           ,[JSDWFR])
      select * from _Prj_Info a where not exists(select 1 from TC_Prj_Info b where a.FId = b.Fid)
 
 
@@ -237,8 +270,8 @@ begin
 	select  --a.*
 	newid() as fid,--招标备案主键
 	newid() as Fappid,--业务主键
-	case b.FId when   null  then newid()  else b.FId end as FPrijid,--项目编号
-	case b.FId when  null  then newid() else  b.FId end as BDid, --标段ID    因目前无标段信息，暂时以项目编号作为标段编号
+	isnull(b.FId,newid())  as [FPrijId],--项目编号
+	isnull( b.FId,newid())  as BDid, --标段ID    因目前无标段信息，暂时以项目编号作为标段编号
 	'' as CS,--次数
 	'' as BDBM,--标段编码
 	a.project_name as BDMC,--标段名称
@@ -261,12 +294,41 @@ begin
 
 end
 
+alter table [TC_ZBWJ_Record] alter column [BDMC] nvarchar(255) null
+alter table [TC_ZBWJ_Record] alter column [ProjectName] nvarchar(255) null
+
+alter table [TC_ZBWJ_Record] alter column [ZBZZXS] nvarchar(255) null
+
+alter table [TC_ZBWJ_Record] alter column [DLJG] nvarchar(255) null
+
+update _ZBWJ_Record set  [FPrijId] = newid() where [FPrijId] is null
+update _ZBWJ_Record set  [BDId] = newid() where [BDId] is null
+
+
 INSERT INTO [dbo].[TC_ZBWJ_Record]
            ([FId]           ,[FAppId]           ,[FPrjId]           ,[BDId]           ,[CS]           ,[BDBM]           ,[BDMC]
            ,[ProjectName]           ,[FBFS]           ,[ZGYSFS]           ,[ZBZZXS]           ,[DLJG]
            ,[BZR]           ,[SHR]           ,[SDR]           ,[BATime]           ,[FResult]           ,[DLJGId])
-     select * from _ZBWJ_Record a
-	  where not exists(select 1 from [TC_ZBWJ_Record] b where a.fid = b.FId)
+select [FId]
+      ,[FAppId]
+      ,[FPrijId]
+      ,[BDId]
+      ,[CS]
+      ,[BDBM]
+      ,[BDMC]
+      ,[ProjectName]
+      ,[FBFS]
+      ,[ZGYSFS]
+      ,[ZBZZXS]
+      ,[DLJG]
+      ,[BZR]
+      ,[SHR]
+      ,[SDR]
+      ,[BATime]
+      ,[FResult]
+      ,[DLJGId]
+  from _ZBWJ_Record a
+ where not exists(select 1 from [TC_ZBWJ_Record] b where a.fid = b.FId)
 --*************************************************------------
 
 
