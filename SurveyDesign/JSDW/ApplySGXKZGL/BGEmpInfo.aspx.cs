@@ -20,7 +20,8 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         {
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             txtFId.Value = EConvert.ToString(Request["FId"]);
-            t_FEntId.Value = EConvert.ToString(Request["FEntId"]);
+            t_FEntId.Value = EConvert.ToString(Request["entId"]);
+            t_qyId.Value = EConvert.ToString(Request["qyId"]);
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             BindControl();
@@ -49,7 +50,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
-       
+
     }
     private string getEmpType(string id)
     {
@@ -96,77 +97,75 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 tool.fillPageControl(emp);
             }
         }
-        
+
     }
     //保存
     private void saveInfo()
     {
-        
-        string sql = @" select count(*) from TC_PrjItem_Emp
-                            where EmpType='11220201'
-                            and FAppId='{0}'";
-        sql = string.Format(sql, t_FAppId.Value);
-        int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        string fId = txtFId.Value;
+        string fOldId = fId; 
         dbContext = new EgovaDB();
-        string sql1 = @" select count(*) from TC_PrjItem_Emp
-                            where FIdCard='{0}'
-                            and FAppId='{1}'";
-        sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value);
-        int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
-        dbContext = new EgovaDB();
-        string sql2 = @" select count(*) from TC_PrjItem_Emp
-                            where EmpType='11220209'
-                            and FAppId='{0}'";
-        sql2 = string.Format(sql2, t_FAppId.Value);
-        int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql2).FirstOrDefault());
-        if (t_EmpType.SelectedValue == "11220201" && count > 0)
+        TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
+        if (!string.IsNullOrEmpty(fId))
         {
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
-            return;
-        }
-        else if (count1 > 0)
-        {
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('人员不允许重复添加');window.returnValue='1';", true);
-            return;
-        }
-        else if (count2 > 0)
-        {
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
-            return;
+            Emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == fId).FirstOrDefault();
         }
         else
         {
+            string sql = @" select count(*) from TC_PrjItem_Emp
+                            where EmpType='11220201'
+                            and FAppId='{0}' and FEntId = '{1}'";
+            sql = string.Format(sql, t_FAppId.Value, t_qyId.Value);
+            int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
             dbContext = new EgovaDB();
-            string fId = txtFId.Value;
-            string fOldId = fId;
-            TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
-            if (!string.IsNullOrEmpty(fId))
+            string sql1 = @" select count(*) from TC_PrjItem_Emp
+                            where FIdCard='{0}'
+                            and FAppId='{1}' and FEntId = '{2}'";
+            sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_qyId.Value);
+            int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
+            dbContext = new EgovaDB();
+            string sql2 = @" select count(*) from TC_PrjItem_Emp
+                            where EmpType='11220209'
+                            and FAppId='{0}' and FEntId = '{1}'";
+            sql2 = string.Format(sql2, t_FAppId.Value, t_qyId.Value);
+            int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql2).FirstOrDefault());
+            if (t_EmpType.SelectedValue == "11220201" && count > 0)
             {
-                Emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == fId).FirstOrDefault();
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
+                return;
             }
-            else
+            else if (count1 > 0)
             {
-                fId = Guid.NewGuid().ToString();
-                Emp.FId = fId;
-                Emp.FEmpId = h_selEmpId.Value;
-                Emp.FPrjItemId = t_FPrjItemId.Value;
-                Emp.FAppId = t_FAppId.Value;
-                Emp.FTime = DateTime.Now;
-                Emp.FCreateTime = DateTime.Now;
-                Emp.FEntId = t_FEntId.Value;
-                dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('人员不允许重复添加');window.returnValue='1';", true);
+                return;
             }
-            pageTool tool = new pageTool(this.Page);
-            Emp = tool.getPageValue(Emp);
-            dbContext.SubmitChanges();
-            txtFId.Value = fId;
-            if (string.IsNullOrEmpty(fOldId))
+            else if (count2 > 0)
             {
-                updateRYBG(fId);
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
+                return;
             }
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+
+            fId = Guid.NewGuid().ToString();
+            Emp.FId = fId;
+            Emp.FEmpId = h_selEmpId.Value;
+            Emp.FPrjItemId = t_FPrjItemId.Value;
+            Emp.FAppId = t_FAppId.Value;
+            Emp.FTime = DateTime.Now;
+            Emp.FCreateTime = DateTime.Now;
+            Emp.FEntId = t_qyId.Value;
+            Emp.FLinkId = t_FEntId.Value;
+            dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
         }
-        
+        pageTool tool = new pageTool(this.Page);
+        Emp = tool.getPageValue(Emp);
+        dbContext.SubmitChanges();
+        txtFId.Value = fId;
+        if (string.IsNullOrEmpty(fOldId))
+        {
+            updateRYBG(fId);
+        }
+        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+
         //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
         //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
@@ -179,12 +178,13 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         sr.FId = Guid.NewGuid().ToString();
         sr.FAppId = t_FAppId.Value;
         sr.FPrjItemId = t_FPrjItemId.Value;
-        sr.RYLX = getEmpType(sr.RYLX.ToString());
+        sr.RYLX = getEmpType(t_EmpType.SelectedValue);
         sr.XM = ent.FHumanName;
         sr.ZSBH = ent.ZSBH;
         sr.QYMC = ent.FEntName;
         sr.BGQK = "增加";
         sr.BGTime = DateTime.Now;
+        sr.FLinkId = ent.FId;
         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
         dbContext.SubmitChanges();
     }
@@ -193,7 +193,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     {
         saveInfo();
     }
-	private void selEmp()
+    private void selEmp()
     {
         string selEmpId = h_selEmpId.Value;
         EgovaDB1 db = new EgovaDB1();
@@ -205,7 +205,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             t_FIdCard.Text = v.SFZH;
             t_FSex.SelectedValue = v.XB.ToString();
             t_FMobile.Text = v.GRDH;
-            t_ZC.Text = v.ZC;
+            t_ZC.SelectedItem.Text = v.ZC;
             t_ZW.Text = v.ZW;
             t_FTel.Text = v.BGDH;
             t_ZY.Text = v.SXZY;
@@ -218,7 +218,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 t_ZCZY.Text = v1.ZCZY;
                 t_ZCRQ.Text = v1.FZSJ.ToString();
             }
-            
+
         }
     }
     protected void btnAddEmp_Click(object sender, EventArgs e)

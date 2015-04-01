@@ -1,3 +1,4 @@
+use dbCenter 
 
 --1、导入招标项目信息
 begin
@@ -138,7 +139,7 @@ newid() FId         --项目id
 ,null as  StartDate         --实际开工日期
 ,null as  EndDate         --实际竣工日期
 ,null RegisterTime         --记录登记时间
-,NULL  ConstrBasis         --建设依据
+,''  ConstrBasis         --建设依据
 ,NULL ConstrContent         --建设内容
 ,null as  FJSDWID --建设单位外键
 ,null as  AddressDept    --地址外键
@@ -175,7 +176,7 @@ alter table _Prj_Info alter column Jsdwfr varchar(50) null
 
 end
 
-INSERT INTO datatemp.dbo.TC_Prj_Info
+INSERT INTO dbcenter.dbo.TC_Prj_Info
      select * from _Prj_Info a where not exists(select 1 from TC_Prj_Info b where a.FId = b.Fid)
 
 
@@ -273,7 +274,7 @@ INSERT INTO [dbo].[TC_ZBWJ_Record]
 declare @nid varchar(50)
 select @nid = newid()
 
-INSERT INTO datatemp.dbo.CF_App_List
+INSERT INTO dbcenter.dbo.CF_App_List
 SELECT  --*
  a.FAppId FId    --业务编码
 ,@nid  FBaseinfoId    --企业id  (暂时无法找到企业信息,临时new一个guid)
@@ -289,7 +290,7 @@ SELECT  --*
 ,MONTH(a.BATime) FMonth    --月份
 ,a.FPrjId FLinkId    --外键工程编码
 ,b.JSDW FBaseName    --建设单位名称
-,NULL FUpDeptId    --上报部门地区编码
+,'51' FUpDeptId    --上报部门地区编码(默认四川省级)
 ,NULL FRemark    --暂不考虑
 ,NULL FIsCheck    --暂不考虑
 ,NULL FCount    --暂不考虑
@@ -308,7 +309,7 @@ from  [TC_ZBWJ_Record] a left join TC_Prj_Info b
 on a.FPrjId = b.FId
 where  b.Address like '%-ps%'
 and b.ProjectName   like '%-招标备案导入'
-and not exists(select 1 from datatemp.dbo.CF_App_List c  where a.FAppId  = c.FId)
+and not exists(select 1 from dbcenter.dbo.CF_App_List c  where a.FAppId  = c.FId)
 --------------------------------------------------------------------------------------------------------------------------
 --5、导入中标结果信息
 --修改中标文件备案文件表中的标段名称和项目名称长度

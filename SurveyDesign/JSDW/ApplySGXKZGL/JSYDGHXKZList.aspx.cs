@@ -8,6 +8,7 @@ using Approve.RuleCenter;
 using EgovaDAO;
 using Tools;
 using System.Data;
+using ProjectData;
 
 public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
 {
@@ -42,13 +43,10 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
     }
     private void ShowTitle()
     {
-        EgovaDB dbContext = new EgovaDB();
-        TC_SGXKZ_PrjInfo qa = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
-        ViewState["FPrjItemId"] = qa.FPrjItemId;
-        t_JSDW.Text = qa.JSDW;
-        t_ProjectName.Text = qa.ProjectName;
-        t_Address.Text = qa.Address;
-        t_ConstrScale.Text = EConvert.ToString(qa.ConstrScale);
+        EgovaDB dbContext = new EgovaDB();       
+         TC_SGXKZ_PrjInfo qa = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
+         ViewState["FPrjItemId"] = qa.FPrjItemId;
+         string prjid = qa.PrjId;
         TC_SGXKZ_JSYDGHXKZ sp = dbContext.TC_SGXKZ_JSYDGHXKZ.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
         if (sp != null)
         {
@@ -75,6 +73,24 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
             t_BL.SelectedItem.Text = "已办";
             t_BL.SelectedItem.Value = "3";
             t_BL.Enabled = false;
+            //从标准库中读取项目信息
+            RCenter prjdb = new RCenter("XM_BaseInfo");
+            string sql = @"select   JSDW,XMMC,XMDZ,JSGM   from  XM_BaseInfo.dbo.XM_XMJBXX   where xmbh = '" + prjid + "'";
+            DataTable dt = prjdb.GetTable(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                t_JSDW.Text = dt.Rows[0][0].ToString();
+                t_ProjectName.Text = dt.Rows[0][1].ToString();
+                t_Address.Text = dt.Rows[0][2].ToString();
+                t_ConstrScale.Text = dt.Rows[0][3].ToString();
+            }
+        }
+        else  //如果是未办理的信息则从业务库中读取信息
+        {           
+            t_JSDW.Text = qa.JSDW;
+            t_ProjectName.Text = qa.ProjectName;
+            t_Address.Text = qa.Address;
+            t_ConstrScale.Text = EConvert.ToString(qa.ConstrScale);
         }
 
         pageTool tool = new pageTool(this.Page, "t_");

@@ -144,7 +144,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="7">
@@ -212,7 +212,7 @@
             </td>
         </tr>
     </table>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
             <ContentTemplate>
                 <asp:DataGrid ID="JustAppInfo_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
                         HorizontalAlign="Center" OnItemDataBound="JustAppInfo_List_ItemDataBound" Width="98%">
@@ -283,10 +283,10 @@
                             Font-Underline="False" Wrap="False" />
                     </asp:DataGrid>
             </ContentTemplate>
-            <Triggers>
+            <%--<Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnQuery" EventName="Click" />
-            </Triggers>
-        </asp:UpdatePanel>
+            </Triggers>--%>
+        <%--</asp:UpdatePanel>--%>
     
     <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
         <uc1:pager ID="Pager1" runat="server"></uc1:pager>

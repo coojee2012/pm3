@@ -152,7 +152,8 @@
                     招标备案名称：
                 </td>
                 <td colspan="3">
-                    <asp:DropDownList ID="t_ZBBAMC" runat="server" CssClass="m_txt" Width="200px"></asp:DropDownList>
+                    <%--<asp:DropDownList ID="t_ZBBAMC" runat="server" CssClass="m_txt" Width="200px"></asp:DropDownList>--%>
+                    <asp:TextBox ID="t_ZBBAMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>

@@ -66,7 +66,14 @@
             showAddWindow('FBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button9);
             //  alert('dd')
         }
+        //增加中标候选人
         function addPrjItemHXR() {
+            var hxrcount = document.getElementById("hxrcount").value;
+            if (hxrcount >= 3)
+            {
+                alert('中标候选人数量不能大于三个，请删除不符合的名单再添加!');
+                return;
+            }
             var fid = document.getElementById("txtFId").value;
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
@@ -354,6 +361,7 @@
                     中标候选人排序名单
                 </td>
                 <td class="t_r">
+                    <asp:HiddenField ID ="hxrcount" Value =""  runat="server"/>  <!-- 存放当前有多少个中标候选人数量  -->
                     <input type="button" id="Button4" runat="server" value="新增" class="m_btn_w2" onclick="addPrjItemHXR();" />
                     <asp:Button ID="Button5" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btnDel_ClickHXR" />

@@ -24,13 +24,14 @@
             return AutoCheckInfo();
         }
         function addEmp() {
-            var fid = document.getElementById("h_selEntId").value;
-            var FPrjItemId = document.getElementById("t_FPrjItemId").value;
-            if (fid == null || fid == '') {
+            var id = document.getElementById("txtFId").value;
+            var qyid = document.getElementById("h_selEntId").value;
+            var FPrjItemId = document.getElementById("h_ProjectItemId").value;
+            if (id == null || id == '') {
                 alert('请先保存上方的企业信息！');
                 return;
             }
-            showAddWindow('BGEmpInfo.aspx?FEntId=' + fid +
+            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +
                  '&FPrjItemId=' + FPrjItemId, 1000, 600);
         }
         function showTr1() {
@@ -57,10 +58,10 @@
                     qylx = "101";
                     break;
                 case "5":
-                    qylx = "155";
+                    qylx = "102";
                     break;
                 case "6":
-                    qylx = "155";
+                    qylx = "103";
                     break;
                 case "7":
                     qylx = "125";
@@ -305,13 +306,13 @@
             <input type="hidden" runat="server" id="t_FAppId" />
             <input type="hidden" runat="server" id="hf_FId" />
             <input type="hidden" runat="server" id="t_FPrjId" />
-            <input type="hidden" runat="server" id="t_FPrjItemId" />
 
             <input type="hidden" runat="server" id="h_IsAdd" />
             <input type="hidden" runat="server" id="h_AppId" />
             <input type="hidden" runat="server" id="h_OldAppId" />
             <input type="hidden" runat="server" id="h_OldQYID" />
             <input type="hidden" runat="server" id="h_OldQYName" />
+            <input type="hidden" runat="server" id="h_ProjectItemId" />
 
         </div>
 
