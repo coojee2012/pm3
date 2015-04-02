@@ -164,6 +164,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
         record.FAppId = FAppId;
         record.FPrjItemId = t_FPriItemId.Value;
         record.FPrjInfoId = t_FPrjInfoId.Value;
+        record.PrjItemName = t_FPrjItemName.Text;
         dbContext.TC_SGXKZ_BGPrjInfo.InsertOnSubmit(record);
         //提交修改
         dbContext.SubmitChanges();
