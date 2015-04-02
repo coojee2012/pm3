@@ -24,16 +24,24 @@
             $("input[id='t_ZCBH']").attr("readonly", "readonly");
         });
         function selEmp(obj, tagId) {
+           
+           
             $("input[id='t_IsManual']").val(0);
             $("input[id='t_FHumanName']").attr("readonly", "readonly");
             $("input[id='t_FIdCard']").attr("readonly", "readonly");
             $("input[id='t_ZSBH']").attr("readonly", "readonly");
             $("input[id='t_ZCBH']").attr("readonly", "readonly");
             var qybm = document.getElementById("t_FEntId").value;
-            var prjItemId = $("#t_FPrjItemId").val();
-
-            var url = "../project/EmpListSel.aspx";
-            url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random();
+            var prjItemId = $("#t_FPrjItemId").val(); 
+            var emptype = document.getElementById("t_EmpType").value;//选择的是项目负责人则需要判断证书有效期  add by psq 20150401
+            var url = "../project/EmpListSel.aspx";      
+            //项目负责人编号为11220201
+            if (emptype == '11220201') {
+                url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random() + "&emptype=aqjd";
+            }
+            else {
+                url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random();
+            }
             var pid = showWinByReturn(url, 800, 500);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
