@@ -30,10 +30,12 @@ public partial class JSDW_ApplyAQJDBA_Person : System.Web.UI.Page
                 {
                     pageTool tool = new pageTool(this.Page);
                     tool.fillPageControl(emp);
+                    if(emp.FPhoto != null)
+                    { 
                     if(emp.FPhoto.Length>0){
                         showImage(image_FPhoto, new MemoryStream(emp.FPhoto.ToArray()));
                     }
-                    
+                }                    
                 }
                 ViewState["FID"] = Request.QueryString["fid"];
             }
@@ -43,6 +45,7 @@ public partial class JSDW_ApplyAQJDBA_Person : System.Web.UI.Page
                 TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
                 ViewState["FAppId"] = aj.FAppId;
                 ViewState["FPrjItemId"] = aj.FPrjItemId;
+                hdfprjitemid.Value = aj.FPrjItemId;
                 t_FHumanId.Value = aj.FJSDWID;
             }
             pageTool tool1 = new pageTool(this.Page);
@@ -140,10 +143,62 @@ public partial class JSDW_ApplyAQJDBA_Person : System.Web.UI.Page
     {
         saveInfo();
     }
+    /// <summary>
+    ///从后台获取数据信息到页面，参数为选择的人员编号
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void btnAddEmpSG_Click(object sender, EventArgs e)
     {
-
+        selEmp();
     }
+    /// <summary>
+    /// 选择人员
+    /// </summary>
+    private void selEmp()
+    {
+        string selEmpId = t_FHumanId.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v= (from a in db.RY_RYJBXX
+                join c in db.RY_RYZSXX
+                on a.RYBH equals c.RYBH
+                join d in db.QY_JBXX
+                on a.QYBM equals d.QYBM               
+                where a.RYBH == selEmpId
+                select new 
+                {
+                    a.XM,
+                    a.XB,
+                    a.SFZH,
+                    c.ZCZSBH,
+                    c.ZCZSH,
+                    a.CSRQ,
+                    d.QYMC,
+                    c.ZCZY,
+                    a.GRDH
+                   
+                }
+                ).FirstOrDefault();
+                
+          if (v != null)
+        {
+            t_FHumanName.Text = v.XM;  //姓名
+            t_FSex.SelectedValue = v.XB.ToString(); //性别
+            t_FBirthDay.Text = v.CSRQ.ToString() ;  //出生日期
+            t_ZJHM.Text = v.SFZH;   //身份证号
+            t_SZQY.Text = v.QYMC;   //企业名称
+            t_ZCZY.Text = v.ZCZY;  //职称专业
+            t_ZCZSH.Text = v.ZCZSH;//职称证书号
+            t_ZGXL.SelectedValue = this.t_ZGXL.Items.FindByText("无").Value; //最高学历
+            t_ZHUCZY.Text = "";
+            t_ZHUCZSH.Text = v.ZCZSBH;
+            //t_AQKHHGZH.Text = "";
+            t_Mobile.Text = v.GRDH;//联系电话
+         }
+    }
+
+
+
     protected void btnQuery_Click(object sender, EventArgs e)
     {
 

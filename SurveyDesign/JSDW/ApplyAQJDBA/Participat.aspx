@@ -30,10 +30,14 @@
                 qylx = "101";
                 //施工总承包、专业承包、劳务分包使用新的选择单位窗口 modify by psq 20150319
                 url = "../project/EntListSelSg.aspx";
-            } else if (type == "11220105" || type == "11220106") {
-                qylx = "155";
-            } else if (type == "11220107") {
-                qylx = "125";
+            } else if (type == "11220105") {//勘察
+                qylx = "102";
+            } else if (type == "11220106")
+            {
+                qylx = "103";
+            }
+            else if (type == "11220107") {
+                qylx = "104";
             } else {
                 alert("请先选择参建角色");
                 return;
@@ -44,7 +48,14 @@
                 $("#" + tagId).val(pid);
                 __doPostBack(obj.id, '');
             }
-        }        
+        }
+        
+        //施工总承包	11220102
+        //设计	11220106
+        //监理	11220107
+        //勘察	11220105
+        //专业承包	11220103
+        //劳务分包	11220104
     </script>
     <base target="_self">
     </base>

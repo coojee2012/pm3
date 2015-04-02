@@ -66,7 +66,14 @@
             showAddWindow('FBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button9);
             //  alert('dd')
         }
+        //增加中标候选人
         function addPrjItemHXR() {
+            var hxrcount = document.getElementById("hxrcount").value;
+            if (hxrcount >= 3)
+            {
+                alert('中标候选人数量不能大于三个，请删除不符合的名单再添加!');
+                return;
+            }
             var fid = document.getElementById("txtFId").value;
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
@@ -354,6 +361,7 @@
                     中标候选人排序名单
                 </td>
                 <td class="t_r">
+                    <asp:HiddenField ID ="hxrcount" Value =""  runat="server"/>  <!-- 存放当前有多少个中标候选人数量  -->
                     <input type="button" id="Button4" runat="server" value="新增" class="m_btn_w2" onclick="addPrjItemHXR();" />
                     <asp:Button ID="Button5" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btnDel_ClickHXR" />
@@ -366,7 +374,7 @@
         
         <asp:DataGrid ID="dg_ListHXR" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBoundHXR" Style="margin-top: 6px;
-            margin-bottom: 1px;" Width="98%">
+            margin-bottom: 1px;" Width="98%" OnItemCommand="dg_ListHXR_ItemCommand">
             <HeaderStyle CssClass="m_dg1_h" />
             <ItemStyle CssClass="m_dg1_i" />
             <Columns>
@@ -394,6 +402,9 @@
                 <asp:BoundColumn HeaderText="项目负责人姓名" DataField="FZRXM">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="证书是否过期" DataField="BDId" Visible ="true">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="注册证书号" DataField="ZCZSH">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
@@ -407,6 +418,8 @@
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="RYId" Visible="false"></asp:BoundColumn>  
+                
             </Columns>
         </asp:DataGrid>
         <div style="padding-left: 1%">

@@ -180,6 +180,7 @@
                         </td>
                         <td>
                             <%# Eval("ZSYXQJSSJStr")%>
+                            <asp:HiddenField ID="zsyxq" Value='<%# Eval("ZSYXQJSSJStr") %>' runat="server" />
                             <%--<asp:Label ID="yxq" runat="server" Text="Label" ></asp:Label>
                             <asp:HiddenField ID="yxqks"  runat="server" value='<%# Eval("ZSYXQKSSJ")%>'/>
                             <asp:HiddenField ID="yxqjs"  runat="server" value='<%# Eval("ZSYXQJSSJ")%>'/>--%>

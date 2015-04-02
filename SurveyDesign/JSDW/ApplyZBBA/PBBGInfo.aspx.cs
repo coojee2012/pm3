@@ -48,11 +48,20 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
                 }
             }
             pageTool tool1 = new pageTool(this.Page);
+
+
+           
+            //是否是审核部门，非0表示审核查看，使用查看
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool1.ExecuteScript("btnEnable();");
                 ClientScript.RegisterStartupScript(this.GetType(), "hideBtn", "<script>hideBtn();</script>");
             }
+            //如果不是管理部门，则不显示当前人员的证书是否过期
+            if (Session["DFRoleId"] == null)
+            {
+                dg_ListHXR.Columns[6].HeaderStyle.Width = 0;
+            }          
         }
     }
 
@@ -116,8 +125,12 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
             t.ZC,
             t.ZCZH,
             t.ZCZY,
-            t.FId
+            t.FId,
+            t.RYId,
+            t.BDId            
         };
+        //记录当前候选人数量，前端判断候选人大于三个则不能继续添加.
+        this.hxrcount.Value = App1.Count().ToString();
         PagerHXR.RecordCount = App1.Count();
         dg_ListHXR.DataSource = App1.Skip((PagerHXR.CurrentPageIndex - 1) * PagerHXR.PageSize).Take(PagerHXR.PageSize);
         dg_ListHXR.DataBind();
@@ -227,6 +240,18 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerHXR.PageSize * (this.PagerHXR.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('HXRInfo.aspx?fid=" + fid + "',900,700,Button6);\">" + e.Item.Cells[2].Text + "</a>";
+            //如果是审核部门，则可以看到项目负责人的证书编号是否已经过期
+            string  hdryid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "RYId"));
+            Label lb = e.Item.FindControl("BDId") as Label;
+            if (ispast(hdryid))
+            {
+               e.Item.Cells[6].Text = "已过期";
+               e.Item.Cells[6].ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                e.Item.Cells[6].Text = "未过期";
+            }          
         }
     }
     protected void btnDel_ClickBM(object sender, EventArgs e)
@@ -275,5 +300,48 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
     {
         PagerHXR.CurrentPageIndex = e.NewPageIndex;
         ShowFileHXR(txtFId.Value);
+    }
+    protected void dg_ListHXR_ItemCommand(object source, DataGridCommandEventArgs e)
+    {
+       
+    }
+
+    /// <summary>
+    /// 根据人员编号判断人员证书是否已经过期
+    /// </summary>
+    /// <param name="rybh">人员编号</param>
+    /// <returns></returns>
+    private  bool ispast(string rybh)
+    { 
+        EgovaDB1 db = new EgovaDB1();
+        var v = from a in db.RY_RYJBXX
+                join c in db.RY_RYZSXX
+                on a.RYBH equals c.RYBH
+                where a.RYBH == rybh
+                select new
+                {   
+                    c.ZSYXQJSSJ                   
+                };
+        if (v != null)
+        {
+            try
+            {
+                DateTime jssj = Convert.ToDateTime(v.SingleOrDefault().ZSYXQJSSJ);
+                if (jssj < DateTime.Now)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        return false;
     }
 }
