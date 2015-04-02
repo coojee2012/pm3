@@ -374,7 +374,7 @@
         
         <asp:DataGrid ID="dg_ListHXR" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBoundHXR" Style="margin-top: 6px;
-            margin-bottom: 1px;" Width="98%">
+            margin-bottom: 1px;" Width="98%" OnItemCommand="dg_ListHXR_ItemCommand">
             <HeaderStyle CssClass="m_dg1_h" />
             <ItemStyle CssClass="m_dg1_i" />
             <Columns>
@@ -402,6 +402,9 @@
                 <asp:BoundColumn HeaderText="项目负责人姓名" DataField="FZRXM">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="证书是否过期" DataField="BDId" Visible ="true">
+                    <ItemStyle Wrap="False" />
+                </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="注册证书号" DataField="ZCZSH">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
@@ -415,6 +418,8 @@
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="RYId" Visible="false"></asp:BoundColumn>  
+                
             </Columns>
         </asp:DataGrid>
         <div style="padding-left: 1%">

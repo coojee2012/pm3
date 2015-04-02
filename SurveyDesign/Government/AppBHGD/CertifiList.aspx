@@ -179,7 +179,10 @@
             <tr>
                 <td class="t_r">批次
                 </td>
-                <td></td>
+                <td>
+                    <asp:DropDownList ID="ddl_Batch" runat="server"></asp:DropDownList>
+
+                </td>
                 <td class="t_r">办理状态
                 </td>
                 <td>

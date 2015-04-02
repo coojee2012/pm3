@@ -22,8 +22,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
+     <asp:HiddenField ID="hf_bhgdAppid" runat="server" />
      <asp:DataGrid ID="gv_list" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
-            HorizontalAlign="Center" Width="98%" OnItemDataBound="App_List_ItemDataBound">
+            HorizontalAlign="Center" Width="98%" OnItemDataBound="App_List_ItemDataBound" OnItemCommand="gv_list_ItemCommand">
             <HeaderStyle CssClass="m_dg1_h" />
             <ItemStyle CssClass="m_dg1_i" />
             <Columns>
@@ -45,7 +46,7 @@
                      <ItemStyle Wrap="False" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                    <ItemTemplate>
-                       <asp:Button runat="server" ID="BtnChoose"  CssClass="m_btn_w2" Text="选择"/>
+                       <asp:Button runat="server" ID="BtnChoose"  CssClass="m_btn_w2" Text="选择" CommandName="Choose" CommandArgument='<%# DataBinder.Eval(Container.DataItem,"FId") %>'/>
                    </ItemTemplate>
                    </asp:TemplateColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
