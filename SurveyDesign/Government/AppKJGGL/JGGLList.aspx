@@ -1,14 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="JJList.aspx.cs" Inherits="Government_AppSGXKZGL_JJList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="JGGLList.aspx.cs" Inherits="Government_AppKJGGL_JGGLList" %>
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>施工许可证管理接件</title>
+    <title>竣工管理</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
-    <script type="text/javascript" language="javascript" src="../../script/default.js"></script>
+    <script type="text/javascript"  src="../../script/default.js"></script>
 
     <script src="../../script/jquery.js" type="text/javascript"></script>
 
@@ -16,7 +17,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-           
+
             txtCss();
             DynamicGrid(".m_dg1_i");
         });
@@ -114,53 +115,51 @@
                     }
                 }
             }
-                var obj = new Object();
-                if (tmpVal.length > 1) {
-                    tmpVal = tmpVal.substring(0, tmpVal.length - 1);
-                    fsubid = fsubid.substring(0, fsubid.length - 1);
-                    fbaseInfoid = fbaseInfoid.substring(0, fbaseInfoid.length - 1);
-                    fpid = fpid.substring(0, fpid.length - 1);
-                    ferid = ferid.substring(0, ferid.length - 1);
-                    fMeasure = fMeasure.substring(0, fMeasure.length - 1); 
-                    fManageTypeId = fManageTypeId.substring(0, fManageTypeId.length - 1);
-                }
-                else {
-                    alert("请选择一条备案信息接件！");
-                    return false;
-                }
-                if (cou > 1 || cou <= 0) {
-                    alert("只能选择一条备案信息接件！");
-                    return false;
-                }
-                if (fMeasure != '0')
-                {
-                    alert("非待接件案件，不能在此阶段处理！");
-                    return false;
-                }
-                obj.name = '';
-                obj.id = tmpVal;
-                if (fManageTypeId == '11223')
-                {
-                    url = "CCBLJJAuditInfo.aspx";
-                }
-                if (fManageTypeId == '11224') {
-                    url = "YQBLJJAuditInfo.aspx";
-                }
-                if (fManageTypeId == '11225') {
-                    url = "BGBLJJAuditInfo.aspx";
-                }
+            var obj = new Object();
+            if (tmpVal.length > 1) {
+                tmpVal = tmpVal.substring(0, tmpVal.length - 1);
+                fsubid = fsubid.substring(0, fsubid.length - 1);
+                fbaseInfoid = fbaseInfoid.substring(0, fbaseInfoid.length - 1);
+                fpid = fpid.substring(0, fpid.length - 1);
+                ferid = ferid.substring(0, ferid.length - 1);
+                fMeasure = fMeasure.substring(0, fMeasure.length - 1);
+                fManageTypeId = fManageTypeId.substring(0, fManageTypeId.length - 1);
+            }
+            else {
+                alert("请选择一条备案信息接件！");
+                return false;
+            }
+            if (cou > 1 || cou <= 0) {
+                alert("只能选择一条备案信息接件！");
+                return false;
+            }
+            if (fMeasure != '0') {
+                alert("非待接件案件，不能在此阶段处理！");
+                return false;
+            }
+            obj.name = '';
+            obj.id = tmpVal;
+            if (fManageTypeId == '11223') {
+                url = "CCBLJJAuditInfo.aspx";
+            }
+            if (fManageTypeId == '11224') {
+                url = "YQBLJJAuditInfo.aspx";
+            }
+            if (fManageTypeId == '11225') {
+                url = "BGBLJJAuditInfo.aspx";
+            }
 
             ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
                     + '&fpid=' + fpid
                     + '&ferid=' + ferid, 900, 600, obj);
-            
-          
+
+
             return false;
         }
 
         function btnQueryClickClient() {
             //alert(12);
-           // $("#btnQuery").attr("disabled", "disabled");
+            // $("#btnQuery").attr("disabled", "disabled");
             return true;
         }
 
@@ -173,7 +172,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">施工许可证管理接件</asp:Literal>
+                <asp:Literal ID="lPostion" runat="server">竣工管理</asp:Literal>
             </th>
         </tr>
         <tr>
@@ -208,48 +207,52 @@
             
             </td>
             <td class="t_r">
-               业务类型：
+               施工许可证号：
             </td>
             <td >
-                <asp:DropDownList ID="ddlMType" runat="server" CssClass="m_txt" Width="169px">
-                    <asp:ListItem Value="-1">全部</asp:ListItem>
-                    <asp:ListItem Value="11223"  >初次办理</asp:ListItem>
-                    <asp:ListItem Value="11224">延期办理</asp:ListItem> 
-                    <asp:ListItem Value="11225">变更办理</asp:ListItem>
-                </asp:DropDownList>
+               <asp:TextBox ID="txtSGXKZBH" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r">
+                合同价格起：
+            </td>
+            <td>
+                <asp:TextBox ID="txtHTJGB"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+            </td>
+            <td class="t_r">
+                合同价格止：
+            </td>
+            <td>
+                <asp:TextBox ID="txtHTJGE"  runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
             </td>
         </tr>
         
-         <tr>
+        <tr>
             <td class="t_r">
-                状态：
+                开工时间起：
             </td>
             <td>
-               <asp:DropDownList ID="ddlState" runat="server" CssClass="m_txt" Width="169px">
-                    <asp:ListItem Value="-1">全部</asp:ListItem>
-                    <asp:ListItem Value="0" Selected="True" >待接件</asp:ListItem>
-                    <asp:ListItem Value="1">准予受理</asp:ListItem> 
-                    <asp:ListItem Value="3">不予受理</asp:ListItem>
-                    <asp:ListItem Value="5">已退回</asp:ListItem>
-                </asp:DropDownList>
+                <asp:TextBox ID="txtKGSDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
             </td>
             <td class="t_r">
-
+                开工时间止：
             </td>
             <td>
-              
+                <asp:TextBox ID="txtKGEDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>                                          
             </td>
         </tr>
+        
+       
         
     </table>
-    <table width="98%" align="center" class="m_bar">
+
+        <table width="98%" align="center" class="m_bar">
         <tr>
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="接件" OnClientClick="return app('Print.aspx')" OnClick="btnAccept_Click" />
-                <asp:Button ID="btnAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
-                    Text="打印通知书" OnClientClick="return app('BackSeeOneReportInfo.aspx')" />
+            
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
                     OnClick="btnOut_Click" Text="导出" />
             </td>
@@ -257,9 +260,7 @@
             </td>
         </tr>
     </table>
-
-        
-
+ 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:DataGrid ID="JustAppInfo_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
@@ -267,15 +268,7 @@
                         <HeaderStyle CssClass="m_dg1_h" />
                         <ItemStyle CssClass="m_dg1_i" />
                         <Columns>
-                            <asp:TemplateColumn>
-                                <ItemStyle Width="20px" />
-                                <HeaderTemplate> 
-                                    <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="CheckItem" runat="server" />
-                                </ItemTemplate>
-                            </asp:TemplateColumn>
+                          
                             <asp:BoundColumn HeaderText="序号">
                                 <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
                                     Font-Strikeout="False" Font-Underline="False" Wrap="False" />
@@ -286,29 +279,34 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            
+                            <asp:BoundColumn HeaderText="施工许可证号" DataField="SGXKZBH" >
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="建设单位" DataField="JSDW" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="上报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                           
                             <asp:BoundColumn HeaderText="工程所属地" DataField="PrjAddressDeptName">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="业务类型" DataField="BisType" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+
+                            <asp:BoundColumn HeaderText="合同价格(万元)" DataField="Price" >
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="项目地址" DataField="Address" >
+
+                             <asp:BoundColumn HeaderText="合同开工时间" DataField="StartDate" DataFormatString="{0:yyyy-MM-dd}">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
 
-                            <asp:BoundColumn HeaderText="状态" DataField="FStateDesc" >
+                            
+                            
+
+                            <asp:BoundColumn HeaderText="开工状态" DataField="JGState" >
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
