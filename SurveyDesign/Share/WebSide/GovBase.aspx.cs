@@ -14,43 +14,64 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string strusername = "" ,strkeyvalue = "";
-
-        if (Request["username"] != null && !string.IsNullOrEmpty(Request["username"]))
+        if (!Page.IsPostBack)
         {
-           strusername = Request["username"].ToString();
-        }
-        else
-        {
-           Fail();
-           return; 
-        }
+            string strusername = "", strkeyvalue = "";
 
-        ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "getLockId();alert('完成');", true);
-
-        strkeyvalue = LabKey.Value;
-
-        if (string.IsNullOrEmpty(strkeyvalue.Trim()))
-        {
-            //成功，跳转到指定页面
-            Fail();
-        }
-        else
-        {
-            if (VerifyKey(strusername, strkeyvalue))
+            if (Request["username"] != null && !string.IsNullOrEmpty(Request["username"]))
             {
-                //成功，跳转到指定页面
-                Response.Redirect("~/Government/AppZBBA/ZBWJBAList.aspx", true);
+                strusername = Request["username"].ToString();
             }
             else
             {
                 Fail();
                 return;
             }
+            //根据不同method值，调用不同的方法。
+            if (Request["method"] != null && !string.IsNullOrEmpty(Request["method"])) { 
+
+                strkeyvalue = Request["keyvalue"].ToString();
+
+                //验证
+                if ((Request["method"].ToString() == "verify") && VerifyKey(strusername, strkeyvalue))
+               {
+                   //成功，跳转到指定页面
+                   Response.Redirect("~/Government/AppZBBA/ZBWJBAList.aspx", true);
+               }
+               else
+               {
+                   Fail();
+                   return;
+               }
+            }
+
+            Page.ClientScript.RegisterStartupScript( UpdatePanel1.GetType(), "js", "getLockId('"+strusername+"');alert('完成');",true);
+
+
+            //strkeyvalue = LabKey.Value;
+
+            //if (string.IsNullOrEmpty(strkeyvalue.Trim()))
+            //{
+            //    //成功，跳转到指定页面
+            //    Fail();
+            //}
+            //else
+            //{
+            //    if (VerifyKey(strusername, strkeyvalue))
+            //    {
+            //        //成功，跳转到指定页面
+            //        Response.Redirect("~/Government/AppZBBA/ZBWJBAList.aspx", true);
+            //    }
+            //    else
+            //    {
+            //        Fail();
+            //        return;
+            //    }
+            //}
         }
     }
 
-    private bool VerifyKey(string username,string keyvalue)
+    public bool VerifyKey(string username,string keyvalue)
     {
         string getnumber = "";
         StringBuilder sb = new StringBuilder();

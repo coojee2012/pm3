@@ -3,7 +3,9 @@
 <object id="ePass2" style="left: 0px; top: 0px" height="0" width="0" classid="clsid:e6bd6993-164f-4277-ae97-5eb4bab56443" name="ePass2"></object>
 
 <!DOCTYPE html>
+   <script src="../../script/jquery.js" type="text/javascript"></script>
 <script  type="text/javascript" >
+
     function ReadU_KeyInfor() {
         var Device, DeviceSN, DeviceCount;
         Device = document.getElementById("ePass2");
@@ -45,15 +47,33 @@
 
     }
 
-    function getLockId() {
+    function getLockId(username) {
+        
         var result = ReadU_KeyInfor();
 
         if (result == "" || result == null) {
             result = CheckKey();
         }
-        document.getElementById("LabKey").value =  "1" + result +"2";
+        var keyvalue  = "1" + result + "2";
+        //ytb 修改
+        VerifyKey(username,keyvalue);
         return result;
     }
+    //ytb 修改
+    function VerifyKey(name,key) {
+        $.ajax({
+            url: "GovBase.aspx",
+            type: 'get',
+            data: {'username':name,'method':'verify','keyvalue':'2'},
+            success: function () {
+                alert('成功2');
+            }
+        });
+
+    };
+
+
+    
 </script>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
