@@ -75,6 +75,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             sj_FLinkMan.Text = qa.SJDWFR;
             sj_FMobile.Text = qa.SJDWDH;
             sj_FLicence.Text = qa.SJDWZS;
+            pj_ProjectTime.Text = qa.RegisterTime.Value.ToString("yyyy-M-d");
             govd_FRegistDeptId.fNumber = pj_AddressDept.Value;
             q_AddressDept.Value = pj_AddressDept.Value;
             if (string.IsNullOrEmpty(p_RecordNo.Text))
@@ -115,6 +116,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         qa.SJDWDH = sj_FMobile.Text;
         qa.SJDWZS = sj_FLicence.Text;
         qa.SJDWId = sj_FBaseInfoId.Value;
+        qa.RegisterTime = Convert.ToDateTime(pj_ProjectTime.Text);
         pageTool tool = new pageTool(this.Page,"p_");
         qa = tool.getPageValue(qa);
         tool = new pageTool(this.Page, "pj_");
@@ -225,6 +227,9 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         var v1 = db1.QY_QYZSXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
             sj_FLicence.Text = v1.ZSBH;
+        //变更单位时清空项目设计注册建筑师和项目设计注册结构师
+        q_JZS.Text = "";
+        q_JGS.Text = "";
         ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     protected void btnSel_kc_Click(object sender, EventArgs e)
@@ -242,6 +247,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         var v1 = db1.QY_QYZSXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
             q_CCDWZS.Text = v1.ZSBH;
+        //重新选择单位时清空注册岩土工程师信息
+        q_YTGCS.Text = "";
         ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     protected void btnSel_sg_Click(object sender, EventArgs e)
@@ -259,6 +266,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         var v1 = db1.QY_QYZSXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
             q_SGDWZS.Text = v1.ZSBH;
+        //更改单位的同时删除以前的项目经理
+        q_XMJL.Text = "";
         ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     protected void btnSel_jl_Click(object sender, EventArgs e)
@@ -276,6 +285,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         var v1 = db1.QY_QYZSXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v1 != null)
             q_JLZS.Text = v1.ZSBH;
+        //变更单位时清空项目总监
+        q_XMZJ.Text = "";
         ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     //添加联合体企业
@@ -356,8 +367,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             }
         }
     }
-    protected void Button4_Click(object sender, EventArgs e)
-    {
-        this.q_XMJL.Text = "";
-    }
+    //protected void Button4_Click(object sender, EventArgs e)
+    //{
+    //    this.q_XMJL.Text = "";
+    //}
 }

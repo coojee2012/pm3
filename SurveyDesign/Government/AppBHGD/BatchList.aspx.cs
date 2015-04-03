@@ -14,6 +14,7 @@ public partial class Government_AppBHGD_BatchList : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             LoadList();
+            BindDll();
         }
     }
 
@@ -21,10 +22,32 @@ public partial class Government_AppBHGD_BatchList : System.Web.UI.Page
     {
         EgovaDB db = new EgovaDB();
         var dbbatch = from b in db.TC_BHGD_Batch
-            select b;
-
+                      join f in db.TC_BHGD_PrjItemMappingBatch on b.FId equals f.FBatchId
+                      //join q in db.TC_BZGD_Record on f.FPrjItemId equals q.FPrjItemId
+                      select new
+                      {
+                          FId = b.FId,
+                          FYear = b.FYear,
+                          FBatchNumber = b.FBatchNumber,
+                          工程名称 = db.TC_BZGD_Record.FirstOrDefault(t => t.FPrjItemId == f.FPrjItemId).ProjectName,
+                          申报单位 = "",
+                          审批环节 = "未读取"
+                      };
         gv_list.DataSource = dbbatch;
         gv_list.DataBind();
+    }
+
+    private void BindDll() {
+        EgovaDB db = new EgovaDB();
+        var yearlist = from q in db.TC_BHGD_Batch
+                       group q by q.FYear into p
+                       select new { FYear = p.Key};
+               
+        ddlYear.DataTextField = "FYear";
+        ddlYear.DataValueField = "FYear";
+        ddlYear.DataSource = yearlist;
+        ddlYear.DataBind();
+
     }
 
     public void BtnQuery(object sender, EventArgs e)
@@ -64,8 +87,11 @@ public partial class Government_AppBHGD_BatchList : System.Web.UI.Page
 
     private void tool_Deleting(IList<string> FIdList, System.Data.Linq.DataContext context)
     {
-        
-    }
-
-    
+        EgovaDB db = new EgovaDB();
+        var mapping = from d in  db.TC_BHGD_PrjItemMappingBatch
+                      where FIdList.ToArray().Contains(d.FBatchId)
+                      select d;
+        db.TC_BHGD_PrjItemMappingBatch.DeleteOnSubmit(mapping.FirstOrDefault());
+        db.SubmitChanges();
+    } 
 }

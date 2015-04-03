@@ -14,6 +14,7 @@ public partial class Government_AppBHGD_FZList : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             LoadList();
+            BindDdl();
         }
     }
 
@@ -82,6 +83,20 @@ public partial class Government_AppBHGD_FZList : System.Web.UI.Page
         {
             return "";
         }
+    }
+
+    private void BindDdl() {
+        EgovaDB db = new EgovaDB();
+        var batchlist = db.TC_BHGD_Batch.DefaultIfEmpty();
+
+
+        ddl_Batch.DataTextField = "FBatchNumber";
+        ddl_Batch.DataValueField = "FYear";
+        ddl_Batch.DataSource = batchlist;
+        ddl_Batch.DataBind();
+
+        ddl_Batch.Items.Insert(0, new ListItem() { Text = "全部", Value = "", Selected = true });
+
     }
 
     private void LoadList()
