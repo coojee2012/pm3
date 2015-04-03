@@ -54,7 +54,7 @@
         if (result == "" || result == null) {
             result = CheckKey();
         }
-        var keyvalue  = "1" + result + "2";
+        var keyvalue  =  result;
         //ytb 修改
         VerifyKey(username,keyvalue);
         return result;
