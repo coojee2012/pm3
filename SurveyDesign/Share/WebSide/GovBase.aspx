@@ -64,9 +64,10 @@
         $.ajax({
             url: "GovBase.aspx",
             type: 'get',
-            data: {'username':name,'method':'verify','keyvalue':'2'},
-            success: function () {
-                alert('成功2');
+            data: {'username':name,'method':'verify','keyvalue':key},
+            success: function () {   },
+            error: function (er) {
+            alert(er)
             }
         });
 

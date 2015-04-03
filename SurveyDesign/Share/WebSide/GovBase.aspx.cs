@@ -12,11 +12,13 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
 {
     RCenter rc = new RCenter();
 
+    string strpageid = "";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
         {
-            string strusername = "", strkeyvalue = "";
+            string strusername = "",  strkeyvalue="";
 
             if (Request["username"] != null && !string.IsNullOrEmpty(Request["username"]))
             {
@@ -27,16 +29,27 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
                 Fail();
                 return;
             }
-            //根据不同method值，调用不同的方法。
-            if (Request["method"] != null && !string.IsNullOrEmpty(Request["method"])) { 
 
-                strkeyvalue = Request["keyvalue"].ToString();
+            if (Request["pageid"] != null && !string.IsNullOrEmpty(Request["pageid"]))
+            {
+                strusername = Request["pageid"].ToString();
+            }
+            else
+            {
+                Fail();
+                return;
+            }
+
+            strpageid = Request["pageid"].ToString();
+            //根据不同method值，调用不同的方法。
+            if (Request["method"] != null && !string.IsNullOrEmpty(Request["method"])) {
+                strkeyvalue = Request["keyvalue"].ToString();  
 
                 //验证
                 if ((Request["method"].ToString() == "verify") && VerifyKey(strusername, strkeyvalue))
                {
                    //成功，跳转到指定页面
-                   Response.Redirect("~/Government/AppZBBA/ZBWJBAList.aspx", true);
+                   Response.Redirect("~/Government/AppZBBA/"+strpageid.Trim()+".aspx", true);
                }
                else
                {
@@ -45,7 +58,7 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
                }
             }
 
-            Page.ClientScript.RegisterStartupScript( UpdatePanel1.GetType(), "js", "getLockId('"+strusername+"');alert('完成');",true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "js", "getLockId('" + strusername + "');", true);
 
 
             //strkeyvalue = LabKey.Value;
@@ -97,6 +110,6 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
 
     private void Fail()
     {
-        ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('必须传递合法的用户帐号！');", true);
+        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "js", "alert('必须传递合法的用户帐号！');", true);
      }
 }
