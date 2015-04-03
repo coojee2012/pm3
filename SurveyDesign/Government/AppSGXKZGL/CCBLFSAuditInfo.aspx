@@ -39,6 +39,11 @@
             var FPrjItemId = document.getElementById("t_PrjItemId").value;
             showApproveWindow('SDRYSC.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
         }
+        function LockPersonList() {
+            var FAppId = document.getElementById("t_fLinkId").value;
+            var FPrjItemId = document.getElementById("t_PrjItemId").value;
+            showApproveWindow('LockPerson.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+        }
     </script>
     <style type="text/css">
         .cBtn7 {
@@ -86,7 +91,10 @@
             </td>
             <td>
                 <asp:TextBox ID="t_PrjItemName" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
-                <input id="HSeeReportInfo" type="button" runat="server" class="m_btn_w6" value="查看上报资料"  /></td>
+                <input id="HSeeReportInfo" type="button" runat="server" class="m_btn_w6" value="查看上报资料"  />
+                &nbsp;&nbsp;<input id="seeLockPerson" type="button" runat="server" style="margin-left: 5px;" class="m_btn_w6" onclick="LockPersonList();"  value="查看锁定人员"   />
+
+            </td>
             <td class="t_r">
                 工程类别：
             </td>
