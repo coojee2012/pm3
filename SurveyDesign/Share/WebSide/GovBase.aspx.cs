@@ -32,7 +32,7 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
 
             if (Request["pageid"] != null && !string.IsNullOrEmpty(Request["pageid"]))
             {
-                strusername = Request["pageid"].ToString();
+                strpageid = Request["pageid"].ToString();
             }
             else
             {
