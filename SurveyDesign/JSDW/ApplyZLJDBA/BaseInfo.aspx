@@ -142,6 +142,9 @@
         .auto-style1 {
             height: 27px;
         }
+        .auto-style2 {
+            height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -406,7 +409,7 @@
             </td>
         </tr>
         <tr class="t_l t_bg" id="Tr1" runat="server" style="display: none;">
-            <td colspan="4">
+            <td colspan="4" class="auto-style2">
                 主要施工单位
             </td>
         </tr>
@@ -418,7 +421,7 @@
                 <asp:TextBox ID="q_SGDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false" ReadOnly="True"></asp:TextBox>
                 <asp:Button ID="Button2" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_SGDWId','SG');"
                     UseSubmitBehavior="false" OnClick="btnSel_sg_Click" />
-                <asp:Button  ID="Button4" Style=" display:none;" runat="server" Text="删除项目经理" OnClick="Button4_Click"  />
+                <%--<asp:Button  ID="Button4" Style=" display:none;" runat="server" Text="删除项目经理" OnClick="Button4_Click"  />--%>
 
                 <input id="q_SGDWId" runat="server" type="hidden" />
                 <input id="q_SGDWoldId" runat="server" type="hidden" />
