@@ -239,7 +239,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             t_FOrgCode.Text = v.JGDM;
         }
        
-        var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+        var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 1).FirstOrDefault();
         if (v1 != null)
             t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
 
@@ -267,7 +267,11 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         selEnt();
     }
 
-
+    protected void btntest_click(object sender, EventArgs e)
+    {
+        string selEntId = h_selEntId.Value;
+        Response.Write(selEntId);
+    }
 
 
 }
