@@ -1,4 +1,6 @@
-use dbCenter 
+
+--先执行源数据的生成。********
+
 
 --1、导入招标项目信息
 begin
@@ -140,7 +142,7 @@ newid() FId         --项目id
 ,null as  EndDate         --实际竣工日期
 ,null RegisterTime         --记录登记时间
 ,''  ConstrBasis         --建设依据
-,NULL ConstrContent         --建设内容
+,'' ConstrContent         --建设内容
 ,null as  FJSDWID --建设单位外键
 ,null as  AddressDept    --地址外键
 ,null ConstrScale--建设规模
@@ -177,7 +179,40 @@ alter table _Prj_Info alter column Jsdwfr varchar(50) null
 end
 
 INSERT INTO dbcenter.dbo.TC_Prj_Info
-     select * from _Prj_Info a where not exists(select 1 from TC_Prj_Info b where a.FId = b.Fid)
+           ([FId]
+           ,[JSDW]
+           ,[JSDWDM]
+           ,[JSDWDZ]
+           ,[Contacts]
+           ,[Mobile]
+           ,[ProjectName]
+           ,[Province]
+           ,[City]
+           ,[County]
+           ,[ProjectType]
+           ,[Address]
+           ,[ProjectNumber]
+           ,[ProjectLevel]
+           ,[ProjectTime]
+           ,[ProjectNo]
+           ,[IsForeign]
+           ,[JSYDXKZ]
+           ,[JSGCXKZ]
+           ,[Area]
+           ,[Investment]
+           ,[ConstrType]
+           ,[ProjectUse]
+           ,[StartDate]
+           ,[EndDate]
+           ,[RegisterTime]
+           ,[ConstrBasis]
+           ,[ConstrContent]
+           ,[FJSDWID]
+           ,[AddressDept]
+           ,[ConstrScale]
+           ,[LandType]
+           ,[JSDWFR])
+     select * from _Prj_Info a where not exists(select 1 from dbCenter.dbo.TC_Prj_Info b where a.FId = b.Fid)
 
 
 --2、导入单项工程项目信息
@@ -214,17 +249,17 @@ begin
 
 end
 
-INSERT INTO TC_PrjItem_Info
+INSERT INTO dbCenter.dbo.TC_PrjItem_Info
        select * from _PrjItem_Info a
-	    where not exists(select 1 from TC_PrjItem_Info b where a.FId = b.FId )
+	    where not exists(select 1 from dbCenter.dbo.TC_PrjItem_Info b where a.FId = b.FId )
 
 --、*****************、
 ------------------------------------------------------------------------------------------------------------------------------
 --3、导入招标文件备案信息
 
 --修改招标文件表中的标段名称和项目名称长度
-alter table TC_ZBWJ_Record alter column bdbm varchar(500);
-alter table TC_ZBWJ_Record alter column ProjectName varchar(500);
+alter table dbCenter.dbo.TC_ZBWJ_Record alter column bdbm varchar(500);
+alter table dbCenter.dbo.TC_ZBWJ_Record alter column ProjectName varchar(500);
 
 
 if not exists (select 1
@@ -237,8 +272,8 @@ begin
 	select  --a.*
 	newid() as fid,--招标备案主键
 	newid() as Fappid,--业务主键
-	case b.FId when   null  then newid()  else b.FId end as FPrijid,--项目编号
-	case b.FId when  null  then newid() else  b.FId end as BDid, --标段ID    因目前无标段信息，暂时以项目编号作为标段编号
+	isnull(b.FId,newid())  as [FPrijId],--项目编号
+	isnull( b.FId,newid())  as BDid, --标段ID    因目前无标段信息，暂时以项目编号作为标段编号
 	'' as CS,--次数
 	'' as BDBM,--标段编码
 	a.project_name as BDMC,--标段名称
@@ -254,19 +289,48 @@ begin
 	'' as Fresult,--备案结果
 	'' as DLJGID--代理机构编号
 	into _ZBWJ_Record
-	from  zhaobiaobeian_psq as a left join TC_Prj_Info b
+	from  zhaobiaobeian_psq as a left join dbCenter.dbo.TC_Prj_Info b
 	on a.baojian_no = SUBSTRING(b.Address,CHARINDEX('-',Address)+3,13)
 	and b.Address like '%-ps%'
 	and b.ProjectName   like '%-招标备案导入'
 
 end
 
-INSERT INTO [dbo].[TC_ZBWJ_Record]
+alter table dbCenter.dbo.[TC_ZBWJ_Record] alter column [BDMC] nvarchar(255) null
+alter table dbCenter.dbo.[TC_ZBWJ_Record] alter column [ProjectName] nvarchar(255) null
+
+alter table [dbCenter.dbo.TC_ZBWJ_Record] alter column [ZBZZXS] nvarchar(255) null
+
+alter table dbCenter.dbo.[TC_ZBWJ_Record] alter column [DLJG] nvarchar(255) null
+
+update _ZBWJ_Record set  [FPrijId] = newid() where [FPrijId] is null
+update _ZBWJ_Record set  [BDId] = newid() where [BDId] is null
+
+
+INSERT INTO dbCenter.dbo.[TC_ZBWJ_Record]
            ([FId]           ,[FAppId]           ,[FPrjId]           ,[BDId]           ,[CS]           ,[BDBM]           ,[BDMC]
            ,[ProjectName]           ,[FBFS]           ,[ZGYSFS]           ,[ZBZZXS]           ,[DLJG]
            ,[BZR]           ,[SHR]           ,[SDR]           ,[BATime]           ,[FResult]           ,[DLJGId])
-     select * from _ZBWJ_Record a
-	  where not exists(select 1 from [TC_ZBWJ_Record] b where a.fid = b.FId)
+select [FId]
+      ,[FAppId]
+      ,[FPrijId]
+      ,[BDId]
+      ,[CS]
+      ,[BDBM]
+      ,[BDMC]
+      ,[ProjectName]
+      ,[FBFS]
+      ,[ZGYSFS]
+      ,[ZBZZXS]
+      ,[DLJG]
+      ,[BZR]
+      ,[SHR]
+      ,[SDR]
+      ,[BATime]
+      ,[FResult]
+      ,[DLJGId]
+  from _ZBWJ_Record a
+ where not exists(select 1 from dbCenter.dbo.[TC_ZBWJ_Record] b where a.fid = b.FId)
 --*************************************************------------
 
 
@@ -304,8 +368,7 @@ SELECT  --*
 ,NULL FBarCode    --暂不考虑
 ,NULL FCreateUser    --暂不考虑
 ,NULL FgfTime    --暂不考虑
-
-from  [TC_ZBWJ_Record] a left join TC_Prj_Info b
+from  dbCenter.dbo.[TC_ZBWJ_Record] a left join dbCenter.dbo.TC_Prj_Info b
 on a.FPrjId = b.FId
 where  b.Address like '%-ps%'
 and b.ProjectName   like '%-招标备案导入'
@@ -353,7 +416,7 @@ begin
 	 a.zhong_leader Fresult,--备案结果
 	 b.FJSDWID QYid--企业编号 
 	 into _ZBJG_Record
-	 from  zhongbiaobeian_psq a left join TC_Prj_Info b
+	 from  zhongbiaobeian_psq a left join dbCenter.dbo.TC_Prj_Info b
 	on a.baojian_no = SUBSTRING(b.Address,CHARINDEX('-',Address)+3,13)
 	and b.Address like '%-ps%'
 	and b.ProjectName   like '%-招标备案导入'
@@ -368,13 +431,15 @@ end
 begin
 	update _ZBJG_Record set Fprjid = NEWID() where Fprjid is null
 	--------------------------------------------------------------------------------------------------------------------------
-	INSERT INTO [dbo].[TC_ZBJG_Record]
+	INSERT INTO dbCenter.dbo.[TC_ZBJG_Record]
 			   ([FId]           ,[FPrjId]           ,[FAppId]           ,[BDId]           ,[CS]
 			   ,[GCBM]           ,[BDBM]           ,[ZTBBM]           ,[ProjectName]           ,[BDMC]
 			   ,[ZBDLDW]           ,[ZHAOBR]           ,[KBSJ]           ,[QYBM]           ,[ZHONGBR]
 			   ,[KGRQ]           ,[JGRQ]           ,[HTQDDD]           ,[TZFFSJ]           ,[ZBJG]
 			   ,[ZBYY]           ,[FResult]           ,[QYId])
-	 select * from _ZBJG_Record a where not exists(select 1 from [TC_ZBJG_Record] b where a.Fid = b.[FId])
+	 select * from _ZBJG_Record a 
+	  where not exists(select 1 from dbCenter.dbo.[TC_ZBJG_Record] b
+	  where a.Fid = b.[FId])
 
 end 
 --------------------------------------------------------------------------------------------------------------------------
@@ -416,18 +481,18 @@ SELECT
 ,NULL FCreateUser    --暂不考虑
 ,NULL FgfTime    --暂不考虑
 into _App_List
-from  TC_ZBJG_Record  a 
-left join TC_Prj_Info b
+from  dbCenter.dbo.TC_ZBJG_Record  a 
+left join dbCenter.dbo.TC_Prj_Info b
 on a.FPrjId = b.FId
 and b.Address like '%-ps%'
 and b.ProjectName   like '%-招标备案导入'
 
 end 
 
-INSERT INTO dbo.CF_App_List
+INSERT INTO dbCenter.dbo.CF_App_List
      select * 
 	   from _App_List a 
-	  where not exists (select 1 from CF_App_List b where a.FId = b.FId)
+	  where not exists (select 1 from dbCenter.dbo.CF_App_List b where a.FId = b.FId)
 
 --导入最终招标备案的过程数据
 --CF_App_ProcessInstanceBackup   备案主流程表
@@ -437,10 +502,14 @@ if not exists (select 1
            where  id = object_id('dbo._App_ProcessInstance')
             and   type = 'U')
 begin 
-SELECT * into _App_ProcessInstance from CF_App_ProcessInstance where 1=2  --只取表结构
+SELECT * into _App_ProcessInstance from dbCenter.dbo.CF_App_ProcessInstance where 1=2  --只取表结构
 alter table _App_ProcessInstance alter column FentName varchar(200) null       
-alter table CF_App_ProcessInstanceBackup alter column FentName varchar(200) null 
-
+alter table dbCenter.dbo.CF_App_ProcessInstanceBackup alter column FentName varchar(200) null 
+end
+else
+begin
+   delete _App_ProcessInstance
+end
 	   insert into _App_ProcessInstance
 	   (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
 			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
@@ -450,10 +519,9 @@ alter table CF_App_ProcessInstanceBackup alter column FentName varchar(200) null
 	          0,'19301','1930100','1930100','4263983a-ba52-42ce-9c44-65280e4c22a1','51','11232',
 			  '',year(a.FwriteDate),month(a.FwriteDate),a.FReportDate,a.FReportDate,'51','8804','8804',5,1,'1122',0,null,null,null,null,null
 	     from _App_List a
-		where  not exists(select 1 from CF_App_ProcessInstanceBackup b where a.FId = b.FLinkId)
-end 
+		where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessInstanceBackup b where a.FId = b.FLinkId)
 
-  insert into CF_App_ProcessInstanceBackup
+  insert into dbCenter.dbo.CF_App_ProcessInstanceBackup
              (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
 			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
 			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
@@ -463,7 +531,7 @@ end
 			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
 			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode
          from _App_ProcessInstance a
-		where not exists(select 1 from CF_App_ProcessInstanceBackup b where a.FId = b.fid)
+		where not exists(select 1 from dbCenter.dbo.CF_App_ProcessInstanceBackup b where a.FId = b.fid)
 
 
 
@@ -473,7 +541,11 @@ if not exists (select 1
             and   type = 'U')
 begin
 
-  select * into _App_ProcessRecordBackup from CF_App_ProcessRecordBackup where 1=2
+  select * into _App_ProcessRecordBackup from dbCenter.dbo.CF_App_ProcessRecordBackup where 1=2
+  end
+  begin
+     delete _App_ProcessRecordBackup
+  end
 
   insert into _App_ProcessRecordBackup
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
@@ -481,13 +553,13 @@ begin
 	   select newid(),a.FSubmitDate,0,a.fid,a.FLinkId,a.FSubFlowId,5,1,'51',
 	          a.FReportDate,5,'8804',1,1,'管理部门审核',3,2,1
 	     from _App_ProcessInstance a
-		where  not exists(select 1 from CF_App_ProcessRecordBackup b where a.FId = b.FProcessInstanceID)
-end 
+		where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessRecordBackup b where a.FId = b.FProcessInstanceID)
 
-  insert into CF_App_ProcessRecordBackup
+
+  insert into dbCenter.dbo.CF_App_ProcessRecordBackup
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
 			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint )
        select fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
 			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint
 		 from _App_ProcessRecordBackup a
-	    where not exists(select 1 from CF_App_ProcessRecordBackup b where a.FId = b.fid)
+	    where not exists(select 1 from dbCenter.dbo.CF_App_ProcessRecordBackup b where a.FId = b.fid)

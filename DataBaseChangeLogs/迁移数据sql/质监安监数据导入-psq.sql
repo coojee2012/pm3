@@ -49,6 +49,39 @@ WHERE  b.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
 
 --导入质监相关的项目表
 INSERT INTO dbCenter.dbo.TC_Prj_Info
+([FId]
+           ,[JSDW]
+           ,[JSDWDM]
+           ,[JSDWDZ]
+           ,[Contacts]
+           ,[Mobile]
+           ,[ProjectName]
+           ,[Province]
+           ,[City]
+           ,[County]
+           ,[ProjectType]
+           ,[Address]
+           ,[ProjectNumber]
+           ,[ProjectLevel]
+           ,[ProjectTime]
+           ,[ProjectNo]
+           ,[IsForeign]
+           ,[JSYDXKZ]
+           ,[JSGCXKZ]
+           ,[Area]
+           ,[Investment]
+           ,[ConstrType]
+           ,[ProjectUse]
+           ,[StartDate]
+           ,[EndDate]
+           ,[RegisterTime]
+           ,[ConstrBasis]
+           ,[ConstrContent]
+           ,[FJSDWID]
+           ,[AddressDept]
+           ,[ConstrScale]
+           ,[LandType]
+           ,[JSDWFR])
 SELECT --A.*
 A.GuidId FId         --项目id
 ,A.XMJSDW  JSDW         --建设单位名称
@@ -376,6 +409,39 @@ WHERE  b.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
 -----------------------------------------------------------------------------------------------------------------
 --导入安监项目表
 INSERT INTO dbCenter.dbo.TC_Prj_Info
+([FId]
+           ,[JSDW]
+           ,[JSDWDM]
+           ,[JSDWDZ]
+           ,[Contacts]
+           ,[Mobile]
+           ,[ProjectName]
+           ,[Province]
+           ,[City]
+           ,[County]
+           ,[ProjectType]
+           ,[Address]
+           ,[ProjectNumber]
+           ,[ProjectLevel]
+           ,[ProjectTime]
+           ,[ProjectNo]
+           ,[IsForeign]
+           ,[JSYDXKZ]
+           ,[JSGCXKZ]
+           ,[Area]
+           ,[Investment]
+           ,[ConstrType]
+           ,[ProjectUse]
+           ,[StartDate]
+           ,[EndDate]
+           ,[RegisterTime]
+           ,[ConstrBasis]
+           ,[ConstrContent]
+           ,[FJSDWID]
+           ,[AddressDept]
+           ,[ConstrScale]
+           ,[LandType]
+           ,[JSDWFR])
 SELECT --A.*
 A.GuidId FId         --项目id
 ,A.XMJSDW  JSDW         --建设单位名称

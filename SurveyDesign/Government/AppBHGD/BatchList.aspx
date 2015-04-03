@@ -103,6 +103,12 @@
                     
                     <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
                 </td>
+                <td class="t_r">批次
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddl_Batch" runat="server"></asp:DropDownList>
+
+                </td>
                 <td align="center" rowspan="3" colspan="2">
                     <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="BtnQuery" CssClass="m_btn_w2" />
                 </td>
