@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TGSQInfo.aspx.cs" Inherits="JSDW_ApplySGXKZGL_TGSQInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FGSQInfo.aspx.cs" Inherits="JSDW_ApplySGXKZGL_FGSQInfo" %>
 
 <!DOCTYPE html>
 
@@ -78,19 +78,19 @@
                 <asp:TextBox ID="t_TGDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
             <td class="t_r">
-                预计重新工日期：
+                重新开工日期：
             </td>
             <td>
-                <asp:TextBox ID="t_YJFGDate" onfocus="WdatePicker()"   runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="t_CXKGDate" onfocus="WdatePicker()"   runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
         </tr>
 
              <tr>
               <td class="t_r">
-                停工原因：
+                复工原因：
                 </td>
                  <td colspan="3">
-                     <asp:TextBox ID="t_TGYYA" runat="server" CssClass="m_txt"  Width="400px"></asp:TextBox>
+                     <asp:TextBox ID="t_FGYY" runat="server" CssClass="m_txt"  Width="400px"></asp:TextBox>
                   </td>
              </tr>
               <tr>
@@ -105,7 +105,7 @@
                          <ContentTemplate>
                         <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                             />  
-                               <asp:Button ID="btnShangBao" runat="server" Text="上报" OnClick="btnShangBao_Click" CssClass="m_btn_w2"
+                             <asp:Button ID="btnShangBao" runat="server" Text="上报" OnClick="btnShangBao_Click" CssClass="m_btn_w2"
                             />  
                         </ContentTemplate>
                     </asp:UpdatePanel>                
