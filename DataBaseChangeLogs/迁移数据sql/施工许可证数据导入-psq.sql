@@ -267,7 +267,7 @@ else
 begin
    delete _App_List_SGXK
 end 
-	INSERT INTO dbCenter.dbo._App_List_SGXK
+	INSERT INTO _App_List_SGXK
 	SELECT 
 	BA.YWBM FId    --业务编码
 	,B.JSDW FBaseinfoId    --企业id
@@ -307,11 +307,11 @@ end
 	  AND BA.YWBM in (select distinct C05.ProcessKeyValue from JKCWFDB_WORK_NJS.DBO.C06 Left Join JKCWFDB_WORK_NJS.DBO.C05 on C05.ProjectID=C06.ProjectID
 					 where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279));
 
-     update [CF_App_List]
+     update dbCenter.dbo.[CF_App_List]
           set FManageTypeId = b.FManageTypeId,
               Fresult  = b.FResul,
 			  fstate   = b.fstate
-    from [CF_App_List] a,
+    from  dbCenter.dbo.[CF_App_List] a,
 	(select ba.ywbm ,c.actionid,
        case c.actionid when 257 then '11223' when 258 then '11223' when 259 then '11223'
 	                   when 269 then '11224' when 270 then '11224' when 271 then '11224'
@@ -333,12 +333,45 @@ where ba.ywbm = b.ProcessKeyValue
   
   INSERT INTO dbCenter.dbo.CF_App_List
        select * 
-	     from dbCenter.dbo._App_List_SGXK a
+	     from _App_List_SGXK a
         where not exists(select 1 from dbCenter.dbo.CF_App_List b where a.FId = b.Fid)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --导入施工许可证相关项目表
 INSERT INTO dbCenter.dbo.TC_Prj_Info
+([FId]
+           ,[JSDW]
+           ,[JSDWDM]
+           ,[JSDWDZ]
+           ,[Contacts]
+           ,[Mobile]
+           ,[ProjectName]
+           ,[Province]
+           ,[City]
+           ,[County]
+           ,[ProjectType]
+           ,[Address]
+           ,[ProjectNumber]
+           ,[ProjectLevel]
+           ,[ProjectTime]
+           ,[ProjectNo]
+           ,[IsForeign]
+           ,[JSYDXKZ]
+           ,[JSGCXKZ]
+           ,[Area]
+           ,[Investment]
+           ,[ConstrType]
+           ,[ProjectUse]
+           ,[StartDate]
+           ,[EndDate]
+           ,[RegisterTime]
+           ,[ConstrBasis]
+           ,[ConstrContent]
+           ,[FJSDWID]
+           ,[AddressDept]
+           ,[ConstrScale]
+           ,[LandType]
+           ,[JSDWFR])
 SELECT --A.*
 A.GuidId FId         --项目id
 ,A.XMJSDW  JSDW         --建设单位名称
@@ -393,7 +426,7 @@ ELSE NULL END ProjectUse         --工程用途：200010201--给水；200010205--道路
 ,BA.SJJGRQ EndDate         --实际竣工日期
 ,NULL RegisterTime         --记录登记时间
 ,NULL  ConstrBasis         --建设依据
-,NULL ConstrContent         --建设内容
+,''  ConstrContent         --建设内容
 ,A.JSDW FJSDWID --建设单位外键
 ,isnull(A.XMSZD,'51') AddressDept    --地址外键
 ,CONVERT(VARCHAR(20),BA.JSGM) + BA.JSGM_DW + ', ' + BA.JSGMQT ConstrScale--建设规模
@@ -955,6 +988,55 @@ AND B.JSDW <>'AA18F961-B45D-4391-B31C-C59B7C25B80C'  --排除建设单位测试帐号
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 --施工许可证初次办理信息表
 INSERT INTO dbCenter.dbo.TC_SGXKZ_PrjInfo
+           ([FId]
+           ,[FAppId]
+           ,[FPrjItemId]
+           ,[JSDW]
+           ,[JProvince]
+           ,[JCity]
+           ,[JCounty]
+           ,[JSDWAddressDept]
+           ,[JSDWDZ]
+           ,[JSDWXZ]
+           ,[FDDBR]
+           ,[FRDH]
+           ,[LZR]
+           ,[LXDH]
+           ,[JSFZR]
+           ,[JSFZRZC]
+           ,[JSFZRDH]
+           ,[PrjId]
+           ,[PrjItemId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[PrjItemType]
+           ,[ProjectTime]
+           ,[ReportTime]
+           ,[PProvince]
+           ,[PCity]
+           ,[PCounty]
+           ,[PrjAddressDept]
+           ,[Address]
+           ,[ConstrScale]
+           ,[ConstrType]
+           ,[Price]
+           ,[Currency]
+           ,[StartDate]
+           ,[EndDate]
+           ,[FResult]
+           ,[Remark]
+           ,[ProjectFile]
+           ,[ProjectNo]
+           ,[ProjectLevel]
+           ,[Cost]
+           ,[Area]
+           ,[BuildType]
+           ,[ProjectUse]
+           ,[ProjectNumber]
+           ,[SGXKZBH]
+           ,[FZJG]
+           ,[FZTime]
+           ,[DZZT])
 SELECT
 BA.WYBM FId  --主键
 ,BA.YWBM FAppId  --业务外键
@@ -1805,9 +1887,14 @@ if not exists (select 1
            where  id = object_id('dbo._App_ProcessInstance_SGXK')
             and   type = 'U')
 begin 
-    SELECT * into _App_ProcessInstance_SGXK from CF_App_ProcessInstance where 1=2  --只取表结构
-    alter table _App_ProcessInstance_SGXK alter column FentName varchar(200) null       
-
+    SELECT * into _App_ProcessInstance_SGXK from dbCenter.dbo.CF_App_ProcessInstance where 1=2  --只取表结构
+    alter table _App_ProcessInstance_SGXK alter column FentName varchar(200) null    
+end
+else
+begin
+   delete _App_ProcessInstance_SGXK
+end
+   
 	   insert into _App_ProcessInstance_SGXK
 	   (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
 			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
@@ -1817,10 +1904,10 @@ begin
 	          0,'19301','1930100','1930100','72aac054-972a-473a-b03d-d878f622dc3f',isnull(a.fupdeptid,'51'),a.FManageTypeId,
 			  '',year(a.FwriteDate),month(a.FwriteDate),a.FReportDate,a.FReportDate,isnull(a.fupdeptid,'51'),'8801','8801',1,1,'1122',0,null,null,null,null,null
 	     from _App_List_SGXK a
-		where  not exists(select 1 from CF_App_ProcessInstance b where a.FId = b.FLinkId)
-end 
+		where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessInstance b where a.FId = b.FLinkId)
 
-  insert into CF_App_ProcessInstance
+
+  insert into dbCenter.dbo.CF_App_ProcessInstance
              (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
 			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
 			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
@@ -1830,7 +1917,7 @@ end
 			  FResult,Fyear,FMonth,FSubmitDate,FReportDate,FCurStepID,FroleId,FBeginRoleId,FDefineDay,
 			  FAppState,FSystemId,FIsNew,FSeeState,fseetime,FPlanTime,FFactTime,FBarCode
          from _App_ProcessInstance_SGXK a
-		where not exists(select 1 from CF_App_ProcessInstance b where a.FId = b.fid)
+		where not exists(select 1 from dbCenter.dbo.CF_App_ProcessInstance b where a.FId = b.fid)
 
 
 if not exists (select 1
@@ -1838,8 +1925,12 @@ if not exists (select 1
            where  id = object_id('dbo._App_ProcessRecord_SGXK')
             and   type = 'U')
 begin
-
-  select * into _App_ProcessRecord_SGXK from CF_App_ProcessRecord where 1=2
+  select * into _App_ProcessRecord_SGXK from dbCenter.dbo.CF_App_ProcessRecord where 1=2
+end
+else
+begin
+  delete _App_ProcessRecord_SGXK
+end
 
   insert into _App_ProcessRecord_SGXK
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
@@ -1847,15 +1938,13 @@ begin
 	   select newid(),a.FSubmitDate,0,a.fid,a.FLinkId,a.FSubFlowId,0,null,isnull(FManageDeptId,'51'),
 	          a.FReportDate,1,'8801',1,1,'管理部门审核',1,2,1
 	     from _App_ProcessInstance_SGXK a
-		where  not exists(select 1 from CF_App_ProcessRecord b where a.FId = b.FProcessInstanceID)
+		where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessRecord b where a.FId = b.FProcessInstanceID)
 
 
-end 
-
-  insert into CF_App_ProcessRecord
+  insert into dbCenter.dbo.CF_App_ProcessRecord
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
 			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint )
        select fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
 			  FReportTime,FDefineDay,FRoleId,FLevel,FOrder,FRoleDesc,FTypeId,FIsQuali,FIsPrint
 		 from _App_ProcessRecord_SGXK a
-	    where not exists(select 1 from CF_App_ProcessRecord b where a.FId = b.fid)
+	    where not exists(select 1 from dbCenter.dbo.CF_App_ProcessRecord b where a.FId = b.fid)

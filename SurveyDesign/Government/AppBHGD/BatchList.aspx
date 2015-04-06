@@ -100,7 +100,14 @@
                 <td class="t_r">年度
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="txt_Year"></asp:TextBox>
+                    
+                    <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
+                </td>
+                <td class="t_r">批次
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddl_Batch" runat="server"></asp:DropDownList>
+
                 </td>
                 <td align="center" rowspan="3" colspan="2">
                     <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="BtnQuery" CssClass="m_btn_w2" />
@@ -145,11 +152,11 @@
                         Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                     <HeaderStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="工程名称">
+                <asp:BoundColumn HeaderText="工程名称" DataField="工程名称">
                     <ItemStyle Wrap="False" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="申报单位">
+                <asp:BoundColumn HeaderText="申报单位" DataField="申报单位">
                     <ItemStyle Wrap="False" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                 </asp:BoundColumn>
@@ -161,7 +168,7 @@
                     <ItemStyle Wrap="False" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="审批环节">
+                <asp:BoundColumn HeaderText="审批环节" DataField="审批环节">
                     <ItemStyle Wrap="False" />
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                 </asp:BoundColumn>
