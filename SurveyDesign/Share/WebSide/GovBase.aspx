@@ -1,76 +1,49 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="GovBase.aspx.cs" Inherits="Share_Main_GovBase" %>
-<object id="ePass" style="left: 0px; top: 0px" height="0" width="0" classid="clsid:C7672410-309E-4318-8B34-016EE77D6B58"  name="ePass"></object>
-<object id="ePass2" style="left: 0px; top: 0px" height="0" width="0" classid="clsid:e6bd6993-164f-4277-ae97-5eb4bab56443" name="ePass2"></object>
 
 <!DOCTYPE html>
    <script src="../../script/jquery.js" type="text/javascript"></script>
+<script src="../../script/lock.js"></script>
 <script  type="text/javascript" >
 
-    function ReadU_KeyInfor() {
-        var Device, DeviceSN, DeviceCount;
-        Device = document.getElementById("ePass2");
-        try {
-            if (DeviceCount = Device.FindToken("483FEC71")) {
-                if (!Device.OpenToken("483FEC71", 1)) {
-                    DeviceSN = Device.GetSN();
-                    alert(DeviceSN);
-                    return DeviceSN;
-                }
-            }
-        }
-        catch (err) {
+    $(function() {
+        LoadActiveX();
+    });
 
-        }
-    }
 
-    function CheckKey() {
-        //  return "42F81BC1722A9F26";
-        var ss;
-        try {
-            ss = ePass.GetLibVersion();
-            ss = ePass.OpenDevice(1, "");
-            var results = ePass.GetStrProperty(7, 0, 0);
-            //alert(results);
-            if ((results == "42F81BC1844C0D6D") || (results == "42F81BC171EC0764") || (results == "42F81BC171EC1BDC") || (results == "42F81BC171C44E24") || (results == "42F81BC171EC01D4") || (results == "42F81BC1765AB00B") || (results == "42F81BC1765A403B") || (results == "42F81BC1765AB653") || (results == "42F81BC1788359B3") || (results == "42F81BC18443E30D") || (results == "42F81BC18473560D") || (results == "42F81BC18472D08D"))
-                results = "42F81BC1844395A3";
-            if ((results == "42F81BC175B2AEC3") || (results == "42F81BC175B2B98B"))
-                results = "42F81BC171224894";
-            if (results == "42F81BC18473CA3D")
-                results = "42F81BC174EC0CC1";
-            if (results == "42F81BC18473D625")
-                results = "42F81BC175B2B693";
-            return results;
-        }
-        catch (err) {
-
-        }
-
-    }
-
-    function getLockId(username) {
+    function mygetLockId(username, pageid) {
         
-        var result = ReadU_KeyInfor();
-
-        if (result == "" || result == null) {
-            result = CheckKey();
+        var keyvalue = getLockId();
+        
+        if (keyvalue === "" || keyvalue == undefined) {
+            alert("请插入加密锁!");
+            return;
         }
-        var keyvalue  = "1" + result + "2";
+ 
         //ytb 修改
-        VerifyKey(username,keyvalue);
-        return result;
+        VerifyKey(encodeURI(username), keyvalue, pageid);
+      
     }
     //ytb 修改
-    function VerifyKey(name,key) {
+    function VerifyKey(name, key, pageid) {
+
         $.ajax({
             url: "GovBase.aspx",
             type: 'get',
-            data: {'username':name,'method':'verify','keyvalue':key},
-            success: function () {   },
+            contenttype: "application/json; charset=utf-8",
+            data: { 'username': name, 'method': 'verify', 'keyvalue': key, 'pageid': pageid },
+            success: function(data) {
+                if (data === "true") {
+                    window.location.href = "/Government/AppZBBA/"+pageid+".aspx?r="+Math.random();
+                } else {
+                    {
+                        alert("必须传递合法的用户帐号");
+                    }
+                }
+            },
             error: function (er) {
-            alert(er)
+                alert(er);
             }
         });
-
     };
 
 
