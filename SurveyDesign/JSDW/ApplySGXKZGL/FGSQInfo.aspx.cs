@@ -69,7 +69,7 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
                     sql = " INSERT INTO TC_SGXKZ_TFG (FId,FTFGRQ,FYJSJFGRQ,FYY,FAppId,FType,FCLZT) VALUES ('" + fid + "',";
                     sql += "'" + t_TGDate.Text + " 00:00:00',";
                     sql += " '" + t_CXKGDate.Text + " 00:00:00',";
-                    sql += " '" + t_FGYY.Text + "','" + t_fLinkId.Value + "',0,0)";
+                    sql += " '" + t_FGYY.Text + "','" + t_fLinkId.Value + "',1,0)";
 
                 }
                 else
