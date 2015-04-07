@@ -34,7 +34,7 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
         sb.Append("'");
         string sql = sb.ToString();
         DataTable dt = GetData(sql);
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < dt.Rows.Count; i++)
         {
             t_PrjItemName.Text = EConvert.ToString(dt.Rows[i]["PrjItemName"]);
             t_JSDW.Text = EConvert.ToString(dt.Rows[i]["JSDW"]);
@@ -45,9 +45,9 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
 
             t_TGYYA.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
             fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
-         
 
 
+            break;
         }
     }
 

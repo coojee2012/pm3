@@ -52,46 +52,46 @@ public partial class Government_AppTFGGL_TGList : govBasePage
     private string getCondi()
     {
         StringBuilder sb = new StringBuilder();
-        if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
-        {
-            sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
-        }
+        //if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
+        //}
 
-        if (this.govd_FRegistDeptId.FNumber != null)
-        {
-            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
-        }
-        else
-        {
-            sb.Append(" and qa.PrjAddressDept <> '' ");
-        }
-        if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
-        {
-            sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
-        }
+        //if (this.govd_FRegistDeptId.FNumber != null)
+        //{
+        //    sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+        //}
+        //else
+        //{
+        //    sb.Append(" and qa.PrjAddressDept <> '' ");
+        //}
+        //if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
+        //}
 
-        if (this.txtSGXKZBH.Text.Trim() != "" && this.txtSGXKZBH.Text.Trim() != null)
-        {
-            sb.Append(" and qa.SGXKZBH like '%" + this.txtSGXKZBH.Text.Trim() + "%' ");
-        }
+        //if (this.txtSGXKZBH.Text.Trim() != "" && this.txtSGXKZBH.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.SGXKZBH like '%" + this.txtSGXKZBH.Text.Trim() + "%' ");
+        //}
 
-        if (this.txtHTJGB.Text.Trim() != "" && this.txtHTJGB.Text.Trim() != null)
-        {
-            sb.Append(" and convert(decimal(38,6),ISNULL(qa.Price,'0')) >= " + this.txtHTJGB.Text.Trim());
-        }
-        if (this.txtHTJGE.Text.Trim() != "" && this.txtHTJGE.Text.Trim() != null)
-        {
-            sb.Append(" and convert(decimal(38,6),ISNULL(qa.Price,'0')) <= " + this.txtHTJGE.Text.Trim());
-        }
+        //if (this.txtHTJGB.Text.Trim() != "" && this.txtHTJGB.Text.Trim() != null)
+        //{
+        //    sb.Append(" and convert(decimal(38,6),ISNULL(qa.Price,'0')) >= " + this.txtHTJGB.Text.Trim());
+        //}
+        //if (this.txtHTJGE.Text.Trim() != "" && this.txtHTJGE.Text.Trim() != null)
+        //{
+        //    sb.Append(" and convert(decimal(38,6),ISNULL(qa.Price,'0')) <= " + this.txtHTJGE.Text.Trim());
+        //}
 
-        if (this.txtKGSDate.Text.Trim() != "" && this.txtKGSDate.Text.Trim() != null)
-        {
-            sb.Append(" and qa.StartDate >='" + this.txtKGSDate.Text.Trim() + " " + "00:00:00' ");
-        }
-        if (this.txtKGEDate.Text.Trim() != "" && this.txtKGEDate.Text.Trim() != null)
-        {
-            sb.Append(" and qa.StartDate  <='" + this.txtKGEDate.Text.Trim() + " " + "23:59:59' ");
-        }
+        //if (this.txtKGSDate.Text.Trim() != "" && this.txtKGSDate.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.StartDate >='" + this.txtKGSDate.Text.Trim() + " " + "00:00:00' ");
+        //}
+        //if (this.txtKGEDate.Text.Trim() != "" && this.txtKGEDate.Text.Trim() != null)
+        //{
+        //    sb.Append(" and qa.StartDate  <='" + this.txtKGEDate.Text.Trim() + " " + "23:59:59' ");
+        //}
 
 
 
