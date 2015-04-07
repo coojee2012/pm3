@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Web.UI.WebControls;
 
 public partial class Share_Main_GovBase : System.Web.UI.Page
 {
+    Share sh = new Share();
     readonly RCenter _rc = new RCenter();
 
     string _strpageid = "";
@@ -81,6 +83,7 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
 
         if (keyvalue.Trim() == getnumber.Trim() && getnumber.Trim().Length > 0)
         {
+            Login(keyvalue);
             return true;
         }
         else
@@ -89,8 +92,41 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
         }
     }
 
+
+
+    //登陆
+    private void Login(string flocknumber)
+    {
+
+        this.ClientScript.RegisterStartupScript(GetType(), "jj", "<script>show();</script>");
+
+        SortedList sl = new SortedList
+        {
+            {"flocknumber", flocknumber}
+        };
+
+        StringBuilder sb = new StringBuilder();
+        sb.Append("select FID,FName,FRoleId ");
+        sb.Append("from CF_Sys_User ");
+        sb.Append("where fisdeleted=0 and flocknumber=@flocknumber ");
+
+        DataTable dt = sh.GetTable(sb.ToString(), sh.ConvertParameters(sl));
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            string userId = dt.Rows[0]["FID"].ToString();
+            Session["DFUserId"] = userId;
+            Session["DFId"] = userId;
+            Session["CreateName"] = dt.Rows[0]["FName"].ToString();
+            Session["DFRoleId"] = dt.Rows[0]["FRoleId"].ToString();
+        }
+        else
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "js", "alert('登陆失败！');", true);
+        }
+    }
+
     private void Fail()
     {
         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "js", "alert('必须传递合法的用户帐号！');", true);
-     }
+    }
 }

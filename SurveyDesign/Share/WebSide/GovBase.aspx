@@ -8,7 +8,6 @@
     function mygetLockId(username, pageid) {
         
         var keyvalue = getLockId();
-        
         if (keyvalue === "" || keyvalue == undefined) {
             alert("请插入加密锁!");
             return;
