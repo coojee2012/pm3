@@ -34,7 +34,8 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
             //得到需要跳转的页面
             if (!string.IsNullOrEmpty(Request["pageid"]))
             {
-                _strpageid = Request["pageid"].ToString();
+
+                _strpageid = PagUrl(Request["pageid"].ToString());
             }
             else
             {
@@ -97,7 +98,6 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
     //登陆
     private void Login(string flocknumber)
     {
-
         this.ClientScript.RegisterStartupScript(GetType(), "jj", "<script>show();</script>");
 
         SortedList sl = new SortedList
@@ -128,5 +128,36 @@ public partial class Share_Main_GovBase : System.Web.UI.Page
     private void Fail()
     {
         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "js", "alert('必须传递合法的用户帐号！');", true);
+    }
+
+    /// <summary>
+    /// 根据菜单ID找到菜单地址
+    /// </summary>
+    /// <param name="pageid">菜单id</param>
+    /// <returns>菜单地址</returns>
+    private string PagUrl(string pageid)
+    {
+        SortedList sl = new SortedList
+        {
+            {"fnumber", pageid}
+        };
+        const string sql = " select FUrl from CF_Sys_Menu where fnumber = @fnumber ";
+
+        DataTable dt = sh.GetTable(sql, sh.ConvertParameters(sl));
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            return RepliceUrl(dt.Rows[0]["FUrl"].ToString()); ;
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    private string RepliceUrl(string url)
+    {
+        url = url.Replace("../", "");
+
+        return url;
     }
 }

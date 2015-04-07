@@ -5,29 +5,30 @@
 <script src="../../script/lock.js"></script>
 <script  type="text/javascript" >
 
-    function mygetLockId(username, pageid) {
+    function mygetLockId(username, pageurl) {
         
         var keyvalue = getLockId();
+
         if (keyvalue === "" || keyvalue == undefined) {
             alert("请插入加密锁!");
             return;
         }
  
         //ytb 修改
-        VerifyKey(encodeURI(username), keyvalue, pageid);
+        VerifyKey(encodeURI(username), keyvalue, pageurl);
       
     }
     //ytb 修改
-    function VerifyKey(name, key, pageid) {
+    function VerifyKey(name, key, pageurl) {
 
         $.ajax({
             url: "GovBase.aspx",
             type: 'get',
             contenttype: "application/json; charset=utf-8",
-            data: { 'username': name, 'method': 'verify', 'keyvalue': key, 'pageid': pageid },
+            data: { 'username': name, 'method': 'verify', 'keyvalue': key, 'pageid': pageurl },
             success: function(data) {
                 if (data === "true") {
-                    window.location.href = "/Government/AppZBBA/" + pageid + ".aspx?r=" + Math.random();
+                    window.location.href = (getRootPath() + "/Government/" + pageurl);
                 } else {
                     alert("必须传递合法的用户帐号");
                 }
@@ -37,6 +38,18 @@
             }
         });
     };
+
+    function getRootPath() {
+        //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+        var curWwwPath = window.document.location.href;
+        //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+        //获取主机地址，如： http://localhost:8083
+        var localhostPaht = curWwwPath.substring(0, pos);
+      
+        return (localhostPaht);
+    }
 
 
     
