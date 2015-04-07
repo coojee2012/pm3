@@ -5,11 +5,6 @@
 <script src="../../script/lock.js"></script>
 <script  type="text/javascript" >
 
-    $(function() {
-        LoadActiveX();
-    });
-
-
     function mygetLockId(username, pageid) {
         
         var keyvalue = getLockId();
@@ -33,11 +28,9 @@
             data: { 'username': name, 'method': 'verify', 'keyvalue': key, 'pageid': pageid },
             success: function(data) {
                 if (data === "true") {
-                    window.location.href = "/Government/AppZBBA/"+pageid+".aspx?r="+Math.random();
+                    window.location.href = "/Government/AppZBBA/" + pageid + ".aspx?r=" + Math.random();
                 } else {
-                    {
-                        alert("必须传递合法的用户帐号");
-                    }
+                    alert("必须传递合法的用户帐号");
                 }
             },
             error: function (er) {
@@ -55,6 +48,9 @@
     <title></title>
 </head>
 <body>
+
+    <object id="ePass" style="left: 0px; top: 0px" height="0" width="0" classid="clsid:C7672410-309E-4318-8B34-016EE77D6B58"  name="ePass"></object>
+<object id="ePass2" style="left: 0px; top: 0px" height="0" width="0" classid="clsid:e6bd6993-164f-4277-ae97-5eb4bab56443" name="ePass2"></object>
     <form id="form1" runat="server">
          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div>
