@@ -29,7 +29,7 @@ public partial class Government_AppTFGGL_TGInfo : System.Web.UI.Page
     protected void BindData()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(" select a.*,tf.FID as FIID, isnull(tf.FType,0) as FType,tf.FTFGRQ,tf.FYY,tf.FYJSJFGRQ from TC_SGXKZ_PrjInfo a ");
+        sb.Append(" select a.*,tf.FID as FIID, isnull(tf.FType,0) as FType,tf.FTFGRQ,tf.FYY,tf.FYJSJFGRQ,tf.FSHR,tf.FSHRQ,tf.FSHDW from TC_SGXKZ_PrjInfo a ");
         sb.Append(" left join TC_SGXKZ_TFG tf on tf.FAppId=a.FAppId ");
         sb.Append("  where ");
         sb.Append("  a.FAppId= '");
@@ -47,6 +47,11 @@ public partial class Government_AppTFGGL_TGInfo : System.Web.UI.Page
             t_CXKGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
 
             t_TGYY.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
+
+            t_SHDW.Text = EConvert.ToString(dt.Rows[i]["FSHDW"]);
+            t_SHR.Text = EConvert.ToString(dt.Rows[i]["FSHR"]);
+            t_SHRQ.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FSHRQ"])).ToString("yyyy-MM-dd"); 
+
             if (EConvert.ToString(dt.Rows[i]["FType"]) == "0")
             {
                 fid.Value = "";
