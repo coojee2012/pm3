@@ -13,6 +13,8 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
         if (Request["FAppId"] != null && !string.IsNullOrEmpty(Request["FAppId"]))
         {
             t_fLinkId.Value = Request["FAppId"].ToString();
@@ -22,17 +24,18 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
             t_fProcessInstanceID.Value = Request["FId"].ToString();
         }
         BindData();
+        }
     }
 
     protected void BindData()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(" select a.*,tf.FID as FIID,tf.FTFGRQ,tf.FYY,tf.FYJSJFGRQ from TC_SGXKZ_PrjInfo a ");
+        sb.Append(" select a.*,tf.FID as FIID, isnull(tf.FType,0) as FType,tf.FTFGRQ,tf.FYY,tf.FYJSJFGRQ from TC_SGXKZ_PrjInfo a ");
         sb.Append(" left join TC_SGXKZ_TFG tf on tf.FAppId=a.FAppId ");
-        sb.Append("  where isnull(tf.FType,0) = 1 and isnull(tf.FCLZT,0) = 0  and ");
+        sb.Append("  where ");
         sb.Append("  a.FAppId= '");
         sb.Append(t_fLinkId.Value);
-        sb.Append("'");
+        sb.Append("' order by isnull(tf.FType,0) desc ");
         string sql = sb.ToString();
         DataTable dt = GetData(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
@@ -41,11 +44,19 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
             t_JSDW.Text = EConvert.ToString(dt.Rows[i]["JSDW"]);
             t_FZTime.Text = EConvert.ToString(dt.Rows[i]["FZTime"]);
             t_FZJG.Text = EConvert.ToString(dt.Rows[i]["FZJG"]);
-            t_TGDate.Text = EConvert.ToString(dt.Rows[i]["FTFGRQ"]);
-            t_CXKGDate.Text = EConvert.ToString(dt.Rows[i]["CXKGDate"]);
+            t_TGDate.Text =DateTime.Parse( EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
+            t_CXKGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
 
             t_FGYY.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
-            fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
+            if (EConvert.ToString(dt.Rows[i]["FType"]) == "0")
+            {
+                fid.Value = "";
+            }
+            else
+            {
+                fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
+            }
+            
 
 
             break;

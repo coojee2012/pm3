@@ -36,8 +36,11 @@ public partial class JSDW_ApplySGXKZGL_FGGLList : govBasePage
     //   Session.Remove("FAppId");
     protected void Page_Load(object sender, EventArgs e)
     {
-        base.Page_Load(sender, e);
-        ShowInfo();
+        if (!IsPostBack)
+        {
+            base.Page_Load(sender, e);
+            ShowInfo();
+        }
     }
 
     private void ShowInfo()
@@ -49,8 +52,8 @@ public partial class JSDW_ApplySGXKZGL_FGGLList : govBasePage
         sb.Append(" from TC_SGXKZ_PrjInfo qa ");
         sb.Append(" left join TC_Prj_Info b on qa.PrjId=b.FId ");
         sb.Append(" left join CF_App_ProcessInstanceBackup ep on ep.FLinkId = qa.FAppId ");
-        sb.Append(" where qa.SJStartDate IS NOT NULL AND qa.SJEndDate IS NULL AND qa.FAppId  IN (SELECT FAppId FROM TC_SGXKZ_TFG WHERE FType=0 and FCLZT=2)");
-        // sb.Append(" and b.FJSDWID = '" + jsdwId + "'");
+        sb.Append(" where qa.SJStartDate IS NOT NULL AND qa.SJEndDate IS NULL AND qa.FAppId  IN (SELECT FAppId FROM TC_SGXKZ_TFG WHERE FType=0 and FCLZT=1)");
+        sb.Append(" and b.FJSDWID = '" + jsdwId + "'");
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
 

@@ -31,7 +31,7 @@
         <table width="95%" align="center" class="m_title">
         <tr>
             <th colspan="4">
-                <asp:Label ID="lbTitle" runat="server" Text="停工申请">停工申请</asp:Label>
+                <asp:Label ID="lbTitle" runat="server" Text="复工申请">复工申请</asp:Label>
             </th>
         </tr>
       
@@ -75,7 +75,7 @@
                 停工日期：
             </td>
             <td>
-                <asp:TextBox ID="t_TGDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="t_TGDate" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
             <td class="t_r">
                 重新开工日期：

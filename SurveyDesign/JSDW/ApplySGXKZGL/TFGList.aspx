@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FGGLList.aspx.cs" Inherits="JSDW_ApplySGXKZGL_FGGLList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TFGList.aspx.cs" Inherits="JSDW_ApplySGXKZGL_TFGList" %>
+
 
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
@@ -6,7 +7,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>复工申请</title>
+    <title>停复工查询</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -154,7 +155,7 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">复工申请</asp:Literal>
+                <asp:Literal ID="lPostion" runat="server">停复工查询</asp:Literal>
             </th>
         </tr>
         <tr>
@@ -186,18 +187,7 @@
        
         
     </table>
- <table width="98%" align="center" class="m_bar">
-        <tr>
-            <td class="m_bar_l">
-            </td>
-            <td class="t_r">
-                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="申请" OnClientClick="return app('FGSQInfo.aspx')" />
-               
-            </td>
-            <td class="m_bar_r">
-            </td>
-        </tr>
-    </table>
+
 
  
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -207,15 +197,7 @@
                         <HeaderStyle CssClass="m_dg1_h" />
                         <ItemStyle CssClass="m_dg1_i" />
                         <Columns>
-                          <asp:TemplateColumn>
-                <ItemStyle Width="20px" />
-                <HeaderTemplate> 
-                    <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <asp:CheckBox ID="CheckItem" runat="server" />
-                </ItemTemplate>
-            </asp:TemplateColumn>
+                    
                             <asp:BoundColumn HeaderText="序号">
                                 <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
                                     Font-Strikeout="False" Font-Underline="False" Wrap="False" />
@@ -244,7 +226,7 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>                                                      
-                            <asp:BoundColumn HeaderText="施工状态" DataField="SGState" >
+                            <asp:BoundColumn HeaderText="施工状态"  >
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>                                      
