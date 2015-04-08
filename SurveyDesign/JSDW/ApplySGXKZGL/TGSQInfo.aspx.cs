@@ -12,15 +12,19 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request["FAppId"] != null && !string.IsNullOrEmpty(Request["FAppId"]))
+        if (!IsPostBack)
         {
-            t_fLinkId.Value = Request["FAppId"].ToString();
+            if (Request["FAppId"] != null && !string.IsNullOrEmpty(Request["FAppId"]))
+            {
+                t_fLinkId.Value = Request["FAppId"].ToString();
+            }
+            if (Request["FId"] != null && !string.IsNullOrEmpty(Request["FId"]))
+            {
+                t_fProcessInstanceID.Value = Request["FId"].ToString();
+            }
+            BindData();
         }
-        if (Request["FId"] != null && !string.IsNullOrEmpty(Request["FId"]))
-        {
-            t_fProcessInstanceID.Value = Request["FId"].ToString();
-        }
-        BindData();
+        
     }
 
     protected void BindData()
@@ -40,8 +44,10 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
             t_JSDW.Text = EConvert.ToString(dt.Rows[i]["JSDW"]);
             t_FZTime.Text = EConvert.ToString(dt.Rows[i]["FZTime"]);
             t_FZJG.Text = EConvert.ToString(dt.Rows[i]["FZJG"]);
-            t_TGDate.Text = EConvert.ToString(dt.Rows[i]["FTFGRQ"]);
-            t_YJFGDate.Text = EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"]);
+           // t_TGDate.Text = EConvert.ToString(dt.Rows[i]["FTFGRQ"]);
+           // t_YJFGDate.Text = EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"]);
+            t_TGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
+            t_YJFGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
 
             t_TGYYA.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
             fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
