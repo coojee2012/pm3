@@ -867,7 +867,11 @@ if not exists (select 1
 begin 
     SELECT * into _App_ProcessInstance_AJBA from CF_App_ProcessInstance where 1=2  --只取表结构
     alter table _App_ProcessInstance_AJBA alter column FentName varchar(200) null       
-
+end
+else
+begin
+    delete _App_ProcessInstance_AJBA
+end
 	   insert into _App_ProcessInstance_AJBA
 	   (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
 			  FIsTemp,FListId,FTypeId,FLevelId,FProcessId,FManageDeptId,FManageTypeId,--FSubFlowId,
@@ -878,7 +882,7 @@ begin
 			  '',year(a.FwriteDate),month(a.FwriteDate),a.FReportDate,a.FReportDate,isnull(a.fupdeptid,'51'),'8801','8801',1,1,'1122',0,null,null,null,null,null
 	     from _App_List_AJBA a
 		where  not exists(select 1 from CF_App_ProcessInstance b where a.FId = b.FLinkId)
-end 
+
 
   insert into CF_App_ProcessInstance
              (fid,FisDeleted,Ftime,FCreateTime,FBaseInfoID,FEntName,FEmpId,FLinkId,FState,FIsPrime,
@@ -900,6 +904,11 @@ if not exists (select 1
 begin
 
   select * into _App_ProcessRecord_AJBA from CF_App_ProcessRecord where 1=2
+end
+else
+begin
+  delete _App_ProcessRecord_AJBA
+end
 
   insert into _App_ProcessRecord_AJBA
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
@@ -908,7 +917,7 @@ begin
 	          a.FReportDate,1,'8801',1,1,'管理部门审核',1,2,1
 	     from _App_ProcessInstance_AJBA a
 		where  not exists(select 1 from CF_App_ProcessRecord b where a.FId = b.FProcessInstanceID)
-end 
+
 
   insert into CF_App_ProcessRecord
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
