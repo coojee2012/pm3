@@ -96,18 +96,12 @@ public partial class Government_AppZLJDBA_Query : govBasePage
     private string getCondi()
     {
         StringBuilder sb = new StringBuilder();
-        if (this.txtFProjectName.Text.Trim() != "" && this.txtFProjectName.Text.Trim() != null)
-        {
-            sb.Append(" and qa.ProjectName like '%" + this.txtFProjectName.Text.Trim() + "%' ");
-        }
+    
         if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
         {
             sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
-        if (this.txtRecordNo.Text.Trim() != "" && this.txtRecordNo.Text.Trim() != null)
-        {
-            sb.Append(" and qa.RecordNo like '%" + this.txtRecordNo.Text.Trim() + "%' ");
-        }
+  
         if (this.txtSDate.Text.Trim() != "" && this.txtSDate.Text.Trim() != null)
         {
             sb.Append(" and ep.FReportDate >='" + this.txtSDate.Text.Trim() + "' ");

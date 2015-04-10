@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>标准化工地查询</title>
+    <title>标准化工地办理查询</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -148,18 +148,20 @@
     <table width="98%" align="center" class="m_title">
         <tr>
             <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">标准化工地申请接件</asp:Literal>
+                <asp:Literal ID="lPostion" runat="server">标准化工地办理查询</asp:Literal>
             </th>
         </tr>
         <tr>
             <td class="t_r">
-                项目名称：
+                业务类型：
             </td>
             <td align="left">
-                <asp:DropDownList ID="dbSystemId" runat="server" CssClass="m_txt" Width="100px" AutoPostBack="True"
-                    OnSelectedIndexChanged="dbSystemId_SelectedIndexChanged" Enabled="false" Style="display: none;">
-                </asp:DropDownList>
-                <asp:TextBox ID="txtFProjectName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                <asp:DropDownList ID="dbSystemId" runat="server" CssClass="m_txt" Width="100px"  >
+                    <asp:ListItem Text="全部" Value="">全部</asp:ListItem>
+                    <asp:ListItem Text="工程预报" Value="1">工程预报</asp:ListItem>
+                    <asp:ListItem Text="工程复查" Value="2">工程复查</asp:ListItem>
+                    <asp:ListItem Text="工程发证" Value="3">工程发证</asp:ListItem>
+                </asp:DropDownList>           
             </td>
             <td class="t_r">
                 工程名称：
@@ -176,13 +178,40 @@
                     onclick="clearPage();" />
             </td>
         </tr>
+
         <tr>
-            <td class="t_r">
-                备案编号：
+            <td class="t_r">工程所属地：</td>
+            <td>
+
+
+            </td>
+            <td  class="t_r">
+                申报单位：
             </td>
             <td>
-                <asp:TextBox ID="txtRecordNo" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+
             </td>
+        </tr>
+         <tr>
+                <td class="t_r">年度
+                </td>
+                <td>
+
+                    <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
+                </td>
+
+                <td class="t_r">批次
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddl_Batch" runat="server"></asp:DropDownList>
+
+                </td>
+             </tr>
+     
+        <tr>
+            
+             <td  class="t_r">处理结果：</td>
+            <td></td>
             <td class="t_r">
                 状&nbsp; 态：
             </td>
