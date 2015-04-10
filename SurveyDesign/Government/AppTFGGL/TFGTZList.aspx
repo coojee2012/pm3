@@ -6,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>复工管理</title>
+    <title>停复工通告</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -156,19 +156,19 @@
         <table width="98%" align="center" class="m_title">
             <tr>
                 <th colspan="7">
-                    <asp:Literal ID="lPostion" runat="server">复工管理</asp:Literal>
+                    <asp:Literal ID="lPostion" runat="server">停复工通告</asp:Literal>
                 </th>
             </tr>
             <tr>
-                <td class="t_r">工程名称：
+                <td class="t_r">年度：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                    <asp:TextBox ID="txtND" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
                 </td>
-                <td class="t_r">证书编号：
+                <td class="t_r">通告批次：
                 </td>
                 <td>
-                    <asp:TextBox ID="txtSGXKZBH" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                    <asp:TextBox ID="txtTGPC" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
                 </td>
 
                 <td colspan="2" rowspan="2" style="text-align: center; padding-right: 10px">
@@ -181,12 +181,12 @@
             </tr>
             <tr>
 
-                <td class="t_r">办理状态：
+                <td class="t_r">发布状态：
                 </td>
                 <td>
-                    <asp:DropDownList ID="txtBLZT" runat="server" CssClass="m_txt" Width="169px">
-                        <asp:ListItem Value="0" Text="待处理" Selected="True"></asp:ListItem>
-                        <asp:ListItem Value="1" Text="通过"></asp:ListItem>
+                    <asp:DropDownList ID="txtFBZT" runat="server" CssClass="m_txt" Width="169px">
+                        <asp:ListItem Value="0" Text="未发布" Selected="True"></asp:ListItem>
+                        <asp:ListItem Value="1" Text="已发布"></asp:ListItem>
                         <asp:ListItem Value="-1" Text="全部"></asp:ListItem>
 
                     </asp:DropDownList>
@@ -207,7 +207,10 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="处理" OnClientClick="return app('FGInfo.aspx')" />            
+                <asp:Button ID="btnNew" runat="server" CssClass="m_btn_w2" Text="新建" OnClientClick="return app('FGInfo.aspx')" />  
+                <asp:Button ID="btnEdit" runat="server" CssClass="m_btn_w2" Text="编辑" OnClientClick="return app('FGInfo.aspx')" />  
+                <asp:Button ID="btnPublish" runat="server" CssClass="m_btn_w2" Text="发布" OnClientClick="return app('FGInfo.aspx')" />  
+                <asp:Button ID="btnDel" runat="server" CssClass="m_btn_w2" Text="删除" OnClientClick="return app('FGInfo.aspx')" />            
             </td>
             <td class="m_bar_r">
             </td>
@@ -221,6 +224,7 @@
                     HorizontalAlign="Center" OnItemDataBound="JustAppInfo_List_ItemDataBound" Width="98%">
                     <HeaderStyle CssClass="m_dg1_h" />
                     <ItemStyle CssClass="m_dg1_i" />
+                   
                     <Columns>
                         <asp:TemplateColumn>
                             <ItemStyle Width="20px" />
@@ -237,40 +241,41 @@
                             <HeaderStyle Wrap="False" />
                         </asp:BoundColumn>
 
-                        <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName">
+                        <asp:BoundColumn HeaderText="状态" DataField="FBZT">
                             <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="施工编号" DataField="SGXKZBH">
+                        <asp:BoundColumn HeaderText="年度" DataField="ND">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="建设单位" DataField="JSDW">
+                        <asp:BoundColumn HeaderText="通告批次" DataField="TGPC">
                             <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
 
-                        <asp:BoundColumn HeaderText="发证机关" DataField="FZJG">
+                       
+                         <asp:BoundColumn HeaderText="停工日期" DataField="TGRQ" DataFormatString="{0:yyyy-MM-dd}">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
 
-                        <asp:BoundColumn HeaderText="发证日期" DataField="FZTime" DataFormatString="{0:yyyy-MM-dd}">
+                        <asp:BoundColumn HeaderText="复工日期" DataField="FGRQ" DataFormatString="{0:yyyy-MM-dd}">
                             <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
 
+                         <asp:BoundColumn HeaderText="停工原因" DataField="TGYY">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
 
 
-
-                        <asp:BoundColumn HeaderText="施工状态" DataField="FSGZT">
+                        <asp:BoundColumn HeaderText="批次数量" DataField="PCSL">
                             <ItemStyle Font-Underline="False" Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="办理状态" DataField="FCLZT">
-                            <ItemStyle Font-Underline="False" Wrap="False" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
+                       
 
 
                         <asp:BoundColumn HeaderText="FId" DataField="FId" Visible="False">
