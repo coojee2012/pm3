@@ -203,7 +203,7 @@ select
 			a.BHID  FId,                     --主键
 			a.BHID  FAppId,                  --业务外键
 			b.fqbm  FPrjId,                  --项目编码
-			null   FPrjItemId,               --工程外键 
+			newid()   FPrjItemId,            --工程外键 
 			b.GCMC ProjectName,              --项目名称
 			b.s,SQ,QX,                       --省、市、县
 			b.JW IsForeign,                  --
@@ -425,7 +425,7 @@ end
 	          0,'19301','1930100','1930100','8940a75c-b8a5-4de2-be85-15412132e0f1',isnull(a.fupdeptid,'51'),a.FManageTypeId,
 			  '',year(a.FwriteDate),month(a.FwriteDate),a.FReportDate,a.FReportDate,isnull(a.fupdeptid,'51'),'8801','8801',1,1,'1122',0,null,null,null,null,null
 	     from _App_List_BZHD a
-		where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessInstance b where a.FId = b.FLinkId)
+	--	where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessInstance b where a.FId = b.FLinkId)
 
 
   insert into dbCenter.dbo.CF_App_ProcessInstance
@@ -459,7 +459,7 @@ end
 	   select newid(),a.FSubmitDate,0,a.fid,a.FLinkId,a.FSubFlowId,0,null,isnull(FManageDeptId,'51'),
 	          a.FReportDate,1,'8801',1,1,'管理部门审核',1,2,1
 	     from _App_ProcessInstance_BZGD a
-		where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessRecord b where a.FId = b.FProcessInstanceID)
+	--	where  not exists(select 1 from dbCenter.dbo.CF_App_ProcessRecord b where a.FId = b.FProcessInstanceID)
 
   insert into dbCenter.dbo.CF_App_ProcessRecord
               (fid,FTime,FIsDeleted,FProcessInstanceID,FLinkId,FSubFlowId,FMeasure,Fresult,FManageDeptId,
