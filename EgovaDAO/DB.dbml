@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.103;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString5" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sql;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString5" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2400,19 +2400,7 @@
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FBatchId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
       <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_SGXKZ_TFGTZ" Member="TC_SGXKZ_TFGTZ">
-    <Type Name="TC_SGXKZ_TFGTZ">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="TGPC" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ND" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TGRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="FGRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TGYY" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FBZT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PCSL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

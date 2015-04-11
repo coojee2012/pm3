@@ -86,7 +86,8 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                       b.LXDH,
                       ZSBH = tt==null?"":tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      AXBH = tt1==null?"":tt1.ZSBH
+                      //AXBH = tt1==null?"":tt1.ZSBH,
+                      AXBH = tt.QY_QYZSXX.ZSLXBM == "2"?tt.QY_QYZSXX.ZSLXBM:""//证书类型为2的是安全许可证
                    };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
