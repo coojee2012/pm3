@@ -1,6 +1,7 @@
 ﻿using Approve.Common;
 using Approve.RuleApp;
 using Approve.RuleCenter;
+using EgovaDAO;
 using ProjectData;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,12 @@ public partial class Government_AppTFGGL_TFGTZList : govBasePage
     ProjectDB db = new ProjectDB();
     protected void Page_Load(object sender, EventArgs e)
     {
-        base.Page_Load(sender, e);
-        ShowInfo();
+        if (!IsPostBack)
+        {
+            base.Page_Load(sender, e);
+            ShowInfo();
+        }
+        
     }
 
     private void ShowInfo()
@@ -89,16 +94,58 @@ public partial class Government_AppTFGGL_TFGTZList : govBasePage
             box.Attributes["fId"] = fId;
             box.Attributes["fbzt"] = fbzt;
             box.Attributes["fAppId"] = fAppId;
-            box.Attributes["name"] = fAppId;
+            box.Attributes["name"] = fId;
 
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('GCXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[2].Text + "</a>";
-            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
+            //e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('GCXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[2].Text + "</a>";
+            //e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
 
         }
     }
     protected void btnQuery_Click(object sender, EventArgs e)
     {
         ShowInfo();
+    }
+
+    protected void btnReload_Click(object sender, EventArgs e)
+    {
+        ShowInfo();
+    }
+
+    protected void btnPublish_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnDel_Click(object sender, EventArgs e)
+
+    {
+
+
+
+        string FId = "";
+
+        int RowCount = JustAppInfo_List.Items.Count;
+        IList<string> FIdList = new List<string>();
+        for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 1].Text.Trim();
+
+                FIdList.Add(FId);
+            }
+        }
+
+
+
+   
+       
+        ShowInfo();
+    }
+
+    private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
+    {
+
     }
 }

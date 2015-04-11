@@ -92,10 +92,8 @@
 
         function app(url) {
             var tmpVal = '';
-
             var fAppId = '';
             var fId = '';
-
             var cou = 0;
             var chkColl = document.getElementsByTagName("input");
             for (var i = 0; i < chkColl.length; i++) {
@@ -106,10 +104,8 @@
                         if (span) {
                             if (tmpVal.indexOf(span.getAttribute("name") + ",") == -1) {
                                 tmpVal += span.getAttribute("name") + ",";
-
                                 fId += span.getAttribute("fId") + ",";
                                 fAppId += span.getAttribute("fAppId") + ",";
-
                             }
                         }
                     }
@@ -133,12 +129,18 @@
 
             obj.name = '';
             obj.id = tmpVal;
-
-
             ShowWindow(url + '?fId=' + fId + '&fAppId=' + fAppId, 900, 600, obj);
 
 
             return false;
+        }
+        function appAdd(url) {
+            var FAppId = document.getElementById("t_fLinkId").value;
+            var btn = document.getElementById("btnReload");
+            var FPrjItemId = document.getElementById("t_PrjItemId").value;
+            //var FPrjId = document.getElementById("t_FPrjId").value;
+            //var FPrjItemId = document.getElementById("t_FPrjItemId").value;
+            showAddWindow(url+'?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450, btn);
         }
 
         function btnQueryClickClient() {
@@ -207,10 +209,11 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnNew" runat="server" CssClass="m_btn_w2" Text="新建" OnClientClick="return app('FGInfo.aspx')" />  
-                <asp:Button ID="btnEdit" runat="server" CssClass="m_btn_w2" Text="编辑" OnClientClick="return app('FGInfo.aspx')" />  
-                <asp:Button ID="btnPublish" runat="server" CssClass="m_btn_w2" Text="发布" OnClientClick="return app('FGInfo.aspx')" />  
-                <asp:Button ID="btnDel" runat="server" CssClass="m_btn_w2" Text="删除" OnClientClick="return app('FGInfo.aspx')" />            
+                <asp:Button ID="btnNew" runat="server" CssClass="m_btn_w2" Text="新建" OnClientClick="return appAdd('TFGTZNew.aspx')" />  
+                <asp:Button ID="btnEdit" runat="server" CssClass="m_btn_w2" Text="编辑" OnClientClick="return app('TFGTZNew.aspx')" />  
+                <asp:Button ID="btnPublish" runat="server" CssClass="m_btn_w2" Text="发布" OnClick="btnPublish_Click" />  
+                <asp:Button ID="btnDel" runat="server" CssClass="m_btn_w2" Text="删除" OnClick="btnDel_Click" />   
+                <asp:Button ID="btnReload" runat="server" CssClass="m_btn_w2" Text="刷新" OnClick="btnReload_Click" />          
             </td>
             <td class="m_bar_r">
             </td>
@@ -241,8 +244,8 @@
                             <HeaderStyle Wrap="False" />
                         </asp:BoundColumn>
 
-                        <asp:BoundColumn HeaderText="状态" DataField="FBZT">
-                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                        <asp:BoundColumn HeaderText="发布状态" DataField="FBZTz">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
                         <asp:BoundColumn HeaderText="年度" DataField="ND">
@@ -250,7 +253,7 @@
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
                         <asp:BoundColumn HeaderText="通告批次" DataField="TGPC">
-                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
 
@@ -261,7 +264,7 @@
                         </asp:BoundColumn>
 
                         <asp:BoundColumn HeaderText="复工日期" DataField="FGRQ" DataFormatString="{0:yyyy-MM-dd}">
-                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
 
@@ -277,7 +280,7 @@
                         </asp:BoundColumn>
                        
 
-
+                    
                         <asp:BoundColumn HeaderText="FId" DataField="FId" Visible="False">
                             <ItemStyle Font-Underline="False" Wrap="False" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -311,6 +314,9 @@
         <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
             <uc1:pager ID="Pager1" runat="server"></uc1:pager>
         </div>
+        
+        <input id="t_fLinkId" runat="server" type="hidden" />
+        <input id="t_PrjItemId" runat="server" type="hidden" />
         <input id="HIsPostBack" runat="server" type="hidden" />
     </form>
 </body>
