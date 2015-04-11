@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TGList.aspx.cs" Inherits="Government_AppTFGGL_TGList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FGList.aspx.cs" Inherits="Government_AppTFGGL_FGList" %>
 
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
@@ -6,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>停工管理</title>
+    <title>复工管理</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -156,7 +156,7 @@
         <table width="98%" align="center" class="m_title">
             <tr>
                 <th colspan="7">
-                    <asp:Literal ID="lPostion" runat="server">停工管理</asp:Literal>
+                    <asp:Literal ID="lPostion" runat="server">复工管理</asp:Literal>
                 </th>
             </tr>
             <tr>
@@ -192,8 +192,9 @@
                     </asp:DropDownList>
 
                 </td>
-                    <td class="t_r"> </td>
+                <td class="t_r"> </td>
                 <td></td>
+
             </tr>
 
 
@@ -206,7 +207,7 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="处理" OnClientClick="return app('TGInfo.aspx')" />            
+                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="处理" OnClientClick="return app('FGInfo.aspx')" />            
             </td>
             <td class="m_bar_r">
             </td>
@@ -309,4 +310,3 @@
     </form>
 </body>
 </html>
-

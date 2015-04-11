@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TGInfo.aspx.cs" Inherits="Government_AppTFGGL_TGInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FGInfo.aspx.cs" Inherits="Government_AppTFGGL_FGInfo" %>
+
 
 <!DOCTYPE html>
 
@@ -33,7 +34,7 @@
         <table width="95%" align="center" class="m_title">
             <tr>
                 <th colspan="4">
-                    <asp:Label ID="lbTitle" runat="server" Text="停工申请处理">停工申请处理</asp:Label>
+                    <asp:Label ID="lbTitle" runat="server" Text="复工申请处理">复工申请处理</asp:Label>
                 </th>
             </tr>
 
@@ -74,7 +75,7 @@
                 <td>
                     <asp:TextBox ID="t_TGDate" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 </td>
-                <td class="t_r">预计重新开工日期：
+                <td class="t_r">重新开工日期：
                 </td>
                 <td>
                     <asp:TextBox ID="t_CXKGDate" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
@@ -82,10 +83,10 @@
             </tr>
 
             <tr>
-                <td class="t_r">停工原因：
+                <td class="t_r">复工原因：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_TGYY" ReadOnly="true" runat="server" CssClass="m_txt" Width="400px"></asp:TextBox>
+                    <asp:TextBox ID="t_FGYY" ReadOnly="true" runat="server" CssClass="m_txt" Width="400px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -138,3 +139,4 @@
     </form>
 </body>
 </html>
+
