@@ -105,29 +105,53 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     private void saveInfo()
     {
         var manualVal = t_IsManual.Value;
+        dbContext = new EgovaDB();
+        string fId = txtFId.Value;
         if (manualVal == "1")//手工录入
         {
-            var countSQL = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where SFZH='{0}'";
-            countSQL = string.Format(countSQL, t_FIdCard.Text);
-            int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countSQL).FirstOrDefault());
+            var countSql = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where SFZH='{0}'";
+            countSql = string.Format(countSql, t_FIdCard.Text);
+            int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countSql).FirstOrDefault());
             if (count2 > 0)
             {
                 ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('归档库已存在该证书，请采用选择方式添加。');window.returnValue='1';", true);
                 return;
             }
         }
-        string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}' and EmpType='{1}' and FAppId='{2}' and FEntType='{3}'";
-        sql1 = string.Format(sql1, t_FIdCard.Text, t_EmpType.SelectedValue, t_FAppId.Value, t_FEntType.Value);
+        string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'  and FAppId='{1}' and FEntType='{2}'";
+        sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_FEntType.Value);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
+        //如果存在就修改
+        TC_PrjItem_Emp emp;
+        pageTool tool;
         if (count1 > 0)
         {
-            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('人员不允许重复添加');window.returnValue='1';", true);
+            tool = new pageTool(this.Page);
+            if (string.IsNullOrEmpty(fId))
+            {
+                emp =
+                    dbContext.TC_PrjItem_Emp.FirstOrDefault(
+                        t =>
+                            t.FIdCard == t_FIdCard.Text && t.FAppId == t_FAppId.Value &&
+                            t.FEntType == EConvert.ToInt(t_FEntType.Value));
+               
+            }
+            else
+            {
+                emp = dbContext.TC_PrjItem_Emp.FirstOrDefault(t => t.FId == fId);
+            }
+            emp = tool.getPageValue(emp);
+            //为添加的人员绑定，人员所在的单位，用来确定人员的类型
+            if (emp != null) emp.FEntType = EConvert.ToInt(t_FEntType.Value);
+            dbContext.SubmitChanges();
+            ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功!');window.returnValue='1';", true);
             return;
         }
 
         string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}' and FEntType='{2}'";
         sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value,t_FEntType.Value);
         int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+        
         if (count > 0)
         {
             switch (t_EmpType.SelectedValue)
@@ -143,29 +167,28 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             }
         }
 
-        dbContext = new EgovaDB();
-        string fId = txtFId.Value;
-        TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
+        
+        emp = new TC_PrjItem_Emp();
         if (!string.IsNullOrEmpty(fId))
         {
-            Emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == fId).FirstOrDefault();
+            emp = dbContext.TC_PrjItem_Emp.FirstOrDefault(t => t.FId == fId);
         }
         else
         {
             fId = Guid.NewGuid().ToString();
-            Emp.FId = fId;
-            Emp.FEmpId = h_selEmpId.Value;
-            Emp.FPrjItemId = t_FPrjItemId.Value;
-            Emp.FAppId = t_FAppId.Value;
-            Emp.FTime = DateTime.Now;
-            Emp.FCreateTime = DateTime.Now;
-            Emp.FEntId = t_FEntId.Value;
-            dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
+            emp.FId = fId;
+            emp.FEmpId = h_selEmpId.Value;
+            emp.FPrjItemId = t_FPrjItemId.Value;
+            emp.FAppId = t_FAppId.Value;
+            emp.FTime = DateTime.Now;
+            emp.FCreateTime = DateTime.Now;
+            emp.FEntId = t_FEntId.Value;
+            dbContext.TC_PrjItem_Emp.InsertOnSubmit(emp);
         }
-        pageTool tool = new pageTool(this.Page);
-        Emp = tool.getPageValue(Emp);
+        tool = new pageTool(this.Page);
+        emp = tool.getPageValue(emp);
         //为添加的人员绑定，人员所在的单位，用来确定人员的类型
-        Emp.FEntType = EConvert.ToInt(t_FEntType.Value);
+        emp.FEntType = EConvert.ToInt(t_FEntType.Value);
         dbContext.SubmitChanges();
         txtFId.Value = fId;
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
@@ -181,11 +204,18 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
     {
         saveInfo();
     }
-    private void selEmp()
+    private void SelEmp()
     {
-        string selEmpId = h_selEmpId.Value;
+        //MODIF:ytb RY_RYZSXX 人员证书信息表，证书信息ID
+        string ryzsxxid = h_selEmpId.Value;
+        string selEmpId = string.Empty;
         EgovaDB1 db = new EgovaDB1();
-        var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+
+        var firstOrDefault = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);
+        if (firstOrDefault != null)
+            selEmpId = firstOrDefault.RYBH;
+
+        var v = db.RY_RYJBXX.FirstOrDefault(t => t.RYBH == selEmpId);
         //t_EmpType.SelectedValue = v.RYLBBM;
         if (v != null)
         {
@@ -198,22 +228,19 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FTel.Text = v.BGDH;
             t_ZGXL.SelectedValue = this.t_ZGXL.Items.FindByText("无").Value;
             t_ZY.Text = v.SXZY;
-            var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
-            if (v1 != null)
-            {
-                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
+            var v1 = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);
+            if (v1 == null) return;
+            t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
 
-                t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
-                t_ZCBH.Text = v1.ZCZSH;
-                t_ZCZY.Text = v1.ZCZY;
-                t_ZCRQ.Text = v1.FZSJ.ToString();
-            }
-
+            t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
+            t_ZCBH.Text = v1.ZCZSH;
+            t_ZCZY.Text = v1.ZCZY;
+            t_ZCRQ.Text = v1.FZSJ.ToString();
         }
     }
     protected void btnAddEmp_Click(object sender, EventArgs e)
     {
-        selEmp();
+        SelEmp();
     }
 
 

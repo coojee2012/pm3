@@ -213,7 +213,9 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             string fEntId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FEntId"));
             string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
             string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('EmpInfo.aspx?FId=" + fId + "&FAppId=" + fAppId + "&FEntId=" + fEntId + "&FPrjItemId=" + fPrjItemId + "&FprjId=" + fPrjId + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+
+            string fentType = EConvert.ToString(t_FEntType.Value);
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('EmpInfo.aspx?FId=" + fId + "&FAppId=" + fAppId + "&FEntId=" + fEntId + "&FPrjItemId=" + fPrjItemId + "&FprjId=" + fPrjId + "&t_FEntType="+fentType+"',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)

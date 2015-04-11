@@ -71,8 +71,10 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                
                 select new
                 {
+                    
                     a.QYBM,
                     c.ZSLX,
+                    c.RYZSXXID,
                     a.RYBH,
                     a.XM,
                     a.SFZH,
@@ -126,6 +128,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                   {
                       a.QYBM,
                       c.ZSLX,
+                      c.RYZSXXID,
                       a.RYBH,
                       a.XM,
                       a.SFZH,
@@ -181,7 +184,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             if (e.CommandName == "Sel")
             {
                 pageTool tool = new pageTool(this.Page);
-                HiddenField hfEmpId = e.Item.FindControl("hfEmpId") as HiddenField;
+                HiddenField hfEmpId = e.Item.FindControl("hfRYZSXXID") as HiddenField;
                 string fid = hfEmpId.Value;             
                 if (ViewState["emptype"] != null)
                 {
