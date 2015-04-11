@@ -162,8 +162,8 @@
                     </td>
                     <td colspan="1">
                         <asp:DropDownList ID="t_FSex" runat="server" CssClass="m_txt" Width="203px">
-                            <asp:ListItem Value="1">男</asp:ListItem>
-                            <asp:ListItem Value="2">女</asp:ListItem>
+                            <asp:ListItem Value="0">男</asp:ListItem>
+                            <asp:ListItem Value="1">女</asp:ListItem>
                         </asp:DropDownList>
                         <tt>*</tt>
                     </td>
@@ -208,7 +208,7 @@
                     </td>
                     <td colspan="1">
                         <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
-                        <tt>*</tt>
+                        <%--<tt>*</tt>--%>
                     </td>
                 </tr>
                 <tr>

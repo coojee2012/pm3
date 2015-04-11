@@ -190,8 +190,8 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         if (v != null)
         {
             t_FHumanName.Text = v.XM;
-            t_FIdCard.Text = v.SFZH;
-            t_FSex.SelectedValue = v.XB.ToString();
+            t_FIdCard.Text = v.SFZH;           
+                t_FSex.SelectedValue = v.XB.ToString();           
             t_FMobile.Text = v.GRDH;
             t_ZC.SelectedValue = ((v.ZC == null) ? this.t_ZC.Items.FindByText("其他").Value : (this.t_ZC.Items.FindByText(v.ZC) == null ? this.t_ZC.Items.FindByText("其他").Value : this.t_ZC.Items.FindByText(v.ZC).Value));
             t_ZW.Text = v.ZW;
