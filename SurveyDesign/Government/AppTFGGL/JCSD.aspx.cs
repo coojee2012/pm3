@@ -100,23 +100,23 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
         for (int k = 0; k < FIdList.Count(); k++)
         {
             //t_FIdCard.Value
+            string newId=Guid.NewGuid().ToString();
             string sql = "UPDATE TC_PrjItem_Emp_Lock SET IsLock=0,FTime=GETDATE() WHERE FId= '"+FIdList[k]+"';";
-            sql += " UPDATE TC_PrjItem_Emp_Lock  SET SelectedCount = (select count(1) from TC_PrjItem_Emp_Lock a  where a.IsLock=1 and  a.FIdCard=FIdCard) WHERE FIdCard='"+t_FIdCard.Value+"';";
-
+            sql += " UPDATE TC_PrjItem_Emp_Lock  SET SelectedCount = (select count(1) from TC_PrjItem_Emp_Lock a  where a.IsLock=1 and  a.FIdCard = '" + t_FIdCard.Value + "') WHERE FIdCard='" + t_FIdCard.Value + "';";
+            sql += " Insert into TC_PrjItem_Emp_UnLock (FId,FLinkId,FJSR,FJSRID,FJSTime,FJSYY) Values ('";
+            sql += newId + "','" + FIdList[k] + "','" + "" + "','" + Session["DFUserId"] + "',GETDATE(),'" + t_JSYY.Text + "');";
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
                 DataSet ds = new DataSet();
                 SqlCommand cmd = new SqlCommand(sql, conn);
-
                 cmd.ExecuteNonQuery();
-
-
-
             }
 
         }
+
+        showInfo();
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
