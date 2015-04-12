@@ -98,7 +98,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         if (emp != null)
         {
             pageTool tool = new pageTool(this.Page, "t_");
-            tool.fillPageControl(emp);
+            tool.fillPageControl(emp);           
         }
     }
     //保存
@@ -107,6 +107,54 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         var manualVal = t_IsManual.Value;
         dbContext = new EgovaDB();
         string fId = txtFId.Value;
+        string zczsbh = t_ZCBH.Text.Trim();
+
+        //判断项目负责人和总监理工程师是否已经存在，如果存在则不能再次添加。
+        //如果是新增则直接判断是否已经存在
+        if (fId == "")
+        {
+            string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}' and FEntType='{2}'";
+            sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value, t_FEntType.Value);
+            int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+
+            if (count > 0)
+            {
+                switch (t_EmpType.SelectedValue)
+                {
+                    //项目负责人
+                    case "11220201":
+                        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
+                        return;
+                    //总监理工程师
+                    case "11220209":
+                        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
+                        return;
+                }
+            }
+        }
+        else//如果是修改,则加上身份证号码进行判断
+        {
+            string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}' and FEntType='{2}'  and FIdCard != '{3}'";
+            sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value, t_FEntType.Value,t_FIdCard.Text.Trim());
+            int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
+
+            if (count > 0)
+            {
+                switch (t_EmpType.SelectedValue)
+                {
+                    //项目负责人
+                    case "11220201":
+                        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
+                        return;
+                    //总监理工程师
+                    case "11220209":
+                        ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
+                        return;
+                }
+            }
+        }
+
+
         if (manualVal == "1")//手工录入
         {
             var countSql = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where SFZH='{0}'";
@@ -115,6 +163,15 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             if (count2 > 0)
             {
                 ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('归档库已存在该证书，请采用选择方式添加。');window.returnValue='1';", true);
+                return;
+            }
+            //判断当前的注册编号是否已经存在，如果已经存在则提醒操作人员从库中选择
+            var countsql2 = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where  ZCZSH = '{0}'";  
+            countsql2 = string.Format(countsql2,zczsbh);
+            int count3 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countsql2).FirstOrDefault());
+            if (count3 > 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('注册证书已存在，请采用选择方式添加。');window.returnValue='1';", true);
                 return;
             }
         }
@@ -148,24 +205,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             return;
         }
 
-        string sql = @" select count(*) from TC_PrjItem_Emp  where EmpType='{0}' and FAppId='{1}' and FEntType='{2}'";
-        sql = string.Format(sql, t_EmpType.SelectedValue, t_FAppId.Value,t_FEntType.Value);
-        int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
-        
-        if (count > 0)
-        {
-            switch (t_EmpType.SelectedValue)
-            {
-                //项目负责人
-                case "11220201":
-                    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('项目负责人只能添加一位');window.returnValue='1';", true);
-                    return;
-                //总监理工程师
-                case "11220209":
-                    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
-                    return;
-            }
-        }
+       
 
         
         emp = new TC_PrjItem_Emp();
@@ -205,7 +245,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         saveInfo();
     }
     private void SelEmp()
-    {
+    {       
         //MODIF:ytb RY_RYZSXX 人员证书信息表，证书信息ID
         string ryzsxxid = h_selEmpId.Value;
         string selEmpId = string.Empty;
@@ -230,13 +270,28 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);
             if (v1 == null) return;
-            t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
-
+            //t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
+            t_ZSBHnew.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
             t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
             t_ZCBH.Text = v1.ZCZSH;
             t_ZCZY.Text = v1.ZCZY;
             t_ZCRQ.Text = v1.FZSJ.ToString();
         }
+    }
+
+    /// <summary>
+    /// 检查人员是否已经存在
+    /// </summary>
+    /// <returns></returns>
+    private bool isexist()
+    {
+        string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'  and FAppId='{1}' and FEntType='{2}'";
+        sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_FEntType.Value);
+        int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
+        if (count1 > 0)
+            return true;
+        else 
+            return false;
     }
     protected void btnAddEmp_Click(object sender, EventArgs e)
     {

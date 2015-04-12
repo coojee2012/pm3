@@ -70,9 +70,10 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
 
 
             t_YDXZ.SelectedValue = sp.YDXZ;
-            t_BL.SelectedItem.Text = "已办";
-            t_BL.SelectedItem.Value = "3";
-            t_BL.Enabled = false;
+            //MODIFY:YTB修改bug 刚开始打开表单，办理选项下拉值为“补填”，但填写完数据，点击保存按钮后，办理选项字段的下拉值就自动变为了“已办”；没有哪个需求要求保存后修改办理选项内容。
+            //t_BL.SelectedItem.Text = "已办";
+            //t_BL.SelectedItem.Value = "3";
+            //t_BL.Enabled = false;
             //从标准库中读取项目信息
             RCenter prjdb = new RCenter("XM_BaseInfo");
             string sql = @"select   JSDW,XMMC,XMDZ,JSGM   from  XM_BaseInfo.dbo.XM_XMJBXX   where xmbh = '" + prjid + "'";
