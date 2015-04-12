@@ -358,7 +358,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
             DataTable dt = ds.Tables[0];
             
             for (int i = 0; i < dt.Rows.Count; i++) {
-                sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount) VALUES ";
+                sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount,fCreateTime) VALUES ";
                 sql += "('" + Guid.NewGuid().ToString();
                 sql += "','" + dt.Rows[i]["FIdCard"].ToString();
                 sql += "','" + dt.Rows[i]["FHumanName"].ToString();//item.FHumanName;
@@ -367,7 +367,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                 sql += "','" + dt.Rows[i]["FPrjItemId"].ToString(); 
                 sql += "','" + dt.Rows[i]["FEntId"].ToString(); 
                 sql += "','" + dt.Rows[i]["FEntName"].ToString();
-                sql += "',1,1)";
+                sql += "',1,1,getdate())";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
