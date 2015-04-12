@@ -269,11 +269,6 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         selEnt();
     }
 
-    protected void btntest_click(object sender, EventArgs e)
-    {
-        string selEntId = h_selEntId.Value;
-        Response.Write(selEntId);
-    }
 
 
 }

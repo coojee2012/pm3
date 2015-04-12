@@ -207,7 +207,7 @@
                     <td class="t_r t_bg">证书编号：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="t_ZSBHnew" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                         <%--<tt>*</tt>--%>
                     </td>
                 </tr>
