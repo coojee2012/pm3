@@ -28,13 +28,12 @@ public partial class Government_AppTFGGL_TGList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.*,ep.FID as FepId,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName ,");
-        sb.Append(" case qa.SJStartDate when qa.SJStartDate then '已竣工'");
-        sb.Append(" else '已开工('+ CONVERT(varchar(4), YEAR( qa.SJStartDate))+'-'+CONVERT(varchar(2), MONTH( qa.SJStartDate))+'-'+CONVERT(varchar(2), DAY( qa.SJStartDate))+')' end as JGState  from TC_SGXKZ_PrjInfo qa ");
+        sb.Append(" select qa.*,ep.FID as FepId,a.FId as FFId,a.FYJSJFGRQ, case a.FCLZT when 0 then '待处理' else '通过' end  as FCLZT ,");
+        sb.Append(" case  when a.FTFGRQ <= GETDATE() then '已停工' else '已开工' end as FSGZT  ");
+        sb.Append(" from TC_SGXKZ_TFG a ");
+        sb.Append(" left join TC_SGXKZ_PrjInfo qa on a.FAppId = qa.FAppId ");
         sb.Append(" left join CF_App_ProcessInstanceBackup ep on ep.FLinkId = qa.FAppId ");
-        sb.Append(" left join CF_App_ProcessRecordBackup er on ep.fId = er.FProcessInstanceID ");
-        sb.Append(" left join CF_APP_LIST ap on ep.FLinkId = ap.FId ");
-        sb.Append(" where ep.FState = 6 and er.FTypeId=5 and er.FResult=1 and qa.SJStartDate IS NOT NULL and  qa.SJStartDate < GETDATE() ");
+        sb.Append(" where a.FType=0");
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
 
@@ -52,46 +51,20 @@ public partial class Government_AppTFGGL_TGList : govBasePage
     private string getCondi()
     {
         StringBuilder sb = new StringBuilder();
-        //if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
-        //{
-        //    sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
-        //}
-
-        //if (this.govd_FRegistDeptId.FNumber != null)
-        //{
-        //    sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
-        //}
-        //else
-        //{
-        //    sb.Append(" and qa.PrjAddressDept <> '' ");
-        //}
-        //if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
-        //{
-        //    sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
-        //}
-
-        //if (this.txtSGXKZBH.Text.Trim() != "" && this.txtSGXKZBH.Text.Trim() != null)
-        //{
-        //    sb.Append(" and qa.SGXKZBH like '%" + this.txtSGXKZBH.Text.Trim() + "%' ");
-        //}
-
-        //if (this.txtHTJGB.Text.Trim() != "" && this.txtHTJGB.Text.Trim() != null)
-        //{
-        //    sb.Append(" and convert(decimal(38,6),ISNULL(qa.Price,'0')) >= " + this.txtHTJGB.Text.Trim());
-        //}
-        //if (this.txtHTJGE.Text.Trim() != "" && this.txtHTJGE.Text.Trim() != null)
-        //{
-        //    sb.Append(" and convert(decimal(38,6),ISNULL(qa.Price,'0')) <= " + this.txtHTJGE.Text.Trim());
-        //}
-
-        //if (this.txtKGSDate.Text.Trim() != "" && this.txtKGSDate.Text.Trim() != null)
-        //{
-        //    sb.Append(" and qa.StartDate >='" + this.txtKGSDate.Text.Trim() + " " + "00:00:00' ");
-        //}
-        //if (this.txtKGEDate.Text.Trim() != "" && this.txtKGEDate.Text.Trim() != null)
-        //{
-        //    sb.Append(" and qa.StartDate  <='" + this.txtKGEDate.Text.Trim() + " " + "23:59:59' ");
-        //}
+        if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
+        {
+            sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
+        }
+        if (this.txtSGXKZBH.Text.Trim() != "" && this.txtSGXKZBH.Text.Trim() != null)
+        {
+            sb.Append(" and qa.SGXKZBH like '%" + this.txtSGXKZBH.Text.Trim() + "%' ");
+        }
+        if (this.txtBLZT.SelectedValue != null && this.txtBLZT.SelectedValue !="-1")
+        {
+            sb.Append(" and a.FCLZT =  " + this.txtBLZT.SelectedValue);
+        }
+        
+     
 
 
 
@@ -110,16 +83,18 @@ public partial class Government_AppTFGGL_TGList : govBasePage
         if (e.Item.ItemIndex > -1)
         {
             string fAppId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FAppId"));
-            string fId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FepId"));
+            string fId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FFId"));
 
+            CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
+            box.Attributes["id"] = "span" + box.ClientID;
+            box.Attributes["fId"] = fId;
+            box.Attributes["fAppId"] = fAppId;
+            box.Attributes["name"] = fAppId;
 
-            e.Item.Cells[0].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
-            e.Item.Cells[1].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('GCXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[1].Text + "</a>";
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[2].Text + "</a>";
-            if (e.Item.Cells[7].Text.Contains("已开工"))
-            {
-                e.Item.Cells[7].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JGSZ.aspx?FId=" + fId + "&FAppId=" + fAppId + "',800,400);\">" + e.Item.Cells[7].Text + "</a>";
-            }
+            e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('GCXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
+            
         }
     }
     protected void btnQuery_Click(object sender, EventArgs e)

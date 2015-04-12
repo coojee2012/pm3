@@ -66,7 +66,7 @@ public partial class Government_AppBHGD_ChooseBatch : System.Web.UI.Page
             //如果有单项工程id 就保存 单项工程与批次的绑定。
             if (!string.IsNullOrEmpty(prjItemdid))
             {
-                SavePrjItemMappingBatch(id, prjItemdid);
+                SavePrjItemMappingBatch(id, prjItemdid,hfappid);
             }
             else {
                 Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "", "alert('未找到单项工程');", true);
@@ -94,7 +94,7 @@ public partial class Government_AppBHGD_ChooseBatch : System.Web.UI.Page
     /// <summary>
     /// 保存项目与批次关系
     /// </summary>
-    protected void SavePrjItemMappingBatch(string batchId,string prjItemid) {
+    protected void SavePrjItemMappingBatch(string batchId,string prjItemid,string appid) {
         //是否已经存在对应关系，如果存在给予提示。
         if (IsHaveMappint(prjItemid))
         {
@@ -108,7 +108,8 @@ public partial class Government_AppBHGD_ChooseBatch : System.Web.UI.Page
             TC_BHGD_PrjItemMappingBatch mapping = new TC_BHGD_PrjItemMappingBatch(){
                  FId = Guid.NewGuid().ToString(),
                  FBatchId = batchId,
-                 FPrjItemId = prjItemid
+                 FPrjItemId = prjItemid,
+                 FAppId= appid
             };
 
             db.TC_BHGD_PrjItemMappingBatch.InsertOnSubmit(mapping);

@@ -24,10 +24,12 @@
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
-            if (value == "1") {
+      
+            if (value == "3") {
                 return AutoCheckInfo();
             } else {
                 var ly = document.getElementById("t_YL").value;
+            
                 if (ly == null || ly == '') {
                     alert('必须填写理由！');
                     return false;

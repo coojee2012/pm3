@@ -10,7 +10,7 @@
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
-    <script type="text/javascript"  src="../../script/default.js"></script>
+    <script type="text/javascript" src="../../script/default.js"></script>
 
     <script src="../../script/jquery.js" type="text/javascript"></script>
 
@@ -88,13 +88,14 @@
 
             return false;
         }
+
+
         function app(url) {
-            var tmpVal = ''; var fsubid = '';
-            var fbaseInfoid = '';
-            var ferid = '';
-            var fpid = '';
-            var fMeasure = '';
-            var fManageTypeId = '';
+            var tmpVal = '';
+
+            var fAppId = '';
+            var fId = '';
+
             var cou = 0;
             var chkColl = document.getElementsByTagName("input");
             for (var i = 0; i < chkColl.length; i++) {
@@ -105,12 +106,10 @@
                         if (span) {
                             if (tmpVal.indexOf(span.getAttribute("name") + ",") == -1) {
                                 tmpVal += span.getAttribute("name") + ",";
-                                fsubid += span.getAttribute("fSubFlowId") + ",";
-                                fbaseInfoid += span.getAttribute("fBaseInfoId") + ",";
-                                fpid += span.getAttribute("fpid") + ",";
-                                ferid += span.getAttribute("ferid") + ",";
-                                fMeasure += span.getAttribute("fMeasure") + ",";
-                                fManageTypeId += span.getAttribute("fManageTypeId") + ",";
+
+                                fId += span.getAttribute("fId") + ",";
+                                fAppId += span.getAttribute("fAppId") + ",";
+
                             }
                         }
                     }
@@ -119,40 +118,24 @@
             var obj = new Object();
             if (tmpVal.length > 1) {
                 tmpVal = tmpVal.substring(0, tmpVal.length - 1);
-                fsubid = fsubid.substring(0, fsubid.length - 1);
-                fbaseInfoid = fbaseInfoid.substring(0, fbaseInfoid.length - 1);
-                fpid = fpid.substring(0, fpid.length - 1);
-                ferid = ferid.substring(0, ferid.length - 1);
-                fMeasure = fMeasure.substring(0, fMeasure.length - 1);
-                fManageTypeId = fManageTypeId.substring(0, fManageTypeId.length - 1);
+                fId = fId.substring(0, fId.length - 1);
+                fAppId = fAppId.substring(0, fAppId.length - 1);
+
             }
             else {
-                alert("请选择一条备案信息接件！");
+                alert("请选择一条信息进行处理！");
                 return false;
             }
             if (cou > 1 || cou <= 0) {
-                alert("只能选择一条备案信息接件！");
+                alert("只能选择一条处理信息！");
                 return false;
-            }
-            if (fMeasure != '0') {
-                alert("非待接件案件，不能在此阶段处理！");
-                return false;
-            }
-            obj.name = '';
-            obj.id = tmpVal;
-            if (fManageTypeId == '11223') {
-                url = "CCBLJJAuditInfo.aspx";
-            }
-            if (fManageTypeId == '11224') {
-                url = "YQBLJJAuditInfo.aspx";
-            }
-            if (fManageTypeId == '11225') {
-                url = "BGBLJJAuditInfo.aspx";
             }
 
-            ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
-                    + '&fpid=' + fpid
-                    + '&ferid=' + ferid, 900, 600, obj);
+            obj.name = '';
+            obj.id = tmpVal;
+
+
+            ShowWindow(url + '?fId=' + fId + '&fAppId=' + fAppId, 900, 600, obj);
 
 
             return false;
@@ -166,147 +149,163 @@
 
     </script>
 
-    </head>
+</head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <table width="98%" align="center" class="m_title">
-        <tr>
-            <th colspan="7">
-                <asp:Literal ID="lPostion" runat="server">停工管理</asp:Literal>
-            </th>
-        </tr>
-        <tr>
-            <td class="t_r">
-                工程名称：
-            </td>
-            <td>
-                <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
-            </td>
-           <td class="t_r">
-               证书编号：
-            </td>
-            <td >
-               <asp:TextBox ID="txtSGXKZBH" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
-            </td>
-            
-            <td colspan="2" rowspan="2" style="text-align: center; padding-right: 10px">
-                <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClientClick="return btnQueryClickClient();" OnClick="btnQuery_Click"
-                    Text="查询" />
-                &nbsp;
+        <table width="98%" align="center" class="m_title">
+            <tr>
+                <th colspan="7">
+                    <asp:Literal ID="lPostion" runat="server">停工管理</asp:Literal>
+                </th>
+            </tr>
+            <tr>
+                <td class="t_r">工程名称：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                </td>
+                <td class="t_r">证书编号：
+                </td>
+                <td>
+                    <asp:TextBox ID="txtSGXKZBH" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+                </td>
+
+                <td colspan="2" rowspan="2" style="text-align: center; padding-right: 10px">
+                    <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClientClick="return btnQueryClickClient();" OnClick="btnQuery_Click"
+                        Text="查询" />
+                    &nbsp;
                 <input id="btnClear" class="m_btn_w2" style="margin-top: 3px;" type="button" value="重置"
                     onclick="clearPage();" />
-            </td>
-        </tr>
+                </td>
+            </tr>
+            <tr>
+
+                <td class="t_r">办理状态：
+                </td>
+                <td>
+                    <asp:DropDownList ID="txtBLZT" runat="server" CssClass="m_txt" Width="169px">
+                        <asp:ListItem Value="0" Text="待处理" Selected="True"></asp:ListItem>
+                        <asp:ListItem Value="1" Text="通过"></asp:ListItem>
+                        <asp:ListItem Value="-1" Text="全部"></asp:ListItem>
+
+                    </asp:DropDownList>
+
+                </td>
+                    <td class="t_r"> </td>
+                <td></td>
+            </tr>
+
+
+
+
+
+        </table>
+         <table width="98%" align="center" class="m_bar">
         <tr>
-            
+            <td class="m_bar_l">
+            </td>
             <td class="t_r">
-                办理状态：
+                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="处理" OnClientClick="return app('TGInfo.aspx')" />            
             </td>
-            <td  >
-                  <asp:DropDownList ID="txtBLZT" runat="server" CssClass="m_txt" Width="169px">
-                    <asp:ListItem Value="0" Text="待处理" Selected="True"></asp:ListItem>
-                    <asp:ListItem Value="1" Text="通过" ></asp:ListItem>
-                    <asp:ListItem Value="-1" Text="全部" ></asp:ListItem>
-                   
-                </asp:DropDownList>
-            
+            <td class="m_bar_r">
             </td>
-            
         </tr>
-  
-      
-        
-       
-        
     </table>
 
 
- 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <asp:DataGrid ID="JustAppInfo_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
-                        HorizontalAlign="Center" OnItemDataBound="JustAppInfo_List_ItemDataBound" Width="98%">
-                        <HeaderStyle CssClass="m_dg1_h" />
-                        <ItemStyle CssClass="m_dg1_i" />
-                        <Columns>
-                          
-                            <asp:BoundColumn HeaderText="序号">
-                                <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
-                                    Font-Strikeout="False" Font-Underline="False" Wrap="False" />
-                                <HeaderStyle Wrap="False" />
-                            </asp:BoundColumn>
-                            
-                            <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="施工编号" DataField="SGXKZBH" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="建设单位" DataField="JSDW" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>                          
+                    HorizontalAlign="Center" OnItemDataBound="JustAppInfo_List_ItemDataBound" Width="98%">
+                    <HeaderStyle CssClass="m_dg1_h" />
+                    <ItemStyle CssClass="m_dg1_i" />
+                    <Columns>
+                        <asp:TemplateColumn>
+                            <ItemStyle Width="20px" />
+                            <HeaderTemplate>
+                                <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="CheckItem" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateColumn>
+                        <asp:BoundColumn HeaderText="序号">
+                            <ItemStyle Width="30px" Font-Bold="False" Font-Italic="False" Font-Overline="False"
+                                Font-Strikeout="False" Font-Underline="False" Wrap="False" />
+                            <HeaderStyle Wrap="False" />
+                        </asp:BoundColumn>
 
-                            <asp:BoundColumn HeaderText="发证机关" DataField="FZJG" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName">
+                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="施工编号" DataField="SGXKZBH">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="建设单位" DataField="JSDW">
+                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
 
-                             <asp:BoundColumn HeaderText="发证日期" DataField="FZTime" DataFormatString="{0:yyyy-MM-dd}">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="发证机关" DataField="FZJG">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
 
-                            
-                            
+                        <asp:BoundColumn HeaderText="发证日期" DataField="FZTime" DataFormatString="{0:yyyy-MM-dd}">
+                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
 
-                            <asp:BoundColumn HeaderText="施工状态" DataField="SGState" >
-                                <ItemStyle Font-Underline="False" Wrap="False" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                             <asp:BoundColumn HeaderText="办理状态" DataField="BLState" >
-                                <ItemStyle Font-Underline="False" Wrap="False" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-      
-      
-                            <asp:BoundColumn HeaderText="FId" DataField="FId" Visible="False">
-                                <ItemStyle Font-Underline="False" Wrap="False" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                        </Columns>
-                        <FooterStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" Wrap="False" />
-                        <EditItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" Wrap="False" />
-                        <SelectedItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" Wrap="False" />
-                        <PagerStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
-                            Font-Underline="False" Wrap="False" />
-                    </asp:DataGrid>
+
+
+
+                        <asp:BoundColumn HeaderText="施工状态" DataField="FSGZT">
+                            <ItemStyle Font-Underline="False" Wrap="False" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="办理状态" DataField="FCLZT">
+                            <ItemStyle Font-Underline="False" Wrap="False" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+
+
+                        <asp:BoundColumn HeaderText="FId" DataField="FId" Visible="False">
+                            <ItemStyle Font-Underline="False" Wrap="False" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                    </Columns>
+                    <FooterStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+                        Font-Underline="False" Wrap="False" />
+                    <EditItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+                        Font-Underline="False" Wrap="False" />
+                    <SelectedItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+                        Font-Underline="False" Wrap="False" />
+                    <PagerStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+                        Font-Underline="False" Wrap="False" />
+                </asp:DataGrid>
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnQuery" EventName="Click" />
             </Triggers>
         </asp:UpdatePanel>
 
-        <asp:UpdateProgress ID="UpdateProgress1" runat="server"  DisplayAfter="500" 
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="500"
             AssociatedUpdatePanelID="UpdatePanel1">
-        <ProgressTemplate>
-          <div style="text-align:center">
-                数据加载中，请稍后。。。
-           </div>
-        </ProgressTemplate>
+            <ProgressTemplate>
+                <div style="text-align: center">
+                    数据加载中，请稍后。。。
+                </div>
+            </ProgressTemplate>
         </asp:UpdateProgress>
 
-    
-    <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
-        <uc1:pager ID="Pager1" runat="server"></uc1:pager>
-    </div>
-    <input id="HIsPostBack" runat="server" type="hidden" />
+
+        <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
+            <uc1:pager ID="Pager1" runat="server"></uc1:pager>
+        </div>
+        <input id="HIsPostBack" runat="server" type="hidden" />
     </form>
 </body>
 </html>

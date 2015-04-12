@@ -1,0 +1,2 @@
+
+		alter table TC_BHGD_PrjItemMappingBatch add FAppId varchar(36)
