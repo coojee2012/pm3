@@ -31,7 +31,7 @@
             $("#btnReload").click();
         }
         function addEmp() {
-            var fid = document.getElementById("h_selEntId").value;
+            var fid = document.getElementById("h_selEntId").value;          
             var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             var t_FEntType = document.getElementById("t_FEntType").value;
             if (fid == null || fid == '') {
@@ -61,11 +61,9 @@
                     var url = "../project/EntListSelSg.aspx";
                     url += "?qylx=" + qylx;
                     var pid = showWinByReturn(url, 1000, 600);
-                    alert('企业编号' + pid + '---' + tagId);
+                
                     if (pid != null && pid != '') {
-                        alert(pid);
-                        alert(tagId + '---' + obj);
-                        $(tagId).val(pid);                       
+                         $("#" + tagId).val(pid);
                         __doPostBack(obj.id, '');
                     }
                     break;
@@ -74,9 +72,9 @@
                     var url = "../project/EntListSelSg.aspx";
                     url += "?qylx=" + qylx;
                     var pid = showWinByReturn(url, 1000, 600);
-                    alert('企业编号' + pid + '---' + tagId);
+                 
                     if (pid != null && pid != '') {
-                        alert(pid);
+                     
                         $("#" + tagId).val(pid);
                         __doPostBack(obj.id, '');
                     }
@@ -197,7 +195,7 @@
                     <tt>*</tt>
                                     <asp:Button ID="btnAddEnt" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'h_selEntId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEnt_Click" Style="margin-bottom: 4px;margin-left:5px;" />
-                    <asp:Button ID ="test" Text ="test" OnClick ="btntest_click" runat="server" Visible="true" />
+                   
                 </td>
                 <td class="t_r t_bg" width="14%">
                     单位地址：

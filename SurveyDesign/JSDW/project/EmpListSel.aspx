@@ -153,7 +153,7 @@
                 </tr>
         </HeaderTemplate>
         <ItemTemplate>
-                    <tr class="m_dg1_i">
+                    <tr class="m_dg1_i" runat="server" id ="row">
                         <td>
                             <%# Container.ItemIndex + 1%> 
                         </td>

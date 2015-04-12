@@ -13,6 +13,8 @@ using System.Data;
 using Approve.EntityBase;
 using System.Collections;
 using EgovaDAO;
+using System.Web.UI.HtmlControls;
+using System.Drawing;
 
 public partial class JSDW_project_EmpListSel: System.Web.UI.Page
 {
@@ -194,11 +196,11 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                         this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(),"人员信息","<script>alert('该人员的证书有效期已经过期，不能选择该人员！')</script>)");
                         return;
                     }
-                    //if(ishavechoose(Session["FAppId"].ToString(),ViewState["FPrjItemId"].ToString(),fid))
-                    //{
-                    //    this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "人员信息", "<script>alert('该人员被选择了，不能再次选择该人员！')</script>)");
-                    //    return;
-                    //}
+                    if (ishavechoose(Session["FAppId"].ToString(), ViewState["FPrjItemId"].ToString(), fid))
+                    {
+                        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "人员信息", "<script>alert('该人员被选择了，不能再次选择该人员！')</script>)");
+                        return;
+                    }
                 }                
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
             }
@@ -230,8 +232,10 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     protected void dg_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         EgovaDB db = new EgovaDB();
+        
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
+            
             //MODIFY:ytb 修改锁定按钮显示
             LinkButton lblLock = e.Item.Controls[0].FindControl("lkb_Lock") as LinkButton;
             HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;
@@ -244,10 +248,14 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             //yxq.Text = ts.Days.ToString() + "天";
             string idCard = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SFZH"));
             var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
+            
+          
             if (v != null && EConvert.ToBool(LockBusiness(v)))
             {
                 lblLock.Text = "锁定";
                 hLock.Value = "1";
+                //如果是锁定人员则背景色显示为红色
+                ((HtmlTableRow)e.Item.FindControl("row")).BgColor = Color.Red.ToString();  
                 //MODIFY:YTB 为锁定按钮注册点击事件
                 lblLock.Attributes.Add("onclick", "showEmpinfo('" + idCard + "');");
             }
