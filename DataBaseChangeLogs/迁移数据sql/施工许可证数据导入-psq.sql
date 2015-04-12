@@ -1875,9 +1875,26 @@ WHERE ISNULL(FQ.FQBM,'')<>'' AND ISNULL(FQ.XMBM,'')<>'' --保证项目编码和分期编码
                  where C06.ActionState in (0,1,2) and C05.ProcessTimeB>='2014-01-01'and C06.actionid in (257,258,259,269,270,271,277,278,279))
   and not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp cc where a.id = cc.fid)
 -----------------------------------------------------------------------------------------------------------------------------------------------------
+
 --施工许可证人员锁定需要增加导入
+alter table dbCenter.dbo.TC_PrjItem_Emp_lock alter column FEntId varchar(60) null 
+
+insert into  dbCenter.dbo.TC_PrjItem_Emp_lock
+            (fid,fprjid,FPrjItemId,fappid,fentid,fidcard,fhumanname,FEntName,islock,selectedcount,FCreateTime)
+     select fid,fprjid,FPrjItemId,fappid,fentid,fidcard,fhumanname,FEntName,1 as state,selectedcount,sdksrq
+	   from dbCenter.dbo.TC_PrjItem_Emp a ,(select SFZH,count(1) selectedcount,min(SDKSRQ) sdksrq  
+	                                          FROM dbCenterSC.[dbo].[RY_LOCK] where state = 1 and len(sfzh)>=15 group by SFZH) b 
+	  where a.fidcard = b.sfzh
+
+--是否留迹，感觉意义不大。
+insert into dbCenter.dbo.TC_PrjItem_Emp_lock
+            (fid,fprjid,FPrjItemId,fappid,fentid,fidcard,fhumanname,FEntName,islock,selectedcount,FCreateTime,ftime)
+	 select lockid,KEYVALUE,KEYVALUE,null,null,sfzh,rymc,Entername,state,1,sdksrq,sdjsrq
+	   from dbCenterSC.[dbo].[RY_LOCK] a
+	  where not exists(select 1 from dbCenter.dbo.TC_PrjItem_Emp_lock b where a.SFZH = b.fidcard)
 
 
+//**********  导入人员信息结束 *********//
 
 --导入最终招标备案的过程数据
 --CF_App_ProcessInstance   备案主流程表
