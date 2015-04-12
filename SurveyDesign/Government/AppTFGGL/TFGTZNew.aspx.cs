@@ -45,10 +45,10 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
                     break;
                 }
 
-               // if (!string.IsNullOrEmpty(fapps))
-              //  {
+                if (!string.IsNullOrEmpty(fapps))
+                {
                     BindGCXM(fapps);
-               // }
+                }
                
 
             }
@@ -73,10 +73,10 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("select * from ( ");
-            sb.Append(" 	select *,dbo.getManageDeptName(PrjAddressDept) as PrjAddressDeptName ");
+            sb.Append(" 	select * ");
             sb.Append(" ,case when SJStartDate < GETDATE() then '已开工' else '未开工' end as SGZT ");
             sb.Append("  from TC_SGXKZ_PrjInfo ");
-            sb.Append(" where  FId IN (  " + newFapps+")");
+            sb.Append(" where where FId IN (  " + newFapps+")");
             //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
             //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");    
             //sb.Append(getCondi());
@@ -107,16 +107,16 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
     }
     protected void DG_ListYZ_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
-        if (e.Item.ItemIndex > -1)
-        {
-        e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
+        //if (e.Item.ItemIndex > -1)
+        //{
+        //    e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager_YZ.PageSize * (this.Pager_YZ.CurrentPageIndex - 1)).ToString();
         //    string fId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
         //    string fAppId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FAppId"));
         //    //string fEntId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FEntId"));
         //    //string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
         //    //string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
         //    e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('YZInfo.aspx?FId=" + fId + "&FAppId=" + fAppId + "',600,450);\">" + e.Item.Cells[2].Text + "</a>";
-        }
+        //}
     }
     protected void Pager_YZ_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
@@ -125,66 +125,15 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
     }
     protected void btn_del_YZ_Click(object sender, EventArgs e)
     {
-        string FId = "";
+        //EgovaDB dbContext = new EgovaDB();
+        //pageTool tool = new pageTool(this.Page);
+        //tool.DelInfoFromGrid(DG_ListYZ, dbContext.TC_Prj_YZ, tool_Deleting_TKJL);
+        //showYZList();
 
-        int RowCount = DG_ListYZ.Items.Count;
-        IList<string> FIdList = new List<string>();
-        string FIds = "";
-        for (int i = 0; i < DG_ListYZ.Items.Count; i++)
-        {
-            CheckBox cbx = (CheckBox)DG_ListYZ.Items[i].Cells[0].Controls[1];
-            if (cbx.Checked)
-            {
-                FId = DG_ListYZ.Items[i].Cells[DG_ListYZ.Columns.Count - 1].Text.Trim();
-
-                FIdList.Add(FId);
-                if (string.IsNullOrEmpty(FIds))
-                {
-                    FIds = "'" + FId + "'";
-                }
-                else
-                {
-                    FIds += ",'" + FId + "'";
-                }
-            }
-        }
-
-        for (int i = 0; i < FIdList.Count(); i++)
-        {
-            string sql = "UPDATE  TC_SGXKZ_TFGTZ SET FAppId=replace(FAppId,'"+FIdList[i]+",',''),PCSL = PCSL-1 WHERE FId='" + t_FId.Value + "';";
-           //sql+="UPDATE  TC_SGXKZ_TFGTZ SET FAppId = replace(FAppId,',,',',') WHERE FId='" + t_FId.Value + "';";
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
-            {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                DataSet ds = new DataSet();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-
-                cmd.ExecuteNonQuery();
-
-
-
-            }
-
-        }
-
-            if ( FIdList.Count()>0)
-            {
-              
-                Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('删除成功!');", true);
-                
-            }
-            else
-            {
-
-                Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要删除的项目');", true);
-            }
-            BindData();
-       
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
-        BindData();
+        showYZList();
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

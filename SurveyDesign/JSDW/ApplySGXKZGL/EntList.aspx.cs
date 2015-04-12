@@ -87,18 +87,56 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
+        //先删除选择的企业的相关人员
+        //DeleteChildren(dg_List);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_PrjItem_Ent, tool_Deleting);
         showInfo();
     }
     //级联删除人员
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
     {
-        if (dbContext != null)
-        {           
-            var para = dbContext.TC_PrjItem_Emp.Where(t => FIdList.ToArray().Contains(t.FEntId));
-            dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
-        }
+        
     }
+
+
+
+    /// <summary>
+    /// 删除选择的企业的人员
+    /// </summary>
+    private IList<string> GetGridCheckIds(DataGrid grid)
+    {
+        string FId = "";
+
+        int RowCount = grid.Items.Count;
+        IList<string> FIdList = new List<string>();
+        for (int i = 0; i < grid.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)grid.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = grid.Items[i].Cells[grid.Columns.Count - 1].Text.Trim();
+
+                FIdList.Add(FId);
+            }
+        }
+        return FIdList;
+    }
+
+    private void DeleteChildren(DataGrid grid)
+    {
+        IList<string> listid = GetGridCheckIds(grid);
+        var para = dbContext.TC_PrjItem_Ent.Where(t => listid.ToArray().Contains(t.FId) && t.FAppId == hf_FAppId.Value && t.FEntType.Equals(hf_FEntType.Value));
+
+        foreach (var emp_temp in para)
+        {
+            var emp = dbContext.TC_PrjItem_Emp.Where(t => t.FAppId == emp_temp.FAppId && t.FPrjItemId == emp_temp.FPrjItemId && t.FEntId == emp_temp.QYID);
+
+            dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(emp);
+        }
+        dbContext.SubmitChanges();
+    }
+
+
     protected void btnReload_Click(object sender, EventArgs e)
     {
         showInfo();

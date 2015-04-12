@@ -16,17 +16,11 @@
     <script type="text/javascript"> 
         function addGCXMInfo() {
             var FAppId = document.getElementById("t_fLinkId").value;
-            var FId = document.getElementById("t_FId").value;
             var btn = document.getElementById("btnReload");
             var FPrjItemId = document.getElementById("t_PrjItemId").value;
             //var FPrjId = document.getElementById("t_FPrjId").value;
             //var FPrjItemId = document.getElementById("t_FPrjItemId").value;
-            if (FId && FId != "") {
-                showAddWindow('XMList.aspx?t_FAppId=' + FId + "&FPrjItemId=" + FPrjItemId, 800, 580, btn);
-            }
-            else {
-                alert("请先保存通告信息！");
-            }
+            showAddWindow('XMList.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 800, 580, btn);
         }
     </script>
     <style type="text/css">
@@ -96,15 +90,14 @@
         </tr>
 
     </table>
-        
-        <div style="text-align: center; margin-top: 2px;">
+         <br />
+        <div style="text-align: center; margin-top: 2PX">
                             
            
                  <asp:Button ID="btnSave" runat="server" CssClass="m_btn_w2" Text="保存" OnClick="btnSave_Click" />
               
            &nbsp;&nbsp;<input id="btnReturn" type="button" runat="server" class="m_btn_w2" value="返回" onclick="window.returnValue = '1'; window.close(); " />
         </div>
-         <br />
         <div style="width: 95%; margin: 0px auto;">       
         <table width="100%" align="center" class="m_bar">
             <tr>
@@ -122,7 +115,7 @@
                     
                     <asp:Button ID="btnDel" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btn_del_YZ_Click" />
-                    <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click"   />
+                    <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click" />
                 </td>
                 <td class="m_bar_r">
                 </td>
