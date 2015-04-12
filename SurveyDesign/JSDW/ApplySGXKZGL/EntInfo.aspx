@@ -54,7 +54,6 @@
         function selEnt(obj, tagId) {
             var type = document.getElementById("t_FEntType").value;
             var qylx = "";
-            alert(obj+'---'+tagId)
             //根据企业类型跳转到不同的企业选择页面
             switch (type) {
                 case "2":
@@ -64,8 +63,7 @@
                     var pid = showWinByReturn(url, 1000, 600);
                 
                     if (pid != null && pid != '') {
-                        alert(pid);
-                        $(tagId).val(pid);                       
+                         $("#" + tagId).val(pid);
                         __doPostBack(obj.id, '');
                     }
                     break;
