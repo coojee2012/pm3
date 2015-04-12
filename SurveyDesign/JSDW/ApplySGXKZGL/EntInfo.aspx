@@ -31,7 +31,7 @@
             $("#btnReload").click();
         }
         function addEmp() {
-            var fid = document.getElementById("h_selEntId").value;
+            var fid = document.getElementById("h_selEntId").value;          
             var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             var t_FEntType = document.getElementById("t_FEntType").value;
             if (fid == null || fid == '') {
@@ -63,8 +63,7 @@
                     var pid = showWinByReturn(url, 1000, 600);
                 
                     if (pid != null && pid != '') {
-                     
-                        $(tagId).val(pid);                       
+                         $("#" + tagId).val(pid);
                         __doPostBack(obj.id, '');
                     }
                     break;
