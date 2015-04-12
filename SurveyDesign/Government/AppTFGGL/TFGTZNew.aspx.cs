@@ -45,10 +45,10 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
                     break;
                 }
 
-                if (!string.IsNullOrEmpty(fapps))
-                {
+               // if (!string.IsNullOrEmpty(fapps))
+              //  {
                     BindGCXM(fapps);
-                }
+               // }
                
 
             }
@@ -148,9 +148,11 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
                 }
             }
         }
-        if (!string.IsNullOrEmpty(FIds))
+
+        for (int i = 0; i < FIdList.Count(); i++)
         {
-            string sql = "SELECT FAppId FROM WHERE FId='" + t_FId.Value + "'";
+            string sql = "UPDATE  TC_SGXKZ_TFGTZ SET FAppId=replace(FAppId,'"+FIdList[i]+",',''),PCSL = PCSL-1 WHERE FId='" + t_FId.Value + "';";
+           //sql+="UPDATE  TC_SGXKZ_TFGTZ SET FAppId = replace(FAppId,',,',',') WHERE FId='" + t_FId.Value + "';";
             using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
             {
                 if (conn.State == ConnectionState.Closed)
@@ -163,14 +165,21 @@ public partial class Government_AppTFGGL_TFGTZNew : System.Web.UI.Page
 
 
             }
-            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('删除成功!');", true);
-            BindData();
-        }
-        else
-        {
 
-            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要删除的项目');", true);
         }
+
+            if ( FIdList.Count()>0)
+            {
+              
+                Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('删除成功!');", true);
+                
+            }
+            else
+            {
+
+                Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要删除的项目');", true);
+            }
+            BindData();
        
     }
     protected void btnReload_Click(object sender, EventArgs e)

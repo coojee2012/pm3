@@ -117,7 +117,8 @@ public partial class Government_AppTFGGL_XMList : System.Web.UI.Page
                 pageTool tool = new pageTool(this.Page);
                // tool.ExecuteScript("window.returnValue='" + fid + "@" + FHumanName + "';window.close();");
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
-                string sql = "UPDATE  TC_SGXKZ_TFGTZ SET FAppId = case when ISNULL(FAppId,'') = '' Then '" + fid + "' ELSE FAppId + '," + fid + "' END,PCSL=PCSL+1 WHERE 1=1 AND FId ='" + t_FAppId.Value + "'";
+                string sql = "UPDATE  TC_SGXKZ_TFGTZ SET FAppId = FAppId + '" + fid + ",',PCSL = PCSL + 1 WHERE 1=1 AND FId ='" + t_FAppId.Value + "'";
+                sql += " AND FAppId NOT LIKE '%" + fid + "%'";
 
                 using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
                 {
