@@ -173,7 +173,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         hf_FId.Value = fId;
         txtFId.Value = fId;
 
-        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "reloadEmpList();alert('保存成功');window.returnValue='1';", true);
+        
     }
 
 
@@ -181,6 +181,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         saveInfo();
+        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "reloadEmpList();alert('保存成功');window.returnValue='1';", true);
     }
     protected void btnDel_Click(object sender, EventArgs e)
     {
@@ -261,6 +262,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
+        saveInfo();
         //刷新人员
         showEmpList();
     }
@@ -269,6 +271,22 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         selEnt();
     }
 
+    /// <summary>
+    /// 当重新选择企业后，需要删除以前的企业与人员
+    /// </summary>
+    private void DeltePrjEntAndEmp() {
+        EgovaDB dbContext = new EgovaDB();
+
+        var entid = h_selEntId.Value;
+        var appId = t_FAppId.Value;
+        var prjItemId = t_FPrjItemId.Value;
+        var entType = EConvert.ToInt(t_FEntType.Value);
+
+
+        var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId !=entid&& t.FAppId==appId&&t.FEntType==entType);
+        dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
+        dbContext.SubmitChanges();
+    }
     protected void btntest_click(object sender, EventArgs e)
     {
         string selEntId = h_selEntId.Value;

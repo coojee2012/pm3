@@ -56,7 +56,7 @@
 
 
                 <td align="center" rowspan="3" colspan="2">
-                    <asp:Button ID="btnQuery" runat="server" Text="查询" OnClick="BtnQuery" CssClass="m_btn_w2" />
+                    <asp:Button ID="btnQuery" runat="server" Text="查询" CssClass="m_btn_w2" />
                 </td>
 
 
