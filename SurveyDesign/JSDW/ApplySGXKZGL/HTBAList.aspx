@@ -20,6 +20,7 @@
             txtCss();
 
 
+            hideTr1();
 
         });
         function checkInfo() {

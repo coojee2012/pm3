@@ -20,12 +20,8 @@ public partial class Government_AppTFGGL_FGList : govBasePage
     ProjectDB db = new ProjectDB();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            base.Page_Load(sender, e);
-            ShowInfo();
-        }
-       
+        base.Page_Load(sender, e);
+        ShowInfo();
     }
 
     private void ShowInfo()
