@@ -1,5 +1,5 @@
 --增加证书等级码表值 920
-
+if not exists(select 1 from [CF_Sys_DicClass] where [FName]= '证书等级' and [FNumber] =920 )
 INSERT INTO [dbo].[CF_Sys_DicClass]
            ([FID]
            ,[FName]
@@ -25,6 +25,7 @@ GO
 
 USE [dbCenter]
 GO
+if not exists(select 1 from cf_sys_dic where FNumber= '920001')
 
 INSERT INTO [dbo].[CF_Sys_Dic]
            ([FID]
