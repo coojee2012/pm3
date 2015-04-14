@@ -186,7 +186,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             if (e.CommandName == "Sel")
             {
                 pageTool tool = new pageTool(this.Page);
-                HiddenField hfEmpId = e.Item.FindControl("hfRYZSXXID") as HiddenField;
+                HiddenField hfEmpId = e.Item.FindControl("RYBH") as HiddenField;
                 string fid = hfEmpId.Value;             
                 if (ViewState["emptype"] != null)
                 {
