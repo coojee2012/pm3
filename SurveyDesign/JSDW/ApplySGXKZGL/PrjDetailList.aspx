@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EntList.aspx.cs" Inherits="JSDW_APPLYSGXKZGL_EntList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrjDetailList.aspx.cs" Inherits="JSDW_APPLYSGXKZGL_PrjDetailList" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,10 +26,10 @@
         }
         function addEnt() {
             var FAppId = document.getElementById("hf_FAppId").value;
-            var FEntType = document.getElementById("hf_FEntType").value;
+            var SgxkzID = document.getElementById("hf_SgxkzId").value;
             var FPrjId = document.getElementById("t_FPrjId").value;
             var FPrjItemId = document.getElementById("t_FPrjItemId").value;
-            showAddWindow('EntInfo.aspx?FAppId='+FAppId+'&FEntType=' + FEntType + '&FPrjId=' + FPrjId +
+            showAddWindow('PrjDetailInfo.aspx?FAppId=' + FAppId + '&SgxkzInfoID=' + SgxkzID + '&FPrjId=' + FPrjId +
                  '&FPrjItemId=' + FPrjItemId, 900, 700);
         }
     </script>
@@ -45,7 +45,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:HiddenField runat="server" ID="hf_enteid"  Value ="" />
-        <asp:HiddenField  runat="server" ID="hf_FEntType" Value="0" />
+        <asp:HiddenField  runat="server" ID="hf_SgxkzId" Value="0" />
         <asp:HiddenField  runat="server" ID="hf_FAppId" Value="" />
         <asp:HiddenField  runat="server" ID="hf_FId" Value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
@@ -73,7 +73,7 @@
                 <td class="m_bar_l">
                 </td>
                 <td>
-                    <label runat="server" id="lblTitle"> 施工总承包单位</label>     
+                    <label runat="server" id="lblTitle"> </label>     
                 </td>
                 <td class="t_r">
                     <asp:UpdatePanel ID="up_Main" runat="server" RenderMode="Inline">
@@ -90,7 +90,7 @@
                 </td>
             </tr>
         </table>
-        <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
+        <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBound" Style="margin-top: 6px;
             margin-bottom: 1px;" Width="98%">
             <HeaderStyle CssClass="m_dg1_h" />
@@ -108,21 +108,22 @@
                 <asp:BoundColumn HeaderText="序号">
                     <HeaderStyle Width="30px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="单位名称" DataField="FName">
+                <asp:BoundColumn HeaderText="名称" DataField="DetailName">
                     <ItemStyle Wrap="False" HorizontalAlign="Left" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="法定代表人" DataField="FLegalPerson">
+                <asp:BoundColumn HeaderText="建筑面积/长度(平方米/米)" DataField="Scale">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="主项资质" DataField="mZXZZ">
+                <asp:BoundColumn HeaderText="其中：地上" DataField="UpScale">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="联系人" DataField="FLinkMan">
+                <asp:BoundColumn HeaderText="地下" DataField="DoScale">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="状态" >
+                <asp:BoundColumn HeaderText="地上层数" DataField="UpLayerNum" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
+                <asp:BoundColumn HeaderText="地下层数" DataField="DoLayerNum"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
             </Columns>
         </asp:DataGrid>

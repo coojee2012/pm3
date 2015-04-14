@@ -10,7 +10,7 @@ using Tools;
 using System.Data;
 using EgovaBLL;
 
-public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
+public partial class JSDW_APPLYSGXKZGL_PrjDetailList : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
@@ -19,8 +19,8 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
         if (!IsPostBack)
         { 
             this.hf_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            this.hf_FEntType.Value = EConvert.ToString(Request["FEntType"]);
-            showTitle();
+            this.hf_SgxkzId.Value = EConvert.ToString(Request["Fid"]);
+            lblTitle.InnerText = "建筑工程项目明细表";
             showInfo();
             pageTool tool = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
@@ -29,46 +29,12 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
             }
         }
     }
-    //显示
-    private void showTitle()
-    {
-        switch (hf_FEntType.Value)
-        {
-            case "2":
-                lblTitle.InnerText = "施工总承包单位";
-                break;
-            case "3":
-                lblTitle.InnerText = "专业承包单位";
-                break;
-            case "4":
-                lblTitle.InnerText = "劳务分包单位";
-                break;
-            case "5":
-                lblTitle.InnerText = "勘察单位";
-                break;
-            case "6":
-                lblTitle.InnerText = "设计单位";
-                break;
-            case "7":
-                lblTitle.InnerText = "监理单位";
-                break;
-        }
 
-
-    }
     //显示
     private void showInfo()
     {
-        if (hf_FEntType.Value == "2" || hf_FEntType.Value == "3" || hf_FEntType.Value == "4")
-        {
-            
-        }
-        else
-        {
-            dg_List.Columns[4].HeaderText = "资质项";
-        }
         EgovaDB dbContext = new EgovaDB();
-        var v = dbContext.TC_PrjItem_Ent.Where(t => t.FAppId == hf_FAppId.Value && t.FEntType.Equals(hf_FEntType.Value));
+        var v = dbContext.TC_SGXKZ_PrjDetail.Where(t => t.FAppId == hf_FAppId.Value && t.SgxkzInfoID.Equals(hf_SgxkzId.Value));
         dg_List.DataSource = v;
         dg_List.DataBind();
         
@@ -87,9 +53,8 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
-        //先删除选择的企业的相关人员
-        //DeleteChildren(dg_List);
-        tool.DelInfoFromGrid(dg_List, dbContext.TC_PrjItem_Ent, tool_Deleting);
+
+        tool.DelInfoFromGrid(dg_List, dbContext.TC_SGXKZ_PrjDetail, tool_Deleting);
         showInfo();
     }
     //级联删除人员
@@ -122,20 +87,6 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
         return FIdList;
     }
 
-    private void DeleteChildren(DataGrid grid)
-    {
-        IList<string> listid = GetGridCheckIds(grid);
-        var para = dbContext.TC_PrjItem_Ent.Where(t => listid.ToArray().Contains(t.FId) && t.FAppId == hf_FAppId.Value && t.FEntType.Equals(hf_FEntType.Value));
-
-        foreach (var emp_temp in para)
-        {
-            var emp = dbContext.TC_PrjItem_Emp.Where(t => t.FAppId == emp_temp.FAppId && t.FPrjItemId == emp_temp.FPrjItemId && t.FEntId == emp_temp.QYID);
-
-            dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(emp);
-        }
-        dbContext.SubmitChanges();
-    }
-
 
     protected void btnReload_Click(object sender, EventArgs e)
     {
@@ -151,7 +102,7 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
             string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
             string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
 
-            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('EntInfo.aspx?fId=" + fId + "&FEntType=" + hf_FEntType.Value + "&fAppId=" + fAppId + "&fPrjItemId=" + fPrjItemId + "&fprjId=" + fPrjId + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
+            e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('PrjDetailInfo.aspx?fId=" + fId + "&SgxkzInfoID=" + hf_SgxkzId.Value + "&fAppId=" + fAppId + "&fPrjItemId=" + fPrjItemId + "&fprjId=" + fPrjId + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
