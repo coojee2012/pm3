@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sql;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString5" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString6" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2401,6 +2401,24 @@
       <Column Name="FBatchId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
       <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
       <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_PrjDetail" Member="TC_SGXKZ_PrjDetail">
+    <Type Name="TC_SGXKZ_PrjDetail">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="PrjId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="PrjItemId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="SgxkzInfoID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DetailName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Scale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="UpScale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DoScale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AbLayerNum" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="UnLayerNum" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ReMark" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
