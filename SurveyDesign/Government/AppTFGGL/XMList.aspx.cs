@@ -2,6 +2,8 @@
 using EgovaDAO;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -16,9 +18,9 @@ public partial class Government_AppTFGGL_XMList : System.Web.UI.Page
         if (!IsPostBack)
         {
             // t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            if (Request["FAppId"] != null && !string.IsNullOrEmpty(Request["FAppId"]))
+            if (Request["t_FAppId"] != null && !string.IsNullOrEmpty(Request["t_FAppId"]))
             {
-                t_FAppId.Value = Request["FAppId"];
+                t_FAppId.Value = Request["t_FAppId"];
             }
 
             showInfo();
@@ -110,11 +112,26 @@ public partial class Government_AppTFGGL_XMList : System.Web.UI.Page
         {
             if (e.CommandName == "Sel")
             {          
-                string fid = e.Item.Cells[9].Text;
+                string fid = e.Item.Cells[10].Text;
                 string FHumanName = e.Item.Cells[2].Text;
                 pageTool tool = new pageTool(this.Page);
                // tool.ExecuteScript("window.returnValue='" + fid + "@" + FHumanName + "';window.close();");
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                string sql = "UPDATE  TC_SGXKZ_TFGTZ SET FAppId = case when ISNULL(FAppId,'') = '' Then '" + fid + "' ELSE FAppId + '," + fid + "' END,PCSL=PCSL+1 WHERE 1=1 AND FId ='" + t_FAppId.Value + "'";
+
+                using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+                {
+                  
+                    if (conn.State == ConnectionState.Closed)
+                        conn.Open();
+                    DataSet ds = new DataSet();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+
+                   cmd.ExecuteNonQuery();
+
+
+
+                }
             }
         }
     }
