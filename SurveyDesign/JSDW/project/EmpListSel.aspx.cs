@@ -34,15 +34,15 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             ViewState["qybm"] = qybm;
             ViewState["FPrjItemId"] = prjItemid;
             BindControl();
-            if (Request.QueryString["emptype"] != null)
-            {
-                ViewState["emptype"] = "aqjdemp";
-                showInfo();
-            }
-            else
-            {
+            //if (Request.QueryString["emptype"] != null)
+            //{
+            //    ViewState["emptype"] = "aqjdemp";
+            //    showInfo();
+            //}
+            //else
+            //{
                 showInfo(qybm);
-            }
+            //}
         }
     }
     void BindControl()
@@ -170,18 +170,9 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     //分页面控件翻页事件
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
-        if (ViewState["emptype"].ToString() != "aqjdemp")
-        {
-            Pager1.CurrentPageIndex = e.NewPageIndex;
-            string qybm = EConvert.ToString(ViewState["qybm"]);
-            showInfo(qybm);
-            
-        }
-        else
-        {
-            Pager1.CurrentPageIndex = e.NewPageIndex;
-            showInfo();
-        }
+        Pager1.CurrentPageIndex = e.NewPageIndex;
+        string qybm = EConvert.ToString(ViewState["qybm"]);
+        showInfo(qybm);
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
@@ -195,7 +186,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             if (e.CommandName == "Sel")
             {
                 pageTool tool = new pageTool(this.Page);
-                HiddenField hfEmpId = e.Item.FindControl("hfRYZSXXID") as HiddenField;
+                HiddenField hfEmpId = e.Item.FindControl("RYBH") as HiddenField;
                 string fid = hfEmpId.Value;             
                 if (ViewState["emptype"] != null)
                 {

@@ -75,7 +75,10 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             sj_FLinkMan.Text = qa.SJDWFR;
             sj_FMobile.Text = qa.SJDWDH;
             sj_FLicence.Text = qa.SJDWZS;
+            if (qa.RegisterTime.HasValue)
+            { 
             pj_ProjectTime.Text = qa.RegisterTime.Value.ToString("yyyy-M-d");
+            }
             govd_FRegistDeptId.fNumber = pj_AddressDept.Value;
             q_AddressDept.Value = pj_AddressDept.Value;
             if (string.IsNullOrEmpty(p_RecordNo.Text))
@@ -192,7 +195,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
         if (v != null)
         {
-            q_XMJL.Text = v.XM; ;
+            q_XMJL.Text = v.XM; 
         }
 
     }

@@ -248,16 +248,16 @@
                         <a id="a17" class="o_m01_1" href='../ApplyBHGD/BHGDList.aspx' target="main"><span>
                             标化工地申请</span></a>
                     </div>
-                    <div class="o_menu" >
+                    <div class="o_menu" style="display:none;">
                         <a id="a18" class="o_m01_1" style="cursor: pointer" target="main"><span>停复工管理</span></a>
                         <div class="o_smenu">
-                            <a id="a21" class="o_m02_1" href='../ApplySGXKZGL/TGGLList.aspx' target="main"><span>停工申请</span></a>
+                            <a id="a21" class="o_m02_1" href='../ApplyTFGGL/FGSQList.aspx' target="main"><span>停工申请</span></a>
                             <div class="o_smenu2">
                             </div>
-                            <a id="a22" class="o_m02_1" href='../ApplySGXKZGL/FGGLList.aspx' target="main"><span>复工申请</span></a>
+                            <a id="a22" class="o_m02_1" href='../ApplyTFGGL/TGSQList.aspx' target="main"><span>复工申请</span></a>
                             <div class="o_smenu2">
                             </div>
-                            <a id="a23" class="o_m02_1" href='../ApplySGXKZGL/TFGList.aspx' target="main"><span>停复工查询</span></a>
+                            <a id="a23" class="o_m02_1" href='../project/ProjectItemList.aspx' target="main"><span>停复工查询</span></a>
                             <div class="o_smenu2">
                             </div>
                         </div>
