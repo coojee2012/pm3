@@ -213,6 +213,8 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
     {
         //MODIFY:YTB 获取企业所属地；
         var enty = EntInfo(entId);
+        if (enty == null)
+            return "";
         var registDeptId = enty.FRegistDeptId;
         if (registDeptId==null)
             return "";

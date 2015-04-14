@@ -57,10 +57,7 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            }
-            t_BL.SelectedItem.Text = "已办";
-            t_BL.SelectedItem.Value = "3";
-            t_BL.Enabled = false;
+            }         
         }
         else
         {
