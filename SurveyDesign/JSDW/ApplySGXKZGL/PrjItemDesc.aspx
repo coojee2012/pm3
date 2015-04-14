@@ -216,7 +216,7 @@
                 
             </tr>
             <tr>
-                <td>
+                <td  class="t_r t_bg">
                     建设规模：
                 </td>
                 <td colspan="3">
@@ -284,6 +284,22 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">
+                    其中：地上：
+                </td>
+                <td colspan="1">
+                      <asp:TextBox ID="t_upscale" runat="server" CssClass="m_txt"
+                         Width="200px" ></asp:TextBox>（m2/m）<tt>*</tt>
+                </td>
+                <td class="t_r t_bg">
+                    地下：
+                </td>
+                <td colspan="1">
+                    <asp:TextBox ID="t_doscale"  runat="server" CssClass="m_txt"
+                        Width="200px" ></asp:TextBox>(m2/m) <tt>*</tt>
+                </td>
+            </tr>
+            <tr>
+                <td class="t_r t_bg">
                     建筑性质：
                 </td>
                 <td >
@@ -327,7 +343,7 @@
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
-                    合同竣工工日期：
+                    合同竣工日期：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_EndDate" runat="server" onfocus="WdatePicker()" CssClass="m_txt" Width="200px"></asp:TextBox>
