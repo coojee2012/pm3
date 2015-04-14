@@ -1,0 +1,2 @@
+主管部门”施工许可证管理“菜单，新增如下1个子菜单：
+1、证书查询，对应页面：Government/AppSGXKZ/ZSXCList.aspx
