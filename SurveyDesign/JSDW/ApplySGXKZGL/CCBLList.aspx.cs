@@ -211,22 +211,27 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
     /// <returns>企业所属地，只取前4位</returns>
     private string EntyRegistDeptId(string entId)
     {
-        //MODIFY:YTB 获取企业所属地；
-        var enty = EntInfo(entId);
-        if (enty == null)
-            return "";
-        var registDeptId = enty.FRegistDeptId;
-        if (registDeptId==null)
-            return "";
-        if (registDeptId.ToString().Length>=4)
+        try
         {
-            return registDeptId.ToString().Substring(0, 4);
+            //MODIFY:YTB 获取企业所属地；
+            var enty = EntInfo(entId);
+            var registDeptId = enty.FRegistDeptId;
+            if (registDeptId == null)
+                return "";
+            if (registDeptId.ToString().Length >= 4)
+            {
+                return registDeptId.ToString().Substring(0, 4);
+            }
+            else if (registDeptId.ToString().Length <= 4 && registDeptId.ToString().Length >= 2)
+            {
+                return registDeptId.ToString().Substring(0, 2);
+            }
+            else
+            {
+                return "";
+            }
         }
-        else if (registDeptId.ToString().Length<=4&&registDeptId.ToString().Length>=2)
-        {
-            return registDeptId.ToString().Substring(0, 2);
-        }
-        else
+        catch
         {
             return "";
         }
@@ -409,7 +414,10 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         t_AddressDept.Value = result.AddressDept;
         t_PrjItemType.Value = result.PrjItemType;
         t_JSDW.Value = result.JSDW;
-        t_JSDWAddressDept.Value = EntyRegistDeptId(result.FJSDWID);//MODIFY:YTB 为建设单位所属地赋值到控件
+        if (EntyRegistDeptId(result.FJSDWID) != "")
+        {
+            t_JSDWAddressDept.Value = EntyRegistDeptId(result.FJSDWID);//MODIFY:YTB 为建设单位所属地赋值到控件
+        }
     }
 
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)
