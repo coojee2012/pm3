@@ -86,6 +86,7 @@ public partial class JSDW_ApplyZBBA_BDSel : System.Web.UI.Page
     }
     protected void App_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
+        string name1="",name2="",name3="";
         if (e.Item.ItemIndex > -1)
         {
             string ZBFS = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "ZBFS"));
@@ -97,9 +98,32 @@ public partial class JSDW_ApplyZBBA_BDSel : System.Web.UI.Page
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该标段吗?');");
             e.Item.Cells[6].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(ZBFS)).Select(d => d.FName).FirstOrDefault();
-            e.Item.Cells[7].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJ)).Select(d => d.FName).FirstOrDefault()
-                + dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJXL)).Select(d => d.FName).FirstOrDefault() +
-                dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJDJ)).Select(d => d.FName).FirstOrDefault();
+
+            try
+            {
+                name1 = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJ)).Select(d => d.FName).FirstOrDefault();
+            }
+            catch { 
+                
+            }
+            try
+            {
+                name2 = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJXL)).Select(d => d.FName).FirstOrDefault();
+            }
+            catch
+            { }
+            try
+            {
+                name3 = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJDJ)).Select(d => d.FName).FirstOrDefault();
+            }
+            catch
+            { 
+            }         
+            
+            e.Item.Cells[7].Text = name1 + name2 + name3;
+        //    e.Item.Cells[7].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJ)).Select(d => d.FName).FirstOrDefault()
+        //        + dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJXL)).Select(d => d.FName).FirstOrDefault() +
+        //        dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(QYZZDJDJ)).Select(d => d.FName).FirstOrDefault();
         }
     }
     protected void btnReload_Click(object sender, EventArgs e)
