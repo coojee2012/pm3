@@ -16,6 +16,8 @@ using Approve.EntityCenter;
 using Approve.RuleApp;
 using System.Drawing;
 using EgovaDAO;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
 {
@@ -120,7 +122,7 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select a.*,b.FId as FFId,");
+        sb.Append(" select a.*,ISNULL(b.FId,'') as FFId,");
         sb.Append("  CASE ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when  11225 then '变更办理'  else '--' end as YWType, ");
        
         sb.Append(" CASE ISNULL(b.FPublish,0) when 0 then '否' else '是' end as FPublish,  ");
@@ -195,11 +197,118 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
     #endregion
     protected void btnPublish_Click(object sender, EventArgs e)
     {
+        string FId = "";
 
+        int RowCount = JustAppInfo_List.Items.Count;
+        IList<string> FIdList = new List<string>();
+        string FIds = "";
+        for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 2].Text.Trim();
+                string FFId =  JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 1].Text.Trim();
+                string FPrjId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 3].Text.Trim();
+                string FPrjItemId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 4].Text.Trim();
+
+                if (string.IsNullOrEmpty(FFId) || FFId=="&nbsp;")
+                {
+                    string sql = "INSERT INTO TC_SGXKZ_PrjState (FId,FPrjId,FPrjItemId,SGXKZBB,FPublish) VALUES ('";
+                    sql += FId + "','" + FPrjId + "','" + FPrjItemId + "',0,0);";
+                    using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+                    {
+                        if (conn.State == ConnectionState.Closed)
+                            conn.Open();
+                        DataSet ds = new DataSet();
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+
+                FIdList.Add(FId);
+                if (string.IsNullOrEmpty(FIds))
+                {
+                    FIds = "'" + FId + "'";
+                }
+                else
+                {
+                    FIds += ",'" + FId + "'";
+                }
+            }
+        }
+        if (!string.IsNullOrEmpty(FIds))
+        {
+            string sql = "UPDATE TC_SGXKZ_PrjState SET FPublish = 1 WHERE FId IN (" + FIds + ") AND ISNULL(FPublish,0) = 0 ";
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+
+
+
+            }
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('发布成功！');", true);
+            ShowInfo();
+        }
+        else
+        {
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要发布的项');", true);
+        }
     }
 
     protected void btnUnPublish_Click(object sender, EventArgs e)
     {
+        string FId = "";
 
+        int RowCount = JustAppInfo_List.Items.Count;
+        IList<string> FIdList = new List<string>();
+        string FIds = "";
+        for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 2].Text.Trim();
+
+                FIdList.Add(FId);
+                if (string.IsNullOrEmpty(FIds))
+                {
+                    FIds = "'" + FId + "'";
+                }
+                else
+                {
+                    FIds += ",'" + FId + "'";
+                }
+            }
+        }
+        if (!string.IsNullOrEmpty(FIds))
+        {
+            string sql = "UPDATE TC_SGXKZ_PrjState SET FPublish = 0 WHERE FId IN (" + FIds + ") AND FPublish = 1 ";
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+
+
+
+            }
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('取消发布成功！');", true);
+            ShowInfo();
+        }
+        else
+        {
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要取消发布的项');", true);
+        }
     }
 }

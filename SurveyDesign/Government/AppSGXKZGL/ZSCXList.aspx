@@ -255,8 +255,8 @@
             <td>
                <asp:DropDownList ID="ddlState" runat="server" CssClass="m_txt" Width="169px">
                     <asp:ListItem Value="-1" Selected="True">全部</asp:ListItem>
-                    <asp:ListItem Value="0"  >已发布</asp:ListItem>
-                    <asp:ListItem Value="1">未发布</asp:ListItem> 
+                    <asp:ListItem Value="0"  >未发布</asp:ListItem>
+                    <asp:ListItem Value="1">已发布</asp:ListItem> 
                    
                 </asp:DropDownList>
             </td>
@@ -281,7 +281,7 @@
                 <asp:Button ID="btnUnPublish" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                     Text="撤销发布"  OnClick="btnUnPublish_Click"/>
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
-                    OnClick="btnOut_Click" Text="导出Excel" />
+                    OnClick="btnOut_Click" Text="导出" />
             </td>
             <td class="m_bar_r">
             </td>
@@ -355,6 +355,14 @@
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
       
+                            <asp:BoundColumn HeaderText="FPrjItemId" DataField="PrjItemId" Visible="False">
+                                <ItemStyle Font-Underline="False" Wrap="False" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="FPrjId" DataField="PrjId" Visible="False">
+                                <ItemStyle Font-Underline="False" Wrap="False" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="FId" DataField="FId" Visible="False">
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
