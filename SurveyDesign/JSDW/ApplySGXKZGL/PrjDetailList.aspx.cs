@@ -99,8 +99,8 @@ public partial class JSDW_APPLYSGXKZGL_PrjDetailList : System.Web.UI.Page
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
             string fId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FID"));
             string fAppId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FAppId"));
-            string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjItemId"));
-            string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
+            string fPrjItemId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "PrjItemId"));
+            string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "PrjId"));
 
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('PrjDetailInfo.aspx?fId=" + fId + "&SgxkzInfoID=" + hf_SgxkzId.Value + "&fAppId=" + fAppId + "&fPrjItemId=" + fPrjItemId + "&fprjId=" + fPrjId + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";
         }

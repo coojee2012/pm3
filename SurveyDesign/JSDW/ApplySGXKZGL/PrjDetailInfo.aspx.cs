@@ -54,8 +54,9 @@ public partial class JSDW_APPLYSGXKZGL_PrjDetailInfo : System.Web.UI.Page
             pageTool tool = new pageTool(this.Page, "t_");
             tool.fillPageControl(ent);
             txtFId.Value = ent.FId;
+            t_FPrjItemId.Value = ent.PrjItemId;
         }
-        t_FPrjItemId.Value = ent.PrjItemId;
+
 
     }
 

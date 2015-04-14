@@ -51,78 +51,6 @@
             $("tr[name=tr1]").hide();
             $("td[name=td2]").show();       
         }
-        function selEnt(obj, tagId) {
-            var type = document.getElementById("t_FEntType").value;
-            var qylx = "";
-            //根据企业类型跳转到不同的企业选择页面
-            switch (type) {
-                case "2":
-                    qylx = "101";
-                    var url = "../project/EntListSelSg.aspx";
-                    url += "?qylx=" + qylx;
-                    var pid = showWinByReturn(url, 1000, 600);
-                
-                    if (pid != null && pid != '') {
-                         $("#" + tagId).val(pid);
-                        __doPostBack(obj.id, '');
-                    }
-                    break;
-                case "3":
-                    qylx = "101";
-                    var url = "../project/EntListSelSg.aspx";
-                    url += "?qylx=" + qylx;
-                    var pid = showWinByReturn(url, 1000, 600);
-                 
-                    if (pid != null && pid != '') {
-                     
-                        $("#" + tagId).val(pid);
-                        __doPostBack(obj.id, '');
-                    }
-                    break;
-                case "4":
-                    qylx = "101";
-                    var url = "../project/EntListSelSg.aspx";
-                    url += "?qylx=" + qylx;
-                    var pid = showWinByReturn(url, 1000, 600);
-                    if (pid != null && pid != '') {
-                        $("#" + tagId).val(pid);
-                        __doPostBack(obj.id, '');
-                    }
-                    break;
-                case "5":
-                    qylx = "102";
-                    var url = "../project/EntListSel.aspx";
-
-                    url += "?qylx=" + qylx;                 
-                    var pid = showWinByReturn(url, 1000, 600);
-                    if (pid != null && pid != '') {
-                        $("#" + tagId).val(pid);
-                        __doPostBack(obj.id, '');
-                    }
-                    break;
-                case "6":
-                    qylx = "103";
-                    var url = "../project/EntListSel.aspx";
-
-                    url += "?qylx=" + qylx;
-                    var pid = showWinByReturn(url, 1000, 600);
-                    if (pid != null && pid != '') {
-                        $("#" + tagId).val(pid);
-                        __doPostBack(obj.id, '');
-                    }
-                    break;
-                case "7":
-                    qylx = "104";
-                    var url = "../project/EntListSel.aspx";
-                    url += "?qylx=" + qylx;
-                    var pid = showWinByReturn(url, 1000, 600);
-                    if (pid != null && pid != '') {
-                        $("#" + tagId).val(pid);
-                        __doPostBack(obj.id, '');
-                    }
-                    break;
-            }        
-        }
     </script>
 
     <base target="_self">
@@ -133,6 +61,9 @@
             height: 36px;
         }
         .m_txt {}
+        .auto-style3 {
+            width: 229px;
+        }
     </style>
 </head>
 <body>
@@ -176,22 +107,22 @@
         </table>
         <table class="m_table" width="98%" align="center">
             <tr>
-                <td class="t_r t_bg" width="12%">
+                <td class="t_r t_bg" width="20%">
                     单体工程名称：
                 </td>
-                <td colspan="4" width="45%">
-                    <asp:TextBox ID="t_DetailName" runat="server" CssClass="m_txt" Width="617px" MaxLength="40" Enabled="false"></asp:TextBox>
+                <td colspan="4" width="80%">
+                    <asp:TextBox ID="t_DetailName" runat="server" CssClass="m_txt" Width="308px" MaxLength="40" ></asp:TextBox>
                     <tt>*</tt>
                    
                 </td>
 
             </tr>
             <tr>
-                <td class="auto-style2">
+                <td class="t_r t_bg">
                     建筑面积/长度：
                 </td>
-                <td colspan="4" class="auto-style2">
-                    <asp:TextBox ID="t_Scale" runat="server" CssClass="m_txt" Width="195px" MaxLength="40" Enabled="false"></asp:TextBox>
+                <td colspan="3" >
+                    <asp:TextBox ID="t_Scale" runat="server" CssClass="m_txt"  MaxLength="40" ></asp:TextBox>
                     <tt>（平方米/米）*</tt>
                 </td>
 
@@ -200,37 +131,37 @@
                 <td class="t_r t_bg">
                     其中：地上
                 </td>
-                <td colspan="2">
-                    <asp:TextBox ID="t_UpScale" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>平方米/米
+                <td colspan="1"  >
+                    <asp:TextBox ID="t_UpScale" runat="server" CssClass="m_txt" Width="105px" ></asp:TextBox>平方米/米
                 </td>
                 <td class="t_r t_bg">
                     地下
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_DoScale" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>平方米/米
+                    <asp:TextBox ID="t_DoScale" runat="server" CssClass="m_txt" Width="105px" ></asp:TextBox>平方米/米
                 </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
                     层数：地上
                 </td>
-                <td colspan="2">
-                    <asp:TextBox ID="t_AbLayerNum" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>&nbsp;</td>
+                <td colspan="1" class="auto-style3">
+                    <asp:TextBox ID="t_AbLayerNum" runat="server" CssClass="m_txt" Width="105px" ></asp:TextBox>层              </td>
                 <td class="t_r t_bg">
                     地下
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_UnLayerNum" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>
+                    <asp:TextBox ID="t_UnLayerNum" runat="server" CssClass="m_txt" Width="105px" ></asp:TextBox>层
                 </td>
             </tr>
             <tr>
                 <td class="t_r t_bg">
                     备注：
                 </td>
-                <td colspan="4">
+                <td colspan="3">
                     
                     <asp:TextBox ID="t_Remark" runat="server" CssClass="m_txt" 
-                        Width="73%" Height="40px" MaxLength="20" TextMode="MultiLine"></asp:TextBox>
+                        Width="90%" Height="40px"  TextMode="MultiLine"></asp:TextBox>
                     
                 </td>
                 

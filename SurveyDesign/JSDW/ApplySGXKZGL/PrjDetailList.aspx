@@ -120,10 +120,10 @@
                 <asp:BoundColumn HeaderText="地下" DataField="DoScale">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="地上层数" DataField="UpLayerNum" >
+                <asp:BoundColumn HeaderText="地上层数" DataField="AbLayerNum" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="地下层数" DataField="DoLayerNum"></asp:BoundColumn>
+                <asp:BoundColumn HeaderText="地下层数" DataField="UnLayerNum"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
             </Columns>
         </asp:DataGrid>
