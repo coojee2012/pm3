@@ -37,7 +37,7 @@ public partial class Government_AppTFGGL_SGXKZXX : System.Web.UI.Page
         sb.Append("'");
         string sql = sb.ToString();
         DataTable dt = GetData(sql);
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < dt.Rows.Count; i++)
         {
             t_SGXKZBH.Text = EConvert.ToString(dt.Rows[i]["SGXKZBH"]);
             t_Price.Text = EConvert.ToString(dt.Rows[i]["Price"]);
@@ -52,6 +52,7 @@ public partial class Government_AppTFGGL_SGXKZXX : System.Web.UI.Page
             t_StartDate.Text = EConvert.ToString(dt.Rows[i]["StartDate"]);
             t_EndDate.Text = EConvert.ToString(dt.Rows[i]["EndDate"]);
 
+            break;
         }
     }
 
