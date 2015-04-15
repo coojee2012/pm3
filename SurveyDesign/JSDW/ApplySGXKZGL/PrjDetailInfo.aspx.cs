@@ -21,13 +21,10 @@ public partial class JSDW_APPLYSGXKZGL_PrjDetailInfo : System.Web.UI.Page
 
             //应用编号
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            //施工许可证ID
-            t_SgxkzId.Value = EConvert.ToString(Request["SgxkzInfoID"]);
-            //企业编号
+
+            //编号
             txtFId.Value = EConvert.ToString(Request["FId"]);
 
-            t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
-            t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             showInfo();
 
             pageTool tool = new pageTool(this.Page);
@@ -74,17 +71,21 @@ public partial class JSDW_APPLYSGXKZGL_PrjDetailInfo : System.Web.UI.Page
         else
         {
             TC_SGXKZ_PrjInfo Prj = new TC_SGXKZ_PrjInfo();
-            string sgxkzid = t_SgxkzId.Value;
-            if (!string.IsNullOrEmpty(sgxkzid))
+            string appid = t_FAppId.Value;
+            if (!string.IsNullOrEmpty(appid))
             {
-                Prj = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sgxkzid).FirstOrDefault();
+                Prj = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == appid).FirstOrDefault();
+                //施工许可证ID
+                t_SgxkzId.Value    = Prj.FId;
+                t_FPrjId.Value     = Prj.PrjId;
+                t_FPrjItemId.Value = Prj.FPrjItemId;
             }
             fId = Guid.NewGuid().ToString();
             ent.FId = fId;
             ent.JSDW = Prj.JSDW;
             ent.AddressDept = Prj.JSDWAddressDept;
-            ent.FAppId = t_FAppId.Value;
-            ent.PrjId  = t_FPrjId.Value;
+            ent.FAppId    = t_FAppId.Value;
+            ent.PrjId     = t_FPrjId.Value;
             ent.PrjItemId = t_FPrjItemId.Value;
             ent.SgxkzInfoID = t_SgxkzId.Value;
             ent.DetailName = t_DetailName.Text ;
