@@ -102,19 +102,21 @@ public partial class JSDW_ApplyZBBA_HXRInfo : System.Web.UI.Page
         t_PBJ.Text = EConvert.ToString(result.PBJ);
         t_QYId.Value = result.QYId;
     }
+
     private void selEmp()
     {
         string selEmpId = h_selEmpId.Value;
         EgovaDB1 db = new EgovaDB1();
-        var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
-        if (v != null)
-        {
-            t_FZRXM.Text = v.XM;
-        }
-        var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+        //var v = db.RY_RYJBXX.Where(t => t.RYZSXXID == selEmpId).FirstOrDefault();
+        //if (v != null)
+        //{
+        //    t_FZRXM.Text = v.XM;
+        //}
+        var v1 = db.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpId).FirstOrDefault();
         if (v1 != null)
         {
             t_ZCZSH.Text = v1.ZCZSH;
+            t_FZRXM.Text = v1.XM;
         }
         
     }

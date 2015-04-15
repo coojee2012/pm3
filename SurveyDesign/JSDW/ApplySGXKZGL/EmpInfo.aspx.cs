@@ -251,7 +251,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         string selEmpId = string.Empty;
         EgovaDB1 db = new EgovaDB1();
 
-        var firstOrDefault = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);
+        var firstOrDefault = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);   //传回来的值原来是人员编号RYBH ，已改 by zyd
         if (firstOrDefault != null)
             selEmpId = firstOrDefault.RYBH;
 

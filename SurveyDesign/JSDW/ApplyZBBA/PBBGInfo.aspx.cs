@@ -266,6 +266,8 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         tool.DelInfoFromGrid(dg_ListTB, dbContext.TC_PBBG_TBQY, tool_Deleting);
         ShowFileTB(txtFId.Value);
     }
+
+    //中标选候人
     protected void btnDel_ClickHXR(object sender, EventArgs e)
     {
         pageTool tool = new pageTool(this.Page);
