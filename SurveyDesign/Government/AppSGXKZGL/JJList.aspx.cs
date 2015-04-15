@@ -163,6 +163,7 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
             string fBaseInfoId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FBaseInfoId"));
             string fMeasure = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FMeasure"));
             string fManageTypeId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FManageTypeId"));
+            string FStatedesc = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FStatedesc"));
             
             CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
             box.Attributes["id"] = "span" + box.ClientID;
@@ -173,6 +174,8 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
             box.Attributes["fBaseInfoId"] = fBaseInfoId;
             box.Attributes["fMeasure"] = fMeasure;
             box.Attributes["fManageTypeId"] = fManageTypeId;
+            box.Attributes["FStatedesc"] = FStatedesc;
+
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
         }
     }

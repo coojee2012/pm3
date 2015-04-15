@@ -141,8 +141,6 @@
                         <asp:ListItem Value="1">补填</asp:ListItem>
                         <asp:ListItem Value="0">不需要办理</asp:ListItem>
                         <asp:ListItem Value="2">以后补办</asp:ListItem>
-                        <asp:ListItem Value="3">已办</asp:ListItem>
-
                     </asp:DropDownList>
                 </td>
 

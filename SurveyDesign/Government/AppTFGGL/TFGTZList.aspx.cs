@@ -6,6 +6,7 @@ using ProjectData;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -114,7 +115,53 @@ public partial class Government_AppTFGGL_TFGTZList : govBasePage
 
     protected void btnPublish_Click(object sender, EventArgs e)
     {
+        string FId = "";
 
+        int RowCount = JustAppInfo_List.Items.Count;
+        IList<string> FIdList = new List<string>();
+        string FIds = "";
+        for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 1].Text.Trim();
+
+                FIdList.Add(FId);
+                if (string.IsNullOrEmpty(FIds))
+                {
+                    FIds = "'" + FId + "'";
+                }
+                else
+                {
+                    FIds += ",'" + FId + "'";
+                }
+            }
+        }
+        if (!string.IsNullOrEmpty(FIds))
+        {
+            string sql = "UPDATE TC_SGXKZ_TFGTZ SET FBZT = 1 WHERE FId IN (" + FIds + ") AND FBZT = 0 ";
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+
+                
+
+            }
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('发布成功！');", true);
+            ShowInfo();
+        }
+        else
+        {
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要发布的通告');", true);
+        }
+
+        
     }
     protected void btnDel_Click(object sender, EventArgs e)
 
@@ -126,6 +173,7 @@ public partial class Government_AppTFGGL_TFGTZList : govBasePage
 
         int RowCount = JustAppInfo_List.Items.Count;
         IList<string> FIdList = new List<string>();
+        string FIds = "";
         for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
         {
             CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
@@ -134,14 +182,41 @@ public partial class Government_AppTFGGL_TFGTZList : govBasePage
                 FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 1].Text.Trim();
 
                 FIdList.Add(FId);
+                if (string.IsNullOrEmpty(FIds))
+                {
+                    FIds = "'" + FId + "'";
+                }
+                else
+                {
+                    FIds += ",'" + FId + "'";
+                }
             }
         }
+        if (!string.IsNullOrEmpty(FIds))
+        {
+            string sql = "DELETE FROM TC_SGXKZ_TFGTZ WHERE FId IN (" + FIds + ") AND FBZT = 0 ";
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
 
 
 
-   
+            }
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('删除成功！自动忽略已发布通告！');", true);
+            ShowInfo();
+        }
+        else
+        {
+
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要删除的通告');", true);
+        }
        
-        ShowInfo();
+      
     }
 
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)

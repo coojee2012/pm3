@@ -4,7 +4,7 @@
 <%@ Register Src="../../Common/pager.ascx" TagName="pager" TagPrefix="uc1" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>施工许可证管理接件</title>
+    <title>施工许可证查询</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -255,8 +255,8 @@
             <td>
                <asp:DropDownList ID="ddlState" runat="server" CssClass="m_txt" Width="169px">
                     <asp:ListItem Value="-1" Selected="True">全部</asp:ListItem>
-                    <asp:ListItem Value="0"  >已发布</asp:ListItem>
-                    <asp:ListItem Value="1">未发布</asp:ListItem> 
+                    <asp:ListItem Value="0"  >未发布</asp:ListItem>
+                    <asp:ListItem Value="1">已发布</asp:ListItem> 
                    
                 </asp:DropDownList>
             </td>
@@ -281,7 +281,7 @@
                 <asp:Button ID="btnUnPublish" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                     Text="撤销发布"  OnClick="btnUnPublish_Click"/>
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
-                    OnClick="btnOut_Click" Text="导出Excel" />
+                    OnClick="btnOut_Click" Text="导出" />
             </td>
             <td class="m_bar_r">
             </td>
@@ -316,8 +316,8 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                                <asp:BoundColumn HeaderText="许可证编号" DataField="PrjItemName" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <asp:BoundColumn HeaderText="许可证编号" DataField="SGXKZBH" >
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="建设单位" DataField="JSDW" >
@@ -328,16 +328,16 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                             <asp:BoundColumn HeaderText="发证日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                             <asp:BoundColumn HeaderText="发证日期" DataField="FZTime" DataFormatString="{0:yyyy-MM-dd}">
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                                <asp:BoundColumn HeaderText="发证机关" DataField="FZJG" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                                <asp:BoundColumn HeaderText="发证机关" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
-                              <asp:BoundColumn HeaderText="业务类型" DataField="BisType" >
-                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                              <asp:BoundColumn HeaderText="业务类型" DataField="YWType" >
+                                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
                             
@@ -346,16 +346,28 @@
                         
                           
                            
-                            <asp:BoundColumn HeaderText="是否补办" DataField="FStateDesc" >
-                                <ItemStyle Font-Underline="False" Wrap="False" />
+                            <asp:BoundColumn HeaderText="是否补办" DataField="SGXKZBB" >
+                                <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Center" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="发布状态" DataField="FStateDesc" >
-                                <ItemStyle Font-Underline="False" Wrap="False" />
+                            <asp:BoundColumn HeaderText="发布状态" DataField="FPublish" >
+                                <ItemStyle Font-Underline="False" Wrap="False" HorizontalAlign="Center" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
       
+                            <asp:BoundColumn HeaderText="FPrjItemId" DataField="PrjItemId" Visible="False">
+                                <ItemStyle Font-Underline="False" Wrap="False" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="FPrjId" DataField="PrjId" Visible="False">
+                                <ItemStyle Font-Underline="False" Wrap="False" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="FId" DataField="FId" Visible="False">
+                                <ItemStyle Font-Underline="False" Wrap="False" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+                            <asp:BoundColumn HeaderText="FFId" DataField="FFId" Visible="False">
                                 <ItemStyle Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>

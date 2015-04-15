@@ -169,58 +169,58 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
         //var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FId == fAppId);
         var dataOne = db.TC_SGXKZ_JSYDGHXKZ.FirstOrDefault(t => t.FAppId == fAppId);   //修改为fappid,应该是业务id  modify  by  psq 20150319
         //if (dataOne == null || string.IsNullOrEmpty(dataOne.YDGHXKZBH))
-        if (dataOne == null)  //只要上报过，不管是不许办理还是完整办理都可以上报
-        {
-            MyPageTool.showMessage("请完善项目环节:[建设用地规划许可证]", this.Page);
-            return;
-        }
+        //if (dataOne == null)  //只要上报过，不管是不许办理还是完整办理都可以上报
+        //{
+        //    MyPageTool.showMessage("请完善项目环节:[建设用地规划许可证]", this.Page);
+        //    return;
+        //}
         //var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FId == fAppId);  //修改为fappid,应该是业务id  modify  by  psq 20150319
         var dataTwo = db.TC_SGXKZ_JSGCGHXKZ.FirstOrDefault(t => t.FAppId == fAppId);
         //if (dataTwo == null || string.IsNullOrEmpty(dataTwo.GCGHXKZBH))
-        if (dataTwo == null)  //只要上报过，不管是不许办理还是完整办理都可以上报
-        {
-            MyPageTool.showMessage("请完善项目环节:[建设工程规划许可证]", this.Page);
-            return;
-        }
+        //if (dataTwo == null)  //只要上报过，不管是不许办理还是完整办理都可以上报
+        //{
+        //    MyPageTool.showMessage("请完善项目环节:[建设工程规划许可证]", this.Page);
+        //    return;
+        //}
        //var dataThree = db.TC_SGXKZ_SGTSC.FirstOrDefault(t => t.FId == fAppId);
-        var dataThree = db.TC_SGXKZ_SGTSC.FirstOrDefault(t => t.FAppId == fAppId);   //修改为fappid,应该是业务id  modify  by  psq 20150319
-        if (dataThree == null
-            || string.IsNullOrEmpty(dataThree.SGTSCHGSBH)
-            || string.IsNullOrEmpty(dataThree.SGTSCJGId)
-            || string.IsNullOrEmpty(dataThree.SGTSCZZJGDM)
-            || dataThree.SCWCRQ == null
-            || string.IsNullOrEmpty(dataThree.KCDWId)
-            || string.IsNullOrEmpty(dataThree.KCDWZZJGDM)
-            || string.IsNullOrEmpty(dataThree.SJDWId)
-            || string.IsNullOrEmpty(dataThree.SJDWZZJGDM)
-            || dataThree.YCSCSFTG == null
-            || dataThree.YCSCWFTS == null
-            || string.IsNullOrEmpty(dataThree.YCSCWFTM))
-        {
-            MyPageTool.showMessage("请完善项目环节:[施工图审查信息]", this.Page);
-            return;
-        }
+        //var dataThree = db.TC_SGXKZ_SGTSC.FirstOrDefault(t => t.FAppId == fAppId);   //修改为fappid,应该是业务id  modify  by  psq 20150319
+        //if (dataThree == null
+        //    || string.IsNullOrEmpty(dataThree.SGTSCHGSBH)
+        //    || string.IsNullOrEmpty(dataThree.SGTSCJGId)
+        //    || string.IsNullOrEmpty(dataThree.SGTSCZZJGDM)
+        //    || dataThree.SCWCRQ == null
+        //    || string.IsNullOrEmpty(dataThree.KCDWId)
+        //    || string.IsNullOrEmpty(dataThree.KCDWZZJGDM)
+        //    || string.IsNullOrEmpty(dataThree.SJDWId)
+        //    || string.IsNullOrEmpty(dataThree.SJDWZZJGDM)
+        //    || dataThree.YCSCSFTG == null
+        //    || dataThree.YCSCWFTS == null
+        //    || string.IsNullOrEmpty(dataThree.YCSCWFTM))
+        //{
+        //    MyPageTool.showMessage("请完善项目环节:[施工图审查信息]", this.Page);
+        //    return;
+        //}
        //var dataFour = db.TC_SGXKZ_JDSX.FirstOrDefault(t => t.FId == fAppId);
-        var dataFour = db.TC_SGXKZ_JDSX.FirstOrDefault(t => t.FAppId == fAppId);//修改为fappid,应该是业务id  modify  by  psq 20150319
-        if (dataFour == null || string.IsNullOrEmpty(dataFour.ZLBABH) || string.IsNullOrEmpty(dataFour.AQBABH))
-        {
-            MyPageTool.showMessage("请完善项目环节:[质量安全监督手续]", this.Page);
-            return;
-        }
+        //var dataFour = db.TC_SGXKZ_JDSX.FirstOrDefault(t => t.FAppId == fAppId);//修改为fappid,应该是业务id  modify  by  psq 20150319
+        //if (dataFour == null || string.IsNullOrEmpty(dataFour.ZLBABH) || string.IsNullOrEmpty(dataFour.AQBABH))
+        //{
+        //    MyPageTool.showMessage("请完善项目环节:[质量安全监督手续]", this.Page);
+        //    return;
+        //}
        //var dataFive = db.TC_SGXKZ_ZJBH.FirstOrDefault(t => t.FId == fAppId);  
-        var dataFive = db.TC_SGXKZ_ZJBH.FirstOrDefault(t => t.FAppId == fAppId);//修改为fappid,应该是业务id  modify  by  psq 20150319
-        if (dataFive == null || dataFive.ISDBS == null || string.IsNullOrEmpty(dataFive.ZJBH) || string.IsNullOrEmpty(dataFive.JF) || string.IsNullOrEmpty(dataFive.YF))
-        {
-            MyPageTool.showMessage("请完善项目环节:[资金保函或证明]", this.Page);
-            return;
-        }
+        //var dataFive = db.TC_SGXKZ_ZJBH.FirstOrDefault(t => t.FAppId == fAppId);//修改为fappid,应该是业务id  modify  by  psq 20150319
+        //if (dataFive == null || dataFive.ISDBS == null || string.IsNullOrEmpty(dataFive.ZJBH) || string.IsNullOrEmpty(dataFive.JF) || string.IsNullOrEmpty(dataFive.YF))
+        //{
+        //    MyPageTool.showMessage("请完善项目环节:[资金保函或证明]", this.Page);
+        //    return;
+        //}
         //var dataSix = db.TC_SGXKZ_QTZL.FirstOrDefault(t => t.FId == fAppId);
-        var dataSix = db.TC_SGXKZ_QTZL.FirstOrDefault(t => t.FAppId == fAppId); //修改为fappid,应该是业务id  modify  by  psq 20150319
-        if (dataSix == null || string.IsNullOrEmpty(dataSix.SGTJ) || string.IsNullOrEmpty(dataSix.CNS))
-        {
-            MyPageTool.showMessage("请完善项目环节:[其它材料]", this.Page);
-            return;
-        }
+        //var dataSix = db.TC_SGXKZ_QTZL.FirstOrDefault(t => t.FAppId == fAppId); //修改为fappid,应该是业务id  modify  by  psq 20150319
+        //if (dataSix == null || string.IsNullOrEmpty(dataSix.SGTJ) || string.IsNullOrEmpty(dataSix.CNS))
+        //{
+        //    MyPageTool.showMessage("请完善项目环节:[其它材料]", this.Page);
+        //    return;
+        //}
 
         string fNumber = ddlLevel.SelectedValue;
 

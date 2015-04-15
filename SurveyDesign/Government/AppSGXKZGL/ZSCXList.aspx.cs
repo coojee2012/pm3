@@ -16,6 +16,8 @@ using Approve.EntityCenter;
 using Approve.RuleApp;
 using System.Drawing;
 using EgovaDAO;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
 {
@@ -37,20 +39,43 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
         StringBuilder sb = new StringBuilder();
         if (this.txtFPrjItemName.Text.Trim() != "" && this.txtFPrjItemName.Text.Trim() != null)
         {
-            sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
+            sb.Append(" and a.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
 
         if (this.govd_FRegistDeptId.FNumber != null)
         {
-            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",a.PrjAddressDept" + ") >0 ");
         }
         else
         {
-            sb.Append(" and qa.PrjAddressDept <> '' ");
+            sb.Append(" and a.PrjAddressDept <> '' ");
         }
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
-            sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
+            sb.Append(" and a.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
+        }
+
+
+        if (this.txtZSBH.Text.Trim() != "" && this.txtZSBH.Text.Trim() != null)
+        {
+            sb.Append(" and a.SGXKZBH like '%" + this.txtZSBH.Text.Trim() + "%' ");
+        }
+
+
+        if (this.txtFZJG.Text.Trim() != "" && this.txtFZJG.Text.Trim() != null)
+        {
+            sb.Append(" and a.FZJG like '%" + this.txtFZJG.Text.Trim() + "%' ");
+        }
+
+
+        if (this.txtFZTimeStart.Text.Trim() != "" && this.txtFZTimeStart.Text.Trim() != null)
+        {
+            sb.Append(" and a.FZTime > '" + this.txtFZTimeStart.Text.Trim() + " 00:00:00' ");
+        }
+
+        if (this.txtFZTimeEnd.Text.Trim() != "" && this.txtFZTimeEnd.Text.Trim() != null)
+        {
+            sb.Append(" and a.FZTime < '" + this.txtFZTimeEnd.Text.Trim() + " 23:59:59' ");
         }
 
         if (ddlMType.SelectedValue != "-1")
@@ -73,17 +98,11 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
         {
             switch (ddlState.SelectedValue.Trim())
             {
-                case "0": //待接件
-                    sb.Append(" and er.FMeasure=0 and ep.fstate<>2 ");
+                case "0": //未发布
+                    sb.Append(" and ISNULL(b.FPublish,0) = 0 ");
                     break;
-                case "1": //准予受理
-                    sb.Append(" and (er.FMeasure=5 and er.FResult=1) ");
-                    break;
-                case "3": //不准予受理
-                    sb.Append(" and (ep.fstate=6 and er.FResult=3 and er.FMeasure<>0) ");
-                    break;
-                case "5": //打回企业,重新上报
-                    sb.Append(" and (ep.fstate=2) ");
+                case "1": //已发布
+                    sb.Append(" and ISNULL(b.FPublish,0) = 1 ");
                     break;
             }
         }
@@ -103,40 +122,22 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
-        sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
-        sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
-        sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
-        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
-        sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, V_SGXKZ_YW qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");
-        //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
-        sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
-        sb.Append(" and ep.FLinkId = ap.FId ");
+        sb.Append(" select a.*,ISNULL(b.FId,'') as FFId,");
+        sb.Append("  CASE ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when  11225 then '变更办理'  else '--' end as YWType, ");
+       
+        sb.Append(" CASE ISNULL(b.FPublish,0) when 0 then '否' else '是' end as FPublish,  ");
+        sb.Append(" CASE ISNULL(b.SGXKZBB,0) when 0 then '否' else '是' end as SGXKZBB");
+        sb.Append(" from  TC_SGXKZ_PrjInfo a ");
+        sb.Append(" left join TC_SGXKZ_PrjState b on a.FId=b.FId ");
+        sb.Append(" left join CF_App_ProcessInstanceBackup ep on ep.FLinkId = a.FAppId ");
+     
+        sb.Append(" where ISNULL(a.SGXKZBH,'') <> '' ");
         sb.Append(getCondi());
-        //下面的查询备份表
-        sb.Append(" union all ");
-        sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
-        sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
-        sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
-        sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
-        sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
-        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
-        sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, V_SGXKZ_YW qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");
-        //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
-        sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
-        sb.Append(" and ep.FLinkId = ap.FId ");
-        sb.Append(getCondi());
+       
         sb.AppendLine(" ) ttt where 1=1 ");
 
 
-        sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
+
 
 
         this.Pager1.sql = sb.ToString();
@@ -157,24 +158,20 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
         {
             //int prjAddressDept = EConvert.ToInt(DataBinder.Eval(e.Item.DataItem, "PrjAddressDept"));
             //EgovaDB db = new EgovaDB();
-            string FLinkId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FLinkId"));
-            string fSubFlowId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FSubFlowId"));
+         
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            string ferId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FprId"));
-            string fBaseInfoId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FBaseInfoId"));
-            string fMeasure = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FMeasure"));
-            string fManageTypeId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FManageTypeId"));
+            string ffid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FFId"));
+            string FAppId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FAppId"));
 
             CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
             box.Attributes["id"] = "span" + box.ClientID;
-            box.Attributes["name"] = FLinkId;
-            box.Attributes["fpid"] = fid;
-            box.Attributes["ferid"] = ferId;
-            box.Attributes["fSubFlowId"] = fSubFlowId;
-            box.Attributes["fBaseInfoId"] = fBaseInfoId;
-            box.Attributes["fMeasure"] = fMeasure;
-            box.Attributes["fManageTypeId"] = fManageTypeId;
+            box.Attributes["name"] = fid;
+            box.Attributes["fid"] = fid;
+            box.Attributes["ffid"] = ffid;
+        
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
+            e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('../AppTFGGL/SGXKZXX.aspx?FId=" + fid + "&FAppId=" + FAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
+            e.Item.Cells[4].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JSDWXX.aspx?FId=" + fid + "&FAppId=" + FAppId + "',900,600);\">" + e.Item.Cells[4].Text + "</a>";
         }
     }
 
@@ -200,11 +197,118 @@ public partial class Government_AppSGXKZGL_ZSCXList : govBasePage
     #endregion
     protected void btnPublish_Click(object sender, EventArgs e)
     {
+        string FId = "";
 
+        int RowCount = JustAppInfo_List.Items.Count;
+        IList<string> FIdList = new List<string>();
+        string FIds = "";
+        for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 2].Text.Trim();
+                string FFId =  JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 1].Text.Trim();
+                string FPrjId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 3].Text.Trim();
+                string FPrjItemId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 4].Text.Trim();
+
+                if (string.IsNullOrEmpty(FFId) || FFId=="&nbsp;")
+                {
+                    string sql = "INSERT INTO TC_SGXKZ_PrjState (FId,FPrjId,FPrjItemId,SGXKZBB,FPublish) VALUES ('";
+                    sql += FId + "','" + FPrjId + "','" + FPrjItemId + "',0,0);";
+                    using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+                    {
+                        if (conn.State == ConnectionState.Closed)
+                            conn.Open();
+                        DataSet ds = new DataSet();
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+
+                FIdList.Add(FId);
+                if (string.IsNullOrEmpty(FIds))
+                {
+                    FIds = "'" + FId + "'";
+                }
+                else
+                {
+                    FIds += ",'" + FId + "'";
+                }
+            }
+        }
+        if (!string.IsNullOrEmpty(FIds))
+        {
+            string sql = "UPDATE TC_SGXKZ_PrjState SET FPublish = 1 WHERE FId IN (" + FIds + ") AND ISNULL(FPublish,0) = 0 ";
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+
+
+
+            }
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('发布成功！');", true);
+            ShowInfo();
+        }
+        else
+        {
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要发布的项');", true);
+        }
     }
 
     protected void btnUnPublish_Click(object sender, EventArgs e)
     {
+        string FId = "";
 
+        int RowCount = JustAppInfo_List.Items.Count;
+        IList<string> FIdList = new List<string>();
+        string FIds = "";
+        for (int i = 0; i < JustAppInfo_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)JustAppInfo_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FId = JustAppInfo_List.Items[i].Cells[JustAppInfo_List.Columns.Count - 2].Text.Trim();
+
+                FIdList.Add(FId);
+                if (string.IsNullOrEmpty(FIds))
+                {
+                    FIds = "'" + FId + "'";
+                }
+                else
+                {
+                    FIds += ",'" + FId + "'";
+                }
+            }
+        }
+        if (!string.IsNullOrEmpty(FIds))
+        {
+            string sql = "UPDATE TC_SGXKZ_PrjState SET FPublish = 0 WHERE FId IN (" + FIds + ") AND FPublish = 1 ";
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.ExecuteNonQuery();
+
+
+
+            }
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('取消发布成功！');", true);
+            ShowInfo();
+        }
+        else
+        {
+            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "js", "alert('请选择要取消发布的项');", true);
+        }
     }
 }

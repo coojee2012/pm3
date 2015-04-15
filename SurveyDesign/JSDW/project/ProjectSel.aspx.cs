@@ -26,7 +26,7 @@ public partial class JSDW_project_ProjectSel : System.Web.UI.Page
     void showInfo()
     {
         var App = from t in dbContext.TC_Prj_Info
-                where t.FJSDWID == CurrentEntUser.EntId
+                //where t.FJSDWID == CurrentEntUser.EntId   //暂时屏蔽本用户添加的项目才能选取
                 orderby t.FId
                 select new
                 {
