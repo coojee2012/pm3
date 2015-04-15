@@ -52,36 +52,78 @@
             return "";
         }
 
-        function app1(url) {
-            var tmpVal = '';
-            $(":checkbox[id$=CheckItem]").each(function () {
-                if ($(this).attr("checked")) {
-                    var id = $("#span" + $(this).attr("id")).attr("name");
-                    if (tmpVal.indexOf(id + ",") == -1) {
-                        tmpVal += id + ",";
+        function app1() {
+            var tmpVal = ''; var fsubid = '';
+            var url = "";
+            var fbaseInfoid = '';
+            var ferid = '';
+            var fpid = '';
+            var fMeasure = '';
+            var fManageTypeId = '';
+            var FStatedesc = '';
+            var cou = 0;
+            var chkColl = document.getElementsByTagName("input");
+            for (var i = 0; i < chkColl.length; i++) {
+                if (chkColl[i].type == "checkbox" && chkColl[i].id.indexOf("CheckItem") > -1) {
+                    if (!chkColl[i].disabled && chkColl[i].checked == true) {
+                        cou += 1;
+                        var span = document.getElementById("span" + chkColl[i].id)
+                        if (span) {
+                            if (tmpVal.indexOf(span.getAttribute("name") + ",") == -1) {
+                                tmpVal += span.getAttribute("name") + ",";
+                                fsubid += span.getAttribute("fSubFlowId") + ",";
+                                fbaseInfoid += span.getAttribute("fBaseInfoId") + ",";
+                                fpid += span.getAttribute("fpid") + ",";
+                                ferid += span.getAttribute("ferid") + ",";
+                                fMeasure += span.getAttribute("fMeasure") + ",";
+                                fManageTypeId += span.getAttribute("fManageTypeId") + ",";
+                                FStatedesc += span.getAttribute("FStatedesc") + ",";
+                            }
+                        }
                     }
                 }
-            });
-
+            }
             var obj = new Object();
             if (tmpVal.length > 1) {
                 tmpVal = tmpVal.substring(0, tmpVal.length - 1);
+                fsubid = fsubid.substring(0, fsubid.length - 1);
+                fbaseInfoid = fbaseInfoid.substring(0, fbaseInfoid.length - 1);
+                fpid = fpid.substring(0, fpid.length - 1);
+                ferid = ferid.substring(0, ferid.length - 1);
+                fMeasure = fMeasure.substring(0, fMeasure.length - 1);
+                fManageTypeId = fManageTypeId.substring(0, fManageTypeId.length - 1);
+                FStatedesc = FStatedesc.substring(0, FStatedesc.length - 1);
+                
             }
             else {
-                alert("请选择");
+                alert("请选择一条备案信息接件！");
                 return false;
             }
+            if (cou > 1 || cou <= 0) {
+                alert("只能选择一条备案信息接件！");
+                return false;
+            }
+
+            
             obj.name = '';
             obj.id = tmpVal;
 
-            var dbSystemId = document.getElementById("dbSystemId");
-            if (dbSystemId) {
-                obj.fsystemid = dbSystemId.value;
+            if (FStatedesc == '准予受理') {
+                url = "SGXKZZYSL.aspx";
+            }
+            if (FStatedesc == '不予受理') {
+                url = "SGXKZBYSL.aspx";
             }
 
-            //'批量审批'; 
+            if (url !== "") {
+                ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
+                    + '&fpid=' + fpid
+                    + '&ferid=' + ferid, 900, 600, obj);
+            } else {
+                alert("请先确定是否准予受理后才能打印！");
+            }
+            
 
-            ShowWindow(url + '?e=0', 700, 600, obj);
 
             return false;
         }
@@ -248,7 +290,8 @@
             <td class="t_r">
                 <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="接件" OnClientClick="return app('Print.aspx')" OnClick="btnAccept_Click" />
                 <asp:Button ID="btnAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
-                    Text="打印通知书" OnClientClick="return app('BackSeeOneReportInfo.aspx')" />
+                    Text="打印通知书" OnClientClick="return app1()" />
+              
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
                     OnClick="btnOut_Click" Text="导出" />
             </td>

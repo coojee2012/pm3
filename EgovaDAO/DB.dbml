@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sql;Initial Catalog=dbCenter;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString5" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString6" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2407,7 +2407,6 @@
       <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="FResult" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-<<<<<<< HEAD
       <Column Name="ProjectFile" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="ProjectNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ProjectLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
@@ -2424,24 +2423,6 @@
       <Column Name="SJEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="upScale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="DoScale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-=======
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_BHGD_Batch" Member="TC_BHGD_Batch">
-    <Type Name="TC_BHGD_Batch">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FYear" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FBatchNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FState" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TC_BHGD_PrjItemMappingBatch" Member="TC_BHGD_PrjItemMappingBatch">
-    <Type Name="TC_BHGD_PrjItemMappingBatch">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FBatchId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
->>>>>>> e43eff4105879cd47574ef43f64d6c551d314df4
     </Type>
   </Table>
 </Database>
