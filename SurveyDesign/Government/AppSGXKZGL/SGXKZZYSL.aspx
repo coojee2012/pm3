@@ -12,7 +12,18 @@
     <script src="../../script/jquery.js" type="text/javascript"></script>
     <script src="../../script/default.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
-    <script type="text/javascript">      
+    <script type="text/javascript">   
+        function appPrint() {
+            var FAppId = document.getElementById('t_fLinkId').value;
+            var ffid = document.getElementById('ffid').value;
+            if (!ffid || ffid == "") {
+                alert("请先保存！");
+                return false;
+            } else {
+               // alert(FAppId);
+                window.open('Print.aspx?FAppId=' + FAppId + "&printType=1", '_blank');
+            }
+        }
     </script>
     <style type="text/css">
         .cBtn7 {
@@ -98,7 +109,7 @@
                          <ContentTemplate>
                         <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                             />  
-                        <asp:Button ID="btnPrint" runat="server" Text="打印" OnClick="btnSave_Click" CssClass="m_btn_w2"
+                        <asp:Button ID="btnPrint" runat="server" Text="打印"  OnClientClick="appPrint();" CssClass="m_btn_w2"
                             /> 
                         </ContentTemplate>
                     </asp:UpdatePanel>                

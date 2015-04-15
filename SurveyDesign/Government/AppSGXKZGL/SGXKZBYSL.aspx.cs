@@ -31,7 +31,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
     protected void BindData()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(" select a.YWLX + a.PrjItemName+'施工许可证' as SLLR,a.FappId,ISNULL(b.GuidID,'') as FFId, a.PrjAddressDept,b.BH,b.LXR,b.LXDH,b.JDDH,");
+        sb.Append(" select a.YWLX + a.PrjItemName+'施工许可证' as SLLR,a.FappId,ISNULL(b.GuidID,'') as FFId, a.PrjAddressDept,b.BH,b.LXR,b.LXDH,b.JDDH,ISNULL(b.DJZQX,1) as DJZQX,");
         sb.Append(" (select count(1)+1 from YW_BYSLTZS where DATEDIFF(day,getdate(),SLRQ )=0 ) as SLXH");
         sb.Append(" from V_SGXKZ_YW  a ");
         sb.Append(" left join YW_BYSLTZS b on a.FAppId = b.YWBM ");
@@ -66,7 +66,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
             t_LXR.Text = EConvert.ToString(dt.Rows[i]["LXR"]);
             t_LXDH.Text = EConvert.ToString(dt.Rows[i]["LXDH"]);
             t_JDDH.Text = EConvert.ToString(dt.Rows[i]["JDDH"]);
-            ddlMType.SelectedValue = EConvert.ToString(dt.Rows[i]["JDDH"]);
+            ddlMType.SelectedValue = EConvert.ToString(dt.Rows[i]["DJZQX"]);
             ffid.Value = EConvert.ToString(dt.Rows[i]["FFId"]);
             break;
         }
@@ -86,16 +86,16 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
                 if (string.IsNullOrEmpty(ffid.Value))
                 {
                     string guid = Guid.NewGuid().ToString();
-                    sql = "INSERT INTO YW_BYSLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ) VALUES  ( '" + guid + "','";
+                    sql = "INSERT INTO YW_BYSLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ,DJZQX) VALUES  ( '" + guid + "','";
                     sql += t_fLinkId.Value + "','" + t_BH.Text + "','";
-                    sql += t_LXR.Text + "','" + t_LXDH.Text + "','" + t_JDDH.Text + "',getdate())";
+                    sql += t_LXR.Text + "','" + t_LXDH.Text + "','" + t_JDDH.Text + "',getdate()," + ddlMType.SelectedValue + ")";
 
                 }
                 else
                 {
                     sql = "UPDATE YW_BYSLTZS SET LXR = '" + t_LXR.Text + "',LXDH='";
                     sql += t_LXDH.Text + "',JDDH = '";
-                    sql += t_JDDH.Text + "'";
+                    sql += t_JDDH.Text + "',DJZQX=" + ddlMType.SelectedValue;
                     sql += " WHERE GuidID='" + ffid.Value + "'";
 
                 }
