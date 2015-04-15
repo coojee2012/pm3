@@ -44,10 +44,6 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
             t_JSDW.Text = EConvert.ToString(dt.Rows[i]["JSDW"]);
             t_FZTime.Text = EConvert.ToString(dt.Rows[i]["FZTime"]);
             t_FZJG.Text = EConvert.ToString(dt.Rows[i]["FZJG"]);
-            t_TGDate.Text =DateTime.Parse( EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
-            t_CXKGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
-
-            t_FGYY.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
             if (EConvert.ToString(dt.Rows[i]["FType"]) == "0")
             {
                 fid.Value = "";
@@ -56,6 +52,14 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
             {
                 fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
             }
+            if (!string.IsNullOrEmpty(fid.Value))
+            {
+                t_TGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
+                t_CXKGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
+            }
+
+            t_FGYY.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
+           
             
 
 
