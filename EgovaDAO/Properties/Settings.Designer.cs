@@ -121,5 +121,15 @@ namespace EgovaDAO.Properties {
                 return ((string)(this["dbCenterConnectionString5"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa")]
+        public string dbCenterConnectionString6 {
+            get {
+                return ((string)(this["dbCenterConnectionString6"]));
+            }
+        }
     }
 }
