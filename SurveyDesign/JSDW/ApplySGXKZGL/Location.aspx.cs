@@ -22,6 +22,7 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
                 ViewState["FAppId"] = EConvert.ToString(Session["FAppId"]);
             }
             //ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+            
             ShowTitle();
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
