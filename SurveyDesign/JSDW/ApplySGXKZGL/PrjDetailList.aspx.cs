@@ -19,7 +19,6 @@ public partial class JSDW_APPLYSGXKZGL_PrjDetailList : System.Web.UI.Page
         if (!IsPostBack)
         { 
             this.hf_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            this.hf_SgxkzId.Value = EConvert.ToString(Request["Fid"]);
             lblTitle.InnerText = "建筑工程项目明细表";
             showInfo();
             pageTool tool = new pageTool(this.Page);
@@ -34,7 +33,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjDetailList : System.Web.UI.Page
     private void showInfo()
     {
         EgovaDB dbContext = new EgovaDB();
-        var v = dbContext.TC_SGXKZ_PrjDetail.Where(t => t.FAppId == hf_FAppId.Value && t.SgxkzInfoID.Equals(hf_SgxkzId.Value));
+        var v = dbContext.TC_SGXKZ_PrjDetail.Where(t => t.FAppId == hf_FAppId.Value);
         dg_List.DataSource = v;
         dg_List.DataBind();
         

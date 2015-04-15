@@ -47,6 +47,7 @@
                 $("#" + tagId).val(pid);
                 __doPostBack(obj.id, '');
             }
+
         }
         //人工录入
         function manualEntry() {

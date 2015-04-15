@@ -374,7 +374,7 @@
         
         <asp:DataGrid ID="dg_ListHXR" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBoundHXR" Style="margin-top: 6px;
-            margin-bottom: 1px;" Width="98%" OnItemCommand="dg_ListHXR_ItemCommand">
+            margin-bottom: 1px;" Width="98%" >
             <HeaderStyle CssClass="m_dg1_h" />
             <ItemStyle CssClass="m_dg1_i" />
             <Columns>
@@ -390,7 +390,7 @@
                 <asp:BoundColumn HeaderText="排序">
                     <HeaderStyle Width="50px" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="中标人" DataField="HXRMC">
+                <asp:BoundColumn HeaderText="中标候选人" DataField="HXRMC">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="评标价" DataField="PBJ">
@@ -417,8 +417,9 @@
                 <asp:BoundColumn HeaderText="职称证号" DataField="ZCZH">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
                 <asp:BoundColumn DataField="RYId" Visible="false"></asp:BoundColumn>  
+                <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
+   
                 
             </Columns>
         </asp:DataGrid>

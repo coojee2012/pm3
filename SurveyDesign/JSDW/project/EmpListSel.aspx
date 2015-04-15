@@ -190,8 +190,8 @@
                         </td>
                         <td>
                             <asp:LinkButton ID="btnSelect" CommandName="Sel" runat="server">选择</asp:LinkButton>
-                            <asp:HiddenField ID="hfEmpId" Value='<%# Eval("RYBH") %>' runat="server" />
-                            <asp:HiddenField ID="RYBH" Value='<%# Eval("RYBH") %>' runat="server" />
+                            <asp:HiddenField ID="hfEmpId" Value='<%# Eval("RYZSXXID") %>' runat="server" />   
+                            <asp:HiddenField ID="RYBH" Value='<%# Eval("RYZSXXID") %>' runat="server" />
                         </td>
                     </tr>
         </ItemTemplate>
