@@ -12,7 +12,19 @@
     <script src="../../script/jquery.js" type="text/javascript"></script>
     <script src="../../script/default.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
-    <script type="text/javascript">      
+    <script type="text/javascript">  
+        function appPrint() {
+            var FAppId = document.getElementById('t_fLinkId').value;
+            var ffid = document.getElementById('ffid').value;
+            if (!ffid || ffid == "") {
+                alert("请先保存！");
+                return false;
+            } else {
+                //alert(FAppId);
+                window.open('Print.aspx?FAppId=' + FAppId + "&printType=0", '_blank');
+            }
+            
+        }
     </script>
     <style type="text/css">
         .cBtn7 {
@@ -64,7 +76,7 @@
                 所属情形：
             </td>
             <td colspan="3">              
-                <asp:DropDownList ID="ddlMType" runat="server" CssClass="m_txt" Width="169px">
+                <asp:DropDownList ID="ddlMType" runat="server" CssClass="m_txt" Width="500px">
                     <asp:ListItem Value="1">1、	该事项依法不需取得行政许可；</asp:ListItem>
                     <asp:ListItem Value="2">2、	该事项依法不属于本行政机关职权范围内，请向（某行政机关名称）提出行政许可申请；</asp:ListItem> 
                     <asp:ListItem Value="3">3、	你（单位）隐瞒有关情况、提供虚假材料。</asp:ListItem>
@@ -92,7 +104,7 @@
                 监督电话：
             </td>
             <td colspan="3">
-                <asp:TextBox ID="t_JDDH"  runat="server" CssClass="m_txt" Width="400px"></asp:TextBox>
+                <asp:TextBox ID="t_JDDH"  runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
         </tr>
       
@@ -113,7 +125,7 @@
                          <ContentTemplate>
                         <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                             />  
-                        <asp:Button ID="btnPrint" runat="server" Text="打印" OnClick="btnSave_Click" CssClass="m_btn_w2"
+                        <asp:Button ID="btnPrint" runat="server" Text="打印"  OnClientClick="appPrint();" CssClass="m_btn_w2"
                             /> 
                         </ContentTemplate>
                     </asp:UpdatePanel>                
