@@ -1,0 +1,13 @@
+--获取给予受理打印信息
+select YEAR(a.SLRQ) as Nian,MONTH(a.SLRQ) as Yue,DAY(a.SLRQ) as RiQi, 
+isnull(b.YWLX,'') + b.PrjItemName+'施工许可证' as LR,
+* from YW_SLTZS a 
+left join V_SGXKZ_YW b on a.YWBM=b.FAppId
+where a.YWBM='传入的参数'
+
+--获取不予受理打印信息
+select YEAR(a.SLRQ) as Nian,MONTH(a.SLRQ) as Yue,DAY(a.SLRQ) as RiQi, 
+isnull(b.YWLX,'') + b.PrjItemName+'施工许可证' as LR,
+* from YW_BYSLTZS a 
+left join V_SGXKZ_YW b on a.YWBM=b.FAppId
+where a.YWBM='传入的参数'
