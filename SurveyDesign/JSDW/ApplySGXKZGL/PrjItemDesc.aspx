@@ -236,7 +236,7 @@
                     申报时间：
                 </td>
                 <td colspan="1">
-                     <asp:TextBox ID="t_ReportTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                     <asp:TextBox ID="t_ReportTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox><tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -261,7 +261,7 @@
                     立项级别：
                 </td>
                 <td colspan="1">
-                    <asp:DropDownList ID="t_ProjectLevel" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
+                    <asp:DropDownList ID="t_ProjectLevel" runat="server" CssClass="m_txt" Width="203px" Enabled="true">
                         <asp:ListItem Value="-1">--请选择--</asp:ListItem>
                     </asp:DropDownList><tt>*</tt>
                 </td>
@@ -272,7 +272,7 @@
                 </td>
                 <td colspan="1">
                       <asp:TextBox ID="t_Area" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                         Width="200px" Enabled="false"></asp:TextBox>（m2）<tt>*</tt>
+                         Width="200px" Enabled="true"></asp:TextBox>（m2）<tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     总投资：
@@ -303,7 +303,7 @@
                     建筑性质：
                 </td>
                 <td >
-                    <asp:DropDownList ID="t_BuildType" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
+                    <asp:DropDownList ID="t_BuildType" runat="server" CssClass="m_txt" Width="203px" Enabled="true">
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
@@ -311,7 +311,7 @@
                     工程用途：
                 </td>
                 <td >
-                    <asp:DropDownList ID="t_ProjectUse" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
+                    <asp:DropDownList ID="t_ProjectUse" runat="server" CssClass="m_txt" Width="203px" Enabled="true">
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
@@ -321,7 +321,7 @@
                     结构类型：
                 </td>
                 <td >
-                    <asp:DropDownList ID="t_ConstrType" runat="server" CssClass="m_txt" Width="203px" Enabled="false">
+                    <asp:DropDownList ID="t_ConstrType" runat="server" CssClass="m_txt" Width="203px" Enabled="true">
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
@@ -329,8 +329,8 @@
                     合同价格：
                 </td>
                 <td >
-                    <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="false"></asp:TextBox><tt>*</tt>币种：
-                    <asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px" Enabled="false"></asp:DropDownList><tt>*</tt>
+                    <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="true"></asp:TextBox><tt>*</tt>币种：
+                    <asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px" Enabled="true"></asp:DropDownList><tt>*</tt>
                 </td>
             </tr>
             
