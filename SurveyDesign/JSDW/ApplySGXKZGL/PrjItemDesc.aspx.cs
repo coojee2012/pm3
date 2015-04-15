@@ -112,6 +112,15 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                     t_ProjectUse.DataBind();
                     //t_ProjectUse.Items.Clear();
                 }
+                else
+                {
+                    //加个其他了，，，导入的数据完全不对。
+                    DataTable dt = rc.getDicTbByFNumber("2000101");
+                    t_ProjectUse.DataSource = dt;
+                    t_ProjectUse.DataTextField = "FName";
+                    t_ProjectUse.DataValueField = "FNumber";
+                    t_ProjectUse.DataBind();
+                }
 
                 pageTool tool = new pageTool(this.Page, "t_");
                 tool.fillPageControl(emp);
