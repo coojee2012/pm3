@@ -92,8 +92,6 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        {
            pageTool tool = new pageTool(this.Page, "t_");
            tool.fillPageControl(info);
-
-        
        }
        t_FAppSGXKZBH.Text = info.SGXKZBH;
        t_FAppFZJG.Text = info.FZJG;
@@ -205,6 +203,16 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
         this.DG_List.DataSource = rc.GetTable(sb.ToString());
         this.DG_List.DataBind();
     }
+    /// <summary>
+    /// 同步到标准库
+    /// </summary>
+    /// <param name="appid"></param>
+    private void SyncBase(string appid)
+    {
+        const string sql = "Proc_SGXKZ_Sync @appid";
+      var  a =  rc.PExcute(sql, new SqlParameter() { ParameterName = "@appid",Value = appid,SqlDbType = SqlDbType.VarChar});
+    }
+
     //踏勘记录信息
     private void showTKJLList()
     {
@@ -423,8 +431,11 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               
+               string appid = EConvert.ToString(Session["FAppId"].ToString());
                DisableButton();
+               //同步到标准库
+               if (!string.IsNullOrEmpty(appid))
+                   SyncBase(appid);
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
            }
            else
@@ -453,6 +464,8 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                       t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                WFApp.EndApp(t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId, sIdea);
                DisableButton();
+
+
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('操作成功');", true);
            }
            else
