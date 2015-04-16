@@ -28,6 +28,11 @@
 
     <base target="_self">
     </base>
+    <style type="text/css">
+        .m_btn_w2 {
+            height: 21px;
+        }
+    </style>
 </head>
 <body>
       <form id="form1" runat="server">
