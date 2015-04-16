@@ -34,15 +34,15 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             ViewState["qybm"] = qybm;
             ViewState["FPrjItemId"] = prjItemid;
             BindControl();
-            //if (Request.QueryString["emptype"] != null)
-            //{
-            //    ViewState["emptype"] = "aqjdemp";
-            //    showInfo();
-            //}
-            //else
-            //{
+            if (Request.QueryString["emptype"] != null)
+            {
+                ViewState["emptype"] = "aqjdemp";
+                showInfo();
+            }
+            else
+            {
                 showInfo(qybm);
-            //}
+            }
         }
     }
     void BindControl()

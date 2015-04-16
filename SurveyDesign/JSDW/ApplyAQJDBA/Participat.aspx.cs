@@ -101,7 +101,8 @@ public partial class JSDW_ApplyAQJDBA_Participat : System.Web.UI.Page
                 if (v1 != null)
                 {
                     t_ZZZS.Text = v1.ZSBH;
-                    t_ZZDJ.Text = v1.ZZMC+v1.ZZDJ;
+                    //t_ZZDJ.Text = v1.ZZMC+v1.ZZDJ;
+                    t_ZZDJ.Text = v1.ZZLB+v1.ZZMC + v1.ZZDJ; //改为显示主项资质的全称、资质名称、资质等级
                 }
             }
             else

@@ -22,6 +22,7 @@
             return AutoCheckInfo();
         }
         function selEmp(obj, tagId) {
+
             var zw = document.getElementById("t_XMZW").value;;
             var priitemid = document.getElementById("hdfprjitemid").value;
             if (tagId == "t_SGRYId")
@@ -34,8 +35,10 @@
             }
             else if (tagId == "t_FHumanId")
             {
+                
                 qybm = document.getElementById("t_FHumanId").value;              
             }
+            
             //去掉单位的限制  modify by psq 201503401
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
