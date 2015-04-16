@@ -75,7 +75,7 @@
                 停工日期：
             </td>
             <td>
-                <asp:TextBox ID="t_TGDate" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="t_TGDate" onfocus="WdatePicker()"  runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
             </td>
             <td class="t_r">
                 预计重新工日期：

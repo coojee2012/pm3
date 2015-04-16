@@ -191,7 +191,7 @@
                         <td>
                             <asp:LinkButton ID="btnSelect" CommandName="Sel" runat="server">选择</asp:LinkButton>
                             <asp:HiddenField ID="hfEmpId" Value='<%# Eval("RYZSXXID") %>' runat="server" />   
-                            <asp:HiddenField ID="RYBH" Value='<%# Eval("RYZSXXID") %>' runat="server" />
+                            <asp:HiddenField ID="RYBH" Value='<%# Eval("RYZSXXID") %>' runat="server" /><!--千万不能改成RYBH,太多的地方用的是证书编号 by zyd-->
                         </td>
                     </tr>
         </ItemTemplate>

@@ -46,11 +46,16 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
             t_FZJG.Text = EConvert.ToString(dt.Rows[i]["FZJG"]);
            // t_TGDate.Text = EConvert.ToString(dt.Rows[i]["FTFGRQ"]);
            // t_YJFGDate.Text = EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"]);
-            t_TGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
-            t_YJFGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
+            fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
+            if (!string.IsNullOrEmpty(fid.Value))
+            {
+                t_TGDate.Text = EConvert.ToString(dt.Rows[i]["FTFGRQ"]);
+                t_YJFGDate.Text =EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"]);
+            }
+           
 
             t_TGYYA.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
-            fid.Value = EConvert.ToString(dt.Rows[i]["FIID"]);
+         
 
 
             break;
