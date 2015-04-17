@@ -22,9 +22,14 @@
             return AutoCheckInfo();
         }
         function selEmp(obj, tagId) {
-
+           
             var zw = document.getElementById("t_XMZW").value;;
             var priitemid = document.getElementById("hdfprjitemid").value;
+            if (zw === "") {
+                alert("请先选择项目职位");
+                $("#t_XMZW").focus();
+                return;
+            }
             if (tagId == "t_SGRYId")
             {
                 qybm = document.getElementById("t_XMZW").value;
@@ -49,7 +54,7 @@
                     __doPostBack(obj.id, '');
                 }
             } else {
-                alert('请先选择单位！');
+                alert('请先保存基本信息！');
                 return;
             }
 
@@ -99,6 +104,7 @@
                     <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="195px" MaxLength="40"></asp:TextBox>
                     <tt>*</tt>
                     <input type="hidden"  runat="server" ID="t_FHumanId" value="" />
+
                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_FHumanId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmpSG_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
