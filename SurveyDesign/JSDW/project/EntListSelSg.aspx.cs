@@ -167,21 +167,22 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
 
     protected void dg_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-         
-            //重新获取企业的安许证号
-            HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
+            //MODIFY YTB 新需求，要求取消安许证编号
+            //    //重新获取企业的安许证号
+            //    HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
 
-            string qybm = hfFBaseInfoId.Value;
-            string axbh = "";
-            var v  = db1.QY_QYZSXX.Where(t => t.QYBM == qybm && t.ZSLXBM == "2").FirstOrDefault();
-            if (v != null)
-            {
-                axbh = v.ZSBH;
-                Label lbl = e.Item.FindControl("AXBH") as Label;
-                lbl.Text = axbh;
-            }
+            //    string qybm = hfFBaseInfoId.Value;
+            //    string axbh = "";
+            //    var v  = db1.QY_QYZSXX.Where(t => t.QYBM == qybm && t.ZSLXBM == "2").FirstOrDefault();
+            //    if (v != null)
+            //    {
+            //        axbh = v.ZSBH;
+            //        Label lbl = e.Item.FindControl("AXBH") as Label;
+            //        lbl.Text = axbh;
+            //    }
 
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
