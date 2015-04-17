@@ -267,7 +267,13 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
     private void Report()
     {
         string fDeptNumber = ComFunction.GetDefaultDept();
-        if (fDeptNumber == null || fDeptNumber == "")
+
+        if (!ValidateInfo(fAppId))
+        {
+            MyPageTool.showMessage("上报失败，请先保存基本信息！",this.Page);
+            return;
+        }
+        if (string.IsNullOrEmpty(fDeptNumber))
         {
            MyPageTool.showMessage("系统出错,请配置默认管理部门",this.Page);
             return;
@@ -428,7 +434,7 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
         }
         return flag;
     }
-     public static bool ValidateCallVideo(string fAppId)
+    public static bool ValidateCallVideo(string fAppId)
     {
         bool flag = false;
         EgovaDB db = new EgovaDB();
@@ -443,5 +449,21 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
             flag = true;
         }
         return flag;
+    }
+
+    public static bool ValidateInfo(string fAppId)
+    {
+        bool flag = false;
+        EgovaDB db = new EgovaDB();
+        TC_AJBA_Record ar = db.TC_AJBA_Record.FirstOrDefault(t => t.FAppId == fAppId);
+
+        if (ar != null && string.IsNullOrEmpty(ar.FJSDWID))
+            return false;
+        else
+        {
+
+            return true;
+        }
+
     }
 }

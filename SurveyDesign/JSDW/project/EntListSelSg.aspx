@@ -58,9 +58,7 @@
                     <th>
                         资质证书编号
                     </th>
-                   <th>
-                        安许证编号
-                    </th>
+                 
                     <th>
                         主项资质
                     </th>
@@ -96,10 +94,7 @@
                             
                             <%# Eval("ZSBH")%>
                         </td>
-                        <td>                            
-                            <%--<%# Eval("AXBH")%>--%>
-                            <asp:Label ID="AXBH"  runat="server"></asp:Label>
-                        </td>
+                      
                         <td>
                             <%# Eval("ZZMC")%>
                         </td>

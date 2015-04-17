@@ -26,6 +26,9 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             pageTool tool = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
+                btnAddEnt.Visible = false;
+                Button1.Visible = false;
+                Button2.Visible = false;
                 tool.ExecuteScript("btnEnable();");
             }
         }
