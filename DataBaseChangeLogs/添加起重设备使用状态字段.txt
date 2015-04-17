@@ -1,0 +1,1 @@
+alter table xm_baseinfo.dbo.GC_JQSBXX  add syzt varchar(10) null 
