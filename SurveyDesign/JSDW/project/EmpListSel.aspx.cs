@@ -171,8 +171,24 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
-        string qybm = EConvert.ToString(ViewState["qybm"]);
-        showInfo(qybm);
+        if (ViewState["emptype"] != null)
+        {
+            if (ViewState["emptype"].ToString() == "aqjdemp")
+            {
+                showInfo();
+            }
+            else
+            {
+                string qybm = EConvert.ToString(ViewState["qybm"]);
+                showInfo(qybm);
+            }
+        }
+        else
+        {
+            
+            string qybm = EConvert.ToString(ViewState["qybm"]);
+            showInfo(qybm);
+        }
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
