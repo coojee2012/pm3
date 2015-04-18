@@ -31,8 +31,10 @@ public partial class Government_AppZLJDBA_TwoAuditList : govBasePage
             base.Page_Load(sender, e);
             ControlBind();
             ShowInfo();
-            //ShowPostion();
-
+        }
+        else
+        {
+            ShowInfo();
         }
     }
 

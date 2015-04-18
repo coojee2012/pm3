@@ -216,7 +216,6 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('AcceptSeeOneReportInfo.aspx')" />
                 <asp:Button ID="btnAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                     Text="受理单打印" OnClientClick="return app('BackSeeOneReportInfo.aspx')" Visible="false" />
                 <asp:Button ID="btnNotAcceptPrint" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w8"
@@ -298,6 +297,7 @@
         <uc1:pager ID="Pager1" runat="server"></uc1:pager>
     </div>
     <input id="HIsPostBack" runat="server" type="hidden" />
+    <input id="HSQuUrl" runat="server" type="hidden" />
     </form>
 </body>
 </html>

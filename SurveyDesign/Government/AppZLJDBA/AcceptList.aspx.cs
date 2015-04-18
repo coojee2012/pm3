@@ -28,11 +28,12 @@ public partial class Government_AppZLJDBA_AcceptList : govBasePage
     {
         if (!Page.IsPostBack)
         {
-            base.Page_Load(sender, e);
-         //   ControlBind();
-            ShowInfo();
-            //ShowPostion();
-
+           base.Page_Load(sender, e);
+           ShowInfo();
+        }
+        else
+        {
+           ShowInfo(); 
         }
     }
 
@@ -307,15 +308,11 @@ public partial class Government_AppZLJDBA_AcceptList : govBasePage
             this.ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString(), sScript.ToString());
         }
     }
+
     protected void btnAddBathNo_Click(object sender, EventArgs e)
     {
         pageTool tool = new pageTool(this.Page);
-        //if (this.dbFBatchNoId.SelectedValue == "")
-        //{
-        //    tool.showMessage("请选择要加入的批次");
-        //    return;
-        //}
-
+  
         int iCount = JustAppInfo_List.Items.Count;
         ArrayList array = new ArrayList();
         for (int i = 0; i < iCount; i++)
@@ -408,6 +405,7 @@ public partial class Government_AppZLJDBA_AcceptList : govBasePage
             tool.showMessage("加入批次失败");
         }
     }
+
     protected void btnOut_Click(object sender, EventArgs e)
     {
         string sql = this.Pager1.sql.ToString();

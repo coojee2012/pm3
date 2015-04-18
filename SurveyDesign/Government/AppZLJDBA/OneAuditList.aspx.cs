@@ -31,9 +31,12 @@ public partial class Government_AppZLJDBA_OneAuditList : govBasePage
             base.Page_Load(sender, e);
             ControlBind();
             ShowInfo();
-            //ShowPostion();
-
         }
+        else
+        {
+            ShowInfo();
+        }
+
     }
 
     private void ShowPostion()
@@ -313,5 +316,9 @@ public partial class Government_AppZLJDBA_OneAuditList : govBasePage
             string fOutTitle = lPostion.Text;
             sab.SaveAsExc(this.JustAppInfo_List, fOutTitle, this.Response);
         }
+    }
+    protected void btnCheck_Click(object sender, EventArgs e)
+    {
+        ShowInfo();
     }
 }

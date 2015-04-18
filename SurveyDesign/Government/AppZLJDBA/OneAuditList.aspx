@@ -81,6 +81,7 @@
 
             ShowWindow(url + '?e=0', 700, 600, obj);
 
+            __doPostBack(obj.id, '');
             return false
         }
         function app(url) {
@@ -135,6 +136,8 @@
                 ShowWindow(url + '?ftype=10&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
                     + '&fpid=' + fpid
                     + '&ferid=' + ferid, 1000, 800, obj);
+
+                __doPostBack(this.id, '');  
                 return false
             }
 
@@ -226,7 +229,7 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CSAuditInfo.aspx')" />
+                <asp:Button ID="btnCheck" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CSAuditInfo.aspx')" OnClick="btnCheck_Click" />
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w4"
                     OnClick="btnOut_Click" Text="导出Excel" />
             </td>

@@ -83,6 +83,7 @@
 
             return false
         }
+
         function app(url) {
             var tmpVal = ''; var fsubid = '';
             var fbaseInfoid = '';
@@ -135,6 +136,8 @@
                 ShowWindow(url + '?ftype=5&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
                     + '&fpid=' + fpid
                     + '&ferid=' + ferid, 1000, 800, obj);
+
+                __doPostBack(this.id, "");
                 return false
             }
 

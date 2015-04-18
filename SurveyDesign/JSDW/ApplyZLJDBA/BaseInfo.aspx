@@ -118,7 +118,7 @@
             }
             
             
-            var url = "../project/EmpListSel.aspx";
+            var url = "../project/EmpListSelA.aspx";
             url += "?qybm=" + qybm;
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {

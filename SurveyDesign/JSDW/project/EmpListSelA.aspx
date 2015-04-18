@@ -68,7 +68,7 @@
             <tr>
                 <th colspan="3">
                     <input type="hidden" name="lblRylx" id="lblRylx" runat="server" />
-                    <asp:Label ID="lTitle" runat="server" Text="单位"></asp:Label>人员列表
+                    -<asp:Label ID="lTitle" runat="server" Text="单位"></asp:Label>人员列表-
                 </th>
             </tr>
             <tr>

@@ -136,6 +136,8 @@
                 ShowWindow(url + '?ftype=1&FLinkId=' + tmpVal + '&fSubFlowId=' + fsubid + '&fBaseInfoId=' + fbaseInfoid
                     + '&fpid=' + fpid
                     + '&ferid=' + ferid, 900, 600, obj);
+
+                __doPostBack(obj.id, '');
                 return false
             }
 
