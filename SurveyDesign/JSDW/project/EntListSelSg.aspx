@@ -58,9 +58,7 @@
                     <th>
                         资质证书编号
                     </th>
-                    <th>
-                        安许证编号
-                    </th>
+                 
                     <th>
                         主项资质
                     </th>
@@ -96,10 +94,7 @@
                             
                             <%# Eval("ZSBH")%>
                         </td>
-                        <td>
-                            
-                            <%# Eval("AXBH")%>
-                        </td>
+                      
                         <td>
                             <%# Eval("ZZMC")%>
                         </td>
@@ -120,9 +115,6 @@
                         </td>
                         <td>
                             <%# Eval("LXDH")%>
-                        </td>
-                         <td>
-                            <%# Eval("QYBM")%>
                         </td>
                         <td>
                             <asp:LinkButton ID="btnSelect" CommandName="Sel" runat="server">选择</asp:LinkButton>
