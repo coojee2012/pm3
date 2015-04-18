@@ -60,12 +60,15 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
             init();
         }
     }
+
+
     //初始化各种信息
    protected void init()
     {
         initLayout();
         BindControl();
         bindBaseInfo();
+        bindStateInfo();
         bindFileInfo();
         bindAuditInfo();
         bindAuditList();
@@ -74,6 +77,31 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
         BuildSGXKZBH();
         
     }
+   private void bindStateInfo()
+   {
+       string sql = " SELECT FId,SGXKZBB, FPublish from TC_SGXKZ_PrjState where FId= '" + t_fLinkId.Value + "'";
+       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+       {
+           if (conn.State == ConnectionState.Closed)
+               conn.Open();
+           DataSet ds = new DataSet();
+
+           SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+           da.Fill(ds, "ds");
+           DataTable dt = ds.Tables[0];
+
+           for (int i = 0; i < dt.Rows.Count; i++)
+           {
+               string test = dt.Rows[i]["SGXKZBB"].ToString();
+               s_FId.Value = EConvert.ToString(dt.Rows[i]["Fid"]);
+               dResult0.SelectedValue = EConvert.ToString(dt.Rows[i]["SGXKZBB"]);
+               dResult1.SelectedValue = EConvert.ToString(dt.Rows[i]["FPublish"]);
+               break;
+           }
+
+
+       }
+   }
    //初始化各种信息
    protected void initLayout()
    {
@@ -333,6 +361,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                //conn.Open();
                int a = cmd.ExecuteNonQuery();
            }
+           saveStateInfo();
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
        }
        catch (Exception ee)
@@ -340,6 +369,53 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存失败');", true);
        }
        
+   }
+
+   private void saveStateInfo()
+   {
+       string fId = s_FId.Value;
+       //EgovaDB db = new EgovaDB();
+
+       //pageTool tool = new pageTool(this.Page,"s_");
+       //TC_SGXKZ_PrjState info = new TC_SGXKZ_PrjState();
+       //s_FPrjItemId.Value = t_PrjItemId.Value ;
+       //if (!string.IsNullOrEmpty(fId))
+       //{
+       //    info = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
+       //}
+       //else
+       //{
+       //    fId = t_fLinkId.Value;// Guid.NewGuid().ToString();
+       //    info.FId = fId;
+       //    db.TC_SGXKZ_PrjState.InsertOnSubmit(info);
+       //}
+       //info = tool.getPageValue(info);
+       //db.SubmitChanges();
+
+
+       string sql = "";
+       if (string.IsNullOrEmpty(fId))
+       {
+           fId = t_fLinkId.Value;
+           sql = "INSERT INTO TC_SGXKZ_PrjState (FId,FPrjId,FPrjItemId,SGXKZBB,FPublish) VALUES ( '" + fId + "','','";
+           sql += t_PrjItemId.Value + "'," + dResult0.SelectedValue + "," + dResult1.SelectedValue + ")";
+       }
+       else
+       {
+           sql = "UPDATE TC_SGXKZ_PrjState SET FPublish = " + dResult1.SelectedValue + ",SGXKZBB = " + dResult0.SelectedValue + " WHERE FId  = '" + fId + "' ";
+       }
+       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+       {
+           if (conn.State == ConnectionState.Closed)
+               conn.Open();
+           DataSet ds = new DataSet();
+           SqlCommand cmd = new SqlCommand(sql, conn);
+
+           cmd.ExecuteNonQuery();
+
+       }
+       s_FId.Value = fId;
+
    }
     /// <summary>
     /// 锁定人员

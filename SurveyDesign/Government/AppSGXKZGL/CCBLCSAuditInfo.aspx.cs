@@ -21,6 +21,7 @@ using EgovaDAO;
 using EgovaBLL;
 using ProjectBLL;
 using Tools;
+using System.Data.SqlClient;
 
 public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
 {
@@ -65,6 +66,7 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
         initLayout();
         BindControl();
         bindBaseInfo();
+        bindStateInfo();
         bindFileInfo();
         bindAuditInfo();
         bindAuditList();
@@ -97,6 +99,30 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
            tool1.fillPageControl(info1);
        }
    }
+    private void bindStateInfo() {
+        string sql = " SELECT FId,SGXKZBB, FPublish from TC_SGXKZ_PrjState where FId= '" + t_fLinkId.Value + "'";
+        using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+        {
+            if (conn.State == ConnectionState.Closed)
+                conn.Open();
+            DataSet ds = new DataSet();
+         
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            da.Fill(ds, "ds");
+            DataTable dt = ds.Tables[0];
+       
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string test = dt.Rows[i]["SGXKZBB"].ToString();
+                s_FId.Value = EConvert.ToString(dt.Rows[i]["Fid"]);
+                s_SGXKZBB.SelectedValue = EConvert.ToString(dt.Rows[i]["SGXKZBB"]);
+                s_FPublish.SelectedValue = EConvert.ToString(dt.Rows[i]["FPublish"]);
+                break;
+            }
+        
+
+        }
+    }
     //绑定项目附件信息
     private void bindFileInfo()
     {
@@ -318,23 +344,48 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
    }
     private void saveStateInfo()
    {
-       EgovaDB db = new EgovaDB();
        string fId = s_FId.Value;
-       pageTool tool = new pageTool(this.Page,"s_");
-       TC_SGXKZ_PrjState info = new TC_SGXKZ_PrjState();
-       s_FPrjItemId.Value = t_PrjItemId.Value ;
-       if (!string.IsNullOrEmpty(fId))
+       //EgovaDB db = new EgovaDB();
+      
+       //pageTool tool = new pageTool(this.Page,"s_");
+       //TC_SGXKZ_PrjState info = new TC_SGXKZ_PrjState();
+       //s_FPrjItemId.Value = t_PrjItemId.Value ;
+       //if (!string.IsNullOrEmpty(fId))
+       //{
+       //    info = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
+       //}
+       //else
+       //{
+       //    fId = t_fLinkId.Value;// Guid.NewGuid().ToString();
+       //    info.FId = fId;
+       //    db.TC_SGXKZ_PrjState.InsertOnSubmit(info);
+       //}
+       //info = tool.getPageValue(info);
+       //db.SubmitChanges();
+
+
+       string sql = "";
+       if (string.IsNullOrEmpty(fId))
        {
-           info = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
+           fId = t_fLinkId.Value;
+           sql = "INSERT INTO TC_SGXKZ_PrjState (FId,FPrjId,FPrjItemId,SGXKZBB,FPublish) VALUES ( '" + fId + "','','";
+           sql += t_PrjItemId.Value + "'," + s_SGXKZBB.SelectedValue + "," + s_FPublish.SelectedValue + ")";
        }
-       else
+       else {
+            sql = "UPDATE TC_SGXKZ_PrjState SET FPublish = " + s_FPublish.SelectedValue + ",SGXKZBB = " + s_SGXKZBB.SelectedValue + " WHERE FId  = '" + fId + "' ";
+       }
+       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
        {
-           fId = Guid.NewGuid().ToString();
-           info.FId = fId;
-           db.TC_SGXKZ_PrjState.InsertOnSubmit(info);
+           if (conn.State == ConnectionState.Closed)
+               conn.Open();
+           DataSet ds = new DataSet();
+           SqlCommand cmd = new SqlCommand(sql, conn);
+
+           cmd.ExecuteNonQuery();
+
        }
-       info = tool.getPageValue(info);
-       db.SubmitChanges();
+       s_FId.Value = fId;
+
    }
    //保存意见
    protected void btnSave_Click(object sender, EventArgs e)

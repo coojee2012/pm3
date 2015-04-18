@@ -40,9 +40,10 @@
             showApproveWindow('SDRYSC.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
         }
         function LockPersonList() {
-            var FAppId = document.getElementById("t_fLinkId").value;
-            var FPrjItemId = document.getElementById("t_PrjItemId").value;
-            showApproveWindow('LockPerson.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+            //var FAppId = document.getElementById("t_fLinkId").value;
+            //var FPrjItemId = document.getElementById("t_PrjItemId").value;
+            //showApproveWindow('LockPerson.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+            LockEmpInfo();
         }
     </script>
     <style type="text/css">
@@ -188,9 +189,9 @@
                 <asp:BoundColumn HeaderText="踏勘情况" DataField="TKQK">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
-                <asp:BoundColumn HeaderText="记录人"  DataField="JLR">
+            <%--    <asp:BoundColumn HeaderText="记录人"  DataField="JLR">
                     <ItemStyle Wrap="False" />
-                </asp:BoundColumn>
+                </asp:BoundColumn>--%>
                 <asp:BoundColumn HeaderText="记录时间"  DataField="JLSJ" DataFormatString="{0:yyyy-MM-dd}" >
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
@@ -350,6 +351,7 @@
             </tr>
             <tr>
                 <td class="t_r">施工许可证补办
+                     <input id="s_FId" runat="server" type="hidden" />
                 </td>
                 <td>
                     <asp:DropDownList ID="dResult0" runat="server" CssClass="m_txt" Width="201px" Enabled="false">
