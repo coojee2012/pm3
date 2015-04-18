@@ -54,9 +54,11 @@
             showApproveWindow('SDRYSC.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
         }
         function LockPersonList() {
-            var FAppId = document.getElementById("t_fLinkId").value;
-            var FPrjItemId = document.getElementById("t_PrjItemId").value;
-            showApproveWindow('LockPerson.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+           
+            //var FAppId = document.getElementById("t_fLinkId").value;
+            //var FPrjItemId = document.getElementById("t_PrjItemId").value;
+            //showApproveWindow('LockPerson.aspx?FAppId=' + FAppId + "&FPrjItemId=" + FPrjItemId, 600, 450);
+            LockEmpInfo();
         }
     </script>
     <style type="text/css">
