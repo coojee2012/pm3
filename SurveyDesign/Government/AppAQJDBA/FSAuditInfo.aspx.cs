@@ -102,7 +102,26 @@ public partial class Government_AppAQJDBA_FSAuditInfo : System.Web.UI.Page
     //绑定项目附件信息
     private void bindFileInfo()
     {
-        
+        EgovaDB dbContext = new EgovaDB();
+        //当前业务类型
+        string FAppId = EConvert.ToString(Session["FAppId"]);
+
+        var v = from t in dbContext.CF_Sys_PrjList
+                orderby t.FId
+                //where t.FManageType == 11221
+                where t.FManageType == 11222  //安监的材料数据源应该和企业上报端的类型一致，modify by psq 20150319
+                select new
+                {
+                    t.FId,
+                    t.FFileName,
+                    FFileCount = t.FFileAmount,
+                    AppFile = dbContext.TC_QA_File.Where(f => t.FId == f.FMaterialTypeId && f.FAppId == FAppId)
+                };
+        Pager1.RecordCount = v.Count();
+        rep_List.DataSource = v.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+        rep_List.DataBind();
+        Pager1.Visible = (Pager1.RecordCount > Pager1.PageSize);//不足一页时隐藏分页控件           
+
     }
     //绑定当前审批意见（或接件意见）
     private void bindAuditInfo()
@@ -205,14 +224,84 @@ public partial class Government_AppAQJDBA_FSAuditInfo : System.Web.UI.Page
         this.DG_List.DataSource = rc.GetTable(sb.ToString());
         this.DG_List.DataBind();
     }
-
-
+    /// <summary>
+    /// 资料信息翻页
+    /// </summary>
+    /// <param name="src"></param>
+    /// <param name="e"></param>
+    protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
+    {
+        Pager1.CurrentPageIndex = e.NewPageIndex;
+        bindFileInfo();
+    }
    protected void DG_List_ItemDataBound(object sender, DataGridItemEventArgs e)
    {
        if (e.Item.ItemIndex > -1)
        {
            e.Item.Cells[0].Text = (e.Item.ItemIndex + 1).ToString();
 
+       }
+   }
+   protected void rep_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
+   {
+       if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+       {
+           string FId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
+           string FFileName = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FFileName"));
+           TextBox txtFileRemark = e.Item.FindControl("txtFileRemark") as TextBox;
+           CheckBox chkIsReady = e.Item.FindControl("chkIsReady") as CheckBox;
+           EgovaDB db = new EgovaDB();
+           TC_Prj_FileReady data = db.TC_Prj_FileReady.Where(t => t.FAppId == t_fLinkId.Value
+                                   && t.FMaterialTypeId == FId).FirstOrDefault();
+           if (data != null)
+           {
+               txtFileRemark.Text = data.FRemarks;
+               chkIsReady.Checked = EConvert.ToBool(data.FIsReady);
+
+           }
+
+           IQueryable<TC_QA_File> AppFile = DataBinder.Eval(e.Item.DataItem, "AppFile") as IQueryable<TC_QA_File>;
+           if (AppFile != null && AppFile.Count() > 0)
+           {
+               ((Literal)e.Item.FindControl("lit_Count")).Text = AppFile.Count().ToString();
+               Repeater rep_File = (Repeater)e.Item.FindControl("rep_File");
+               rep_File.DataSource = AppFile;
+               rep_File.DataBind();
+           }
+       }
+
+   }
+
+
+   protected void rep_List_ItemCommand(object source, RepeaterCommandEventArgs e)
+   {
+       switch (e.CommandName)
+       {
+           case "update":
+               string fMaterialTypeId = e.CommandArgument.ToString();//取得参数
+               TextBox txtFileRemark = e.Item.FindControl("txtFileRemark") as TextBox;
+               CheckBox chkIsReady = e.Item.FindControl("chkIsReady") as CheckBox;
+               EgovaDB db = new EgovaDB();
+               TC_Prj_FileReady data = db.TC_Prj_FileReady.Where(t => t.FAppId == t_fLinkId.Value
+                                       && t.FMaterialTypeId == fMaterialTypeId).FirstOrDefault();
+               if (data == null)
+               {
+                   data = new TC_Prj_FileReady();
+                   data.FId = Guid.NewGuid().ToString();
+                   data.FMaterialTypeId = fMaterialTypeId;
+                   data.FAppId = t_fLinkId.Value;
+                   data.FIsReady = chkIsReady.Checked;
+                   data.FRemarks = txtFileRemark.Text;
+                   db.TC_Prj_FileReady.InsertOnSubmit(data);
+               }
+               else
+               {
+                   data.FIsReady = chkIsReady.Checked;
+                   data.FRemarks = txtFileRemark.Text;
+               }
+               db.SubmitChanges();
+               MyPageTool.showMessage("保存成功", this.Page);
+               break;
        }
    }
 

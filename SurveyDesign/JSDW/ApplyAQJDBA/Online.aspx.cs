@@ -198,7 +198,8 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
                  on a.RYBH equals c.RYBH
                  join d in db.QY_JBXX
                  on a.QYBM equals d.QYBM
-                 where a.RYBH == selEmpId
+                 //where c.RYBH == selEmpId  //以前传输的变量不对应
+                 where c.RYZSXXID == selEmpId  
                  select new
                  {
                      a.XM,
