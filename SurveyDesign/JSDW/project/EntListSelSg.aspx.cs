@@ -77,7 +77,8 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                   
                   select  new
                   {
-                      b.QYBM,
+                      //b.QYBM,
+                      tt.QYBM,
                       b.QYMC,
                       b.QYLXBM,                      
                       //b.RegAdrProvinceName,
@@ -89,8 +90,8 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                       ZSBH = tt==null?"":tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
                       //AXBH = tt1==null?"":tt1.ZSBH,
-                      AXBH = tt.QY_QYZSXX.ZSLXBM
-                      //AXBH = tt1.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : tt1.ZSLXBM//证书类型为2的是安全许可证
+                      //AXBH = tt.QY_QYZSXX.ZSLXBM
+                      AXBH = tt1.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : ""//证书类型为2的是安全许可证,否则直接显示为空
                    };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
@@ -112,11 +113,12 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  where  tt1.ZSLXBM == "150"
+                  //where  tt1.ZSLXBM == "150"
                   
                   select new
                   {
-                      b.QYBM,
+                      //b.QYBM,
+                      tt.QYBM,
                       b.QYMC,
                       b.QYLXBM,
                       //b.RegAdrProvinceName,
@@ -128,7 +130,7 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                       ZSBH = tt == null ? "" : tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
                       //AXBH = tt1 == null ? "" : tt1.ZSBH
-                      AXBH = tt.QY_QYZSXX.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : tt.QY_QYZSXX.ZSLXBM//证书类型为2的是安全许可证
+                      AXBH = tt.QY_QYZSXX.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH :""//证书类型为2的是安全许可证,否则直接显示为空
 
                   };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
@@ -170,20 +172,19 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
 
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            //MODIFY YTB 新需求，要求取消安许证编号
-            //    //重新获取企业的安许证号
-            //    HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
-
-            //    string qybm = hfFBaseInfoId.Value;
-            //    string axbh = "";
-            //    var v  = db1.QY_QYZSXX.Where(t => t.QYBM == qybm && t.ZSLXBM == "2").FirstOrDefault();
-            //    if (v != null)
-            //    {
-            //        axbh = v.ZSBH;
-            //        Label lbl = e.Item.FindControl("AXBH") as Label;
-            //        lbl.Text = axbh;
-            //    }
-
+            //MODIFY YTB 新需求，要求取消安许证编号，施工、专业、劳务三类企业使用本页面，需要获取出安许证号
+            //重新获取企业的安许证号
+            HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
+            string qybm = hfFBaseInfoId.Value;
+            string axbh = "";
+            var v = db1.QY_QYZSXX.Where(t => t.QYBM == qybm && t.ZSLXBM == "2").FirstOrDefault();
+            if (v != null)
+            {
+                axbh = v.ZSBH;
+                Label lbl = e.Item.FindControl("AXBH") as Label;
+                lbl.Text = axbh;
+            }
+            //获取安许证号完成
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该企业吗?');");
