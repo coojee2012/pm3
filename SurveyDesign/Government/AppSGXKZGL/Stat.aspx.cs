@@ -54,6 +54,7 @@ public partial class Government_AppAQJDBA_Stat : govBasePage
         {
             v = v.Where(t => t.PrjAddressDept.Contains(DFId2) && t.PrjAddressDept != DFId2);
         }
+
         if (DFId2.Length == 6)
         {
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('已经是最低区域');", true);
