@@ -37,7 +37,8 @@ public partial class JSDW_ApplyAQJDBA_PrjFile : System.Web.UI.Page
                     //附件文件名
                     string m = str.Split('/').ToList().Last();
                     name1.Text = m + "（大小：" + s.ToString("0.0") + n + "）" +"(上报时间："+emp.FCreateTime+")";
-                    fileName.Text = "<u><a href='" + emp.FFilePath + "' target='_blank' title='点击查看该文件'>" + emp.FFileName + "." + emp.FFileType + "</a></u>";
+                    //fileName.Text = "<u><a href='" + emp.FFilePath + "' target='_blank' title='点击查看该文件'>" + emp.FFileName + "." + emp.FFileType + "</a></u>";
+                    fileName.Text = "<u><a href='" + emp.FFilePath + "' target='_blank' title='点击查看该文件'>" + m +"</a></u>";
                 }
                 ViewState["FID"] = Request.QueryString["fid"];
             }
@@ -95,8 +96,9 @@ public partial class JSDW_ApplyAQJDBA_PrjFile : System.Web.UI.Page
             tool.showMessage("上传文件不能大于20M");
             return;
         }
-        //Emp = tool.getPageValue(Emp);
-        Emp.FFileName = t_FFileName.Text;
+        //Emp = tool.getPageValue(Emp);        
+        Emp.FFileName = t_FFileName.Text; 
+              
         Emp.FRemarks = t_FRemarks.Text;
         Emp.FSize = EConvert.ToInt(t_FSize.Value);
 

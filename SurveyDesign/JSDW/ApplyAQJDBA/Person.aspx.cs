@@ -40,9 +40,11 @@ public partial class JSDW_ApplyAQJDBA_Person : System.Web.UI.Page
                 ViewState["FID"] = Request.QueryString["fid"];
             }
             BindControl();
-            if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
+            //if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
+            if (Session["fAppId"] != null)
             {
-                TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
+                //TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
+                TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Session["fAppId"].ToString()).FirstOrDefault();
                 ViewState["FAppId"] = aj.FAppId;
                 ViewState["FPrjItemId"] = aj.FPrjItemId;
                 hdfprjitemid.Value = aj.FPrjItemId;

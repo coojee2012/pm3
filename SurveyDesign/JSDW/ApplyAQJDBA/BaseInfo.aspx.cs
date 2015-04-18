@@ -55,6 +55,8 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         TC_AJBA_Record qa = db.TC_AJBA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
         TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
         TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+        t_SGId.Value = qa.SGId;
+        t_JLId.Value = qa.JLId;
         if (prj != null)
         {
             ViewState["FPrjID"] = prj.FPrjId;
@@ -124,7 +126,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                 q_SGDWXMJL.Text = v.XM;
                 q_SGDWZGZH.Text = v.ZCZSH;
                 q_SGDWSFZH.Text = v.SFZH;
-
+                t_SGRYId.Value = v.RYBH;
             }
 
             //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
