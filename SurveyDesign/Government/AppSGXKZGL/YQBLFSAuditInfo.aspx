@@ -84,7 +84,7 @@
             <td>
                 <asp:TextBox ID="t_PrjItemName" ReadOnly="true" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
                 <input id="HSeeReportInfo" type="button" runat="server" class="m_btn_w6" value="查看上报资料"  />
-                &nbsp;&nbsp;<input id="seeLockPerson" type="button" runat="server" style="margin-left: 5px;" class="m_btn_w6" onclick="LockPersonList();"  value="查看锁定人员"   />
+               <%-- &nbsp;&nbsp;<input id="seeLockPerson" type="button" runat="server" style="margin-left: 5px;" class="m_btn_w6" onclick="LockPersonList();"  value="查看锁定人员"   />--%>
 
             </td>
             <td class="t_r">
@@ -237,9 +237,9 @@
                         <td>
                             <asp:TextBox ID="txtFileRemark" width="98%" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </td>
-                        <td>
+                       <%-- <td>
                             <asp:LinkButton ID="LinkButton1" runat="server" CommandName="update" CommandArgument='<%#Eval("FId")%>'>保存</asp:LinkButton>
-                        </td>
+                        </td>--%>
                     </tr>
                     <asp:Repeater ID="rep_File" runat="server">
                         <ItemTemplate>
