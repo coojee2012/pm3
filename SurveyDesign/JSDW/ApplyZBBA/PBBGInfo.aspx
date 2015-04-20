@@ -66,14 +66,17 @@
             showAddWindow('FBInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button9);
             //  alert('dd')
         }
+
+
+
         //增加中标候选人
         function addPrjItemHXR() {
-            var hxrcount = document.getElementById("hxrcount").value;
-            if (hxrcount >= 3)
-            {
-                alert('中标候选人数量不能大于三个，请删除不符合的名单再添加!');
-                return;
-            }
+            //var hxrcount = document.getElementById("hxrcount").value;
+            //if (hxrcount >= 3)
+            //{
+            //    alert('中标候选人数量不能大于三个，请删除不符合的名单再添加!');
+            //    return;
+            //}
             var fid = document.getElementById("txtFId").value;
             var fAppId = '<%=ViewState["FAppId"] %>';
             var fPrjId = '<%=ViewState["FPrjId"] %>';
@@ -86,6 +89,20 @@
             showAddWindow('HXRInfo.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjId=" + fPrjId + "&&BDId=" + BDId, 800, 550, Button6);
             //  alert('dd')
         }
+
+        function checkAllnew(chk) {
+            var form = chk.form;
+            for (var i = 0; i < form.elements.length; i++) {
+                if (form.elements[i].type == "checkbox" && !form.elements[i].disabled) {
+                    if (form.elements[i].id.indexOf('CheckItem') > -1) {
+                        var e = form.elements[i];
+                        if (e.name != chk.name)
+                            e.checked = chk.checked;
+                    }
+                }
+            }
+        }
+
     </script>
     <base target="_self">
     </base>
@@ -244,7 +261,7 @@
                 <asp:TemplateColumn>
                     <HeaderStyle Width="30px" />
                     <HeaderTemplate>
-                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAllByTag(this,'dg_ListBM');" />
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:CheckBox ID="CheckItem" runat="server" />
@@ -303,7 +320,7 @@
                 <asp:TemplateColumn>
                     <HeaderStyle Width="30px" />
                     <HeaderTemplate>
-                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAllByTag(this,'dg_ListTB');" />
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:CheckBox ID="CheckItem" runat="server" />
@@ -381,7 +398,7 @@
                 <asp:TemplateColumn>
                     <HeaderStyle Width="30px" />
                     <HeaderTemplate>
-                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAllByTag(this,'dg_ListHXR');" />
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:CheckBox ID="CheckItem" runat="server" />
@@ -458,7 +475,7 @@
                 <asp:TemplateColumn>
                     <HeaderStyle Width="30px" />
                     <HeaderTemplate>
-                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                        <asp:CheckBox ID="checkAll" runat="server" onclick="checkAllByTag(this,'dg_ListFB');" />
                     </HeaderTemplate>
                     <ItemTemplate>
                         <asp:CheckBox ID="CheckItem" runat="server" />

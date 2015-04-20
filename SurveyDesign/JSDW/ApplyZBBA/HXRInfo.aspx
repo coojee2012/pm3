@@ -107,7 +107,7 @@
                     中标候选人顺序：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="txtOrder" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="txtOrder" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>

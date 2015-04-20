@@ -27,9 +27,10 @@ public partial class JSDW_ApplyZBBA_HXRInfo : System.Web.UI.Page
                     pageTool tool = new pageTool(this.Page);
                     tool.fillPageControl(pb, divSetup2);
                 }
-                string sql = "select Count(*) from TC_PBBG_ZBHXR where FOrder < =" + pb.FOrder;
-                int count = dbContext.ExecuteQuery<int>(sql).FirstOrDefault<int>();
-                txtOrder.Text = "第" + count + "中标候选人";
+                //中标候选人排序是填写的，不是计算的,modify by psq 20150419
+                //string sql = "select Count(*) from TC_PBBG_ZBHXR where FOrder < =" + pb.FOrder;
+                //int count = dbContext.ExecuteQuery<int>(sql).FirstOrDefault<int>();
+                //txtOrder.Text = "第" + count + "中标候选人";
             }
             else
             {
@@ -49,14 +50,15 @@ public partial class JSDW_ApplyZBBA_HXRInfo : System.Web.UI.Page
     //保存
     private void saveInfo()
     {
+        //
         string fId = EConvert.ToString(ViewState["FID"]);
         string oId = fId;
         TC_PBBG_ZBHXR Emp = new TC_PBBG_ZBHXR();
-        if (!string.IsNullOrEmpty(fId))
+        if (!string.IsNullOrEmpty(fId))//更新中标候选人
         {
             Emp = dbContext.TC_PBBG_ZBHXR.Where(t => t.FId == fId).FirstOrDefault();
         }
-        else
+        else//新增中标候选人
         {
             fId = Guid.NewGuid().ToString();
             Emp.FId = fId;

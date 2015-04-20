@@ -77,7 +77,7 @@ public partial class JSDW_ApplyZBBA_BMSel : System.Web.UI.Page
             {
                 string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
                 string QYMC = e.Item.Cells[e.Item.Cells.Count - 4].Text;
-                TC_PBBG_TBQY pb = dbContext.TC_PBBG_TBQY.Where(t => t.QYMC == QYMC).FirstOrDefault();
+                TC_PBBG_TBQY pb = dbContext.TC_PBBG_TBQY.Where(t => t.FAppId == Session["FAppId"] && t.QYMC == QYMC).FirstOrDefault();
                 if (pb != null)
                 {
                     MyPageTool.showMessage("该企业已投标，不能选择!", this.Page);

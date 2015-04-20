@@ -78,8 +78,8 @@ public partial class JSDW_ApplyZBBA_TBSel : System.Web.UI.Page
             {
                 string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
                 string QYMC = e.Item.Cells[e.Item.Cells.Count - 7].Text;
-                TC_PBBG_ZBHXR pb = dbContext.TC_PBBG_ZBHXR.Where(t => t.HXRMC == QYMC).FirstOrDefault();
-                TC_PBBG_FBYY fb = dbContext.TC_PBBG_FBYY.Where(t => t.TBR == QYMC).FirstOrDefault();
+                TC_PBBG_ZBHXR pb = dbContext.TC_PBBG_ZBHXR.Where(t => t.FAppId == Session["FAppId"] && t.HXRMC == QYMC).FirstOrDefault();
+                TC_PBBG_FBYY fb = dbContext.TC_PBBG_FBYY.Where(t => t.FAppId == Session["FAppId"] && t.TBR == QYMC).FirstOrDefault();
                 if (pb != null)
                 {
                     MyPageTool.showMessage("该企业已是中标候选人，不能选择!", this.Page);

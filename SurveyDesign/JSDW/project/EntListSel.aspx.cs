@@ -17,6 +17,8 @@ using EgovaDAO;
 public partial class JSDW_project_EntListSel: System.Web.UI.Page
 {
     RCenter rc = new RCenter();
+    //RCenter rctest = new RCenter("JST_XZSPBaseInfo");
+
     ShareTool st = new ShareTool();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,6 +26,11 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
         {
             if (!string.IsNullOrEmpty(Request.QueryString["qylx"]))
             {
+                //string sql = "select *  from  qy_jbxx";
+                //DataTable dt = new DataTable();
+                //dt = rctest.GetTable(sql);
+                //int rowcount = dt.Rows.Count;
+
                 string qylx = EConvert.ToString(Request.QueryString["qylx"]);
                 ViewState["qylx"] = qylx;
                 showInfo(qylx);
@@ -76,12 +83,14 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
-                          b.RegAdrProvinceName,
+                          //b.RegAdrProvinceName,
+                          RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
                           b.QYXXDZ,
                           b.FRDB,
                           b.LXR,
                           b.LXDH,
-                          ZSBH = tt == null ? "" : tt.ZSBH,
+                          //ZSBH = tt == null ? "" : tt.ZSBH,
+                          ZSBH = tt == null ? "" : tt.QY_QYZSXX.ZSBH,
                           ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
                           AXBH = tt1 == null ? "" : tt1.ZSBH
                       };
@@ -107,7 +116,8 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
-                          b.RegAdrProvinceName,
+                          //b.RegAdrProvinceName,
+                          RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
                           b.QYXXDZ,
                           b.FRDB,
                           b.LXR,
@@ -142,7 +152,8 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
-                          b.RegAdrProvinceName,
+                          //b.RegAdrProvinceName,
+                          RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
                           b.QYXXDZ,
                           b.FRDB,
                           b.LXR,
@@ -180,7 +191,8 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                       b.QYBM,
                       b.QYMC,
                       b.QYLXBM,
-                      b.RegAdrProvinceName,
+                      //b.RegAdrProvinceName,
+                      RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
                       b.QYXXDZ,
                       b.FRDB,
                       b.LXR,
