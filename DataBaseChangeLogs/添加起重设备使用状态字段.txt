@@ -1,0 +1,2 @@
+--其中设备增加使用状态
+alter table xm_baseinfo.dbo.GC_JQSBXX  add syzt varchar(10) null 

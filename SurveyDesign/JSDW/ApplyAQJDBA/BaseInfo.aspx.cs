@@ -26,6 +26,9 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             pageTool tool = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
+                btnAddEnt.Visible = false;
+                Button1.Visible = false;
+                Button2.Visible = false;
                 tool.ExecuteScript("btnEnable();");
             }
         }
@@ -52,6 +55,8 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         TC_AJBA_Record qa = db.TC_AJBA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
         TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
         TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+        t_SGId.Value = qa.SGId;
+        t_JLId.Value = qa.JLId;
         if (prj != null)
         {
             ViewState["FPrjID"] = prj.FPrjId;
@@ -114,35 +119,54 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         {
             string selEmpId = t_SGRYId.Value;
             EgovaDB1 db = new EgovaDB1();
-            var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+
+            var v = db.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpId).FirstOrDefault(); //直接从资质信息中获取
             if (v != null)
             {
                 q_SGDWXMJL.Text = v.XM;
-                
+                q_SGDWZGZH.Text = v.ZCZSH;
                 q_SGDWSFZH.Text = v.SFZH;
-                var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
-                if (v1 != null)
-                {
-                    q_SGDWZGZH.Text = v1.ZCZSH;
-                }
+                t_SGRYId.Value = v.RYBH;
             }
+
+            //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            //if (v != null)
+            //{
+            //    q_SGDWXMJL.Text = v.XM;
+                
+            //    q_SGDWSFZH.Text = v.SFZH;
+            //    var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            //    if (v1 != null)
+            //    {
+            //        q_SGDWZGZH.Text = v1.ZCZSH;
+            //    }
+            //}
 
         }
         else if (type == "JL")
         {
             string selEmpId = t_JLRYId.Value;
             EgovaDB1 db = new EgovaDB1();
-            var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+
+            var v = db.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpId).FirstOrDefault();
             if (v != null)
             {
                 q_JLDWXMZJ.Text = v.XM;
+                q_JLDWZGZH.Text = v.ZCZSH;
                 
-                var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
-                if (v1 != null)
-                {
-                    q_JLDWZGZH.Text = v1.ZCZSH;
-                }
             }
+
+            //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            //if (v != null)
+            //{
+            //    q_JLDWXMZJ.Text = v.XM;
+                
+            //    var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            //    if (v1 != null)
+            //    {
+            //        q_JLDWZGZH.Text = v1.ZCZSH;
+            //    }
+            //}
 
         }
     }
@@ -157,7 +181,8 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                 var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 1).FirstOrDefault();
                 if (v1 != null) {
                     q_SGDWZZZSH.Text = v1.ZSBH;
-                    q_SGDWZZDJ.Text = v1.ZZDJ;
+                    q_SGDWZZDJ.Text = v1.ZZLB+v1.ZZMC+v1.ZZDJ;
+                    //q_SGDWZZDJ.Text = v1.ZZDJ;  // 改为显示资质名称及等级tt.ZZLB + tt.ZZMC + tt.ZZDJ
                 }
                 var v2 = db.QY_QYZSXX.Where(t => t.QYBM == selEntId && t.ZSLXBM == "150").FirstOrDefault();//安全生产许可证
                 if (v2 != null)
@@ -181,7 +206,8 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                 if (v1 != null)
                 {
                     q_JLDWZZZSH.Text = v1.ZSBH;
-                    q_JLDWZZDJ.Text = v1.ZZDJ;
+                    q_JLDWZZDJ.Text = v1.ZZLB+v1.ZZMC+v1.ZZDJ;
+                    //q_JLDWZZDJ.Text = v1.ZZDJ;
                 }
                 
             }

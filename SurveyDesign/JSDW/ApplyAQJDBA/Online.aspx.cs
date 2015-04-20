@@ -38,9 +38,11 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
                 ViewState["FID"] = Request.QueryString["fid"];
             }
             BindControl();
-            if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
+            //if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
+            if (Session["fAppId"] !=null)
             {
-                TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
+                //TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Request.QueryString["fAppId"]).FirstOrDefault();
+                TC_AJBA_Record aj = dbContext.TC_AJBA_Record.Where(t => t.FAppId == Session["fAppId"].ToString()).FirstOrDefault();
                 ViewState["FAppId"] = aj.FAppId;
                 ViewState["FPrjItemId"] = aj.FPrjItemId;
                 t_FHumanId.Value = aj.FJSDWID;
@@ -170,10 +172,19 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
         if (file != null)
         {
             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(file);
+            if (Directory.Exists(Server.MapPath("~/upload/ajphoto")) == false)//如果不存在就创建file文件夹
+            {
+                Directory.CreateDirectory(Server.MapPath("~/upload/ajphoto"));
+            }
             string FilePath = "upload\\ajphoto\\" + Guid.NewGuid().ToString() + ".jpg";
             bitmap.Save(HttpRuntime.AppDomainAppPath + FilePath);
             image.ImageUrl = "/" + FilePath;
             this.ViewState["photoPath"] = HttpRuntime.AppDomainAppPath + FilePath;
+
+            //string FilePath = HttpRuntime.AppDomainAppPath + "upload\\ajphoto\\" + Guid.NewGuid().ToString() + ".jpg";
+            //bitmap.Save(FilePath);
+            //image.ImageUrl = FilePath;
+            //this.ViewState["photoPath"] =  FilePath;
         }
     }
     Byte[] getImage(string photoPath)
@@ -198,7 +209,8 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
                  on a.RYBH equals c.RYBH
                  join d in db.QY_JBXX
                  on a.QYBM equals d.QYBM
-                 where a.RYBH == selEmpId
+                 //where c.RYBH == selEmpId  //以前传输的变量不对应
+                 where c.RYZSXXID == selEmpId  
                  select new
                  {
                      a.XM,

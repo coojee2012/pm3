@@ -1,0 +1,54 @@
+USE [dbCenter]
+GO
+
+/****** Object:  View [dbo].[V_SGXKZ_TJ]    Script Date: 2015/4/18 20:57:02 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER VIEW [dbo].[V_SGXKZ_TJ] AS 
+select PrjAddressDept,dbo.getManageDeptName(PrjAddressDept) SD,sum(CCBL_WSB) as CCBL_WSB,sum(CCBL_YSB) as CCBL_YSB,sum(CCBL_YSH) as CCBL_YSH,
+sum(YQBL_WSB) as YQBL_WSB,sum(YQBL_YSB) as YQBL_YSB,sum(YQBL_YSH) as YQBL_YSH,
+sum(BGBL_WSB) as BGBL_WSB,sum(BGBL_YSB) as BGBL_YSB,sum(BGBL_YSH) as BGBL_YSH
+from 
+(
+select '' as FAppId , '' as FPrjItemId, CONVERT(VARCHAR(10),Fnumber) as PrjAddressDept ,
+0  as  CCBL_WSB , 0  as  CCBL_YSB ,0  as  CCBL_YSH ,
+0 as YQBL_WSB, 0 as YQBL_YSB,0 as YQBL_YSH,
+0 as BGBL_WSB, 0 as BGBL_YSB,0 as BGBL_YSH
+from CF_Sys_ManageDept where SUBSTRING(CONVERT(VARCHAR(10),Fnumber), 1, 2)=51
+union all
+select FAppId,FPrjItemId,a.PrjAddressDept,
+case b.FState when 0 then 1 else 0 end as  CCBL_WSB ,
+case b.FState when 1 then 1 else 0 end as  CCBL_YSB ,
+case b.FState when 6 then 1 else 0 end as  CCBL_YSH ,
+0 as YQBL_WSB, 0 as YQBL_YSB,0 as YQBL_YSH,
+0 as BGBL_WSB, 0 as BGBL_YSB,0 as BGBL_YSH
+from TC_SGXKZ_PrjInfo a ,CF_App_List b
+where a.FAppId = b.FId and b.FManageTypeId=11223 
+union all
+select c.FAppId,a.FPrjItemId,a.PrjAddressDept,
+0 as CCBL_WSB, 0 as CCBL_YSB,0 as CCBL_YSH,
+case b.FState when 0 then 1 else 0 end as  YQBL_WSB ,
+case b.FState when 1 then 1 else 0 end as  YQBL_YSB ,
+case b.FState when 6 then 1 else 0 end as  YQBL_YSH ,
+0 as BGBL_WSB, 0 as BGBL_YSB,0 as BGBL_YSH
+from TC_SGXKZ_PrjInfo a ,CF_App_List b,TC_SGXKZ_YQSQ c
+where c.FAppId = b.FId and c.FPrjInfoId=a.FId and b.FManageTypeId=11224
+union all
+select a.FAppId,a.FPrjItemId,a.PrjAddressDept,
+0 as CCBL_WSB, 0 as CCBL_YSB,0 as CCBL_YSH,
+0 as YQBL_WSB, 0 as YQBL_YSB,0 as YQBL_YSH,
+case b.FState when 0 then 1 else 0 end as  BGBL_WSB ,
+case b.FState when 1 then 1 else 0 end as  BGBL_YSB ,
+case b.FState when 6 then 1 else 0 end as  BGBL_YSH 
+from TC_SGXKZ_BGPrjInfo a ,CF_App_List b
+where a.FAppId = b.FId and b.FManageTypeId=11225
+) t group by t.PrjAddressDept
+
+
+GO
+
+

@@ -250,8 +250,8 @@ public partial class Government_AppSGXKZGL_YQBLJJAuditInfo : System.Web.UI.Page
             //string fPrjId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FPrjId"));
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('YZInfo.aspx?FId=" + fId
                  + "&fAppId=" + fAppId
-                 + "&FPrjItemId=" + t_PrjItemId.Value                 
-                 +  "',700,500);\">" + e.Item.Cells[2].Text + "</a>";
+                 + "&FPrjItemId=" + t_PrjItemId.Value
+                 + "', 600, 450);\">" + e.Item.Cells[2].Text + "</a>";
         }
     }
    protected void rep_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -330,6 +330,21 @@ public partial class Government_AppSGXKZGL_YQBLJJAuditInfo : System.Web.UI.Page
                 WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                     t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
+
+                string sql = "update CF_App_ProcessInstance set Fstate = 6 where fid='" + t_fProcessInstanceID.Value + "' ";
+                using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        conn.Open();
+                    DataSet ds = new DataSet();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+
+                    cmd.ExecuteNonQuery();
+
+
+
+                }
+
                 DisableButton();
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('接件成功');", true);
            }

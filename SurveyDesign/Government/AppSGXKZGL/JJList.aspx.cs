@@ -73,7 +73,7 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
             switch (ddlState.SelectedValue.Trim())
             {
                 case "0": //待接件
-                    sb.Append(" and er.FMeasure=0 and ep.fstate<>2 ");
+                    sb.Append(" and er.FMeasure=0 and ep.fstate =1 ");
                     break;
                 case "1": //准予受理
                     sb.Append(" and (er.FMeasure=5 and er.FResult=1) ");

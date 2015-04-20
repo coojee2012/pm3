@@ -261,22 +261,95 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
                 {
                     s = "<font color='green'>已办结</font>";
                     n = "<font color='green'>通过</font>";
-                    saveFResult("1", FID);
+                    //saveFResult("1", FID);
                 }
                 else//不予受理
                 {
                     s = "<font color='red'>已办结</font>";
                     n = "<font color='red'>不通过</font>";
-                    saveFResult("3", FID);
+                    //saveFResult("3", FID);
                 }
             }
           //  e.Row.Cells[6].Text = n;
             e.Row.Cells[3].Text = t;
             e.Row.Cells[4].Text = s;
-            var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
+            var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID);
+           
             if (pr != null)
             {
-                if (pr.FResult == "1")//通过
+                foreach(var p in pr)
+                {
+                    if (p.FTypeId == 5) //复审
+                    {
+                        if (p.FMeasure == 5) //已经办理
+                        {
+                            if (p.FResult == "1")
+                            {
+                                n = "<font color='green'>复审通过</font>";
+                                break;
+                            }
+                            else
+                            {
+                                n = "<font color='green'>复审中</font>";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            n = "<font color='green'>复审中</font>";
+                            break;
+                        }
+                    }
+                    else if (p.FTypeId == 10) //初审
+                    {
+                        if (p.FMeasure == 5)  //已经办理
+                        {
+                            if (p.FResult == "1")
+                            {
+                                n = "<font color='green'>初审通过</font>";
+                                break;
+                            }
+                            else
+                            {
+                                n = "<font color='green'>初审中</font>";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            n = "<font color='green'>初审中</font>";
+                            break;
+                        }
+                    }
+                    else if (p.FTypeId == 10) //接件
+                    {
+                        if (p.FMeasure == 5)  //已经办理
+                        {
+                            if (p.FResult == "1")
+                            {
+                                n = "<font color='green'>接件成功</font>";
+                                break;
+                            }
+                            else
+                            {
+                                n = "<font color='green'>待接件</font>";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            n = "<font color='green'>待接件</font>";
+                            break;
+                        }
+                    }
+                    else //未上报
+                    {
+                        n = "";
+                    }
+                }
+
+                /*
+                if (pr.FResult == "1")//通过 屏蔽以前的方法，modify by psq 20150416
                 {
                     n = "<font color='green'>通过</font>";
                     saveFResult("1", FID);
@@ -286,6 +359,8 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
                     n = "<font color='red'>不通过</font>";
                     saveFResult("3", FID);
                 }
+                 * */   
+
                 //if (pr.FRoleDesc.Contains("接件"))
                 //{
                 //    if (pr.FResult == "1")//通过

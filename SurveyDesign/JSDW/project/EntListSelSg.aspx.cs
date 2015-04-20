@@ -22,6 +22,7 @@ using EgovaDAO;
 
 public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
 {
+    EgovaDB1 db1 = new EgovaDB1();
     RCenter rc = new RCenter();
     ShareTool st = new ShareTool();
     protected void Page_Load(object sender, EventArgs e)
@@ -78,8 +79,9 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                   {
                       b.QYBM,
                       b.QYMC,
-                      b.QYLXBM,
-                      b.RegAdrProvinceName,
+                      b.QYLXBM,                      
+                      //b.RegAdrProvinceName,
+                      RegAdrProvinceName = b.RegAdrProvinceName + "-"+b.RegAdrCityName +"-"+ b.RegAdrCountryName,
                       b.QYXXDZ,
                       b.FRDB,
                       b.LXR,
@@ -87,7 +89,8 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                       ZSBH = tt==null?"":tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
                       //AXBH = tt1==null?"":tt1.ZSBH,
-                      AXBH = tt.QY_QYZSXX.ZSLXBM == "2"?tt.QY_QYZSXX.ZSLXBM:""//证书类型为2的是安全许可证
+                      AXBH = tt.QY_QYZSXX.ZSLXBM
+                      //AXBH = tt1.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : tt1.ZSLXBM//证书类型为2的是安全许可证
                    };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
@@ -116,14 +119,17 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
                       b.QYBM,
                       b.QYMC,
                       b.QYLXBM,
-                      b.RegAdrProvinceName,
+                      //b.RegAdrProvinceName,
+                      RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
                       b.QYXXDZ,
                       b.FRDB,
                       b.LXR,
                       b.LXDH,
                       ZSBH = tt == null ? "" : tt.ZSBH,
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      AXBH = tt1 == null ? "" : tt1.ZSBH
+                      //AXBH = tt1 == null ? "" : tt1.ZSBH
+                      AXBH = tt.QY_QYZSXX.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : tt.QY_QYZSXX.ZSLXBM//证书类型为2的是安全许可证
+
                   };
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
@@ -161,8 +167,23 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
 
     protected void dg_List_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
+            //MODIFY YTB 新需求，要求取消安许证编号
+            //    //重新获取企业的安许证号
+            //    HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
+
+            //    string qybm = hfFBaseInfoId.Value;
+            //    string axbh = "";
+            //    var v  = db1.QY_QYZSXX.Where(t => t.QYBM == qybm && t.ZSLXBM == "2").FirstOrDefault();
+            //    if (v != null)
+            //    {
+            //        axbh = v.ZSBH;
+            //        Label lbl = e.Item.FindControl("AXBH") as Label;
+            //        lbl.Text = axbh;
+            //    }
+
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该企业吗?');");

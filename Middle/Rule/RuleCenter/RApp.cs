@@ -2195,7 +2195,7 @@ namespace Approve.RuleApp
                     sl1.Clear();
                     sl1.Add("FID", AppId);
                     sl1.Add("FAppState", 0); //上报;
-                    sl1.Add("FState", 1);
+                    sl1.Add("FState", 6);
                     sl1.Add("FSubFlowId", nextSub.FId);
                     //sl1.Add("FReportDate", DateTime.Now);
                     sl1.Add("FCurStepID", currDept);//当前阶段审批的主管部门

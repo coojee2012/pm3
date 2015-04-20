@@ -48,6 +48,15 @@
                 newopen.resizeTo(screen.width, screen.height - 30);
             }
         }
+        function showDetail(dep) {
+
+            if (dep && dep.length == 6) {
+                alert("已经到了末级！");
+                return false;
+            } else {
+                location.href = 'Stat.aspx?PrjAddressDept=' + dep;
+            }
+        }
 
   
 
@@ -99,7 +108,9 @@
                             <%# Container.ItemIndex+1 %>
                         </td>
                         <td class="t_l">
-                           <a href='Stat.aspx?PrjAddressDept=<%#Eval("PrjAddressDept")%>'><%#Eval("SD")%></a> 
+                           <a href='javascript:;' onclick="showDetail('<%#Eval("PrjAddressDept")%>')" ><%#Eval("SD")%></a> 
+                          <%-- <a href='Stat.aspx?PrjAddressDept=<%#Eval("PrjAddressDept")%>'><%#Eval("SD")%></a> --%>
+                          
                         </td>
                         <td>
                            
