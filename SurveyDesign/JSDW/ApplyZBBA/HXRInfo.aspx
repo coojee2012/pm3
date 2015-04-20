@@ -109,6 +109,7 @@
                 <td colspan="3">
                     <asp:TextBox ID="txtOrder" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="中标人顺序必须填写"  ControlToValidate ="txtOrder"></asp:RequiredFieldValidator>
             </tr>
             <tr>
                 <td class="t_r t_bg">

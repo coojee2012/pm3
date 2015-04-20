@@ -404,7 +404,7 @@
                         <asp:CheckBox ID="CheckItem" runat="server" />
                     </ItemTemplate>
                 </asp:TemplateColumn>
-                <asp:BoundColumn HeaderText="排序">
+                <asp:BoundColumn HeaderText="排序" DataField ="OrderStr">
                     <HeaderStyle Width="50px" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="中标候选人" DataField="HXRMC">

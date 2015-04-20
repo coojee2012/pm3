@@ -65,7 +65,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
     {
         EgovaDB1 db = new EgovaDB1();
         //如果是勘察、设计、监理类企业则列出企业所有的资质及等级信息，没有主项的说法
-        if ((qylx == "102") || (qylx == "103") || (qylx == "104") ||(qylx == "105"))
+        if ((qylx == "102") || (qylx == "103") || (qylx == "104"))
         {
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
@@ -102,6 +102,37 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
             dg_List.DataBind();
         }
+        else if (qylx == "105")//代理机构
+        {
+            var App = from b in db.QY_JBXX
+                      join c in db.QY_QYZSXX
+                      on b.QYBM equals c.QYBM
+                      where b.QYLXBM == qylx
+
+                      select new
+                      {
+                          b.QYBM,
+                          b.QYMC,
+                          b.QYLXBM,
+                          //b.RegAdrProvinceName,
+                          RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
+                          b.QYXXDZ,
+                          b.FRDB,
+                          b.LXR,
+                          b.LXDH,
+                          //ZSBH = tt == null ? "" : tt.ZSBH,
+                          ZSBH = c.ZSBH,                          
+                          ZZMC = c.ZSDJMC,
+                          AXBH = ""                       
+                      };
+            if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+            {
+                App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+            }
+            Pager1.RecordCount = App.Count();
+            dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+            dg_List.DataBind();
+        }
         else if (qylx == "109")  //审图机构 目前为145.  modify by psq 20150319 审图机构没有资质信息，只有证书信息。
         {
             var App = from b in db.QY_JBXX
@@ -109,7 +140,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                       on b.QYBM equals d.QYBM
                       into temp1
                       from tt1 in temp1.DefaultIfEmpty()
-                      where b.QYLXBM == qylx 
+                      where b.QYLXBM == qylx
 
                       select new
                       {

@@ -114,7 +114,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
         dbContext = new EgovaDB();
         var App1 = from t in dbContext.TC_PBBG_ZBHXR
                 where t.FLinkId == FId 
-                orderby t.FOrder
+                orderby t.OrderStr
                 select new
         {
             t.HXRMC,
@@ -127,7 +127,10 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
             t.ZCZY,
             t.FId,
             t.RYId,
-            t.BDId            
+            t.BDId,
+            t.OrderStr,
+            t.FOrder
+           
         };
         //记录当前候选人数量，前端判断候选人大于三个则不能继续添加.
         this.hxrcount.Value = App1.Count().ToString();
@@ -240,7 +243,7 @@ public partial class JSDW_ApplyZBBA_PBBGInfo : System.Web.UI.Page
     {
         if (e.Item.ItemIndex > -1)
         {
-            e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerHXR.PageSize * (this.PagerHXR.CurrentPageIndex - 1)).ToString();
+            //e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.PagerHXR.PageSize * (this.PagerHXR.CurrentPageIndex - 1)).ToString();
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
             //e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('HXRInfo.aspx?fid=" + fid + "',900,700,Button6);\">" + e.Item.Cells[2].Text + "</a>";
             e.Item.Cells[2].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('HXRInfo.aspx?fid=" + fid + "',900,700);\">" + e.Item.Cells[2].Text + "</a>";

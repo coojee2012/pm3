@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JST_XZSPBaseInfo" Class="DB1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.101.9\MSSQLSERVER08;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="JST_XZSPBaseInfoConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sql;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="JST_XZSPBaseInfoConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.QY_JBXX" Member="QY_JBXX">
     <Type Name="QY_JBXX">
       <Column Name="QYBM" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -82,9 +82,9 @@
       <Association Name="QY_JBXX_QY_QYLSSQXX" Member="QY_QYLSSQXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYLSSQXX" />
       <Association Name="QY_JBXX_QY_QYNJQK" Member="QY_QYNJQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYNJQK" />
       <Association Name="QY_JBXX_QY_QYXYPD" Member="QY_QYXYPD" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYXYPD" />
-      <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_QYZSXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZSXX" />
       <Association Name="QY_JBXX_QY_QYZYRYXX" Member="QY_QYZYRYXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZYRYXX" />
       <Association Name="QY_JBXX_QY_ZYJQSB" Member="QY_ZYJQSB" ThisKey="QYBM" OtherKey="QYBM" Type="QY_ZYJQSB" />
+      <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_QYZSXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZSXX" />
     </Type>
   </Table>
   <Table Name="dbo.QY_BLXWQK" Member="QY_BLXWQK">
@@ -320,27 +320,6 @@
       <Column Name="PJRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="BZ" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="QY_JBXX_QY_QYXYPD" Member="QY_JBXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_JBXX" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.QY_QYZSXX" Member="QY_QYZSXX">
-    <Type Name="QY_QYZSXX">
-      <Column Name="QYZSID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZSLXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="ZSLXMC" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="ZSBH" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="YXKSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="YXJSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ZBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZSZJFBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZSBBFBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SFYX" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BFBM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BFBMBH" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BFRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="QY_QYZSXX_QY_QYZZXX" Member="QY_QYZZXX" ThisKey="QYZSID" OtherKey="FCertiId" Type="QY_QYZZXX" />
-      <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_JBXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_JBXX" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.QY_QYZYRYXX" Member="QY_QYZYRYXX">
@@ -741,6 +720,29 @@
       <Column Name="QYBM" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="zsbh" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
       <Column Name="zz" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QY_QYZSXX" Member="QY_QYZSXX">
+    <Type Name="QY_QYZSXX">
+      <Column Name="QYZSID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZSLXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ZSLXMC" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ZSBH" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="ZSDJMC" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="YXKSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="YXJSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ZBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZSZJFBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZSBBFBSL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SFYX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BFBM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BFBMBH" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="BFRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SFZD" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="QY_QYZSXX_QY_QYZZXX" Member="QY_QYZZXX" ThisKey="QYZSID" OtherKey="FCertiId" Type="QY_QYZZXX" />
+      <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_JBXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_JBXX" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
