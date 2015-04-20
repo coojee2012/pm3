@@ -25,6 +25,13 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             BindControl();
             showInfo();
+            //如果已经备案，则不能添加及修改
+            pageTool tool = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool.ExecuteScript("btnEnable();");
+                tool.ExecuteScript("setdisvisable();");     
+            }
         }
     }
     void BindControl()
@@ -71,18 +78,19 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         t_EmpType.DataBind();
 
         //学历
-        dt = rc.getDicTbByFNumber("107");
+        dt = rc.getDicTbByFNumber("107");             
         t_ZGXL.DataSource = dt;
         t_ZGXL.DataTextField = "FName";
         t_ZGXL.DataValueField = "FNumber";
         t_ZGXL.DataBind();
-
+        t_ZGXL.SelectedValue = "107007";//设置默认值为无
         //职称
         dt = rc.getDicTbByFNumber("5080");
         t_ZC.DataSource = dt;
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
+        t_ZC.SelectedValue = "5085";//设置默认值为其他
         //证书等级
         dt = rc.getDicTbByFNumber("920");
         t_DJ.DataSource = dt;
@@ -271,7 +279,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             var v1 = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);
             if (v1 == null) return;
             //t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
-            t_ZSBHnew.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
+            t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
             t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
             t_ZCBH.Text = v1.ZCZSH;
             t_ZCZY.Text = v1.ZCZY;

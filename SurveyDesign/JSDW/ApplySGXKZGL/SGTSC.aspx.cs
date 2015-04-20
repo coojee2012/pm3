@@ -27,6 +27,10 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool.ExecuteScript("btnEnable();");
+                //
+                btnAddEnt.Visible = false;
+                btnAddEnt1.Visible = false;
+                btnAddEnt2.Visible = false;
             }
         }
     }

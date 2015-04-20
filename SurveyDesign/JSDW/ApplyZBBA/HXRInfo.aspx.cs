@@ -24,6 +24,7 @@ public partial class JSDW_ApplyZBBA_HXRInfo : System.Web.UI.Page
                 TC_PBBG_ZBHXR pb = dbContext.TC_PBBG_ZBHXR.Where(t => t.FId == Convert.ToString(Request.QueryString["fid"])).FirstOrDefault();
                 if (pb != null)
                 {
+                    txtOrder.Text = pb.OrderStr.ToString();
                     pageTool tool = new pageTool(this.Page);
                     tool.fillPageControl(pb, divSetup2);
                 }
@@ -67,6 +68,7 @@ public partial class JSDW_ApplyZBBA_HXRInfo : System.Web.UI.Page
             Emp.FLinkId = EConvert.ToString(ViewState["FLinkId"]);
             Emp.FAppId = EConvert.ToString(ViewState["FAppId"]);
             Emp.RYId = h_selEmpId.Value;
+            Emp.OrderStr = txtOrder.Text.ToString();
             dbContext.TC_PBBG_ZBHXR.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
@@ -74,16 +76,16 @@ public partial class JSDW_ApplyZBBA_HXRInfo : System.Web.UI.Page
         if (string.IsNullOrEmpty(oId))
         {
             EgovaDB db = new EgovaDB();
-            string sql = "select ISNULL(max(FOrder),0) from TC_PBBG_ZBHXR";
-            int count = db.ExecuteQuery<int>(sql).FirstOrDefault<int>() + 1;
-            sql = "select Count(*) from TC_PBBG_ZBHXR where FOrder < =" + count;
-            int num = db.ExecuteQuery<int>(sql).FirstOrDefault<int>();
-            Emp.FOrder = count;
-            Emp.OrderStr = "第" + num + "中标候选人";
+            //string sql = "select ISNULL(max(FOrder),0) from TC_PBBG_ZBHXR";
+            //int count = db.ExecuteQuery<int>(sql).FirstOrDefault<int>() + 1;
+            //sql = "select Count(*) from TC_PBBG_ZBHXR where FOrder < =" + count;
+            //int num = db.ExecuteQuery<int>(sql).FirstOrDefault<int>();
+            //Emp.FOrder = count;
+            Emp.OrderStr = txtOrder.Text;//"第" + num + "中标候选人";
         }
-        
+        Emp.OrderStr = txtOrder.Text;
         dbContext.SubmitChanges();
-        txtOrder.Text = Emp.OrderStr;
+        //txtOrder.Text = Emp.OrderStr;
         ViewState["FID"] = fId;
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
         //     MyPageTool.showMessageAjax("保存成功ii", up_Main);

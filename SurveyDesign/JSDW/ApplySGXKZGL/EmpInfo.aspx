@@ -66,6 +66,13 @@
         function alert2() {
             alert('人员不允许重复添加');
         }
+        //设置人工录入不可用
+        function setdisvisable()
+        {
+            var v = document.getElementById("rglr");           
+            document.getElementById("rglr").readOnly = true;
+        }
+
     </script>
     <base target="_self"></base>
     <style type="text/css">
@@ -141,7 +148,7 @@
                         <tt>*</tt>
                         <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'h_selEmpId');"
                             UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmp_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
-                        <input type="button" value="人工录入" class="m_btn_w4" style="margin-bottom: 4px; margin-left: 5px;" onclick="manualEntry()" />
+                        <input type="button" value="人工录入" class="m_btn_w4" style="margin-bottom: 4px; margin-left: 5px;" onclick="manualEntry()"  id="rglr"/>
                     </td>
                 </tr>
                 <tr>
@@ -208,7 +215,7 @@
                     <td class="t_r t_bg">证书编号：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_ZSBHnew" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
+                        <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                         <%--<tt>*</tt>--%>
                     </td>
                 </tr>

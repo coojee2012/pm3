@@ -34,6 +34,10 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool.ExecuteScript("btnEnable();");
+                //取值不规范，手动屏蔽
+                Button1.Visible = false;
+                Button2.Visible = false;
+                Button3.Visible = false;
             }
         }
     }
