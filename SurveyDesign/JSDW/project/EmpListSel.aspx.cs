@@ -23,8 +23,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
-        {
-            string qybm = EConvert.ToString(Request.QueryString["qybm"]);
+        {            
+            string qybm = EConvert.ToString(Request.QueryString["qybm"]).Trim();
             string prjItemid = EConvert.ToString(Request.QueryString["FPrjItemId"]);
             lblRylx.Value = EConvert.ToString(Request.QueryString["rylx"]);
             if (lblRylx.Value == "t_SGRYId")
@@ -34,15 +34,18 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             ViewState["qybm"] = qybm;
             ViewState["FPrjItemId"] = prjItemid;
             BindControl();
-            if (Request.QueryString["emptype"] != null)
-            {
-                ViewState["emptype"] = "aqjdemp";
-                showInfo();
-            }
-            else
+            if (qybm != "")
             {
                 showInfo(qybm);
             }
+            else
+            { 
+                if (Request.QueryString["emptype"] != null)
+                {
+                    ViewState["emptype"] = "aqjdemp";
+                    showInfo();
+                }
+            }           
         }
     }
     void BindControl()

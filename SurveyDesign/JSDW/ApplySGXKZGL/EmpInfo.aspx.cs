@@ -271,7 +271,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             var v1 = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);
             if (v1 == null) return;
             //t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
-            t_ZSBHnew.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
+            t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? "" : v1.ZCZSBH;
             t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
             t_ZCBH.Text = v1.ZCZSH;
             t_ZCZY.Text = v1.ZCZY;

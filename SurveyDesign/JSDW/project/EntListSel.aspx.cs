@@ -67,15 +67,37 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
         //如果是勘察、设计、监理类企业则列出企业所有的资质及等级信息，没有主项的说法
         if ((qylx == "102") || (qylx == "103") || (qylx == "104"))
         {
+            //var App = from b in db.QY_JBXX
+            //          join c in db.QY_QYZZXX
+            //          on b.QYBM equals c.QYBM
+            //          into temp
+            //          join d in db.QY_QYZSXX
+            //          on b.QYBM equals d.QYBM
+            //          into temp1
+            //          from tt in temp.DefaultIfEmpty()
+            //          from tt1 in temp1.DefaultIfEmpty()
+            //          where b.QYLXBM == qylx
+
+            //          select new
+            //          {
+            //              b.QYBM,
+            //              b.QYMC,
+            //              b.QYLXBM,
+            //              //b.RegAdrProvinceName,
+            //              RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
+            //              b.QYXXDZ,
+            //              b.FRDB,
+            //              b.LXR,
+            //              b.LXDH,
+            //              //ZSBH = tt == null ? "" : tt.ZSBH,
+            //              ZSBH = tt == null ? "" : tt.QY_QYZSXX.ZSBH,
+            //              ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+            //              AXBH = tt1 == null ? "" : tt1.ZSBH
+                  
+
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
-                      on b.QYBM equals c.QYBM
-                      into temp
-                      join d in db.QY_QYZSXX
-                      on b.QYBM equals d.QYBM
-                      into temp1
-                      from tt in temp.DefaultIfEmpty()
-                      from tt1 in temp1.DefaultIfEmpty()
+                      on b.QYBM equals c.QYBM                     
                       where b.QYLXBM == qylx
 
                       select new
@@ -90,10 +112,14 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                           b.LXR,
                           b.LXDH,
                           //ZSBH = tt == null ? "" : tt.ZSBH,
-                          ZSBH = tt == null ? "" : tt.QY_QYZSXX.ZSBH,
-                          ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                          AXBH = tt1 == null ? "" : tt1.ZSBH
+                          //ZSBH = tt == null ? "" : tt.QY_QYZSXX.ZSBH,
+                          //ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                          //AXBH = tt1 == null ? "" : tt1.ZSBH
+                          ZSBH = c.ZSBH,
+                          ZZMC = c.ZZLB+c.ZZMC+c.ZZDJ,
+                          AXBH = ""
                       };
+
             if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
             {
                 App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
@@ -102,7 +128,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
             dg_List.DataBind();
         }
-        else if (qylx == "105")//代理机构
+        else if(qylx == "105")//代理机构
         {
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZSXX
