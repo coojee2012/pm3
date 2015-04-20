@@ -36,6 +36,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             {
 
                 tool.ExecuteScript("btnEnable();");
+                //同时屏蔽添加企业的按钮
+                btnAddEnt.Visible = false;
             }
         }
         else

@@ -45,6 +45,11 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool1.ExecuteScript("btnEnable();");
+                //屏蔽新增按钮
+                btnAddEnt.Visible = false;
+                Button1.Visible = false;
+                Button2.Visible = false;
+                Button4.Visible = false;
             }
 
             ShowFile(t_JLId.Value, "JL");
@@ -182,9 +187,9 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 return;
             }
         }
-
-        dbContext.SubmitChanges();
         txtFId.Value = fId;
+        dbContext.SubmitChanges();
+       
         ShowFile(t_JLId.Value, "JL");
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     }
@@ -345,7 +350,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         {
             string selEmpId = t_SJId.Value;
             EgovaDB1 db = new EgovaDB1();
-            var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+            var v = db.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpId).FirstOrDefault();//从资质信息表中直接获取，selEmpId是资质信息中的编号
             if (v != null)
             {
                 t_JLGCS.Text = v.XM;

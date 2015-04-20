@@ -25,6 +25,13 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             BindControl();
             showInfo();
+            //如果已经备案，则不能添加及修改
+            pageTool tool = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool.ExecuteScript("btnEnable();");
+                tool.ExecuteScript("setdisvisable();");     
+            }
         }
     }
     void BindControl()
