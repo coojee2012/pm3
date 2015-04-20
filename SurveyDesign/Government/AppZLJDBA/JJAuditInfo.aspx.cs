@@ -105,10 +105,10 @@ public partial class Government_AppZLJDBA_JJAuditInfo : System.Web.UI.Page
         //当前业务类型
         string FAppId = EConvert.ToString(Session["FAppId"]);
 
-        var v = from t in dbContext.CF_Sys_PrjList
-                orderby t.FId
-                //where t.FManageType == 11221   
-                where t.FManageType == 11222   
+        var v = from t in dbContext.CF_Sys_PrjList 
+                join u in dbContext.TC_QA_Record on t.FManageType.ToString() equals u.PrjItemType.ToString()  //by zyd 根据新的码表进行修正
+                orderby t.FOrder
+                where u.FAppId == FAppId  
                 select new
                 {
                     t.FId,

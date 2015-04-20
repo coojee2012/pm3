@@ -39,9 +39,14 @@ public partial class JSDW_ApplyZLJDBA_FileList : Page
         //当前业务类型
         FAppId = EConvert.ToString(Session["FAppId"]);
 
+
+
+        //取得当前项目的类型，根据类型来定取不同的值。 必须码表配合，现在码表还没有区分出来
+
         var v = from t in dbContext.CF_Sys_PrjList
-                orderby t.FId
-                where t.FManageType == 11222
+                join u in dbContext.TC_QA_Record on t.FManageType.ToString() equals u.PrjItemType.ToString()
+                orderby t.FOrder
+                where u.FAppId ==  FAppId                  //by zyd ,还不全，还要加房建或市政的差异数据
                 select new
                 {
                     t.FId,
@@ -49,6 +54,7 @@ public partial class JSDW_ApplyZLJDBA_FileList : Page
                     FFileCount = t.FFileAmount,
                     AppFile = dbContext.TC_QA_File.Where(f => t.FId == f.FMaterialTypeId && f.FAppId == FAppId)
                 };
+
         Pager1.RecordCount = v.Count();
         rep_List.DataSource = v.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
         rep_List.DataBind();

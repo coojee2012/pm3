@@ -263,7 +263,7 @@
                 <ContentTemplate>
 
                  &nbsp;&nbsp;<asp:Button ID="btnSave" runat="server" CssClass="m_btn_w2" Text="保存" OnClick="btnSave_Click" />
-            &nbsp;&nbsp;<asp:Button id="btnAccept" runat="server" class="m_btn_w4" type="button" Text="同意接件" OnClick="btnAccept_Click" OnClientClick="disableButton();"/>
+            &nbsp;&nbsp;<asp:Button id="btnAccept" runat="server" class="m_btn_w4" type="button" Text="同意接件" OnClick="btnAccept_Click"/>
                     &nbsp;&nbsp;<asp:Button ID="bthEndApp" runat="server" Text="不予受理" class="m_btn_w6" OnClick="bthEndApp_Click"/>
             &nbsp;&nbsp;<asp:Button ID="btnBackToEnt" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w6"
                 Text="退回建设单位"  OnClick="btnBackToEnt_Click" />

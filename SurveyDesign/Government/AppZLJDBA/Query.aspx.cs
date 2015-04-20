@@ -24,6 +24,7 @@ public partial class Government_AppZLJDBA_Query : govBasePage
     RApp ra = new RApp();
     RAppBacth rap = new RAppBacth();
     ProjectDB db = new ProjectDB();
+    string sQuUrl = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -61,8 +62,9 @@ public partial class Government_AppZLJDBA_Query : govBasePage
         this.dbSystemId.DataSource = dt;
         this.dbSystemId.DataTextField = "FDesc";
         this.dbSystemId.DataValueField = "FNumber";
-        this.dbSystemId.DataBind(); 
+        this.dbSystemId.DataBind();
 
+        //查看上报资料按钮
         //ShowBatnNo();
 
 
@@ -221,9 +223,33 @@ public partial class Government_AppZLJDBA_Query : govBasePage
             box.Attributes["fSubFlowId"] = fSubFlowId;
             box.Attributes["fBaseInfoId"] = fBaseInfoId;
             box.Attributes["fMeasure"] = fMeasure;
+
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
+
+            //绑定链接
+            
+            StringBuilder sb = new StringBuilder();
+            sb.Append("FLinkId='" + FLinkId + "'");
+            EaProcessInstance ea = (EaProcessInstance)rc.GetEBase(EntityTypeEnum.EaProcessInstance, "FManageTypeId,Fsystemid", sb.ToString());
+            if (ea == null)
+            {
+                return;
+            }
+
+            string fmid = ea.FManageTypeId;
+            string frid = rc.GetSignValue(EntityTypeEnum.EsUser, "FMenuRoleId", "FBaseInfoId='" + fBaseInfoId + "'");
+            string fsid = ea.FSystemId;
+            string fQurl= rc.getMTypeQurl(ea.FManageTypeId);
+
+             
+ //           btQueryDetail.Attributes.Remove("onclick");
+
+ //           btQueryDetail.Attributes.Add("onclick", "openWinNew('" + fQurl + "?sysid=" + fsid + "&fmid=" + fmid + "&fly=1&fuid=" + Session["DFUserId"].ToString() + "&fbid=" + fBaseInfoId + "&faid=" + FLinkId + "&frid=" + frid + "')");
+
+            e.Item.Cells[2].Text = string.Format("<a href='"+fQurl+"?sysid={1}&fmid={2}&fly=1&fuid={3}&fbid={4}&faid={5}&frid={6}' target='_blank'>{0}</a>", e.Item.Cells[2].Text,fsid,fmid,Session["DFUserId"].ToString(),fBaseInfoId, FLinkId,frid);
+            }
         }
-    }
+
 
     protected void btnQuery_Click(object sender, EventArgs e)
     {
@@ -448,4 +474,5 @@ public partial class Government_AppZLJDBA_Query : govBasePage
             sab.SaveAsExc(this.JustAppInfo_List, fOutTitle, this.Response);
         }
     }
+
 }

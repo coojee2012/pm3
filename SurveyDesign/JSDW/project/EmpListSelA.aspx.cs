@@ -181,9 +181,13 @@ public partial class JSDW_project_EmpListSelA : System.Web.UI.Page
         //已锁定的项目地区
         var lockArea = db.TC_PrjItem_Info.FirstOrDefault(item => item.FId == empLock.FPrjItemId).AddressDept;
         //当前项目地区
-        var prjItemid = EConvert.ToString(ViewState["FPrjItemId"]);
-        var area = db.TC_PrjItem_Info.FirstOrDefault(item => item.FId == prjItemid).AddressDept;
 
+        var prjItemid = EConvert.ToString(ViewState["FPrjItemId"]);
+        string  area ="";
+        if (prjItemid != null && prjItemid != "")
+        {
+            area = db.TC_PrjItem_Info.FirstOrDefault(item => item.FId == prjItemid).AddressDept;
+        }
         return ((lockArea != area) || empLock.SelectedCount >= 3);
     }
 }
