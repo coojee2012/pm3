@@ -71,18 +71,19 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         t_EmpType.DataBind();
 
         //学历
-        dt = rc.getDicTbByFNumber("107");
+        dt = rc.getDicTbByFNumber("107");             
         t_ZGXL.DataSource = dt;
         t_ZGXL.DataTextField = "FName";
         t_ZGXL.DataValueField = "FNumber";
         t_ZGXL.DataBind();
-
+        t_ZGXL.SelectedValue = "107007";//设置默认值为无
         //职称
         dt = rc.getDicTbByFNumber("5080");
         t_ZC.DataSource = dt;
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
+        t_ZC.SelectedValue = "5085";//设置默认值为其他
         //证书等级
         dt = rc.getDicTbByFNumber("920");
         t_DJ.DataSource = dt;

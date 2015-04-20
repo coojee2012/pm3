@@ -108,6 +108,9 @@ namespace EgovaDAO
     partial void InsertQY_QYZSXX(QY_QYZSXX instance);
     partial void UpdateQY_QYZSXX(QY_QYZSXX instance);
     partial void DeleteQY_QYZSXX(QY_QYZSXX instance);
+    partial void InsertQY_QYZZZYXX(QY_QYZZZYXX instance);
+    partial void UpdateQY_QYZZZYXX(QY_QYZZZYXX instance);
+    partial void DeleteQY_QYZZZYXX(QY_QYZZZYXX instance);
     #endregion
 		
 		public DB1DataContext() : 
@@ -361,6 +364,14 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<QY_QYZSXX>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QY_QYZZZYXX> QY_QYZZZYXX
+		{
+			get
+			{
+				return this.GetTable<QY_QYZZZYXX>();
 			}
 		}
 	}
@@ -17028,6 +17039,188 @@ namespace EgovaDAO
 		{
 			this.SendPropertyChanging();
 			entity.QY_QYZSXX = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QY_QYZZZYXX")]
+	public partial class QY_QYZZZYXX : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private decimal _ID;
+		
+		private string _FZZID;
+		
+		private string _HY;
+		
+		private string _HYName;
+		
+		private string _DJ;
+		
+		private string _DJName;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(decimal value);
+    partial void OnIDChanged();
+    partial void OnFZZIDChanging(string value);
+    partial void OnFZZIDChanged();
+    partial void OnHYChanging(string value);
+    partial void OnHYChanged();
+    partial void OnHYNameChanging(string value);
+    partial void OnHYNameChanged();
+    partial void OnDJChanging(string value);
+    partial void OnDJChanged();
+    partial void OnDJNameChanging(string value);
+    partial void OnDJNameChanged();
+    #endregion
+		
+		public QY_QYZZZYXX()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Decimal(18,0) NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public decimal ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZZID", DbType="NVarChar(50)")]
+		public string FZZID
+		{
+			get
+			{
+				return this._FZZID;
+			}
+			set
+			{
+				if ((this._FZZID != value))
+				{
+					this.OnFZZIDChanging(value);
+					this.SendPropertyChanging();
+					this._FZZID = value;
+					this.SendPropertyChanged("FZZID");
+					this.OnFZZIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HY", DbType="NVarChar(50)")]
+		public string HY
+		{
+			get
+			{
+				return this._HY;
+			}
+			set
+			{
+				if ((this._HY != value))
+				{
+					this.OnHYChanging(value);
+					this.SendPropertyChanging();
+					this._HY = value;
+					this.SendPropertyChanged("HY");
+					this.OnHYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HYName", DbType="NVarChar(50)")]
+		public string HYName
+		{
+			get
+			{
+				return this._HYName;
+			}
+			set
+			{
+				if ((this._HYName != value))
+				{
+					this.OnHYNameChanging(value);
+					this.SendPropertyChanging();
+					this._HYName = value;
+					this.SendPropertyChanged("HYName");
+					this.OnHYNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DJ", DbType="NVarChar(50)")]
+		public string DJ
+		{
+			get
+			{
+				return this._DJ;
+			}
+			set
+			{
+				if ((this._DJ != value))
+				{
+					this.OnDJChanging(value);
+					this.SendPropertyChanging();
+					this._DJ = value;
+					this.SendPropertyChanged("DJ");
+					this.OnDJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DJName", DbType="NVarChar(50)")]
+		public string DJName
+		{
+			get
+			{
+				return this._DJName;
+			}
+			set
+			{
+				if ((this._DJName != value))
+				{
+					this.OnDJNameChanging(value);
+					this.SendPropertyChanging();
+					this._DJName = value;
+					this.SendPropertyChanged("DJName");
+					this.OnDJNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

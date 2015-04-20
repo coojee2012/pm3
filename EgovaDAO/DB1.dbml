@@ -745,4 +745,14 @@
       <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_JBXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_JBXX" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.QY_QYZZZYXX" Member="QY_QYZZZYXX">
+    <Type Name="QY_QYZZZYXX">
+      <Column Name="ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FZZID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HYName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DJ" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DJName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
