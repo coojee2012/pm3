@@ -50,7 +50,7 @@
                 alert('请先保存上方信息！');
                 return;
             }
-            showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
+            showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);         
             //  alert('dd')
         }
         function hideTr1() {
@@ -97,6 +97,11 @@
         }
         function selEnt(obj, tagId) {
             var url = "../project/EntListSel.aspx?e=1";
+            //如果是选择代理机构则需要加类型
+            if (tagId.value = 't_SGId')
+            {
+                url += "&qylx=105";
+            }
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
@@ -104,7 +109,8 @@
             }
         }
         function selEmp(obj, tagId) {
-            var qybm = document.getElementById("t_JLId").value;
+            //var qybm = document.getElementById("t_JLId").value;
+            var qybm = document.getElementById("t_SGId").value;            
             var url = "../project/EmpListSel.aspx";
             if (qybm != null && qybm != '') {
                 url += "?qybm=" + qybm;
@@ -357,6 +363,7 @@
                 <td colspan="1" style="width: 29%;">
                     <asp:TextBox ID="t_ZBDLDWMC" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                     <input type="hidden" runat="server" id="t_SGId" value="" />
+                    <input type="hidden" runat="server" id="t_SGIdold" value="" />
                     <asp:Button ID="Button1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_SGId');"
                         UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSG_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
                 </td>
@@ -397,7 +404,7 @@
                 <td>材料信息
                 </td>
                 <td class="t_r">
-                    <input type="button" id="Button4" cs="cs1" runat="server" value="新增" class="m_btn_w2" onclick="addPrjItemJL();" />
+                    <input type="button" id="Button4" cs="cs1" runat="server"    value="新增" class="m_btn_w2" onclick="addPrjItemJL();" />
                     <asp:Button ID="Button5" cs="cs1" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btnDel_ClickJL" />
                     <asp:Button ID="Button6" cs="cs1" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_ClickJL" />

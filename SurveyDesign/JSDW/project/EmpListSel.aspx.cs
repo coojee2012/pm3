@@ -207,8 +207,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                 pageTool tool = new pageTool(this.Page);
                 HiddenField hfEmpId = e.Item.FindControl("RYBH") as HiddenField;
                 string fid = hfEmpId.Value;             
-                if (ViewState["emptype"] != null)
-                {
+                //if (ViewState["emptype"] != null)
+                //{
                     HiddenField hfzsyxq = e.Item.FindControl("zsyxq") as HiddenField;
                     if (DateTime.Now > Convert.ToDateTime(hfzsyxq.Value))//如果建造师的有效期已经过了当前时间，则不能选择
                     {
@@ -220,7 +220,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                         this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "人员信息", "<script>alert('该人员被选择了，不能再次选择该人员！')</script>)");
                         return;
                     }
-                }                
+                //}                
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
             }
         }
