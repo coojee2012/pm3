@@ -288,6 +288,20 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
        pagerEnt.RecordCount = v.Count();
        dgEnt.DataSource = v;
        dgEnt.DataBind();
+
+       int add = 0;
+       int less = 0;
+       foreach (var i in v) {
+           if (i.BGQK == "增加") {
+               add += 1;
+           }
+           else if (i.BGQK == "退出")
+           {
+               less += 1;
+           }
+       }
+       this.lessQy.Text = less.ToString();
+       this.addQy.Text = add.ToString();
    }
    //人员变更信息
    private void showBGEmp()
@@ -297,6 +311,23 @@ public partial class Government_AppSGXKZGL_BGBLCSAuditInfo : System.Web.UI.Page
        pagerEmp.RecordCount = v.Count();
        dgEmp.DataSource = v;
        dgEmp.DataBind();
+
+       int add = 0;
+       int less = 0;
+       foreach (var i in v)
+       {
+           
+           if (i.BGQK == "增加")
+           {
+               add += 1;
+           }
+           else if (i.BGQK == "退出")
+           {
+               less += 1;
+           }
+       }
+       this.lessRy.Text = less.ToString();
+       this.addRy.Text = add.ToString();
    }
    protected void dgPrj_ItemDataBound(object sender, DataGridItemEventArgs e)
    {

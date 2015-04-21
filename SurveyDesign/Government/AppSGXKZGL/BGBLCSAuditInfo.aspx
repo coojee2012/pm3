@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>延期办理初审审核</title>
+    <title>变更办理初审审核</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
     <base target="_self"></base>
@@ -327,7 +327,8 @@
         <div style="width: 95%; margin: 0px auto;">  
          <table width="100%" runat="server" align="center" class="m_title" id="table2">
             <tr>
-                <th colspan="4">企业变更
+                <th colspan="4">企业变更(增加<asp:label runat="server" id="addQy"></asp:label> 个，退出<asp:label runat="server" id="lessQy"></asp:label>个)
+                    
                 </th>
             </tr>
         </table>
@@ -386,7 +387,7 @@
         <div style="width: 95%; margin: 0px auto;">  
          <table width="100%" runat="server" align="center" class="m_title" id="table3">
             <tr>
-                <th colspan="4">人员变更
+                <th colspan="4">人员变更(增加<asp:label runat="server" id="addRy"></asp:label> 个，退出<asp:label runat="server" id="lessRy"></asp:label>个)
                 </th>
             </tr>
         </table>
