@@ -102,6 +102,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
 
                       select new
                       {
+                          c.QYZZID,//企业资质id
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
@@ -137,6 +138,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
 
                       select new
                       {
+                          QYZZID="",//企业资质编号为空
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
@@ -170,6 +172,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
 
                       select new
                       {
+                          QYZZID = "",//企业资质编号为空
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
@@ -206,6 +209,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
 
                       select new
                       {
+                          tt.QYZZID,//企业资质id
                           b.QYBM,
                           b.QYMC,
                           b.QYLXBM,
@@ -245,6 +249,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                   
                   select new
                   {
+                      tt.QYZZID,////企业资质编号为空
                       b.QYBM,
                       b.QYMC,
                       b.QYLXBM,
@@ -314,7 +319,25 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                 //hxmjl.ID = "q_XMJL";
                 //hxmjl.Value = "";
                 pageTool tool = new pageTool(this.Page);
-                tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                //如果是监理企业，返回的是QY_QYZZXX的主键QYZZID,以解决选择同一个企业不同的资质选择的问题。  modify by psq 20150421
+                if (ViewState["qylx"] != null)
+                {
+                    if (ViewState["qylx"].ToString() == "104")
+                    {
+                        HiddenField hfzzxxid = e.Item.FindControl("hfqyzzid") as HiddenField;
+                        string szzxxid = hfzzxxid.Value;
+                        tool.ExecuteScript("window.returnValue='" + szzxxid + "';window.close();");
+                    }
+                    else
+                    {
+                        tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                    }
+                }
+                else
+                {
+                    tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                }
+                
                // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
             }
         }

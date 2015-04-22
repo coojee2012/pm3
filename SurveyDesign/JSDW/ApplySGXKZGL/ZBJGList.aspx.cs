@@ -26,6 +26,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 pageTool tool = new pageTool(this.Page, "t_");
                 tool.fillPageControl(sp);
                 txtFId.Value = Request.QueryString["fid"];
+                ViewState["fid"] = Request.QueryString["fid"];
                 if (!string.IsNullOrEmpty(sp.JLZBLX) && (sp.JLZBLX == "11220801" || sp.JLZBLX == "11220802"))
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
@@ -52,7 +53,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 Button4.Visible = false;
             }
 
-            ShowFile(t_JLId.Value, "JL");
+            //ShowFile(t_JLId.Value, "JL");
         }
     }
 
@@ -104,7 +105,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         t_ConstrScale.Text = qa.ConstrScale;
         TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
         t_ProjectNo.Text = p.ProjectNo;
-
+        //加载附件列表
+        ShowFile(t_JLId.Value, "JL");
 
         //pageTool tool = new pageTool(this.Page, "t_");
         //tool.fillPageControl(sp);
@@ -152,7 +154,12 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         var isNew = true;
-        string fId = txtFId.Value;
+        //string fId = txtFId.Value;
+        string fId = "";
+        if (ViewState["fid"] != null)
+        {
+            fId = ViewState["fid"].ToString();
+        }
         TC_SGXKZ_ZBJG qa = new TC_SGXKZ_ZBJG();
         pageTool tool = new pageTool(this.Page);
         if (!string.IsNullOrEmpty(fId))
@@ -188,7 +195,9 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             }
         }
         txtFId.Value = fId;
+        ViewState["fid"] = fId;
         dbContext.SubmitChanges();
+      
        
         ShowFile(t_JLId.Value, "JL");
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
@@ -336,7 +345,14 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         }
         else if (type == "SG")
         {
-            string selEntId = t_JLId.Value;
+            //string selEntId = t_JLId.Value;
+            
+            string selEntId = t_SGId.Value;
+            if (t_SGIdold.Value != t_SGId.Value)
+            {
+                t_JLGCS.Text = "";//清空对应人员信息
+                t_JLGCSZJHM.Text = "";
+            }
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
@@ -344,7 +360,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 t_ZBDLDWMC.Text = v.QYMC;
                 t_ZBDLDWZZJGDM.Text = v.JGDM;
             }
-
+            t_SGIdold.Value = t_SGId.Value;
+            
         }
         else if (type == "SJ")
         {

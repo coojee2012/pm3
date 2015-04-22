@@ -21,6 +21,7 @@ using EgovaDAO;
 using EgovaBLL;
 using ProjectBLL;
 using Tools;
+using System.Data.SqlClient;
 
 public partial class Government_AppSGXKZGL_YQBLJJAuditInfo : System.Web.UI.Page
 {

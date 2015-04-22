@@ -231,30 +231,59 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
     {
         string selEntId = h_selEntId.Value;
         EgovaDB1 db = new EgovaDB1();
-        var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-        if (v != null)
-        {
-            t_QYID.Value = v.QYBM;
-            t_FName.Text = v.QYMC;
-            t_FAddress.Text = v.QYXXDZ;
-            t_FLegalPerson.Text = v.FRDB;
-            t_FLinkMan.Text = v.LXR;
-            t_FMobile.Text = v.FRDBSJH;
-            t_FTel.Text = v.LXDH;
-            t_FOrgCode.Text = v.JGDM;
-        }
-       
-        var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 1).FirstOrDefault();
-        if (v1 != null)
-            t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
 
-        //获取增项资质
-        var _v2 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId&&t.SFZX==0);
-        var _oZXZZ = new StringBuilder();
-        foreach (var i in _v2) {
-            _oZXZZ.Append(i.ZZLB + i.ZZMC + i.ZZDJ + "\r\n");
+        //如果是监理选择单位返回的是企业资质的主键，通过主键再找到企业编号  modify by psq 20150421
+        if (t_FEntType.Value == "7")
+        {
+            var vqyzz = db.QY_QYZZXX.Where(t => t.QYZZID == selEntId).FirstOrDefault();
+            if (vqyzz != null)
+            {
+                //绑定企业基本信息
+                var v2 = db.QY_JBXX.Where(t => t.QYBM == vqyzz.QYBM).FirstOrDefault();
+                if (v2 != null)
+                {
+                    t_QYID.Value = v2.QYBM;
+                    t_FName.Text = v2.QYMC;
+                    t_FAddress.Text = v2.QYXXDZ;
+                    t_FLegalPerson.Text = v2.FRDB;
+                    t_FLinkMan.Text = v2.LXR;
+                    t_FMobile.Text = v2.FRDBSJH;
+                    t_FTel.Text = v2.LXDH;
+                    t_FOrgCode.Text = v2.JGDM;
+                }
+                //绑定企业资质信息
+                t_mZXZZ.Text = vqyzz.ZZLB + vqyzz.ZZMC + vqyzz.ZZDJ;
+            }
         }
-        t_oZXZZ.Text = _oZXZZ.ToString();
+        else
+        {
+
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v != null)
+            {
+                t_QYID.Value = v.QYBM;
+                t_FName.Text = v.QYMC;
+                t_FAddress.Text = v.QYXXDZ;
+                t_FLegalPerson.Text = v.FRDB;
+                t_FLinkMan.Text = v.LXR;
+                t_FMobile.Text = v.FRDBSJH;
+                t_FTel.Text = v.LXDH;
+                t_FOrgCode.Text = v.JGDM;
+            }
+
+            var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 1).FirstOrDefault();
+            if (v1 != null)
+                t_mZXZZ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ;
+
+            //获取增项资质
+            var _v2 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 0);
+            var _oZXZZ = new StringBuilder();
+            foreach (var i in _v2)
+            {
+                _oZXZZ.Append(i.ZZLB + i.ZZMC + i.ZZDJ + "\r\n");
+            }
+            t_oZXZZ.Text = _oZXZZ.ToString();
+        }
 
         if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
         {

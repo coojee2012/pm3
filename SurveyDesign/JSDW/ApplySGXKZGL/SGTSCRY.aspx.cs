@@ -117,7 +117,8 @@ public partial class JSDW_ApplySGXKZGL_SGTSCRY : System.Web.UI.Page
     {
         string selEmpId = t_RYId.Value;
         EgovaDB1 db = new EgovaDB1();
-        var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+        //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
+        var v =db.RY_RYZSXX.Where(t=> t.RYZSXXID == selEmpId).FirstOrDefault();        
         if (v != null)
         {
             var v1 = db.QY_JBXX.Where(t => t.QYBM == v.QYBM).FirstOrDefault();

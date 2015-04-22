@@ -79,7 +79,11 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
     private void saveInfo()
     {
         var isNew = true;
-        string fId = hf_FId.Value;
+        string fId = "";//= hf_FId.Value;
+        if (ViewState["FID"] != null)
+        {
+            fId = ViewState["FID"].ToString();
+        }
         TC_SGXKZ_HTBA Emp = new TC_SGXKZ_HTBA();
         if (!string.IsNullOrEmpty(fId))
         {
@@ -107,6 +111,7 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
         }
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
+        ViewState["FID"] = fId;
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     }
     //保存按钮

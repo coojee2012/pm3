@@ -119,6 +119,7 @@
                         <td>
                             <asp:LinkButton ID="btnSelect" CommandName="Sel" runat="server">选择</asp:LinkButton>
                              <asp:HiddenField ID="hfFBaseInfoId" Value='<%# Eval("QYBM") %>' runat="server" />
+                            <asp:HiddenField ID="hfqyzzid" Value='<%# Eval("QYZZID") %>' runat="server" />
                         </td>
                     </tr>
         </ItemTemplate>
