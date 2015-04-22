@@ -39,6 +39,7 @@
                 alert('请先保存上方的施工图审查信息！');
                 return;
             }
+            alert('fid=' + fid + ',fPrjItemId= ' + fPrjItemId);
             showAddWindow('SGTSCRY.aspx?fSGTSCId=' + fid + '&&fPrjItemId=' + fPrjItemId, 1000, 700);
             //  alert('dd')
         }
@@ -305,15 +306,27 @@
                     </asp:TemplateColumn>
                     <asp:BoundColumn HeaderText="序号">
                         <HeaderStyle Width="30px" />
-                    </asp:BoundColumn>
-                    <asp:BoundColumn HeaderText="人员姓名" DataField="RYXM">
-                        <ItemStyle Wrap="False" HorizontalAlign="Left" />
-                    </asp:BoundColumn>
+                    </asp:BoundColumn>                   
                     <asp:BoundColumn HeaderText="所属单位名称" DataField="DWMC">
                         <ItemStyle Wrap="False" />
                     </asp:BoundColumn>
                     <asp:BoundColumn HeaderText="所属单位组织机构代码" DataField="DWZZJGDM">
                         <ItemStyle Wrap="False" />
+                    </asp:BoundColumn>
+                     <asp:BoundColumn HeaderText="人员姓名" DataField="RYXM">
+                        <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                    </asp:BoundColumn>
+                     <asp:BoundColumn HeaderText="证件类型" DataField="ZJLX">
+                        <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                    </asp:BoundColumn>
+                     <asp:BoundColumn HeaderText="证件号码" DataField="ZJHM">
+                        <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                    </asp:BoundColumn>
+                    <asp:BoundColumn HeaderText="注册类型等级" DataField="ZCLXJDJ">
+                        <ItemStyle Wrap="False" HorizontalAlign="Left" />
+                    </asp:BoundColumn>
+                    <asp:BoundColumn HeaderText="承担角色" DataField="CDJS">
+                        <ItemStyle Wrap="False" HorizontalAlign="Left" />
                     </asp:BoundColumn>
                     <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
                 </Columns>
