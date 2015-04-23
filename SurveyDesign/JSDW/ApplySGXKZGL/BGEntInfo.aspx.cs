@@ -30,6 +30,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool.ExecuteScript("btnEnable();");
+                //屏蔽添加按钮
+                btnAddEnt.Visible = false;
             }
         }
     }
