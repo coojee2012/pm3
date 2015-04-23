@@ -31,7 +31,10 @@
                 alert('请先保存上方的企业信息！');
                 return;
             }
-            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +
+            //entid为什么传的不是企业编号，没看懂啥意思，此问题导致查询不出人员数据，所以使用qyid替换，modify by psq 20150423
+            //showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +
+            //     '&FPrjItemId=' + FPrjItemId, 1000, 600);
+            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + qyid +
                  '&FPrjItemId=' + FPrjItemId, 1000, 600);
         }
         function showTr1() {
@@ -91,8 +94,8 @@
             filter: alpha(opacity=50);
         }
 
-        .auto-style1 {
-            height: 23px;
+        .auto-style2 {
+            height: 50px;
         }
     </style>
 </head>
@@ -207,9 +210,9 @@
                     </tr>
 
                     <tr name="tr1">
-                        <td class="t_r t_bg">增项资质：
+                        <td class="auto-style2">增项资质：
                         </td>
-                        <td colspan="4">
+                        <td colspan="4" class="auto-style2">
 
                             <asp:TextBox ID="t_oZXZZ" runat="server" CssClass="m_txt"
                                 Width="95%" Height="40px" MaxLength="20" TextMode="MultiLine"></asp:TextBox>
