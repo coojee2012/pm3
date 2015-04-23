@@ -98,7 +98,7 @@
                 <td>
                     <asp:TextBox ID="b_JSDW" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
-                <td>建设单位：</td>
+                <td class="t_r t_bg">建设单位：</td>
                 <td>
                     <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_JSDW" Value="" />
@@ -129,7 +129,7 @@
                 <td >
                     <asp:DropDownList ID="b_JSDWXZ" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:DropDownList>
                 </td>
-                <td>所有制性质：</td>
+                <td class="t_r t_bg">所有制性质：</td>
                 <td>
                     <asp:DropDownList ID="t_JSDWXZ" runat="server" CssClass="m_txt" Width="200px" ></asp:DropDownList>
                     <asp:HiddenField  runat="server" ID="hf_JSDWXZ" Value="" />
@@ -168,11 +168,11 @@
                 </td>
             </tr> 
             <tr>
-                <td>建设单位地址：</td>
+                <td class="t_r t_bg">建设单位地址：</td>
                 <td>
                     <asp:TextBox ID="b_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     </td>
-                <td>建设单位地址：</td>
+                <td class="t_r t_bg">建设单位地址：</td>
                 <td>
                     <asp:TextBox ID="t_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_JSDWDZ" Value="" />
@@ -180,12 +180,12 @@
                     </td>
             </tr> 
             <tr>
-                <td>法人电话：
+                <td class="t_r t_bg">法人电话：
                 </td>
                 <td>
                     <asp:TextBox ID="b_FRDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
-                <td>法人电话：
+                <td class="t_r t_bg">法人电话：
                 </td>
                 <td>
                     <asp:TextBox ID="t_FRDH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
@@ -194,30 +194,24 @@
                 </td>
             </tr> 
             <tr>
-                <td>联系电话：</td>
+                <td class="t_r t_bg">联系电话：</td>
                 <td>
                     <asp:TextBox ID="b_LXDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
-                <td>联系电话：</td>
+                <td class="t_r t_bg">联系电话：</td>
                 <td>
                     <asp:TextBox ID="t_LXDH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_LXDH" Value="" />
                     <asp:HiddenField  runat="server" ID="n_LXDH" Value="联系电话" />
                 </td>
-            </tr> 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>             
+            </tr>              
         </table>
         <table class="m_table" width="98%" align="center">
             <tr>
                 <td class="t_l t_bg" colspan="2">
                     工程基本信息变更前
                 </td>
-                <td colspan="2">
+                <td class="t_l t_bg" colspan="2">
                     工程基本信息变更后 
                 </td>
              </tr>
@@ -228,10 +222,10 @@
                 <td style="width:29%;">
                     <asp:TextBox ID="b_ProjectName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
-                <td class="t_r t_bg">
+                <td class="t_r t_bg" style="width:17.8%;">
                     项目名称：
                 </td>
-                <td >
+                <td style="width:42%;">
                     <asp:TextBox ID="t_ProjectName" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_ProjectName" Value="" />
                     <asp:HiddenField  runat="server" ID="n_ProjectName" Value="项目名称" />
@@ -295,7 +289,7 @@
                 <td >
                     <asp:TextBox ID="b_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="false"></asp:TextBox>币种：<asp:DropDownList ID="b_Currency" runat="server" CssClass="m_txt" Width="103px" Enabled="false"></asp:DropDownList>
                 </td>
-                <td>合同价格（万元）：</td>
+                <td class="t_r t_bg">合同价格（万元）：</td>
                 <td>
                     <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" ></asp:TextBox>币种：<asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px"></asp:DropDownList>
                     <asp:HiddenField  runat="server" ID="hf_Price" Value="" />
@@ -322,11 +316,11 @@
                 </td>
             </tr>
             <tr>
-                <td>工程名称：</td>
+                <td class="t_r t_bg">工程名称：</td>
                 <td>
                     <asp:TextBox ID="b_PrjItemName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
-                <td>工程名称：
+                <td class="t_r t_bg">工程名称：
                 </td>
                 <td>
                     <asp:TextBox ID="t_PrjItemName" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
@@ -335,12 +329,12 @@
                 </td>
             </tr>       
               <tr>
-                <td>建设规模：
+                <td class="t_r t_bg">建设规模：
                 </td>
                 <td>
                     <asp:TextBox ID="b_ConstrScale"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                   </td>
-                <td>建设规模：</td>
+                <td class="t_r t_bg">建设规模：</td>
                 <td>
                     <asp:TextBox  ID="t_ConstrScale"  runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <asp:HiddenField  runat="server" ID="hf_ConstrScale" Value="" />
@@ -348,12 +342,12 @@
                   </td>
             </tr>       
               <tr>
-                <td>结构类型：</td>
+                <td class="t_r t_bg">结构类型：</td>
                 <td>
                     <asp:DropDownList ID="b_ConstrType" runat="server" CssClass="m_txt" Width="200px" Enabled="false">
                     </asp:DropDownList>
                   </td>
-                <td>结构类型：
+                <td class="t_r t_bg">结构类型：
                 </td>
                 <td>
                     <asp:DropDownList ID="t_ConstrType" runat="server" CssClass="m_txt" Width="200px">
@@ -363,11 +357,11 @@
                   </td>
             </tr>       
               <tr>
-                <td>合同竣工日期：</td>
+                <td class="t_r t_bg">合同竣工日期：</td>
                 <td>
                     <asp:TextBox ID="b_EndDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                   </td>
-                <td>合同竣工日期：
+                <td class="t_r t_bg">合同竣工日期：
                 </td>
                 <td>
                     <asp:TextBox ID="t_EndDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd'})" CssClass="m_txt" Width="200px" MaxLength="40"></asp:TextBox>
@@ -389,10 +383,10 @@
                 <td style="width:29%;">
                     <asp:TextBox ID="t_BGSQR" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                 </td>
-                <td class="t_r t_bg">
+                <td class="t_r t_bg" style="width:17.8%;">
                     变更申请时间：
                 </td>
-                <td >
+                <td  style="width:42%;">
                     <asp:TextBox ID="t_BGTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
             </tr>
