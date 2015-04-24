@@ -22,8 +22,10 @@
 
 
         });
-        function selEmp(obj,tagId) {
+        function selEmp(obj, tagId) {
+            $("input[id='t_IsManual']").val(0);
             var qybm = document.getElementById("t_FEntId").value;
+            //alert(qybm);
             //var url = "../project/EmpListSel.aspx";
             var url = "../project/EmpListSelA.aspx";
             url += "?qybm=" + qybm;
@@ -33,6 +35,16 @@
                 __doPostBack(obj.id, '');
             }
         }
+
+        //人工录入
+        function manualEntry() {
+            $("input[id='t_IsManual']").val(1);
+            $("input[id='t_FHumanName']").removeAttr("readonly");
+            $("input[id='t_FIdCard']").removeAttr("readonly");
+            $("input[id='t_ZSBH']").removeAttr("readonly");
+            $("input[id='t_ZCBH']").removeAttr("readonly");
+        }
+
         function checkInfo() {
             return AutoCheckInfo();
         }
@@ -54,6 +66,7 @@
         <input type="hidden"  runat="server" ID="t_FEntId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
+        <input type="hidden" runat="server" id="t_IsManual" value="" />
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up_Main" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv" style="display:none;"> 
@@ -104,6 +117,8 @@
                     <tt>*</tt>
                                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'h_selEmpId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmp_Click" Style="margin-bottom: 4px;margin-left:5px;" />
+
+                    <input type="button" value="人工录入" class="m_btn_w4" style="margin-bottom: 4px; margin-left: 5px;" onclick="manualEntry()"  id="rglr"/>
                 </td>
             </tr>
             <tr>
