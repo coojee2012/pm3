@@ -188,8 +188,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         if (entInfo != null)
         {
             var v = from t in dbContext.TC_PrjItem_Emp
-                    //where t.FLinkId == entInfo.FId
-                    where t.FLinkId == entInfo.QYID
+                    where t.FAppId == entInfo.FAppId
                     orderby t.FId
                     select new
                     {
