@@ -27,6 +27,7 @@
             var id = document.getElementById("txtFId").value;
             var qyid = document.getElementById("h_selEntId").value;
             var FPrjItemId = document.getElementById("h_ProjectItemId").value;
+            var FEntType = document.getElementById("t_FEntType").value;
             if (id == null || id == '') {
                 alert('请先保存上方的企业信息！');
                 return;
@@ -35,7 +36,11 @@
             //showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +
             //     '&FPrjItemId=' + FPrjItemId, 1000, 600);
             showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + qyid +
-                 '&FPrjItemId=' + FPrjItemId, 1000, 600);
+                 '&FPrjItemId=' + FPrjItemId + '&FEntType=' + FEntType, 1000, 600);
+
+
+       
+
         }
         function showTr1() {
             $("td[name=td1]").show();

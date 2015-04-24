@@ -17,8 +17,14 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            txtCss();
-
+         
+     
+                txtCss();
+                $("input[id='t_FHumanName']").attr("readonly", "readonly");
+                $("input[id='t_FIdCard']").attr("readonly", "readonly");
+                $("input[id='t_ZSBH']").attr("readonly", "readonly");
+                $("input[id='t_ZCBH']").attr("readonly", "readonly");
+         
 
 
         });
@@ -38,11 +44,17 @@
 
         //人工录入
         function manualEntry() {
-            $("input[id='t_IsManual']").val(1);
-            $("input[id='t_FHumanName']").removeAttr("readonly");
-            $("input[id='t_FIdCard']").removeAttr("readonly");
-            $("input[id='t_ZSBH']").removeAttr("readonly");
-            $("input[id='t_ZCBH']").removeAttr("readonly");
+            try{
+                $("input[id='t_IsManual']").val(1);
+                $("input[id='t_FHumanName']").removeAttr("readonly");
+                $("input[id='t_FIdCard']").removeAttr("readonly");
+                $("input[id='t_ZSBH']").removeAttr("readonly");
+                $("input[id='t_ZCBH']").removeAttr("readonly");
+            
+            } catch (ex) {
+                alert(ex.message);
+            }
+           
         }
 
         function checkInfo() {
@@ -61,7 +73,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden"  runat="server" ID="t_FAppId" value="" />
         <input type="hidden"  runat="server" ID="t_qyId" value="" />
-        
+        <input type="hidden"  runat="server" ID="t_FEntType" value="0" />
         <input type="hidden"  runat="server" ID="h_selEmpId" value="" />
         <input type="hidden"  runat="server" ID="t_FEntId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
@@ -126,14 +138,14 @@
                     姓名：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     身份证号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FIdCard" onblur="CheckSFZHM(this);" runat="server" CssClass="m_txt" Width="200px"  Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_FIdCard" onblur="CheckSFZHM(this);" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -195,7 +207,7 @@
                     证书编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -210,7 +222,7 @@
                     注册编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZCBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_ZCBH" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
                 </td>
             </tr>          
             <tr>

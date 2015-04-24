@@ -26,7 +26,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             tool = new pageTool(this.Page);
             showTitle();
             showInfo();
-            bindEmpList();
+           // bindEmpList();
+            showEmpList();
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool.ExecuteScript("btnEnable();");
@@ -164,6 +165,40 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         }
 
     }
+
+    private void showEmpList()
+    {
+        if (t_FEntType.Value == "2" || t_FEntType.Value == "3" || t_FEntType.Value == "4")
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
+        }
+        EgovaDB dbContext = new EgovaDB();
+        var v = from t in dbContext.TC_PrjItem_Emp
+                where t.FAppId == t_FAppId.Value && t.FEntId == h_selEntId.Value && t.FEntType == EConvert.ToInt(t_FEntType.Value)
+                orderby t.FId
+                select new
+                {
+                    t.FHumanName,
+                    t.ZCZY,
+                    EmpTypeStr = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(t.EmpType)).Select(d => d.FName).FirstOrDefault(),
+                    t.ZCRQ,
+                    t.ZCBH,
+                    t.FId,
+                    t.FAppId,
+                    t.FEntId,
+                    t.FPrjItemId,
+                    t.FPrjId,
+                    t.FEntType
+                };
+
+        dg_List.DataSource = v;
+        dg_List.DataBind();
+    }
+
     private void bindEmpList()
     {
         EgovaDB dbContext = new EgovaDB();
