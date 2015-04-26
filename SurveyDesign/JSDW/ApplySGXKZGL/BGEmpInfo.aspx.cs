@@ -14,6 +14,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    RCenter rc2 = new RCenter("Standard_Dic");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -50,6 +51,13 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
+        //证书等级
+        dt = rc2.GetTable("select *  from  (select FName,FNumber  from Standard_Dic.dbo.[CF_Dic_Person]  where  FType = 'zcrylx' union select '无' FName,'-1' FNumber) a order by  a.FNumber");
+        t_DJ.DataSource = dt;
+        t_DJ.DataTextField = "FName";
+        t_DJ.DataValueField = "FNumber";
+        t_DJ.DataBind();
+        t_DJ.Items.FindByValue("-1").Selected = true;
 
     }
     private string getEmpType(string id)
@@ -213,7 +221,11 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             if (v1 != null)
             {
                 t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? v1.ZCZSH : v1.ZCZSBH;
-                t_DJ.Text = v1.ZSJB;
+                //t_DJ.Text = v1.ZSJB;
+                if (t_DJ.Items.Contains(new ListItem(v1.ZSLX.ToString())))
+                {
+                    t_DJ.SelectedValue = v1.ZSLX;
+                }
                 t_ZCBH.Text = v1.ZCZSH;
                 t_ZCZY.Text = v1.ZCZY;
                 t_ZCRQ.Text = v1.FZSJ.ToString();

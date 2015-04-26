@@ -244,6 +244,10 @@
                     <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt" Width="195px"  TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
                     <tt>*</tt>
                 </td>--%>
+                 <td>
+                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt"  Width ="95%"  TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
+                    <tt>*</tt>
+                </td>
                 <td class="t_r t_bg">
                     组织机构代码：
                 </td>
@@ -256,10 +260,7 @@
                 <td name="td2" class="t_r t_bg">
                     资质项：
                 </td>
-                <td  colspan ="3">
-                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt"  Width ="95%"  TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
-                    <tt>*</tt>
-                </td>
+               
             </tr>
             
             <tr name="tr1">
@@ -268,7 +269,7 @@
                 </td>
                 <td colspan="4">
                     
-                    <asp:TextBox ID="t_oZXZZ" runat="server" CssClass="m_txt" 
+                    <asp:TextBox ID="t_oZXZZ" runat="server" CssClass="m_txt"  Height ="80px"
                         Width="95%"  TextMode="MultiLine"></asp:TextBox>
                     
                 </td>

@@ -164,10 +164,11 @@
                     </td>
                     <td>
                         <%# Eval("ZSYXQJSSJStr")%>
+                        <asp:HiddenField ID="zsyxq" Value='<%# Eval("ZSYXQJSSJStr") %>' runat="server" />
                     </td>
                     <td>
                         <%# Eval("FZSJStr")%>
-                    </td>
+                    </td>                    
                     <td>
                         <asp:LinkButton ID="btnSelect" CommandName="Sel" runat="server">选择</asp:LinkButton>
                         <asp:HiddenField ID="hfEmpId" Value='<%# Eval("RYBH") %>' runat="server" />

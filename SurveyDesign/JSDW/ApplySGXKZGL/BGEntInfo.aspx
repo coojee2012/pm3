@@ -23,6 +23,10 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
+        //保存单位后，刷新人员信息
+        function reloadEmpList() {
+            $("#btnReload").click();
+        }
         function addEmp() {
             var id = document.getElementById("txtFId").value;
             var qyid = document.getElementById("h_selEntId").value;
@@ -316,6 +320,7 @@
             <input type="hidden" runat="server" id="h_OldQYID" />
             <input type="hidden" runat="server" id="h_OldQYName" />
             <input type="hidden" runat="server" id="h_ProjectItemId" />
+           
 
         </div>
 
