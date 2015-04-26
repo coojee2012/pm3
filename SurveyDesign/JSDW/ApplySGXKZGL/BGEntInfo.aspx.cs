@@ -269,6 +269,10 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             entInfo.FTime = DateTime.Now;
             entInfo.FCreateTime = DateTime.Now;
             dbContext.TC_PrjItem_Ent.InsertOnSubmit(entInfo);
+            //需要判断当前施工总承包企业是否是上一个业务的施工总承包企业，如果是，则不添加记录,如果不是则添加记录。
+
+
+
 
             var entity = new TC_SGXKZ_QYBGJG();
             entity.FId = Guid.NewGuid().ToString();
