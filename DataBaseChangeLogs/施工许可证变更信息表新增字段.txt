@@ -1,0 +1,3 @@
+ALTER TABLE TC_SGXKZ_BGPrjInfo ADD FLinkId varchar(36) NULL
+--说明：首次变更时，FLinkId = TC_SGXKZ_PrjInfo表的FAppId
+--;二次及以上变更时，FLinkId = TC_SGXKZ_BGPrjInfo表的FAppId
