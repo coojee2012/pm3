@@ -21,7 +21,8 @@ if exists  (select  1 from  TC_SGXKZ_PrjInfo where FPrjItemId = @fprjitemid)
 BEGIN
    --更新工程简要说明表
    UPDATE  GD_TC_SGXKZ_PrjInfo
-           SET A.[FAppId] = B.FAppId
+           SET 
+		    A.FAppId = B.FAppId
            ,A.[FPrjItemId] = B.FPrjItemId
            ,A.[JSDW] = B.JSDW
            ,A.[JProvince] = B.JProvince
@@ -66,17 +67,827 @@ BEGIN
            ,A.[ProjectUse]      =  B.[ProjectUse]     
            ,A.[ProjectNumber]   =  B.[ProjectNumber]  
            ,A.[SGXKZBH]         =  B.[SGXKZBH]        
-           ,A.[FZJG]            =  A.[FZJG]           
-           ,A.[FZTime]          =  A.[FZTime]         
-           ,A.[DZZT]            =  A.[DZZT]           
-           ,A.[SJStartDate]     =  A.[SJStartDate]    
-           ,A.[SJEndDate]       =  A.[SJEndDate]      
-           ,A.[upScale]         =  A.[upScale]        
-           ,A.[DoScale]         =  A.[DoScale]        
+           ,A.[FZJG]            =  B.[FZJG]           
+           ,A.[FZTime]          =  B.[FZTime]         
+           ,A.[DZZT]            =  B.[DZZT]           
+           ,A.[SJStartDate]     =  B.[SJStartDate]    
+           ,A.[SJEndDate]       =  B.[SJEndDate]      
+           ,A.[upScale]         =  B.[upScale]        
+           ,A.[DoScale]         =  B.[DoScale]        
     FROM  GD_TC_SGXKZ_PrjInfo A,TC_SGXKZ_PrjInfo B
 	WHERE A.FPrjItemId = B.FPrjItemId
 	AND B.FPrjItemId = @fprjitemid
-	
+--更新参与企业  (先删除参与人员和企业，再插入参与企业和人员)
+DELETE FROM  GD_TC_PrjItem_Ent  WHERE  FPrjItemId = @fprjitemid
+DELETE FROM  GD_TC_PrjItem_Emp  WHERE  FPrjItemId = @fprjitemid
+--从业务表中插入新的单位和人员
+--项目参与企业
+INSERT INTO [dbo].[GD_TC_PrjItem_Ent]
+           ([FId]
+           ,[FPrjId]
+           ,[FPrjItemId]
+           ,[FProcId]
+           ,[FAppId]
+           ,[QYID]
+           ,[FName]
+           ,[FEntType]
+           ,[FOrgCode]
+           ,[FAddress]
+           ,[ZZDJ]
+           ,[ZZZSH]
+           ,[YYZZH]
+           ,[FLegalPerson]
+           ,[FTel]
+           ,[FLinkMan]
+           ,[FMobile]
+           ,[mZXZZ]
+           ,[oZXZZ]
+           ,[FCreateTime]
+           ,[FTime]
+           ,[Remark])
+SELECT   NEWID(),
+        [FPrjId]
+           ,[FPrjItemId]
+           ,[FProcId]
+           ,[FAppId]
+           ,[QYID]
+           ,[FName]
+           ,[FEntType]
+           ,[FOrgCode]
+           ,[FAddress]
+           ,[ZZDJ]
+           ,[ZZZSH]
+           ,[YYZZH]
+           ,[FLegalPerson]
+           ,[FTel]
+           ,[FLinkMan]
+           ,[FMobile]
+           ,[mZXZZ]
+           ,[oZXZZ]
+           ,[FCreateTime]
+           ,[FTime]
+           ,[Remark]
+FROM TC_PrjItem_Ent
+WHERE FPrjItemId = @fprjitemid
+-- 项目参与人员
+INSERT INTO [dbo].[GD_TC_PrjItem_Emp]
+           ([FId]
+           ,[FPrjId]
+           ,[FPrjItemId]
+           ,[FAppId]
+           ,[FEntId]
+           ,[FHumanName]
+           ,[FSex]
+           ,[FPhoto]
+           ,[FBirthDay]
+           ,[ZJLX]
+           ,[ZGXL]
+           ,[FMobile]
+           ,[FTel]
+           ,[EmpType]
+           ,[FIdCard]
+           ,[XMZW]
+           ,[ZJHM]
+           ,[FEntName]
+           ,[ZW]
+           ,[ZC]
+           ,[ZY]
+           ,[ZSBH]
+           ,[DJ]
+           ,[ZCBH]
+           ,[ZCZY]
+           ,[ZCRQ]
+           ,[FCreateTime]
+           ,[FTime]
+           ,[Remark]
+           ,[FEmpId]
+           ,[PId]
+           ,[FLinkId]           --linkid是参与单位的主键
+           ,[FEntType])    
+SELECT  NEWID(),
+        [FPrjId]
+           ,[FPrjItemId]
+           ,[FAppId]
+           ,[FEntId]
+           ,[FHumanName]
+           ,[FSex]
+           ,[FPhoto]
+           ,[FBirthDay]
+           ,[ZJLX]
+           ,[ZGXL]
+           ,[FMobile]
+           ,[FTel]
+           ,[EmpType]
+           ,[FIdCard]
+           ,[XMZW]
+           ,[ZJHM]
+           ,[FEntName]
+           ,[ZW]
+           ,[ZC]
+           ,[ZY]
+           ,[ZSBH]
+           ,[DJ]
+           ,[ZCBH]
+           ,[ZCZY]
+           ,[ZCRQ]
+           ,[FCreateTime]
+           ,[FTime]
+           ,[Remark]
+           ,[FEmpId]
+           ,[PId]
+           ,[FLinkId]
+           ,[FEntType]
+FROM TC_PrjItem_Emp
+WHERE FPrjItemId = @fprjitemid
+----------------------------------
+--先删除选址意见书附件，再删除选址意见书，再从业务库中插入
+DELETE FROM   GD_TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+        [FId]           
+        FROM  GD_TC_SGXKZ_Location
+       WHERE FprjItemId = @fprjitemid
+)
+--删除选址意见书
+DELETE   FROM  GD_TC_SGXKZ_Location
+WHERE  FprjItemId = @fprjitemid
+
+--重新插入选址意见书
+INSERT INTO [dbo].[GD_TC_SGXKZ_Location]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[JSDW]
+           ,[LocationAddress]
+           ,[Area]
+           ,[Scale]
+           ,[ProjectBasis]
+           ,[CreateTime]
+           ,[HFJG]
+           ,[XZYJSZSBH]
+           ,[BL]
+           ,[YL]
+           ,[YDPZSX])
+SELECT  
+            [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[JSDW]
+           ,[LocationAddress]
+           ,[Area]
+           ,[Scale]
+           ,[ProjectBasis]
+           ,[CreateTime]
+           ,[HFJG]
+           ,[XZYJSZSBH]
+           ,[BL]
+           ,[YL]
+           ,[YDPZSX]
+FROM  TC_SGXKZ_Location
+WHERE FprjItemId = @fprjitemid
+--重新插入选址意见书附件
+INSERT INTO [dbo].[GD_TC_SGXKZ_File]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size])
+ SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size]
+FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_Location
+       WHERE FprjItemId = @fprjitemid
+)
+----------------------------------------
+--先删除建设用地规划许可证附件，再删除建设用地规划许可证，再重新插入建设用地规划许可证及附件
+DELETE FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_JSYDGHXKZ
+       WHERE FprjItemId = @fprjitemid
+)
+
+DELETE  FROM  [TC_SGXKZ_JSYDGHXKZ]
+WHERE  FprjItemId = @fprjitemid
+------------------------------
+--重新插入建设用地规划许可证
+INSERT INTO [dbo].[TC_SGXKZ_JSYDGHXKZ]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[JSDW]
+           ,[Address]
+           ,[Area]
+           ,[ConstrScale]
+           ,[Others]
+           ,[YDXZ]
+           ,[CreateTime]
+           ,[HFJG]
+           ,[YDGHXKZBH]
+           ,[BL]
+           ,[YL])
+SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[JSDW]
+           ,[Address]
+           ,[Area]
+           ,[ConstrScale]
+           ,[Others]
+           ,[YDXZ]
+           ,[CreateTime]
+           ,[HFJG]
+           ,[YDGHXKZBH]
+           ,[BL]
+           ,[YL]
+FROM TC_SGXKZ_JSYDGHXKZ
+WHERE FprjItemId =@fprjitemid
+--重新插入建设用地规划许可证附件
+INSERT INTO [dbo].[GD_TC_SGXKZ_File]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size])
+ SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size]
+FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_JSYDGHXKZ
+       WHERE FprjItemId = @fprjitemid
+)
+--先删除建设工程规划许可证附件，再删除建设工程规划许可证，再重新从业务系统中导入建设工程规划许可证和附件
+-------------------------------------------------------------------------------------------------------- 未完待续
+--建设工程规划许可证
+INSERT INTO [dbo].[GD_TC_SGXKZ_JSGCGHXKZ]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[JSDW]
+           ,[Address]
+           ,[Area]
+           ,[ConstrScale]
+           ,[Span]
+           ,[Others]
+           ,[CreateTime]
+           ,[HFJG]
+           ,[GCGHXKZBH]
+           ,[BL]
+           ,[YL])
+SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[JSDW]
+           ,[Address]
+           ,[Area]
+           ,[ConstrScale]
+           ,[Span]
+           ,[Others]
+           ,[CreateTime]
+           ,[HFJG]
+           ,[GCGHXKZBH]
+           ,[BL]
+           ,[YL]
+FROM  TC_SGXKZ_JSGCGHXKZ
+WHERE  FprjItemId = @fprjitemid
+--建设工程规划许可证附件
+INSERT INTO [dbo].[GD_TC_SGXKZ_File]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size])
+ SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size]
+FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_JSGCGHXKZ
+       WHERE FprjItemId = @fprjitemid
+)
+--
+INSERT INTO [dbo].[GD_TC_SGXKZ_ZBJG]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[KCId]
+           ,[KCZBFS]
+           ,[KCZZFS]
+           ,[KCZBDW]
+           ,[KCZBQYZZZSH]
+           ,[KCZBJ]
+           ,[KCZBGQ]
+           ,[KCHTKGTime]
+           ,[KCHTJGTime]
+           ,[KCHTQDTime]
+           ,[KCHTBATime]
+           ,[KCHTBABH]
+           ,[KCXMJL]
+           ,[SJId]
+           ,[SJZBFS]
+           ,[SJZZFS]
+           ,[SJZBDW]
+           ,[SJZBQYZZZSH]
+           ,[SJZLBZ]
+           ,[SJZBJ]
+           ,[SJZBGQ]
+           ,[SJHTKGTime]
+           ,[SJHTJGTime]
+           ,[SJHTQDTime]
+           ,[SJHTBATime]
+           ,[SJHTBABH]
+           ,[SJHTBAJG]
+           ,[JLId]
+           ,[JLZBFS]
+           ,[JLZZFS]
+           ,[JLZBDW]
+           ,[JLZBQYZZZSH]
+           ,[JLZBQYZZDJ]
+           ,[JLZLBZ]
+           ,[JLZBJ]
+           ,[JLZBJDX]
+           ,[JLZBGQ]
+           ,[JLHTKGTime]
+           ,[JLHTJGTime]
+           ,[JLHTQDTime]
+           ,[JLHTBATime]
+           ,[JLHTBABH]
+           ,[JLHTBAJG]
+           ,[JLGCS]
+           ,[SGId]
+           ,[SGZBFS]
+           ,[SGZZFS]
+           ,[SGZBDW]
+           ,[SGZBQYZZZSH]
+           ,[SGZBQYZZDJ]
+           ,[SGZLBZ]
+           ,[SGZLDJ]
+           ,[SGZBJ]
+           ,[SGZBJDX]
+           ,[SGZBGQ]
+           ,[SGHTKGTime]
+           ,[SGHTJGTime]
+           ,[SGZBFW]
+           ,[SGJZBM]
+           ,[SGSZSNYL]
+           ,[SGXMJL]
+           ,[SGXMJLZS]
+           ,[SGHTQDTime]
+           ,[SGHTBATime]
+           ,[SGHTBABH]
+           ,[SGHTBAJG]
+           ,[ProjectNo]
+           ,[ZBTZSBH]
+           ,[ConstrScale]
+           ,[Area]
+           ,[ZBDLDWMC]
+           ,[ZBDLDWZZJGDM]
+           ,[JLZBLX]
+           ,[JLZBDWZZJGDM]
+           ,[JLZBRQ]
+           ,[JLGCSZJLX]
+           ,[JLGCSZJHM]
+           ,[SGZBLX]
+           ,[SGZBDWZZJGDM]
+           ,[SGZBRQ]
+           ,[SGXMJLZJLX]
+           ,[SGXMJLZJHM]
+           ,[BL]
+           ,[YL])
+SELECT   [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[KCId]
+           ,[KCZBFS]
+           ,[KCZZFS]
+           ,[KCZBDW]
+           ,[KCZBQYZZZSH]
+           ,[KCZBJ]
+           ,[KCZBGQ]
+           ,[KCHTKGTime]
+           ,[KCHTJGTime]
+           ,[KCHTQDTime]
+           ,[KCHTBATime]
+           ,[KCHTBABH]
+           ,[KCXMJL]
+           ,[SJId]
+           ,[SJZBFS]
+           ,[SJZZFS]
+           ,[SJZBDW]
+           ,[SJZBQYZZZSH]
+           ,[SJZLBZ]
+           ,[SJZBJ]
+           ,[SJZBGQ]
+           ,[SJHTKGTime]
+           ,[SJHTJGTime]
+           ,[SJHTQDTime]
+           ,[SJHTBATime]
+           ,[SJHTBABH]
+           ,[SJHTBAJG]
+           ,[JLId]
+           ,[JLZBFS]
+           ,[JLZZFS]
+           ,[JLZBDW]
+           ,[JLZBQYZZZSH]
+           ,[JLZBQYZZDJ]
+           ,[JLZLBZ]
+           ,[JLZBJ]
+           ,[JLZBJDX]
+           ,[JLZBGQ]
+           ,[JLHTKGTime]
+           ,[JLHTJGTime]
+           ,[JLHTQDTime]
+           ,[JLHTBATime]
+           ,[JLHTBABH]
+           ,[JLHTBAJG]
+           ,[JLGCS]
+           ,[SGId]
+           ,[SGZBFS]
+           ,[SGZZFS]
+           ,[SGZBDW]
+           ,[SGZBQYZZZSH]
+           ,[SGZBQYZZDJ]
+           ,[SGZLBZ]
+           ,[SGZLDJ]
+           ,[SGZBJ]
+           ,[SGZBJDX]
+           ,[SGZBGQ]
+           ,[SGHTKGTime]
+           ,[SGHTJGTime]
+           ,[SGZBFW]
+           ,[SGJZBM]
+           ,[SGSZSNYL]
+           ,[SGXMJL]
+           ,[SGXMJLZS]
+           ,[SGHTQDTime]
+           ,[SGHTBATime]
+           ,[SGHTBABH]
+           ,[SGHTBAJG]
+           ,[ProjectNo]
+           ,[ZBTZSBH]
+           ,[ConstrScale]
+           ,[Area]
+           ,[ZBDLDWMC]
+           ,[ZBDLDWZZJGDM]
+           ,[JLZBLX]
+           ,[JLZBDWZZJGDM]
+           ,[JLZBRQ]
+           ,[JLGCSZJLX]
+           ,[JLGCSZJHM]
+           ,[SGZBLX]
+           ,[SGZBDWZZJGDM]
+           ,[SGZBRQ]
+           ,[SGXMJLZJLX]
+           ,[SGXMJLZJHM]
+           ,[BL]
+           ,[YL]
+FROM  TC_SGXKZ_ZBJG
+WHERE FprjItemId = @fprjitemid
+--招投标信息附件
+INSERT INTO [dbo].[GD_TC_SGXKZ_File]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size])
+ SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size]
+FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_ZBJG
+       WHERE FprjItemId = @fprjitemid
+)
+--合同备案
+INSERT INTO [dbo].[GD_TC_SGXKZ_HTBA]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[HTBABH]
+           ,[ProjectNo]
+           ,[HTBH]
+           ,[HTJE]
+           ,[ConstrScale]
+           ,[HTQDTime]
+           ,[FBDWMC]
+           ,[FBDWZZJGDM]
+           ,[CBDWMC]
+           ,[CBDWZZJGDM]
+           ,[LHTCBDWMC]
+           ,[LHTCBDWZZJGDM]
+           ,[HTLB]
+           ,[BL]
+           ,[YL]
+           ,[FBDWId]
+           ,[CBDWId]
+           ,[LHTDWId])
+ SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[HTBABH]
+           ,[ProjectNo]
+           ,[HTBH]
+           ,[HTJE]
+           ,[ConstrScale]
+           ,[HTQDTime]
+           ,[FBDWMC]
+           ,[FBDWZZJGDM]
+           ,[CBDWMC]
+           ,[CBDWZZJGDM]
+           ,[LHTCBDWMC]
+           ,[LHTCBDWZZJGDM]
+           ,[HTLB]
+           ,[BL]
+           ,[YL]
+           ,[FBDWId]
+           ,[CBDWId]
+           ,[LHTDWId]
+FROM  TC_SGXKZ_HTBA
+WHERE FprjItemId = @fprjitemid
+--施工审查图信息
+INSERT INTO [dbo].[GD_TC_SGXKZ_SGTSC]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[SGTSCHGSBH]
+           ,[ProjectNo]
+           ,[SGTSCJGMC]
+           ,[SGTSCZZJGDM]
+           ,[SCWCRQ]
+           ,[ConstrScale]
+           ,[KCDWMC]
+           ,[KCDWZZJGDM]
+           ,[SJDWMC]
+           ,[SJDWZZJGDM]
+           ,[YCSCSFTG]
+           ,[YCSCWFTS]
+           ,[YCSCWFTM]
+           ,[BL]
+           ,[YL]
+           ,[SGTSCJGId]
+           ,[KCDWId]
+           ,[SJDWId])
+SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[SGTSCHGSBH]
+           ,[ProjectNo]
+           ,[SGTSCJGMC]
+           ,[SGTSCZZJGDM]
+           ,[SCWCRQ]
+           ,[ConstrScale]
+           ,[KCDWMC]
+           ,[KCDWZZJGDM]
+           ,[SJDWMC]
+           ,[SJDWZZJGDM]
+           ,[YCSCSFTG]
+           ,[YCSCWFTS]
+           ,[YCSCWFTM]
+           ,[BL]
+           ,[YL]
+           ,[SGTSCJGId]
+           ,[KCDWId]
+           ,[SJDWId]
+FROM TC_SGXKZ_SGTSC
+WHERE  FprjItemId = @fprjitemid
+--施工审查图人员信息
+INSERT INTO [dbo].[GD_TC_SGXKZ_SGTSCRY]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FSGTSCId]
+           ,[DWMC]
+           ,[DWZZJGDM]
+           ,[RYXM]
+           ,[ZJLX]
+           ,[ZJHM]
+           ,[ZCLXJDJ]
+           ,[CDJS]
+           ,[RYId]
+           ,[Type])
+SELECT  
+      [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FSGTSCId]
+           ,[DWMC]
+           ,[DWZZJGDM]
+           ,[RYXM]
+           ,[ZJLX]
+           ,[ZJHM]
+           ,[ZCLXJDJ]
+           ,[CDJS]
+           ,[RYId]
+           ,[Type]
+FROM  TC_SGXKZ_SGTSCRY
+WHERE  FSGTSCId IN
+(
+   SELECT  FId  FROM  TC_SGXKZ_SGTSC
+   WHERE FprjItemId = @fprjitemid
+  )
+  --质量安全监督手续
+INSERT INTO [dbo].[GD_TC_SGXKZ_JDSX]
+           ([FId]
+           ,[FPrjItemId]
+           ,[FAppId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[ZLBABH]
+           ,[ZLBAJG]
+           ,[ZLBATime]
+           ,[AQBABH]
+           ,[AQBAJG]
+           ,[AQBATime]
+           ,[BL]
+           ,[YL])
+SELECT  [FId]
+           ,[FPrjItemId]
+           ,[FAppId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[ZLBABH]
+           ,[ZLBAJG]
+           ,[ZLBATime]
+           ,[AQBABH]
+           ,[AQBAJG]
+           ,[AQBATime]
+           ,[BL]
+           ,[YL]
+FROM  TC_SGXKZ_JDSX
+WHERE  FPrjItemId = @fprjitemid
+--质量安全监督手续附件
+INSERT INTO [dbo].[GD_TC_SGXKZ_File]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size])
+ SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[FLinkId]
+           ,[FileName]
+           ,[ReportTime]
+           ,[FilePath]
+           ,[FileType]
+           ,[Size]
+FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_JDSX
+       WHERE FprjItemId = @fprjitemid
+)
+--资金保函
+INSERT INTO [dbo].[GD_TC_SGXKZ_ZJBH]
+           ([FId]
+           ,[FPrjItemId]
+           ,[FAppId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[ISDBS]
+           ,[ZJBH]
+           ,[JF]
+           ,[YF])
+SELECT  
+         [FId]
+           ,[FPrjItemId]
+           ,[FAppId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[ISDBS]
+           ,[ZJBH]
+           ,[JF]
+           ,[YF]
+FROM  TC_SGXKZ_ZJBH
+WHERE FPrjItemId = @fprjitemid
+--其他资料
+INSERT INTO [dbo].[GD_TC_SGXKZ_QTZL]
+           ([FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[QTZL]
+           ,[SGTJ]
+           ,[CNS])
+SELECT  [FId]
+           ,[FAppId]
+           ,[FprjItemId]
+           ,[ProjectName]
+           ,[PrjItemName]
+           ,[JSDW]
+           ,[QTZL]
+           ,[SGTJ]
+           ,[CNS]
+FROM TC_SGXKZ_QTZL
+WHERE FprjItemId = @fprjitemid
+--保证金确认TC_SGXKZ_BZJQR
+INSERT INTO [dbo].[GD_TC_SGXKZ_BZJQR]
+           ([FId]
+           ,[FAppId]
+           ,[FPrjItemId]
+           ,[FPrjId]
+           ,[JFXM]
+           ,[JFXMBM]
+           ,[Money]
+           ,[JFSJ]
+           ,[SKJBR]
+           ,[SKDW])
+SELECT  [FId]
+           ,[FAppId]
+           ,[FPrjItemId]
+           ,[FPrjId]
+           ,[JFXM]
+           ,[JFXMBM]
+           ,[Money]
+           ,[JFSJ]
+           ,[SKJBR]
+           ,[SKDW]
+FROM  TC_SGXKZ_BZJQR
+WHERE  FPrjItemId =@fprjitemid  
+
+
 END
 ELSE
 BEGIN
@@ -967,15 +1778,3 @@ SELECT  [FId]
 FROM  TC_SGXKZ_BZJQR
 WHERE  FPrjItemId =@fprjitemid  
 END
-
-  
-
-
-
-
-
-
-
-
-
-
