@@ -61,6 +61,10 @@ create table dbo.GD_TC_SGXKZ_PrjInfo (
    FZJG                 varchar(100)         collate Chinese_PRC_CI_AS null,
    FZTime               date                 null,
    DZZT                 int                  null,
+   [SJStartDate]        date  null,
+	[SJEndDate]  date null,
+	[upScale]    varchar(100) null,
+	[DoScale]  varchar(100) null,
    constraint PK__GD_TC_SGXKZ__C1BEAA4218427513 primary key (FId)
          on "PRIMARY"
 )
@@ -160,6 +164,7 @@ create table dbo.GD_TC_PrjItem_Emp (
    FEmpId               varchar(60)          collate Chinese_PRC_CI_AS null,
    PId                  varchar(50)          collate Chinese_PRC_CI_AS null,
    FLinkId              varchar(50)          collate Chinese_PRC_CI_AS null,
+   FEntType             int                  null,
    constraint PK__GD_TC_PrjIt__C1BEAA425768D5EF primary key (FId)
          on "PRIMARY"
 )
