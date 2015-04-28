@@ -155,8 +155,10 @@
                 </td>
                 <td colspan="1">
                     <asp:DropDownList ID="t_FSex" runat="server" CssClass="m_txt" Width="203px" >
-                        <asp:ListItem Value="1">男</asp:ListItem>
-                        <asp:ListItem Value="2">女</asp:ListItem>
+                       <%-- <asp:ListItem Value="1">男</asp:ListItem>
+                        <asp:ListItem Value="2">女</asp:ListItem>--%>
+                        <asp:ListItem Value="0">男</asp:ListItem>
+                        <asp:ListItem Value="1">女</asp:ListItem>
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
@@ -215,9 +217,12 @@
                 <td class="t_r t_bg">
                     等级：
                 </td>
-                <td colspan="1">
+               <%-- <td colspan="1">
                     <asp:TextBox ID="t_DJ" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
-                </td>
+                </td>--%>
+                 <td colspan="1">
+                        <asp:DropDownList ID="t_DJ" runat="server" CssClass="m_txt" Width="200px"></asp:DropDownList>
+                    </td>
                 <td class="t_r t_bg">
                     注册编号：
                 </td>

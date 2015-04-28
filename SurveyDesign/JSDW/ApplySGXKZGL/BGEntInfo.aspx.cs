@@ -130,7 +130,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
 
-
+        //h_ProjectItemId.Value = entInfo.FPrjItemId;
 
 
 
@@ -163,6 +163,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             dg_List.DataSource = v;
             dg_List.DataBind();
         }
+        
 
     }
 
@@ -304,6 +305,10 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             entInfo.FTime = DateTime.Now;
             entInfo.FCreateTime = DateTime.Now;
             dbContext.TC_PrjItem_Ent.InsertOnSubmit(entInfo);
+            //需要判断当前施工总承包企业是否是上一个业务的施工总承包企业，如果是，则不添加记录,如果不是则添加记录。
+
+
+
 
             var entity = new TC_SGXKZ_QYBGJG();
             entity.FId = Guid.NewGuid().ToString();
@@ -422,7 +427,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             entInfo.QYID = h_selEntId.Value;
         }
         dbContext.SubmitChanges();
-        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "reloadEmpList();alert('保存成功');window.returnValue='1';", true);
+        //ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
     }
 
     //保存按钮
@@ -528,14 +534,31 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(this.GetType(), "showTr2", "<script>showTr2();</script>");
         }
-
+        //刷新人员
+        bindEmpList();
     }
     protected void btnAddEnt_Click(object sender, EventArgs e)
     {
         selEnt();
     }
 
+    /// <summary>
+    /// 当重新选择企业后，需要删除以前的企业与人员
+    /// </summary>
+    private void DeltePrjEntAndEmp()
+    {
+        EgovaDB dbContext = new EgovaDB();
 
+        var entid = h_selEntId.Value;
+        var appId = t_FAppId.Value;
+        var prjItemId = h_ProjectItemId.Value;
+        var entType = EConvert.ToInt(t_FEntType.Value);
+
+
+        var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId != entid && t.FAppId == appId && t.FEntType == entType);
+        dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
+        dbContext.SubmitChanges();
+    }
 
 
 }
