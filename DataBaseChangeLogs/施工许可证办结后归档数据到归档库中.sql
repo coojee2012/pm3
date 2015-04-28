@@ -353,8 +353,20 @@ WHERE FLinkId IN
        WHERE FprjItemId = @fprjitemid
 )
 --先删除建设工程规划许可证附件，再删除建设工程规划许可证，再重新从业务系统中导入建设工程规划许可证和附件
--------------------------------------------------------------------------------------------------------- 未完待续
+--------------------------------------------------------------------------------------------------------
+--删除建设工程规划许可证附件 
+DELETE  FROM  GD_TC_SGXKZ_File  
+WHERE  FLinkId IN
+(
+   SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_JSGCGHXKZ
+       WHERE FprjItemId = @fprjitemid
+)
 --建设工程规划许可证
+DELETE  FROM  GD_TC_SGXKZ_JSGCGHXKZ
+WHERE FprjItemId =@fprjitemid
+--重新导入建设工程规划许可证
 INSERT INTO [dbo].[GD_TC_SGXKZ_JSGCGHXKZ]
            ([FId]
            ,[FAppId]
@@ -388,7 +400,7 @@ SELECT  [FId]
            ,[YL]
 FROM  TC_SGXKZ_JSGCGHXKZ
 WHERE  FprjItemId = @fprjitemid
---建设工程规划许可证附件
+--重新导入建设工程规划许可证附件
 INSERT INTO [dbo].[GD_TC_SGXKZ_File]
            ([FId]
            ,[FAppId]
@@ -416,7 +428,21 @@ WHERE FLinkId IN
         FROM  TC_SGXKZ_JSGCGHXKZ
        WHERE FprjItemId = @fprjitemid
 )
---
+--先删除招投标信息附件,再删招投标信息，再重新从业务系统中导入招投标信息和附件
+--删除附件
+DELETE FROM TC_SGXKZ_File
+WHERE FLinkId IN
+(
+       SELECT  
+            [FId]           
+        FROM  TC_SGXKZ_ZBJG
+       WHERE FprjItemId = @fprjitemid
+)
+--删除招投标信息
+DELETE  FROM  GD_TC_SGXKZ_ZBJG
+WHERE  FprjItemId = @fprjitemid
+------------------------------------
+--重新插入招投标信息
 INSERT INTO [dbo].[GD_TC_SGXKZ_ZBJG]
            ([FId]
            ,[FAppId]
@@ -600,7 +626,7 @@ SELECT   [FId]
            ,[YL]
 FROM  TC_SGXKZ_ZBJG
 WHERE FprjItemId = @fprjitemid
---招投标信息附件
+--重新插入招投标信息附件
 INSERT INTO [dbo].[GD_TC_SGXKZ_File]
            ([FId]
            ,[FAppId]
@@ -629,6 +655,10 @@ WHERE FLinkId IN
        WHERE FprjItemId = @fprjitemid
 )
 --合同备案
+--先删除合同备案数据，再从业务系统中导入归档表
+DELETE FROM  GD_TC_SGXKZ_HTBA
+WHERE  FprjItemId = @fprjitemid
+--重新导入合同备案数据
 INSERT INTO [dbo].[GD_TC_SGXKZ_HTBA]
            ([FId]
            ,[FAppId]
@@ -675,6 +705,7 @@ INSERT INTO [dbo].[GD_TC_SGXKZ_HTBA]
 FROM  TC_SGXKZ_HTBA
 WHERE FprjItemId = @fprjitemid
 --施工审查图信息
+--先删除施工审查图人员，在删除施工审查图，再重新导入施工审查图人员信息和施工审查图
 INSERT INTO [dbo].[GD_TC_SGXKZ_SGTSC]
            ([FId]
            ,[FAppId]
