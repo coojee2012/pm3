@@ -14,7 +14,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
-    RCenter rc2 = new RCenter("Standard_Dic");
+    RCenter rc2 = new RCenter("JST_XZSPBaseInfo");
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)

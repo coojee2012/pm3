@@ -157,15 +157,87 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
         app.FCreateTime = dTime;
         app.FReportCount = 1;
         dbContext.CF_App_List.InsertOnSubmit(app);
-
-        //添加变更办理信息
-        TC_SGXKZ_BGPrjInfo record = new TC_SGXKZ_BGPrjInfo();
-        record.FId = Guid.NewGuid().ToString();
-        record.FAppId = FAppId;
-        record.FPrjItemId = t_FPriItemId.Value;
-        record.FPrjInfoId = t_FPrjInfoId.Value;
-        record.PrjItemName = t_FPrjItemName.Text;
-        dbContext.TC_SGXKZ_BGPrjInfo.InsertOnSubmit(record);
+        //从归档库中获取归档信息 add by psq 20150429
+        var sp = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.PrjItemId == t_FPriItemId.Value).FirstOrDefault();
+        if(sp != null)
+        {
+            //添加变更办理信息
+            TC_SGXKZ_BGPrjInfo record = new TC_SGXKZ_BGPrjInfo();
+            record.FId = Guid.NewGuid().ToString();
+            record.FAppId = FAppId;
+            record.FPrjItemId = t_FPriItemId.Value;
+            record.FPrjInfoId = sp.PrjId;
+            record.PrjItemName = sp.PrjItemName;
+            dbContext.TC_SGXKZ_BGPrjInfo.InsertOnSubmit(record);
+            //从归档表中插入参与企业信息
+            IQueryable<GD_TC_PrjItem_Ent> list = dbContext.GD_TC_PrjItem_Ent.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            foreach(var v1 in list)
+            {
+                TC_PrjItem_Ent v = new TC_PrjItem_Ent();
+                v.FId = Guid.NewGuid().ToString();
+                v.FPrjId = v1.FPrjId;
+                v.FPrjItemId = v1.FPrjItemId;
+                v.FProcId = v1.FProcId;
+                v.FAppId = FAppId;
+                v.QYID = v1.QYID;
+                v.FName = v1.FName;
+                v.FEntType = v1.FEntType;
+                v.FOrgCode = v1.FOrgCode;
+                v.FAddress = v1.FAddress;
+                v.ZZDJ = v1.ZZDJ;
+                v.ZZZSH = v1.ZZZSH;
+                v.YYZZH = v1.YYZZH;
+                v.FLegalPerson = v1.FLegalPerson;
+                v.FTel = v1.FTel;
+                v.FLinkMan = v1.FLinkMan;
+                v.FMobile = v1.FMobile;
+                v.mZXZZ = v1.mZXZZ;
+                v.oZXZZ = v1.oZXZZ;
+                v.FCreateTime = DateTime.Now;
+                v.FTime = null;
+                v.Remark = v1.Remark;
+                dbContext.TC_PrjItem_Ent.InsertOnSubmit(v);
+            }
+            //从归档表中插入参与人员信息
+            IQueryable<GD_TC_PrjItem_Emp> emplist = dbContext.GD_TC_PrjItem_Emp.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            foreach (var v2 in emplist)
+            {
+                GD_TC_PrjItem_Emp emp = new GD_TC_PrjItem_Emp();
+                emp.FId = Guid.NewGuid().ToString();
+                emp.FPrjId = v2.FPrjId;
+                emp.FPrjItemId = v2.FPrjItemId;
+                emp.FAppId = FAppId;
+                emp.FEntId = v2.FEntId;
+                emp.FHumanName = v2.FHumanName;
+                emp.FSex = v2.FSex;
+                emp.FPhoto = v2.FPhoto;
+                emp.FBirthDay = v2.FBirthDay;
+                emp.ZJLX = v2.ZJLX;
+                emp.ZGXL = v2.ZGXL;
+                emp.FMobile = v2.FMobile;
+                emp.FTel = v2.FTel;
+                emp.EmpType = v2.EmpType;
+                emp.FIdCard = v2.FIdCard;
+                emp.XMZW = v2.XMZW;
+                emp.ZJHM = v2.ZJHM;
+                emp.FEntName = v2.FEntName;
+                emp.ZW = v2.ZW;
+                emp.ZC = v2.ZC;
+                emp.ZY = v2.ZY;
+                emp.ZSBH = v2.ZSBH;
+                emp.DJ = v2.DJ;
+                emp.ZCBH = v2.ZCBH;
+                emp.ZCRQ = v2.ZCRQ;
+                emp.FCreateTime = DateTime.Now;
+                emp.FTime = null;
+                emp.Remark = v2.Remark;
+                emp.FEmpId = v2.FEmpId;
+                emp.PId = v2.PId;
+                emp.FLinkId = v2.FLinkId;
+                emp.FEntType = v2.FEntType;
+                dbContext.GD_TC_PrjItem_Emp.InsertOnSubmit(emp);
+            }
+        } 
         //提交修改
         dbContext.SubmitChanges();
         lblMessage.Text = "业务创建成功,即将自动跳转到业务信息登记页面...";

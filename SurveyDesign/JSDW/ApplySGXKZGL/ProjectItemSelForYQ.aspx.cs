@@ -26,21 +26,38 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
     //显示 
     void showInfo()
     {
+        //var App = from t in dbContext.TC_PrjItem_Info
+        //        join a in dbContext.TC_SGXKZ_PrjInfo
+        //        on t.FId equals a.FPrjItemId
+        //        join b in dbContext.CF_App_List
+        //        on a.FAppId equals b.FId
+        //        where t.FJSDWID == CurrentEntUser.EntId && b.FState == 6
+        //        orderby t.FId
+        //        select new
+        //        {
+        //            t.PrjItemName,
+        //            t.PrjItemType,
+        //            t.FId
+        //        };
+        //if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
+        //    App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
+        //以前是从业务库中选取项目，现在改为从归档库中获取项目信息  modify by psq 20150429
         var App = from t in dbContext.TC_PrjItem_Info
-                join a in dbContext.TC_SGXKZ_PrjInfo
-                on t.FId equals a.FPrjItemId
-                join b in dbContext.CF_App_List
-                on a.FAppId equals b.FId
-                where t.FJSDWID == CurrentEntUser.EntId && b.FState == 6
-                orderby t.FId
-                select new
-                {
-                    t.PrjItemName,
-                    t.PrjItemType,
-                    t.FId
-                };
+                  join a in dbContext.GD_TC_SGXKZ_PrjInfo
+                  on t.FId equals a.FPrjItemId
+                  join b in dbContext.CF_App_List
+                  on a.FAppId equals b.FId
+                  where t.FJSDWID == CurrentEntUser.EntId && b.FState == 6
+                  orderby t.FId
+                  select new
+                  {
+                      t.PrjItemName,
+                      t.PrjItemType,
+                      t.FId
+                  };
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
+
         Pager1.RecordCount = App.Count();
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
         dg_List.DataBind();
