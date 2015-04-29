@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB.cs">
+      <DependentUpon>DB.dbml</DependentUpon>
+    </Compile>
     <Compile Include="DB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

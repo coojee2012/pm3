@@ -1243,6 +1243,7 @@
       <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Member="needDel" Type="System.Int32" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.TC_SGXKZ_YQSQ" Member="TC_SGXKZ_YQSQ">
@@ -2292,6 +2293,7 @@
       <Column Name="PId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FEntType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Member="needDel" Type="System.Int32" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.TC_BZGD_PrjInfo" Member="TC_BZGD_PrjInfo">
