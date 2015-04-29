@@ -151,7 +151,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             h_selEntId.Value = entInfo.QYID;
             h_OldQYID.Value = entInfo.QYID;
             h_OldQYName.Value = entInfo.FName;
-
+            txtFId.Value = entInfo.FId;
             //var v = from t in dbContext.TC_PrjItem_Emp
             //        where (t.FAppId == h_AppId.Value || t.FAppId == h_OldAppId.Value) && t.FEntId == entInfo.QYID
             //        orderby t.FId
@@ -311,10 +311,12 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         //本次变更未通过前，恢复曾经选择过该单位（针对上次删除过的以前业务中的企业）
         else if (entInfoHasOld != null && entInfoHasOld.needDel == 1)
         {
+
+            txtFId.Value = entInfoHasOld.FId;
+            entInfoHasOld.needDel = 0;
             entInfo = entInfoHasOld;
-            txtFId.Value = entInfo.FId;
-            entInfo.needDel = 0;         
-            dbContext.TC_PrjItem_Ent.Attach(entInfo,true);
+
+           // dbContext.TC_PrjItem_Ent.Attach(entInfo,true);
 
            //在变更记录表里面删除该单位的退出情况
             TC_SGXKZ_QYBGJG entity = dbContext.TC_SGXKZ_QYBGJG.Where(t => t.FAppId == h_AppId.Value && t.FLinkId == entInfo.FId && t.BGQK=="退出").FirstOrDefault();
@@ -330,9 +332,9 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 oldEmpList.ForEach(q =>
                 {
                     //恢复删除状态为未删除
-                    TC_PrjItem_Emp tmpOld = q;
-                    q.needDel = 0;
-                    dbContext.TC_PrjItem_Emp.Attach(tmpOld, true);
+                    TC_PrjItem_Emp tmpOld = dbContext.TC_PrjItem_Emp.Single(t=>t.FId == q.FId);
+                    tmpOld.needDel = 0;
+                    
 
                     TC_SGXKZ_RYBGJG sr = dbContext.TC_SGXKZ_RYBGJG.Where(t => t.FAppId == h_AppId.Value && t.FLinkId == q.FLinkId && t.BGQK == "退出").FirstOrDefault();
                     dbContext.TC_SGXKZ_RYBGJG.DeleteOnSubmit(sr);
@@ -418,9 +420,10 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 newEntInfo.FCreateTime = DateTime.Now;
                 dbContext.TC_PrjItem_Ent.InsertOnSubmit(newEntInfo);
 
+                TC_PrjItem_Ent tmpEnt = dbContext.TC_PrjItem_Ent.Single(t => t.FId == entInfo.FId);
+                tmpEnt.needDel = 1;
 
-                entInfo.needDel = 1;
-                dbContext.TC_PrjItem_Ent.Attach(entInfo, true);
+   
 
                 TC_SGXKZ_QYBGJG entity = new TC_SGXKZ_QYBGJG();
                 entity.FId = Guid.NewGuid().ToString();
@@ -456,8 +459,12 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 {
                     oldEmpList.ForEach(q =>
                     {
-                        q.needDel = 1;
-                        dbContext.TC_PrjItem_Emp.Attach(q, true);
+                        
+                        
+                        TC_PrjItem_Emp tmpEmp= dbContext.TC_PrjItem_Emp.Single(t=>t.FId == q.FId);
+                        tmpEmp.needDel=1;
+
+                    
 
                         TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
                         sr.FId = Guid.NewGuid().ToString();
@@ -481,14 +488,17 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 pageTool tool = new pageTool(this.Page);
                 entInfo = tool.getPageValue(entInfo);
                 entInfo.QYID = h_selEntId.Value;
-                dbContext.TC_PrjItem_Ent.Attach(entInfo, true);
+                TC_PrjItem_Ent tmpEnt = dbContext.TC_PrjItem_Ent.SingleOrDefault(t => t.FId == entInfo.FId);
+                tmpEnt.QYID = h_selEntId.Value;
+
+               // dbContext.TC_PrjItem_Ent.Attach(entInfo, true);
 
 
                 var bgEntInfo = dbContext.TC_SGXKZ_QYBGJG.Where(t => t.FLinkId == entInfo.FId && t.BGQK == "新增").FirstOrDefault();
                 bgEntInfo.YQLX = lblTitle.InnerText;
                 bgEntInfo.YQMC = t_FName.Text;
 
-                dbContext.TC_SGXKZ_QYBGJG.Attach(bgEntInfo, true);
+               // dbContext.TC_SGXKZ_QYBGJG.Attach(bgEntInfo, true);
 
 
                 var addEmpList = dbContext.TC_PrjItem_Emp.Where(t => t.FLinkId == entInfo.FId);
