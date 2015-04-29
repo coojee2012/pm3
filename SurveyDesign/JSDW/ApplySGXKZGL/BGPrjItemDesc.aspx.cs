@@ -21,9 +21,13 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         {
             this.h_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             BindControl();
+            //显示工程项目基本信息
             showInfo();
+            //显示项目变更记录
             ShowBGJG();
+            //显示企业变更记录
             ShowQYBGJG();
+            //显示人员变更记录
             ShowRYBGJG();
             pageTool tool = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)

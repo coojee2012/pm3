@@ -405,4 +405,8 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
             sab.SaveAsExc(this.JustAppInfo_List, fOutTitle, this.Response);
         }
     }
+    protected void btnAccept_Click1(object sender, EventArgs e)
+    {
+
+    }
 }
