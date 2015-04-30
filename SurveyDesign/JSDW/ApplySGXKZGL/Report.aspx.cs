@@ -95,6 +95,11 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
                 ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(prjInfo.AddressDept)).Select(d => d.FName).FirstOrDefault(), prjInfo.AddressDept));
             }
         }
+        else
+        {
+            ddlLevel.Items.Clear();
+            ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
+        }
 
     }
     //显示

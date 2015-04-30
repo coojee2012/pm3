@@ -47,7 +47,8 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
                   on t.FId equals a.FPrjItemId
                   join b in dbContext.CF_App_List
                   on a.FAppId equals b.FId
-                  where t.FJSDWID == CurrentEntUser.EntId && b.FState == 6
+                  //where t.FJSDWID == CurrentEntUser.EntId && b.FState == 6
+                  where  b.FState == 6
                   orderby t.FId
                   select new
                   {
@@ -67,8 +68,13 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
         if (e.Item.ItemIndex > -1)
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
-            String PrjItemType = e.Item.Cells[3].Text;
-            e.Item.Cells[3].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(PrjItemType)).Select(d => d.FName).FirstOrDefault();
+            try
+            {
+                String PrjItemType = e.Item.Cells[3].Text;
+                e.Item.Cells[3].Text = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(PrjItemType)).Select(d => d.FName).FirstOrDefault();
+            }
+            catch
+            { }
             LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 2].Controls[0] as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该项目吗?');");
