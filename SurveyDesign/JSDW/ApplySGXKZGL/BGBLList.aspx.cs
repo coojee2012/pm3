@@ -178,6 +178,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
             record.FPrjItemId = t_FPriItemId.Value;
             record.FPrjInfoId = sp.PrjId;
             record.PrjItemName = sp.PrjItemName;
+            record.FLinkId = t_OldFAppId.Value;//从历史业务集成的id
             dbContext.TC_SGXKZ_BGPrjInfo.InsertOnSubmit(record);
             //从归档表中插入参与企业信息
             IQueryable<GD_TC_PrjItem_Ent> list = dbContext.GD_TC_PrjItem_Ent.Where(t => t.FPrjItemId == t_FPriItemId.Value);
