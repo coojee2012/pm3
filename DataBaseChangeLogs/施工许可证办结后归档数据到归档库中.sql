@@ -11,9 +11,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[SP_GD_SGXKZ]
+alter PROC [dbo].[SP_GD_SGXKZ]
 (
-	@fprjitemid varchar(50) --工程编号
+	@fprjitemid varchar(50), --工程编号
+	@fappid varchar(50)      --办结业务编号
 )
 AS
 --存在则更新归档库
@@ -76,9 +77,10 @@ BEGIN
     FROM  GD_TC_SGXKZ_PrjInfo A,TC_SGXKZ_PrjInfo B
 	WHERE A.FPrjItemId = B.FPrjItemId
 	AND B.FPrjItemId = @fprjitemid
+	AND B.FAppId =@fappid
 --更新参与企业  (先删除参与人员和企业，再插入参与企业和人员)
-DELETE FROM  GD_TC_PrjItem_Ent  WHERE  FPrjItemId = @fprjitemid
-DELETE FROM  GD_TC_PrjItem_Emp  WHERE  FPrjItemId = @fprjitemid
+DELETE FROM  GD_TC_PrjItem_Ent  WHERE  FPrjItemId = @fprjitemid AND FAppId = @fappid
+DELETE FROM  GD_TC_PrjItem_Emp  WHERE  FPrjItemId = @fprjitemid AND FAppId = @fappid
 --从业务表中插入新的单位和人员
 --项目参与企业
 INSERT INTO [dbo].[GD_TC_PrjItem_Ent]
@@ -128,6 +130,7 @@ SELECT   NEWID(),
            ,[Remark]
 FROM TC_PrjItem_Ent
 WHERE FPrjItemId = @fprjitemid
+AND FAppId = @fappid
 -- 项目参与人员
 INSERT INTO [dbo].[GD_TC_PrjItem_Emp]
            ([FId]
@@ -198,6 +201,7 @@ SELECT  NEWID(),
            ,[FEntType]
 FROM TC_PrjItem_Emp
 WHERE FPrjItemId = @fprjitemid
+AND FAppId = @fappid
 END
 ELSE  --不存在则直接插入
 BEGIN
@@ -311,6 +315,7 @@ INSERT INTO [dbo].[GD_TC_SGXKZ_PrjInfo]
            ,[DoScale]
 FROM  TC_SGXKZ_PrjInfo
 WHERE  FPrjItemId = @fprjitemid
+AND FAppId = @fappid
 --项目参与企业
 INSERT INTO [dbo].[GD_TC_PrjItem_Ent]
            ([FId]
@@ -359,6 +364,7 @@ SELECT   NEWID(),
            ,[Remark]
 FROM TC_PrjItem_Ent
 WHERE FPrjItemId = @fprjitemid
+AND FAppId = @fappid
 -- 项目参与人员
 INSERT INTO [dbo].[GD_TC_PrjItem_Emp]
            ([FId]
@@ -429,4 +435,5 @@ SELECT  NEWID(),
            ,[FEntType]
 FROM TC_PrjItem_Emp
 WHERE FPrjItemId = @fprjitemid
+AND FAppId = @fappid
 END
