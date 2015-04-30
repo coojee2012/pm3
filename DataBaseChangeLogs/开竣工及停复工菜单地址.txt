@@ -1,13 +1,13 @@
 主管部门新增"开竣工管理"菜单，包括如下3个子菜单：
-1、开工管理，对应页面：Government/AppKJGGL/KGGLList.aspx
-2、竣工管理，对应页面:Government/AppKJGGL/JGGLList.aspx
-3、项目查询，对用页面：Government/AppKJGGL/XMCXList.aspx
+1、开工管理，对应页面：../../Government/AppKJGGL/KGGLList.aspx
+2、竣工管理，对应页面:../../Government/AppKJGGL/JGGLList.aspx
+3、项目查询，对用页面：../../Government/AppKJGGL/XMCXList.aspx
 
 主管部门新增”停复工管理“菜单，包括如下4个子菜单：
-1、停工管理，对应页面：Government/AppTFGGL/TGList.aspx
-2、复工管理，对应页面：Government/AppTFGGL/FGList.aspx
-3、停复工通告，对应页面：Government/AppTFGGL/TFGTZList.aspx
-4、人员锁定管理，对应页面：Government/AppTFGGL/RWSDList.aspx
+1、停工管理，对应页面：../../Government/AppTFGGL/TGList.aspx
+2、复工管理，对应页面：../../Government/AppTFGGL/FGList.aspx
+3、停复工通告，对应页面：../../Government/AppTFGGL/TFGTZList.aspx
+4、人员锁定管理，对应页面：../../Government/AppTFGGL/RWSDList.aspx
 
 
 
