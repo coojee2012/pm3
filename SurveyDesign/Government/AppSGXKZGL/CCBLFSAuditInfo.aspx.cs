@@ -512,9 +512,9 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                //同步到标准库
                if (!string.IsNullOrEmpty(appid))
                    SyncBase(appid);
-               //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429
+               //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
                RCenter rc = new RCenter("dbcenter");
-               rc.PExcute("exec SP_GD_SGXKZ '"+t_PrjItemId.Value+"'");
+               rc.PExcute("exec SP_GD_SGXKZ '"+t_PrjItemId.Value+"','"+appid+"'");
                //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
            }
