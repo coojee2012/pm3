@@ -233,10 +233,7 @@
                     <asp:TextBox ID="t_FTel" runat="server" CssClass="m_txt" Width="195px" ></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td name="td1" class="t_r t_bg">
-                    主项资质：
-                </td>
+            <tr>                
                 <%--<td name="td2" class="t_r t_bg">
                     资质项：
                 </td>
@@ -253,6 +250,9 @@
                 </td>
             </tr>
             <tr>
+                <td name="td1" class="t_r t_bg">
+                    主项资质：
+                </td>
                 <td name="td2" class="t_r t_bg">
                     资质项：
                 </td>
