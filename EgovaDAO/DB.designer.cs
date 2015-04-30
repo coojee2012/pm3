@@ -318,10 +318,13 @@ namespace EgovaDAO
     partial void InsertTC_SGXKZ_PrjInfo(TC_SGXKZ_PrjInfo instance);
     partial void UpdateTC_SGXKZ_PrjInfo(TC_SGXKZ_PrjInfo instance);
     partial void DeleteTC_SGXKZ_PrjInfo(TC_SGXKZ_PrjInfo instance);
+    partial void InsertCF_App_PrjFileList(CF_App_PrjFileList instance);
+    partial void UpdateCF_App_PrjFileList(CF_App_PrjFileList instance);
+    partial void DeleteCF_App_PrjFileList(CF_App_PrjFileList instance);
     #endregion
 		
 		public DBDataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString6, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.dbCenter_scConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1139,6 +1142,14 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<TC_SGXKZ_PrjInfo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CF_App_PrjFileList> CF_App_PrjFileList
+		{
+			get
+			{
+				return this.GetTable<CF_App_PrjFileList>();
 			}
 		}
 	}
@@ -53318,6 +53329,428 @@ namespace EgovaDAO
 					this._DoScale = value;
 					this.SendPropertyChanged("DoScale");
 					this.OnDoScaleChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CF_App_PrjFileList")]
+	public partial class CF_App_PrjFileList : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _FId;
+		
+		private string _FLinkId;
+		
+		private System.Nullable<System.DateTime> _FTime;
+		
+		private System.Nullable<System.DateTime> _FCreateTime;
+		
+		private System.Nullable<bool> _FIsDeleted;
+		
+		private string _FManageId;
+		
+		private System.Nullable<int> _FManageType;
+		
+		private string _FFileName;
+		
+		private System.Nullable<int> _FFileAmount;
+		
+		private string _FRemark;
+		
+		private System.Nullable<int> _FOrder;
+		
+		private string _FFileID;
+		
+		private System.Nullable<int> _FIsMust;
+		
+		private string _FIsPrjType;
+		
+		private System.Nullable<int> _FType;
+		
+		private string _FMType;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFIdChanging(string value);
+    partial void OnFIdChanged();
+    partial void OnFLinkIdChanging(string value);
+    partial void OnFLinkIdChanged();
+    partial void OnFTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnFTimeChanged();
+    partial void OnFCreateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnFCreateTimeChanged();
+    partial void OnFIsDeletedChanging(System.Nullable<bool> value);
+    partial void OnFIsDeletedChanged();
+    partial void OnFManageIdChanging(string value);
+    partial void OnFManageIdChanged();
+    partial void OnFManageTypeChanging(System.Nullable<int> value);
+    partial void OnFManageTypeChanged();
+    partial void OnFFileNameChanging(string value);
+    partial void OnFFileNameChanged();
+    partial void OnFFileAmountChanging(System.Nullable<int> value);
+    partial void OnFFileAmountChanged();
+    partial void OnFRemarkChanging(string value);
+    partial void OnFRemarkChanged();
+    partial void OnFOrderChanging(System.Nullable<int> value);
+    partial void OnFOrderChanged();
+    partial void OnFFileIDChanging(string value);
+    partial void OnFFileIDChanged();
+    partial void OnFIsMustChanging(System.Nullable<int> value);
+    partial void OnFIsMustChanged();
+    partial void OnFIsPrjTypeChanging(string value);
+    partial void OnFIsPrjTypeChanged();
+    partial void OnFTypeChanging(System.Nullable<int> value);
+    partial void OnFTypeChanged();
+    partial void OnFMTypeChanging(string value);
+    partial void OnFMTypeChanged();
+    #endregion
+		
+		public CF_App_PrjFileList()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FId", DbType="Char(36) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FId
+		{
+			get
+			{
+				return this._FId;
+			}
+			set
+			{
+				if ((this._FId != value))
+				{
+					this.OnFIdChanging(value);
+					this.SendPropertyChanging();
+					this._FId = value;
+					this.SendPropertyChanged("FId");
+					this.OnFIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLinkId", DbType="Char(36)")]
+		public string FLinkId
+		{
+			get
+			{
+				return this._FLinkId;
+			}
+			set
+			{
+				if ((this._FLinkId != value))
+				{
+					this.OnFLinkIdChanging(value);
+					this.SendPropertyChanging();
+					this._FLinkId = value;
+					this.SendPropertyChanged("FLinkId");
+					this.OnFLinkIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FTime
+		{
+			get
+			{
+				return this._FTime;
+			}
+			set
+			{
+				if ((this._FTime != value))
+				{
+					this.OnFTimeChanging(value);
+					this.SendPropertyChanging();
+					this._FTime = value;
+					this.SendPropertyChanged("FTime");
+					this.OnFTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FCreateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FCreateTime
+		{
+			get
+			{
+				return this._FCreateTime;
+			}
+			set
+			{
+				if ((this._FCreateTime != value))
+				{
+					this.OnFCreateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._FCreateTime = value;
+					this.SendPropertyChanged("FCreateTime");
+					this.OnFCreateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FIsDeleted", DbType="Bit")]
+		public System.Nullable<bool> FIsDeleted
+		{
+			get
+			{
+				return this._FIsDeleted;
+			}
+			set
+			{
+				if ((this._FIsDeleted != value))
+				{
+					this.OnFIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._FIsDeleted = value;
+					this.SendPropertyChanged("FIsDeleted");
+					this.OnFIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FManageId", DbType="Char(36)")]
+		public string FManageId
+		{
+			get
+			{
+				return this._FManageId;
+			}
+			set
+			{
+				if ((this._FManageId != value))
+				{
+					this.OnFManageIdChanging(value);
+					this.SendPropertyChanging();
+					this._FManageId = value;
+					this.SendPropertyChanged("FManageId");
+					this.OnFManageIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FManageType", DbType="Int")]
+		public System.Nullable<int> FManageType
+		{
+			get
+			{
+				return this._FManageType;
+			}
+			set
+			{
+				if ((this._FManageType != value))
+				{
+					this.OnFManageTypeChanging(value);
+					this.SendPropertyChanging();
+					this._FManageType = value;
+					this.SendPropertyChanged("FManageType");
+					this.OnFManageTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FFileName", DbType="VarChar(200)")]
+		public string FFileName
+		{
+			get
+			{
+				return this._FFileName;
+			}
+			set
+			{
+				if ((this._FFileName != value))
+				{
+					this.OnFFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FFileName = value;
+					this.SendPropertyChanged("FFileName");
+					this.OnFFileNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FFileAmount", DbType="Int")]
+		public System.Nullable<int> FFileAmount
+		{
+			get
+			{
+				return this._FFileAmount;
+			}
+			set
+			{
+				if ((this._FFileAmount != value))
+				{
+					this.OnFFileAmountChanging(value);
+					this.SendPropertyChanging();
+					this._FFileAmount = value;
+					this.SendPropertyChanged("FFileAmount");
+					this.OnFFileAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRemark", DbType="VarChar(200)")]
+		public string FRemark
+		{
+			get
+			{
+				return this._FRemark;
+			}
+			set
+			{
+				if ((this._FRemark != value))
+				{
+					this.OnFRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._FRemark = value;
+					this.SendPropertyChanged("FRemark");
+					this.OnFRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FOrder", DbType="Int")]
+		public System.Nullable<int> FOrder
+		{
+			get
+			{
+				return this._FOrder;
+			}
+			set
+			{
+				if ((this._FOrder != value))
+				{
+					this.OnFOrderChanging(value);
+					this.SendPropertyChanging();
+					this._FOrder = value;
+					this.SendPropertyChanged("FOrder");
+					this.OnFOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FFileID", DbType="Char(36)")]
+		public string FFileID
+		{
+			get
+			{
+				return this._FFileID;
+			}
+			set
+			{
+				if ((this._FFileID != value))
+				{
+					this.OnFFileIDChanging(value);
+					this.SendPropertyChanging();
+					this._FFileID = value;
+					this.SendPropertyChanged("FFileID");
+					this.OnFFileIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FIsMust", DbType="Int")]
+		public System.Nullable<int> FIsMust
+		{
+			get
+			{
+				return this._FIsMust;
+			}
+			set
+			{
+				if ((this._FIsMust != value))
+				{
+					this.OnFIsMustChanging(value);
+					this.SendPropertyChanging();
+					this._FIsMust = value;
+					this.SendPropertyChanged("FIsMust");
+					this.OnFIsMustChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FIsPrjType", DbType="VarChar(200)")]
+		public string FIsPrjType
+		{
+			get
+			{
+				return this._FIsPrjType;
+			}
+			set
+			{
+				if ((this._FIsPrjType != value))
+				{
+					this.OnFIsPrjTypeChanging(value);
+					this.SendPropertyChanging();
+					this._FIsPrjType = value;
+					this.SendPropertyChanged("FIsPrjType");
+					this.OnFIsPrjTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FType", DbType="Int")]
+		public System.Nullable<int> FType
+		{
+			get
+			{
+				return this._FType;
+			}
+			set
+			{
+				if ((this._FType != value))
+				{
+					this.OnFTypeChanging(value);
+					this.SendPropertyChanging();
+					this._FType = value;
+					this.SendPropertyChanged("FType");
+					this.OnFTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FMType", DbType="VarChar(200)")]
+		public string FMType
+		{
+			get
+			{
+				return this._FMType;
+			}
+			set
+			{
+				if ((this._FMType != value))
+				{
+					this.OnFMTypeChanging(value);
+					this.SendPropertyChanging();
+					this._FMType = value;
+					this.SendPropertyChanged("FMType");
+					this.OnFMTypeChanged();
 				}
 			}
 		}

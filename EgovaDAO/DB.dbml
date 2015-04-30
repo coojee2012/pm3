@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString6" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenter_scConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2423,6 +2423,26 @@
       <Column Name="SJEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="upScale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="DoScale" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CF_App_PrjFileList" Member="CF_App_PrjFileList">
+    <Type Name="CF_App_PrjFileList">
+      <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FLinkId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FCreateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FIsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FManageId" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FManageType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FFileName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FFileAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FRemark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FFileID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
+      <Column Name="FIsMust" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FIsPrjType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FMType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
