@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrjItemDescForYQ.aspx.cs" Inherits="JSDW_ApplySGXKZGL_PrjItemDescForYQ" %>
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
 <%@ Register Src="../../common/govdeptidfalse2.ascx" TagName="govdeptid1" TagPrefix="uc1" %>
-<%@ Register Src="../../common/govdeptidfalse2.ascx" TagName="govdeptid1" TagPrefix="uc2" %>
 <%@ Register Src="../../common/govdeptid2.ascx" TagName="govdeptid" TagPrefix="uc2" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -99,7 +98,7 @@
                 </td>
                 <td colspan="1" style="width:29%;">
                     <input type="hidden"  runat="server" ID="t_JSDWAddressDept" value="" />
-                    <uc2:govdeptid1  ID="JSDW_DeptID" runat="server" EnableTheming="false" />
+                    <uc2:govdeptid ID="JSDW_DeptID" runat="server" />
                     
                 </td>
                 <td class="t_r t_bg">
@@ -145,7 +144,7 @@
                     <asp:TextBox ID="t_LXDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
-                    建设单位项目负责人：
+                    建设单位负责人：
                 </td>
                 <td >
                     <asp:TextBox ID="t_JSFZR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
@@ -289,7 +288,7 @@
                     施工许可证编号：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_SGXKZBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="p_SGXKZBH" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -297,14 +296,14 @@
                     发证机关：
                 </td>
                 <td colspan="1" style="width:29%;">
-                    <asp:TextBox ID="t_FZJG" runat="server" CssClass="m_txt" Width="200px" Enabled="false" ></asp:TextBox>
+                    <asp:TextBox ID="p_FZJG" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                     
                 </td>
                 <td class="t_r t_bg">
                     发证日期：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FZTime"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="p_FZTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
                     </td>
             </tr>
             <tr>
@@ -312,7 +311,7 @@
                     上次延期申请日期：
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="p_LastYQTime"  runat="server" CssClass="m_txt" Width="200px" Enabled="false" ></asp:TextBox>
+                    <asp:TextBox ID="p_LastYQTime" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
                 </td>
             </tr>
             <tr>

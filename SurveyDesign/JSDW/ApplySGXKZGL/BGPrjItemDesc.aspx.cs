@@ -21,13 +21,9 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         {
             this.h_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             BindControl();
-            //显示工程项目基本信息
             showInfo();
-            //显示项目变更记录
             ShowBGJG();
-            //显示企业变更记录
             ShowQYBGJG();
-            //显示人员变更记录
             ShowRYBGJG();
             pageTool tool = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
@@ -174,14 +170,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
             string Id1 = p1[i].Name;
             string value1 = EConvert.ToString(p1[i].GetValue(sbg1, null));
             //string value2 = EConvert.ToString(p2[i].GetValue(sbg2, null));
-            
-            if (Id1 != "BGSQR" && Id1 != "BGTime")//变更人和变更时间不做记录
-            {
-                if (value1 != null && value1.Trim() != "")//不等于空的值才进行记录
-                {
-                    compareValueToSortedList(value1, Id1);
-                }
-            }
+            compareValueToSortedList(value1, Id1);
         }
 
     }
@@ -191,11 +180,8 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         System.Web.UI.HtmlControls.HtmlForm myform1 = (System.Web.UI.HtmlControls.HtmlForm)this.Page.FindControl("Form1");
         System.Web.UI.Control control1 = myform1.FindControl("t_" + Id1);
 
-        
-
         if (control1 != null)
         {
-            
             string value2 = "";
             if (control1 is System.Web.UI.WebControls.TextBox)
             {

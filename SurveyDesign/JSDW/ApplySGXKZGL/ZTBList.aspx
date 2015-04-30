@@ -24,7 +24,7 @@
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
-            alert(value);
+      
             if (value == "3") {
                 return AutoCheckInfo();
             } else {
@@ -143,7 +143,7 @@
             </td>
             
         </tr>
-        <tr name="tr1" runat ="server" visible ="false">
+        <tr name="tr1">
             <td class="t_r t_bg">
                 理由： </td>
             <td colspan="3">

@@ -84,7 +84,6 @@ public partial class JSDW_ApplySGXKZGL_PrjItemDescForYQ : System.Web.UI.Page
                     t_ConstrScale.Text = empA.ConstrScale;
                     t_StartDate.Text = empA.StartDate.HasValue ? empA.StartDate.Value.ToString("yyyy-MM-dd") : "";
                     t_EndDate.Text = empA.EndDate.HasValue ? empA.EndDate.Value.ToString("yyyy-MM-dd") : "";
-                    p_LastYQTime.Text = empA.BGTime.HasValue ? empA.BGTime.Value.ToString("yyyy-MM-dd") : "";
                 }
 
 

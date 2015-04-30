@@ -1,5 +1,4 @@
-﻿using EgovaDAO;
-using System.Web.UI;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +8,6 @@ using Approve.RuleCenter;
 using EgovaDAO;
 using Tools;
 using System.Data;
-using System;
 
 public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
 {
@@ -23,13 +21,12 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
 
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
-                ViewState["FId"] = Request.QueryString["fid"];
-                TC_SGXKZ_ZBJG sp = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FId == EConvert.ToString(ViewState["FId"])).FirstOrDefault();
+                ViewState["FID"] = Request.QueryString["fid"];
+                TC_SGXKZ_ZBJG sp = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FId == EConvert.ToString(ViewState["FID"])).FirstOrDefault();
                 pageTool tool = new pageTool(this.Page, "t_");
                 tool.fillPageControl(sp);
                 txtFId.Value = Request.QueryString["fid"];
-                ViewState["FAppId"] = EConvert.ToString(sp.FAppId);
-                ShowTitle();
+                ViewState["fid"] = Request.QueryString["fid"];
                 if (!string.IsNullOrEmpty(sp.JLZBLX) && (sp.JLZBLX == "11220801" || sp.JLZBLX == "11220802"))
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
@@ -53,14 +50,10 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 btnAddEnt.Visible = false;
                 Button1.Visible = false;
                 Button2.Visible = false;
-                btnAdd.Visible = false;
+                Button4.Visible = false;
             }
 
             //ShowFile(t_JLId.Value, "JL");
-        }
-        else
-        { 
-            ShowFile(t_JLId.Value, "JL");
         }
     }
 
@@ -163,9 +156,9 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         var isNew = true;
         //string fId = txtFId.Value;
         string fId = "";
-        if (ViewState["FId"] != null)
+        if (ViewState["fid"] != null)
         {
-            fId = ViewState["FId"].ToString();
+            fId = ViewState["fid"].ToString();
         }
         TC_SGXKZ_ZBJG qa = new TC_SGXKZ_ZBJG();
         pageTool tool = new pageTool(this.Page);
@@ -202,7 +195,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             }
         }
         txtFId.Value = fId;
-        ViewState["FId"] = fId;
+        ViewState["fid"] = fId;
         dbContext.SubmitChanges();
       
        
@@ -334,13 +327,6 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         if (type == "SC")
         {
             string selEntId = t_JLId.Value;
-            //如果中标单位发生变化，则清空人员信息
-            if (t_JLIdold.Value != t_JLId.Value)
-            {
-                t_JLGCS.Text = "";//清空对应人员信息
-                t_JLGCSZJHM.Text = "";
-            }
-            
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
@@ -354,8 +340,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                     t_JLZBQYZZZSH.Text = v1.ZSBH;
                 }
             }
-            //更改单位以后，原始的单位值也换成新的单位编号
-            t_JLIdold.Value = t_JLId.Value;
+
 
         }
         else if (type == "SG")
@@ -363,11 +348,11 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             //string selEntId = t_JLId.Value;
             
             string selEntId = t_SGId.Value;
-            //if (t_SGIdold.Value != t_SGId.Value)
-            //{
-            //    t_JLGCS.Text = "";//清空对应人员信息
-            //    t_JLGCSZJHM.Text = "";
-            //}
+            if (t_SGIdold.Value != t_SGId.Value)
+            {
+                t_JLGCS.Text = "";//清空对应人员信息
+                t_JLGCSZJHM.Text = "";
+            }
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
@@ -375,7 +360,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 t_ZBDLDWMC.Text = v.QYMC;
                 t_ZBDLDWZZJGDM.Text = v.JGDM;
             }
-            //t_SGIdold.Value = t_SGId.Value;
+            t_SGIdold.Value = t_SGId.Value;
             
         }
         else if (type == "SJ")

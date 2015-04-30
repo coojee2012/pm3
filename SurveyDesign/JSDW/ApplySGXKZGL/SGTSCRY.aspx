@@ -38,7 +38,7 @@
             }
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
-                url += "?qybm=" + qybm;                
+                url += "?qybm=" + qybm;
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {
                     $("#" + tagId).val(pid);

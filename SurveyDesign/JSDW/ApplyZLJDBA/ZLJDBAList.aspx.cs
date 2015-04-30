@@ -276,129 +276,51 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
           //  e.Row.Cells[6].Text = n;
             e.Row.Cells[3].Text = t;
             e.Row.Cells[4].Text = s;
-
-             var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID);           
+            var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
             if (pr != null)
             {
-                foreach(var p in pr)
+                if (pr.FResult == "1")//通过
                 {
-                    if (p.FTypeId == 5) //复审
-                    {
-                        if (p.FMeasure == 5) //已经办理
-                        {
-                            if (p.FResult == "1")
-                            {
-                                n = "<font color='green'>复审通过</font>";
-                                break;
-                            }
-                            else
-                            {
-                                n = "<font color='green'>复审中</font>";
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            n = "<font color='green'>复审中</font>";
-                            break;
-                        }
-                    }
-                    else if (p.FTypeId == 10) //初审
-                    {
-                        if (p.FMeasure == 5)  //已经办理
-                        {
-                            if (p.FResult == "1")
-                            {
-                                n = "<font color='green'>初审通过</font>";
-                                break;
-                            }
-                            else
-                            {
-                                n = "<font color='green'>初审中</font>";
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            n = "<font color='green'>初审中</font>";
-                            break;
-                        }
-                    }
-                    else if (p.FTypeId == 10) //接件
-                    {
-                        if (p.FMeasure == 5)  //已经办理
-                        {
-                            if (p.FResult == "1")
-                            {
-                                n = "<font color='green'>接件成功</font>";
-                                break;
-                            }
-                            else
-                            {
-                                n = "<font color='green'>待接件</font>";
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            n = "<font color='green'>待接件</font>";
-                            break;
-                        }
-                    }
-                    else //未上报
-                    {
-                        n = "";
-                    }
+                    n = "<font color='green'>通过</font>";
+                    saveFResult("1", FID);
                 }
-                //屏蔽以前的方法，modify by psq 20150429
-                /*
-                            var pr = dbContext.CF_App_ProcessRecord.Where(q => q.FLinkId == FID && q.FMeasure != 0).FirstOrDefault();
-                            if (pr != null)
-                            {
-                                if (pr.FResult == "1")//通过
-                                {
-                                    n = "<font color='green'>通过</font>";
-                                    saveFResult("1", FID);
-                                }
-                                else//不通过
-                                {
-                                    n = "<font color='red'>不通过</font>";
-                                    saveFResult("3", FID);
-                                }
-                                //if (pr.FRoleDesc.Contains("接件"))
-                                //{
-                                //    if (pr.FResult == "1")//通过
-                                //    {
-                                //        n += "，<font color='green'>同意接件</font>";
-                                //    }
-                                //    else//不通过
-                                //    {
-                                //        n += "，<font color='red'>不同意接件</font>";
-                                //    }
-                                //} else if (pr.FRoleDesc.Contains("初审"))
-                                //{
-                                //    if (pr.FResult == "1")//通过
-                                //    {
-                                //        n += "，<font color='green'>初审通过</font>";
-                                //    }
-                                //    else//不通过
-                                //    {
-                                //        n += "，<font color='red'>初审不通过</font>";
-                                //    }
-                                //} else if (pr.FRoleDesc.Contains("复审"))
-                                //{
-                                //    if (pr.FResult == "1")//通过
-                                //    {
-                                //        n += "，<font color='green'>复审通过</font>";
-                                //    }
-                                //    else//不通过
-                                //    {
-                                //        n += "，<font color='red'>复审不通过</font>";
-                                //    }
-                                //}
-                 *  */
+                else//不通过
+                {
+                    n = "<font color='red'>不通过</font>";
+                    saveFResult("3", FID);
+                }
+                //if (pr.FRoleDesc.Contains("接件"))
+                //{
+                //    if (pr.FResult == "1")//通过
+                //    {
+                //        n += "，<font color='green'>同意接件</font>";
+                //    }
+                //    else//不通过
+                //    {
+                //        n += "，<font color='red'>不同意接件</font>";
+                //    }
+                //} else if (pr.FRoleDesc.Contains("初审"))
+                //{
+                //    if (pr.FResult == "1")//通过
+                //    {
+                //        n += "，<font color='green'>初审通过</font>";
+                //    }
+                //    else//不通过
+                //    {
+                //        n += "，<font color='red'>初审不通过</font>";
+                //    }
+                //} else if (pr.FRoleDesc.Contains("复审"))
+                //{
+                //    if (pr.FResult == "1")//通过
+                //    {
+                //        n += "，<font color='green'>复审通过</font>";
+                //    }
+                //    else//不通过
+                //    {
+                //        n += "，<font color='red'>复审不通过</font>";
+                //    }
+                //}
             }
-
             e.Row.Cells[6].Text = n;
         }
     }

@@ -125,44 +125,10 @@ public partial class JSDW_project_EmpListSelA : System.Web.UI.Page
                 HiddenField hfEmpId = e.Item.FindControl("hfEmpId") as HiddenField;
                 string fid = hfEmpId.Value;
                 pageTool tool = new pageTool(this.Page);
-
-                HiddenField hfzsyxq = e.Item.FindControl("zsyxq") as HiddenField;
-                if (DateTime.Now > Convert.ToDateTime(hfzsyxq.Value))//如果建造师的有效期已经过了当前时间，则不能选择
-                {
-                    this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "人员信息", "<script>alert('该人员的证书有效期已经过期，不能选择该人员！')</script>)");
-                    return;
-                }
-                if (ishavechoose(Session["FAppId"].ToString(), ViewState["FPrjItemId"].ToString(), fid))
-                {
-                    this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "人员信息", "<script>alert('该人员被选择了，不能再次选择该人员！')</script>)");
-                    return;
-                }
                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
             }
         }
 
-    }
-
-
-    /// <summary>
-    /// 判断当前的工程是否已经选择了当前的人员
-    /// </summary>
-    /// <param name="FAppId">主业务id</param>
-    /// <param name="prjitemid">工程编号</param>
-    /// <param name="personid">人员编号</param>
-    /// <returns></returns>
-    private bool ishavechoose(string FAppId, string prjitemid, string personid)
-    {
-        string sql = @"select  *  from  TC_AJBA_Human  where  FAppId = '" + FAppId + "' and FPrjItemId = '" + prjitemid + "' and   FHumanId = '" + personid + "'";
-        DataTable dt = rc.GetTable(sql);
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     protected void dg_List_ItemDataBound(object sender, RepeaterItemEventArgs e)

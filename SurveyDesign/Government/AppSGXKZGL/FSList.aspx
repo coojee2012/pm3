@@ -243,7 +243,7 @@
             <td class="m_bar_l">
             </td>
             <td class="t_r">
-                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CCBLFSAuditInfo.aspx')" OnClick="btnAccept_Click1" />
+                <asp:Button ID="btnAccept" runat="server" CssClass="m_btn_w2" Text="审核" OnClientClick="return app('CCBLFSAuditInfo.aspx')" />
                 <asp:Button ID="btnOut" runat="server" Style="margin-left: 5px;" CssClass="m_btn_w2"
                     OnClick="btnOut_Click" Text="导出" />
             </td>

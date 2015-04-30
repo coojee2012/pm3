@@ -199,27 +199,22 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         {
             string selEntId = t_JLId.Value;
             EgovaDB1 db = new EgovaDB1();
-            //var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            //监理单位返回的的是资质id
-            var v = db.QY_QYZZXX.Where(t => t.QYZZID == selEntId).FirstOrDefault();
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
             {
-                q_JLDWZZZSH.Text = v.ZSBH;
-                q_JLDWZZDJ.Text = v.ZZLB + v.ZZMC + v.ZZDJ;
-                //q_JLDWZZDJ.Text = v1.ZZDJ;
-                //var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-                var v1 = db.QY_JBXX.Where(t => t.QYBM == v.QYBM).FirstOrDefault();
+                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
                 if (v1 != null)
                 {
-                    q_JLDW.Text = v1.QYMC;
-                    q_JLDWFR.Text = v1.FRDB;
-                    q_JLDWDH.Text = v1.FRDBSJH;
-                    q_JLDWZZJGDM.Text = v1.JGDM;
-                    t_JLId.Value = v1.QYBM;
+                    q_JLDWZZZSH.Text = v1.ZSBH;
+                    q_JLDWZZDJ.Text = v1.ZZLB+v1.ZZMC+v1.ZZDJ;
+                    //q_JLDWZZDJ.Text = v1.ZZDJ;
                 }
-              
+                
             }
-           
+            q_JLDW.Text = v.QYMC;
+            q_JLDWFR.Text = v.FRDB;
+            q_JLDWDH.Text = v.FRDBSJH;
+            q_JLDWZZJGDM.Text = v.JGDM;
         }
         
     }

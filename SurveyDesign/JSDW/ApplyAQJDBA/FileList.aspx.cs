@@ -39,9 +39,12 @@ public partial class JSDW_ApplyAQJDBA_FileList : Page
         //当前业务类型
         FAppId = EConvert.ToString(Session["FAppId"]);
 
-        var v = from t in dbContext.CF_Sys_PrjList
+        //var v = from t in dbContext.CF_Sys_PrjList
+                //orderby t.FId
+        //where t.FManageType == 11222    在主表生成数据时一次性由CF_Sys_PrjList产生到CF_App_PrjFileList
+        var v = from t in dbContext.CF_App_PrjFileList
                 orderby t.FId
-                where t.FManageType == 11222
+                where t.FLinkId == FAppId
                 select new
                 {
                     t.FId,

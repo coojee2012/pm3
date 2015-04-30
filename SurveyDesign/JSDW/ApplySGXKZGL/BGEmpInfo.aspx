@@ -17,23 +17,14 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-         
-     
-                txtCss();
-                $("input[id='t_FHumanName']").attr("readonly", "readonly");
-                $("input[id='t_FIdCard']").attr("readonly", "readonly");
-                $("input[id='t_ZSBH']").attr("readonly", "readonly");
-                $("input[id='t_ZCBH']").attr("readonly", "readonly");
-         
+            txtCss();
+
 
 
         });
-        function selEmp(obj, tagId) {
-            $("input[id='t_IsManual']").val(0);
+        function selEmp(obj,tagId) {
             var qybm = document.getElementById("t_FEntId").value;
-            //alert(qybm);
-            //var url = "../project/EmpListSel.aspx";
-            var url = "../project/EmpListSelA.aspx";
+            var url = "../project/EmpListSel.aspx";
             url += "?qybm=" + qybm;
             var pid = showWinByReturn( url, 800, 500);
             if (pid != null && pid != '') {
@@ -41,22 +32,6 @@
                 __doPostBack(obj.id, '');
             }
         }
-
-        //人工录入
-        function manualEntry() {
-            try{
-                $("input[id='t_IsManual']").val(1);
-                $("input[id='t_FHumanName']").removeAttr("readonly");
-                $("input[id='t_FIdCard']").removeAttr("readonly");
-                $("input[id='t_ZSBH']").removeAttr("readonly");
-                $("input[id='t_ZCBH']").removeAttr("readonly");
-            
-            } catch (ex) {
-                alert(ex.message);
-            }
-           
-        }
-
         function checkInfo() {
             return AutoCheckInfo();
         }
@@ -73,12 +48,11 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden"  runat="server" ID="t_FAppId" value="" />
         <input type="hidden"  runat="server" ID="t_qyId" value="" />
-        <input type="hidden"  runat="server" ID="t_FEntType" value="0" />
+        
         <input type="hidden"  runat="server" ID="h_selEmpId" value="" />
         <input type="hidden"  runat="server" ID="t_FEntId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
-        <input type="hidden" runat="server" id="t_IsManual" value="" />
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up_Main" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv" style="display:none;"> 
@@ -129,8 +103,6 @@
                     <tt>*</tt>
                                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'h_selEmpId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmp_Click" Style="margin-bottom: 4px;margin-left:5px;" />
-
-                    <input type="button" value="人工录入" class="m_btn_w4" style="margin-bottom: 4px; margin-left: 5px;" onclick="manualEntry()"  id="rglr"/>
                 </td>
             </tr>
             <tr>
@@ -138,14 +110,14 @@
                     姓名：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
+                    <asp:TextBox ID="t_FHumanName" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     身份证号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FIdCard" onblur="CheckSFZHM(this);" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
+                    <asp:TextBox ID="t_FIdCard" onblur="CheckSFZHM(this);" runat="server" CssClass="m_txt" Width="200px"  Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -155,10 +127,8 @@
                 </td>
                 <td colspan="1">
                     <asp:DropDownList ID="t_FSex" runat="server" CssClass="m_txt" Width="203px" >
-                       <%-- <asp:ListItem Value="1">男</asp:ListItem>
-                        <asp:ListItem Value="2">女</asp:ListItem>--%>
-                        <asp:ListItem Value="0">男</asp:ListItem>
-                        <asp:ListItem Value="1">女</asp:ListItem>
+                        <asp:ListItem Value="1">男</asp:ListItem>
+                        <asp:ListItem Value="2">女</asp:ListItem>
                     </asp:DropDownList>
                     <tt>*</tt>
                 </td>
@@ -209,7 +179,7 @@
                     证书编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
+                    <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -217,17 +187,14 @@
                 <td class="t_r t_bg">
                     等级：
                 </td>
-               <%-- <td colspan="1">
+                <td colspan="1">
                     <asp:TextBox ID="t_DJ" runat="server" CssClass="m_txt" Width="200px" ></asp:TextBox>
-                </td>--%>
-                 <td colspan="1">
-                        <asp:DropDownList ID="t_DJ" runat="server" CssClass="m_txt" Width="200px"></asp:DropDownList>
-                    </td>
+                </td>
                 <td class="t_r t_bg">
                     注册编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_ZCBH" runat="server" CssClass="m_txt" Width="200px"  ></asp:TextBox>
+                    <asp:TextBox ID="t_ZCBH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>          
             <tr>

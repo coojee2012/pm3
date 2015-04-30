@@ -43,10 +43,11 @@ public partial class JSDW_ApplyZLJDBA_FileList : Page
 
         //取得当前项目的类型，根据类型来定取不同的值。 必须码表配合，现在码表还没有区分出来
 
-        var v = from t in dbContext.CF_Sys_PrjList
-                join u in dbContext.TC_QA_Record on t.FManageType.ToString() equals u.PrjItemType.ToString()
+        //var v = from t in dbContext.CF_Sys_PrjList
+        //        join u in dbContext.TC_QA_Record on t.FManageType.ToString() equals u.PrjItemType.ToString()
+        var v = from t in dbContext.CF_App_PrjFileList
                 orderby t.FOrder
-                where u.FAppId ==  FAppId                  //by zyd ,还不全，还要加房建或市政的差异数据
+                where t.FLinkId ==  FAppId                  //by zyd ,还不全，还要加房建或市政的差异数据
                 select new
                 {
                     t.FId,

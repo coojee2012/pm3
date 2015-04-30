@@ -49,10 +49,9 @@
             if (fid == null || fid == '') {
                 alert('请先保存上方信息！');
                 return;
-            }          
-            showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);
-            //主动刷新本页面s
-            __doPostBack(this.id, '');          
+            }
+            showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);         
+            //  alert('dd')
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
@@ -110,8 +109,8 @@
             }
         }
         function selEmp(obj, tagId) {
-            var qybm = document.getElementById("t_JLId").value;
-            //var qybm = document.getElementById("t_SGId").value;            
+            //var qybm = document.getElementById("t_JLId").value;
+            var qybm = document.getElementById("t_SGId").value;            
             var url = "../project/EmpListSel.aspx";
             if (qybm != null && qybm != '') {
                 url += "?qybm=" + qybm;
@@ -127,7 +126,7 @@
 
         }
     </script>
-    <base target="_self" />
+    <base target="_self"></base>
     <style type="text/css">
         .modalDiv {
             position: absolute;
@@ -278,7 +277,6 @@
                 <td colspan="1" style="width: 29%;">
                     <asp:TextBox ID="t_JLZBDW" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                     <input type="hidden" runat="server" id="t_JLId" value="" />
-                    <input type="hidden" runat="server" id="t_JLIdold" value="" /> <!--存放之前选择的中标单位编号 -->
                     <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_JLId');"
                         UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSC_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
                 </td>
@@ -383,7 +381,7 @@
                     <asp:TextBox ID="t_JLGCS" cs="cs2" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                     <input type="hidden" runat="server" id="t_SJId" value="" />
                     <asp:Button ID="Button2" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_SJId');"
-                        UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSJ_Click" Style="margin-bottom: 4px; margin-left: 5px; height: 21px;" />
+                        UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSJ_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
                 </td>
             </tr>
             <tr name="tr1">
@@ -397,14 +395,16 @@
                     <asp:TextBox ID="t_JLGCSZJHM" cs="cs2" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            </table>
+            <tr>
+            </tr>
+        </table>
         <table width="98%" align="center" class="m_bar">
             <tr>
                 <td class="m_bar_l"></td>
                 <td>材料信息
                 </td>
                 <td class="t_r">
-                    <input type="button" id="btnAdd"  runat="server"    value="新增" class="m_btn_w2" onclick="addPrjItemJL();" />
+                    <input type="button" id="Button4" cs="cs1" runat="server"    value="新增" class="m_btn_w2" onclick="addPrjItemJL();" />
                     <asp:Button ID="Button5" cs="cs1" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btnDel_ClickJL" />
                     <asp:Button ID="Button6" cs="cs1" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_ClickJL" />

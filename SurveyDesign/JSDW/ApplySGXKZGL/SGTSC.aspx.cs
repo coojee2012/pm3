@@ -116,11 +116,7 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             t.RYXM,
             t.DWMC,
             t.DWZZJGDM,
-            t.FId,
-            ZJLX = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(t.ZJLX)).Select(d => d.FName).FirstOrDefault(),
-            t.ZJHM,
-            ZCLXJDJ = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(t.ZCLXJDJ)).Select(d => d.FName).FirstOrDefault(),
-            CDJS = dbContext.CF_Sys_Dic.Where(d => d.FNumber == Convert.ToInt32(t.CDJS)).Select(d => d.FName).FirstOrDefault()
+            t.FId
         }).ToList();
         Pager1.RecordCount = App.Count();
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
