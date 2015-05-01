@@ -55,6 +55,7 @@
         <input type="hidden"  runat="server" ID="t_FEntId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
+        <input type="hidden"  runat="server" ID="t_Enttype" value="" />  <!--企业类型 -->
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up_Main" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv" style="display:none;"> 

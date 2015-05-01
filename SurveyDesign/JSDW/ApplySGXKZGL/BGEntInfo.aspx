@@ -26,12 +26,13 @@
         function addEmp() {
             var id = document.getElementById("txtFId").value;
             var qyid = document.getElementById("h_selEntId").value;
-            var FPrjItemId = document.getElementById("h_ProjectItemId").value;
+            var FPrjItemId = document.getElementById("h_ProjectItemId").value; 
+            var fenttype = document.getElementById("t_FEntType").value;
             if (id == null || id == '') {
                 alert('请先保存上方的企业信息！');
                 return;
             }
-            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +
+            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +'&enttype='+fenttype+
                  '&FPrjItemId=' + FPrjItemId, 1000, 600);
         }
         function showTr1() {
@@ -64,7 +65,7 @@
                     qylx = "103";
                     break;
                 case "7":
-                    qylx = "125";
+                    qylx = "104";
                     break;
             }
             var url = "../project/EntListSel.aspx";
