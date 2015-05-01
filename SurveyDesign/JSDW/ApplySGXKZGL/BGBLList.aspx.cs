@@ -444,7 +444,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
             //t_JSDW.Value = result.JSDW;
             //t_FPrjInfoId.Value = sp.FId;
         //从归档库中获取项目基本信息，并且把oldappid记录下来,用于查找上次业务
-        GD_TC_SGXKZ_PrjInfo GD = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.PrjItemId == this.t_FPriItemId.Value).FirstOrDefault();
+        GD_TC_SGXKZ_PrjInfo GD = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == this.t_FPriItemId.Value).FirstOrDefault();
         t_FPrjItemName.Text = GD.PrjItemName;
         t_FPrjId.Value = GD.PrjId;
         t_FJSDW.Text = GD.JSDW;
