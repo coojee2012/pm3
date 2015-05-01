@@ -301,7 +301,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         string sql = @" select count(*) from TC_SGXKZ_QYBGJG 
-                            where FAppId='{0}' and BGQK='增加'";
+                            where FAppId='{0}' and BGQK='新增'";
         sql = string.Format(sql, h_FAppId.Value);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
         sql = @" select count(*) from TC_SGXKZ_QYBGJG 

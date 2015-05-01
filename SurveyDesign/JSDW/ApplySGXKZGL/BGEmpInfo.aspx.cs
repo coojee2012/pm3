@@ -24,6 +24,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             t_qyId.Value = EConvert.ToString(Request["qyId"]);
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
+            t_Enttype.Value = EConvert.ToString(Request["enttype"]);
             BindControl();
             showInfo();
         }
@@ -102,8 +103,9 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     //保存
     private void saveInfo()
     {
+        pageTool tool = new pageTool(this.Page);
         string fId = txtFId.Value;
-        string fOldId = fId; 
+        //string fOldId = fId; 
         dbContext = new EgovaDB();
         TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
         if (!string.IsNullOrEmpty(fId))
@@ -144,8 +146,9 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
                 return;
             }
-
+            
             fId = Guid.NewGuid().ToString();
+            Emp = tool.getPageValue(Emp);
             Emp.FId = fId;
             Emp.FEmpId = h_selEmpId.Value;
             Emp.FPrjItemId = t_FPrjItemId.Value;
@@ -153,17 +156,13 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             Emp.FTime = DateTime.Now;
             Emp.FCreateTime = DateTime.Now;
             Emp.FEntId = t_qyId.Value;
-            Emp.FLinkId = t_FEntId.Value;           
+            Emp.FLinkId = t_FEntId.Value;
+            Emp.FEntType = Convert.ToInt16(t_Enttype.Value);            
             dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
+            dbContext.SubmitChanges();
         }
-        pageTool tool = new pageTool(this.Page);
-        Emp = tool.getPageValue(Emp);
-        dbContext.SubmitChanges();
         txtFId.Value = fId;
-        if (string.IsNullOrEmpty(fOldId))
-        {
-            updateRYBG(fId);
-        }
+        updateRYBG(fId);       
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
 
         //     MyPageTool.showMessageAjax("保存成功ii", up_Main);

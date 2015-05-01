@@ -202,6 +202,7 @@ SELECT  NEWID(),
 FROM TC_PrjItem_Emp
 WHERE FPrjItemId = @fprjitemid
 AND FAppId = @fappid
+AND checkstate = '1'   --审核通过人员才归档
 END
 ELSE  --不存在则直接插入
 BEGIN
@@ -436,4 +437,5 @@ SELECT  NEWID(),
 FROM TC_PrjItem_Emp
 WHERE FPrjItemId = @fprjitemid
 AND FAppId = @fappid
+AND checkstate = '1' --审核通过人员才归档
 END
