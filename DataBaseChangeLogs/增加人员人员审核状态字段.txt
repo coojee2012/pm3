@@ -1,2 +1,6 @@
- alter table TC_PrjItem_Emp add checkstate varchar(10) null
- alter table GD_TC_PrjItem_Emp add checkstate varchar(10) null
+ alter table TC_PrjItem_Emp add checkstate bit  null
+ alter table GD_TC_PrjItem_Emp add checkstate bit  null
+
+ alter table TC_SGXKZ_RYBGJG add checkstate int null
+
+ ALTER TABLE [dbo].[TC_SGXKZ_RYBGJG] ADD  CONSTRAINT [DF_TC_SGXKZ_RYBGJG_checkstate]  DEFAULT ((3)) FOR [checkstate]

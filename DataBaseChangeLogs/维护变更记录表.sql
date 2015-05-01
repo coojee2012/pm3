@@ -75,3 +75,23 @@ begin
 end
 go
 
+
+if exists (select 1
+          from sysobjects
+          where id = object_id('dbo.Tri_Upd_CheckSate')
+          and type = 'TR')
+   drop trigger dbo.Tri_Upd_CheckSate
+go
+
+
+create trigger dbo.Tri_Upd_CheckSate on dbo.TC_SGXKZ_RYBGJG for update as
+begin
+     update TC_PrjItem_Emp 
+        set checkstate = b.checkstate 
+       from TC_PrjItem_Emp a ,inserted b
+      where a.fappid = b.fappid
+        and a.FEmpId = b.FLinkId
+        and b.checkstate in (0, 1)
+end
+go
+

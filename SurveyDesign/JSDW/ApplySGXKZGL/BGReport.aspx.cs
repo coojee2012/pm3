@@ -69,7 +69,7 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
             tool.fillPageControl(ent);
         }
         TC_SGXKZ_BGPrjInfo qa = db.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
-        TC_SGXKZ_PrjInfo sp = db.TC_SGXKZ_PrjInfo.Where(t => t.FId == qa.FPrjInfoId).FirstOrDefault();
+        TC_SGXKZ_PrjInfo sp = db.TC_SGXKZ_PrjInfo.Where(t => t.PrjId == qa.FPrjInfoId).FirstOrDefault();    //Fid  变成 PrjId by zyd 2015.5.1
         ViewState["PrjItemName"] = sp.PrjItemName;
         TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == sp.PrjId).FirstOrDefault();
         govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
