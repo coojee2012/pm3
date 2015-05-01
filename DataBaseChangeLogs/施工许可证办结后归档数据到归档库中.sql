@@ -79,8 +79,8 @@ BEGIN
 	AND B.FPrjItemId = @fprjitemid
 	AND B.FAppId =@fappid
 --更新参与企业  (先删除参与人员和企业，再插入参与企业和人员)
-DELETE FROM  GD_TC_PrjItem_Ent  WHERE  FPrjItemId = @fprjitemid AND FAppId = @fappid
-DELETE FROM  GD_TC_PrjItem_Emp  WHERE  FPrjItemId = @fprjitemid AND FAppId = @fappid
+DELETE FROM  GD_TC_PrjItem_Ent  WHERE  FPrjItemId = @fprjitemid 
+DELETE FROM  GD_TC_PrjItem_Emp  WHERE  FPrjItemId = @fprjitemid
 --从业务表中插入新的单位和人员
 --项目参与企业
 INSERT INTO [dbo].[GD_TC_PrjItem_Ent]

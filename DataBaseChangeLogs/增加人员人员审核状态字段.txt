@@ -1,0 +1,2 @@
+ alter table TC_PrjItem_Emp add checkstate varchar(10) null
+ alter table GD_TC_PrjItem_Emp add checkstate varchar(10) null

@@ -431,19 +431,32 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
 
     protected void btnSel_Click(object sender, EventArgs e)
     {
+        //
         EgovaDB dbContext = new EgovaDB();
-        var result = (from t in dbContext.TC_PrjItem_Info
-                      where t.FId == this.t_FPriItemId.Value
-                      select t).SingleOrDefault();
-        TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == result.FId).FirstOrDefault();
-        t_FPrjItemName.Text = result.PrjItemName;
-        t_FPrjId.Value = result.FPrjId;
-        t_FJSDW.Text = result.JSDW;
-        t_FPrjName.Value = result.ProjectName;
-        t_AddressDept.Value = result.AddressDept;
-        t_PrjItemType.Value = result.PrjItemType;
-        t_JSDW.Value = result.JSDW;
-        t_FPrjInfoId.Value = sp.FId;
+            //var result = (from t in dbContext.TC_PrjItem_Info
+            //              where t.FId == this.t_FPriItemId.Value
+            //              select t).SingleOrDefault();
+            //TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == result.FId).FirstOrDefault();
+            //t_FPrjItemName.Text = result.PrjItemName;
+            //t_FPrjId.Value = result.FPrjId;
+            //t_FJSDW.Text = result.JSDW;
+            //t_FPrjName.Value = result.ProjectName;
+            //t_AddressDept.Value = result.AddressDept;
+            //t_PrjItemType.Value = result.PrjItemType;
+            //t_JSDW.Value = result.JSDW;
+            //t_FPrjInfoId.Value = sp.FId;
+        //从归档库中获取项目基本信息，并且把oldappid记录下来,用于查找上次业务
+        GD_TC_SGXKZ_PrjInfo GD = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.PrjItemId == this.t_FPriItemId.Value).FirstOrDefault();
+        t_FPrjItemName.Text = GD.PrjItemName;
+        t_FPrjId.Value = GD.PrjId;
+        t_FJSDW.Text = GD.JSDW;
+        t_FPrjName.Value = GD.ProjectName;
+        t_AddressDept.Value = GD.PrjAddressDept;
+        t_PrjItemType.Value = GD.PrjItemType;
+        t_JSDW.Value = GD.JSDW;
+        t_FPrjInfoId.Value = GD.PrjItemId;
+        //记录下之前的appid
+        t_OldFAppId.Value = GD.FAppId;
     }
 
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)
