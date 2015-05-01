@@ -37,6 +37,7 @@ begin
 	                                           where a.FAppid     = b.FAppid
                                                  and a.FPrjItemId = b.FPrjItemId
                                                  and a.FLinkId    = b.FLinkId 
+												 and a.YQLX       = b.YQLX
 											 group by a.FLinkId,a.FAppid,a.FPrjItemId
 											   having count(1) >1
 							    ) d
@@ -63,7 +64,8 @@ begin
 	 where exists(select 1 from (select a.FLinkId,a.FAppid,a.FPrjItemId from TC_SGXKZ_RYBGJG a, inserted b 
 	                                           where a.FAppid     = b.FAppid
                                                  and a.FPrjItemId = b.FPrjItemId
-                                                 and a.FLinkId    = b.FLinkId 
+                                                 and a.FLinkId    = b.FLinkId
+												 and a.RYLX       = b.RYLX
 											 group by a.FLinkId,a.FAppid,a.FPrjItemId
 											   having count(1) >1
 							    ) d
