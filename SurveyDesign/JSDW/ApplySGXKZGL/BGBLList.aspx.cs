@@ -168,7 +168,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
         //dbContext.TC_SGXKZ_BGPrjInfo.InsertOnSubmit(record);
 
         //从归档库中获取归档信息 add by psq 20150429
-        var sp = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.PrjItemId == t_FPriItemId.Value).FirstOrDefault();
+        var sp = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == t_FPriItemId.Value).FirstOrDefault();
         if (sp != null)
         {
             //添加变更办理信息
