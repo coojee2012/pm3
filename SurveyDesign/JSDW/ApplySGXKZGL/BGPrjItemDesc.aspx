@@ -444,7 +444,7 @@
                 </td>
             </tr>
         </table>
-        <div id="bginfo" style="visibility:hidden">   <!--变更信息企业不查看，审批企业才查看-->
+        <%--<div id="bginfo" style="visibility:hidden">   <!--变更信息企业不查看，审批企业才查看-->--%>
         <table width="98%" align="center" class="m_bar">
             <tr>
                 <td class="m_bar_l">
@@ -615,7 +615,7 @@
             </webdiyer:AspNetPager>
         </div>
     </div>
-    </div>
+    <%--</div>--%>
     </form>
 </body>
 </html>

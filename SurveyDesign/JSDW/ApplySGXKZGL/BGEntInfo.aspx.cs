@@ -19,9 +19,12 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            //主键编号
             txtFId.Value = EConvert.ToString(Request["FId"]);
+            //当前app编号
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             h_AppId.Value = EConvert.ToString(Session["FAppId"]);
+            //企业类型
             t_FEntType.Value = EConvert.ToString(Request["FEntType"]);
             tool = new pageTool(this.Page);
             showTitle();
@@ -86,14 +89,18 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             return;
         }
         h_ProjectItemId.Value = bgProInfo.FPrjItemId;
-        var oldAppIds = dbContext.CF_App_List.Where(t => t.FLinkId == h_ProjectItemId.Value).OrderByDescending(q => q.FCreateTime).Select(q => q.FId).ToList();
-        if (oldAppIds == null || oldAppIds.Count < 2)
-        {
-            ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('业务信息数据存在问题');window.returnValue='1';", true);
-            return;
-        }
-        h_OldAppId.Value = oldAppIds[1];
+        //修改数据来源，ly不要修改，从TC_SGXKZ_BGPrjInfo的flinkid中获取 modify by psq 20150501
+        //var oldAppIds = dbContext.CF_App_List.Where(t => t.FLinkId == h_ProjectItemId.Value).OrderByDescending(q => q.FCreateTime).Select(q => q.FId).ToList();
+        //if (oldAppIds == null || oldAppIds.Count < 2)
+        //{
+        //    ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('业务信息数据存在问题');window.returnValue='1';", true);
+        //    return;
+        //}
+        //h_OldAppId.Value = oldAppIds[1];
 
+
+        //从变更表中获取历史的fappid
+        h_OldAppId.Value = bgProInfo.FLinkId;
         if (!string.IsNullOrEmpty(txtFId.Value))
         {
             entInfo = dbContext.TC_PrjItem_Ent.Where(t => t.FId == txtFId.Value).FirstOrDefault();
@@ -142,7 +149,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             h_OldQYName.Value = entInfo.FName;
 
             var v = from t in dbContext.TC_PrjItem_Emp
-                    where (t.FAppId == h_AppId.Value || t.FAppId == h_OldAppId.Value) && t.FEntId == entInfo.QYID
+                    where t.FAppId == h_AppId.Value && t.FEntId == entInfo.QYID && t.FEntType == Convert.ToInt16(t_FEntType.Value)
                     orderby t.FId
                     select new
                     {
@@ -185,8 +192,14 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         }
         if (entInfo != null)
         {
+            //数据来源根据appid和项目编号id及类型获取
+            //var v = from t in dbContext.TC_PrjItem_Emp
+            //        where t.FLinkId == entInfo.FId
+            //        orderby t.FId
             var v = from t in dbContext.TC_PrjItem_Emp
-                    where t.FLinkId == entInfo.FId
+                    where t.FEntId == entInfo.QYID
+                    && t.FAppId == h_AppId.Value
+                    && t.FEntType == entType
                     orderby t.FId
                     select new
                     {
@@ -275,7 +288,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             entity.YQLX = lblTitle.InnerText;
             entity.YQMC = t_FName.Text;
             entity.BGTime = DateTime.Now;
-            entity.FLinkId = entInfo.FId;
+            //entity.FLinkId = entInfo.FId;
+            entity.FLinkId = entInfo.QYID;
             entity.BGQK = "新增";
             dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
         }
@@ -323,7 +337,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 entity.YQLX = lblTitle.InnerText;
                 entity.YQMC = entInfo.FName;
                 entity.BGTime = DateTime.Now;
-                entity.FLinkId = entInfo.FId;
+                //entity.FLinkId = entInfo.FId;
+                entity.FLinkId = entInfo.QYID;
                 entity.BGQK = "退出";
                 dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
 
@@ -334,7 +349,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 entity.YQLX = lblTitle.InnerText;
                 entity.YQMC = t_FName.Text;
                 entity.BGTime = DateTime.Now;
-                entity.FLinkId = newEntInfo.FId;
+                //entity.FLinkId = newEntInfo.FId;
+                entity.FLinkId = newEntInfo.QYID;
                 entity.BGQK = "新增";
                 dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
 
@@ -402,6 +418,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
     }
 
     //删除
+    //ly 此问题我已经按照新的思路调整，不要调整
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
     {
         EgovaDB dbContext = new EgovaDB();
@@ -413,26 +430,40 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             empList.ForEach(q =>
             {
                 dbContext.TC_PrjItem_Emp.DeleteOnSubmit(q);
-                if (q.FAppId == h_OldAppId.Value)
-                {
-                    TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
-                    sr.FId = Guid.NewGuid().ToString();
-                    sr.FAppId = h_AppId.Value;
-                    sr.FPrjItemId = h_ProjectItemId.Value;
-                    sr.RYLX = getEmpType(q.EmpType.ToString());
-                    sr.XM = q.FHumanName;
-                    sr.ZSBH = q.ZSBH;
-                    sr.QYMC = q.FEntName;
-                    sr.BGQK = "退出";
-                    sr.FLinkId = txtFId.Value;
-                    sr.BGTime = DateTime.Now;
-                    dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
-                }
-                else
-                {
-                    var info = dbContext.TC_SGXKZ_RYBGJG.Where(m => m.FAppId == q.FAppId && m.FLinkId == txtFId.Value && m.XM == q.FHumanName && m.BGQK == "增加");
-                    dbContext.TC_SGXKZ_RYBGJG.DeleteAllOnSubmit(info);
-                }
+                TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
+                sr.FId = Guid.NewGuid().ToString();
+                sr.FAppId = h_AppId.Value;
+                sr.FPrjItemId = h_ProjectItemId.Value;
+                sr.RYLX = getEmpType(q.EmpType.ToString());
+                sr.XM = q.FHumanName;
+                sr.ZSBH = q.ZSBH;
+                sr.QYMC = q.FEntName;
+                sr.BGQK = "退出";
+                sr.FLinkId = q.FEmpId;
+                sr.BGTime = DateTime.Now;
+                dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
+
+
+                //if (q.FAppId == h_OldAppId.Value)
+                //{
+                //    TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
+                //    sr.FId = Guid.NewGuid().ToString();
+                //    sr.FAppId = h_AppId.Value;
+                //    sr.FPrjItemId = h_ProjectItemId.Value;
+                //    sr.RYLX = getEmpType(q.EmpType.ToString());
+                //    sr.XM = q.FHumanName;
+                //    sr.ZSBH = q.ZSBH;
+                //    sr.QYMC = q.FEntName;
+                //    sr.BGQK = "退出";
+                //    sr.FLinkId = txtFId.Value;
+                //    sr.BGTime = DateTime.Now;
+                //    dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
+                //}
+                //else
+                //{
+                //    var info = dbContext.TC_SGXKZ_RYBGJG.Where(m => m.FAppId == q.FAppId && m.FLinkId == txtFId.Value && m.XM == q.FHumanName && m.BGQK == "增加");
+                //    dbContext.TC_SGXKZ_RYBGJG.DeleteAllOnSubmit(info);
+                //}
             });
             dbContext.SubmitChanges();
             ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('删除成功');window.returnValue='1';", true);

@@ -268,7 +268,7 @@
                 </td>
                 <td colspan="4">
                     
-                    <asp:TextBox ID="t_oZXZZ" runat="server" CssClass="m_txt" 
+                    <asp:TextBox ID="t_oZXZZ" runat="server" CssClass="m_txt" Height ="80" 
                         Width="95%"  TextMode="MultiLine"></asp:TextBox>
                     
                 </td>

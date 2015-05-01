@@ -213,7 +213,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
             IQueryable<GD_TC_PrjItem_Emp> emplist = dbContext.GD_TC_PrjItem_Emp.Where(t => t.FPrjItemId == t_FPriItemId.Value);
             foreach (var v2 in emplist)
             {
-                GD_TC_PrjItem_Emp emp = new GD_TC_PrjItem_Emp();
+                TC_PrjItem_Emp emp = new TC_PrjItem_Emp();
                 emp.FId = Guid.NewGuid().ToString();
                 emp.FPrjId = v2.FPrjId;
                 emp.FPrjItemId = v2.FPrjItemId;
@@ -246,11 +246,9 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
                 emp.PId = v2.PId;
                 emp.FLinkId = v2.FLinkId;
                 emp.FEntType = v2.FEntType;
-                dbContext.GD_TC_PrjItem_Emp.InsertOnSubmit(emp);
+                dbContext.TC_PrjItem_Emp.InsertOnSubmit(emp);                
             }
         } 
-
-
         //提交修改
         dbContext.SubmitChanges();
         lblMessage.Text = "业务创建成功,即将自动跳转到业务信息登记页面...";

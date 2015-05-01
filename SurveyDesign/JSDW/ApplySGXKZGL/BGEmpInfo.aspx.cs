@@ -153,7 +153,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             Emp.FTime = DateTime.Now;
             Emp.FCreateTime = DateTime.Now;
             Emp.FEntId = t_qyId.Value;
-            Emp.FLinkId = t_FEntId.Value;
+            Emp.FLinkId = t_FEntId.Value;           
             dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
@@ -184,7 +184,8 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         sr.QYMC = ent.FEntName;
         sr.BGQK = "增加";
         sr.BGTime = DateTime.Now;
-        sr.FLinkId = ent.FId;
+        //sr.FLinkId = ent.FId;
+        sr.FLinkId = ent.FEmpId;
         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
         dbContext.SubmitChanges();
     }
