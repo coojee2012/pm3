@@ -427,10 +427,17 @@
                                 <ItemStyle HorizontalAlign="Left" Wrap="False" Width="70px" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn> 
-                            <asp:BoundColumn DataField="SPJL" HeaderText="审批结论">
-                                <ItemStyle HorizontalAlign="Left" Wrap="False" Width="70px" CssClass="padLeft" />
-                                <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>                 
+                            <asp:TemplateColumn HeaderText="审批意见">
+                                <EditItemTemplate>
+                                    <asp:RadioButton runat="server"  ID= "IYS" Text ="审核通过"  GroupName ="ck" Checked='<%# DataBinder.Eval(Container, "DataItem.checkstate") %>'  />
+                                    <asp:RadioButton runat="server"  ID= "IWS" Text ="审核不通过" GroupName ="ck" Checked='<%# !(bool)DataBinder.Eval(Container, "DataItem.checkstate") %>' />
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label Text ="" runat="server" ID ="Notcheck"></asp:Label>
+                                    <asp:RadioButton runat="server"  ID= "IYS" Text ="审核通过" GroupName ="ck"   />
+                                    <asp:RadioButton runat="server"  ID= "IWS" Text ="审核不通过" GroupName ="ck" />     
+                                </ItemTemplate>
+                            </asp:TemplateColumn>               
                             <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
                         </Columns>
                         <FooterStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
