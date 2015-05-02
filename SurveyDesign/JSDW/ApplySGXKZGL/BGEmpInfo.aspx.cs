@@ -28,6 +28,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             BindControl();
             showInfo();
         }
+        this.t_ZW.Text = t_qyId.Value;
     }
     void BindControl()
     {
@@ -104,7 +105,10 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     private void saveInfo()
     {
         pageTool tool = new pageTool(this.Page);
+        var manualVal = t_IsManual.Value;
         string fId = txtFId.Value;
+        string zczsbh = t_ZCBH.Text.Trim();
+
         //string fOldId = fId; 
         dbContext = new EgovaDB();
         TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
@@ -146,7 +150,65 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
                 return;
             }
-            
+
+            //手工录入
+            #region
+            if (manualVal == "1")//手工录入
+            {
+                //如果是人工加的，则new一个ID，仅为保证后续业务的延续性：人员变动记录查重，无他意。  by zyd  
+                h_selEmpId.Value = Guid.NewGuid().ToString();
+
+                var countSql = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where SFZH='{0}'";
+                countSql = string.Format(countSql, t_FIdCard.Text);
+                int count5 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countSql).FirstOrDefault());
+                if (count5 > 0)
+                {
+                    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('归档库已存在该证书，请采用选择方式添加。');window.returnValue='1';", true);
+                    return;
+                }
+                //判断当前的注册编号是否已经存在，如果已经存在则提醒操作人员从库中选择
+                var countsql2 = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where  ZCZSH = '{0}'";
+                countsql2 = string.Format(countsql2, zczsbh);
+                int count3 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countsql2).FirstOrDefault());
+                if (count3 > 0)
+                {
+                    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('注册证书已存在，请采用选择方式添加。');window.returnValue='1';", true);
+                    return;
+                }
+            }
+
+            string sql11 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'  and FAppId='{1}' and FEntType='{2}'";
+            sql11 = string.Format(sql11, t_FIdCard.Text, t_FAppId.Value, t_Enttype.Value);
+            int count6 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql11).FirstOrDefault());
+            //如果存在就修改
+            TC_PrjItem_Emp emp;
+            if (count6 > 0)
+            {
+                tool = new pageTool(this.Page);
+                if (string.IsNullOrEmpty(fId))
+                {
+                    emp =
+                        dbContext.TC_PrjItem_Emp.FirstOrDefault(
+                            t =>
+                                t.FIdCard == t_FIdCard.Text && t.FAppId == t_FAppId.Value &&
+                                t.FEntType == EConvert.ToInt(t_Enttype.Value));
+
+                }
+                else
+                {
+                    emp = dbContext.TC_PrjItem_Emp.FirstOrDefault(t => t.FId == fId);
+                }
+                emp = tool.getPageValue(emp);
+                //为添加的人员绑定，人员所在的单位，用来确定人员的类型
+                if (emp != null) emp.FEntType = EConvert.ToInt(t_Enttype.Value);
+                dbContext.SubmitChanges();
+                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功!');window.returnValue='1';", true);
+                return;
+            }
+ 
+            #endregion
+
+            //非人工录入 或人工录入，在库中找不到对应的人。
             fId = Guid.NewGuid().ToString();
             Emp = tool.getPageValue(Emp);
             Emp.FId = fId;
@@ -157,9 +219,10 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             Emp.FCreateTime = DateTime.Now;
             Emp.FEntId = t_qyId.Value;
             Emp.FLinkId = t_FEntId.Value;
-            Emp.FEntType = Convert.ToInt16(t_Enttype.Value);            
+            Emp.FEntType = Convert.ToInt16(t_Enttype.Value);
             dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
             dbContext.SubmitChanges();
+    
         }
         txtFId.Value = fId;
         updateRYBG(fId);       
@@ -206,7 +269,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             t_FSex.SelectedValue = v.XB.ToString();
             t_FMobile.Text = v.GRDH;
             t_ZC.SelectedItem.Text = v.ZC;
-            t_ZW.Text = v.ZW;
+            //t_ZW.Text = v.ZW;
             t_FTel.Text = v.BGDH;
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
