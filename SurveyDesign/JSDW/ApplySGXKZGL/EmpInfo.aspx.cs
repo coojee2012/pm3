@@ -167,6 +167,9 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
 
         if (manualVal == "1")//手工录入
         {
+            //如果是人工加的，则new一个ID，仅为保证后续业务的延续性：人员变动记录查重，无他意。  by zyd  
+            h_selEmpId.Value = Guid.NewGuid().ToString();
+
             var countSql = @" select count(*) from [JST_XZSPBaseInfo].dbo.RY_RYZSXX  where SFZH='{0}'";
             countSql = string.Format(countSql, t_FIdCard.Text);
             int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(countSql).FirstOrDefault());
@@ -185,6 +188,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
                 return;
             }
         }
+
         string sql1 = @" select count(*) from TC_PrjItem_Emp  where FIdCard='{0}'  and FAppId='{1}' and FEntType='{2}'";
         sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_FEntType.Value);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
