@@ -20,7 +20,6 @@ using Approve.RuleApp;
 using EgovaDAO;
 using EgovaBLL;
 using ProjectBLL;
-using NJSWebApp;
 using Tools;
 using System.Data.SqlClient;
 
@@ -398,7 +397,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        try
        {
-           SaveCkRy(); //保存人员审核
+           SaveCkRy(); //保存对人员的审核
            WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);  
@@ -416,21 +415,23 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
        string FId = "";
        int istate = 3;
        StringBuilder sb = new StringBuilder();
-
+       sb.Append(" update TC_SGXKZ_RYBGJG set checkstate =  b.ckstate from TC_SGXKZ_RYBGJG a,(select '1' as fid,2 as ckstate");
        int RowCount = dgEmp.Items.Count;
 
        for (int i = 0; i < dgEmp.Items.Count; i++)
        {
-           FId    = dgEmp.Items[i].Cells[dgEmp.Columns.Count - 1].Text.Trim();
+           FId = dgEmp.Items[i].Cells[dgEmp.Columns.Count - 1].Text.Trim();
            if (((RadioButton)dgEmp.Items[i].FindControl("IYS")).Checked)
-           { istate = 1;}
+           { istate = 1; }
            if (((RadioButton)dgEmp.Items[i].FindControl("IWS")).Checked)
-           { istate = 0;}
+           { istate = 0; }
            if (istate != 3)
            {
-               sb.Append(" update TC_SGXKZ_RYBGJG set checkstate =  " + istate.ToString() + " where Fid ='" + FId.ToString() + "';");
+               sb.Append(" union select '" + FId.ToString() + "'," + istate.ToString());
            }
+           istate = 3;
        }
+       sb.Append(" ) b where a.Fid = b.fid and isnull(a.checkstate,3) <>  b.ckstate");       
        if (sb.Length > 10)
        {
 

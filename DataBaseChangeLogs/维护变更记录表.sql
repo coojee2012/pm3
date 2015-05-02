@@ -91,6 +91,7 @@ begin
        from TC_PrjItem_Emp a ,inserted b
       where a.fappid = b.fappid
         and a.FEmpId = b.FLinkId
+        and isnull(a.checkstate,3) <> b.checkstate
         and b.checkstate in (0, 1)
 end
 go
