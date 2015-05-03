@@ -348,7 +348,34 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
        if (e.Item.ItemIndex > -1)
        {
            e.Item.Cells[0].Text = (e.Item.ItemIndex + 1 + this.pagerEmp.PageSize * (this.pagerEmp.CurrentPageIndex - 1)).ToString();
-       }
+           if (EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "BGQK")) == "退出")
+           {
+               //如果是人员退出，则不用审核
+               ((RadioButton)e.Item.FindControl("IYS")).Visible  = false;
+               ((RadioButton)e.Item.FindControl("IwS")).Visible = false;
+
+           }
+           else
+           {
+               object ckstate = DataBinder.Eval(e.Item.DataItem, "checkstate");
+               if (ckstate == null || ckstate == DBNull.Value)
+               {
+                   ((Label)e.Item.FindControl("Notcheck")).Text = "<font color='red'>未审核</font>";
+               }
+               switch (EConvert.ToInt(ckstate))
+               {
+                   case 1:
+                       ((RadioButton)e.Item.FindControl("IYS")).Checked = true;
+                       break;
+                   case 0:
+                       ((RadioButton)e.Item.FindControl("IwS")).Checked = true;
+                       break;
+                   default:
+                       ((Label)e.Item.FindControl("Notcheck")).Text = "<font color='red'>未审核</font>";
+                       break;
+               }
+           }
+          }
    }
    protected void pagerEmp_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
    {
@@ -370,6 +397,7 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
    {
        try
        {
+           SaveCkRy(); //保存对人员的审核
            WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                    t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);  
@@ -379,6 +407,43 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存失败');", true);  
        }
        
+   }
+
+    //保存人员审核意见
+   protected void SaveCkRy()
+   {
+       string FId = "";
+       int istate = 3;
+       StringBuilder sb = new StringBuilder();
+       sb.Append(" update TC_SGXKZ_RYBGJG set checkstate =  b.ckstate from TC_SGXKZ_RYBGJG a,(select '1' as fid,2 as ckstate");
+       int RowCount = dgEmp.Items.Count;
+
+       for (int i = 0; i < dgEmp.Items.Count; i++)
+       {
+           FId = dgEmp.Items[i].Cells[dgEmp.Columns.Count - 1].Text.Trim();
+           if (((RadioButton)dgEmp.Items[i].FindControl("IYS")).Checked)
+           { istate = 1; }
+           if (((RadioButton)dgEmp.Items[i].FindControl("IWS")).Checked)
+           { istate = 0; }
+           if (istate != 3)
+           {
+               sb.Append(" union select '" + FId.ToString() + "'," + istate.ToString());
+           }
+           istate = 3;
+       }
+       sb.Append(" ) b where a.Fid = b.fid and isnull(a.checkstate,3) <>  b.ckstate");       
+       if (sb.Length > 10)
+       {
+
+           using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+           {
+               if (conn.State == ConnectionState.Closed)
+                   conn.Open();
+               SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
+               cmd.ExecuteNonQuery();
+
+           }
+       }
    }
    //接件
    protected void btnAccept_Click(object sender, EventArgs e)
@@ -508,4 +573,5 @@ public partial class Government_AppSGXKZGL_BGBLJJAuditInfo : System.Web.UI.Page
                break;
        }
    }
+
 }

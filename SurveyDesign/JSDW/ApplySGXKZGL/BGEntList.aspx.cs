@@ -103,8 +103,10 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
 
         TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
         t_FPrjItemId.Value = sbg.FPrjItemId;
-        TC_SGXKZ_PrjInfo p = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sbg.FPrjInfoId).FirstOrDefault();
-        var v = dbContext.TC_PrjItem_Ent.Where(t => (t.FAppId == p.FAppId || t.FAppId == hf_FAppId.Value) && t.FEntType.Equals(hf_FEntType.Value));
+        //TC_SGXKZ_PrjInfo p = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sbg.FPrjInfoId).FirstOrDefault();
+        //var v = dbContext.TC_PrjItem_Ent.Where(t => (t.FAppId == p.FAppId || t.FAppId == hf_FAppId.Value) && t.FEntType.Equals(hf_FEntType.Value));
+        //modify by psq 获取当前流程对应类型企业类型即可。ly 不要再次修改。
+        var v = dbContext.TC_PrjItem_Ent.Where(t =>  t.FAppId == hf_FAppId.Value && t.FEntType.Equals(hf_FEntType.Value));
         dg_List.DataSource = v;
         dg_List.DataBind();
     }
@@ -145,10 +147,11 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
                 sr.XM = pe.FHumanName;
                 sr.ZSBH = pe.ZSBH;
                 sr.QYMC = pe.FEntName;
+                sr.FLinkId = pe.FEntId;
                 sr.BGQK = "退出";
                 sr.BGTime = DateTime.Now;
                 dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
-                dbContext.SubmitChanges();
+                dbContext.SubmitChanges();                
             }
         }
     }
@@ -179,9 +182,11 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
         sq.YQLX = lblTitle.InnerText;
         sq.YQMC = ent.FName;
         sq.BGTime = DateTime.Now;
+        sq.FLinkId = ent.QYID;
         sq.BGQK = "退出";
         dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(sq);
-        dbContext.SubmitChanges();
+        dbContext.SubmitChanges();  
+       
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {

@@ -87,7 +87,9 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     private void showInfo()
     {
         TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == h_FAppId.Value).FirstOrDefault();
-        TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sbg.FPrjInfoId).FirstOrDefault();
+        //修改为从flinkid获取，ly不要修改，依赖于从归档库中获取的数据的flinkid,modify by psq 20150501
+        //TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FId == sbg.FPrjInfoId).FirstOrDefault();
+        TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == sbg.FLinkId).FirstOrDefault();
         if (sp != null)
         {
             pageTool tool = new pageTool(this.Page, "t_");
@@ -299,7 +301,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         string sql = @" select count(*) from TC_SGXKZ_QYBGJG 
-                            where FAppId='{0}' and BGQK='增加'";
+                            where FAppId='{0}' and BGQK='新增'";
         sql = string.Format(sql, h_FAppId.Value);
         int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
         sql = @" select count(*) from TC_SGXKZ_QYBGJG 

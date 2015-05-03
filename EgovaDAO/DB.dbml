@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=USER-20150404MI\SQL;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString7" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenter_scConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2013,21 +2013,6 @@
       <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TC_SGXKZ_RYBGJG" Member="TC_SGXKZ_RYBGJG">
-    <Type Name="TC_SGXKZ_RYBGJG">
-      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="RYLX" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="XM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZSBH" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="BGQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SPJL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TC_QA_Record" Member="TC_QA_Record">
     <Type Name="TC_QA_Record">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2566,6 +2551,22 @@
       <Column Name="FTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="needDel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TC_SGXKZ_RYBGJG" Member="TC_SGXKZ_RYBGJG">
+    <Type Name="TC_SGXKZ_RYBGJG">
+      <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="RYLX" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="XM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZSBH" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="BGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BGQK" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="SPJL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FLinkId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="checkstate" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
