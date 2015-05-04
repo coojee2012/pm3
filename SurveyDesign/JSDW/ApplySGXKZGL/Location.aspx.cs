@@ -25,9 +25,9 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
             
             ShowTitle();
             //MODIFY:YTB 判断选址意见书是否存在标准库中。
-            CheckXMBase();
+            bool b=  CheckXMBase();
             pageTool tool1 = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0||b)
             {
                 tool1.ExecuteScript("btnEnable();");
             }
@@ -37,7 +37,7 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
     /// <summary>
     /// 验证标准库是否存在该项目的选址意见书
     /// </summary>
-    private void CheckXMBase() {
+    private bool CheckXMBase() {
         //得到项目id
         var appid = ViewState["FAppId"].ToString(); 
 
@@ -63,9 +63,10 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
             //如果标准库中有，就设置为1
             if (dt != null && dt.Rows.Count > 0)
             {
-                Session["FIsApprove"] = 1;
+                return true;
             }
         }
+        return false;
     }
 
 
