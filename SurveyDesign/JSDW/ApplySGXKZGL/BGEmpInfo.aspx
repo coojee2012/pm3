@@ -121,7 +121,7 @@
                     <tt>*</tt>
                                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'h_selEmpId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmp_Click" Style="margin-bottom: 4px;margin-left:5px;" />
-                        <input type="button" value="人工录入" class="m_btn_w4" style="margin-bottom: 4px; margin-left: 5px;" onclick="manualEntry()"  id="rglr"/></td>
+                        <input type="button" value="人工录入" runat="server" class="m_btn_w4" style="margin-bottom: 4px; margin-left: 5px;" onclick="manualEntry()"  id="rglr"/></td>
             </tr>
             <tr>
                 <td class="t_r t_bg">

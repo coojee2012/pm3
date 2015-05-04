@@ -50,7 +50,7 @@
                 alert('请先保存上方信息！');
                 return;
             }
-            showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);         
+            showAddWindow('File.aspx?fLinkId=' + fid + "&&fAppId=" + fAppId + "&&fPrjItemId=" + fPrjItemId, 800, 550);          
             //  alert('dd')
         }
         function hideTr1() {
@@ -404,7 +404,8 @@
                 <td>材料信息
                 </td>
                 <td class="t_r">
-                    <input type="button" id="Button4" cs="cs1" runat="server"    value="新增" class="m_btn_w2" onclick="addPrjItemJL();" />
+                    <%--<input type="button" id="Button4" cs="cs1" runat="server"    value="新增" class="m_btn_w2" onclick="addPrjItemJL();" />--%>
+                    <asp:Button id="Button4" cs="cs1" runat="server"  Text="新增"   value="新增" class="m_btn_w2" OnClientClick="addPrjItemJL();" OnClick="Button3_Click" />
                     <asp:Button ID="Button5" cs="cs1" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
                         OnClick="btnDel_ClickJL" />
                     <asp:Button ID="Button6" cs="cs1" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_ClickJL" />

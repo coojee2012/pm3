@@ -32,7 +32,7 @@
                 alert('请先保存上方的企业信息！');
                 return;
             }
-            showAddWindow('EmpInfo.aspx?qyId=' + qyid + '&entId=' + id +'&enttype='+fenttype+
+            showAddWindow('BGEmpInfo.aspx?qyId=' + qyid + '&entId=' + id +'&enttype='+fenttype+
                  '&FPrjItemId=' + FPrjItemId, 1000, 600);
         }
         function showTr1() {

@@ -14,21 +14,27 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    pageTool tool;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            txtFId.Value = EConvert.ToString(Request["FId"]);
-            t_FEntId.Value = EConvert.ToString(Request["entId"]);
-            t_qyId.Value = EConvert.ToString(Request["qyId"]);
+            t_FAppId.Value = EConvert.ToString(Session["FAppId"]);//业务编号
+            txtFId.Value = EConvert.ToString(Request["FId"]);//项目参与企业的主键
+            t_FEntId.Value = EConvert.ToString(Request["entId"]);//项目参与企业的主键，不是企业编号
+            t_qyId.Value = EConvert.ToString(Request["qyId"]);//企业编号
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
             t_FPrjItemId.Value = EConvert.ToString(Request["FPrjItemId"]);
             t_Enttype.Value = EConvert.ToString(Request["enttype"]);
             BindControl();
             showInfo();
-        }
-        this.t_ZW.Text = t_qyId.Value;
+            tool = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            {
+                tool.ExecuteScript("btnEnable();");
+                rglr.Visible = false;
+            }
+        }        
     }
     void BindControl()
     {

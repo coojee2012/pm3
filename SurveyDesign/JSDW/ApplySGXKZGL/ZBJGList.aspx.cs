@@ -53,7 +53,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 Button4.Visible = false;
             }
 
-            //ShowFile(t_JLId.Value, "JL");
+            ShowFile(t_JLId.Value, "JL");
         }
     }
 
@@ -106,7 +106,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
         t_ProjectNo.Text = p.ProjectNo;
         //加载附件列表
-        ShowFile(t_JLId.Value, "JL");
+        //ShowFile(t_JLId.Value, "JL");
 
         //pageTool tool = new pageTool(this.Page, "t_");
         //tool.fillPageControl(sp);
@@ -396,5 +396,9 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     {
         pageTool tool = new pageTool(this.Page);
         tool.showMessage("alert('保存成功');");
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        ShowFile(t_JLId.Value, "JL");
     }
 }
