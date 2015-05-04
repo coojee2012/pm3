@@ -283,20 +283,26 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
     {
         string selEntId = q_JLDWId.Value;
         EgovaDB1 db1 = new EgovaDB1();
-        QY_JBXX v = db1.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-        if (v != null)
+        //监理企业返回的是企业的资质信息id的主键
+        QY_QYZZXX vzz = db1.QY_QYZZXX.Where(t => t.QYZZID == selEntId).FirstOrDefault();
+        if (vzz != null)
         {
-            q_JLDW.Text = v.QYMC;
-            q_JLDWDZ.Text = v.QYXXDZ;
-            q_JLDWFR.Text = v.FRDB;
-            q_JLDWDH.Text = v.LXDH;
+            //QY_JBXX v = db1.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            QY_JBXX v = db1.QY_JBXX.Where(t => t.QYBM == vzz.QYBM).FirstOrDefault();
+            if (v != null)
+            {
+                q_JLDW.Text = v.QYMC;
+                q_JLDWDZ.Text = v.QYXXDZ;
+                q_JLDWFR.Text = v.FRDB;
+                q_JLDWDH.Text = v.LXDH;
+            }
+            var v1 = db1.QY_QYZSXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v1 != null)
+                q_JLZS.Text = v1.ZSBH;
+            //变更单位时清空项目总监
+            q_XMZJ.Text = "";
+            ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
         }
-        var v1 = db1.QY_QYZSXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-        if (v1 != null)
-            q_JLZS.Text = v1.ZSBH;
-        //变更单位时清空项目总监
-        q_XMZJ.Text = "";
-        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     //添加联合体企业
     protected void btnAddEnt_sj_Click(object sender, EventArgs e)
