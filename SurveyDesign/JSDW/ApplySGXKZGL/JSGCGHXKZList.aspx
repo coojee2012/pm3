@@ -22,7 +22,8 @@
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
-            if (value == "1") {
+            if (value == "1" || value == "3")
+            {
                 return AutoCheckInfo();
             } else {
                 var ly = document.getElementById("t_YL").value;
@@ -55,7 +56,7 @@
             $("#t_Others").attr("disabled", true);
             $("#t_GCGHXKZBH").attr("disabled", true);
             $("#t_CreateTime").attr("disabled", true);
-            $("#t_HFJG").attr("disabled", true);
+            $("#t_HFJG").attr("disabled", true);           
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
@@ -68,7 +69,7 @@
             $("#t_Others").removeAttr("disabled");
             $("#t_GCGHXKZBH").removeAttr("disabled");
             $("#t_CreateTime").removeAttr("disabled");
-            $("#t_HFJG").removeAttr("disabled");
+            $("#t_HFJG").removeAttr("disabled");            
         }
         function change(value) {
             if (value == "1") {
@@ -83,6 +84,7 @@
                 $("#t_GCGHXKZBH").removeAttr("disabled");
                 $("#t_CreateTime").removeAttr("disabled");
                 $("#t_HFJG").removeAttr("disabled");
+                $("#t_YL").removeAttr("disabled");
             }
             else {
                 $("tr[name=tr1]").show();
@@ -97,7 +99,6 @@
                 $("#t_GCGHXKZBH").attr("disabled", true);
                 $("#t_CreateTime").attr("disabled", true);
                 $("#t_HFJG").attr("disabled", true);
-
             }
         }
     </script>
