@@ -125,6 +125,27 @@ public partial class JSDW_ApplySGXKZGL_FGSQInfo : System.Web.UI.Page
 
     protected void btnShangBao_Click(object sender, EventArgs e)
     {
+        try
+        {
 
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                string sql = "SELECT 1 AS ONE;";
+                string fid = this.fid.Value.ToString();
+                sql = "UPDATE  TC_SGXKZ_TFG SET FCLZT = 1 WHERE FId='" + fid + "'";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
+                ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('上报成功');", true);
+            }
+
+
+        }
+        catch (Exception ee)
+        {
+            ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('上报失败');", true);
+        }
     }
 }
