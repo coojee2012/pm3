@@ -77,15 +77,15 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
                     {
                         fid = Guid.NewGuid().ToString() ;
                         sql = " INSERT INTO TC_SGXKZ_TFG (FId,FTFGRQ,FYJSJFGRQ,FYY,FAppId,FType,FCLZT) VALUES ('" + fid + "',";
-                        sql += "'"+t_TGDate.Text+" 00:00:00',";
-                        sql += " '" + t_YJFGDate.Text + " 00:00:00',";
+                        sql += "'"+t_TGDate.Text+"',";
+                        sql += " '" + t_YJFGDate.Text + "',";
                         sql += " '" + t_TGYYA.Text + "','"+t_fLinkId.Value+"',0,0)";
                        
                     }
                     else
                     {
 
-                        sql = "UPDATE  TC_SGXKZ_TFG SET FTFGRQ = '" + t_TGDate.Text + " 00:00:00',FYJSJFGRQ = '" + t_YJFGDate.Text + " 00:00:00',FYY= '" +t_TGYYA.Text+ "' WHERE FId='" + fid + "'";
+                        sql = "UPDATE  TC_SGXKZ_TFG SET FTFGRQ = '" + t_TGDate.Text + "',FYJSJFGRQ = '" + t_YJFGDate.Text + "',FYY= '" +t_TGYYA.Text+ "' WHERE FId='" + fid + "'";
                     }
                  
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -120,6 +120,27 @@ public partial class JSDW_ApplySGXKZGL_TGSQInfo : System.Web.UI.Page
 
     protected void btnShangBao_Click(object sender, EventArgs e)
     {
+        try
+        {
 
+            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                string sql = "SELECT 1 AS ONE;";
+                string fid = this.fid.Value.ToString();
+                sql = "UPDATE  TC_SGXKZ_TFG SET FCLZT = 1 WHERE FId='" + fid + "'";               
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
+                ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('上报成功');", true);
+            }
+
+
+        }
+        catch (Exception ee)
+        {
+            ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('上报失败');", true);
+        }
     }
 }
