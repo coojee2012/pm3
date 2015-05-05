@@ -92,7 +92,7 @@ public partial class Government_AppSGXKZGL_CCBLCSAuditInfo : System.Web.UI.Page
            pageTool tool = new pageTool(this.Page, "t_");
            tool.fillPageControl(info);
        }
-       TC_SGXKZ_PrjState info1 = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
+       var info1 = db.TC_SGXKZ_PrjState.Where(t => t.FPrjItemId == t_PrjItemId.Value).FirstOrDefault();
        if (info1 != null)
        {
            pageTool tool1 = new pageTool(this.Page, "s_");

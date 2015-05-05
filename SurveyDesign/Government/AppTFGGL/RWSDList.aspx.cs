@@ -32,12 +32,16 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" select distinct a.FId,a.FAppId,a.IsLock,a.SelectedCount,case b.FSex when 1 then '男' else '女' end as FSex,");
-        sb.Append(" b.XMZW,b.FIdCard,b.FHumanName,b.FEntName,b.ZSBH,c.PrjItemName   ");
+        sb.Append(" select a.FId,a.FAppId,a.IsLock,a.SelectedCount,case b.FSex when 1 then '男' else '女' end as FSex,");
+        sb.Append(" b.ZW,b.FIdCard,b.FHumanName,b.FEntName,b.ZSBH,b.ZCZY,b.EmpType,d.FName, ");
+        sb.Append(" c.PrjItemName,c.ProjectName,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,c.StartDate,c.EndDate   ");
+  
         sb.Append(" from TC_PrjItem_Emp_Lock a ");
         sb.Append(" left join TC_PrjItem_Emp b on a.FIdCard=b.FIdCard ");
         sb.Append(" left join TC_SGXKZ_PrjInfo c on c.FAppId = a.FAppId ");
-        sb.Append(" where a.IsLock = 1 ");
+        sb.Append(" left join CF_Sys_Dic d on b.EmpType = d.FNumber ");
+        sb.Append(" where not exists (select 1 from TC_PrjItem_Emp_Lock where FIdCard = a.FIdCard  and FCreateTime > a.FCreateTime) ");
+        sb.Append(" and a.IsLock = 1 ");
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
 
@@ -105,7 +109,7 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
             box.Attributes["name"] = fAppId;
 
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
-            e.Item.Cells[7].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JCSD.aspx?idCard=" + idCard + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[7].Text + "</a>";
+            e.Item.Cells[13].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JCSD.aspx?idCard=" + idCard + "&FAppId=" + fAppId + "',1024,600);\">" + e.Item.Cells[13].Text + "</a>";
           //  e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
 
         }

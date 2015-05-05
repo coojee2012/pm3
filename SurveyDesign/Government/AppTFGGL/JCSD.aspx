@@ -41,8 +41,12 @@
                         MaxLength="30"></asp:TextBox>
                 </td>
                 <td>
+                           <asp:UpdatePanel ID="up_Main" runat="server" RenderMode="Inline">
+                               <ContentTemplate>
                      <asp:Button ID="btnJS" runat="server" Text="解锁" CssClass="m_btn_w2" OnClick="btnJS_Click"   />
                      <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click"   />
+                                  </ContentTemplate>
+                    </asp:UpdatePanel> 
                 </td>
             </tr>
              </table>
@@ -66,11 +70,16 @@
                     <HeaderStyle Font-Underline="False" Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FHumanName" HeaderText="姓名"></asp:BoundColumn>
-                <asp:BoundColumn DataField="PrjItemName" HeaderText="相关项目"></asp:BoundColumn>
-     
+                <asp:BoundColumn DataField="ProjectName" HeaderText="项目名称"></asp:BoundColumn>
+     <asp:BoundColumn DataField="DeptName" HeaderText="项目属地"></asp:BoundColumn>
+                <asp:BoundColumn DataField="StartDate" HeaderText="开工时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
+                <asp:BoundColumn DataField="EndDate" HeaderText="预计竣工时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
+                  <asp:BoundColumn DataField="FName" HeaderText="人员类型"></asp:BoundColumn>
+             
                 <asp:BoundColumn DataField="lockType" HeaderText="锁定类型"></asp:BoundColumn>
-                <asp:BoundColumn DataField="FCreateTime" HeaderText="锁定时间" DataFormatString="yyyy-MM-dd"></asp:BoundColumn>
-                <asp:BoundColumn DataField="FTime" HeaderText="锁定结束时间" DataFormatString="yyyy-MM-dd"></asp:BoundColumn>          
+                <asp:BoundColumn DataField="FCreateTime" HeaderText="锁定时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
+                <asp:BoundColumn DataField="FTime" HeaderText="锁定结束时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn> 
+                <asp:BoundColumn DataField="PrjAddressDept" Visible="False"></asp:BoundColumn>         
                 <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
             </Columns>
         </asp:DataGrid>

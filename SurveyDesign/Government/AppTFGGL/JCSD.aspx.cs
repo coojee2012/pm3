@@ -31,10 +31,10 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("select * from ( ");
-        sb.Append(" 		 select distinct a.FId, a.lockType,b.FHumanName,c.PrjItemName,a.FCreateTime,a.FTime from TC_PrjItem_Emp_Lock a  ");
+        sb.Append(" select  a.FId, a.lockType,b.FHumanName,c.PrjItemName,a.FCreateTime,a.FTime,d.FName,c.ProjectName,c.PrjAddressDept,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,c.StartDate,c.EndDate from TC_PrjItem_Emp_Lock a  ");
         sb.Append(" left join  TC_PrjItem_Emp b on a.FIdCard=b.FIdCard and a.FPrjItemId = b.FPrjItemId ");
         sb.Append(" left join TC_SGXKZ_PrjInfo c on a.FAppId = c.FAppId ");
-
+        sb.Append(" left join CF_Sys_Dic d on b.EmpType = d.FNumber ");
         sb.Append(" where a.IsLock=1 and a.FIdCard='"+t_FIdCard.Value+"' ");
         //下面的查询备份表
 
@@ -74,7 +74,7 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
     protected void btnJS_Click(object sender, EventArgs e)
     {
         string FId = "";
-
+        string FDeptId = CurrentEntUser.UpDeptId.ToString();
         int RowCount = dg_List.Items.Count;
         IList<string> FIdList = new List<string>();
         string FIds = "";
@@ -84,16 +84,24 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
             if (cbx.Checked)
             {
                 FId = dg_List.Items[i].Cells[dg_List.Columns.Count - 1].Text.Trim();
-
-                FIdList.Add(FId);
-                if (string.IsNullOrEmpty(FIds))
+                string dept = dg_List.Items[i].Cells[dg_List.Columns.Count - 2].Text.Trim();
+                if (dept.Substring(0, FDeptId.Length) == FDeptId)
                 {
-                    FIds = "'" + FId + "'";
+                    FIdList.Add(FId);
+                    if (string.IsNullOrEmpty(FIds))
+                    {
+                        FIds = "'" + FId + "'";
+                    }
+                    else
+                    {
+                        FIds += ",'" + FId + "'";
+                    }
                 }
-                else
-                {
-                    FIds += ",'" + FId + "'";
+                else {
+                    ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('有项目属地不在管辖范围内,不能解锁！');", true);
+                    return;
                 }
+                
             }
         }
 

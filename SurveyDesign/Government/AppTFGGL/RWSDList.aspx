@@ -211,7 +211,35 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="职务" DataField="XMZW">
+                         <asp:BoundColumn HeaderText="注册专业" DataField="ZCZY">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="证书编号" DataField="ZSBH">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="参与在建工程名称" DataField="ProjectName">
+                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="项目属地" DataField="DeptName">
+                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="开工时间" DataField="StartDate"  DataFormatString="{0:yyyy-MM-dd}">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="预计竣工时间" DataField="EndDate"  DataFormatString="{0:yyyy-MM-dd}">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="人员类型" DataField="FName">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="职务" DataField="ZW">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
@@ -219,18 +247,15 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="证书编号" DataField="ZSBH">
-                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
+                       
                         <asp:BoundColumn HeaderText="锁定次数" DataField="SelectedCount">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="锁在项目" DataField="PrjItemName">
+                       <%--  <asp:BoundColumn HeaderText="锁在项目" DataField="PrjItemName">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
+                        </asp:BoundColumn>--%>
                        
                        
                        
