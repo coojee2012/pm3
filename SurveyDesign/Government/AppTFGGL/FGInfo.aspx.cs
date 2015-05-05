@@ -104,7 +104,7 @@ public partial class Government_AppTFGGL_FGInfo : System.Web.UI.Page
                 string fid = this.t_fProcessInstanceID.Value.ToString();
 
 
-                sql = "UPDATE  TC_SGXKZ_TFG SET FSHR = '" + t_SHR.Text + "',FSHRQ = '" + t_SHRQ.Text + " 00:00:00',FSHDW= '" + t_SHDW.Text + "',FCLZT = 2 WHERE FId='" + fid + "'";
+                sql = "UPDATE  TC_SGXKZ_TFG SET FSHR = '" + t_SHR.Text + "',FSHRQ = '" + t_SHRQ.Text + "',FSHDW= '" + t_SHDW.Text + "',FCLZT = 2 WHERE FId='" + fid + "'";
 
 
                 SqlCommand cmd = new SqlCommand(sql, conn);

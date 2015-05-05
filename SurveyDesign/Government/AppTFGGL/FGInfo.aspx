@@ -120,7 +120,7 @@
                          
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
+                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.returnValue = '1'; window.close();" />
                 </td>
 
             </tr>

@@ -24,13 +24,51 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
             //ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             
             ShowTitle();
+            //MODIFY:YTB 判断选址意见书是否存在标准库中。
+            bool b=  CheckXMBase();
             pageTool tool1 = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0||b)
             {
                 tool1.ExecuteScript("btnEnable();");
             }
         }
     }
+
+    /// <summary>
+    /// 验证标准库是否存在该项目的选址意见书
+    /// </summary>
+    private bool CheckXMBase() {
+        //得到项目id
+        var appid = ViewState["FAppId"].ToString(); 
+
+        EgovaDB db = new EgovaDB();
+       var prjid = string.Empty;
+        var prjids = from location in db.TC_SGXKZ_Location
+                join prjitem in db.TC_PrjItem_Info on location.FprjItemId equals prjitem.FId
+                where location.FAppId == appid
+                select new {
+                    pid = prjitem.FPrjId
+                };
+        if (prjids != null&&prjids.Count()>0)
+        {
+            prjid = prjids.FirstOrDefault().pid;
+
+        }
+        //查询标准库，该项目是否存在选址意见书
+        if (!string.IsNullOrEmpty(prjid)) {
+
+            XMHJCL_Business business = new XMHJCL_Business();
+
+            DataTable dt = business.GataBaseData(prjid, XMHJCL_Business.环节材料信息.选址意见书);
+            //如果标准库中有，就设置为1
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private void ShowTitle()
     {

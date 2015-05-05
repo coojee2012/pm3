@@ -43,15 +43,21 @@ public partial class Government_AppTFGGL_TGInfo : System.Web.UI.Page
             t_JSDW.Text = EConvert.ToString(dt.Rows[i]["JSDW"]);
             t_FZTime.Text = EConvert.ToString(dt.Rows[i]["FZTime"]);
             t_FZJG.Text = EConvert.ToString(dt.Rows[i]["FZJG"]);
-            t_TGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
-            t_CXKGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
-
+            if(!string.IsNullOrEmpty(dt.Rows[i]["FTFGRQ"].ToString())){
+                  t_TGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FTFGRQ"])).ToString("yyyy-MM-dd");
+            }
+            if (!string.IsNullOrEmpty(dt.Rows[i]["FYJSJFGRQ"].ToString()))
+            {
+                t_CXKGDate.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FYJSJFGRQ"])).ToString("yyyy-MM-dd");
+            }
             t_TGYY.Text = EConvert.ToString(dt.Rows[i]["FYY"]);
 
             t_SHDW.Text = EConvert.ToString(dt.Rows[i]["FSHDW"]);
             t_SHR.Text = EConvert.ToString(dt.Rows[i]["FSHR"]);
-            t_SHRQ.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FSHRQ"])).ToString("yyyy-MM-dd"); 
-
+            if (!string.IsNullOrEmpty(dt.Rows[i]["FSHRQ"].ToString()))
+            {
+                t_SHRQ.Text = DateTime.Parse(EConvert.ToString(dt.Rows[i]["FSHRQ"])).ToString("yyyy-MM-dd");
+            }
             if (EConvert.ToString(dt.Rows[i]["FType"]) == "0")
             {
                 fid.Value = "";
@@ -80,7 +86,7 @@ public partial class Government_AppTFGGL_TGInfo : System.Web.UI.Page
                 string fid = this.t_fProcessInstanceID.Value.ToString();
 
 
-                sql = "UPDATE  TC_SGXKZ_TFG SET FSHR = '" + t_SHR.Text + "',FSHRQ = '" + t_SHRQ.Text + " 00:00:00',FSHDW= '" + t_SHDW.Text + "',FCLZT = 2 WHERE FId='" + fid + "'";
+                sql = "UPDATE  TC_SGXKZ_TFG SET FSHR = '" + t_SHR.Text + "',FSHRQ = '" + t_SHRQ.Text + "',FSHDW= '" + t_SHDW.Text + "',FCLZT = 2 WHERE FId='" + fid + "'";
                 
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
