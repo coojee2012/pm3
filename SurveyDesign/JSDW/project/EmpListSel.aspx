@@ -157,10 +157,10 @@
                         <td>
                             <%# Container.ItemIndex + 1%> 
                         </td>
-                        <td>
+                        <%--<td>
                             <asp:LinkButton ID="lkb_Lock" runat="server" Text="Label"></asp:LinkButton>                            
                             <asp:HiddenField ID="h_lock"  runat="server" />
-                        </td>
+                        </td>--%>
                         <td>
                             <%# Eval("XM")%>
                         </td>
