@@ -159,9 +159,6 @@
                                                 <asp:LinkButton ID="btnDel" CommandName="Del" Text="删除" runat="server" CommandArgument='<%#Eval("FID")%>'
                                                     Style="margin-left: 6px;">
                                                 </asp:LinkButton>
-                                                <asp:LinkButton ID="btnBack" CommandName="Back" Text="撤销上报" runat="server" CommandArgument='<%#Eval("FID")%>'
-                                                     Style="margin-left: 6px;">
-                                                </asp:LinkButton>
                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField DataField="FId" HeaderText="FId" Visible="False" />
