@@ -60,8 +60,7 @@
         }
         function doSelOther(tagId, obj, fsysid, hasCerti, oTagId, tip) {
             if ($('#' + oTagId).val() == '') {
-                alert(tip);
-                return false;
+                    return false;
             }
             else {
                 return selEnt(tagId, fsysid, obj, oTagId);
@@ -105,7 +104,8 @@
             if (tagId == "t_SGRYId") {
                 qybm = document.getElementById("t_SGId").value;
             } else if (tagId == "t_JLRYId") {
-                qybm = document.getElementById("t_JLId").value;
+                qybm = document.getElementById("t_jldwid").value;               
+              //qybm = document.getElementById("t_JLId").value;
             }
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
@@ -257,7 +257,9 @@
                 计划施工期限：
             </td>
             <td>
-                <asp:TextBox ID="q_PlanStartTime" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <%--<asp:TextBox ID="q_PlanStartTime" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>--%>
+                <asp:TextBox ID="q_PlanLimit" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                
             </td>
         </tr>
         <tr>
@@ -265,13 +267,13 @@
                 计划开工日期：
             </td>
             <td>
-                <asp:TextBox ID="q_StartDate" runat="server" CssClass="m_txt" Width="195px" onfocus="WdatePicker()"></asp:TextBox>
+                <asp:TextBox ID="q_PlanStartTime" runat="server" CssClass="m_txt" Width="195px" onfocus="WdatePicker()"></asp:TextBox>
             </td>
             <td class="t_r t_bg">
                 计划竣工日期：
             </td>
             <td>
-                <asp:TextBox ID="q_EndDate" runat="server" CssClass="m_txt" onfocus="WdatePicker()" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_PlanEndTime" runat="server" CssClass="m_txt" onfocus="WdatePicker()" Width="195px"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -407,6 +409,7 @@
             <td class="auto-style1" colspan="1" style="width:29%;">
                 <asp:TextBox ID="q_JLDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                 <input type="hidden"  runat="server" ID="t_JLId" value="" />
+                <input type="hidden"  runat="server" ID="t_jldwid" value="" />
                 <asp:Button ID="Button1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_JLId');"
                 UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntJL_Click" Style="margin-bottom: 4px;margin-left:5px;" />
             </td>

@@ -71,7 +71,14 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
         }
         TC_AJBA_Record qa = db.TC_AJBA_Record.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
         TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
-        govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
+        if (prjInfo.AddressDept != null)
+        {
+            govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
+        }
+        else
+        {
+            govd_FRegistDeptId.fNumber = "51";
+        }
         if (prjInfo.AddressDept != null)
         {
             if (prjInfo.AddressDept.Length == 2)
@@ -452,8 +459,7 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
     }
 
     public static bool ValidateInfo(string fAppId)
-    {
-        bool flag = false;
+    {       
         EgovaDB db = new EgovaDB();
         TC_AJBA_Record ar = db.TC_AJBA_Record.FirstOrDefault(t => t.FAppId == fAppId);
 

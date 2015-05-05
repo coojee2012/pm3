@@ -238,13 +238,13 @@
         </tr>
                 <tr><td class="t_r t_bg">
 
-                    工程投资规模</td>
+                    工程投资规模：</td>
                     <td class="auto-style7">
 <asp:TextBox ID="b_Investment" onblur="isFloat(this)" runat="server" CssClass="m_txt"
                         Width="195px"></asp:TextBox>(万元) <tt>*</tt>
                     </td><td class="t_r t_bg">
 
-                        为代表性的标志工程</td>
+                        为代表性的标志工程：</td>
                     <td class="auto-style7">
 
             
@@ -289,7 +289,7 @@
         </tr>
         <tr>
             <td class="t_r t_bg">
-                施工施可证编号：
+                施工许可证编号：
             </td>
             <td class="auto-style6">
                 <asp:TextBox ID="b_SGXKZBH" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
@@ -310,27 +310,27 @@
                 <asp:TextBox ID="b_SGDWAQSCXKZ" runat="server" CssClass="m_txt"  Width="97%"></asp:TextBox><tt>*</tt>
             </td>
             <tr>
-            <td class="t_r t_bg">安全生产业绩评价手册</td><td colspan ="2">
+            <td class="t_r t_bg">安全生产业绩评价手册编号：</td><td colspan ="2">
                 <asp:TextBox ID="b_SGSCYJPJSC" runat="server" CssClass="m_txt" Width="97%" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
             <tr>
-            <td class="t_r t_bg">项目经理安全生产能力考核证书编号</td><td colspan ="2">
+            <td class="t_r t_bg">项目经理安全生产能力考核证书编号：</td><td colspan ="2">
                 <asp:TextBox ID="b_XMJLAQSCLLKHZS" runat="server" CssClass="m_txt" Width="97%" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
             <tr>
-            <td class="t_r t_bg">安全员安全生产能力</td><td colspan =" 2">
+            <td class="t_r t_bg">安全员安全生产能力编号：</td><td colspan =" 2">
                 <asp:TextBox ID="b_AQYAQSCLLKH" runat="server" CssClass="m_txt" Width="97%" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
             <tr>
-            <td class="t_r t_bg">开工条件审查情况</td><td colspan =" 2">
+            <td class="t_r t_bg">开工条件审查情况：</td><td colspan =" 2">
                 <asp:TextBox ID="b_KGTJSHQK" runat="server" CssClass="m_txt" Width="97%" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
             <tr>
-            <td class="t_r t_bg">目前工程进度</td><td colspan =" 2">
+            <td class="t_r t_bg">目前工程进度：</td><td colspan =" 2">
                 <asp:TextBox ID="b_MQGCJD" runat="server" CssClass="m_txt" Width="97%" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
@@ -374,18 +374,18 @@
             </td>
         </tr>   
 
-        <tr name="tr_t2">
+        <tr>
             <td class="t_r t_bg">
                 重大质量事故：
             </td>
             <td colspan="1" class="auto-style6">
-                <asp:CheckBox ID="b_ZDZLSG" runat="server" Enabled="false" />
+                <asp:CheckBox ID="b_ZDZLSG" runat="server"  />
             </td>
             <td class="t_r t_bg">
                 重大安全事故：
             </td>
             <td colspan="1">
-                <asp:CheckBox ID="b_ZDAQSG" runat="server" Enabled="false" />
+                <asp:CheckBox ID="b_ZDAQSG" runat="server"  />
             </td>
         </tr>
         <tr>

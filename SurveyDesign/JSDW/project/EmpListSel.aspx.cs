@@ -209,12 +209,12 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                 string fid = hfEmpId.Value;             
                 //if (ViewState["emptype"] != null)
                 //{
-                    HiddenField hfzsyxq = e.Item.FindControl("zsyxq") as HiddenField;
-                    if (DateTime.Now > Convert.ToDateTime(hfzsyxq.Value))//如果建造师的有效期已经过了当前时间，则不能选择
-                    {
-                        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(),"人员信息","<script>alert('该人员的证书有效期已经过期，不能选择该人员！')</script>)");
-                        return;
-                    }
+                    //HiddenField hfzsyxq = e.Item.FindControl("zsyxq") as HiddenField;
+                    //if (DateTime.Now > Convert.ToDateTime(hfzsyxq.Value))//如果建造师的有效期已经过了当前时间，则不能选择
+                    //{
+                    //    this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(),"人员信息","<script>alert('该人员的证书有效期已经过期，不能选择该人员！')</script>)");
+                    //    return;
+                    //}
                     if (ishavechoose(Session["FAppId"].ToString(), ViewState["FPrjItemId"].ToString(), fid))
                     {
                         this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "人员信息", "<script>alert('该人员被选择了，不能再次选择该人员！')</script>)");
@@ -269,20 +269,20 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
             
           
-            if (v != null && EConvert.ToBool(LockBusiness(v)))
-            {
-                lblLock.Text = "锁定";
-                hLock.Value = "1";
-                //如果是锁定人员则背景色显示为红色
-                ((HtmlTableRow)e.Item.FindControl("row")).BgColor = Color.Red.ToString();  
-                //MODIFY:YTB 为锁定按钮注册点击事件
-                lblLock.Attributes.Add("onclick", "showEmpinfo('" + idCard + "');");
-            }
-            else
-            {
-                lblLock.Text = "";
-                hLock.Value = "0";
-            }
+            //if (v != null && EConvert.ToBool(LockBusiness(v)))
+            //{
+            //    lblLock.Text = "锁定";
+            //    hLock.Value = "1";
+            //    //如果是锁定人员则背景色显示为红色
+            //    ((HtmlTableRow)e.Item.FindControl("row")).BgColor = Color.Red.ToString();  
+            //    //MODIFY:YTB 为锁定按钮注册点击事件
+            //    lblLock.Attributes.Add("onclick", "showEmpinfo('" + idCard + "');");
+            //}
+            //else
+            //{
+            //    lblLock.Text = "";
+            //    hLock.Value = "0";
+            //}
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return selEmp(this);");

@@ -150,8 +150,28 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
         record.FPrjItemId = t_FPriItemId.Value;
         record.PrjItemName = t_FPrjItemName.Text;
         record.ProjectName = t_FProjectName.Value;
-        record.RecordNo = getBANumber();
         record.RecordTime = dTime;
+
+         //生成备案号
+        //record.RecordNo = getBANumber();
+        string ProjectType;
+         var result = (from t in dbContext.TC_Prj_Info
+                      where t.FId == t_FPrjId.Value
+                           select t).FirstOrDefault();   
+        if(result.ProjectType == "2000101")
+        {
+            ProjectType = "01";
+        }
+        else if(result.ProjectType == "2000102")
+        {
+            ProjectType = "02";
+        }
+        else
+        {
+            ProjectType = "99";
+        }
+        record.RecordNo = getBANumber(result.AddressDept, ProjectType,"AX");
+        //
         dbContext.TC_AJBA_Record.InsertOnSubmit(record);
         //提交修改
         dbContext.SubmitChanges();
@@ -417,6 +437,7 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
     }
     private string getBANumber()
     {
+
         string recordNo = "AX" + string.Format("{0:yyyyMMdd}", DateTime.Now);
         var result = (from t in dbContext.TC_AJBA_Record
                       where t.RecordNo.Contains(recordNo)
@@ -424,6 +445,68 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
         return recordNo + (result + 1);
 
     }
+    /// <summary>
+    /// 生成备案号
+    /// 
+    /// </summary>
+    /// <param name="prjitemarea">项目属地</param>
+    /// <param name="prjitemtype">项目类型</param>
+    /// <param name="bussinesstype">业务节点类型</param>
+    /// <returns>备案号</returns>
+    private string getBANumber(string prjitemarea,string prjitemtype,string bussinesstype)
+    {
+      
+        int todayno;
+        int todayxlh;
+        string recordnewno = "";
+        string stodayno,stodayxlh;
+        
+        //当天日期
+        string datatoday = string.Format("{0:yyMMdd}", DateTime.Now);
+        //获取当天最大的值
+        var result = (from t in dbContext.TC_AJBA_Record
+                      where t.RecordNo.Substring(6, 6) == datatoday
+                      orderby t.RecordTime descending
+                      select t).FirstOrDefault();
+        if (result != null)
+        {
+            todayno = Convert.ToInt32(result.RecordNo.Substring(12, 2)) + 1;
+            todayxlh = Convert.ToInt32(result.RecordNo.Substring(20, 3)) + 1;
+        }
+        else
+        {
+            todayno = 1;
+            todayxlh = 1;
+        }
+        //如果项目编号小于10
+        if (todayno < 10)
+        {
+            stodayno = "0" + todayno.ToString();
+        }
+        else
+        {
+            stodayno = todayno.ToString();
+        }
+        //如果序列号小于10或1000
+        if (todayxlh < 10)
+        {
+            stodayxlh = "00" + todayxlh.ToString();
+        }
+        else if (todayxlh < 100)
+        {
+            stodayxlh = "0" + todayxlh.ToString();
+        }
+        else
+        {
+            stodayxlh = todayxlh.ToString();
+        }
+
+        //生成编号
+        recordnewno = prjitemarea + string.Format("{0:yyMMdd}", DateTime.Now) + prjitemtype + stodayno + "-" + bussinesstype + "-" + stodayxlh;
+        return recordnewno;
+
+    }
+
     protected void gv_list_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         if (e.CommandName == "See")

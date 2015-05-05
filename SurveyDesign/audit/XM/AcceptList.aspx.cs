@@ -317,7 +317,7 @@ public partial class Government_AppZLJDBA_AcceptList : govBasePage
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=1 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+  //      sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ep.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(getCondi());
         sb.AppendLine(" ) ttt where 1=1 ");
