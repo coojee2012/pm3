@@ -87,7 +87,8 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         qa.Contracts = pj_Contacts.Text;
         qa.SGId = t_SGId.Value;
         qa.SGRYId = t_SGRYId.Value;
-        qa.JLId = t_JLId.Value;
+        //qa.JLId = t_JLId.Value; //此处存放的是监理单位的资质id主键，修改为监理单位id
+        qa.JLId = t_jldwid.Value;       
         qa.JLRYId = t_JLRYId.Value;
         db.SubmitChanges();
       //  showPrjData();
@@ -127,6 +128,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                 q_SGDWZGZH.Text = v.ZCZSH;
                 q_SGDWSFZH.Text = v.SFZH;
                 t_SGRYId.Value = v.RYBH;
+                t_jldwid.Value = v.QYBM;
             }
 
             //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
@@ -199,22 +201,42 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         {
             string selEntId = t_JLId.Value;
             EgovaDB1 db = new EgovaDB1();
-            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            if (v != null)
+
+            var v2 = db.QY_QYZZXX.Where(t => t.QYZZID == selEntId).FirstOrDefault();
+            if (v2 != null)
             {
-                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-                if (v1 != null)
+                q_JLDWZZZSH.Text = v2.ZSBH;
+                q_JLDWZZDJ.Text = v2.ZZLB + v2.ZZMC + v2.ZZDJ;
+                var v = db.QY_JBXX.Where(t => t.QYBM == v2.QYBM).FirstOrDefault();
+                if (v != null)
                 {
-                    q_JLDWZZZSH.Text = v1.ZSBH;
-                    q_JLDWZZDJ.Text = v1.ZZLB+v1.ZZMC+v1.ZZDJ;
-                    //q_JLDWZZDJ.Text = v1.ZZDJ;
+                    q_JLDW.Text = v.QYMC;
+                    q_JLDWFR.Text = v.FRDB;
+                    q_JLDWDH.Text = v.FRDBSJH;
+                    q_JLDWZZJGDM.Text = v.JGDM;
+                    t_jldwid.Value = v.QYBM;
+                    //清空之前的企业人员
+                    q_JLDWZGZH.Text = "";
+                    q_JLDWXMZJ.Text = "";
                 }
-                
             }
-            q_JLDW.Text = v.QYMC;
-            q_JLDWFR.Text = v.FRDB;
-            q_JLDWDH.Text = v.FRDBSJH;
-            q_JLDWZZJGDM.Text = v.JGDM;
+
+            //var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            //if (v != null)
+            //{
+            //    var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            //    if (v1 != null)
+            //    {
+            //        q_JLDWZZZSH.Text = v1.ZSBH;
+            //        q_JLDWZZDJ.Text = v1.ZZLB+v1.ZZMC+v1.ZZDJ;
+            //        //q_JLDWZZDJ.Text = v1.ZZDJ;
+            //    }
+                
+            //}
+            //q_JLDW.Text = v.QYMC;
+            //q_JLDWFR.Text = v.FRDB;
+            //q_JLDWDH.Text = v.FRDBSJH;
+            //q_JLDWZZJGDM.Text = v.JGDM;
         }
         
     }

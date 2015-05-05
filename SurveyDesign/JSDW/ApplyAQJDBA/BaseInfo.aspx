@@ -60,8 +60,7 @@
         }
         function doSelOther(tagId, obj, fsysid, hasCerti, oTagId, tip) {
             if ($('#' + oTagId).val() == '') {
-                alert(tip);
-                return false;
+                    return false;
             }
             else {
                 return selEnt(tagId, fsysid, obj, oTagId);
@@ -105,7 +104,8 @@
             if (tagId == "t_SGRYId") {
                 qybm = document.getElementById("t_SGId").value;
             } else if (tagId == "t_JLRYId") {
-                qybm = document.getElementById("t_JLId").value;
+                qybm = document.getElementById("t_jldwid").value;               
+              //qybm = document.getElementById("t_JLId").value;
             }
             if (qybm != null && qybm != "") {
                 var url = "../project/EmpListSel.aspx";
@@ -407,6 +407,7 @@
             <td class="auto-style1" colspan="1" style="width:29%;">
                 <asp:TextBox ID="q_JLDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                 <input type="hidden"  runat="server" ID="t_JLId" value="" />
+                <input type="hidden"  runat="server" ID="t_jldwid" value="" />
                 <asp:Button ID="Button1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_JLId');"
                 UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntJL_Click" Style="margin-bottom: 4px;margin-left:5px;" />
             </td>
