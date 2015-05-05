@@ -36,7 +36,8 @@
             }
             else if (tagId == "t_JLRYId")//监理人员ID
            {
-                qybm = document.getElementById("t_JLId").value;              
+                //qybm = document.getElementById("t_JLId").value;        
+                qybm = document.getElementById("t_JLId").value;
             }
             else if (tagId == "t_FHumanId")
             {
@@ -107,7 +108,7 @@
                     <input type="hidden"  runat="server" ID="t_FHumanId" value="" />
 
                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_FHumanId');"
-                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmpSG_Click" Style="margin-bottom: 4px;margin-left:5px;" />
+                    UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEmpSG_Click" Style="margin-bottom: 4px;margin-left:5px; height: 21px;" />
                 </td>
                 <td class="t_r t_bg">
                     性别：

@@ -149,8 +149,45 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
     {
         this.Report();
     }
+
+    /// <summary>
+    /// 检测上报人员是否在跨地区参与其他项目
+    /// </summary>
+    /// <returns>true:有人员参与其他地区的项目被锁定，false: 无锁定情况 </returns>
+    private bool checkpersonlockinfo()
+    {
+        //获取到当前工程编号
+                           
+        string prjitemid = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == fAppId).FirstOrDefault().FPrjItemId;
+        //当前工程所属地
+        string prjarea = db.TC_PrjItem_Info.Where(t => t.FId == prjitemid).FirstOrDefault().AddressDept;
+        //当前工程参与人员列表
+        var emplist = db.TC_PrjItem_Emp.Where(t => t.FAppId == fAppId);
+        if (emplist != null)
+        {
+            foreach(var v in emplist)
+            {
+                string sql = @"select  1  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
+                             where a.FPrjItemId = b.FId
+                             and  a.FIdCard = '" + v.FIdCard + "'" + "  and b.AddressDept != '" + prjarea + "'   and a.IsLock = '1'";
+                DataTable dt = rc.GetTable(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private void Report()
     {
+        //检查当前工程参与人员是否在其他地方参与项目。
+        if (checkpersonlockinfo())
+        {
+            MyPageTool.showMessage("当前工程项目申报有人员被其他项目锁定，请检查人员信息", this.Page);
+            return;
+        }
         string fDeptNumber = ComFunction.GetDefaultDept();
         if (fDeptNumber == null || fDeptNumber == "")
         {

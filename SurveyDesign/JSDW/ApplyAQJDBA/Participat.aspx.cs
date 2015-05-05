@@ -92,33 +92,56 @@ public partial class JSDW_ApplyAQJDBA_Participat : System.Web.UI.Page
     {
         string selEntId = t_QYId.Value;
         EgovaDB1 db = new EgovaDB1();
-        var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-        if (v != null)
+        //如果不是监理企业
+        if (t_CJJS.Text != "11220107")
         {
-            if (t_CJJS.Text == "11220102")
+            var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            if (v != null)
             {
-                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX==1).FirstOrDefault();
-                if (v1 != null)
+                if (t_CJJS.Text == "11220102")
                 {
-                    t_ZZZS.Text = v1.ZSBH;
-                    //t_ZZDJ.Text = v1.ZZMC+v1.ZZDJ;
-                    t_ZZDJ.Text = v1.ZZLB+v1.ZZMC + v1.ZZDJ; //改为显示主项资质的全称、资质名称、资质等级
+                    var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId && t.SFZX == 1).FirstOrDefault();
+                    if (v1 != null)
+                    {
+                        t_ZZZS.Text = v1.ZSBH;
+                        //t_ZZDJ.Text = v1.ZZMC+v1.ZZDJ;
+                        t_ZZDJ.Text = v1.ZZLB + v1.ZZMC + v1.ZZDJ; //改为显示主项资质的全称、资质名称、资质等级
+                    }
+                }
+                else
+                {
+                    var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+                    if (v1 != null)
+                    {
+                        t_ZZZS.Text = v1.ZSBH;
+                        t_ZZDJ.Text = v1.ZZMC + v1.ZZDJ;
+                    }
                 }
             }
-            else
-            {
-                var v1 = db.QY_QYZZXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-                if (v1 != null)
-                {
-                    t_ZZZS.Text = v1.ZSBH;
-                    t_ZZDJ.Text = v1.ZZMC + v1.ZZDJ;
-                }
-            }
+            t_QYMC.Text = v.QYMC;
+            t_QYDZ.Text = v.QYXXDZ;
+            t_YYZZH.Text = v.YEZZZCH;
+            t_ZZJGDM.Text = v.JGDM;
+            t_QYFDDB.Text = v.FRDB;
         }
-        t_QYMC.Text = v.QYMC;
-        t_QYDZ.Text = v.QYXXDZ;
-        t_YYZZH.Text = v.YEZZZCH;
-        t_ZZJGDM.Text = v.JGDM;
-        t_QYFDDB.Text = v.FRDB;
+        else//监理企业
+        {
+            var v = db.QY_QYZZXX.Where(t => t.QYZZID == selEntId).FirstOrDefault();         
+            if (v != null)
+            {
+               
+                        t_ZZZS.Text = v.ZSBH;
+                        t_ZZDJ.Text = v.ZZMC + v.ZZDJ;
+                        var v1 = db.QY_JBXX.Where(t => t.QYBM == v.QYBM).FirstOrDefault();
+                        if (v1 != null)
+                        {
+                            t_QYMC.Text = v1.QYMC;
+                            t_QYDZ.Text = v1.QYXXDZ;
+                            t_YYZZH.Text = v1.YEZZZCH;
+                            t_ZZJGDM.Text = v1.JGDM;
+                            t_QYFDDB.Text = v1.FRDB;
+                        }
+               }           
+        }
     }
 }
