@@ -257,7 +257,9 @@
                 计划施工期限：
             </td>
             <td>
-                <asp:TextBox ID="q_PlanStartTime" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                <%--<asp:TextBox ID="q_PlanStartTime" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>--%>
+                <asp:TextBox ID="q_PlanLimit" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                
             </td>
         </tr>
         <tr>
@@ -265,13 +267,13 @@
                 计划开工日期：
             </td>
             <td>
-                <asp:TextBox ID="q_StartDate" runat="server" CssClass="m_txt" Width="195px" onfocus="WdatePicker()"></asp:TextBox>
+                <asp:TextBox ID="q_PlanStartTime" runat="server" CssClass="m_txt" Width="195px" onfocus="WdatePicker()"></asp:TextBox>
             </td>
             <td class="t_r t_bg">
                 计划竣工日期：
             </td>
             <td>
-                <asp:TextBox ID="q_EndDate" runat="server" CssClass="m_txt" onfocus="WdatePicker()" Width="195px"></asp:TextBox>
+                <asp:TextBox ID="q_PlanEndTime" runat="server" CssClass="m_txt" onfocus="WdatePicker()" Width="195px"></asp:TextBox>
             </td>
         </tr>
         <tr>
