@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>工程简要说明</title>
+    <title>标准化工地工程信息</title>
     <asp:Link id="skin1" runat="server">
     </asp:Link>
 
@@ -60,6 +60,13 @@
 
             
     <div id="divSetup2" runat="server">
+    <table width="98%" align="center" class="m_title">
+        <tr>
+            <th colspan="5">
+                标准化工地工程信息
+            </th>
+        </tr>
+    </table>
         <table width="98%" align="center" class="m_bar">
             <tr>
                 <td class="m_bar_l">

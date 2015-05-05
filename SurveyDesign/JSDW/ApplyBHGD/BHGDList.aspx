@@ -155,13 +155,14 @@
                                                         </asp:BoundField>
                                                         <asp:TemplateField HeaderText="操作">
                                                             <HeaderStyle Width="100" />
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="btnOp" runat="server" CommandArgument='<%#Eval("FPrjId")%>'>
-                                                                </asp:LinkButton>
-                                                                <asp:LinkButton ID="btnBack" CommandName="Back" runat="server" CommandArgument='<%#Eval("FID")%>'
-                                                                    Visible="false" Style="margin-left: 6px;">
-                                                                </asp:LinkButton>
-                                                            </ItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btnDel" CommandName="Del" Text="删除" runat="server" CommandArgument='<%#Eval("FID")%>'
+                                                    Style="margin-left: 6px;">
+                                                </asp:LinkButton>
+                                                <asp:LinkButton ID="btnBack" CommandName="Back" Text="撤销上报" runat="server" CommandArgument='<%#Eval("FID")%>'
+                                                     Style="margin-left: 6px;">
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField DataField="FId" HeaderText="FId" Visible="False" />
                                                     </Columns>

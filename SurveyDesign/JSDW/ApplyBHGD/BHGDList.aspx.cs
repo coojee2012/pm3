@@ -66,9 +66,9 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
                     a.FAddres,
                     a.ProjectName
                 };
-        if (!string.IsNullOrEmpty(this.t_ProjectName.Text.Trim()))
+        if (!string.IsNullOrEmpty(this.txtFProjectName.Text.Trim()))
         {
-            v = v.Where(t => t.ProjectName.Contains(this.t_ProjectName.Text.Trim()));
+            v = v.Where(t => t.ProjectName.Contains(this.txtFProjectName.Text.Trim()));
         }
         //if (!string.IsNullOrEmpty(govd_FRegistDeptId.FNumber.Trim()))
         //{
@@ -254,6 +254,62 @@ public partial class JSDW_APPLYBHGD_BHGDList : System.Web.UI.Page
             Response.Write("<script language='javascript'>top.document.location='../Appmain/aindex.aspx';</script>");
 
         }
+        if (e.CommandName == "Del")
+        {
+            pageTool tool = new pageTool(this.Page);
+            EgovaDB db = new EgovaDB();
+            string FId = Convert.ToString(e.CommandArgument);
+            var v = db.CF_App_List.Where(t => t.FId == FId);
+            if (v != null)
+            {
+                db.CF_App_List.DeleteAllOnSubmit(v);
+
+                //   this.ShowInfo();
+            }
+            var v1 = db.TC_AJBA_Record.Where(t => t.FAppId == FId);
+            if (v1 != null)
+            {
+                db.TC_AJBA_Record.DeleteAllOnSubmit(v1);
+            }
+            db.SubmitChanges();
+            tool.showMessage("删除成功");
+            this.ShowInfo();
+        }
+        if (e.CommandName == "Op")
+        {
+            string FId = Convert.ToString(e.CommandArgument);
+            this.Session["FAppId"] = FId;
+            this.Session["FManageTypeId"] = fMType;
+            //if (fState != 0 && fState != 2)
+            //    Session["FIsApprove"] = 1;
+            //else
+            //    Session["FIsApprove"] = 0;
+            Response.Write("<script language='javascript'>top.document.location='../Appmain/aindex.aspx';</script>");
+
+        }
+        if (e.CommandName == "Back")
+        {
+            string FAPPID = e.CommandArgument.ToString();
+            pageTool tool = new pageTool(this.Page);
+            if (!string.IsNullOrEmpty(FAPPID))
+            {
+                //RQuali rq = new RQuali();
+                //rq.CancelApply(FAPPID);
+                if (WFApp.ValidateCanCancelApply(FAPPID))
+                {
+                    WFApp.CancelApply(FAPPID);
+                    tool.showMessage("撤消成功");
+                    this.ShowInfo();
+                }
+
+            }
+            else
+            {
+                tool.showMessage("撤消失败");
+            }
+
+        }
+
     }
     protected void gv_list_RowCreated(object sender, GridViewRowEventArgs e)
     {

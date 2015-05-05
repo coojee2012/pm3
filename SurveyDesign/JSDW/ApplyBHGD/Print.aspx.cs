@@ -23,12 +23,12 @@ public partial class JSDW_ApplySGXKZGL_Print : System.Web.UI.Page
         if (!string.IsNullOrEmpty(Request.QueryString["FAppId"]))
         {
             fAppId = EConvert.ToString(Request.QueryString["FAppId"]);
-            Response.Redirect(string.Format("{0}{1}{2}", ReportServer, "SGXKZ_SQ.cpt", "&FAppId=" + fAppId));
+            Response.Redirect(string.Format("{0}{1}{2}", ReportServer, "BHGD.cpt", "&FAppId=" + fAppId));
         }
         else
         {
             fAppId = EConvert.ToString(Session["FAppId"]);
-            Response.Redirect(string.Format("{0}{1}{2}", ReportServer, "SGXKZ_SQ.cpt", "&FAppId=" + fAppId));
+            Response.Redirect(string.Format("{0}{1}{2}", ReportServer, "BHGD.cpt", "&FAppId=" + fAppId));
         }
 
     }
