@@ -18,17 +18,38 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            string appid = "";
             if (!string.IsNullOrEmpty(EConvert.ToString(Session["FAppId"])))
             {
                 ViewState["FAppId"] = EConvert.ToString(Session["FAppId"]);
+                appid = EConvert.ToString(Session["FAppId"]);
             }
-            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+
             ShowTitle();
             BindControl();
+
+            bool isbz = false;
+            XMHJCL_Business business = new XMHJCL_Business();
+            DataTable dt = business.QueryData(appid, XMHJCL_Business.环节材料信息.建设用地规划许可证, out isbz);
+
             pageTool tool1 = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)
             {
+                ListItem i = new ListItem("标准库数据", "3");
+                t_BL.Items.Add(i);
                 tool1.ExecuteScript("btnEnable();");
+            }
+            ShowInfo(isbz, dt);
+        }
+        else
+        {
+            if (t_BL.SelectedItem.Value != "1" && t_BL.SelectedItem.Value != "3")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             }
         }
     }
@@ -44,17 +65,25 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
     private void ShowTitle()
     {
         EgovaDB dbContext = new EgovaDB();       
-         TC_SGXKZ_PrjInfo qa = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
-         ViewState["FPrjItemId"] = qa.FPrjItemId;
-         string prjid = qa.PrjId;
-        TC_SGXKZ_JSYDGHXKZ sp = dbContext.TC_SGXKZ_JSYDGHXKZ.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
-        if (sp != null)
+        TC_SGXKZ_PrjInfo qa = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
+        ViewState["FPrjItemId"] = qa.FPrjItemId;
+        t_JSDW.Text = qa.JSDW;
+        t_ProjectName.Text = qa.ProjectName;
+        t_Address.Text = qa.Address;
+        t_ConstrScale.Text = EConvert.ToString(qa.ConstrScale);
+    }
+
+    private void ShowInfo(bool isyw, DataTable sp)
+    {
+        if (sp.Rows.Count > 0)
         {
-            txtFId.Value = sp.FId;
-            ShowFile(sp.FId);
-            if (!string.IsNullOrEmpty(sp.BL))
+            string strfid = sp.Rows[0]["FId"].ToString();
+            string strbl = sp.Rows[0]["bl"].ToString();
+            txtFId.Value = strfid;
+            ShowFile(strfid);
+            if (!string.IsNullOrEmpty(strbl))
             {
-                if (sp.BL != "1")
+                if (strbl != "1" && strbl != "3")
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
                 }
@@ -63,39 +92,14 @@ public partial class JSDW_ApplySGXKZGL_JSYDGHXKZList : System.Web.UI.Page
                     ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
                 }
             }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            }
 
-
-            t_YDXZ.SelectedValue = sp.YDXZ;
-            //MODIFY:YTB修改bug 刚开始打开表单，办理选项下拉值为“补填”，但填写完数据，点击保存按钮后，办理选项字段的下拉值就自动变为了“已办”；没有哪个需求要求保存后修改办理选项内容。
-            //t_BL.SelectedItem.Text = "已办";
-            //t_BL.SelectedItem.Value = "3";
-            //t_BL.Enabled = false;
-            //从标准库中读取项目信息
-            RCenter prjdb = new RCenter("XM_BaseInfo");
-            string sql = @"select   JSDW,XMMC,XMDZ,JSGM   from  XM_BaseInfo.dbo.XM_XMJBXX   where xmbh = '" + prjid + "'";
-            DataTable dt = prjdb.GetTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                t_JSDW.Text = dt.Rows[0][0].ToString();
-                t_ProjectName.Text = dt.Rows[0][1].ToString();
-                t_Address.Text = dt.Rows[0][2].ToString();
-                t_ConstrScale.Text = dt.Rows[0][3].ToString();
-            }
+            FillPageWithDt tool = new FillPageWithDt();
+            tool.fillPageControl(sp, this.Page, "t_");
         }
-        else  //如果是未办理的信息则从业务库中读取信息
-        {           
-            t_JSDW.Text = qa.JSDW;
-            t_ProjectName.Text = qa.ProjectName;
-            t_Address.Text = qa.Address;
-            t_ConstrScale.Text = EConvert.ToString(qa.ConstrScale);
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
         }
-
-        pageTool tool = new pageTool(this.Page, "t_");
-        tool.fillPageControl(sp);
     }
 
     private void ShowFile(string FId)

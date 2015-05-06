@@ -16,21 +16,39 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
     RCenter rc = new RCenter();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!Page.IsPostBack)
         {
-            this.hf_FAppId.Value = EConvert.ToString(Session["FAppId"]);
-            BindControl();
-            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            showInfo();
-            ShowPrjItemInfo();
-            pageTool tool = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            string appid = "";
+            if (!string.IsNullOrEmpty(EConvert.ToString(Session["FAppId"])))
             {
-                tool.ExecuteScript("btnEnable();");
-                //
-                btnAddEnt.Visible = false;
-                btnAddEnt1.Visible = false;
-                btnAddEnt2.Visible = false;
+                hf_FAppId.Value  = EConvert.ToString(Session["FAppId"]);
+                appid = EConvert.ToString(Session["FAppId"]);
+            }
+
+            ShowTitle();
+
+            bool isbz = false;
+            XMHJCL_Business business = new XMHJCL_Business();
+            DataTable dt = business.QueryData(appid, XMHJCL_Business.环节材料信息.施工图审查, out isbz);
+
+            pageTool tool1 = new pageTool(this.Page);
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)
+            {
+                ListItem i = new ListItem("标准库数据", "3");
+                t_BL.Items.Add(i);
+                tool1.ExecuteScript("btnEnable();");
+            }
+            ShowInfo(isbz, dt);
+        }
+        else
+        {
+            if (t_BL.SelectedItem.Value != "1" && t_BL.SelectedItem.Value != "3")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             }
         }
     }
@@ -38,18 +56,26 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
     {
     }
     //显示
-    private void showInfo()
+    private void ShowTitle()
     {
+        EgovaDB dbContext = new EgovaDB();
+        TC_SGXKZ_PrjInfo qa = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == EConvert.ToString(hf_FAppId.Value)).FirstOrDefault();
+        t_FPrjItemId.Value  = qa.FPrjItemId;
+        //t_JSDW.Text = qa.JSDW;
+        //t_ProjectName.Text = qa.ProjectName;
+    }
 
-        TC_SGXKZ_SGTSC emp = dbContext.TC_SGXKZ_SGTSC.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
-        if (emp != null)
+    private void ShowInfo(bool isyw, DataTable sp)
+    {
+        if (sp.Rows.Count > 0)
         {
-            pageTool tool = new pageTool(this.Page, "t_");
-            tool.fillPageControl(emp);
-            txtFId.Value = emp.FId;
-            if (!string.IsNullOrEmpty(emp.BL))
+            string strfid = sp.Rows[0]["FId"].ToString();
+            string strbl = sp.Rows[0]["bl"].ToString();
+            txtFId.Value = strfid;
+            ShowPrjItemInfo();
+            if (!string.IsNullOrEmpty(strbl))
             {
-                if (emp.BL != "1")
+                if (strbl != "1" && strbl != "3")
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
                 }
@@ -58,24 +84,16 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
                     ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
                 }
             }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            }         
+
+            FillPageWithDt tool = new FillPageWithDt();
+            tool.fillPageControl(sp, this.Page, "t_");
         }
         else
         {
-            TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
-            if (sp != null)
-            {
-                t_ProjectNo.Text = sp.ProjectNo;
-                t_ConstrScale.Text = sp.ConstrScale;
-                t_FPrjItemId.Value = sp.PrjItemId;
-            }
-
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
         }
-
     }
+
     //保存
     private void saveInfo()
     {
@@ -90,14 +108,13 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             fId = Guid.NewGuid().ToString();
             Emp.FId = fId;
             Emp.FAppId = hf_FAppId.Value;
-            Emp.FprjItemId = t_FPrjItemId.Value;
+            Emp.FprjItemId = t_FPrjItemId.Value; 
             dbContext.TC_SGXKZ_SGTSC.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
         Emp = tool.getPageValue(Emp);
         dbContext.SubmitChanges();
         txtFId.Value = fId;
-        showInfo();
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');", true);
     }
     //保存按钮
@@ -129,7 +146,7 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_SGXKZ_SGTSCRY, tool_Deleting);
         ShowPrjItemInfo();
-        showInfo();
+        //showInfo();
     }
 
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
@@ -139,7 +156,7 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
     protected void btnReload_Click(object sender, EventArgs e)
     {
         ShowPrjItemInfo();
-        showInfo();
+        //showInfo();
     }
     protected void App_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {

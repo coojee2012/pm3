@@ -17,58 +17,41 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            string appid = "";
             if (!string.IsNullOrEmpty(EConvert.ToString(Session["FAppId"])))
             {
                 ViewState["FAppId"] = EConvert.ToString(Session["FAppId"]);
+                appid = EConvert.ToString(Session["FAppId"]);
             }
-            //ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            
+
             ShowTitle();
-            //MODIFY:YTB 判断选址意见书是否存在标准库中。
-            bool b=  CheckXMBase();
+
+            bool isbz = false;
+            XMHJCL_Business business = new XMHJCL_Business();
+            DataTable dt = business.QueryData(appid, XMHJCL_Business.环节材料信息.选址意见书, out isbz);
+
             pageTool tool1 = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0||b)
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)
             {
+                ListItem i = new ListItem("标准库数据","3");
+                t_BL.Items.Add(i);
                 tool1.ExecuteScript("btnEnable();");
             }
+            ShowInfo(isbz, dt);
         }
-    }
-
-    /// <summary>
-    /// 验证标准库是否存在该项目的选址意见书
-    /// </summary>
-    private bool CheckXMBase() {
-        //得到项目id
-        var appid = ViewState["FAppId"].ToString(); 
-
-        EgovaDB db = new EgovaDB();
-       var prjid = string.Empty;
-        var prjids = from location in db.TC_SGXKZ_Location
-                join prjitem in db.TC_PrjItem_Info on location.FprjItemId equals prjitem.FId
-                where location.FAppId == appid
-                select new {
-                    pid = prjitem.FPrjId
-                };
-        if (prjids != null&&prjids.Count()>0)
+        else
         {
-            prjid = prjids.FirstOrDefault().pid;
-
-        }
-        //查询标准库，该项目是否存在选址意见书
-        if (!string.IsNullOrEmpty(prjid)) {
-
-            XMHJCL_Business business = new XMHJCL_Business();
-
-            DataTable dt = business.GataBaseData(prjid, XMHJCL_Business.环节材料信息.选址意见书);
-            //如果标准库中有，就设置为1
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                return true;
+            if (t_BL.SelectedItem.Value != "1" && t_BL.SelectedItem.Value != "3")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                }
             }
-        }
-        return false;
-    }
 
+    }
 
     private void ShowTitle()
     {
@@ -77,28 +60,37 @@ public partial class JSDW_ApplySGXKZGL_Location : System.Web.UI.Page
         ViewState["FPrjItemId"] = qa.FPrjItemId;
         t_JSDW.Text = qa.JSDW;
         t_ProjectName.Text = qa.ProjectName;
-        TC_SGXKZ_Location sp = dbContext.TC_SGXKZ_Location.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
-        if (sp != null)
-        {
-            txtFId.Value = sp.FId;
-            ShowFile(sp.FId);
-            //if (!string.IsNullOrEmpty(sp.BL))
-            //{
-            //    if (sp.BL != "1")
-            //    {
-            //        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
-            //    }
-            //    else
-            //    {
-            //        ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            //    }
-            //}
-            
-        }
-
-        pageTool tool = new pageTool(this.Page, "t_");
-        tool.fillPageControl(sp);
     }
+
+    private void ShowInfo(bool isyw,DataTable sp)
+    {
+        if (sp.Rows.Count > 0)
+        {
+            string strfid = sp.Rows[0]["FId"].ToString();
+            string strbl = sp.Rows[0]["bl"].ToString();
+            txtFId.Value = strfid;
+            ShowFile(strfid);
+            if (!string.IsNullOrEmpty(strbl))
+            {
+                if (strbl != "1"  && strbl != "3")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                }
+            }
+
+            FillPageWithDt tool = new FillPageWithDt();
+            tool.fillPageControl(sp, this.Page, "t_");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+        }
+    }
+
 
     private void ShowFile(string FId)
     {

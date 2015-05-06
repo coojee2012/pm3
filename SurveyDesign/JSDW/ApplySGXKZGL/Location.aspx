@@ -129,7 +129,7 @@
                 <h3>选址意见书信息</h3> 
             </td>
         </tr>
-        <!--<tr>
+        <tr>
             <td class="t_r t_bg" style="width:18.8%;">
                 办理选项：
             </td>
@@ -138,18 +138,18 @@
                     <asp:ListItem Value="1">补填</asp:ListItem>
                     <asp:ListItem Value="0">不需要办理</asp:ListItem>
                     <asp:ListItem Value="2">以后补办</asp:ListItem>
-                    
+      
                 </asp:DropDownList>
             </td>
             
         </tr>
-        <tr name="tr1">
+        <tr name=tr1 >
             <td class="t_r t_bg">
                 理由： </td>
             <td colspan="3">
                 <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
             </td>
-        </tr>-->
+        </tr>
         <tr>
             <td class="t_r t_bg" style="width:18.8%;">
                 项目名称：
