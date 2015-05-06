@@ -11,6 +11,7 @@ using EgovaDAO;
 using Tools;
 using Approve.RuleApp;
 using Approve.RuleCenter;
+using System.Data.SqlClient;
 
 public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
 {
@@ -155,8 +156,97 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
         //  this.saveInfo();
         this.Report();
     }
+
+
+    /// <summary>
+    /// 检测上报人员是否在跨地区参与其他项目
+    /// </summary>
+    /// <returns>true:有人员参与其他地区的项目被锁定，false: 无锁定情况 </returns>
+    private string checkpersonlockinfo()
+    {
+        string lockpersonlist = "";//锁定人员列表，使用","分割
+        //获取到当前工程编号 
+                         
+        string prjitemid = db.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == fAppId).FirstOrDefault().FPrjItemId;
+        //当前工程所属地
+        string prjarea = db.TC_PrjItem_Info.Where(t => t.FId == prjitemid).FirstOrDefault().AddressDept;
+        //当前工程增加的人员
+        using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+        {
+            if (conn.State == ConnectionState.Closed)
+                conn.Open();
+            DataSet ds = new DataSet();
+            string sql = "";
+            sql = @"select  a.FAppId,d.FId FPrjId,a.FPrjItemId,b.ProjectName,c.QYBM FEntId,'' FEntName,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
+                    where a.FPrjItemId = b.FId
+                    and a.FLinkId = c.RYBH
+                    and b.FPrjId = d.FId
+                    and a.BGQK = '增加'  and FAppId  = '" + fAppId + "'";
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            da.Fill(ds, "ds");
+            DataTable dt = ds.Tables[0];
+
+            if (dt != null)
+            {
+                //先判断不同地区的未竣工的项目当前人员是否参与了
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况
+                    string sql1 = @"select  1  from  TC_PrjItem_Emp a,TC_PrjItem_Info b,CF_App_List c
+                                where a.FPrjItemId = b.FId
+                                and  c.FId = a.FAppId
+                                and  c.FState !=6
+                                and  (c.FManageTypeId  = '11223' or c.FManageTypeId  = '11224' or c.FManageTypeId  = '11225')
+                                and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" +
+                                    " and b.AddressDept != '" + prjarea + "'";
+                    DataTable dt1 = rc.GetTable(sql1);
+                    if (dt1 != null && dt1.Rows.Count > 0)
+                    {
+                        lockpersonlist += dt.Rows[i]["FHumanName"].ToString() + ",";
+                    }
+                }
+                if (lockpersonlist != "")
+                {
+                    return lockpersonlist;
+                }
+                //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    string sql2 = @"select  1  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
+                             where a.FPrjItemId = b.FId
+                             and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" + "  and b.AddressDept != '" + prjarea + "'   and a.IsLock = '1'";
+                    DataTable dt2 = rc.GetTable(sql2);
+                    if (dt2 != null && dt2.Rows.Count > 0)
+                    {
+                        lockpersonlist += dt.Rows[i]["FHumanName"].ToString() + ",";
+                    }
+                }
+                if (lockpersonlist != "")
+                {
+                    return lockpersonlist;
+                }
+            }
+            return lockpersonlist;
+        }
+    }
+
     private void Report()
     {
+        //检查当前工程参与人员是否在其他地方参与项目。
+        string slockperson = checkpersonlockinfo();
+        if (slockperson != "")
+        {
+            slockperson = slockperson.Substring(0, slockperson.Length - 1);
+            tr_lockrow.Visible = true;
+            lbl_lockpsersoncontent.InnerText = slockperson;
+            MyPageTool.showMessage("当前工程项目申报有人员被其他项目锁定，请检查人员信息", this.Page);
+            return;
+        }
+        else
+        {
+            tr_lockrow.Visible = false;
+        }
         string fDeptNumber = ComFunction.GetDefaultDept();
         if (fDeptNumber == null || fDeptNumber == "")
         {

@@ -71,6 +71,8 @@ public class Common
             el.FHumanName = personname;
             el.IsLock = true;
             el.SelectedCount = 1;
+            el.FCreateTime = DateTime.Now;
+            el.FTime = DateTime.Now;
             db.TC_PrjItem_Emp_Lock.InsertOnSubmit(el);
             db.SubmitChanges();
             return true;

@@ -461,6 +461,11 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                DisableButton();
+               //锁定增加的人员
+               lockperson();
+               //解锁退出的人员
+               unlockperson();
+               //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');", true);
            }
            else
@@ -474,6 +479,80 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
        //    ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结失败');", true);
        //}
    }
+   
+   
+    /// <summary>
+   /// 解锁人员
+   /// 解锁数据来源是人员变更的退出类型
+    /// </summary>
+   protected void unlockperson()
+   {
+       Common cm = new Common();
+       string sql = "";
+       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+       {
+           if (conn.State == ConnectionState.Closed)
+               conn.Open();
+           DataSet ds = new DataSet();
+           sql = @"select  a.FAppId,a.FPrjItemId,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
+                    where a.FPrjItemId = b.FId
+                    and a.FLinkId = c.RYBH
+                    and b.FPrjId = d.FId
+                    and a.BGQK = '退出'  and FAppId  = '" + t_fLinkId.Value + "'";
+           SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+           da.Fill(ds, "ds");
+           DataTable dt = ds.Tables[0];
+           //解锁退出的人员
+           string sappid, fprjitemid,fidcard;//业务编号，工程编号，人员身份证号
+           for (int i = 0; i < dt.Rows.Count; i++)
+           {
+               sappid = dt.Rows[i]["FAppId"].ToString();      
+               fprjitemid = dt.Rows[i]["FPrjItemId"].ToString();              
+               fidcard = dt.Rows[i]["FIdCard"].ToString(); 
+               //调用解锁方法
+               cm.UnlockPerson(sappid,fprjitemid,fidcard);
+           }
+       }       
+   }
+
+   /// <summary>
+   /// 锁定人员
+   /// 锁定数据来源是人员变更的增加类型
+   /// </summary>
+   protected void  lockperson()
+   {
+        Common cm = new Common();
+        string sql = "";    
+        using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+        {
+            if (conn.State == ConnectionState.Closed)
+                conn.Open();
+            DataSet ds = new DataSet();
+            sql = @"select  a.FAppId,d.FId FPrjId,a.FPrjItemId,b.ProjectName,c.QYBM FEntId,'' FEntName,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
+                    where a.FPrjItemId = b.FId
+                    and a.FLinkId = c.RYBH
+                    and b.FPrjId = d.FId
+                    and a.BGQK = '增加'  and FAppId  = '" +t_fLinkId.Value+"'";           
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            da.Fill(ds, "ds");
+            DataTable dt = ds.Tables[0];
+            //锁定增加的人员
+            string sappid, fprjid, fprjitemid, fentid, fentname, fhumanname, fidcard;//业务编号，项目编号，工程编号，所在企业编号，企业名称，人员姓名，人员身份证号
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                sappid = dt.Rows[i]["FAppId"].ToString();
+                fprjid = dt.Rows[i]["FPrjId"].ToString();
+                fprjitemid = dt.Rows[i]["FPrjItemId"].ToString();
+                fentid = dt.Rows[i]["FEntId"].ToString();
+                fentname = dt.Rows[i]["FEntName"].ToString();
+                fhumanname = dt.Rows[i]["FHumanName"].ToString();
+                fidcard = dt.Rows[i]["FIdCard"].ToString();
+                cm.lockperson(sappid, fprjid, fprjitemid, fentid, fidcard, fhumanname);
+            }
+        }
+   }
+
+
   
     //审核不通过，直接结案
    protected void bthEndApp_Click(object sender, EventArgs e)
