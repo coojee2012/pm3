@@ -451,8 +451,8 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
    //复审
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
-       try
-       {
+       //try
+       //{
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
            {
                string dfUserId = this.Session["DFUserId"].ToString();
@@ -468,11 +468,11 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行接件操作');", true);
            }
 
-       }
-       catch (Exception ee)
-       {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结失败');", true);
-       }
+       //}
+       //catch (Exception ee)
+       //{
+       //    ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结失败');", true);
+       //}
    }
   
     //审核不通过，直接结案

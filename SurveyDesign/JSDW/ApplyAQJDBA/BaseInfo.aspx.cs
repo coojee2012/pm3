@@ -128,8 +128,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                 q_SGDWXMJL.Text = v.XM;
                 q_SGDWZGZH.Text = v.ZCZSH;
                 q_SGDWSFZH.Text = v.SFZH;
-                t_SGRYId.Value = v.RYBH;
-                t_jldwid.Value = v.QYBM;
+                t_SGRYId.Value = v.RYBH;                
             }
 
             //var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
@@ -197,6 +196,9 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             q_SGDWFR.Text = v.FRDB;
             q_SGDWDH.Text = v.FRDBSJH;
             q_SGDWZZJGDM.Text = v.JGDM;
+            //清空之前的人员
+            q_SGDWXMJL.Text = "";
+            q_SGDWZGZH.Text = "";
         }
         else if (type == "JL")
         {

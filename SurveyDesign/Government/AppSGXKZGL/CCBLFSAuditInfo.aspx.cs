@@ -344,31 +344,30 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    //保存意见
    protected void btnSave_Click(object sender, EventArgs e)
    {
-       try
-       {
-           WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
-                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-           //MODIFY 林勇
-           //委婉的实现保存额外的信息
-           using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
-           {
-               string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text + "',SGXKZBH='" + t_FAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
+       //try
+       //{
+               WFApp.Assign(t_fProcessRecordID.Value, t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
+                       t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
+               //MODIFY 林勇
+               //委婉的实现保存额外的信息
+               using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+               {
+                   string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text + "',SGXKZBH='" + t_FAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
 
-               if (conn.State == ConnectionState.Closed)
-                   conn.Open();
-               DataSet ds = new DataSet();
-               SqlCommand cmd = new SqlCommand(sql, conn);
-               //conn.Open();
-               int a = cmd.ExecuteNonQuery();
-           }
-           saveStateInfo();
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
-       }
-       catch (Exception ee)
-       {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存失败');", true);
-       }
-       
+                   if (conn.State == ConnectionState.Closed)
+                       conn.Open();
+                   DataSet ds = new DataSet();
+                   SqlCommand cmd = new SqlCommand(sql, conn);
+                   //conn.Open();
+                   int a = cmd.ExecuteNonQuery();
+               }
+               saveStateInfo();
+               ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存成功');", true);
+       //}
+       //catch (Exception ee)
+       //{
+       //    ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('保存失败');", true);
+       //}       
    }
 
    private void saveStateInfo()
@@ -422,73 +421,59 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
     /// </summary>
    private void lockEmp()
    {
-       //EgovaDB db = new EgovaDB();
-       //var v = from a in db.TC_PrjItem_Emp
-       //        where !db.TC_PrjItem_Emp_Lock.Any(t=>t.FIdCard==a.FIdCard)  
-       //        select a;
-       string sql = "";
-       try {
-           using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
-           {
-               if (conn.State == ConnectionState.Closed)
-                   conn.Open();
-               DataSet ds = new DataSet();
-               //sql = @"select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
-               //modify by psq  20150322  锁定人员限制范围是本业务id的，并且没有被锁定的
-               sql = @"select * from TC_PrjItem_Emp where FAppId = '"+t_fLinkId.Value + "'"
-                   +" and FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='" + t_fLinkId.Value + "')";
-            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-            da.Fill(ds, "ds");
-            DataTable dt = ds.Tables[0];
-            
-            for (int i = 0; i < dt.Rows.Count; i++) {
-                sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount) VALUES ";
-                sql += "('" + Guid.NewGuid().ToString();
-                sql += "','" + dt.Rows[i]["FIdCard"].ToString();
-                sql += "','" + dt.Rows[i]["FHumanName"].ToString();//item.FHumanName;
-                sql += "','" + dt.Rows[i]["FAppId"].ToString();
-                sql += "','" + dt.Rows[i]["FPrjId"].ToString(); 
-                sql += "','" + dt.Rows[i]["FPrjItemId"].ToString(); 
-                sql += "','" + dt.Rows[i]["FEntId"].ToString(); 
-                sql += "','" + dt.Rows[i]["FEntName"].ToString();
-                sql += "',1,1)";
+                   Common cm = new Common();
+                   string sql = "";
+       //try {
+                   using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+                   {
+                        if (conn.State == ConnectionState.Closed)
+                            conn.Open();
+                        DataSet ds = new DataSet();
+                        //sql = @"select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
+                        //modify by psq  20150322  锁定人员限制范围是本业务id的，并且没有被锁定的
+                        sql = @"select * from TC_PrjItem_Emp where FAppId = '" + t_fLinkId.Value + "'"; //本业务的所有人员
+                        //+" and FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='" + t_fLinkId.Value + "')";
+                        SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                        da.Fill(ds, "ds");
+                        DataTable dt = ds.Tables[0];
+                       //锁定所有的人员
+                       string sappid,fprjid,fprjitemid,fentid,fentname,fhumanname,fidcard;//业务编号，项目编号，工程编号，所在企业编号，企业名称，人员姓名，人员身份证号
+                       for (int i = 0; i < dt.Rows.Count; i++)
+                       {  
+                          sappid = dt.Rows[i]["FAppId"].ToString();
+                          fprjid = dt.Rows[i]["FPrjId"].ToString();
+                          fprjitemid = dt.Rows[i]["FPrjItemId"].ToString();
+                          fentid = dt.Rows[i]["FEntId"].ToString();
+                          fentname = dt.Rows[i]["FEntName"].ToString();
+                          fhumanname = dt.Rows[i]["FHumanName"].ToString();
+                          fidcard = dt.Rows[i]["FIdCard"].ToString();
+                          cm.lockperson(sappid, fprjid, fprjitemid, fentid, fidcard, fhumanname);
+                       }
 
-                SqlCommand cmd = new SqlCommand(sql, conn);
-
-                int a = cmd.ExecuteNonQuery();
-                sql = "";//每次执行完成sql后清空sql
-            }
-
-              // foreach (var item in v.ToList<TC_PrjItem_Emp>())
-             //  {
-                  
-                   //TC_PrjItem_Emp_Lock lockInfo = new TC_PrjItem_Emp_Lock();
-                   //lockInfo.FId = Guid.NewGuid().ToString();
-                   //lockInfo.FIdCard = item.FIdCard;
-                   //lockInfo.FHumanName = item.FHumanName;
-                   //lockInfo.FAppId = item.FAppId;
-                   //lockInfo.FPrjId = item.FPrjId;
-                   //lockInfo.FPrjItemId = item.FPrjItemId;
-                   //lockInfo.FEntId = item.FEntId;
-                   //lockInfo.FEntName = item.FEntName;
-                   //db.TC_PrjItem_Emp_Lock.InsertOnSubmit(lockInfo);
-
-
-
-
-              // }
-           }
-       }
-       catch(Exception ex){
-           string test=sql;
-           throw ex;
-           }
-       
-      // sql = sql.Substring(0, sql.Length - 1);
-
-      
-      // db.SubmitChanges();
-       
+           
+                        //for (int i = 0; i < dt.Rows.Count; i++)
+                        //{              
+                        //    sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount) VALUES ";
+                        //    sql += "('" + Guid.NewGuid().ToString();
+                        //    sql += "','" + dt.Rows[i]["FIdCard"].ToString();
+                        //    sql += "','" + dt.Rows[i]["FHumanName"].ToString();//item.FHumanName;
+                        //    sql += "','" + dt.Rows[i]["FAppId"].ToString();
+                        //    sql += "','" + dt.Rows[i]["FPrjId"].ToString(); 
+                        //    sql += "','" + dt.Rows[i]["FPrjItemId"].ToString(); 
+                        //    sql += "','" + dt.Rows[i]["FEntId"].ToString(); 
+                        //    sql += "','" + dt.Rows[i]["FEntName"].ToString();
+                        //    sql += "',1,1)";
+                        //    SqlCommand cmd = new SqlCommand(sql, conn);
+                        //    int a = cmd.ExecuteNonQuery();
+                        //    sql = "";//每次执行完成sql后清空sql
+                        //}            
+                   }
+       //}
+       //catch(Exception ex)
+       //{
+       //    string test=sql;
+       //    throw ex;
+       //}
    }
    /// <summary>
    /// 提交打证
@@ -497,8 +482,8 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    /// <param name="e"></param>
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
-       try
-       {
+       //try
+       //{
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
            {
                string dfUserId = this.Session["DFUserId"].ToString();
@@ -524,11 +509,11 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('该条案卷已经进行了处理，不能再进行相关操作');", true);
            }
 
-       }
-       catch (Exception ee)
-       {
-           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理失败！');", true);
-       }
+       //}
+       //catch (Exception ee)
+       //{
+       //    ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理失败！');", true);
+       //}
    }
   
     //审核不通过，直接结案
