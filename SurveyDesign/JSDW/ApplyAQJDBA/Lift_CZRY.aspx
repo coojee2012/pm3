@@ -60,12 +60,14 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_Trades" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     操作证号：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_CZZH" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
             </tr>      
         </table>
