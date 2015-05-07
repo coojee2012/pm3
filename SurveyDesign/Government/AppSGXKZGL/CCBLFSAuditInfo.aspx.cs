@@ -237,7 +237,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
     /// <param name="appid"></param>
     private void SyncBase(string appid)
     {
-        const string sql = "Proc_SGXKZ_Sync @appid";
+        const string sql = "exec Proc_SGXKZ_Sync @appid";
       var  a =  rc.PExcute(sql, new SqlParameter() { ParameterName = "@appid",Value = appid,SqlDbType = SqlDbType.VarChar});
     }
 
@@ -493,7 +493,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
-               string appid = EConvert.ToString(Session["FAppId"].ToString());
+               string appid = t_fLinkId.Value;//EConvert.ToString(Session["FAppId"].ToString());
                DisableButton();
                //同步到标准库
                if (!string.IsNullOrEmpty(appid))
