@@ -151,6 +151,15 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
         record.PrjItemName = t_FPrjItemName.Text;
         record.ProjectName = t_FProjectName.Value;
         record.RecordTime = dTime;
+        //从项目信息中获取建设单位
+        var re = (from t in dbContext.TC_PrjItem_Info
+                      where t.FId == this.t_FPriItemId.Value
+                      select t).SingleOrDefault();
+        if (re != null)
+        {
+            record.FJSDWID = re.FJSDWID;
+        }
+
 
          //生成备案号
         //record.RecordNo = getBANumber();
@@ -433,6 +442,7 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
         t_FPrjId.Value = result.FPrjId;
         t_FProjectName.Value = result.ProjectName;
         t_JSDW.Value = result.JSDW;
+        
         
     }
     private string getBANumber()

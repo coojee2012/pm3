@@ -186,11 +186,11 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
                     q_SGDWZZDJ.Text = v1.ZZLB+v1.ZZMC+v1.ZZDJ;
                     //q_SGDWZZDJ.Text = v1.ZZDJ;  // 改为显示资质名称及等级tt.ZZLB + tt.ZZMC + tt.ZZDJ
                 }
-                var v2 = db.QY_QYZSXX.Where(t => t.QYBM == selEntId && t.ZSLXBM == "150").FirstOrDefault();//安全生产许可证
-                if (v2 != null)
-                {
-                    q_SGDWAXZH.Text = v2.ZSBH;
-                }
+                //var v2 = db.QY_QYZSXX.Where(t => t.QYBM == selEntId && t.ZSLXBM == "150").FirstOrDefault();//安全生产许可证
+                //if (v2 != null)
+                //{
+                //    q_SGDWAXZH.Text = v2.ZSBH;
+                //}
             }
             q_SGDW.Text = v.QYMC;
             q_SGDWFR.Text = v.FRDB;
@@ -199,6 +199,17 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             //清空之前的人员
             q_SGDWXMJL.Text = "";
             q_SGDWZGZH.Text = "";
+            //获取企业的安许证，如果存在就赋值，不存在就为空
+            string sql = @"select  b.zsbh  from  JST_XZSPBaseInfo.dbo.QY_JBXX a,JST_XZSPBaseInfo.dbo.QY_QYZSXX b
+                            where a.QYBM = b.QYBM
+                            and b.ZSLXBM = 2
+                            and a.QYMC = '" + v.QYMC + "'";
+            DataTable dt = new DataTable();
+            dt = rc.GetTable(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                q_SGDWAXZH.Text = dt.Rows[0][0].ToString();
+             }
         }
         else if (type == "JL")
         {
