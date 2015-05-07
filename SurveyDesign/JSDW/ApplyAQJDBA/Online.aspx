@@ -32,7 +32,8 @@
                 qybm = document.getElementById("t_FHumanId").value;
             }
             if (qybm != null && qybm != "") {
-                var url = "../project/EmpListSel.aspx";
+                //var url = "../project/EmpListSel.aspx";
+                var url = "../project/EmpListSelAqjd.aspx";
                 url += "?qybm=" + qybm + "&emptype=aqjd" + "&FPrjItemId=" + priitemid; //安全监督的人员不能选择证书过期的人员
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {

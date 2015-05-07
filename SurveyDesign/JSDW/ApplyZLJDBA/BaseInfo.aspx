@@ -27,7 +27,7 @@
             return AutoCheckInfo();
         }
         function showTr() {
-            var t = $("#p_PrjItemType option:selected").val();
+            var t = $("#p_PrjItemType option:selected").val();           
             if (t == "2000102") {
                 $("tr[name=tr_t1]").show();
                 $("tr[name=tr_t2]").hide();
@@ -113,17 +113,27 @@
                     qybm = document.getElementById("q_KCDWId").value;
                     break;
                 case "XMZ":
-                    qybm = document.getElementById("q_JLDWId").value;
+                    //qybm = document.getElementById("q_JLDWId").value;
+                    qybm = document.getElementById("q_JLDWIdnew").value;
                     break;
             }
-            
-            
-            var url = "../project/EmpListSelA.aspx";
-            url += "?qybm=" + qybm;
-            var pid = showWinByReturn(url, 1000, 600);
-            if (pid != null && pid != '') {
-                $("#" + tagId).val(pid);
-                __doPostBack(obj.id, '');
+            if (type == "XMZ") {
+                var url = "../project/EmpListSel.aspx";
+                url += "?qybm=" + qybm;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
+            }
+            else {
+                var url = "../project/EmpListSelA.aspx";
+                url += "?qybm=" + qybm;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
             }
         }
 

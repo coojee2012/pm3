@@ -166,7 +166,8 @@ public partial class JSDW_ApplyAQJDBA_Person : System.Web.UI.Page
                 on a.RYBH equals c.RYBH
                 join d in db.QY_JBXX
                 on a.QYBM equals d.QYBM               
-                where c.RYZSXXID == selEmpId
+                //where c.RYZSXXID == selEmpId
+                where c.RYBH == selEmpId
                 select new 
                 {
                     a.XM,

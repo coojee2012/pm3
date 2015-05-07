@@ -118,6 +118,14 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
     {
         TC_QA_Record qa = new TC_QA_Record();
         qa = db.TC_QA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
+       
+        qa.RegisterTime = Convert.ToDateTime(pj_ProjectTime.Text);
+        pageTool tool = new pageTool(this.Page,"p_");
+        qa = tool.getPageValue(qa);
+        tool = new pageTool(this.Page, "pj_");
+        qa = tool.getPageValue(qa);
+        tool = new pageTool(this.Page, "q_");
+        qa = tool.getPageValue(qa);
         qa.JSDW = p_JSDW.Text;
         qa.SJDW = sj_FName.Text;
         qa.SJDWDZ = sj_FRegistAddress.Text;
@@ -126,15 +134,6 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         qa.SJDWZS = sj_FLicence.Text;
         qa.SJDWId = sj_FBaseInfoId.Value;
         qa.JLDWId = q_JLDWIdnew.Value;
-        qa.RegisterTime = Convert.ToDateTime(pj_ProjectTime.Text);
-        pageTool tool = new pageTool(this.Page,"p_");
-        qa = tool.getPageValue(qa);
-        tool = new pageTool(this.Page, "pj_");
-        qa = tool.getPageValue(qa);
-        tool = new pageTool(this.Page, "q_");
-        qa = tool.getPageValue(qa);
-        //qa.SGDW = "";
-
         qa.Contracts = pj_Contacts.Text;
         qa.AddressDept = govd_FRegistDeptId.fNumber;
         db.SubmitChanges();
@@ -160,7 +159,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             q_JZS.Text = v.XM;;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     //人员选择：结构师
@@ -177,7 +176,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             q_JGS.Text = v.XM; ;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     //人员选择：岩土工程师
@@ -194,7 +193,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             q_YTGCS.Text = v.XM;
             q_CCDWZS.Text = v.ZCZSBH;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     //人员选择：项目经理
     protected void btnSel_XMJ_Click(object sender, EventArgs e)
@@ -209,7 +208,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             q_XMJL.Text = v.XM; 
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     //人员选择：项目总监
@@ -224,8 +223,9 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         if (v != null)
         {
             q_XMZJ.Text = v.XM; ;
+            q_JLZS.Text = v.ZCZSBH;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     protected void btnSel_sj_Click(object sender, EventArgs e)

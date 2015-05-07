@@ -136,27 +136,20 @@ public partial class JSDW_project_EmpListSelA : System.Web.UI.Page
         EgovaDB db = new EgovaDB();
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            Label lblLock = e.Item.Controls[0].FindControl("lblLock") as Label;
-            HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;
-            //Label yxq = e.Item.Controls[0].FindControl("yxq") as Label;
-            //HiddenField yxqks = e.Item.Controls[0].FindControl("yxqks") as HiddenField;
-            //HiddenField yxqjs = e.Item.Controls[0].FindControl("yxqjs") as HiddenField;
-            //DateTime dt1 = Convert.ToDateTime(yxqks.Value);
-            //DateTime dt2 = Convert.ToDateTime(yxqjs.Value);
-            //TimeSpan ts = dt2 - dt1;
-            //yxq.Text = ts.Days.ToString() + "天";
-            string idCard = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SFZH"));
-            var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
-            if (v != null && EConvert.ToBool(LockBusiness(v)))
-            {
-                lblLock.Text = "锁定";
-                hLock.Value = "1";
-            }
-            else
-            {
-                lblLock.Text = "";
-                hLock.Value = "0";
-            }
+            //Label lblLock = e.Item.Controls[0].FindControl("lblLock") as Label;
+            //HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;           
+            //string idCard = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SFZH"));
+            //var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
+            //if (v != null && EConvert.ToBool(LockBusiness(v)))
+            //{
+            //    lblLock.Text = "锁定";
+            //    hLock.Value = "1";
+            //}
+            //else
+            //{
+            //    lblLock.Text = "";
+            //    hLock.Value = "0";
+            //}
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return selEmp(this);");
