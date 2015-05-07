@@ -113,17 +113,27 @@
                     qybm = document.getElementById("q_KCDWId").value;
                     break;
                 case "XMZ":
-                    qybm = document.getElementById("q_JLDWId").value;
+                    //qybm = document.getElementById("q_JLDWId").value;
+                    qybm = document.getElementById("q_JLDWIdnew").value;
                     break;
             }
-            
-            
-            var url = "../project/EmpListSelA.aspx";
-            url += "?qybm=" + qybm;
-            var pid = showWinByReturn(url, 1000, 600);
-            if (pid != null && pid != '') {
-                $("#" + tagId).val(pid);
-                __doPostBack(obj.id, '');
+            if (type == "XMZ") {
+                var url = "../project/EmpListSel.aspx";
+                url += "?qybm=" + qybm;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
+            }
+            else {
+                var url = "../project/EmpListSelA.aspx";
+                url += "?qybm=" + qybm;
+                var pid = showWinByReturn(url, 1000, 600);
+                if (pid != null && pid != '') {
+                    $("#" + tagId).val(pid);
+                    __doPostBack(obj.id, '');
+                }
             }
         }
 

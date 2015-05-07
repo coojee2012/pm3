@@ -118,6 +118,14 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
     {
         TC_QA_Record qa = new TC_QA_Record();
         qa = db.TC_QA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
+       
+        qa.RegisterTime = Convert.ToDateTime(pj_ProjectTime.Text);
+        pageTool tool = new pageTool(this.Page,"p_");
+        qa = tool.getPageValue(qa);
+        tool = new pageTool(this.Page, "pj_");
+        qa = tool.getPageValue(qa);
+        tool = new pageTool(this.Page, "q_");
+        qa = tool.getPageValue(qa);
         qa.JSDW = p_JSDW.Text;
         qa.SJDW = sj_FName.Text;
         qa.SJDWDZ = sj_FRegistAddress.Text;
@@ -126,15 +134,6 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         qa.SJDWZS = sj_FLicence.Text;
         qa.SJDWId = sj_FBaseInfoId.Value;
         qa.JLDWId = q_JLDWIdnew.Value;
-        qa.RegisterTime = Convert.ToDateTime(pj_ProjectTime.Text);
-        pageTool tool = new pageTool(this.Page,"p_");
-        qa = tool.getPageValue(qa);
-        tool = new pageTool(this.Page, "pj_");
-        qa = tool.getPageValue(qa);
-        tool = new pageTool(this.Page, "q_");
-        qa = tool.getPageValue(qa);
-        //qa.SGDW = "";
-
         qa.Contracts = pj_Contacts.Text;
         qa.AddressDept = govd_FRegistDeptId.fNumber;
         db.SubmitChanges();
@@ -224,6 +223,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         if (v != null)
         {
             q_XMZJ.Text = v.XM; ;
+            q_JLZS.Text = v.ZCZSBH;
         }
 
     }
