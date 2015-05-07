@@ -116,8 +116,8 @@
                     <tr class="m_dg1_h">
                         <th>序号
                         </th>
-                        <th>锁定详情
-                        </th>
+                        <%--<th>锁定详情
+                        </th>--%>
                         <th>姓名
                         </th>
                         <th>身份证号
@@ -141,10 +141,10 @@
                     <td>
                         <%# Container.ItemIndex + 1%> 
                     </td>
-                    <td>
+                   <%-- <td>
                         <asp:Label ID="lblLock" runat="server" Text="Label"></asp:Label>
                         <asp:HiddenField ID="h_lock" runat="server" />
-                    </td>
+                    </td>--%>
                     <td>
                         <%# Eval("XM")%>
                     </td>

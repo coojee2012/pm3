@@ -47,7 +47,8 @@
             
             //去掉单位的限制  modify by psq 201503401
             if (qybm != null && qybm != "") {
-                var url = "../project/EmpListSel.aspx";
+                //var url = "../project/EmpListSel.aspx";
+                var url = "../project/EmpListSelAqjd.aspx";                
                 url += "?qybm=" + qybm + "&emptype=aqjd" + "&FPrjItemId=" + priitemid;               
                 var pid = showWinByReturn(url, 1000, 600);
                 if (pid != null && pid != '') {

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EmpListSelAqjd.aspx.cs"
     Inherits="JSDW_project_EmpListSelAqjd" %>
-
-<%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
+<!-- <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %> -->
+<%@ Register src="../../Common/pager.ascx" tagname="pager" tagprefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -32,11 +32,9 @@
         
         function selEmp(item) {
 
-            var trNode = item.parentNode.parentNode.childNodes[3];
-           
+            var trNode = item.parentNode.parentNode.childNodes[3];           
             if (trNode) {
-                var nodetext = trNode.innerText;
-
+                var nodetext = trNode.innerText;             
                 if ($.trim(nodetext) == "锁定") {
                     alert("所选人员已参与其他区域在建工程，不允许选入！");
                     return false;
@@ -122,10 +120,7 @@
                 <tr class="m_dg1_h">
                     <th>
                         序号
-                    </th>
-                    <th>
-                        锁定详情
-                    </th>
+                    </th>                   
                     <th>
                         姓名
                     </th>
@@ -156,11 +151,7 @@
                     <tr class="m_dg1_i">
                         <td>
                             <%# Container.ItemIndex + 1%> 
-                        </td>
-                        <td>
-                            <asp:LinkButton ID="lkb_Lock" runat="server" Text="Label"></asp:LinkButton>                            
-                            <asp:HiddenField ID="h_lock"  runat="server" />
-                        </td>
+                        </td>                       
                         <td>
                             <%# Eval("XM")%>
                         </td>
@@ -198,14 +189,8 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
-    <div style="padding-left: 1%">
-        <webdiyer:AspNetPager ID="Pager1" runat="server" AlwaysShow="True" CssClass="pages"
-            CurrentPageButtonClass="cpb" CustomInfoClass="pagescount" CustomInfoHTML="&lt;b&gt;共%RecordCount%条 第%CurrentPageIndex%/%PageCount%页&lt;/b&gt;"
-            CustomInfoSectionWidth="150px" FirstPageText="首页" LastPageText="尾页" LayoutType="Table"
-            NextPageText="下一页" NumericButtonCount="6" OnPageChanging="Pager1_PageChanging"
-            PageIndexBoxType="TextBox" PageSize="10" PrevPageText="上一页" ShowCustomInfoSection="Right"
-            ShowPageIndexBox="Always" SubmitButtonText="Go" TextAfterPageIndexBox="页" TextBeforePageIndexBox="转到">
-        </webdiyer:AspNetPager>
+    <div style="padding-left: 1%">       
+        <uc1:pager ID="Pager2" runat="server"></uc1:pager>
     </div>
     </form>
 </body>

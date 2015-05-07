@@ -27,7 +27,7 @@
             return AutoCheckInfo();
         }
         function showTr() {
-            var t = $("#p_PrjItemType option:selected").val();
+            var t = $("#p_PrjItemType option:selected").val();           
             if (t == "2000102") {
                 $("tr[name=tr_t1]").show();
                 $("tr[name=tr_t2]").hide();

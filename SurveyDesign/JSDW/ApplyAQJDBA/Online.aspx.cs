@@ -97,6 +97,7 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
             Emp.FId = fId;
             Emp.FPrjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
             Emp.FAppId = EConvert.ToString(ViewState["FAppId"]);
+            Emp.FMobile = t_Mobile.Text.ToString().Trim();
             dbContext.TC_AJBA_CZSG.InsertOnSubmit(Emp);
         }
         pageTool tool = new pageTool(this.Page);
@@ -209,8 +210,8 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
                  on a.RYBH equals c.RYBH
                  join d in db.QY_JBXX
                  on a.QYBM equals d.QYBM
-                 //where c.RYBH == selEmpId  //以前传输的变量不对应
-                 where c.RYZSXXID == selEmpId  
+                 where c.RYBH == selEmpId  
+                 //where c.RYZSXXID == selEmpId  
                  select new
                  {
                      a.XM,

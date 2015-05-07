@@ -159,7 +159,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             q_JZS.Text = v.XM;;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     //人员选择：结构师
@@ -176,7 +176,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             q_JGS.Text = v.XM; ;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     //人员选择：岩土工程师
@@ -193,7 +193,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             q_YTGCS.Text = v.XM;
             q_CCDWZS.Text = v.ZCZSBH;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
     //人员选择：项目经理
     protected void btnSel_XMJ_Click(object sender, EventArgs e)
@@ -208,7 +208,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             q_XMJL.Text = v.XM; 
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     //人员选择：项目总监
@@ -225,7 +225,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             q_XMZJ.Text = v.XM; ;
             q_JLZS.Text = v.ZCZSBH;
         }
-
+        ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr();</script>");
     }
 
     protected void btnSel_sj_Click(object sender, EventArgs e)
