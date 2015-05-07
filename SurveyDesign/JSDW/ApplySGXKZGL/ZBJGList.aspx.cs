@@ -13,8 +13,12 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
 {
     EgovaDB dbContext = new EgovaDB();
     RCenter rc = new RCenter();
+    DataTable dt = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+
+
         if (!Page.IsPostBack)
         {
             BindControl();
@@ -22,28 +26,18 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
                 ViewState["FID"] = Request.QueryString["fid"];
-                TC_SGXKZ_ZBJG sp = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FId == EConvert.ToString(ViewState["FID"])).FirstOrDefault();
-                pageTool tool = new pageTool(this.Page, "t_");
-                tool.fillPageControl(sp);
-                txtFId.Value = Request.QueryString["fid"];
-                ViewState["fid"] = Request.QueryString["fid"];
-                if (!string.IsNullOrEmpty(sp.JLZBLX) && (sp.JLZBLX == "11220801" || sp.JLZBLX == "11220802"))
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>hideTr1();</script>");
-                }
+                ViewState["IsBz"] = Request.QueryString["IsBz"];
+                ShowInfo(ViewState["IsBz"].ToString(), ViewState["FID"].ToString());
             }
             else
             {
+                ViewState["IsBz"] = "1";
                 ViewState["FAppId"] = EConvert.ToString(Request["FAppId"]);
                 ShowTitle();
             }
             //ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             pageTool tool1 = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0 || ViewState["IsBz"].ToString() =="3")
             {
                 tool1.ExecuteScript("btnEnable();");
                 //屏蔽新增按钮
@@ -53,7 +47,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 Button4.Visible = false;
             }
 
-            ShowFile(t_JLId.Value, "JL");
+            //ShowFile(t_JLId.Value, "JL");
         }
     }
 
@@ -93,6 +87,9 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         //t_SGXMJLZJLX.DataBind();
     }
 
+
+
+
     private void ShowTitle()
     {
         EgovaDB dbContext = new EgovaDB();
@@ -111,6 +108,41 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         //pageTool tool = new pageTool(this.Page, "t_");
         //tool.fillPageControl(sp);
     }
+
+
+    //根据传入参数，取到指定的数据，并返回值。
+    private void ShowInfo(string isbz, string fid)
+    {
+        DataTable sp = null;
+        XMHJCL_Business business = new XMHJCL_Business();
+        t_JLId.Value = fid;
+        if (isbz == "3")
+        {
+            sp = business.GetZBjg_bz_p(fid);  //标准库数据
+            ViewState["FAppId"] = "1";
+            ViewState["FPrjItemId"] = "1";
+        }
+        else
+        {
+            sp = business.GetZBjg_yw_p(fid);  //业务数据库
+            if (sp.Rows.Count > 0)
+            {
+                ViewState["FAppId"] = sp.Rows[0]["FAppId"].ToString();
+                ViewState["FPrjItemId"] = sp.Rows[0]["FprjItemId"].ToString();
+            }
+        }
+        if (sp.Rows.Count > 0)
+        {
+            string strbl = sp.Rows[0]["bl"].ToString();
+            txtFId.Value = fid;
+            ShowFile(fid, "JL");
+    
+            FillPageWithDt tool = new FillPageWithDt();
+            tool.fillPageControl(sp, this.Page, "t_");
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+        }
+    }
+
 
     private void ShowFile(string FId, string name)
     {
@@ -309,6 +341,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     //}
     protected void btnAddEntSC_Click(object sender, EventArgs e)
     {
+        string strEntType = t_JLZBLX.Text;
+
         //中标单位
         selEnt("SC");
     }

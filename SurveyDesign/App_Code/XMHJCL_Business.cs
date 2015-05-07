@@ -143,6 +143,19 @@ public class XMHJCL_Business
                 else
                 { isbz = false; }
                 break;
+            case 环节材料信息.质量安全监督手续:
+                dt = GetZlJd_yw(appid); //判断业务库中是否存在
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    dt = GetZlJd_bz(xmbh);  //判断标准库中是否存在
+                    if (dt.Rows.Count > 0)
+                    { isbz = true; }
+                    else
+                    { isbz = false; }
+                }
+                else
+                { isbz = false; }
+                break;
         }
 
         return dt;
@@ -280,7 +293,7 @@ public class XMHJCL_Business
     }
     #endregion
 
-    #region 开发出来的招投标信息
+    #region 开放出来的招投标信息
     /// <summary>
     /// 从业务查询指定项目编号招投标信息
     /// </summary>
@@ -305,8 +318,9 @@ public class XMHJCL_Business
         //从标准库中读取项目信息
         RCenter prjdb = GetRCenter("XM_BaseInfo");
 
-        string sql = @"select '3' as bl,zbid as fid,xmbh as FprjItemId,isnull(xmmc,'') + ''  + isnull(bdmc,'') as PrjItemName,bh as ProjectNo,
-                               '' as JLZBLX,zbqymc as JLZBDW,zbtzsbh as ZBTZSBH, zbmj as Area from  XM_BaseInfo.dbo.[XM_ZBJGXX]
+        string sql = @"select '3' as bl,zbid as fid,xmbh as FprjItemId,isnull(xmmc,'') as ProjectName, isnull(bdmc,'') as PrjItemName,bh as ProjectNo,JSDW, ZBQYZZJGDM as JLZBDWZZJGDM,
+                               ZBQYZZJDJ as JLZBQYZZDJ,ZBQYZZZSH as JLZBQYZZZSH,'11220801' as JLZBLX,zbqymc as JLZBDW,zbtzsbh as ZBTZSBH, zbmj as Area,ZBJG as JLZBJ,ZBTZSFBSJ as JLZBRQ,
+                               BASJ as JLHTBATime from  XM_BaseInfo.dbo.[XM_ZBJGXX]
                         where ZBID = '" + fid + "'";
         return prjdb.GetTable(sql);
     }
@@ -371,6 +385,27 @@ public class XMHJCL_Business
         sql = sql + @" union SELECT stid as [FId] ,xmbh as [FprjItemId] ,STJGZSBH  as [SGTSCHGSBH] ,bh    as [ProjectNo] ,stjg  as [SGTSCJGMC] ,CensorCorpCode as [SGTSCZZJGDM] ,
                       FZRQ    as [SCWCRQ] ,''  as [ConstrScale] ,kcdw as  [KCDWMC] ,KCDWZSBH as  [KCDWZZJGDM] ,sjdw as [SJDWMC] ,sjdwzsbh as [SJDWZZJGDM] ,OneCensorIsPass as [YCSCSFTG] ,OneCensorWfqtCount as [YCSCWFTS] ,OneCensorWfqtContent as [YCSCWFTM] ,'3' as [BL]   from   XM_BaseInfo.dbo.XM_SGTSCSZXX where xmbh = '" + xmbh + "'";
         return prjdb.GetTable(sql);        return prjdb.GetTable(sql);
+    }
+    #endregion
+
+    #region 质量安全监督手续
+    /// <returns>质量安全监督手续</returns>
+    private DataTable GetZlJd_yw(string appid)
+    {
+        RCenter prjdb = GetRCenter("dbCenter");
+
+        string sql = @"select * from TC_SGXKZ_JDSX where  FAppId = '" + appid + "'";
+        return prjdb.GetTable(sql);
+    }
+
+    /// <returns>质量安全监督手续</returns>
+    private DataTable GetZlJd_bz(string xmbh)
+    {
+        //从标准库中读取项目信息
+        RCenter projdb = GetRCenter("XM_BaseInfo");
+
+        string sql = @" dbo.Proc_ZLAQ '" + xmbh + "'";
+        return projdb.GetTable(sql);
     }
     #endregion
 }
