@@ -77,6 +77,14 @@
                     </asp:DropDownList>
                 </td>
             </tr>
+            <tr runat ="server" id="tr_lockrow" visible ="false">
+                <td class="t_r t_bg">
+                    <label runat="server" id="lbl_lockperson" >人员锁定情况:</label>
+                </td>
+                <td>
+                    <label runat="server" id="lbl_lockpsersoncontent" CssClass="m_txt" ></label>
+                </td>
+            </tr>
             <tr>
                 <td colspan="4" class="t_c">
                     <asp:Button ID="btnSave" runat="server" Text="提交" OnClick="btnSave_Click" CssClass="m_btn_w2"
@@ -84,6 +92,7 @@
                     <tt>* 提交前请确定信息无误，提交后将不能修改。</tt>
                 </td>
             </tr>
+            
         </table>
         <input id="k_FBaseInfoId" type="hidden" runat="server" />
     </form>

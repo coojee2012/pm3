@@ -22,7 +22,8 @@ public partial class JSDW_project_JqsbxxSel : System.Web.UI.Page
     {
         StringBuilder _builder = new StringBuilder();
 
-        _builder.Append("select a.* from GC_JQSBXX a,[XM_XMJBXX] b where a.xmbh=b.xmbh ");
+        //_builder.Append("select a.* from GC_JQSBXX a,[XM_XMJBXX] b where a.xmbh=b.xmbh ");
+        _builder.Append("select a.* from GC_JQSBXX a left join [XM_XMJBXX] b on a.xmbh=b.xmbh  where 1 = 1  ");
         if (t_FName.Text.Trim() != "")
         {
             _builder.AppendFormat(" and a.SBMC LIKE '%{0}%'", t_FName.Text.Trim());

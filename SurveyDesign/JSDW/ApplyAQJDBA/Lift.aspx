@@ -67,17 +67,17 @@
                     设备名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_SBMC" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_SBMC" runat="server" CssClass="m_txt" Width="195px" Enabled="true"></asp:TextBox>
                     <tt>*</tt>
                     <input type="hidden"  runat="server" ID="t_SBID" value="" />
                     <asp:Button ID="btnAdd" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEmp(this,'t_SBID');"
-                    UseSubmitBehavior="false" CommandName="SGT" Style="margin-bottom: 4px;margin-left:5px;" OnClick="btnAdd_Click" />
+                    UseSubmitBehavior="false" CommandName="SGT" Style="margin-bottom: 4px;margin-left:5px;" OnClick="btnAdd_Click"  Visible ="false"/>
                 </td>
                 <td class="t_r t_bg">
                     备案编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_BABH" runat="server" CssClass="m_txt" Width="195px"  Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_BABH" runat="server" CssClass="m_txt" Width="195px"  Enabled="true"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>
@@ -86,13 +86,15 @@
                     设备型号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_SBXH" runat="server" CssClass="m_txt" Width="195px"  Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_SBXH" runat="server" CssClass="m_txt" Width="195px"  Enabled="true"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     出厂编号：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_CCBH" runat="server" CssClass="m_txt" Width="195px"  Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_CCBH" runat="server" CssClass="m_txt" Width="195px"  Enabled="true"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -101,6 +103,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_SCRQ" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     使用单位：
@@ -108,6 +111,7 @@
                 <td colspan="1">
                     <asp:TextBox ID="t_SYDW" runat="server" CssClass="m_txt"
                         MaxLength="20" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -116,12 +120,14 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ZZDW" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     产权单位：
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_CQDW" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -130,12 +136,14 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_AZDW" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     检验检测机构：
                 </td>
                 <td colspan="1">
                    <asp:TextBox ID="t_JYJCJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 </td>
             </tr>
             <tr>
@@ -144,6 +152,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_BAJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <tt>*</tt>
                 <input id="txtFId" type="hidden" runat="server" />
                 </td>
             </tr>  

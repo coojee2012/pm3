@@ -23,7 +23,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             t_FAppId.Value = EConvert.ToString(Session["FAppId"]);
             //企业类型
             t_FEntType.Value = EConvert.ToString(Request["FEntType"]);
-            //企业编号
+            //企业编号主键
             txtFId.Value = EConvert.ToString(Request["FId"]);
 
             //t_FPrjId.Value = EConvert.ToString(Request["FPrjId"]);
@@ -243,6 +243,7 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
                 if (v2 != null)
                 {
                     t_QYID.Value = v2.QYBM;
+                    h_selEntId.Value = v2.QYBM;
                     t_FName.Text = v2.QYMC;
                     t_FAddress.Text = v2.QYXXDZ;
                     t_FLegalPerson.Text = v2.FRDB;

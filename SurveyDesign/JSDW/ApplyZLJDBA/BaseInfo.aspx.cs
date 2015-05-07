@@ -75,6 +75,11 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             sj_FLinkMan.Text = qa.SJDWFR;
             sj_FMobile.Text = qa.SJDWDH;
             sj_FLicence.Text = qa.SJDWZS;
+            sj_FBaseInfoId.Value = qa.SJDWId;
+            q_KCDWId.Value = qa.KCDWId;
+            q_JLDWId.Value = qa.JLDWId;
+            q_SGDWId.Value = qa.SGDWId;
+            q_JLDWIdnew.Value = qa.JLDWId;
             if (qa.RegisterTime.HasValue)
             { 
             pj_ProjectTime.Text = qa.RegisterTime.Value.ToString("yyyy-M-d");
@@ -85,6 +90,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             {
                 p_RecordNo.Text = GetPrjNo(prjInfo.ProjectNo);
             }
+           
             string t = prj.PrjItemType;
             tool = new pageTool(this.Page);
             ClientScript.RegisterStartupScript(this.GetType(), "showTr", "<script>showTr();</script>");
@@ -119,6 +125,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         qa.SJDWDH = sj_FMobile.Text;
         qa.SJDWZS = sj_FLicence.Text;
         qa.SJDWId = sj_FBaseInfoId.Value;
+        qa.JLDWId = q_JLDWIdnew.Value;
         qa.RegisterTime = Convert.ToDateTime(pj_ProjectTime.Text);
         pageTool tool = new pageTool(this.Page,"p_");
         qa = tool.getPageValue(qa);
@@ -147,8 +154,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         string selEmpid = sj_ZCJCS.Value; //注册建造师
 
         EgovaDB1 db1 = new EgovaDB1();
-        //RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
-        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpid).FirstOrDefault();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        //RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpid).FirstOrDefault();
         if (v != null)
         {
             q_JZS.Text = v.XM;;
@@ -164,8 +171,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
 
         EgovaDB1 db1 = new EgovaDB1();
 
-        //RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
-        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpid).FirstOrDefault();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        //RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpid).FirstOrDefault();
         if (v != null)
         {
             q_JGS.Text = v.XM; ;
@@ -196,8 +203,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         string selEmpid = sj_XMJL.Value; //项目经理
 
         EgovaDB1 db1 = new EgovaDB1();
-        //RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
-        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpid).FirstOrDefault();
+        RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYBH == selEmpid).FirstOrDefault();
+        //RY_RYZSXX v = db1.RY_RYZSXX.Where(t => t.RYZSXXID == selEmpid).FirstOrDefault();
         if (v != null)
         {
             q_XMJL.Text = v.XM; 
@@ -289,6 +296,7 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         {
             //QY_JBXX v = db1.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             QY_JBXX v = db1.QY_JBXX.Where(t => t.QYBM == vzz.QYBM).FirstOrDefault();
+            q_JLDWIdnew.Value = vzz.QYBM;
             if (v != null)
             {
                 q_JLDW.Text = v.QYMC;

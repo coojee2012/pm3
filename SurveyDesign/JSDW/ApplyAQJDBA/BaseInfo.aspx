@@ -103,7 +103,8 @@
             var qybm = "";
             if (tagId == "t_SGRYId") {
                 qybm = document.getElementById("t_SGId").value;
-            } else if (tagId == "t_JLRYId") {
+            } else if (tagId == "t_JLRYId")
+            {
                 qybm = document.getElementById("t_jldwid").value;               
               //qybm = document.getElementById("t_JLId").value;
             }

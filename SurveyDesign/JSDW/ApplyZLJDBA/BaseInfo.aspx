@@ -489,6 +489,7 @@
                 <asp:Button ID="Button3" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selEnt(this, 'q_JLDWId','JL');"
                     UseSubmitBehavior="false" OnClick="btnSel_jl_Click" />
                 <input id="q_JLDWId" runat="server" type="hidden" />
+                <input id="q_JLDWIdnew" runat="server" type="hidden" />
             </td>
         </tr>
         <tr>

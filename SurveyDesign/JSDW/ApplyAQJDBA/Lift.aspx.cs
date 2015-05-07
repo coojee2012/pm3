@@ -31,6 +31,8 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
                     tool.fillPageControl(emp);
                 }
                 ViewState["FID"] = Request.QueryString["fid"];
+                txtFId.Value = Request.QueryString["fid"];
+                bindczry();
             }
             if (!string.IsNullOrEmpty(Request.QueryString["fAppId"]))
             {
@@ -45,6 +47,24 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
             }
         }
     }
+    /// <summary>
+    /// 绑定操作人员
+    /// </summary>
+    private void bindczry()
+    {
+        var czrylist = from t in dbContext.TC_AJBA_QZSB_CZRY.Where(t => t.FLinkID == ViewState["FID"])
+                       select new
+                       { 
+                           t.Name,
+                           t.CZZH,
+                           t.Trades,
+                           t.ID
+
+                       };
+        dg_List.DataSource = czrylist;
+        dg_List.DataBind();
+    }
+
     //保存
     private void saveInfo()
     {
@@ -112,18 +132,27 @@ public partial class JSDW_ApplyAQJDBA_Lift : System.Web.UI.Page
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_AJBA_QZSB_CZRY, tool_Deleting);
         ShowPrjItemInfo();
+        bindczry();
     }
-    //视频删除
+    //操作人员删除
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
     {
         EgovaDB dbContext = new EgovaDB();
-        //视频
-        var para = dbContext.TC_AJBA_QZSB_CZRY.Where(t => FIdList.ToArray().Contains(t.ID));
-        dbContext.TC_AJBA_QZSB_CZRY.DeleteAllOnSubmit(para);
+        //操作人员
+        //var para = dbContext.TC_AJBA_QZSB_CZRY.Where(t => FIdList.ToArray().Contains(t.ID));
+        //dbContext.TC_AJBA_QZSB_CZRY.DeleteAllOnSubmit(para);
+        foreach (var v in FIdList)
+        {
+            TC_AJBA_QZSB_CZRY czry = new TC_AJBA_QZSB_CZRY();
+            czry = dbContext.TC_AJBA_QZSB_CZRY.Where(t => t.ID == v).FirstOrDefault();
+            dbContext.TC_AJBA_QZSB_CZRY.DeleteOnSubmit(czry);
+            dbContext.SubmitChanges();
+        }
     }
     protected void btnReload_Click(object sender, EventArgs e)
     {
         ShowPrjItemInfo();
+        bindczry();
     }
     protected void App_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
