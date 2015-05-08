@@ -175,6 +175,9 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
             PrjAddressDept = t_AddressDept.Value,
             PrjItemType = t_PrjItemType.Value,
             JSDWAddressDept = t_JSDWAddressDept.Value,//MODIFY:YTB 从控件取值赋值建设单位所属地
+            //新建建设单位id
+            jsdwid = CurrentEntUser.EntId,
+            //
             ReportTime = DateTime.Now,
             JSDW = t_JSDW.Value
         };

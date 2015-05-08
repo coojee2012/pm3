@@ -115,6 +115,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
 
                 pageTool tool = new pageTool(this.Page, "t_");
                 tool.fillPageControl(emp);
+                //从
                 JSDW_DeptID.fNumber = emp.JSDWAddressDept;
                 PrjGovdeptid.fNumber = p.AddressDept;
                 t_PrjItemType.Text = pi.PrjItemType;
@@ -123,7 +124,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                 t_ProjectUse.Text = p.ProjectUse;
                 t_BuildType.Text = p.ConstrType;
                 t_ConstrType.Text = pi.ConstrType;
-
+                //
                 if (!string.IsNullOrEmpty(emp.LXDH))
                 {
                     t_LXDH.Text = emp.LXDH;

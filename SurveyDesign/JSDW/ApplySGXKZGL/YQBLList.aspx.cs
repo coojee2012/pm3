@@ -160,7 +160,6 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
         app.FCreateTime = dTime;
         app.FReportCount = 1;
         dbContext.CF_App_List.InsertOnSubmit(app);
-
         //添加延期办理信息
         TC_SGXKZ_YQSQ record = new TC_SGXKZ_YQSQ();
         record.FId = Guid.NewGuid().ToString();
@@ -170,6 +169,10 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
         record.YQCS = t_YQCS.Value;
         record.YQTime = DateTime.Now;
         dbContext.TC_SGXKZ_YQSQ.InsertOnSubmit(record);
+
+
+
+
         //提交修改
         dbContext.SubmitChanges();
         lblMessage.Text = "业务创建成功,即将自动跳转到业务信息登记页面...";

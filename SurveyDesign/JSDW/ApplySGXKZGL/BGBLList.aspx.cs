@@ -248,6 +248,44 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
                 emp.FEntType = v2.FEntType;
                 dbContext.TC_PrjItem_Emp.InsertOnSubmit(emp);                
             }
+            //从归档库中获取工程项目明细
+            IQueryable<TC_SGXKZ_PrjDetail> pjd = dbContext.TC_SGXKZ_PrjDetail.Where(t => t.PrjItemId == t_FPriItemId.Value);
+            foreach (var v3 in pjd)
+            {
+                TC_SGXKZ_PrjDetail p = new TC_SGXKZ_PrjDetail();
+                p.FId = Guid.NewGuid().ToString();
+                p.FAppId = FAppId;//新的appid
+                p.PrjId = v3.PrjId;
+                p.PrjItemId = v3.PrjItemId;
+                p.SgxkzInfoID = v3.SgxkzInfoID;
+                p.JSDW = v3.JSDW;
+                p.AddressDept = v3.AddressDept;
+                p.DetailName = v3.DetailName;
+                p.Scale = v3.Scale;
+                p.UpScale = v3.UpScale;
+                p.DoScale = v3.DoScale;
+                p.AbLayerNum = v3.AbLayerNum;
+                p.UnLayerNum = v3.UnLayerNum;
+                p.ReMark = v3.ReMark;         
+                dbContext.TC_SGXKZ_PrjDetail.InsertOnSubmit(p);
+            }
+            //从归档库中获取保证金确认信息
+            IQueryable<TC_SGXKZ_BZJQR> bzj = dbContext.TC_SGXKZ_BZJQR.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            foreach (var v4 in bzj)
+            {
+                TC_SGXKZ_BZJQR x = new TC_SGXKZ_BZJQR();
+                x.FId = Guid.NewGuid().ToString();
+                x.FAppId = FAppId;
+                x.FPrjItemId = v4.FPrjItemId;
+                x.FPrjId = v4.FPrjId;
+                x.JFXM = v4.JFXM;
+                x.JFXMBM = v4.JFXMBM;
+                x.Money = v4.Money;
+                x.JFSJ = v4.JFSJ;
+                x.SKJBR = v4.SKJBR;
+                x.SKDW = v4.SKDW;
+                dbContext.TC_SGXKZ_BZJQR.InsertOnSubmit(x);
+            }          
         } 
         //提交修改
         dbContext.SubmitChanges();
