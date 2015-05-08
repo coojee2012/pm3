@@ -17,16 +17,37 @@ public partial class JSDW_ApplySGXKZGL_JDSX : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            string appid = "";
             if (!string.IsNullOrEmpty(EConvert.ToString(Session["FAppId"])))
             {
                 ViewState["FAppId"] = EConvert.ToString(Session["FAppId"]);
+                appid = EConvert.ToString(Session["FAppId"]);
             }
-            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+
             ShowTitle();
+
+            bool isbz = false;
+            XMHJCL_Business business = new XMHJCL_Business();
+            DataTable dt = business.QueryData(appid, XMHJCL_Business.环节材料信息.质量安全监督手续, out isbz);
+
             pageTool tool1 = new pageTool(this.Page);
-            if (EConvert.ToInt(Session["FIsApprove"]) != 0)
+            if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)
             {
+                ListItem i = new ListItem("标准库数据", "3");
+                t_BL.Items.Add(i);
                 tool1.ExecuteScript("btnEnable();");
+            }
+            ShowInfo(isbz, dt);
+        }
+        else
+        {
+            if (t_BL.SelectedItem.Value != "1" && t_BL.SelectedItem.Value != "3")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
             }
         }
     }
@@ -39,14 +60,19 @@ public partial class JSDW_ApplySGXKZGL_JDSX : System.Web.UI.Page
         t_JSDW.Text = qa.JSDW;
         t_ProjectName.Text = qa.ProjectName;
         t_PrjItemName.Text = qa.PrjItemName;
-        TC_SGXKZ_JDSX sp = dbContext.TC_SGXKZ_JDSX.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
-        if (sp != null)
+    }
+
+    private void ShowInfo(bool isyw, DataTable sp)
+    {
+        if (sp.Rows.Count > 0)
         {
-            txtFId.Value = sp.FId;
-            ShowFile(sp.FId);
-            if (!string.IsNullOrEmpty(sp.BL))
+            string strfid = sp.Rows[0]["FId"].ToString();
+            string strbl = sp.Rows[0]["bl"].ToString();
+            txtFId.Value = strfid;
+            ShowFile(strfid);
+            if (!string.IsNullOrEmpty(strbl))
             {
-                if (sp.BL != "1")
+                if (strbl != "1" && strbl != "3")
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
                 }
@@ -55,17 +81,14 @@ public partial class JSDW_ApplySGXKZGL_JDSX : System.Web.UI.Page
                     ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
                 }
             }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-            }
-            //t_BL.SelectedItem.Text = "已办";
-            //t_BL.SelectedItem.Value = "3";
-            //t_BL.Enabled = false;
-        }
 
-        pageTool tool = new pageTool(this.Page, "t_");
-        tool.fillPageControl(sp);
+            FillPageWithDt tool = new FillPageWithDt();
+            tool.fillPageControl(sp, this.Page, "t_");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+        }
     }
 
     private void ShowFile(string FId)

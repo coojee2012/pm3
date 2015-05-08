@@ -57,16 +57,18 @@
             $("tr[name=tr1]").hide();
         }
         function showTr1() {
-            var value = document.getElementById("t_JLZBLX").value;
-            $("tr[name=tr1]").show();
-            if (value == "11220801") {
-                $("td[name=td2]").show();
-                $("td[name=td1]").hide();
-            } else {
-                $("td[name=td2]").hide();
-                $("td[name=td1]").show();
+            if (document.getElementById("t_JLZBLX") != null)
+            {
+                var value = document.getElementById("t_JLZBLX").value;
+                $("tr[name=tr1]").show();
+                if (value == "11220801") {
+                    $("td[name=td2]").show();
+                    $("td[name=td1]").hide();
+                } else {
+                    $("td[name=td2]").hide();
+                    $("td[name=td1]").show();
+                }
             }
-
 
         }
 
@@ -85,8 +87,11 @@
                 //$("input").removeAttr("disabled");
                 $("tr[name=tr1]").hide();
             }
+
+            oldvalue = document.getElementById("oldzblx").value;
+
             //施工如果已选择了中标单位数据，且换成了其他类型 则清空数据
-            if (value != "11220801") {
+            if (value != oldvalue) {
                 $("#t_JLZBDW").val("");
                 $("#t_JLId").val("");
                 $("#t_JLZBDWZZJGDM").val("");
@@ -94,13 +99,44 @@
                 $("#t_JLZBQYZZZSH").val("");
             }
 
+            document.getElementById("oldzblx").value = value;
+            
         }
         function selEnt(obj, tagId) {
             var url = "../project/EntListSel.aspx?e=1";
+            var type = document.getElementById("t_JLZBLX").value;
+            var qylx = "101";
+            switch (type) {
+                case "11220801":
+                    qylx = "101";
+                    break;
+                case "11220802":
+                    qylx = "104";
+                    break;
+                case "11220803":
+                    qylx = "103";
+                    break;
+                case "11220804":
+                    qylx = "102";
+                    break;
+
+                case "11220805":
+                    qylx = "108";
+                    break;
+                case "11220806":
+                    qylx = "101";
+                    break;
+                case "11220807":
+                    qylx = "115";
+                    break;
+            }
             //如果是选择代理机构则需要加类型
-            if (tagId.value = 't_SGId')
-            {
+            if (tagId != 't_JLId') {
                 url += "&qylx=105";
+            }
+            else
+            {
+                url += "&qylx=" + qylx ;
             }
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
@@ -138,6 +174,9 @@
             background-color: gray;
             opacity: .50;
             filter: alpha(opacity=50);
+        }
+        .auto-style1 {
+            height: 25px;
         }
     </style>
 </head>
@@ -230,12 +269,12 @@
             </tr>
             <tr>
                 <td class="t_r t_bg">建设单位： </td>
-                <td colspan="1">
+                <td colspan="1" class="auto-style1">
                     <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">总面积：
                 </td>
-                <td colspan="1">
+                <td colspan="1" class="auto-style1">
                     <asp:TextBox ID="t_Area" runat="server" CssClass="m_txt" Enabled="false"
                         Width="195px"></asp:TextBox>（m2）
                 </td>
@@ -268,7 +307,7 @@
                 <td colspan="1">
                     <asp:DropDownList ID="t_JLZBLX" cs="cs1" runat="server" CssClass="m_txt" Width="201px" onchange="change(this.value)">
                         <asp:ListItem Value="-1">--请选择--</asp:ListItem>
-                    </asp:DropDownList><tt>*</tt>
+                    </asp:DropDownList><tt>*</tt> <input type="hidden" runat="server" id="oldzblx" value="" />
                 </td>
             </tr>
             <tr>
@@ -277,8 +316,8 @@
                 <td colspan="1" style="width: 29%;">
                     <asp:TextBox ID="t_JLZBDW" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
                     <input type="hidden" runat="server" id="t_JLId" value="" />
-                    <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_JLId');"
-                        UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSC_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
+                    <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4"
+                        UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSC_Click" Style="margin-bottom: 4px; margin-left: 5px;" OnClientClick="return selEnt(this,'t_JLId');" />
                 </td>
                 <td class="t_r t_bg">中标单位组织机构代码： </td>
                 <td colspan="1">
@@ -395,9 +434,7 @@
                     <asp:TextBox ID="t_JLGCSZJHM" cs="cs2" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-            </tr>
-        </table>
+            </table>
         <table width="98%" align="center" class="m_bar">
             <tr>
                 <td class="m_bar_l"></td>

@@ -28,7 +28,7 @@ public partial class JSDW_ApplySGXKZGL_JSGCGHXKZList : System.Web.UI.Page
 
             bool isbz = false;
             XMHJCL_Business business = new XMHJCL_Business();
-            DataTable dt = business.QueryData(appid, XMHJCL_Business.环节材料信息.选址意见书, out isbz);
+            DataTable dt = business.QueryData(appid, XMHJCL_Business.环节材料信息.建设工程规划许可证, out isbz);
 
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)

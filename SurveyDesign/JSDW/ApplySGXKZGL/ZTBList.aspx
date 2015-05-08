@@ -25,7 +25,7 @@
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
       
-            if (value == "3") {
+            if (value == "3" || value == "1") {
                 return AutoCheckInfo();
             } else {
                 var ly = document.getElementById("t_YL").value;
@@ -173,7 +173,7 @@
                 </td>
             </tr>
         </table>
-        <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="false" CssClass="m_dg1"
+        <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBound" Style="margin-top: 6px;
             margin-bottom: 1px;" Width="98%">
             <HeaderStyle CssClass="m_dg1_h" />
@@ -195,7 +195,7 @@
                     <ItemStyle Wrap="False" HorizontalAlign="Left" />
                 </asp:BoundColumn>
                 
-                <asp:BoundColumn HeaderText="招标类型" DataField="JLZBLXStr">
+                <asp:BoundColumn HeaderText="招标类型" DataField="JLZBLX">
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn HeaderText="中标单位" DataField="JLZBDW">
