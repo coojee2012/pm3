@@ -49,6 +49,9 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                btnAddEnt.Visible = false;
+                btnAddEnt1.Visible = false;
+                btnAddEnt2.Visible = false;
             }
         }
     }
@@ -73,17 +76,22 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             string strbl = sp.Rows[0]["bl"].ToString();
             txtFId.Value = strfid;
             ShowPrjItemInfo();
+
             if (!string.IsNullOrEmpty(strbl))
+            { strbl = "1"; }
+            if (strbl != "1" && strbl != "3")
             {
-                if (strbl != "1" && strbl != "3")
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-                }
+                ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
             }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                btnAddEnt.Visible = false;
+                btnAddEnt1.Visible = false;
+                btnAddEnt2.Visible = false;
+
+            }
+
 
             FillPageWithDt tool = new FillPageWithDt();
             tool.fillPageControl(sp, this.Page, "t_");
@@ -91,6 +99,9 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
         else
         {
             ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+            btnAddEnt.Visible = false;
+            btnAddEnt1.Visible = false;
+            btnAddEnt2.Visible = false;
         }
     }
 
@@ -219,11 +230,17 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                btnAddEnt.Visible = false;
+                btnAddEnt1.Visible = false;
+                btnAddEnt2.Visible = false;
             }
         }
         else
         {
             ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+            btnAddEnt.Visible = false;
+            btnAddEnt1.Visible = false;
+            btnAddEnt2.Visible = false;
         }
     }
 }
