@@ -290,7 +290,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
 
             if (t_DJ.Items.Contains(new ListItem(v1.ZSLX.ToString())))
             { 
-               t_DJ.SelectedValue = v1.ZSLX;
+               t_DJ.SelectedValue = v1.ZSLX.ToString();
             }
             //t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
             t_ZCBH.Text = v1.ZCZSH;

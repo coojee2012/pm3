@@ -99,7 +99,7 @@ public partial class JSDW_project_EmpListSelAqjd: System.Web.UI.Page
                     a.RYBH,
                     a.XM,
                     a.SFZH,
-                    case a.xb when '0' then '男' else '女' end as XBStr,
+                    a.xb  as XBStr,
                     b.ZCZSH,
                     b.ZCZY,
                     b.ZSYXQKSSJ,
@@ -122,18 +122,18 @@ public partial class JSDW_project_EmpListSelAqjd: System.Web.UI.Page
             string sel = this.ddlEmpType.SelectedValue;
             if (sel == "1" || sel == "2" || sel == "3")
             {
-                sql += " and  (b.ZSLX  = '1' or b.ZSLX  = '2'  or b.ZSLX  = '3'  or b.ZSLX  = '4' or b.ZSLX  = '5' )";              
+                sql += " and  (b.ZSLX  = '407') and (b.ZSJB  = '115'  or b.ZSJB  = '1151'  or b.ZSJB  = '116' or b.ZSJB  = '1161' )";              
                 
             }
             else if (sel == "4")
             {
-                sql += " and  (b.ZSLX  = '1' or b.ZSLX  = '2'  or b.ZSLX  = '3'  or b.ZSLX  = '4')";   
+                sql += " and  (b.ZSLX  = '403') and (b.ZSJB  = '40304'  or b.ZSJB  = '40306'  or b.ZSJB  = '40301' or b.ZSJB  = '40302'   or b.ZSJB  = '40305')";   
             }
             else
             {
                 sql += " and  b.ZSLX  = '"+sel+"'";                  
             }
-
+          
         }  
         this.Pager2.sql = sql.ToString();
         this.Pager2.controltype = "Repeater";

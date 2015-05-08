@@ -82,8 +82,9 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                     c.RYZSXXID,
                     a.RYBH,
                     a.XM,
+                    c.ZSJB,
                     a.SFZH,
-                    XBStr = a.XB == "0" ? "男" : "女",
+                    XBStr = a.XB,
                     c.ZCZSH,
                     c.ZCZY,
                     c.ZSYXQKSSJ,
@@ -104,15 +105,15 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             string sel = this.ddlEmpType.SelectedValue;
             if (sel == "1" || sel == "2" || sel == "3")
             {
-                v = v.Where(t => t.ZSLX == "1" || t.ZSLX == "2" || t.ZSLX == "3" || t.ZSLX == "4" || t.ZSLX == "5");
+                v = v.Where(t => t.ZSLX == 407 && (t.ZSJB == "115" || t.ZSJB == "1151" || t.ZSJB == "116" || t.ZSJB == "1161"));
             }
             else if (sel == "4")
             {
-                v = v.Where(t => t.ZSLX == "1" || t.ZSLX == "2" || t.ZSLX == "3" || t.ZSLX == "4");
+                v = v.Where(t => t.ZSLX == 403 && (t.ZSJB == "40304" || t.ZSJB == "40306" || t.ZSJB == "40301" || t.ZSJB == "40302" || t.ZSJB == "40305"));
             }
             else
             {
-                v = v.Where(t => t.ZSLX == sel);
+                v = v.Where(t => t.ZSLX.ToString() == sel);
             }
 
         }
@@ -132,18 +133,19 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                   select new
                   {
                       a.QYBM,
-                      c.ZSLX,
+                      ZSLX =  c.ZSLX,
                       c.RYZSXXID,
                       a.RYBH,
                       a.XM,
                       a.SFZH,
-                      XBStr = a.XB =="0"?"男":"女",
+                      //XBStr = a.XB,
                       c.ZCZSH,
                       c.ZCZY,
                       c.ZSYXQKSSJ,
                       c.ZSYXQJSSJ,
                       ZSYXQJSSJStr = string.Format("{0:d}", c.ZSYXQJSSJ),
-                      FZSJStr = string.Format("{0:d}", c.FZSJ)
+                      FZSJStr = string.Format("{0:d}", c.FZSJ),
+                      c.ZSJB
                   };
         if (!string.IsNullOrEmpty(this.txtIDCard.Text.Trim()))
         {
@@ -156,14 +158,19 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         if (this.ddlEmpType.SelectedIndex > 0)
         {
             string sel = this.ddlEmpType.SelectedValue;
-            if (sel == "1" || sel == "2" || sel == "3") {
-                v = v.Where(t => t.ZSLX == "1" || t.ZSLX == "2" || t.ZSLX == "3" || t.ZSLX == "4" || t.ZSLX == "5");
-            } else if (sel == "4") {
-                v = v.Where(t => t.ZSLX == "1" || t.ZSLX == "2" || t.ZSLX == "3" || t.ZSLX == "4");
-            } else {
-                v = v.Where(t => t.ZSLX == sel);
+            if (sel == "1" || sel == "2" || sel == "3")
+            {
+                v = v.Where(t => t.ZSLX == 407 && (t.ZSJB == "115" || t.ZSJB == "1151" || t.ZSJB == "116" || t.ZSJB == "1161"));
             }
-            
+            else if (sel == "4")
+            {
+                v = v.Where(t => t.ZSLX == 403 && (t.ZSJB == "40304" || t.ZSJB == "40306" || t.ZSJB == "40301" || t.ZSJB == "40302" || t.ZSJB == "40305"));
+            }
+            else
+            {
+                v = v.Where(t => t.ZSLX.ToString() == sel);
+            }
+
         }
         Pager1.RecordCount = v.Count();
         dg_List.DataSource = v.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
@@ -256,19 +263,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         {
             
             //MODIFY:ytb 修改锁定按钮显示
-            LinkButton lblLock = e.Item.Controls[0].FindControl("lkb_Lock") as LinkButton;
-            HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;
-            //Label yxq = e.Item.Controls[0].FindControl("yxq") as Label;
-            //HiddenField yxqks = e.Item.Controls[0].FindControl("yxqks") as HiddenField;
-            //HiddenField yxqjs = e.Item.Controls[0].FindControl("yxqjs") as HiddenField;
-            //DateTime dt1 = Convert.ToDateTime(yxqks.Value);
-            //DateTime dt2 = Convert.ToDateTime(yxqjs.Value);
-            //TimeSpan ts = dt2 - dt1;
-            //yxq.Text = ts.Days.ToString() + "天";
-            string idCard = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SFZH"));
-            var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
-            
-          
+            //LinkButton lblLock = e.Item.Controls[0].FindControl("lkb_Lock") as LinkButton;
+            //HiddenField hLock = e.Item.Controls[0].FindControl("h_lock") as HiddenField;
             //if (v != null && EConvert.ToBool(LockBusiness(v)))
             //{
             //    lblLock.Text = "锁定";
@@ -283,6 +279,8 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             //    lblLock.Text = "";
             //    hLock.Value = "0";
             //}
+            string idCard = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "SFZH"));
+            var v = db.TC_PrjItem_Emp_Lock.FirstOrDefault(t => t.FIdCard == idCard);
             LinkButton lb = e.Item.FindControl("btnSelect") as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return selEmp(this);");

@@ -395,7 +395,7 @@ select * from Standard_Dic.dbo.CF_Dic_Person where ftype='zcrylx' order by FOrde
 select * from Standard_Dic.dbo.CF_Dic_Ent where ftype='qylx' order by FOrder
 --显示同类有人员的企业，如果需要找某类人员，还需要增加过滤条件
 select a.QYBM,b.qymc,count(1) from JST_XZSPBaseInfo.dbo.RY_RYJBXX a , JST_XZSPBaseInfo.[dbo].[QY_JBXX]  b
- where a.qybm = b.QYBM and b.QYLXBM = '105'
+ where a.qybm = b.QYBM and b.QYLXBM = '104'
  group by a.QYBM,b.qymc
 
 
@@ -622,5 +622,150 @@ and FEntType = '2'
 SELECT  *  FROM  JST_XZSPBaseInfo.dbo.QY_JBXX  where  QYBM = '56f358f6-bc20-4007-abd7-6a474c4bc03c'
 
 
+select  *  from  JST_XZSPBaseInfo.dbo.QY_JBXX  where QYBM = '0035178F-D7A6-499A-B0DE-7C3A01F78D9A'
 
-bf08dcf8-6f24-43cd-8926-7856ab347402
+
+select b.QYMC,a.*  from  JST_XZSPBaseInfo.dbo._RY_RYJBXX  a,JST_XZSPBaseInfo.dbo.QY_JBXX b
+where  a.QYBM = b.QYBM
+--and b.QYLXBM = '104'
+and b.QYBM = '81626ab3-62fa-4022-a18c-2864fec555a9'
+and b.QYMC = '四川联合建设工程设计有限公司'
+
+
+
+
+
+select  *  from  JST_XZSPBaseInfo.dbo.QY_JBXX  where  QYMC = '四川联合建设工程设计有限公司'
+
+
+select  *  from  XM_BaseInfo.dbo.XM_XMBJXX  where   = '三台县宝泉乡敬老院施工工程'
+
+
+select  *  from  TC_Prj_Info  where  ProjectName = '三台县宝泉乡敬老院施工工程'
+
+
+
+select  AddressDept,*  from  TC_AJBA_Record  where ProjectName like '%三台县宝泉乡敬老院施工工程%'
+
+
+select  *  from  TC_Prj_Info 
+
+
+select  *  from  CF_Sys_Dic  where  FNumber like '20001%'
+
+
+5132251505059901-AX-001
+
+
+select AddressDept,*  from  TC_PrjItem_Info  
+
+
+select  *  from  TC_PrjItem_Info  where  ProjectName like '%三台县宝泉乡敬老院施工工程%'
+
+
+exists(select  1  from  TC_PrjItem_Emp_Lock a where  a.ddd  != currddd and FIdCard =ddd.)
+
+
+
+select  *  from  JST_XZSPBaseInfo.dbo.QY_JBXX  where QYMC like '%四川华凯建筑劳务有限公司%'   
+
+
+select  *  from  JST_XZSPBaseInfo.dbo.RY_RYJBXX  where QYBM = '0E9E8AB5-5D4D-407F-89FD-0417D155A65A'
+
+
+
+select *  from  TC_PrjItem_Emp_Lock c,TC_PrjItem_Info d
+ where c.FPrjItemId = d.FId
+ and  exists (select  1  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b where  a.FPrjItemId = b.FId and   b.AddressDept != d.Address and c.FIdCard =a.FIdCard)
+ and c.FIdCard ='511502198703231305'
+
+
+ select  *  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
+ where a.FPrjItemId = b.FId
+ and  a.FIdCard = '511502198703231305'
+ and b.AddressDept != '5133'
+ and a.IsLock = '1'
+
+
+ select  *  from  TC_SGXKZ_ProjectInfo where FAppId = 'ef123519-d786-45ea-9a38-1e80afadb4fd'
+
+
+
+select * from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
+                       where a.FPrjItemId = b.FId
+	and  a.FIdCard = '512924196307088799'  and b.AddressDept != ''   and a.IsLock = '1'
+
+
+
+	select  *  from  TC_SGXKZ_PrjInfo  
+
+	select  *  from  TC_PrjItem_Info  where FId = 'FF89E69D-3D76-4069-80E9-4910D275DFF3'
+
+
+	select *  from   TC_PrjItem_Emp  where FAppId = 'ef123519-d786-45ea-9a38-1e80afadb4fd'
+
+
+	select  *   from  cf_sys_dic where fname like '%自贡%'
+
+
+		select  *  from  TC_PrjItem_Info  where  AddressDept  is null
+
+select  a.*  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
+                            where a.FPrjItemId = b.FId
+							                             and  a.FIdCard = '512924196307088799'  and b.AddressDept != '51'   and a.IsLock = '1'
+
+
+select  *  from   TC_PrjItem_Emp_Lock  where FIdCard = '510182197906122015'
+
+select  *  from  JST_XZSPBaseInfo.dbo._RY_RYJBXX  where  SFZH = '510182197906122015'
+
+select  *  from JST_XZSPBaseInfo.dbo.QY_JBXX where QYBM = '333750A5-5790-491F-9F9A-3406CC05D4A6'
+
+
+select  *  from  TC_PrjItem_Info  where  FId = 'FF336A07-9E22-4E22-8BC1-9035CE68A3DF'
+
+update  TC_PrjItem_Info  set  AddressDept = '511022' where  FId = 'FF336A07-9E22-4E22-8BC1-9035CE68A3DF'
+
+
+
+select  PlanStartTime,PlanEndTime  from  TC_AJBA_Record
+
+select a.* from GC_JQSBXX a,[XM_XMJBXX] b where a.xmbh=b.xmbh 
+
+select  *  from  XM_BaseInfo.dbo.GC_JQSBXX a
+
+
+select a.* from XM_BaseInfo.dbo.GC_JQSBXX a left join XM_BaseInfo.dbo.[XM_XMJBXX] b 
+on a.xmbh=b.xmbh 
+
+
+select  *  from  JST_XZSPBaseInfo.dbo.QY_QYZSXX  where 
+ ZSLXBM = '2'
+
+select  *  from  JST_XZSPBaseInfo.dbo.QY_JBXX  where QYMC = '四川云明建筑工程有限公司'
+
+
+select *  from JST_XZSPBaseInfo.dbo.QY_JBXX  where  QYBM = '1AB8CD76-4621-49E8-870C-5925AF6BAC02'
+
+select  a.qymc,b.*  from  JST_XZSPBaseInfo.dbo.QY_JBXX a,JST_XZSPBaseInfo.dbo.QY_QYZSXX b
+where a.QYBM = b.QYBM
+and b.ZSLXBM = 2
+and b.QYBM = '0000325F-1AA2-4AF2-9410-7BAF3BE01C1A'
+
+成都利源达建筑劳务有限公司
+
+
+select  b.zsbh,b.*  from  JST_XZSPBaseInfo.dbo.QY_JBXX a,JST_XZSPBaseInfo.dbo.QY_QYZSXX b
+                          where a.QYBM = b.QYBM
+						  and b.ZSLXBM = 2
+ and a.QYMC = '成都利源达建筑劳务有限公司'
+
+ 
+select *  from  JST_XZSPBaseInfo.dbo.QY_JBXX  where  QYBM = '8b1b728c-c2bd-4237-ace4-d872e9dccaa4'
+
+
+
+select  *  from  TC_AJBA_Record   where  fappid = 'e342f14b-5052-462d-bdd0-4dd1f5dc7aae'
+
+
+select  *  from      

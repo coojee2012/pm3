@@ -132,9 +132,9 @@
                     <th>
                         身份证号
                     </th>
-                    <th>
+                   <%-- <th>
                         性别
-                    </th>
+                    </th>--%>
                     <th>
                        注册编号
                     </th>
@@ -164,15 +164,13 @@
                         <td>
                             <%# Eval("XM")%>
                         </td>
-                        <td>
-                            
+                        <td>                            
                             <%# Eval("SFZH")%>
                         </td>
-                        <td>
+                       <%-- <td>
                             <%# Eval("XBStr")%>
-                        </td>
-                        <td>
-                            
+                        </td>--%>
+                        <td>                            
                             <%# Eval("ZCZSH")%>
                         </td>
                         <td>
