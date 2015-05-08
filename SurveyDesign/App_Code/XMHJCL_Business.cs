@@ -337,7 +337,7 @@ public class XMHJCL_Business
         //从标准库中读取项目信息
         RCenter prjdb = GetRCenter("dbCenter");
 
-        string sql = @"select * from TC_SGXKZ_ZBJGBL where  FAppId = '" + appid + "'";
+        string sql = @"select * from TC_SGXKZ_HTBA where  FAppId = '" + appid + "'";
         return prjdb.GetTable(sql);
     }
 
@@ -347,6 +347,36 @@ public class XMHJCL_Business
     /// <param name="xmbh">合同备案</param>
     /// <returns>合同备案</returns>
     private DataTable GetHt_bz(string xmbh)
+    {
+        //从标准库中读取项目信息
+        RCenter prjdb = GetRCenter("XM_BaseInfo");
+
+        string sql = @"select * from  XM_BaseInfo.dbo.[XM_HTBAXX] where xmbh = '" + xmbh + "'";
+        return prjdb.GetTable(sql);
+    }
+    #endregion
+
+    #region 开放出来的合同备案
+    /// <summary>
+    /// 从业务查询指定项目编号合同备案
+    /// </summary>
+    /// <param name="xmbh">合同备案</param>
+    /// <returns>合同备案</returns>
+    public DataTable GetHt_yw_p(string fid)
+    {
+        //从标准库中读取项目信息
+        RCenter prjdb = GetRCenter("dbCenter");
+
+        string sql = @"select * from TC_SGXKZ_HTBA where  FAppId = '" + fid + "'";
+        return prjdb.GetTable(sql);
+    }
+
+    /// <summary>
+    /// 从标准库查询指定项目编号的合同备案
+    /// </summary>
+    /// <param name="xmbh">合同备案</param>
+    /// <returns>合同备案</returns>
+    public DataTable GetHt_bz_p(string xmbh)
     {
         //从标准库中读取项目信息
         RCenter prjdb = GetRCenter("XM_BaseInfo");
