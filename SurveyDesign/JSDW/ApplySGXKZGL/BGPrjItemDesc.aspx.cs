@@ -126,6 +126,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         t_PrjAddressDept.Value = PrjGovdeptid.fNumber;
         b_JSDWAddressDept.Value = b_JSDW_DeptID.fNumber;
         b_PrjAddressDept.Value = b_PrjGovdeptid.fNumber;
+        
         TC_SGXKZ_BGPrjInfo Emp = new TC_SGXKZ_BGPrjInfo();
         if (!string.IsNullOrEmpty(fId))
         {
@@ -140,7 +141,62 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         }
         pageTool tool = new pageTool(this.Page);
         Emp = tool.getPageValue(Emp);
+        //同时向TC_SGXKZ_PrjInfo表中保存相关信息
+        TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == h_FAppId.Value).FirstOrDefault();
+        TC_SGXKZ_PrjInfo tsp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == sbg.FLinkId).FirstOrDefault();
+        tsp.FPrjItemId = Emp.FPrjItemId;
+        tsp.PrjId = Emp.PrjId;
+        tsp.PrjItemName = Emp.PrjItemName;
+        tsp.Address = Emp.Address;
+        //tsp.Area = Emp.Area;
+        //tsp.BuildType = Emp.BuildType;
+        tsp.ConstrScale = Emp.ConstrScale;
+        tsp.ConstrType = Emp.ConstrType;
+        //tsp.Cost = Emp.Cost;
+        tsp.Currency = Emp.Currency;
+        //tsp.DoScale = Emp.DoScale;
+        //tsp.DZZT = Emp.DZZT;
+        tsp.EndDate = Emp.EndDate;
+        tsp.FDDBR = Emp.FDDBR;
+        tsp.FRDH = Emp.FRDH;
+        tsp.FResult = Emp.FResult;
+        //tsp.FZJG = Emp.FZJG;
+        //tsp.FZTime = Emp.FZTime;
+        tsp.JCity = Emp.JCity;
+        tsp.JCounty = Emp.JCounty;
+        tsp.JProvince = Emp.JProvince;
+        tsp.JSDW = Emp.JSDW;
+        tsp.JSDWAddressDept = Emp.JSDWAddressDept;
+        tsp.JSDWDZ = Emp.JSDWDZ;
+        //tsp.jsdwid = Emp.jsdwid;
+        //tsp.JSDWXZ = Emp.JSDWXZ;
+        //tsp.JSFZR = Emp.JSFZR;
+        //tsp.JSFZRDH = Emp.JSFZRDH;
+        //tsp.JSFZRZC = Emp.JSFZRZC;
+        tsp.LXDH = Emp.LXDH;
+        tsp.LZR = Emp.LZR;
+        tsp.PCity = Emp.PCity;
+        tsp.PCounty = Emp.PCounty;
+        tsp.PProvince = Emp.PProvince;
+        tsp.Price = Emp.Price;
+        tsp.PrjAddressDept = Emp.PrjAddressDept;
+        tsp.PrjItemType = Emp.PrjItemType;
+        //tsp.ProjectFile = Emp.ProjectFile;
+        //tsp.ProjectLevel = Emp.ProjectLevel;
+        //tsp.ProjectName = Emp.ProjectName;
+        //tsp.ProjectNo = Emp.ProjectNo;
+        //tsp.ProjectNumber = Emp.ProjectNumber;
+        //tsp.ProjectTime = Emp.ProjectTime;
+        //tsp.ProjectUse = Emp.ProjectUse;
+        //tsp.Remark = Emp.Remark;
+        //tsp.ReportTime = Emp.ReportTime;
+        //tsp.SGXKZBH = Emp.SGXKZBH;
+        //tsp.SJEndDate = Emp.SJEndDate;
+        //tsp.SJStartDate = Emp.SJStartDate;
+        tsp.StartDate = Emp.StartDate;
+        //tsp.upScale = Emp.upScale;
         dbContext.SubmitChanges();
+
         updateBGJG();
         h_FId.Value = fId;
         //showInfo();

@@ -428,11 +428,10 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                    {
                         if (conn.State == ConnectionState.Closed)
                             conn.Open();
-                        DataSet ds = new DataSet();
-                        //sql = @"select * from TC_PrjItem_Emp where FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='"+t_fLinkId.Value+"')";
+                        DataSet ds = new DataSet();                     
                         //modify by psq  20150322  锁定人员限制范围是本业务id的，并且没有被锁定的
-                        sql = @"select * from TC_PrjItem_Emp where FAppId = '" + t_fLinkId.Value + "'"; //本业务的所有人员
-                        //+" and FIdCard not in (select FIdCard from TC_PrjItem_Emp_Lock where FAppId='" + t_fLinkId.Value + "')";
+                        sql = @"select * from TC_PrjItem_Emp where    FEntType in ('2','3','4','7') and  FAppId = '" + t_fLinkId.Value + "'"; //勘察、设计单位人员不锁定 ，只有施工类和监理才锁定,锁定人员
+                     
                         SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                         da.Fill(ds, "ds");
                         DataTable dt = ds.Tables[0];
@@ -482,6 +481,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    /// <param name="e"></param>
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
+       //初次办理复审需要做几件事情:1、审核状态调整，2、锁定人员，3、同步到标准库，4、同步信息到归档库
        //try
        //{
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
@@ -489,6 +489,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                string dfUserId = this.Session["DFUserId"].ToString();
                //锁定人员
                lockEmp();
+               //审核信息
                dResult.SelectedValue = "1";//接件操作强制选中同意项
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,

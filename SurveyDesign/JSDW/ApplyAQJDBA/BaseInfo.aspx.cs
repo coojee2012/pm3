@@ -172,6 +172,23 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
 
         }
     }
+
+    /// <summary>
+    /// 选择具有安许证的施工类企业
+    /// </summary>
+    private void selEntAXZ()
+    {
+        string selEntId = t_SGId_AXZ.Value;
+        EgovaDB1 db = new EgovaDB1();
+        var v = db.QY_QYZSXX.Where(t => t.QYBM == selEntId && t.ZSLXBM == "2").FirstOrDefault();
+       
+        if (v != null)
+        {  
+                q_SGDWAXZH.Text = v.ZSBH;   
+        }
+    }
+
+
     private void selEnt(string type)
     {
         if (type == "SG")
@@ -253,5 +270,9 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             //q_JLDWZZJGDM.Text = v.JGDM;
         }
         
+    }
+    protected void btnAddEntSGzxz_Click(object sender, EventArgs e)
+    {
+        selEntAXZ();
     }
 }

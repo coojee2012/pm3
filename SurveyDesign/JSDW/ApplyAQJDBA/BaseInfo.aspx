@@ -92,7 +92,18 @@
             } else if (tagId == "t_JLId") {
                 qylx = "104";
             }
-            url += "?qylx=" + qylx;
+            else if (tagId == "t_SGId_AXZ") //安许证企业
+            {
+                qylx = "101";
+            }
+
+            if (tagId == "t_SGId_AXZ") {
+                url += "?qylx=" + qylx+"&axz=true";
+            }
+            else {
+
+                url += "?qylx=" + qylx;
+            }
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
@@ -348,7 +359,10 @@
                 安许证号：</td>
             <td>
                 <asp:TextBox ID="q_SGDWAXZH" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
-                &nbsp;</td>
+                <input type="hidden"  runat="server" ID="t_SGId_AXZ" value="" />
+                <asp:Button ID="btnAddEntaxz" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEntSg(this,'t_SGId_AXZ');"
+                UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSGzxz_Click" Style="margin-bottom: 4px;margin-left:5px;" />
+            </td>
         </tr>
         <tr>
             <td class="t_r t_bg">

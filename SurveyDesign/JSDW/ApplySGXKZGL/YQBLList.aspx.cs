@@ -53,8 +53,10 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
         var v = from t in dbContext.CF_App_List
                 join b in dbContext.TC_SGXKZ_YQSQ
                 on t.FId equals b.FAppId
-                join a in dbContext.TC_SGXKZ_PrjInfo
-                on t.FLinkId equals a.FPrjItemId
+                join a in dbContext.GD_TC_SGXKZ_PrjInfo  //改为从归档库中获取
+                //join a in dbContext.TC_SGXKZ_PrjInfo
+                //on t.FLinkId equals a.FPrjItemId
+                on t.FLinkId equals a.PrjItemId
                 where t.FBaseinfoId == FBaseinfoID && t.FManageTypeId == fMType
                 orderby t.FReportDate
                 select new
@@ -170,8 +172,174 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
         record.YQTime = DateTime.Now;
         dbContext.TC_SGXKZ_YQSQ.InsertOnSubmit(record);
 
-
-
+        #region  从归档库中获取归档信息 add by psq 20150429
+        var sp = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == t_FPriItemId.Value).FirstOrDefault();
+        if (sp != null)
+        {
+            //添加施工许可证基本信息
+            TC_SGXKZ_PrjInfo tsp = new TC_SGXKZ_PrjInfo();
+            tsp.FId = Guid.NewGuid().ToString();
+            tsp.FAppId = FAppId;
+            tsp.FPrjItemId = sp.FPrjItemId;
+            tsp.PrjId = sp.PrjId;
+            tsp.PrjItemName = sp.PrjItemName;
+            tsp.Address = sp.Address;
+            tsp.Area = sp.Area;
+            tsp.BuildType = sp.BuildType;
+            tsp.ConstrScale = sp.ConstrScale;
+            tsp.ConstrType = sp.ConstrType;
+            tsp.Cost = sp.Cost;
+            tsp.Currency = sp.Currency;
+            tsp.DoScale = sp.DoScale;
+            tsp.DZZT = sp.DZZT;
+            tsp.EndDate = sp.EndDate;
+            tsp.FDDBR = sp.FDDBR;
+            tsp.FRDH = sp.FRDH;
+            tsp.FResult = sp.FResult;
+            tsp.FZJG = sp.FZJG;
+            tsp.FZTime = sp.FZTime;
+            tsp.JCity = sp.JCity;
+            tsp.JCounty = sp.JCounty;
+            tsp.JProvince = sp.JProvince;
+            tsp.JSDW = sp.JSDW;
+            tsp.JSDWAddressDept = sp.JSDWAddressDept;
+            tsp.JSDWDZ = sp.JSDWDZ;
+            tsp.jsdwid = sp.jsdwid;
+            tsp.JSDWXZ = sp.JSDWXZ;
+            tsp.JSFZR = sp.JSFZR;
+            tsp.JSFZRDH = sp.JSFZRDH;
+            tsp.JSFZRZC = sp.JSFZRZC;
+            tsp.LXDH = sp.LXDH;
+            tsp.LZR = sp.LZR;
+            tsp.PCity = sp.PCity;
+            tsp.PCounty = sp.PCounty;
+            tsp.PProvince = sp.PProvince;
+            tsp.Price = sp.Price;
+            tsp.PrjAddressDept = sp.PrjAddressDept;
+            tsp.PrjItemType = sp.PrjItemType;
+            tsp.ProjectFile = sp.ProjectFile;
+            tsp.ProjectLevel = sp.ProjectLevel;
+            tsp.ProjectName = sp.ProjectName;
+            tsp.ProjectNo = sp.ProjectNo;
+            tsp.ProjectNumber = sp.ProjectNumber;
+            tsp.ProjectTime = sp.ProjectTime;
+            tsp.ProjectUse = sp.ProjectUse;
+            tsp.Remark = sp.Remark;
+            tsp.ReportTime = sp.ReportTime;
+            tsp.SGXKZBH = sp.SGXKZBH;
+            tsp.SJEndDate = sp.SJEndDate;
+            tsp.SJStartDate = sp.SJStartDate;
+            tsp.StartDate = sp.StartDate;
+            tsp.upScale = sp.upScale;
+            dbContext.TC_SGXKZ_PrjInfo.InsertOnSubmit(tsp);           
+            //从归档表中插入参与企业信息
+            IQueryable<GD_TC_PrjItem_Ent> list = dbContext.GD_TC_PrjItem_Ent.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            foreach (var v1 in list)
+            {
+                TC_PrjItem_Ent v = new TC_PrjItem_Ent();
+                v.FId = Guid.NewGuid().ToString();
+                v.FPrjId = v1.FPrjId;
+                v.FPrjItemId = v1.FPrjItemId;
+                v.FProcId = v1.FProcId;
+                v.FAppId = FAppId;
+                v.QYID = v1.QYID;
+                v.FName = v1.FName;
+                v.FEntType = v1.FEntType;
+                v.FOrgCode = v1.FOrgCode;
+                v.FAddress = v1.FAddress;
+                v.ZZDJ = v1.ZZDJ;
+                v.ZZZSH = v1.ZZZSH;
+                v.YYZZH = v1.YYZZH;
+                v.FLegalPerson = v1.FLegalPerson;
+                v.FTel = v1.FTel;
+                v.FLinkMan = v1.FLinkMan;
+                v.FMobile = v1.FMobile;
+                v.mZXZZ = v1.mZXZZ;
+                v.oZXZZ = v1.oZXZZ;
+                v.FCreateTime = DateTime.Now;
+                v.FTime = null;
+                v.Remark = v1.Remark;
+                dbContext.TC_PrjItem_Ent.InsertOnSubmit(v);
+            }
+            //从归档表中插入参与人员信息
+            IQueryable<GD_TC_PrjItem_Emp> emplist = dbContext.GD_TC_PrjItem_Emp.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            foreach (var v2 in emplist)
+            {
+                TC_PrjItem_Emp emp = new TC_PrjItem_Emp();
+                emp.FId = Guid.NewGuid().ToString();
+                emp.FPrjId = v2.FPrjId;
+                emp.FPrjItemId = v2.FPrjItemId;
+                emp.FAppId = FAppId;
+                emp.FEntId = v2.FEntId;
+                emp.FHumanName = v2.FHumanName;
+                emp.FSex = v2.FSex;
+                emp.FPhoto = v2.FPhoto;
+                emp.FBirthDay = v2.FBirthDay;
+                emp.ZJLX = v2.ZJLX;
+                emp.ZGXL = v2.ZGXL;
+                emp.FMobile = v2.FMobile;
+                emp.FTel = v2.FTel;
+                emp.EmpType = v2.EmpType;
+                emp.FIdCard = v2.FIdCard;
+                emp.XMZW = v2.XMZW;
+                emp.ZJHM = v2.ZJHM;
+                emp.FEntName = v2.FEntName;
+                emp.ZW = v2.ZW;
+                emp.ZC = v2.ZC;
+                emp.ZY = v2.ZY;
+                emp.ZSBH = v2.ZSBH;
+                emp.DJ = v2.DJ;
+                emp.ZCBH = v2.ZCBH;
+                emp.ZCRQ = v2.ZCRQ;
+                emp.FCreateTime = DateTime.Now;
+                emp.FTime = null;
+                emp.Remark = v2.Remark;
+                emp.FEmpId = v2.FEmpId;
+                emp.PId = v2.PId;
+                emp.FLinkId = v2.FLinkId;
+                emp.FEntType = v2.FEntType;
+                dbContext.TC_PrjItem_Emp.InsertOnSubmit(emp);
+            }
+            //从归档库中获取工程项目明细
+            IQueryable<TC_SGXKZ_PrjDetail> pjd = dbContext.TC_SGXKZ_PrjDetail.Where(t => t.PrjItemId == t_FPriItemId.Value);
+            foreach (var v3 in pjd)
+            {
+                TC_SGXKZ_PrjDetail p = new TC_SGXKZ_PrjDetail();
+                p.FId = Guid.NewGuid().ToString();
+                p.FAppId = FAppId;//新的appid
+                p.PrjId = v3.PrjId;
+                p.PrjItemId = v3.PrjItemId;
+                p.SgxkzInfoID = v3.SgxkzInfoID;
+                p.JSDW = v3.JSDW;
+                p.AddressDept = v3.AddressDept;
+                p.DetailName = v3.DetailName;
+                p.Scale = v3.Scale;
+                p.UpScale = v3.UpScale;
+                p.DoScale = v3.DoScale;
+                p.AbLayerNum = v3.AbLayerNum;
+                p.UnLayerNum = v3.UnLayerNum;
+                p.ReMark = v3.ReMark;
+                dbContext.TC_SGXKZ_PrjDetail.InsertOnSubmit(p);
+            }
+            //从归档库中获取保证金确认信息
+            IQueryable<TC_SGXKZ_BZJQR> bzj = dbContext.TC_SGXKZ_BZJQR.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            foreach (var v4 in bzj)
+            {
+                TC_SGXKZ_BZJQR x = new TC_SGXKZ_BZJQR();
+                x.FId = Guid.NewGuid().ToString();
+                x.FAppId = FAppId;
+                x.FPrjItemId = v4.FPrjItemId;
+                x.FPrjId = v4.FPrjId;
+                x.JFXM = v4.JFXM;
+                x.JFXMBM = v4.JFXMBM;
+                x.Money = v4.Money;
+                x.JFSJ = v4.JFSJ;
+                x.SKJBR = v4.SKJBR;
+                x.SKDW = v4.SKDW;
+                dbContext.TC_SGXKZ_BZJQR.InsertOnSubmit(x);
+            }
+        }
+        #endregion
 
         //提交修改
         dbContext.SubmitChanges();
@@ -312,22 +480,31 @@ public partial class JSDW_APPLYSGXKZGL_YQBLList : System.Web.UI.Page
     protected void btnSel_Click(object sender, EventArgs e)
     {
         EgovaDB dbContext = new EgovaDB();
-        var result = (from t in dbContext.TC_PrjItem_Info
-                      where t.FId == this.t_FPriItemId.Value
+        //var result = (from t in dbContext.TC_PrjItem_Info
+        //              where t.FId == this.t_FPriItemId.Value
+        //              select t).SingleOrDefault();
+        //TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == result.FId).FirstOrDefault();
+        //改为从归档库中获取项目信息
+        var result = (from t in dbContext.GD_TC_SGXKZ_PrjInfo
+                      where t.FPrjItemId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
-        TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == result.FId).FirstOrDefault();
+
+        //TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == result.FId).FirstOrDefault();
         string sql = @"select count(*) from TC_SGXKZ_YQSQ 
                     where FPrjItemId='{0}'";
+
+
         sql = string.Format(sql, this.t_FPriItemId.Value);
         int count = SConvert.ToInt(db.ExecuteQuery<int>(sql).FirstOrDefault());
         t_FPrjItemName.Text = result.PrjItemName;
-        t_FPrjId.Value = result.FPrjId;
+        t_FPrjId.Value = result.PrjId;
         t_FJSDW.Text = result.JSDW;
         t_FPrjName.Value = result.ProjectName;
-        t_AddressDept.Value = result.AddressDept;
+        t_AddressDept.Value = result.PrjAddressDept;
         t_PrjItemType.Value = result.PrjItemType;
         t_JSDW.Value = result.JSDW;
-        t_FPrjInfoId.Value = sp.FId;
+        //t_FPrjInfoId.Value = sp.FId;
+        t_FPrjInfoId.Value = result.FId;
         t_YQCS.Value = (count + 1).ToString();
     }
 

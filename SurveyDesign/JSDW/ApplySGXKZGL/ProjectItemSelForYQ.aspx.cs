@@ -52,7 +52,8 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
                       t.PrjItemName,
                       t.PrjItemType,
                       t.FId,
-                      t.jsdwid
+                      t.jsdwid,
+                      t.FPrjItemId
                   };
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
@@ -73,7 +74,7 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
             }
             catch
             { }
-            LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 2].Controls[0] as LinkButton;
+            LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 3].Controls[0] as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该项目吗?');");
         }
@@ -95,8 +96,8 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
             if (e.CommandName == "Sel")
             {
                 string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
-                pageTool tool = new pageTool(this.Page);
-                tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                 pageTool tool = new pageTool(this.Page);
+                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");             
             }
         }
     }

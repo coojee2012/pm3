@@ -72,6 +72,7 @@
             <asp:BoundColumn DataField="PrjItemType" HeaderText="工程类别"></asp:BoundColumn>
             <asp:ButtonColumn HeaderText="选择" CommandName="Sel"></asp:ButtonColumn>
             <asp:BoundColumn DataField="FId" Visible="False"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FPrjItemId" Visible="False"></asp:BoundColumn>
         </Columns>
     </asp:DataGrid>
     <div style="padding-left: 1%">

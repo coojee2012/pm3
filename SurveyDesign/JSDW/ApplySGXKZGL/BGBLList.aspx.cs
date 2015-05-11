@@ -19,6 +19,7 @@ using System.Linq;
 using ProjectBLL;
 using EgovaDAO;
 using EgovaBLL;
+
 public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
 {
     RApp ra = new RApp();
@@ -167,10 +168,66 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
         //record.PrjItemName = t_FPrjItemName.Text;
         //dbContext.TC_SGXKZ_BGPrjInfo.InsertOnSubmit(record);
 
-        //从归档库中获取归档信息 add by psq 20150429
+        #region  从归档库中获取归档信息 add by psq 20150429       
         var sp = dbContext.GD_TC_SGXKZ_PrjInfo.Where(t => t.FPrjItemId == t_FPriItemId.Value).FirstOrDefault();
         if (sp != null)
         {
+            //添加施工许可证基本信息
+            TC_SGXKZ_PrjInfo tsp = new TC_SGXKZ_PrjInfo();
+            tsp.FId = Guid.NewGuid().ToString();
+            tsp.FAppId = FAppId;
+            tsp.FPrjItemId = sp.FPrjItemId;
+            tsp.PrjId = sp.PrjId;
+            tsp.PrjItemName = sp.PrjItemName;
+            tsp.Address = sp.Address;
+            tsp.Area = sp.Area;
+            tsp.BuildType = sp.BuildType;
+            tsp.ConstrScale = sp.ConstrScale;
+            tsp.ConstrType = sp.ConstrType;
+            tsp.Cost = sp.Cost;
+            tsp.Currency = sp.Currency;
+            tsp.DoScale = sp.DoScale;
+            tsp.DZZT = sp.DZZT;
+            tsp.EndDate = sp.EndDate;
+            tsp.FDDBR = sp.FDDBR;
+            tsp.FRDH = sp.FRDH;
+            tsp.FResult = sp.FResult;
+            tsp.FZJG = sp.FZJG;
+            tsp.FZTime = sp.FZTime;
+            tsp.JCity = sp.JCity;
+            tsp.JCounty = sp.JCounty;
+            tsp.JProvince = sp.JProvince;
+            tsp.JSDW = sp.JSDW;
+            tsp.JSDWAddressDept = sp.JSDWAddressDept;
+            tsp.JSDWDZ = sp.JSDWDZ;
+            tsp.jsdwid = sp.jsdwid;
+            tsp.JSDWXZ = sp.JSDWXZ;
+            tsp.JSFZR = sp.JSFZR;
+            tsp.JSFZRDH = sp.JSFZRDH;
+            tsp.JSFZRZC = sp.JSFZRZC;
+            tsp.LXDH = sp.LXDH;
+            tsp.LZR = sp.LZR;
+            tsp.PCity = sp.PCity;
+            tsp.PCounty = sp.PCounty;
+            tsp.PProvince = sp.PProvince;
+            tsp.Price = sp.Price;
+            tsp.PrjAddressDept = sp.PrjAddressDept;
+            tsp.PrjItemType = sp.PrjItemType;
+            tsp.ProjectFile = sp.ProjectFile;
+            tsp.ProjectLevel = sp.ProjectLevel;
+            tsp.ProjectName = sp.ProjectName;
+            tsp.ProjectNo = sp.ProjectNo;
+            tsp.ProjectNumber = sp.ProjectNumber;
+            tsp.ProjectTime = sp.ProjectTime;
+            tsp.ProjectUse = sp.ProjectUse;
+            tsp.Remark = sp.Remark;
+            tsp.ReportTime = sp.ReportTime;
+            tsp.SGXKZBH = sp.SGXKZBH;
+            tsp.SJEndDate = sp.SJEndDate;
+            tsp.SJStartDate = sp.SJStartDate;
+            tsp.StartDate = sp.StartDate;
+            tsp.upScale = sp.upScale;
+            dbContext.TC_SGXKZ_PrjInfo.InsertOnSubmit(tsp);
             //添加变更办理信息
             TC_SGXKZ_BGPrjInfo record = new TC_SGXKZ_BGPrjInfo();
             record.FId = Guid.NewGuid().ToString();
@@ -249,7 +306,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
                 dbContext.TC_PrjItem_Emp.InsertOnSubmit(emp);                
             }
             //从归档库中获取工程项目明细
-            IQueryable<TC_SGXKZ_PrjDetail> pjd = dbContext.TC_SGXKZ_PrjDetail.Where(t => t.PrjItemId == t_FPriItemId.Value);
+            IQueryable<GD_TC_SGXKZ_PrjDetail> pjd = dbContext.GD_TC_SGXKZ_PrjDetail.Where(t => t.PrjItemId == t_FPriItemId.Value);
             foreach (var v3 in pjd)
             {
                 TC_SGXKZ_PrjDetail p = new TC_SGXKZ_PrjDetail();
@@ -270,7 +327,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
                 dbContext.TC_SGXKZ_PrjDetail.InsertOnSubmit(p);
             }
             //从归档库中获取保证金确认信息
-            IQueryable<TC_SGXKZ_BZJQR> bzj = dbContext.TC_SGXKZ_BZJQR.Where(t => t.FPrjItemId == t_FPriItemId.Value);
+            IQueryable<GD_TC_SGXKZ_BZJQR> bzj = dbContext.GD_TC_SGXKZ_BZJQR.Where(t => t.FPrjItemId == t_FPriItemId.Value);
             foreach (var v4 in bzj)
             {
                 TC_SGXKZ_BZJQR x = new TC_SGXKZ_BZJQR();
@@ -285,8 +342,9 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
                 x.SKJBR = v4.SKJBR;
                 x.SKDW = v4.SKDW;
                 dbContext.TC_SGXKZ_BZJQR.InsertOnSubmit(x);
-            }          
-        } 
+            }
+        }
+        #endregion
         //提交修改
         dbContext.SubmitChanges();
         lblMessage.Text = "业务创建成功,即将自动跳转到业务信息登记页面...";

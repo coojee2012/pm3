@@ -105,7 +105,7 @@
                     建设单位地址：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_JSDWDZ" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                     </td>
             </tr>
             <tr>
@@ -113,13 +113,13 @@
                     所有制性质：
                 </td>
                 <td colspan="1">
-                    <asp:DropDownList ID="t_JSDWXZ" runat="server" CssClass="m_txt" Width="203px" Enabled="false"></asp:DropDownList>
+                    <asp:DropDownList ID="t_JSDWXZ" runat="server" CssClass="m_txt" Width="203px" Enabled="true"></asp:DropDownList>
                 </td>
                 <td class="t_r t_bg">
                     法定代表人：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FDDBR"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_FDDBR"  runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -127,13 +127,13 @@
                     法人电话：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FRDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_FRDH" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     领证人：
                 </td>
                 <td colspan="1">
-                     <asp:TextBox ID="t_LZR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                     <asp:TextBox ID="t_LZR" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -141,13 +141,13 @@
                     联系电话：
                 </td>
                 <td >
-                    <asp:TextBox ID="t_LXDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_LXDH" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     建设单位负责人：
                 </td>
                 <td >
-                    <asp:TextBox ID="t_JSFZR" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_JSFZR" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -155,13 +155,13 @@
                     建设单位项目负责人职称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSFZRZC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_JSFZRZC" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                 </td>
                 <td class="t_r t_bg">
                     建设单位项目负责人电话：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_JSFZRDH" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
+                    <asp:TextBox ID="t_JSFZRDH" runat="server" CssClass="m_txt" Width="200px" Enabled="true"></asp:TextBox>
                     
                 </td>
             </tr>            
