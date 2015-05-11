@@ -138,7 +138,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                       a.RYBH,
                       a.XM,
                       a.SFZH,
-                      //XBStr = a.XB,
+                      XBStr = a.XB,
                       c.ZCZSH,
                       c.ZCZY,
                       c.ZSYXQKSSJ,

@@ -245,7 +245,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ProjectNumber" runat="server" CssClass="m_txt" 
-                        Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        Width="200px" Enabled="true"></asp:TextBox><tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
                     立项文件：
@@ -279,7 +279,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_Cost" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                        Width="200px" Enabled="false"></asp:TextBox>(万元) <tt>*</tt>
+                        Width="200px" Enabled="true"></asp:TextBox>(万元) <tt>*</tt>
                 </td>
             </tr>
             <tr>
