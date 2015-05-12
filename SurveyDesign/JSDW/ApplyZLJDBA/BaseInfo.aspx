@@ -241,7 +241,7 @@
             </td>
             <td>
                 <asp:TextBox ID="p_Cost" onblur="isFloat(this)" runat="server" CssClass="m_txt"
-                        Width="195px" Enabled="false"></asp:TextBox>(万元) <tt>*</tt>
+                        Width="195px" Enabled="true"></asp:TextBox>(万元) <tt>*</tt>
             </td>
         </tr>
         <tr>
