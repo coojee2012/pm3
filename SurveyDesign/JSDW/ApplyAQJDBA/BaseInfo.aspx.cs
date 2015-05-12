@@ -215,18 +215,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
             q_SGDWZZJGDM.Text = v.JGDM;
             //清空之前的人员
             q_SGDWXMJL.Text = "";
-            q_SGDWZGZH.Text = "";
-            //获取企业的安许证，如果存在就赋值，不存在就为空
-            string sql = @"select  b.zsbh  from  JST_XZSPBaseInfo.dbo.QY_JBXX a,JST_XZSPBaseInfo.dbo.QY_QYZSXX b
-                            where a.QYBM = b.QYBM
-                            and b.ZSLXBM = 2
-                            and a.QYMC = '" + v.QYMC + "'";
-            DataTable dt = new DataTable();
-            dt = rc.GetTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                q_SGDWAXZH.Text = dt.Rows[0][0].ToString();
-             }
+            q_SGDWZGZH.Text = "";           
         }
         else if (type == "JL")
         {

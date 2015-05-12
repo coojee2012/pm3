@@ -212,7 +212,8 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     protected void updateBGJG()
     {
         TC_SGXKZ_BGPrjInfo sbg = new TC_SGXKZ_BGPrjInfo();
-        pageTool tool = new pageTool(this.Page, "b_");
+        //pageTool tool = new pageTool(this.Page, "b_");
+        pageTool tool = new pageTool(this.Page, "t_");
         TC_SGXKZ_BGPrjInfo sbg1 = tool.getPageValue(sbg);
         PropertyInfo[] p1 = sbg1.GetType().GetProperties();
         //tool = new pageTool(this.Page, "t_");
@@ -236,7 +237,8 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
     {
         bool result = true;
         System.Web.UI.HtmlControls.HtmlForm myform1 = (System.Web.UI.HtmlControls.HtmlForm)this.Page.FindControl("Form1");
-        System.Web.UI.Control control1 = myform1.FindControl("t_" + Id1);
+        //System.Web.UI.Control control1 = myform1.FindControl("t_" + Id1);
+        System.Web.UI.Control control1 = myform1.FindControl("b_" + Id1);
 
         if (control1 != null)
         {

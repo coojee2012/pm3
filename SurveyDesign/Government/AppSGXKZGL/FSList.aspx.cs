@@ -147,8 +147,7 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
         this.Pager1.pagecount = 15;
         this.Pager1.dataBind();
 
-
-
+        
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
