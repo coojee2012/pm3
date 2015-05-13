@@ -457,6 +457,8 @@
         <input id="t_fBaseInfoId" runat="server" type="hidden" />
         <input id="t_fProcessRecordID" runat="server" type="hidden" />
         <input id="t_fProcessInstanceID" runat="server" type="hidden" />
+        <input id="t_PrjType" runat="server" type="hidden" />
+        <input id="t_PrjArea" runat="server" type="hidden" />
     </form>
 </body>
 </html>

@@ -74,7 +74,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
         bindAuditList();
         showYZList();
         showTKJLList();
-        BuildSGXKZBH();
+        //BuildSGXKZBH(); 转到提交打证时
         
     }
    private void bindStateInfo()
@@ -122,8 +122,11 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            tool.fillPageControl(info);
        }
        t_FAppSGXKZBH.Text = info.SGXKZBH;
+       t_PrjArea.Value = info.Area.ToString();
+       t_PrjType.Value = info.PrjItemType.ToString();
        t_FAppFZJG.Text = info.FZJG;
        t_FAppFZRQ.Text = info.FZTime == null ? "" : info.FZTime.Value.ToString("yyyy-MM-dd");
+       
    }
     //绑定项目附件信息
     private void bindFileInfo()
@@ -352,7 +355,8 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                //委婉的实现保存额外的信息
                using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
                {
-                   string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text + "',SGXKZBH='" + t_FAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
+                   //string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text + "',SGXKZBH='" + t_FAppSGXKZBH.Text + "' WHERE FAppId='" + t_fLinkId.Value+ "'";
+                     string sql = "UPDATE TC_SGXKZ_PrjInfo SET FZJG='" + t_FAppFZJG.Text + "',FZTime='" + t_FAppFZRQ.Text +  "' WHERE FAppId='" + t_fLinkId.Value + "'";
 
                    if (conn.State == ConnectionState.Closed)
                        conn.Open();
@@ -481,7 +485,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    /// <param name="e"></param>
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
-       //初次办理复审需要做几件事情:1、审核状态调整，2、锁定人员，3、同步到标准库，4、同步信息到归档库
+       //初次办理复审需要做几件事情:1、审核状态调整，生成备案编号 2、锁定人员，3、同步到标准库，4、同步信息到归档库
        //try
        //{
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
@@ -496,11 +500,23 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                string appid = t_fLinkId.Value;//EConvert.ToString(Session["FAppId"].ToString());
                DisableButton();
+
+               //生成施工许可证编号
+               #region
+
+               string sgxkzbh = BuildSGXKZBH(t_PrjArea.Value,t_PrjType.Value);
+
+               RCenter rc = new RCenter("dbcenter");
+
+               rc.PExcute("UPDATE TC_SGXKZ_PrjInfo SET sgxkzbh='" + sgxkzbh +   "' WHERE FAppId='" + t_fLinkId.Value + "'"); 
+
+               #endregion
+
                //同步到标准库
                if (!string.IsNullOrEmpty(appid))
                    SyncBase(appid);
                //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
-               RCenter rc = new RCenter("dbcenter");
+
                rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + appid + "'");
                //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
@@ -516,7 +532,9 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        //    ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理失败！');", true);
        //}
    }
-  
+
+ 
+
     //审核不通过，直接结案
    protected void bthEndApp_Click(object sender, EventArgs e)
    {
@@ -580,93 +598,88 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    
    #endregion
 
-   #region 生成施工许可证编号
-   protected void BuildSGXKZBH() {
-       //EgovaDB db = new EgovaDB();
-       //TC_SGXKZ_PrjInfo info = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_fLinkId.Value).FirstOrDefault();
-       using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+
+
+
+   /// 生成施工许可证案号
+   /// 
+   /// </summary>
+   /// <param name="prjitemarea">项目属地</param>
+   /// <param name="prjitemtype">项目类型</param>
+   /// <param name="bussinesstype">业务节点类型</param>
+   /// <returns>备案号</returns>
+   private string BuildSGXKZBH(string prjitemarea, string prjitemtype)
+   {
+
+       int todayno;
+       int todayxlh;
+       string sgxkbh = "";
+       string stodayno, stodayxlh;
+       string bussinesstype = "SX";
+       EgovaDB db = new EgovaDB();
+       //当天日期
+       string datatoday = string.Format("{0:yyMMdd}", DateTime.Now);
+
+       if (prjitemtype == "2000101")
        {
-           string sql = " select top 1 PrjAddressDept,PrjItemType, getdate() as today,(select COUNT(1) from TC_SGXKZ_PrjInfo where DATEDIFF(DAY,FZTime,GETDATE()) = 0)  AS  YBL from TC_SGXKZ_PrjInfo WHERE FAppId ='" + t_fLinkId.Value + "'";
-
-           if (conn.State == ConnectionState.Closed)
-               conn.Open();
-           DataSet ds = new DataSet();
-           SqlCommand cmd = new SqlCommand(sql, conn);
-           //conn.Open();
-           //int a = cmd.ExecuteNonQuery();
-
-           SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-           da.Fill(ds, "ds");
-           DataTable dt = ds.Tables[0];
-           string PrjAddressDept = "";
-           string PrjItemType = "";
-           string date = "";
-           string BH = "";
-           for (int i = 0; i < dt.Rows.Count; i++)
-           {
-               PrjAddressDept = dt.Rows[0]["PrjAddressDept"].ToString();
-              
-               switch (dt.Rows[0]["PrjItemType"].ToString())
-               { 
-                   case "2000103":
-                       PrjItemType = "03";
-                       break;
-                   case "2000101":
-                       PrjItemType = "01";
-                       break;
-                   case "2000102":
-                       PrjItemType = "02";
-                       break;
-                   default:
-                       PrjItemType = "03";
-                       break;
-               }
-               DateTime today = DateTime.Parse(dt.Rows[0]["today"].ToString());
-               date = today.ToString("yyyyMMdd");
-               if (string.IsNullOrEmpty(PrjAddressDept))
-               {
-                   throw new Exception("项目所属地不能为空");
-               }
-               else if (PrjAddressDept.Length == 2) {
-                   BH = PrjAddressDept + "0000";
-               }
-               else if (PrjAddressDept.Length == 4)
-               {
-                   BH = PrjAddressDept + "00";
-               }
-               else
-               {
-                   BH = PrjAddressDept;
-               }
-               BH += date;
-               int xh = int.Parse(dt.Rows[0]["YBL"].ToString());
-
-               if (xh > 9)
-               {
-                   BH += xh.ToString();
-               }
-               else {
-                   BH += "0"+xh.ToString();
-               }
-               
-               BH += PrjItemType;
-
-
-
-           }
-
-           if (string.IsNullOrEmpty(t_FAppSGXKZBH.Text)) {
-               t_FAppSGXKZBH.Text = BH;
-           }
-           
-           
+           prjitemtype = "01";
        }
- 
-       
-       
+       else
+       {
+           if (prjitemtype == "2000102")
+           {
+               prjitemtype = "02";
+           }
+           else
+           {
+               prjitemtype = "99";
+           }
+      }
 
+
+       //获取当天最大的值
+       var result = (from t in db.TC_SGXKZ_PrjInfo
+                     where t.SGXKZBH.Substring(6, 6) == datatoday
+                       && t.Area.Equals(prjitemarea)
+                     orderby t.SGXKZBH descending
+                     select t).FirstOrDefault();
+       if (result != null)
+       {
+           todayno = Convert.ToInt32(result.SGXKZBH.Substring(12, 2)) + 1;
+           todayxlh = Convert.ToInt32(result.SGXKZBH.Substring(20, 3)) + 1;
+       }
+       else
+       {
+           todayno = 1;
+           todayxlh = 1;
+       }
+       //如果项目编号小于10
+       if (todayno < 10)
+       {
+           stodayno = "0" + todayno.ToString();
+       }
+       else
+       {
+           stodayno = todayno.ToString();
+       }
+       //如果序列号小于10或1000
+       if (todayxlh < 10)
+       {
+           stodayxlh = "00" + todayxlh.ToString();
+       }
+       else if (todayxlh < 100)
+       {
+           stodayxlh = "0" + todayxlh.ToString();
+       }
+       else
+       {
+           stodayxlh = todayxlh.ToString();
+       }
+
+       //生成编号
+       sgxkbh = prjitemarea + string.Format("{0:yyMMdd}", DateTime.Now) + prjitemtype + stodayno  + bussinesstype + "-" + stodayxlh;
+       return sgxkbh;
 
    }
-    #endregion
 
 }
