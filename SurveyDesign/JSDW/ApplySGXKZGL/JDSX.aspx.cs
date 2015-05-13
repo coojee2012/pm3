@@ -33,7 +33,7 @@ public partial class JSDW_ApplySGXKZGL_JDSX : System.Web.UI.Page
             pageTool tool1 = new pageTool(this.Page);
             if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)
             {
-                ListItem i = new ListItem("标准库数据", "3");
+                ListItem i = new ListItem("已办", "3");
                 t_BL.Items.Add(i);
                 tool1.ExecuteScript("btnEnable();");
             }
