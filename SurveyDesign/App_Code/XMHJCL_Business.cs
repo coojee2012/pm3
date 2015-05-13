@@ -188,7 +188,7 @@ public class XMHJCL_Business
         RCenter prjdb = GetRCenter("XM_BaseInfo");
 
         string sql = @"select  [xzid] as fid ,[xmbh] as fprjitemid,[xmmc] as projectname,[xmdz] as locationaddress,[jsdw] as jsdw,[nydmj] as area,[njsgm] as scale,
-            [xmjsyj] as projectbasis,[zsbh] as xzyjszsbh,[hfrq] as createtime,[fzjg] as hfjg,[createtime],qtsx as ydpzsx,'3' as bl  from  XM_BaseInfo.dbo.XM_XZYJS where xmbh = '" + xmbh + "'";
+            [xmjsyj] as projectbasis,[bh] as xzyjszsbh,[hfrq] as createtime,[fzjg] as hfjg,[createtime],qtsx as ydpzsx,'3' as bl  from  XM_BaseInfo.dbo.XM_XZYJS where xmbh = '" + xmbh + "'";
         return prjdb.GetTable(sql);
 
     }

@@ -203,10 +203,13 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         {
 
             fId = Guid.NewGuid().ToString();
+            ViewState["fid"] = fId;
+            txtFId.Value = fId;
             qa.FId = fId;
             qa.FprjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
             qa.FAppId = EConvert.ToString(ViewState["FAppId"]);
             dbContext.TC_SGXKZ_ZBJG.InsertOnSubmit(qa);
+            isNew = true;
         }
         qa = tool.getPageValue(qa);
         if (qa.JLId != null && qa.JLId.Length > 36)//这里不知道是什么原因 这个长度超出了。暂时这样处理。
@@ -226,8 +229,6 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 return;
             }
         }
-        txtFId.Value = fId;
-        ViewState["fid"] = fId;
         dbContext.SubmitChanges();
       
        
