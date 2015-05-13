@@ -323,11 +323,16 @@
                                     Font-Strikeout="False" Font-Underline="False" Wrap="False" />
                                 <HeaderStyle Wrap="False" />
                             </asp:BoundColumn>
-                            
-                            <asp:BoundColumn HeaderText="工程名称" DataField="PrjItemName" >
+                         <%--   <asp:LinkButton ID="btnItemSee" runat="server" CommandName="See" Text='<%# Bind("PrjItemName") %>' CommandArgument='<%#Eval("FID")+"@"+Eval("FState")%>'>
+                                                                </asp:LinkButton>--%>
+
+                            <asp:TemplateColumn HeaderText="工程名称" >
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="projectitmename" runat="server" CausesValidation="false"  Text='<%# Bind("PrjItemName") %>'></asp:LinkButton>                                 
+                                </ItemTemplate>
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
-                            </asp:BoundColumn>
+                            </asp:TemplateColumn>
                             
                             <asp:BoundColumn HeaderText="建设单位" DataField="JSDW" >
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
