@@ -126,7 +126,7 @@ public partial class Government_AppAQJDBA_Query : govBasePage
         sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
         sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
-        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
+        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime,qa.SGXKZBH,qa.FZTime");
         sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, V_SGXKZ_YW qa, CF_APP_LIST ap");
         sb.Append(" where ep.fId = er.FProcessInstanceID  ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
@@ -142,7 +142,7 @@ public partial class Government_AppAQJDBA_Query : govBasePage
         sb.Append(" case ep.fState when 1 then '待接件' when 2 then '已退回' when 3 then '打回下级' ");
         sb.Append(" when 5 then '不予受理' when 6 then case er.FResult when 1 then '准予受理' when 3 then '不予受理' end end as FStatedesc,");
         sb.Append(" case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType,");
-        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime");
+        sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime,qa.SGXKZBH,qa.FZTime");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, V_SGXKZ_YW qa, CF_APP_LIST ap");
         sb.Append(" where ep.fId = er.FProcessInstanceID  ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务

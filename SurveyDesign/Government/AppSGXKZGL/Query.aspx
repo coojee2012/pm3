@@ -280,6 +280,15 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
+                             <asp:BoundColumn HeaderText="施工许可证编号" DataField="SGXKZBH" >
+                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
+
+                            <asp:BoundColumn HeaderText="发证时间" DataField="FZTime"  DataFormatString="{0:yyyy-MM-dd}">
+                                <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
+                                <HeaderStyle Font-Underline="False" Wrap="False" />
+                            </asp:BoundColumn>
                             <asp:BoundColumn HeaderText="备案时间" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
