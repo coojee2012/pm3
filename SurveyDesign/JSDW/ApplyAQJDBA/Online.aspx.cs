@@ -179,7 +179,8 @@ public partial class JSDW_ApplyAQJDBA_Online : System.Web.UI.Page
             }
             string FilePath = "upload\\ajphoto\\" + Guid.NewGuid().ToString() + ".jpg";
             bitmap.Save(HttpRuntime.AppDomainAppPath + FilePath);
-            image.ImageUrl = "/" + FilePath;
+            //image.ImageUrl = "/" + FilePath;
+            image.ImageUrl = HttpRuntime.AppDomainAppVirtualPath + "/" + FilePath;    
             this.ViewState["photoPath"] = HttpRuntime.AppDomainAppPath + FilePath;
 
             //string FilePath = HttpRuntime.AppDomainAppPath + "upload\\ajphoto\\" + Guid.NewGuid().ToString() + ".jpg";

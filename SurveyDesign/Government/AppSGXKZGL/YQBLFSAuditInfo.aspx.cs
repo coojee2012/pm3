@@ -324,6 +324,7 @@ public partial class Government_AppSGXKZGL_YQBLFSAuditInfo : System.Web.UI.Page
    //复审
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
+       //延期办理复审需要做几件事情:1、审核状态调整，2、同步信息到归档库
        try
        {
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
@@ -334,6 +335,10 @@ public partial class Government_AppSGXKZGL_YQBLFSAuditInfo : System.Web.UI.Page
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                DisableButton();
+               //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
+               RCenter rc = new RCenter("dbcenter");
+               rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + t_fLinkId.Value + "'");
+               //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');", true);
            }
            else

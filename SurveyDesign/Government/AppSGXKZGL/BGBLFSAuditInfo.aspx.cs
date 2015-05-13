@@ -451,6 +451,7 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
    //复审
    protected void btnUPFS_Click(object sender, EventArgs e)
    {
+       //变更办理复审需要做几件事情:1、审核状态调整，2、锁定新增人员/解锁退出人员，3、同步信息到归档库
        //try
        //{
            if (WFApp.ValidateCanDo(t_fProcessRecordID.Value))
@@ -465,6 +466,9 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
                lockperson();
                //解锁退出的人员
                unlockperson();
+               //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
+               RCenter rc = new RCenter("dbcenter");
+               rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + t_fLinkId.Value + "'");
                //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');", true);
            }
@@ -528,11 +532,13 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
             if (conn.State == ConnectionState.Closed)
                 conn.Open();
             DataSet ds = new DataSet();
+            //只锁定施工总承包、专业承包、劳务分包、监理类企业的人员(2\3\4\7),勘察、设计类人员不锁定(5\6)
             sql = @"select  a.FAppId,d.FId FPrjId,a.FPrjItemId,b.ProjectName,c.QYBM FEntId,'' FEntName,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
                     where a.FPrjItemId = b.FId
                     and a.FLinkId = c.RYBH
                     and b.FPrjId = d.FId
-                    and a.BGQK = '增加'  and FAppId  = '" +t_fLinkId.Value+"'";           
+                    and a.fenttype  in (2,3,4,7)
+                    and a.BGQK = '增加'  and FAppId  = '" + t_fLinkId.Value+"'";           
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(ds, "ds");
             DataTable dt = ds.Tables[0];

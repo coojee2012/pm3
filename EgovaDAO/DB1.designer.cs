@@ -90,18 +90,12 @@ namespace EgovaDAO
     partial void InsertRY_RYBLXWXX(RY_RYBLXWXX instance);
     partial void UpdateRY_RYBLXWXX(RY_RYBLXWXX instance);
     partial void DeleteRY_RYBLXWXX(RY_RYBLXWXX instance);
-    partial void InsertRY_RYJBXX(RY_RYJBXX instance);
-    partial void UpdateRY_RYJBXX(RY_RYJBXX instance);
-    partial void DeleteRY_RYJBXX(RY_RYJBXX instance);
     partial void InsertRY_RYXYPD(RY_RYXYPD instance);
     partial void UpdateRY_RYXYPD(RY_RYXYPD instance);
     partial void DeleteRY_RYXYPD(RY_RYXYPD instance);
     partial void InsertRY_RYYLXWXX(RY_RYYLXWXX instance);
     partial void UpdateRY_RYYLXWXX(RY_RYYLXWXX instance);
     partial void DeleteRY_RYYLXWXX(RY_RYYLXWXX instance);
-    partial void InsertRY_RYZSXX(RY_RYZSXX instance);
-    partial void UpdateRY_RYZSXX(RY_RYZSXX instance);
-    partial void DeleteRY_RYZSXX(RY_RYZSXX instance);
     partial void InsertRY_ZJGCXM(RY_ZJGCXM instance);
     partial void UpdateRY_ZJGCXM(RY_ZJGCXM instance);
     partial void DeleteRY_ZJGCXM(RY_ZJGCXM instance);
@@ -111,10 +105,13 @@ namespace EgovaDAO
     partial void InsertQY_QYZZZYXX(QY_QYZZZYXX instance);
     partial void UpdateQY_QYZZZYXX(QY_QYZZZYXX instance);
     partial void DeleteQY_QYZZZYXX(QY_QYZZZYXX instance);
+    partial void InsertRY_RYJBXX(RY_RYJBXX instance);
+    partial void UpdateRY_RYJBXX(RY_RYJBXX instance);
+    partial void DeleteRY_RYJBXX(RY_RYJBXX instance);
     #endregion
 		
 		public DB1DataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.JST_XZSPBaseInfoConnectionString2, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.JST_XZSPBaseInfoConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -303,14 +300,6 @@ namespace EgovaDAO
 			}
 		}
 		
-		public System.Data.Linq.Table<RY_RYJBXX> RY_RYJBXX
-		{
-			get
-			{
-				return this.GetTable<RY_RYJBXX>();
-			}
-		}
-		
 		public System.Data.Linq.Table<RY_RYXYPD> RY_RYXYPD
 		{
 			get
@@ -324,14 +313,6 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<RY_RYYLXWXX>();
-			}
-		}
-		
-		public System.Data.Linq.Table<RY_RYZSXX> RY_RYZSXX
-		{
-			get
-			{
-				return this.GetTable<RY_RYZSXX>();
 			}
 		}
 		
@@ -372,6 +353,22 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<QY_QYZZZYXX>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RY_RYZSXX> RY_RYZSXX
+		{
+			get
+			{
+				return this.GetTable<RY_RYZSXX>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RY_RYJBXX> RY_RYJBXX
+		{
+			get
+			{
+				return this.GetTable<RY_RYJBXX>();
 			}
 		}
 	}
@@ -12867,848 +12864,6 @@ namespace EgovaDAO
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RY_RYJBXX")]
-	public partial class RY_RYJBXX : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _QYBM;
-		
-		private string _RYBH;
-		
-		private string _XM;
-		
-		private string _ZJLX;
-		
-		private string _SFZH;
-		
-		private string _XB;
-		
-		private System.Nullable<System.DateTime> _CSRQ;
-		
-		private string _MZ;
-		
-		private string _ZZ;
-		
-		private string _ZW;
-		
-		private string _BYYX;
-		
-		private System.Nullable<System.DateTime> _BYSJ;
-		
-		private string _SXZY;
-		
-		private string _LXDZ;
-		
-		private string _YXBM;
-		
-		private string _DZYX;
-		
-		private string _BGDH;
-		
-		private string _GRDH;
-		
-		private string _ZPURL;
-		
-		private string _RYZT;
-		
-		private string _ZC;
-		
-		private System.Nullable<System.DateTime> _QDZCSJ;
-		
-		private string _BZ;
-		
-		private EntitySet<RY_DBGCYJ> _RY_DBGCYJ;
-		
-		private EntitySet<RY_GZDWQK> _RY_GZDWQK;
-		
-		private EntitySet<RY_JXJYQK> _RY_JXJYQK;
-		
-		private EntitySet<RY_KYFMCG> _RY_KYFMCG;
-		
-		private EntitySet<RY_RYBLXWXX> _RY_RYBLXWXX;
-		
-		private EntitySet<RY_RYXYPD> _RY_RYXYPD;
-		
-		private EntitySet<RY_RYYLXWXX> _RY_RYYLXWXX;
-		
-		private EntitySet<RY_RYZSXX> _RY_RYZSXX;
-		
-		private EntitySet<RY_ZJGCXM> _RY_ZJGCXM;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQYBMChanging(string value);
-    partial void OnQYBMChanged();
-    partial void OnRYBHChanging(string value);
-    partial void OnRYBHChanged();
-    partial void OnXMChanging(string value);
-    partial void OnXMChanged();
-    partial void OnZJLXChanging(string value);
-    partial void OnZJLXChanged();
-    partial void OnSFZHChanging(string value);
-    partial void OnSFZHChanged();
-    partial void OnXBChanging(string value);
-    partial void OnXBChanged();
-    partial void OnCSRQChanging(System.Nullable<System.DateTime> value);
-    partial void OnCSRQChanged();
-    partial void OnMZChanging(string value);
-    partial void OnMZChanged();
-    partial void OnZZChanging(string value);
-    partial void OnZZChanged();
-    partial void OnZWChanging(string value);
-    partial void OnZWChanged();
-    partial void OnBYYXChanging(string value);
-    partial void OnBYYXChanged();
-    partial void OnBYSJChanging(System.Nullable<System.DateTime> value);
-    partial void OnBYSJChanged();
-    partial void OnSXZYChanging(string value);
-    partial void OnSXZYChanged();
-    partial void OnLXDZChanging(string value);
-    partial void OnLXDZChanged();
-    partial void OnYXBMChanging(string value);
-    partial void OnYXBMChanged();
-    partial void OnDZYXChanging(string value);
-    partial void OnDZYXChanged();
-    partial void OnBGDHChanging(string value);
-    partial void OnBGDHChanged();
-    partial void OnGRDHChanging(string value);
-    partial void OnGRDHChanged();
-    partial void OnZPURLChanging(string value);
-    partial void OnZPURLChanged();
-    partial void OnRYZTChanging(string value);
-    partial void OnRYZTChanged();
-    partial void OnZCChanging(string value);
-    partial void OnZCChanged();
-    partial void OnQDZCSJChanging(System.Nullable<System.DateTime> value);
-    partial void OnQDZCSJChanged();
-    partial void OnBZChanging(string value);
-    partial void OnBZChanged();
-    #endregion
-		
-		public RY_RYJBXX()
-		{
-			this._RY_DBGCYJ = new EntitySet<RY_DBGCYJ>(new Action<RY_DBGCYJ>(this.attach_RY_DBGCYJ), new Action<RY_DBGCYJ>(this.detach_RY_DBGCYJ));
-			this._RY_GZDWQK = new EntitySet<RY_GZDWQK>(new Action<RY_GZDWQK>(this.attach_RY_GZDWQK), new Action<RY_GZDWQK>(this.detach_RY_GZDWQK));
-			this._RY_JXJYQK = new EntitySet<RY_JXJYQK>(new Action<RY_JXJYQK>(this.attach_RY_JXJYQK), new Action<RY_JXJYQK>(this.detach_RY_JXJYQK));
-			this._RY_KYFMCG = new EntitySet<RY_KYFMCG>(new Action<RY_KYFMCG>(this.attach_RY_KYFMCG), new Action<RY_KYFMCG>(this.detach_RY_KYFMCG));
-			this._RY_RYBLXWXX = new EntitySet<RY_RYBLXWXX>(new Action<RY_RYBLXWXX>(this.attach_RY_RYBLXWXX), new Action<RY_RYBLXWXX>(this.detach_RY_RYBLXWXX));
-			this._RY_RYXYPD = new EntitySet<RY_RYXYPD>(new Action<RY_RYXYPD>(this.attach_RY_RYXYPD), new Action<RY_RYXYPD>(this.detach_RY_RYXYPD));
-			this._RY_RYYLXWXX = new EntitySet<RY_RYYLXWXX>(new Action<RY_RYYLXWXX>(this.attach_RY_RYYLXWXX), new Action<RY_RYYLXWXX>(this.detach_RY_RYYLXWXX));
-			this._RY_RYZSXX = new EntitySet<RY_RYZSXX>(new Action<RY_RYZSXX>(this.attach_RY_RYZSXX), new Action<RY_RYZSXX>(this.detach_RY_RYZSXX));
-			this._RY_ZJGCXM = new EntitySet<RY_ZJGCXM>(new Action<RY_ZJGCXM>(this.attach_RY_ZJGCXM), new Action<RY_ZJGCXM>(this.detach_RY_ZJGCXM));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYBM", DbType="VarChar(50)")]
-		public string QYBM
-		{
-			get
-			{
-				return this._QYBM;
-			}
-			set
-			{
-				if ((this._QYBM != value))
-				{
-					this.OnQYBMChanging(value);
-					this.SendPropertyChanging();
-					this._QYBM = value;
-					this.SendPropertyChanged("QYBM");
-					this.OnQYBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYBH", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string RYBH
-		{
-			get
-			{
-				return this._RYBH;
-			}
-			set
-			{
-				if ((this._RYBH != value))
-				{
-					this.OnRYBHChanging(value);
-					this.SendPropertyChanging();
-					this._RYBH = value;
-					this.SendPropertyChanged("RYBH");
-					this.OnRYBHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XM", DbType="VarChar(50)")]
-		public string XM
-		{
-			get
-			{
-				return this._XM;
-			}
-			set
-			{
-				if ((this._XM != value))
-				{
-					this.OnXMChanging(value);
-					this.SendPropertyChanging();
-					this._XM = value;
-					this.SendPropertyChanged("XM");
-					this.OnXMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZJLX", DbType="VarChar(10)")]
-		public string ZJLX
-		{
-			get
-			{
-				return this._ZJLX;
-			}
-			set
-			{
-				if ((this._ZJLX != value))
-				{
-					this.OnZJLXChanging(value);
-					this.SendPropertyChanging();
-					this._ZJLX = value;
-					this.SendPropertyChanged("ZJLX");
-					this.OnZJLXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFZH", DbType="VarChar(30)")]
-		public string SFZH
-		{
-			get
-			{
-				return this._SFZH;
-			}
-			set
-			{
-				if ((this._SFZH != value))
-				{
-					this.OnSFZHChanging(value);
-					this.SendPropertyChanging();
-					this._SFZH = value;
-					this.SendPropertyChanged("SFZH");
-					this.OnSFZHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XB", DbType="VarChar(10)")]
-		public string XB
-		{
-			get
-			{
-				return this._XB;
-			}
-			set
-			{
-				if ((this._XB != value))
-				{
-					this.OnXBChanging(value);
-					this.SendPropertyChanging();
-					this._XB = value;
-					this.SendPropertyChanged("XB");
-					this.OnXBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CSRQ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CSRQ
-		{
-			get
-			{
-				return this._CSRQ;
-			}
-			set
-			{
-				if ((this._CSRQ != value))
-				{
-					this.OnCSRQChanging(value);
-					this.SendPropertyChanging();
-					this._CSRQ = value;
-					this.SendPropertyChanged("CSRQ");
-					this.OnCSRQChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MZ", DbType="VarChar(50)")]
-		public string MZ
-		{
-			get
-			{
-				return this._MZ;
-			}
-			set
-			{
-				if ((this._MZ != value))
-				{
-					this.OnMZChanging(value);
-					this.SendPropertyChanging();
-					this._MZ = value;
-					this.SendPropertyChanged("MZ");
-					this.OnMZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZZ", DbType="VarChar(50)")]
-		public string ZZ
-		{
-			get
-			{
-				return this._ZZ;
-			}
-			set
-			{
-				if ((this._ZZ != value))
-				{
-					this.OnZZChanging(value);
-					this.SendPropertyChanging();
-					this._ZZ = value;
-					this.SendPropertyChanged("ZZ");
-					this.OnZZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZW", DbType="VarChar(50)")]
-		public string ZW
-		{
-			get
-			{
-				return this._ZW;
-			}
-			set
-			{
-				if ((this._ZW != value))
-				{
-					this.OnZWChanging(value);
-					this.SendPropertyChanging();
-					this._ZW = value;
-					this.SendPropertyChanged("ZW");
-					this.OnZWChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BYYX", DbType="VarChar(80)")]
-		public string BYYX
-		{
-			get
-			{
-				return this._BYYX;
-			}
-			set
-			{
-				if ((this._BYYX != value))
-				{
-					this.OnBYYXChanging(value);
-					this.SendPropertyChanging();
-					this._BYYX = value;
-					this.SendPropertyChanged("BYYX");
-					this.OnBYYXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BYSJ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> BYSJ
-		{
-			get
-			{
-				return this._BYSJ;
-			}
-			set
-			{
-				if ((this._BYSJ != value))
-				{
-					this.OnBYSJChanging(value);
-					this.SendPropertyChanging();
-					this._BYSJ = value;
-					this.SendPropertyChanged("BYSJ");
-					this.OnBYSJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SXZY", DbType="VarChar(80)")]
-		public string SXZY
-		{
-			get
-			{
-				return this._SXZY;
-			}
-			set
-			{
-				if ((this._SXZY != value))
-				{
-					this.OnSXZYChanging(value);
-					this.SendPropertyChanging();
-					this._SXZY = value;
-					this.SendPropertyChanged("SXZY");
-					this.OnSXZYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXDZ", DbType="VarChar(200)")]
-		public string LXDZ
-		{
-			get
-			{
-				return this._LXDZ;
-			}
-			set
-			{
-				if ((this._LXDZ != value))
-				{
-					this.OnLXDZChanging(value);
-					this.SendPropertyChanging();
-					this._LXDZ = value;
-					this.SendPropertyChanged("LXDZ");
-					this.OnLXDZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YXBM", DbType="VarChar(20)")]
-		public string YXBM
-		{
-			get
-			{
-				return this._YXBM;
-			}
-			set
-			{
-				if ((this._YXBM != value))
-				{
-					this.OnYXBMChanging(value);
-					this.SendPropertyChanging();
-					this._YXBM = value;
-					this.SendPropertyChanged("YXBM");
-					this.OnYXBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DZYX", DbType="VarChar(100)")]
-		public string DZYX
-		{
-			get
-			{
-				return this._DZYX;
-			}
-			set
-			{
-				if ((this._DZYX != value))
-				{
-					this.OnDZYXChanging(value);
-					this.SendPropertyChanging();
-					this._DZYX = value;
-					this.SendPropertyChanged("DZYX");
-					this.OnDZYXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BGDH", DbType="VarChar(100)")]
-		public string BGDH
-		{
-			get
-			{
-				return this._BGDH;
-			}
-			set
-			{
-				if ((this._BGDH != value))
-				{
-					this.OnBGDHChanging(value);
-					this.SendPropertyChanging();
-					this._BGDH = value;
-					this.SendPropertyChanged("BGDH");
-					this.OnBGDHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GRDH", DbType="VarChar(100)")]
-		public string GRDH
-		{
-			get
-			{
-				return this._GRDH;
-			}
-			set
-			{
-				if ((this._GRDH != value))
-				{
-					this.OnGRDHChanging(value);
-					this.SendPropertyChanging();
-					this._GRDH = value;
-					this.SendPropertyChanged("GRDH");
-					this.OnGRDHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZPURL", DbType="VarChar(200)")]
-		public string ZPURL
-		{
-			get
-			{
-				return this._ZPURL;
-			}
-			set
-			{
-				if ((this._ZPURL != value))
-				{
-					this.OnZPURLChanging(value);
-					this.SendPropertyChanging();
-					this._ZPURL = value;
-					this.SendPropertyChanged("ZPURL");
-					this.OnZPURLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYZT", DbType="VarChar(50)")]
-		public string RYZT
-		{
-			get
-			{
-				return this._RYZT;
-			}
-			set
-			{
-				if ((this._RYZT != value))
-				{
-					this.OnRYZTChanging(value);
-					this.SendPropertyChanging();
-					this._RYZT = value;
-					this.SendPropertyChanged("RYZT");
-					this.OnRYZTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZC", DbType="VarChar(50)")]
-		public string ZC
-		{
-			get
-			{
-				return this._ZC;
-			}
-			set
-			{
-				if ((this._ZC != value))
-				{
-					this.OnZCChanging(value);
-					this.SendPropertyChanging();
-					this._ZC = value;
-					this.SendPropertyChanged("ZC");
-					this.OnZCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDZCSJ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> QDZCSJ
-		{
-			get
-			{
-				return this._QDZCSJ;
-			}
-			set
-			{
-				if ((this._QDZCSJ != value))
-				{
-					this.OnQDZCSJChanging(value);
-					this.SendPropertyChanging();
-					this._QDZCSJ = value;
-					this.SendPropertyChanged("QDZCSJ");
-					this.OnQDZCSJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BZ", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string BZ
-		{
-			get
-			{
-				return this._BZ;
-			}
-			set
-			{
-				if ((this._BZ != value))
-				{
-					this.OnBZChanging(value);
-					this.SendPropertyChanging();
-					this._BZ = value;
-					this.SendPropertyChanged("BZ");
-					this.OnBZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_DBGCYJ", Storage="_RY_DBGCYJ", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_DBGCYJ> RY_DBGCYJ
-		{
-			get
-			{
-				return this._RY_DBGCYJ;
-			}
-			set
-			{
-				this._RY_DBGCYJ.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_GZDWQK", Storage="_RY_GZDWQK", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_GZDWQK> RY_GZDWQK
-		{
-			get
-			{
-				return this._RY_GZDWQK;
-			}
-			set
-			{
-				this._RY_GZDWQK.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_JXJYQK", Storage="_RY_JXJYQK", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_JXJYQK> RY_JXJYQK
-		{
-			get
-			{
-				return this._RY_JXJYQK;
-			}
-			set
-			{
-				this._RY_JXJYQK.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_KYFMCG", Storage="_RY_KYFMCG", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_KYFMCG> RY_KYFMCG
-		{
-			get
-			{
-				return this._RY_KYFMCG;
-			}
-			set
-			{
-				this._RY_KYFMCG.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYBLXWXX", Storage="_RY_RYBLXWXX", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_RYBLXWXX> RY_RYBLXWXX
-		{
-			get
-			{
-				return this._RY_RYBLXWXX;
-			}
-			set
-			{
-				this._RY_RYBLXWXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYXYPD", Storage="_RY_RYXYPD", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_RYXYPD> RY_RYXYPD
-		{
-			get
-			{
-				return this._RY_RYXYPD;
-			}
-			set
-			{
-				this._RY_RYXYPD.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYYLXWXX", Storage="_RY_RYYLXWXX", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_RYYLXWXX> RY_RYYLXWXX
-		{
-			get
-			{
-				return this._RY_RYYLXWXX;
-			}
-			set
-			{
-				this._RY_RYYLXWXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYZSXX", Storage="_RY_RYZSXX", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_RYZSXX> RY_RYZSXX
-		{
-			get
-			{
-				return this._RY_RYZSXX;
-			}
-			set
-			{
-				this._RY_RYZSXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_ZJGCXM", Storage="_RY_ZJGCXM", ThisKey="RYBH", OtherKey="RYBH")]
-		public EntitySet<RY_ZJGCXM> RY_ZJGCXM
-		{
-			get
-			{
-				return this._RY_ZJGCXM;
-			}
-			set
-			{
-				this._RY_ZJGCXM.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_RY_DBGCYJ(RY_DBGCYJ entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_DBGCYJ(RY_DBGCYJ entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_GZDWQK(RY_GZDWQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_GZDWQK(RY_GZDWQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_JXJYQK(RY_JXJYQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_JXJYQK(RY_JXJYQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_KYFMCG(RY_KYFMCG entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_KYFMCG(RY_KYFMCG entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_RYBLXWXX(RY_RYBLXWXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_RYBLXWXX(RY_RYBLXWXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_RYXYPD(RY_RYXYPD entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_RYXYPD(RY_RYXYPD entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_RYYLXWXX(RY_RYYLXWXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_RYYLXWXX(RY_RYYLXWXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_RYZSXX(RY_RYZSXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_RYZSXX(RY_RYZSXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-		
-		private void attach_RY_ZJGCXM(RY_ZJGCXM entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = this;
-		}
-		
-		private void detach_RY_ZJGCXM(RY_ZJGCXM entity)
-		{
-			this.SendPropertyChanging();
-			entity.RY_RYJBXX = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RY_RYXYPD")]
 	public partial class RY_RYXYPD : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -14819,733 +13974,6 @@ namespace EgovaDAO
 					if ((value != null))
 					{
 						value.RY_RYYLXWXX.Add(this);
-						this._RYBH = value.RYBH;
-					}
-					else
-					{
-						this._RYBH = default(string);
-					}
-					this.SendPropertyChanged("RY_RYJBXX");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RY_RYZSXX")]
-	public partial class RY_RYZSXX : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _RYZSXXID;
-		
-		private string _QYBM;
-		
-		private string _QYSD;
-		
-		private string _RYBH;
-		
-		private string _XM;
-		
-		private string _ZJLX;
-		
-		private string _SFZH;
-		
-		private string _XB;
-		
-		private System.Nullable<System.DateTime> _CSRQ;
-		
-		private string _ZZ;
-		
-		private string _ZW;
-		
-		private string _JSZC;
-		
-		private System.Nullable<System.DateTime> _QDZCSJ;
-		
-		private string _ZSLX;
-		
-		private string _ZSJB;
-		
-		private string _ZCZSBH;
-		
-		private string _ZGZSH;
-		
-		private string _ZCZSH;
-		
-		private string _YZH;
-		
-		private string _ZCZY;
-		
-		private System.Nullable<System.DateTime> _ZSYXQKSSJ;
-		
-		private System.Nullable<System.DateTime> _ZSYXQJSSJ;
-		
-		private System.Nullable<System.DateTime> _FZSJ;
-		
-		private string _FZJG;
-		
-		private System.Nullable<int> _ZSZT;
-		
-		private System.Nullable<int> _SFDY;
-		
-		private string _BZ;
-		
-		private EntityRef<RY_RYJBXX> _RY_RYJBXX;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRYZSXXIDChanging(string value);
-    partial void OnRYZSXXIDChanged();
-    partial void OnQYBMChanging(string value);
-    partial void OnQYBMChanged();
-    partial void OnQYSDChanging(string value);
-    partial void OnQYSDChanged();
-    partial void OnRYBHChanging(string value);
-    partial void OnRYBHChanged();
-    partial void OnXMChanging(string value);
-    partial void OnXMChanged();
-    partial void OnZJLXChanging(string value);
-    partial void OnZJLXChanged();
-    partial void OnSFZHChanging(string value);
-    partial void OnSFZHChanged();
-    partial void OnXBChanging(string value);
-    partial void OnXBChanged();
-    partial void OnCSRQChanging(System.Nullable<System.DateTime> value);
-    partial void OnCSRQChanged();
-    partial void OnZZChanging(string value);
-    partial void OnZZChanged();
-    partial void OnZWChanging(string value);
-    partial void OnZWChanged();
-    partial void OnJSZCChanging(string value);
-    partial void OnJSZCChanged();
-    partial void OnQDZCSJChanging(System.Nullable<System.DateTime> value);
-    partial void OnQDZCSJChanged();
-    partial void OnZSLXChanging(string value);
-    partial void OnZSLXChanged();
-    partial void OnZSJBChanging(string value);
-    partial void OnZSJBChanged();
-    partial void OnZCZSBHChanging(string value);
-    partial void OnZCZSBHChanged();
-    partial void OnZGZSHChanging(string value);
-    partial void OnZGZSHChanged();
-    partial void OnZCZSHChanging(string value);
-    partial void OnZCZSHChanged();
-    partial void OnYZHChanging(string value);
-    partial void OnYZHChanged();
-    partial void OnZCZYChanging(string value);
-    partial void OnZCZYChanged();
-    partial void OnZSYXQKSSJChanging(System.Nullable<System.DateTime> value);
-    partial void OnZSYXQKSSJChanged();
-    partial void OnZSYXQJSSJChanging(System.Nullable<System.DateTime> value);
-    partial void OnZSYXQJSSJChanged();
-    partial void OnFZSJChanging(System.Nullable<System.DateTime> value);
-    partial void OnFZSJChanged();
-    partial void OnFZJGChanging(string value);
-    partial void OnFZJGChanged();
-    partial void OnZSZTChanging(System.Nullable<int> value);
-    partial void OnZSZTChanged();
-    partial void OnSFDYChanging(System.Nullable<int> value);
-    partial void OnSFDYChanged();
-    partial void OnBZChanging(string value);
-    partial void OnBZChanged();
-    #endregion
-		
-		public RY_RYZSXX()
-		{
-			this._RY_RYJBXX = default(EntityRef<RY_RYJBXX>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYZSXXID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string RYZSXXID
-		{
-			get
-			{
-				return this._RYZSXXID;
-			}
-			set
-			{
-				if ((this._RYZSXXID != value))
-				{
-					this.OnRYZSXXIDChanging(value);
-					this.SendPropertyChanging();
-					this._RYZSXXID = value;
-					this.SendPropertyChanged("RYZSXXID");
-					this.OnRYZSXXIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYBM", DbType="VarChar(50)")]
-		public string QYBM
-		{
-			get
-			{
-				return this._QYBM;
-			}
-			set
-			{
-				if ((this._QYBM != value))
-				{
-					this.OnQYBMChanging(value);
-					this.SendPropertyChanging();
-					this._QYBM = value;
-					this.SendPropertyChanged("QYBM");
-					this.OnQYBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYSD", DbType="VarChar(50)")]
-		public string QYSD
-		{
-			get
-			{
-				return this._QYSD;
-			}
-			set
-			{
-				if ((this._QYSD != value))
-				{
-					this.OnQYSDChanging(value);
-					this.SendPropertyChanging();
-					this._QYSD = value;
-					this.SendPropertyChanged("QYSD");
-					this.OnQYSDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYBH", DbType="VarChar(50)")]
-		public string RYBH
-		{
-			get
-			{
-				return this._RYBH;
-			}
-			set
-			{
-				if ((this._RYBH != value))
-				{
-					if (this._RY_RYJBXX.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRYBHChanging(value);
-					this.SendPropertyChanging();
-					this._RYBH = value;
-					this.SendPropertyChanged("RYBH");
-					this.OnRYBHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XM", DbType="VarChar(50)")]
-		public string XM
-		{
-			get
-			{
-				return this._XM;
-			}
-			set
-			{
-				if ((this._XM != value))
-				{
-					this.OnXMChanging(value);
-					this.SendPropertyChanging();
-					this._XM = value;
-					this.SendPropertyChanged("XM");
-					this.OnXMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZJLX", DbType="VarChar(10)")]
-		public string ZJLX
-		{
-			get
-			{
-				return this._ZJLX;
-			}
-			set
-			{
-				if ((this._ZJLX != value))
-				{
-					this.OnZJLXChanging(value);
-					this.SendPropertyChanging();
-					this._ZJLX = value;
-					this.SendPropertyChanged("ZJLX");
-					this.OnZJLXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFZH", DbType="VarChar(30)")]
-		public string SFZH
-		{
-			get
-			{
-				return this._SFZH;
-			}
-			set
-			{
-				if ((this._SFZH != value))
-				{
-					this.OnSFZHChanging(value);
-					this.SendPropertyChanging();
-					this._SFZH = value;
-					this.SendPropertyChanged("SFZH");
-					this.OnSFZHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XB", DbType="VarChar(10)")]
-		public string XB
-		{
-			get
-			{
-				return this._XB;
-			}
-			set
-			{
-				if ((this._XB != value))
-				{
-					this.OnXBChanging(value);
-					this.SendPropertyChanging();
-					this._XB = value;
-					this.SendPropertyChanged("XB");
-					this.OnXBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CSRQ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CSRQ
-		{
-			get
-			{
-				return this._CSRQ;
-			}
-			set
-			{
-				if ((this._CSRQ != value))
-				{
-					this.OnCSRQChanging(value);
-					this.SendPropertyChanging();
-					this._CSRQ = value;
-					this.SendPropertyChanged("CSRQ");
-					this.OnCSRQChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZZ", DbType="VarChar(200)")]
-		public string ZZ
-		{
-			get
-			{
-				return this._ZZ;
-			}
-			set
-			{
-				if ((this._ZZ != value))
-				{
-					this.OnZZChanging(value);
-					this.SendPropertyChanging();
-					this._ZZ = value;
-					this.SendPropertyChanged("ZZ");
-					this.OnZZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZW", DbType="VarChar(100)")]
-		public string ZW
-		{
-			get
-			{
-				return this._ZW;
-			}
-			set
-			{
-				if ((this._ZW != value))
-				{
-					this.OnZWChanging(value);
-					this.SendPropertyChanging();
-					this._ZW = value;
-					this.SendPropertyChanged("ZW");
-					this.OnZWChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSZC", DbType="VarChar(100)")]
-		public string JSZC
-		{
-			get
-			{
-				return this._JSZC;
-			}
-			set
-			{
-				if ((this._JSZC != value))
-				{
-					this.OnJSZCChanging(value);
-					this.SendPropertyChanging();
-					this._JSZC = value;
-					this.SendPropertyChanged("JSZC");
-					this.OnJSZCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDZCSJ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> QDZCSJ
-		{
-			get
-			{
-				return this._QDZCSJ;
-			}
-			set
-			{
-				if ((this._QDZCSJ != value))
-				{
-					this.OnQDZCSJChanging(value);
-					this.SendPropertyChanging();
-					this._QDZCSJ = value;
-					this.SendPropertyChanged("QDZCSJ");
-					this.OnQDZCSJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSLX", DbType="VarChar(14)")]
-		public string ZSLX
-		{
-			get
-			{
-				return this._ZSLX;
-			}
-			set
-			{
-				if ((this._ZSLX != value))
-				{
-					this.OnZSLXChanging(value);
-					this.SendPropertyChanging();
-					this._ZSLX = value;
-					this.SendPropertyChanged("ZSLX");
-					this.OnZSLXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSJB", DbType="VarChar(100)")]
-		public string ZSJB
-		{
-			get
-			{
-				return this._ZSJB;
-			}
-			set
-			{
-				if ((this._ZSJB != value))
-				{
-					this.OnZSJBChanging(value);
-					this.SendPropertyChanging();
-					this._ZSJB = value;
-					this.SendPropertyChanged("ZSJB");
-					this.OnZSJBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZSBH", DbType="VarChar(100)")]
-		public string ZCZSBH
-		{
-			get
-			{
-				return this._ZCZSBH;
-			}
-			set
-			{
-				if ((this._ZCZSBH != value))
-				{
-					this.OnZCZSBHChanging(value);
-					this.SendPropertyChanging();
-					this._ZCZSBH = value;
-					this.SendPropertyChanged("ZCZSBH");
-					this.OnZCZSBHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZGZSH", DbType="VarChar(100)")]
-		public string ZGZSH
-		{
-			get
-			{
-				return this._ZGZSH;
-			}
-			set
-			{
-				if ((this._ZGZSH != value))
-				{
-					this.OnZGZSHChanging(value);
-					this.SendPropertyChanging();
-					this._ZGZSH = value;
-					this.SendPropertyChanged("ZGZSH");
-					this.OnZGZSHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZSH", DbType="VarChar(100)")]
-		public string ZCZSH
-		{
-			get
-			{
-				return this._ZCZSH;
-			}
-			set
-			{
-				if ((this._ZCZSH != value))
-				{
-					this.OnZCZSHChanging(value);
-					this.SendPropertyChanging();
-					this._ZCZSH = value;
-					this.SendPropertyChanged("ZCZSH");
-					this.OnZCZSHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YZH", DbType="VarChar(100)")]
-		public string YZH
-		{
-			get
-			{
-				return this._YZH;
-			}
-			set
-			{
-				if ((this._YZH != value))
-				{
-					this.OnYZHChanging(value);
-					this.SendPropertyChanging();
-					this._YZH = value;
-					this.SendPropertyChanged("YZH");
-					this.OnYZHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZY", DbType="VarChar(50)")]
-		public string ZCZY
-		{
-			get
-			{
-				return this._ZCZY;
-			}
-			set
-			{
-				if ((this._ZCZY != value))
-				{
-					this.OnZCZYChanging(value);
-					this.SendPropertyChanging();
-					this._ZCZY = value;
-					this.SendPropertyChanged("ZCZY");
-					this.OnZCZYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSYXQKSSJ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ZSYXQKSSJ
-		{
-			get
-			{
-				return this._ZSYXQKSSJ;
-			}
-			set
-			{
-				if ((this._ZSYXQKSSJ != value))
-				{
-					this.OnZSYXQKSSJChanging(value);
-					this.SendPropertyChanging();
-					this._ZSYXQKSSJ = value;
-					this.SendPropertyChanged("ZSYXQKSSJ");
-					this.OnZSYXQKSSJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSYXQJSSJ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ZSYXQJSSJ
-		{
-			get
-			{
-				return this._ZSYXQJSSJ;
-			}
-			set
-			{
-				if ((this._ZSYXQJSSJ != value))
-				{
-					this.OnZSYXQJSSJChanging(value);
-					this.SendPropertyChanging();
-					this._ZSYXQJSSJ = value;
-					this.SendPropertyChanged("ZSYXQJSSJ");
-					this.OnZSYXQJSSJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZSJ", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FZSJ
-		{
-			get
-			{
-				return this._FZSJ;
-			}
-			set
-			{
-				if ((this._FZSJ != value))
-				{
-					this.OnFZSJChanging(value);
-					this.SendPropertyChanging();
-					this._FZSJ = value;
-					this.SendPropertyChanged("FZSJ");
-					this.OnFZSJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZJG", DbType="VarChar(100)")]
-		public string FZJG
-		{
-			get
-			{
-				return this._FZJG;
-			}
-			set
-			{
-				if ((this._FZJG != value))
-				{
-					this.OnFZJGChanging(value);
-					this.SendPropertyChanging();
-					this._FZJG = value;
-					this.SendPropertyChanged("FZJG");
-					this.OnFZJGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSZT", DbType="Int")]
-		public System.Nullable<int> ZSZT
-		{
-			get
-			{
-				return this._ZSZT;
-			}
-			set
-			{
-				if ((this._ZSZT != value))
-				{
-					this.OnZSZTChanging(value);
-					this.SendPropertyChanging();
-					this._ZSZT = value;
-					this.SendPropertyChanged("ZSZT");
-					this.OnZSZTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFDY", DbType="Int")]
-		public System.Nullable<int> SFDY
-		{
-			get
-			{
-				return this._SFDY;
-			}
-			set
-			{
-				if ((this._SFDY != value))
-				{
-					this.OnSFDYChanging(value);
-					this.SendPropertyChanging();
-					this._SFDY = value;
-					this.SendPropertyChanged("SFDY");
-					this.OnSFDYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BZ", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string BZ
-		{
-			get
-			{
-				return this._BZ;
-			}
-			set
-			{
-				if ((this._BZ != value))
-				{
-					this.OnBZChanging(value);
-					this.SendPropertyChanging();
-					this._BZ = value;
-					this.SendPropertyChanged("BZ");
-					this.OnBZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYZSXX", Storage="_RY_RYJBXX", ThisKey="RYBH", OtherKey="RYBH", IsForeignKey=true)]
-		public RY_RYJBXX RY_RYJBXX
-		{
-			get
-			{
-				return this._RY_RYJBXX.Entity;
-			}
-			set
-			{
-				RY_RYJBXX previousValue = this._RY_RYJBXX.Entity;
-				if (((previousValue != value) 
-							|| (this._RY_RYJBXX.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RY_RYJBXX.Entity = null;
-						previousValue.RY_RYZSXX.Remove(this);
-					}
-					this._RY_RYJBXX.Entity = value;
-					if ((value != null))
-					{
-						value.RY_RYZSXX.Add(this);
 						this._RYBH = value.RYBH;
 					}
 					else
@@ -17221,6 +15649,1315 @@ namespace EgovaDAO
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RY_RYZSXX")]
+	public partial class RY_RYZSXX
+	{
+		
+		private string _RYZSXXID;
+		
+		private string _QYBM;
+		
+		private System.Nullable<int> _QYSD;
+		
+		private string _RYBH;
+		
+		private string _XM;
+		
+		private string _ZJLX;
+		
+		private string _SFZH;
+		
+		private string _XB;
+		
+		private System.Nullable<System.DateTime> _CSRQ;
+		
+		private string _ZZ;
+		
+		private string _ZW;
+		
+		private string _JSZC;
+		
+		private System.Nullable<System.DateTime> _QDZCSJ;
+		
+		private System.Nullable<int> _ZSLX;
+		
+		private string _ZSJB;
+		
+		private string _ZCZSBH;
+		
+		private string _ZGZSH;
+		
+		private string _ZCZSH;
+		
+		private string _YZH;
+		
+		private string _ZCZY;
+		
+		private System.Nullable<System.DateTime> _ZSYXQKSSJ;
+		
+		private System.Nullable<System.DateTime> _ZSYXQJSSJ;
+		
+		private System.Nullable<System.DateTime> _FZSJ;
+		
+		private string _FZJG;
+		
+		private int _ZSZT;
+		
+		private string _SFDY;
+		
+		private string _BZ;
+		
+		public RY_RYZSXX()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYZSXXID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string RYZSXXID
+		{
+			get
+			{
+				return this._RYZSXXID;
+			}
+			set
+			{
+				if ((this._RYZSXXID != value))
+				{
+					this._RYZSXXID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYBM", DbType="VarChar(50)")]
+		public string QYBM
+		{
+			get
+			{
+				return this._QYBM;
+			}
+			set
+			{
+				if ((this._QYBM != value))
+				{
+					this._QYBM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYSD", DbType="Int")]
+		public System.Nullable<int> QYSD
+		{
+			get
+			{
+				return this._QYSD;
+			}
+			set
+			{
+				if ((this._QYSD != value))
+				{
+					this._QYSD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYBH", DbType="VarChar(50)")]
+		public string RYBH
+		{
+			get
+			{
+				return this._RYBH;
+			}
+			set
+			{
+				if ((this._RYBH != value))
+				{
+					this._RYBH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XM", DbType="VarChar(50)")]
+		public string XM
+		{
+			get
+			{
+				return this._XM;
+			}
+			set
+			{
+				if ((this._XM != value))
+				{
+					this._XM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZJLX", DbType="VarChar(20)")]
+		public string ZJLX
+		{
+			get
+			{
+				return this._ZJLX;
+			}
+			set
+			{
+				if ((this._ZJLX != value))
+				{
+					this._ZJLX = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFZH", DbType="VarChar(80)")]
+		public string SFZH
+		{
+			get
+			{
+				return this._SFZH;
+			}
+			set
+			{
+				if ((this._SFZH != value))
+				{
+					this._SFZH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XB", DbType="VarChar(10)")]
+		public string XB
+		{
+			get
+			{
+				return this._XB;
+			}
+			set
+			{
+				if ((this._XB != value))
+				{
+					this._XB = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CSRQ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CSRQ
+		{
+			get
+			{
+				return this._CSRQ;
+			}
+			set
+			{
+				if ((this._CSRQ != value))
+				{
+					this._CSRQ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZZ", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string ZZ
+		{
+			get
+			{
+				return this._ZZ;
+			}
+			set
+			{
+				if ((this._ZZ != value))
+				{
+					this._ZZ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZW", DbType="VarChar(100)")]
+		public string ZW
+		{
+			get
+			{
+				return this._ZW;
+			}
+			set
+			{
+				if ((this._ZW != value))
+				{
+					this._ZW = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSZC", DbType="VarChar(100)")]
+		public string JSZC
+		{
+			get
+			{
+				return this._JSZC;
+			}
+			set
+			{
+				if ((this._JSZC != value))
+				{
+					this._JSZC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDZCSJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> QDZCSJ
+		{
+			get
+			{
+				return this._QDZCSJ;
+			}
+			set
+			{
+				if ((this._QDZCSJ != value))
+				{
+					this._QDZCSJ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSLX", DbType="Int")]
+		public System.Nullable<int> ZSLX
+		{
+			get
+			{
+				return this._ZSLX;
+			}
+			set
+			{
+				if ((this._ZSLX != value))
+				{
+					this._ZSLX = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSJB", DbType="NVarChar(50)")]
+		public string ZSJB
+		{
+			get
+			{
+				return this._ZSJB;
+			}
+			set
+			{
+				if ((this._ZSJB != value))
+				{
+					this._ZSJB = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZSBH", DbType="VarChar(100)")]
+		public string ZCZSBH
+		{
+			get
+			{
+				return this._ZCZSBH;
+			}
+			set
+			{
+				if ((this._ZCZSBH != value))
+				{
+					this._ZCZSBH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZGZSH", DbType="VarChar(100)")]
+		public string ZGZSH
+		{
+			get
+			{
+				return this._ZGZSH;
+			}
+			set
+			{
+				if ((this._ZGZSH != value))
+				{
+					this._ZGZSH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZSH", DbType="VarChar(100)")]
+		public string ZCZSH
+		{
+			get
+			{
+				return this._ZCZSH;
+			}
+			set
+			{
+				if ((this._ZCZSH != value))
+				{
+					this._ZCZSH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YZH", DbType="VarChar(100)")]
+		public string YZH
+		{
+			get
+			{
+				return this._YZH;
+			}
+			set
+			{
+				if ((this._YZH != value))
+				{
+					this._YZH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZY", DbType="VarChar(500)")]
+		public string ZCZY
+		{
+			get
+			{
+				return this._ZCZY;
+			}
+			set
+			{
+				if ((this._ZCZY != value))
+				{
+					this._ZCZY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSYXQKSSJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ZSYXQKSSJ
+		{
+			get
+			{
+				return this._ZSYXQKSSJ;
+			}
+			set
+			{
+				if ((this._ZSYXQKSSJ != value))
+				{
+					this._ZSYXQKSSJ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSYXQJSSJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ZSYXQJSSJ
+		{
+			get
+			{
+				return this._ZSYXQJSSJ;
+			}
+			set
+			{
+				if ((this._ZSYXQJSSJ != value))
+				{
+					this._ZSYXQJSSJ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZSJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FZSJ
+		{
+			get
+			{
+				return this._FZSJ;
+			}
+			set
+			{
+				if ((this._FZSJ != value))
+				{
+					this._FZSJ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZJG", DbType="VarChar(100)")]
+		public string FZJG
+		{
+			get
+			{
+				return this._FZJG;
+			}
+			set
+			{
+				if ((this._FZJG != value))
+				{
+					this._FZJG = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSZT", DbType="Int NOT NULL")]
+		public int ZSZT
+		{
+			get
+			{
+				return this._ZSZT;
+			}
+			set
+			{
+				if ((this._ZSZT != value))
+				{
+					this._ZSZT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFDY", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string SFDY
+		{
+			get
+			{
+				return this._SFDY;
+			}
+			set
+			{
+				if ((this._SFDY != value))
+				{
+					this._SFDY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BZ", DbType="VarChar(1015)")]
+		public string BZ
+		{
+			get
+			{
+				return this._BZ;
+			}
+			set
+			{
+				if ((this._BZ != value))
+				{
+					this._BZ = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RY_RYJBXX")]
+	public partial class RY_RYJBXX : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _QYBM;
+		
+		private string _RYBH;
+		
+		private string _XM;
+		
+		private string _ZJLX;
+		
+		private string _SFZH;
+		
+		private string _XB;
+		
+		private System.Nullable<System.DateTime> _CSRQ;
+		
+		private string _MZ;
+		
+		private string _ZZ;
+		
+		private string _ZW;
+		
+		private string _BYYX;
+		
+		private System.Nullable<System.DateTime> _BYSJ;
+		
+		private string _SXZY;
+		
+		private string _LXDZ;
+		
+		private string _YXBM;
+		
+		private string _DZYX;
+		
+		private string _BGDH;
+		
+		private string _GRDH;
+		
+		private string _ZPURL;
+		
+		private string _RYZT;
+		
+		private string _ZC;
+		
+		private System.Nullable<System.DateTime> _QDZCSJ;
+		
+		private string _BZ;
+		
+		private EntitySet<RY_DBGCYJ> _RY_DBGCYJ;
+		
+		private EntitySet<RY_GZDWQK> _RY_GZDWQK;
+		
+		private EntitySet<RY_JXJYQK> _RY_JXJYQK;
+		
+		private EntitySet<RY_KYFMCG> _RY_KYFMCG;
+		
+		private EntitySet<RY_RYBLXWXX> _RY_RYBLXWXX;
+		
+		private EntitySet<RY_RYXYPD> _RY_RYXYPD;
+		
+		private EntitySet<RY_RYYLXWXX> _RY_RYYLXWXX;
+		
+		private EntitySet<RY_ZJGCXM> _RY_ZJGCXM;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQYBMChanging(string value);
+    partial void OnQYBMChanged();
+    partial void OnRYBHChanging(string value);
+    partial void OnRYBHChanged();
+    partial void OnXMChanging(string value);
+    partial void OnXMChanged();
+    partial void OnZJLXChanging(string value);
+    partial void OnZJLXChanged();
+    partial void OnSFZHChanging(string value);
+    partial void OnSFZHChanged();
+    partial void OnXBChanging(string value);
+    partial void OnXBChanged();
+    partial void OnCSRQChanging(System.Nullable<System.DateTime> value);
+    partial void OnCSRQChanged();
+    partial void OnMZChanging(string value);
+    partial void OnMZChanged();
+    partial void OnZZChanging(string value);
+    partial void OnZZChanged();
+    partial void OnZWChanging(string value);
+    partial void OnZWChanged();
+    partial void OnBYYXChanging(string value);
+    partial void OnBYYXChanged();
+    partial void OnBYSJChanging(System.Nullable<System.DateTime> value);
+    partial void OnBYSJChanged();
+    partial void OnSXZYChanging(string value);
+    partial void OnSXZYChanged();
+    partial void OnLXDZChanging(string value);
+    partial void OnLXDZChanged();
+    partial void OnYXBMChanging(string value);
+    partial void OnYXBMChanged();
+    partial void OnDZYXChanging(string value);
+    partial void OnDZYXChanged();
+    partial void OnBGDHChanging(string value);
+    partial void OnBGDHChanged();
+    partial void OnGRDHChanging(string value);
+    partial void OnGRDHChanged();
+    partial void OnZPURLChanging(string value);
+    partial void OnZPURLChanged();
+    partial void OnRYZTChanging(string value);
+    partial void OnRYZTChanged();
+    partial void OnZCChanging(string value);
+    partial void OnZCChanged();
+    partial void OnQDZCSJChanging(System.Nullable<System.DateTime> value);
+    partial void OnQDZCSJChanged();
+    partial void OnBZChanging(string value);
+    partial void OnBZChanged();
+    #endregion
+		
+		public RY_RYJBXX()
+		{
+			this._RY_DBGCYJ = new EntitySet<RY_DBGCYJ>(new Action<RY_DBGCYJ>(this.attach_RY_DBGCYJ), new Action<RY_DBGCYJ>(this.detach_RY_DBGCYJ));
+			this._RY_GZDWQK = new EntitySet<RY_GZDWQK>(new Action<RY_GZDWQK>(this.attach_RY_GZDWQK), new Action<RY_GZDWQK>(this.detach_RY_GZDWQK));
+			this._RY_JXJYQK = new EntitySet<RY_JXJYQK>(new Action<RY_JXJYQK>(this.attach_RY_JXJYQK), new Action<RY_JXJYQK>(this.detach_RY_JXJYQK));
+			this._RY_KYFMCG = new EntitySet<RY_KYFMCG>(new Action<RY_KYFMCG>(this.attach_RY_KYFMCG), new Action<RY_KYFMCG>(this.detach_RY_KYFMCG));
+			this._RY_RYBLXWXX = new EntitySet<RY_RYBLXWXX>(new Action<RY_RYBLXWXX>(this.attach_RY_RYBLXWXX), new Action<RY_RYBLXWXX>(this.detach_RY_RYBLXWXX));
+			this._RY_RYXYPD = new EntitySet<RY_RYXYPD>(new Action<RY_RYXYPD>(this.attach_RY_RYXYPD), new Action<RY_RYXYPD>(this.detach_RY_RYXYPD));
+			this._RY_RYYLXWXX = new EntitySet<RY_RYYLXWXX>(new Action<RY_RYYLXWXX>(this.attach_RY_RYYLXWXX), new Action<RY_RYYLXWXX>(this.detach_RY_RYYLXWXX));
+			this._RY_ZJGCXM = new EntitySet<RY_ZJGCXM>(new Action<RY_ZJGCXM>(this.attach_RY_ZJGCXM), new Action<RY_ZJGCXM>(this.detach_RY_ZJGCXM));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYBM", DbType="VarChar(50)")]
+		public string QYBM
+		{
+			get
+			{
+				return this._QYBM;
+			}
+			set
+			{
+				if ((this._QYBM != value))
+				{
+					this.OnQYBMChanging(value);
+					this.SendPropertyChanging();
+					this._QYBM = value;
+					this.SendPropertyChanged("QYBM");
+					this.OnQYBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYBH", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string RYBH
+		{
+			get
+			{
+				return this._RYBH;
+			}
+			set
+			{
+				if ((this._RYBH != value))
+				{
+					this.OnRYBHChanging(value);
+					this.SendPropertyChanging();
+					this._RYBH = value;
+					this.SendPropertyChanged("RYBH");
+					this.OnRYBHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XM", DbType="VarChar(50)")]
+		public string XM
+		{
+			get
+			{
+				return this._XM;
+			}
+			set
+			{
+				if ((this._XM != value))
+				{
+					this.OnXMChanging(value);
+					this.SendPropertyChanging();
+					this._XM = value;
+					this.SendPropertyChanged("XM");
+					this.OnXMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZJLX", DbType="VarChar(10)")]
+		public string ZJLX
+		{
+			get
+			{
+				return this._ZJLX;
+			}
+			set
+			{
+				if ((this._ZJLX != value))
+				{
+					this.OnZJLXChanging(value);
+					this.SendPropertyChanging();
+					this._ZJLX = value;
+					this.SendPropertyChanged("ZJLX");
+					this.OnZJLXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFZH", DbType="VarChar(30)")]
+		public string SFZH
+		{
+			get
+			{
+				return this._SFZH;
+			}
+			set
+			{
+				if ((this._SFZH != value))
+				{
+					this.OnSFZHChanging(value);
+					this.SendPropertyChanging();
+					this._SFZH = value;
+					this.SendPropertyChanged("SFZH");
+					this.OnSFZHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XB", DbType="VarChar(10)")]
+		public string XB
+		{
+			get
+			{
+				return this._XB;
+			}
+			set
+			{
+				if ((this._XB != value))
+				{
+					this.OnXBChanging(value);
+					this.SendPropertyChanging();
+					this._XB = value;
+					this.SendPropertyChanged("XB");
+					this.OnXBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CSRQ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CSRQ
+		{
+			get
+			{
+				return this._CSRQ;
+			}
+			set
+			{
+				if ((this._CSRQ != value))
+				{
+					this.OnCSRQChanging(value);
+					this.SendPropertyChanging();
+					this._CSRQ = value;
+					this.SendPropertyChanged("CSRQ");
+					this.OnCSRQChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MZ", DbType="VarChar(50)")]
+		public string MZ
+		{
+			get
+			{
+				return this._MZ;
+			}
+			set
+			{
+				if ((this._MZ != value))
+				{
+					this.OnMZChanging(value);
+					this.SendPropertyChanging();
+					this._MZ = value;
+					this.SendPropertyChanged("MZ");
+					this.OnMZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZZ", DbType="VarChar(50)")]
+		public string ZZ
+		{
+			get
+			{
+				return this._ZZ;
+			}
+			set
+			{
+				if ((this._ZZ != value))
+				{
+					this.OnZZChanging(value);
+					this.SendPropertyChanging();
+					this._ZZ = value;
+					this.SendPropertyChanged("ZZ");
+					this.OnZZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZW", DbType="VarChar(50)")]
+		public string ZW
+		{
+			get
+			{
+				return this._ZW;
+			}
+			set
+			{
+				if ((this._ZW != value))
+				{
+					this.OnZWChanging(value);
+					this.SendPropertyChanging();
+					this._ZW = value;
+					this.SendPropertyChanged("ZW");
+					this.OnZWChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BYYX", DbType="VarChar(80)")]
+		public string BYYX
+		{
+			get
+			{
+				return this._BYYX;
+			}
+			set
+			{
+				if ((this._BYYX != value))
+				{
+					this.OnBYYXChanging(value);
+					this.SendPropertyChanging();
+					this._BYYX = value;
+					this.SendPropertyChanged("BYYX");
+					this.OnBYYXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BYSJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BYSJ
+		{
+			get
+			{
+				return this._BYSJ;
+			}
+			set
+			{
+				if ((this._BYSJ != value))
+				{
+					this.OnBYSJChanging(value);
+					this.SendPropertyChanging();
+					this._BYSJ = value;
+					this.SendPropertyChanged("BYSJ");
+					this.OnBYSJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SXZY", DbType="VarChar(80)")]
+		public string SXZY
+		{
+			get
+			{
+				return this._SXZY;
+			}
+			set
+			{
+				if ((this._SXZY != value))
+				{
+					this.OnSXZYChanging(value);
+					this.SendPropertyChanging();
+					this._SXZY = value;
+					this.SendPropertyChanged("SXZY");
+					this.OnSXZYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXDZ", DbType="VarChar(200)")]
+		public string LXDZ
+		{
+			get
+			{
+				return this._LXDZ;
+			}
+			set
+			{
+				if ((this._LXDZ != value))
+				{
+					this.OnLXDZChanging(value);
+					this.SendPropertyChanging();
+					this._LXDZ = value;
+					this.SendPropertyChanged("LXDZ");
+					this.OnLXDZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YXBM", DbType="VarChar(20)")]
+		public string YXBM
+		{
+			get
+			{
+				return this._YXBM;
+			}
+			set
+			{
+				if ((this._YXBM != value))
+				{
+					this.OnYXBMChanging(value);
+					this.SendPropertyChanging();
+					this._YXBM = value;
+					this.SendPropertyChanged("YXBM");
+					this.OnYXBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DZYX", DbType="VarChar(100)")]
+		public string DZYX
+		{
+			get
+			{
+				return this._DZYX;
+			}
+			set
+			{
+				if ((this._DZYX != value))
+				{
+					this.OnDZYXChanging(value);
+					this.SendPropertyChanging();
+					this._DZYX = value;
+					this.SendPropertyChanged("DZYX");
+					this.OnDZYXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BGDH", DbType="VarChar(100)")]
+		public string BGDH
+		{
+			get
+			{
+				return this._BGDH;
+			}
+			set
+			{
+				if ((this._BGDH != value))
+				{
+					this.OnBGDHChanging(value);
+					this.SendPropertyChanging();
+					this._BGDH = value;
+					this.SendPropertyChanged("BGDH");
+					this.OnBGDHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GRDH", DbType="VarChar(100)")]
+		public string GRDH
+		{
+			get
+			{
+				return this._GRDH;
+			}
+			set
+			{
+				if ((this._GRDH != value))
+				{
+					this.OnGRDHChanging(value);
+					this.SendPropertyChanging();
+					this._GRDH = value;
+					this.SendPropertyChanged("GRDH");
+					this.OnGRDHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZPURL", DbType="VarChar(400)")]
+		public string ZPURL
+		{
+			get
+			{
+				return this._ZPURL;
+			}
+			set
+			{
+				if ((this._ZPURL != value))
+				{
+					this.OnZPURLChanging(value);
+					this.SendPropertyChanging();
+					this._ZPURL = value;
+					this.SendPropertyChanged("ZPURL");
+					this.OnZPURLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RYZT", DbType="VarChar(50)")]
+		public string RYZT
+		{
+			get
+			{
+				return this._RYZT;
+			}
+			set
+			{
+				if ((this._RYZT != value))
+				{
+					this.OnRYZTChanging(value);
+					this.SendPropertyChanging();
+					this._RYZT = value;
+					this.SendPropertyChanged("RYZT");
+					this.OnRYZTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZC", DbType="VarChar(50)")]
+		public string ZC
+		{
+			get
+			{
+				return this._ZC;
+			}
+			set
+			{
+				if ((this._ZC != value))
+				{
+					this.OnZCChanging(value);
+					this.SendPropertyChanging();
+					this._ZC = value;
+					this.SendPropertyChanged("ZC");
+					this.OnZCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDZCSJ", DbType="DateTime")]
+		public System.Nullable<System.DateTime> QDZCSJ
+		{
+			get
+			{
+				return this._QDZCSJ;
+			}
+			set
+			{
+				if ((this._QDZCSJ != value))
+				{
+					this.OnQDZCSJChanging(value);
+					this.SendPropertyChanging();
+					this._QDZCSJ = value;
+					this.SendPropertyChanged("QDZCSJ");
+					this.OnQDZCSJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BZ", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string BZ
+		{
+			get
+			{
+				return this._BZ;
+			}
+			set
+			{
+				if ((this._BZ != value))
+				{
+					this.OnBZChanging(value);
+					this.SendPropertyChanging();
+					this._BZ = value;
+					this.SendPropertyChanged("BZ");
+					this.OnBZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_DBGCYJ", Storage="_RY_DBGCYJ", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_DBGCYJ> RY_DBGCYJ
+		{
+			get
+			{
+				return this._RY_DBGCYJ;
+			}
+			set
+			{
+				this._RY_DBGCYJ.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_GZDWQK", Storage="_RY_GZDWQK", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_GZDWQK> RY_GZDWQK
+		{
+			get
+			{
+				return this._RY_GZDWQK;
+			}
+			set
+			{
+				this._RY_GZDWQK.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_JXJYQK", Storage="_RY_JXJYQK", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_JXJYQK> RY_JXJYQK
+		{
+			get
+			{
+				return this._RY_JXJYQK;
+			}
+			set
+			{
+				this._RY_JXJYQK.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_KYFMCG", Storage="_RY_KYFMCG", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_KYFMCG> RY_KYFMCG
+		{
+			get
+			{
+				return this._RY_KYFMCG;
+			}
+			set
+			{
+				this._RY_KYFMCG.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYBLXWXX", Storage="_RY_RYBLXWXX", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_RYBLXWXX> RY_RYBLXWXX
+		{
+			get
+			{
+				return this._RY_RYBLXWXX;
+			}
+			set
+			{
+				this._RY_RYBLXWXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYXYPD", Storage="_RY_RYXYPD", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_RYXYPD> RY_RYXYPD
+		{
+			get
+			{
+				return this._RY_RYXYPD;
+			}
+			set
+			{
+				this._RY_RYXYPD.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_RYYLXWXX", Storage="_RY_RYYLXWXX", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_RYYLXWXX> RY_RYYLXWXX
+		{
+			get
+			{
+				return this._RY_RYYLXWXX;
+			}
+			set
+			{
+				this._RY_RYYLXWXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RY_RYJBXX_RY_ZJGCXM", Storage="_RY_ZJGCXM", ThisKey="RYBH", OtherKey="RYBH")]
+		public EntitySet<RY_ZJGCXM> RY_ZJGCXM
+		{
+			get
+			{
+				return this._RY_ZJGCXM;
+			}
+			set
+			{
+				this._RY_ZJGCXM.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_RY_DBGCYJ(RY_DBGCYJ entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_DBGCYJ(RY_DBGCYJ entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_GZDWQK(RY_GZDWQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_GZDWQK(RY_GZDWQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_JXJYQK(RY_JXJYQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_JXJYQK(RY_JXJYQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_KYFMCG(RY_KYFMCG entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_KYFMCG(RY_KYFMCG entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_RYBLXWXX(RY_RYBLXWXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_RYBLXWXX(RY_RYBLXWXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_RYXYPD(RY_RYXYPD entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_RYXYPD(RY_RYXYPD entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_RYYLXWXX(RY_RYYLXWXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_RYYLXWXX(RY_RYYLXWXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
+		}
+		
+		private void attach_RY_ZJGCXM(RY_ZJGCXM entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = this;
+		}
+		
+		private void detach_RY_ZJGCXM(RY_ZJGCXM entity)
+		{
+			this.SendPropertyChanging();
+			entity.RY_RYJBXX = null;
 		}
 	}
 }

@@ -252,6 +252,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         sr.QYMC = ent.FEntName;
         sr.BGQK = "增加";
         sr.BGTime = DateTime.Now;
+        sr.fenttype = EConvert.ToInt(t_Enttype.Value);//企业类型
         //sr.FLinkId = ent.FId;
         sr.FLinkId = ent.FEmpId;
         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);

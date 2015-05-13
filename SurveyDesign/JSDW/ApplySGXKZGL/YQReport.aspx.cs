@@ -68,10 +68,16 @@ public partial class JSDW_ApplySGXKZGL_YQReport : System.Web.UI.Page
             pageTool tool = new pageTool(this.Page, "k_");
             tool.fillPageControl(ent);
         }
+        //通过appid找到延期申请
         TC_SGXKZ_YQSQ qa = db.TC_SGXKZ_YQSQ.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
+        //通过项目编号找到施工许可证项目信息
         TC_SGXKZ_PrjInfo sp = db.TC_SGXKZ_PrjInfo.Where(t => t.FId == qa.FPrjInfoId).FirstOrDefault();
-        ViewState["PrjItemName"] = sp.PrjItemName;
-        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == sp.PrjId).FirstOrDefault();
+        //通过工程编号找到工程信息
+        TC_PrjItem_Info tp = db.TC_PrjItem_Info.Where(t => t.FId == sp.PrjItemId).FirstOrDefault();
+
+        ViewState["PrjItemName"] = sp.PrjItemName;        
+        //TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == sp.PrjId).FirstOrDefault();
+        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == tp.FPrjId).FirstOrDefault();
         govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
         if (prjInfo.AddressDept.Length == 2)
         {

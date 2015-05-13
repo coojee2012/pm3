@@ -153,5 +153,27 @@ namespace EgovaDAO.Properties {
                 return ((string)(this["dbCenterConnectionString7"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.16.0.115;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=T" +
+            "rue;User ID=jkc115")]
+        public string JST_XZSPBaseInfoConnectionString3 {
+            get {
+                return ((string)(this["JST_XZSPBaseInfoConnectionString3"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sql;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa;" +
+            "Password=123456Aa")]
+        public string dbCenterConnectionString8 {
+            get {
+                return ((string)(this["dbCenterConnectionString8"]));
+            }
+        }
     }
 }

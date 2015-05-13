@@ -37,6 +37,12 @@
             }
         }
         function addEnt() {
+            var fid = document.getElementById("txtFId").value;
+            if (fid == null || fid == '')
+            {
+                alert('请先保存上方信息！');
+                return false;
+            }
             var FAppId = document.getElementById("hf_FAppId").value;
             showAddWindow('ZBJGList.aspx?FAppId=' + FAppId, 1300, 700);
         }

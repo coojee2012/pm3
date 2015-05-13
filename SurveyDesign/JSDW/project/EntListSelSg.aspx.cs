@@ -33,7 +33,12 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
             {
                 string qylx = EConvert.ToString(Request.QueryString["qylx"]);
                 ViewState["qylx"] = qylx;
-                showInfo(qylx);
+                if (!string.IsNullOrEmpty(Request.QueryString["axz"]))
+                {
+                    showInfo(qylx, "axz");
+                }
+                else
+                { showInfo(qylx); }                
             }
             else
             {
@@ -59,6 +64,39 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
 
         return sys;
     }
+
+    //显示 
+    void showInfo(string qylx,string axz)
+    {
+        EgovaDB1 db = new EgovaDB1();
+        var App = from b in db.QY_JBXX
+                  join c in db.QY_QYZSXX
+                  on b.QYBM equals c.QYBM
+                  where b.QYLXBM == "150" 
+                  select new
+                  {
+                      b.QYBM,
+                      b.QYMC,
+                      b.QYLXBM,
+                      //b.RegAdrProvinceName,
+                      RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
+                      b.QYXXDZ,
+                      b.FRDB,
+                      b.LXR,
+                      b.LXDH,
+                      ZSBH = c.ZSBH,
+                      ZZMC = c.ZSLXMC,
+                      AXBH = c.ZSBH                      
+                  };
+        if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+        {
+            App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+        }
+        Pager1.RecordCount = App.Count();
+        dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
+        dg_List.DataBind();
+    }
+
     
     //显示 
     void showInfo(string qylx)
@@ -146,7 +184,14 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
         if (!string.IsNullOrEmpty(EConvert.ToString(ViewState["qylx"])))
         {
             string qylx = EConvert.ToString(ViewState["qylx"]);
-            showInfo(qylx);
+            if (!string.IsNullOrEmpty(Request.QueryString["axz"]))
+            {
+                showInfo(qylx, "axz");
+            }
+            else
+            {
+                showInfo(qylx);
+            }
         }else {
             showInfo();
         }
@@ -155,9 +200,16 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
     protected void btnReload_Click(object sender, EventArgs e)
     {
         if (!string.IsNullOrEmpty(EConvert.ToString(ViewState["qylx"])))
-        {
+        {           
             string qylx = EConvert.ToString(ViewState["qylx"]);
-            showInfo(qylx);
+            if (!string.IsNullOrEmpty(Request.QueryString["axz"]))
+            {
+                showInfo(qylx, "axz");
+            }
+            else
+            {
+                showInfo(qylx);
+            }
         }
         else
         {

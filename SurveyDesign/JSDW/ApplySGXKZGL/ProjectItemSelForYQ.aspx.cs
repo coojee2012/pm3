@@ -41,20 +41,19 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
         //        };
         //if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
         //    App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
-        //以前是从业务库中选取项目，现在改为从归档库中获取项目信息  modify by psq 20150429
-        var App = from t in dbContext.TC_PrjItem_Info
-                  join a in dbContext.GD_TC_SGXKZ_PrjInfo
-                  on t.FId equals a.FPrjItemId
+        //以前是从业务库中选取项目，现在改为从归档库中获取项目信息  modify by psq 20150429,需要在TC_SGXKZ_PrjInfo和GD_TC_SGXKZ_PrjInfo表中增加jsdwid，用于识别是否是自己建立的业务。
+        var App = from t in dbContext.GD_TC_SGXKZ_PrjInfo                                 
                   join b in dbContext.CF_App_List
-                  on a.FAppId equals b.FId
-                  //where t.FJSDWID == CurrentEntUser.EntId && b.FState == 6
-                  where  b.FState == 6
+                  on t.FAppId equals b.FId
+                  where b.FBaseinfoId == CurrentEntUser.EntId && b.FState == 6     
                   orderby t.FId
                   select new
                   {
                       t.PrjItemName,
                       t.PrjItemType,
-                      t.FId
+                      t.FId,
+                      t.jsdwid,
+                      t.FPrjItemId
                   };
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.PrjItemName.Contains(t_FName.Text.Trim()));
@@ -75,7 +74,7 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
             }
             catch
             { }
-            LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 2].Controls[0] as LinkButton;
+            LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 3].Controls[0] as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该项目吗?');");
         }
@@ -97,8 +96,8 @@ public partial class JSDW_ApplySGXKZGL_ProjectItemSelForYQ : System.Web.UI.Page
             if (e.CommandName == "Sel")
             {
                 string fid = e.Item.Cells[e.Item.Cells.Count - 1].Text;
-                pageTool tool = new pageTool(this.Page);
-                tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+                 pageTool tool = new pageTool(this.Page);
+                 tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");             
             }
         }
     }

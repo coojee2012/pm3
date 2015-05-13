@@ -115,7 +115,8 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
 
                 pageTool tool = new pageTool(this.Page, "t_");
                 tool.fillPageControl(emp);
-                JSDW_DeptID.fNumber = emp.JSDWAddressDept;
+                //从施工许可证信息表中读取，新建的时候由当前登录用户信息导入
+                JSDW_DeptID.fNumber = emp.JSDWAddressDept;  //建设单位所属地
                 PrjGovdeptid.fNumber = p.AddressDept;
                 t_PrjItemType.Text = pi.PrjItemType;
                 t_ProjectLevel.Text = p.ProjectLevel;
@@ -123,7 +124,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                 t_ProjectUse.Text = p.ProjectUse;
                 t_BuildType.Text = p.ConstrType;
                 t_ConstrType.Text = pi.ConstrType;
-
+                //
                 if (!string.IsNullOrEmpty(emp.LXDH))
                 {
                     t_LXDH.Text = emp.LXDH;

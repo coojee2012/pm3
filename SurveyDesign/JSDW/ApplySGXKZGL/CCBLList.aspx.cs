@@ -162,23 +162,48 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         app.FReportCount = 1;
         dbContext.CF_App_List.InsertOnSubmit(app);
 
-        //添加初次办理信息
-        TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo
+        //通过session中的entid获取到当前登录用户的相关信息，并赋值对应的信息施工许可证中的建设单位信息
+        TC_JSDW_USER tju = new TC_JSDW_USER();
+        tju = dbContext.TC_JSDW_USER.Where(t =>t.FID == CurrentEntUser.EntId).FirstOrDefault();
+        if (tju != null)
         {
-            FId = Guid.NewGuid().ToString(),
-            FAppId = FAppId,
-            PrjId = t_FPrjId.Value,
-            PrjItemId = t_FPriItemId.Value,
-            FPrjItemId = t_FPriItemId.Value,
-            PrjItemName = t_FPrjItemName.Text,
-            ProjectName = t_FPrjName.Value,
-            PrjAddressDept = t_AddressDept.Value,
-            PrjItemType = t_PrjItemType.Value,
-            JSDWAddressDept = t_JSDWAddressDept.Value,//MODIFY:YTB 从控件取值赋值建设单位所属地
-            ReportTime = DateTime.Now,
-            JSDW = t_JSDW.Value
-        };
-        dbContext.TC_SGXKZ_PrjInfo.InsertOnSubmit(record);
+            //添加初次办理信息
+            TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo
+            {
+                FId = Guid.NewGuid().ToString(),
+                FAppId = FAppId,
+                PrjId = t_FPrjId.Value,
+                PrjItemId = t_FPriItemId.Value,
+                FPrjItemId = t_FPriItemId.Value,
+                PrjItemName = t_FPrjItemName.Text,
+                ProjectName = t_FPrjName.Value,
+                PrjAddressDept = t_AddressDept.Value,
+                PrjItemType = t_PrjItemType.Value,
+                //JSDWAddressDept = t_JSDWAddressDept.Value,//MODIFY:YTB 从控件取值赋值建设单位所属地
+                //新建建设单位id
+                
+                jsdwid = CurrentEntUser.EntId,
+                JProvince = tju.s1,
+                JCity = tju.s2,
+                JCounty = tju.s3,
+                JSDWAddressDept = tju.SSQYID,
+                JSDWDZ = tju.DWDZ,
+                //JSDWXZ = tju.DWXZ,//建设单位性质，企业信息表中是汉字，暂时不能对应，让用户自己选择
+                FDDBR = tju.FRXM,
+                FRDH = tju.FRSJ,
+                LZR = tju.LXR,
+                LXDH = tju.LXDH,
+                JSFZR = "",
+                JSFZRZC = "",
+                JSFZRDH = "",
+                //
+                ReportTime = DateTime.Now,
+                //JSDW = t_JSDW.Value
+                JSDW = tju.FCompany
+            };
+            dbContext.TC_SGXKZ_PrjInfo.InsertOnSubmit(record);
+        }
+       
         //提交修改
         dbContext.SubmitChanges();
         lblMessage.Text = "业务创建成功,即将自动跳转到业务信息登记页面...";

@@ -111,7 +111,7 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime,");
         sb.Append(" case qa.SGXKZBB when 0 then '否' when 1 then '是' end as isBB");
         sb.Append(" from CF_App_ProcessInstance ep , CF_App_ProcessRecord er, V_SGXKZ_YW qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 and qa.SGXKZBB=0 ");
+        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
@@ -128,7 +128,7 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
         sb.Append(" ep.FSubFlowId,ep.FYear,ep.FResult,er.FResult FFResult,er.FAppTime,er.FMeasure,er.FReporttime,");
         sb.Append(" case qa.SGXKZBB when 0 then '否' when 1 then '是' end as isBB");
         sb.Append(" from CF_App_ProcessInstanceBackup ep , CF_App_ProcessRecordBackup er, V_SGXKZ_YW qa, CF_APP_LIST ap");
-        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5 and qa.SGXKZBB=0 ");
+        sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=5");  //and qa.SGXKZBB=0 
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
@@ -147,8 +147,7 @@ public partial class Government_AppSGXKZGL_FSList : govBasePage
         this.Pager1.pagecount = 15;
         this.Pager1.dataBind();
 
-
-
+        
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)

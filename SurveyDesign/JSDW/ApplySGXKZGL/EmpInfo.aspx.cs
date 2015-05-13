@@ -266,17 +266,20 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
         string selEmpId = string.Empty;
         EgovaDB1 db = new EgovaDB1();
 
-        var firstOrDefault = db.RY_RYZSXX.FirstOrDefault(t => t.RYZSXXID == ryzsxxid);   //传回来的值原来是人员编号RYBH ，已改 by zyd
+        var firstOrDefault = db.RY_RYZSXX.Where(t => t.RYZSXXID == ryzsxxid).FirstOrDefault();   //传回来的值原来是人员编号RYBH ，已改 by zyd
         if (firstOrDefault != null)
             selEmpId = firstOrDefault.RYBH;
-
+       
         var v = db.RY_RYJBXX.FirstOrDefault(t => t.RYBH == selEmpId);
         //t_EmpType.SelectedValue = v.RYLBBM;
         if (v != null)
         {
             t_FHumanName.Text = v.XM;
-            t_FIdCard.Text = v.SFZH;           
-                t_FSex.SelectedValue = v.XB.ToString();           
+            t_FIdCard.Text = v.SFZH;
+            if (v.XB != null)
+            {
+                t_FSex.SelectedValue = v.XB.ToString();
+            }
             t_FMobile.Text = v.GRDH;
             t_ZC.SelectedValue = ((v.ZC == null) ? this.t_ZC.Items.FindByText("其他").Value : (this.t_ZC.Items.FindByText(v.ZC) == null ? this.t_ZC.Items.FindByText("其他").Value : this.t_ZC.Items.FindByText(v.ZC).Value));
             t_ZW.Text = v.ZW;
@@ -290,7 +293,7 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
 
             if (t_DJ.Items.Contains(new ListItem(v1.ZSLX.ToString())))
             { 
-               t_DJ.SelectedValue = v1.ZSLX;
+               t_DJ.SelectedValue = v1.ZSLX.ToString();
             }
             //t_DJ.SelectedValue = string.IsNullOrEmpty(v1.ZSJB) ? this.t_DJ.Items.FindByText("其他").Value : (this.t_DJ.Items.FindByValue(v1.ZSJB) == null ? this.t_DJ.Items.FindByText("其他").Value : this.t_DJ.Items.FindByValue(v1.ZSJB).Value);
             t_ZCBH.Text = v1.ZCZSH;

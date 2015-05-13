@@ -1,0 +1,2 @@
+ --人员变更记录表添加所在企业类型
+ alter table TC_SGXKZ_RYBGJG add fenttype int null

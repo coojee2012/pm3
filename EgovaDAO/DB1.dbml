@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JST_XZSPBaseInfo" Class="DB1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sql;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="JST_XZSPBaseInfoConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.16.0.115;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="JST_XZSPBaseInfoConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.QY_JBXX" Member="QY_JBXX">
     <Type Name="QY_JBXX">
       <Column Name="QYBM" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -553,42 +553,6 @@
       <Association Name="RY_RYJBXX_RY_RYBLXWXX" Member="RY_RYJBXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYJBXX" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.RY_RYJBXX" Member="RY_RYJBXX">
-    <Type Name="RY_RYJBXX">
-      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RYBH" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="XM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZJLX" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="SFZH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="XB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="CSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="MZ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZZ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZW" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="BYYX" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="BYSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SXZY" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="LXDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="YXBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="DZYX" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="BGDH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="GRDH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZPURL" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="RYZT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="QDZCSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="BZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="RY_RYJBXX_RY_DBGCYJ" Member="RY_DBGCYJ" ThisKey="RYBH" OtherKey="RYBH" Type="RY_DBGCYJ" />
-      <Association Name="RY_RYJBXX_RY_GZDWQK" Member="RY_GZDWQK" ThisKey="RYBH" OtherKey="RYBH" Type="RY_GZDWQK" />
-      <Association Name="RY_RYJBXX_RY_JXJYQK" Member="RY_JXJYQK" ThisKey="RYBH" OtherKey="RYBH" Type="RY_JXJYQK" />
-      <Association Name="RY_RYJBXX_RY_KYFMCG" Member="RY_KYFMCG" ThisKey="RYBH" OtherKey="RYBH" Type="RY_KYFMCG" />
-      <Association Name="RY_RYJBXX_RY_RYBLXWXX" Member="RY_RYBLXWXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYBLXWXX" />
-      <Association Name="RY_RYJBXX_RY_RYXYPD" Member="RY_RYXYPD" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYXYPD" />
-      <Association Name="RY_RYJBXX_RY_RYYLXWXX" Member="RY_RYYLXWXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYYLXWXX" />
-      <Association Name="RY_RYJBXX_RY_RYZSXX" Member="RY_RYZSXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYZSXX" />
-      <Association Name="RY_RYJBXX_RY_ZJGCXM" Member="RY_ZJGCXM" ThisKey="RYBH" OtherKey="RYBH" Type="RY_ZJGCXM" />
-    </Type>
-  </Table>
   <Table Name="dbo.RY_RYXYPD" Member="RY_RYXYPD">
     <Type Name="RY_RYXYPD">
       <Column Name="RYXXPDID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -638,38 +602,6 @@
       <Column Name="ZT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="BZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="RY_RYJBXX_RY_RYYLXWXX" Member="RY_RYJBXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYJBXX" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.RY_RYZSXX" Member="RY_RYZSXX">
-    <Type Name="RY_RYZSXX">
-      <Column Name="RYZSXXID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="QYSD" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RYBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="XM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZJLX" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="SFZH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="XB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="CSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ZZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZW" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JSZC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="QDZCSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ZSLX" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
-      <Column Name="ZSJB" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZCZSBH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZGZSH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZCZSH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="YZH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZCZY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZSYXQKSSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ZSYXQJSSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FZSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FZJG" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZSZT" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SFDY" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="RY_RYJBXX_RY_RYZSXX" Member="RY_RYJBXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYJBXX" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RY_ZJGCXM" Member="RY_ZJGCXM">
@@ -753,6 +685,72 @@
       <Column Name="HYName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DJ" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DJName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RY_RYZSXX" Member="RY_RYZSXX">
+    <Type Name="RY_RYZSXX">
+      <Column Name="RYZSXXID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QYSD" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RYBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="XM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="SFZH" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="XB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ZZ" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ZW" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JSZC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="QDZCSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ZSLX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZSJB" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ZCZSBH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZGZSH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZCZSH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="YZH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZCZY" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ZSYXQKSSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ZSYXQJSSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FZSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FZJG" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZSZT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SFDY" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="BZ" Type="System.String" DbType="VarChar(1015)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RY_RYJBXX" Member="RY_RYJBXX">
+    <Type Name="RY_RYJBXX">
+      <Column Name="QYBM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RYBH" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="XM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZJLX" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="SFZH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="XB" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CSRQ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MZ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZZ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZW" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BYYX" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="BYSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SXZY" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="LXDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="YXBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="DZYX" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BGDH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="GRDH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZPURL" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="RYZT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QDZCSJ" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BZ" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="RY_RYJBXX_RY_DBGCYJ" Member="RY_DBGCYJ" ThisKey="RYBH" OtherKey="RYBH" Type="RY_DBGCYJ" />
+      <Association Name="RY_RYJBXX_RY_GZDWQK" Member="RY_GZDWQK" ThisKey="RYBH" OtherKey="RYBH" Type="RY_GZDWQK" />
+      <Association Name="RY_RYJBXX_RY_JXJYQK" Member="RY_JXJYQK" ThisKey="RYBH" OtherKey="RYBH" Type="RY_JXJYQK" />
+      <Association Name="RY_RYJBXX_RY_KYFMCG" Member="RY_KYFMCG" ThisKey="RYBH" OtherKey="RYBH" Type="RY_KYFMCG" />
+      <Association Name="RY_RYJBXX_RY_RYBLXWXX" Member="RY_RYBLXWXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYBLXWXX" />
+      <Association Name="RY_RYJBXX_RY_RYXYPD" Member="RY_RYXYPD" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYXYPD" />
+      <Association Name="RY_RYJBXX_RY_RYYLXWXX" Member="RY_RYYLXWXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYYLXWXX" />
+      <Association Name="RY_RYJBXX_RY_ZJGCXM" Member="RY_ZJGCXM" ThisKey="RYBH" OtherKey="RYBH" Type="RY_ZJGCXM" />
     </Type>
   </Table>
 </Database>
