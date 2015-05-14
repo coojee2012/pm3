@@ -31,22 +31,33 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
     private void ShowInfo()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("select * from ( ");
-        sb.Append(" select a.FId,a.FAppId,a.IsLock,a.SelectedCount,case b.FSex when 1 then '男' else '女' end as FSex,");
-        sb.Append(" b.ZW,b.FIdCard,b.FHumanName,b.FEntName,b.ZSBH,b.ZCZY,b.EmpType,d.FName, ");
-        sb.Append(" c.PrjItemName,c.ProjectName,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,c.StartDate,c.EndDate   ");
+        //sb.Append("select * from ( ");
+        //sb.Append(" select a.FId,a.FAppId,a.IsLock,a.SelectedCount,case b.FSex when 1 then '男' else '女' end as FSex,");
+        //sb.Append(" b.ZW,b.FIdCard,b.FHumanName,b.FEntName,b.ZSBH,b.ZCZY,b.EmpType,d.FName, ");
+        //sb.Append(" c.PrjItemName,c.ProjectName,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,c.StartDate,c.EndDate   ");
   
-        sb.Append(" from TC_PrjItem_Emp_Lock a ");
-        sb.Append(" left join TC_PrjItem_Emp b on a.FIdCard=b.FIdCard ");
-        sb.Append(" left join TC_SGXKZ_PrjInfo c on c.FAppId = a.FAppId ");
-        sb.Append(" left join CF_Sys_Dic d on b.EmpType = d.FNumber ");
-        sb.Append(" where not exists (select 1 from TC_PrjItem_Emp_Lock where FIdCard = a.FIdCard  and FCreateTime > a.FCreateTime) ");
-        sb.Append(" and a.IsLock = 1 ");
-        sb.Append(getCondi());
-        sb.Append(" ) as ttt where 1=1");
-
+        //sb.Append(" from TC_PrjItem_Emp_Lock a ");
+        //sb.Append(" left join TC_PrjItem_Emp b on a.FIdCard=b.FIdCard ");
+        //sb.Append(" left join TC_SGXKZ_PrjInfo c on c.FAppId = a.FAppId ");
+        //sb.Append(" left join CF_Sys_Dic d on b.EmpType = d.FNumber ");
+        //sb.Append(" where not exists (select 1 from TC_PrjItem_Emp_Lock where FIdCard = a.FIdCard  and FCreateTime > a.FCreateTime) ");
+        //sb.Append(" and a.IsLock = 1 ");
+        //sb.Append(getCondi());
+        //sb.Append(" ) as ttt where 1=1");
         //sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
 
+        sb.Append("select  *  from  (");
+        sb.Append(@"select a.FId,a.FAppId,a.IsLock,a.SelectedCount, b.XB  FSex, 
+                   b.ZW,b.sfzh FIdCard,b.xm FHumanName,d.qymc FEntName,c.ZCZSBH ZSBH,c.ZCZY,''  EmpType,d.QYMC FName, 
+                 e.PrjItemName,e.ProjectName,dbo.getManageDeptName(e.PrjAddressDept) as DeptName,e.StartDate,e.EndDate
+                 from  TC_PrjItem_Emp_Lock a,JST_XZSPBaseInfo.dbo.ry_ryjbxx b,JST_XZSPBaseInfo.dbo.ry_ryzsxx c,JST_XZSPBaseInfo.dbo.QY_JBXX d,TC_SGXKZ_PrjInfo e
+                 where a.FIdCard = b.SFZH
+                 and b.RYBH = c.RYBH
+                 and a.FEntId = d.QYBM
+                 and a.FPrjItemId = e.FPrjItemId
+                 and a.fentid = c.QYBM");
+        sb.Append(getCondi());
+        sb.Append(" ) as ttt where 1=1");
 
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
@@ -79,10 +90,10 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         {
             //sb.Append(" and b.ZSBH =  " + this.txtSGXKZBH.SelectedValue);
         }
-
-
-
-
+        if (this.tbcyxm.Text != "" && this.tbcyxm.Text.Trim() != null)
+        {
+            sb.Append(" and c.ProjectName like '%" + this.tbcyxm.Text.Trim() + "%' ");
+        }
 
 
         if (sb.Length > 0)

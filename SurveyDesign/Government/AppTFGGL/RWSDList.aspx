@@ -170,7 +170,12 @@
                     </asp:DropDownList>
 
                 </td>
-       
+       <td>
+           参与项目名称
+       </td>
+            <td>
+                <asp:TextBox ID="tbcyxm" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+            </td>
 
 
 
@@ -247,11 +252,17 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                       
-                        <asp:BoundColumn HeaderText="锁定次数" DataField="SelectedCount">
+                        <asp:TemplateColumn HeaderText="锁定次数">
+                            <HeaderTemplate>                               
+                                <asp:Label ID="lbl_lockcount" runat="server"></asp:Label>                                    
+                            </HeaderTemplate>
+                        </asp:TemplateColumn>
+
+                        
+                       <%-- <asp:BoundColumn HeaderText="锁定次数" DataField="SelectedCount">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
+                        </asp:BoundColumn>--%>
                        <%--  <asp:BoundColumn HeaderText="锁在项目" DataField="PrjItemName">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />

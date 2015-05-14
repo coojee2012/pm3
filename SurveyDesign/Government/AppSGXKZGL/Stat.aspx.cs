@@ -42,7 +42,7 @@ public partial class Government_AppAQJDBA_Stat : govBasePage
         EgovaDB db = new EgovaDB();
         string DFId = Session["DFId"].ToString();
         string DFId2= EConvert.ToString(Request.QueryString["PrjAddressDept"]);
-        var v = from t in db.V_SGXKZ_TJ
+        var v = from t in db.V_SGXKZ_TJ.Where(t=>t.SD !=null && t.SD != "")
                      select t;
         if (DFId.Length == 2 && string.IsNullOrEmpty(DFId2))
             v = v.Where(t => t.PrjAddressDept.Length == 4);
@@ -52,7 +52,8 @@ public partial class Government_AppAQJDBA_Stat : govBasePage
         }
         else if (!string.IsNullOrEmpty(DFId2))
         {
-            v = v.Where(t => t.PrjAddressDept.Contains(DFId2) && t.PrjAddressDept != DFId2);
+            //v = v.Where(t => t.PrjAddressDept.Contains(DFId2) && t.PrjAddressDept != DFId2);
+            v = v.Where(t => t.PrjAddressDept.Contains(DFId2) && t.PrjAddressDept != DFId);
         }
 
         if (DFId2.Length == 6)
