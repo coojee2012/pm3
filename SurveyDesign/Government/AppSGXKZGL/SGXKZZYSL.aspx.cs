@@ -58,6 +58,7 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
             else
             {
                 t_BH.Text = EConvert.ToString(dt.Rows[i]["BH"]);
+                ffid.Value = EConvert.ToString(dt.Rows[i]["BH"]);
             }
         
             t_RQ.Text = now.ToString("yyyy-MM-dd");
@@ -87,7 +88,8 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
                     sql = "INSERT INTO YW_SLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ) VALUES  ( '" + guid + "','";
                     sql += t_fLinkId.Value + "','" + t_BH.Text + "','";
                     sql += t_LXR.Text + "','" + t_LXDH.Text + "','"+t_JDDH.Text+"',getdate())";
-                   
+                    ffid.Value = guid;
+
                 }
                 else
                 {
@@ -95,7 +97,7 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
                     sql += t_LXDH.Text+"',JDDH = '";
                     sql += t_JDDH.Text + "'";
                     sql += " WHERE GuidID='" + ffid.Value + "'";
-
+                  
                 }
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
