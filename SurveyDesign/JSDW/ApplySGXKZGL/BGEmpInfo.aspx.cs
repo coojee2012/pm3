@@ -140,6 +140,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 return "监理员";
             case "12":
                 return "其他";
+            case "13": return "建造师";
         }
     }
     //显示
