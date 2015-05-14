@@ -25,9 +25,9 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
 
             if (!string.IsNullOrEmpty(Request.QueryString["fid"]))
             {
-                ViewState["FID"] = Request.QueryString["fid"];
+                ViewState["fid"] = Request.QueryString["fid"];
                 ViewState["IsBz"] = Request.QueryString["IsBz"];
-                ShowInfo(ViewState["IsBz"].ToString(), ViewState["FID"].ToString());
+                ShowInfo(ViewState["IsBz"].ToString(), ViewState["fid"].ToString());
             }
             else
             {
@@ -47,7 +47,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 Button4.Visible = false;
             }
 
-            //ShowFile(t_JLId.Value, "JL");
+            ShowFile(t_JLId.Value, "JL");
         }
     }
 
@@ -359,9 +359,19 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     }
     private void selEnt(string type)
     {
+
+
         if (type == "SC")
         {
+
             string selEntId = t_JLId.Value;
+            if (t_SGIdold.Value != t_JLId.Value)
+            {
+                t_JLGCS.Text = "";//清空对应人员信息
+                t_JLGCSZJHM.Text = "";
+            }
+
+            t_SGIdold.Value = t_JLId.Value;
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
@@ -381,13 +391,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         else if (type == "SG")
         {
             //string selEntId = t_JLId.Value;
-            
+
             string selEntId = t_SGId.Value;
-            if (t_SGIdold.Value != t_SGId.Value)
-            {
-                t_JLGCS.Text = "";//清空对应人员信息
-                t_JLGCSZJHM.Text = "";
-            }
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
@@ -395,8 +400,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 t_ZBDLDWMC.Text = v.QYMC;
                 t_ZBDLDWZZJGDM.Text = v.JGDM;
             }
-            t_SGIdold.Value = t_SGId.Value;
-            
+           
         }
         else if (type == "SJ")
         {

@@ -77,7 +77,7 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             txtFId.Value = strfid;
             ShowPrjItemInfo();
 
-            if (!string.IsNullOrEmpty(strbl))
+            if (string.IsNullOrEmpty(strbl))
             { strbl = "1"; }
             if (strbl != "1" && strbl != "3")
             {
