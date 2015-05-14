@@ -476,6 +476,7 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
         //获取当天最大的值
         var result = (from t in dbContext.TC_AJBA_Record
                       where t.RecordNo.Substring(6, 6) == datatoday
+                        && t.Area.Equals(prjitemarea)
                       orderby t.RecordTime descending
                       select t).FirstOrDefault();
         if (result != null)

@@ -70,17 +70,19 @@ public partial class JSDW_ApplySGXKZGL_JDSX : System.Web.UI.Page
             string strbl = sp.Rows[0]["bl"].ToString();
             txtFId.Value = strfid;
             ShowFile(strfid);
-            if (!string.IsNullOrEmpty(strbl))
+            if (string.IsNullOrEmpty(strbl))
             {
-                if (strbl != "1" && strbl != "3")
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-                }
+                strbl = "1";
             }
+            if (strbl != "1" && strbl != "3")
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "showTr1", "<script>showTr1();</script>");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+            }
+
 
             FillPageWithDt tool = new FillPageWithDt();
             tool.fillPageControl(sp, this.Page, "t_");

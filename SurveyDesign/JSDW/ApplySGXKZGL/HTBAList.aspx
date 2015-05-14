@@ -18,10 +18,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             txtCss();
-
-
-            hideTr1();
-
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;

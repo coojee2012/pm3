@@ -186,7 +186,7 @@
                 工程所属地：
             </td>
             <td>
-                <uc1:govdeptid ID="govd_FRegistDeptId" runat="server" ReadOnly="true" />
+                <uc1:govdeptid ID="govd_FRegistDeptId" runat="server" ReadOnly="true" Visible="False"  />  <!--选择不需要-->
             </td>
             
             <td colspan="2" rowspan="4" style="text-align: center; padding-right: 10px">

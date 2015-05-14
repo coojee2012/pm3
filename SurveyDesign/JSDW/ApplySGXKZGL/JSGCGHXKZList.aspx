@@ -47,6 +47,7 @@
         }
         function showTr1() {
             $("tr[name=tr1]").show();
+            $("tr[name=tr5]").hide();
             $("#btnAdd").attr("disabled", true);
             $("#btnDel").attr("disabled", true);
             $("#btnReload").attr("disabled", true);
@@ -60,6 +61,7 @@
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
+            $("tr[name=tr5]").show();
             $("#btnAdd").removeAttr("disabled");
             $("#btnDel").removeAttr("disabled");
             $("#btnReload").removeAttr("disabled");
@@ -74,6 +76,12 @@
         function change(value) {
             if (value == "1") {
                 $("tr[name=tr1]").hide();
+                $("tr[name=tr5]").show();
+                $("tt[name=tt_t1]").empty();
+                $("tt[name=tt_t1]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
+                });
                 $("#btnAdd").removeAttr("disabled");
                 $("#btnDel").removeAttr("disabled");
                 $("#btnReload").removeAttr("disabled");
@@ -88,6 +96,12 @@
             }
             else {
                 $("tr[name=tr1]").show();
+                $("tr[name=tr5]").hide();
+                $("tt[name=tt_t2]").empty();
+                $("tt[name=tt_t2]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
+                });
                 //$("input").removeAttr("disabled");
                 $("#btnAdd").attr("disabled", true);
                 $("#btnDel").attr("disabled", true);
@@ -150,10 +164,10 @@
             <tr name="tr1">
                 <td class="t_r t_bg">理由： </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
+                    <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
                 </td>
             </tr>
-            <tr>
+            <tr name="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">项目名称：
                 </td>
                 <td colspan="1" style="width: 29%;">
@@ -165,13 +179,13 @@
                     <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="44%" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name="tr5">
                 <td class="t_r t_bg">建设地址： </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_Address" runat="server" CssClass="m_txt" Width="72.2%" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">面积：
                 </td>
                 <td colspan="1" style="width: 29%;">
@@ -179,13 +193,13 @@
                 </td>
 
             </tr>
-            <tr>
+            <tr name="tr5">
                 <td class="t_r t_bg">建设规模： </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_ConstrScale" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name="tr5">
                 <td class="t_r t_bg">跨度（高度）：
                 </td>
                 <td colspan="1">
@@ -197,14 +211,13 @@
                     <asp:TextBox ID="t_Others" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td class="t_r t_bg">工程规划许可证编号：建地字（ </td>
-                <td colspan="2">
-                    <asp:TextBox ID="t_GCGHXKZBH" class="cc1" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox><tt name="tt_t2">*</tt>
+            <tr name="tr5">
+                <td class="t_r t_bg">工程规划许可证编号：</td>
+                <td colspan="2">建地字(<asp:TextBox ID="t_GCGHXKZBH" class="cc1" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox>)<tt name="tt_t2">*</tt>
                 </td>
-                <td>）</td>
+                <td>&nbsp;</td>
             </tr>
-            <tr>
+            <tr name="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">发证日期：
                 </td>
                 <td colspan="1" style="width: 29%;">

@@ -6,7 +6,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[1be596b6-a1ff-4f93-9949-90995a85b70c]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -15,14 +15,14 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select * from dbo.TC_SGXKZ_PrjInfo  where FAppId='${FAppId}']]></Query>
+<![CDATA[select upper(fappid) as ywbm,* from dbo.TC_SGXKZ_PrjInfo  where FAppId='${FAppId}']]></Query>
 </TableData>
 <TableData name="ds31" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -38,7 +38,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -47,14 +47,22 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select YDGHXKZBH,HFJG,CreateTime  from dbo.TC_SGXKZ_JSYDGHXKZ where FAppId='${FAppId}']]></Query>
+<![CDATA[DECLARE @prjid varchar(50)
+select @prjid = b.FPrjId from TC_SGXKZ_PrjInfo a ,TC_PrjItem_Info b where a.FPrjItemId = b.FId and  FAppId='${FAppId}'
+
+select YDGHXKZBH,HFJG,CreateTime  from dbo.TC_SGXKZ_JSYDGHXKZ where FAppId='${FAppId}'
+ union 
+SELECT [BH]A as  ydghxkzbh,[FZJG]A as  hfjg,[HFRQ]A as CreateTime from XM_BaseInfo.dbo.XM_JSYDGH where xmbh = @prjid
+ union 
+SELECT [BH]A as  ydghxkzbh,[FZJG]A as  hfjg,[HFRQ]A as CreateTime from   XM_BaseInfo.dbo.XM_JSYDGH_SZ 
+where xmbh =  @prjid]]></Query>
 </TableData>
 <TableData name="ds33" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -63,14 +71,22 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select GCGHXKZBH,HFJG,CreateTime  from dbo.TC_SGXKZ_JSGCGHXKZ where FAppId='${FAppId}']]></Query>
+<![CDATA[DECLARE @prjid varchar(50)
+select @prjid = b.FPrjId from TC_SGXKZ_PrjInfo a ,TC_PrjItem_Info b where a.FPrjItemId = b.FId and  FAppId='${FAppId}'
+
+select GCGHXKZBH,HFJG,CreateTime  from dbo.TC_SGXKZ_JSGCGHXKZ where FAppId='${FAppId}'
+union
+SELECT [ZSBH]A as  GCGHXKZBH,[FZJG]A as  hfjg,[HFRQ]A as CreateTime from XM_BaseInfo.dbo.XM_JSGCGH where xmbh = @prjid
+ union 
+SELECT [ZSBH]A as  GCGHXKZBH,[FZJG]A as  hfjg,[HFRQ]A as CreateTime from   XM_BaseInfo.dbo.XM_JSGCGH_SZ
+where xmbh =  @prjid]]></Query>
 </TableData>
 <TableData name="ds34" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -86,7 +102,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[1be596b6-a1ff-4f93-9949-90995a85b70c]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -95,14 +111,34 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select ZBTZSBH  from dbo.TC_SGXKZ_ZBJG where FAppId='${FAppId}']]></Query>
+<![CDATA[DECLARE @prjid varchar(50)
+select @prjid = b.FPrjId from TC_SGXKZ_PrjInfo a ,TC_PrjItem_Info b where a.FPrjItemId = b.FId and  FAppId='${FAppId}'
+
+declare  @zht varchar(500),@ht varchar(50)
+select @ht = ''
+declare cursor1 cursor for         --定义游标cursor1
+select ZBTZSBH  from dbo.TC_SGXKZ_ZBJG where FAppId='${FAppId}'
+union
+select ZBTZSBH  from XM_BaseInfo.dbo.[XM_ZBJGXX]A where xmbh = @prjid
+open cursor1                       --打开游标
+
+fetch next from cursor1 into @zht
+while @@fetch_status=0           --判断是否成功获取数据
+begin
+   set @zht=@zht +';'+ @ht
+   fetch next from cursor1 into @ht
+end
+close cursor1                   --关闭游标
+deallocate cursor1 
+
+select REPLACE(@zht,';;',';') as ZBTZSBH ]]></Query>
 </TableData>
 <TableData name="ds352" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -111,14 +147,29 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select HTBH  from dbo.TC_SGXKZ_HTBA where htlb = '511001'  and  FAppId='${FAppId}']]></Query>
+<![CDATA[declare  @zht varchar(500),@ht varchar(50)
+select @ht = ''
+declare cursor1 cursor for         --定义游标cursor1
+select HTBH  from dbo.TC_SGXKZ_HTBA where (htlb = '511001'  or htlb = '511005')  and  FAppId='${FAppId}' order by htlb
+open cursor1                       --打开游标
+
+fetch next from cursor1 into @zht
+while @@fetch_status=0           --判断是否成功获取数据
+begin
+   set @zht=@zht +';'+ @ht
+   fetch next from cursor1 into @ht
+end
+close cursor1                   --关闭游标
+deallocate cursor1 
+
+select REPLACE(@zht,';;',';') as HTBH ]]></Query>
 </TableData>
 <TableData name="ds36" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -127,14 +178,21 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select SGTSCHGSBH  from dbo.TC_SGXKZ_SGTSC where FAppId='${FAppId}']]></Query>
+<![CDATA[DECLARE @prjid varchar(50)
+select @prjid = b.FPrjId from TC_SGXKZ_PrjInfo a ,TC_PrjItem_Info b where a.FPrjItemId = b.FId and  FAppId='${FAppId}'
+
+select SGTSCHGSBH  from dbo.TC_SGXKZ_SGTSC where FAppId='${FAppId}'
+union
+select STJGZSBH  as [SGTSCHGSBH]A  from  XM_BaseInfo.dbo.XM_SGTSCXX where xmbh = @prjid
+union
+select STJGZSBH  as [SGTSCHGSBH]A  from  XM_BaseInfo.dbo.XM_SGTSCSZXX where xmbh = @prjid]]></Query>
 </TableData>
 <TableData name="ds371" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -150,7 +208,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -166,7 +224,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -175,14 +233,21 @@
 <![CDATA[JST_XMJG]]></DatabaseName>
 </Connection>
 <Query>
-<![CDATA[select ZLBABH,AQBABH from dbo.TC_SGXKZ_JDSX where FAppId='${FAppId}']]></Query>
+<![CDATA[DECLARE @prjid varchar(50)
+select @prjid = b.FPrjId from TC_SGXKZ_PrjInfo a ,TC_PrjItem_Info b where a.FPrjItemId = b.FId and  FAppId='${FAppId}'
+
+
+select ZLBABH,AQBABH from dbo.TC_SGXKZ_JDSX where FAppId='${FAppId}'
+union
+select ZLBABH,AQBABH from dbo.uf_ZLAQ(@prjid)
+]]></Query>
 </TableData>
 <TableData name="ds39" class="com.fr.data.impl.DBTableData">
 <Parameters>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -198,7 +263,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -214,7 +279,7 @@
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -232,7 +297,7 @@ and b.FAppId='${FAppId}']]></Query>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -248,7 +313,7 @@ and b.FAppId='${FAppId}']]></Query>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -264,7 +329,7 @@ and b.FAppId='${FAppId}']]></Query>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -280,7 +345,7 @@ and b.FAppId='${FAppId}']]></Query>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -296,7 +361,7 @@ and b.FAppId='${FAppId}']]></Query>
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[b46e44c6-1f4a-49d5-8be4-56f0a13bc299]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -313,7 +378,7 @@ where a.FEntId = b.qyid and b.FEntType = 7  and a.EmpType = '11220209' and a.FAp
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[1be596b6-a1ff-4f93-9949-90995a85b70c]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -329,7 +394,7 @@ where a.FEntId = b.qyid and b.FEntType = 7  and a.EmpType = '11220209' and a.FAp
 <Parameter>
 <Attributes name="FAppId"/>
 <O>
-<![CDATA[0b664b99-4b54-4b2c-9b6d-b0c5bae451aa]]></O>
+<![CDATA[]]></O>
 </Parameter>
 </Parameters>
 <Attributes maxMemRowCount="-1"/>
@@ -386,163 +451,51 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <ColumnPrivilegeControl/>
 <RowPrivilegeControl/>
 <RowHeight defaultValue="723900">
-<![CDATA[723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,1152000,1152000,1152000,1152000,2880000,2880000,1152000,1295400,1152000,1562100,1152000,1905000,2628900,2880000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,723900]]></RowHeight>
+<![CDATA[723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,1657350,304800,723900,2209800,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,76200,0,1562100,1152000,1676400,1152000,1152000,2880000,2880000,1152000,1295400,1152000,1562100,1152000,1905000,2628900,2880000,1152000,1152000,1152000,1152000,1152000,1152000,1152000,38100,0,0,0,0,0,0,723900]]></RowHeight>
 <ColumnWidth defaultValue="2743200">
-<![CDATA[2743200,304800,1943100,2628900,2057400,76200,1638300,0,0,76200,38100,3429000,0,4648200,1028700,1333500,2476500,2743200]]></ColumnWidth>
+<![CDATA[2743200,304800,1219200,2781300,2095500,0,1638300,990600,0,0,1333500,2476500,0,4038600,1028700,1447800,2476500,2743200]]></ColumnWidth>
 <CellElementList>
 <C c="0" r="0">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="1" cs="17" rs="3" s="0">
+<C c="4" r="1" cs="13" rs="2" s="0">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="ywbm"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<CellPageAttr/>
+<Present class="com.fr.report.cell.cellattr.BarcodePresent">
+<BarcodeAttr height="24" RCodeVersion="7" RCodeErrorCorrect="1" RcodeDrawPix="1"/>
+</Present>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="4" cs="17" rs="3" s="1">
 <O>
 <![CDATA[建筑工程施工许可证]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="4" r="5" cs="8" rs="3" s="0">
+<C c="3" r="8" cs="11" rs="3" s="1">
 <O>
 <![CDATA[申请表]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="1" r="13" cs="2" rs="2" s="1">
+<C c="1" r="16" cs="3" rs="2" s="2">
 <O>
-<![CDATA[编号]]></O>
+<![CDATA[工程名称：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="4" r="13" cs="13" rs="2">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="49" cs="17" rs="2" s="2">
-<O>
-<![CDATA[中华人民共和国住房与城乡建设部制]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="57" cs="17" rs="2" s="2">
-<O>
-<![CDATA[工程简要说明]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="59" cs="2" s="3">
-<O>
-<![CDATA[建设单位名称]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="59" cs="8" s="4">
-<O t="DSColumn">
-<Attributes dsName="ds1" columnName="JSDW"/>
-<Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
-<Parameters/>
-</O>
-<PrivilegeControl/>
-<Expand dir="0"/>
-</C>
-<C c="10" r="59" s="5">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="11" r="59" cs="3" s="6">
-<O>
-<![CDATA[所有制性质]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="14" r="59" cs="3" s="7">
-<O t="DSColumn">
-<Attributes dsName="ds-t" columnName="JSDWXZ"/>
-<Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
-<Parameters/>
-</O>
-<PrivilegeControl/>
-<Expand dir="0"/>
-</C>
-<C c="0" r="60" cs="2" s="3">
-<O>
-<![CDATA[建设单位地址]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="60" cs="8" s="8">
-<O t="DSColumn">
-<Attributes dsName="ds1" columnName="JSDWDZ"/>
-<Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
-<Parameters/>
-</O>
-<PrivilegeControl/>
-<Expand dir="0"/>
-</C>
-<C c="10" r="60" s="9">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="11" r="60" cs="3" s="3">
-<O>
-<![CDATA[电话]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="14" r="60" cs="3" s="7">
-<O t="DSColumn">
-<Attributes dsName="ds1" columnName="LXDH"/>
-<Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
-<Parameters/>
-</O>
-<PrivilegeControl/>
-<Expand dir="0"/>
-</C>
-<C c="0" r="61" cs="2" s="3">
-<O>
-<![CDATA[法定代表人]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="61" cs="8" s="10">
-<O t="DSColumn">
-<Attributes dsName="ds1" columnName="FDDBR"/>
-<Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
-<Parameters/>
-</O>
-<PrivilegeControl/>
-<Expand dir="0"/>
-</C>
-<C c="10" r="61">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="11" r="61" cs="3" s="3">
-<O>
-<![CDATA[建设单位项目负责人]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="14" r="61" cs="3" s="11">
-<O t="DSColumn">
-<Attributes dsName="ds1" columnName="JSFZR"/>
-<Complex/>
-<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
-<Parameters/>
-</O>
-<PrivilegeControl/>
-<Expand dir="0"/>
-</C>
-<C c="0" r="62" cs="2" s="3">
-<O>
-<![CDATA[工程名称]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="62" cs="15" s="7">
+<C c="4" r="16" cs="13" rs="2" s="3">
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="PrjItemName"/>
 <Complex/>
@@ -552,13 +505,165 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="63" cs="2" s="3">
+<C c="1" r="19" cs="3" s="4">
+<O>
+<![CDATA[建设单位：]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="19" cs="13" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JSDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="46" cs="17" rs="2" s="5">
+<O>
+<![CDATA[中华人民共和国住房与城乡建设部制]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="54" cs="17" rs="2" s="5">
+<O>
+<![CDATA[工程简要说明]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="56" cs="2" s="6">
+<O>
+<![CDATA[建设单位名称]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="56" cs="8" s="7">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JSDW"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="56" s="8">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="56" cs="3" s="9">
+<O>
+<![CDATA[所有制性质]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="56" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds-t" columnName="JSDWXZ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="57" cs="2" s="6">
+<O>
+<![CDATA[建设单位地址]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="57" cs="8" s="11">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JSDWDZ"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="57" s="12">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="57" cs="3" s="6">
+<O>
+<![CDATA[电话]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="57" cs="3" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LXDH"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="58" cs="2" s="6">
+<O>
+<![CDATA[法定代表人]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="58" cs="8" s="13">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="FDDBR"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="10" r="58" s="14">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="58" cs="3" s="6">
+<O>
+<![CDATA[建设单位项目负责人]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="14" r="58" cs="3" s="15">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="JSFZR"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="59" cs="2" s="6">
+<O>
+<![CDATA[工程名称]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="59" cs="15" s="10">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="PrjItemName"/>
+<Complex/>
+<RG class="com.fr.report.cell.cellattr.core.group.FunctionGrouper"/>
+<Parameters/>
+</O>
+<PrivilegeControl/>
+<Expand dir="0"/>
+</C>
+<C c="0" r="60" cs="2" s="6">
 <O>
 <![CDATA[建设地点]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="63" cs="15" s="7">
+<C c="2" r="60" cs="15" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="Address"/>
 <Complex/>
@@ -568,13 +673,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="64" cs="2" s="3">
+<C c="0" r="61" cs="2" s="6">
 <O>
 <![CDATA[合同价格]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="64" cs="8" s="12">
+<C c="2" r="61" cs="8" s="16">
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="Price"/>
 <Complex/>
@@ -584,13 +689,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="11" r="64" s="13">
+<C c="11" r="61" s="17">
 <O>
 <![CDATA[万元，其中外币]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="64" cs="4" s="7">
+<C c="13" r="61" cs="4" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds-currency" columnName="Fname"/>
 <Complex/>
@@ -600,13 +705,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="65" cs="2" s="3">
+<C c="0" r="62" cs="2" s="6">
 <O>
 <![CDATA[建设规模]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="65" cs="15" s="7">
+<C c="2" r="62" cs="15" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="ConstrScale"/>
 <Complex/>
@@ -616,13 +721,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="66" cs="2" s="3">
+<C c="0" r="63" cs="2" s="6">
 <O>
 <![CDATA[合同工期]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="66" cs="8" s="12">
+<C c="2" r="63" cs="8" s="16">
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="StartDate"/>
 <Complex/>
@@ -632,13 +737,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="11" r="66" s="13">
+<C c="11" r="63" s="17">
 <O>
 <![CDATA[至]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="66" cs="4" s="14">
+<C c="13" r="63" cs="4" s="18">
 <O t="DSColumn">
 <Attributes dsName="ds1" columnName="EndDate"/>
 <Complex/>
@@ -648,13 +753,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="67" cs="2" s="3">
+<C c="0" r="64" cs="2" s="6">
 <O>
 <![CDATA[施工总包单位]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="67" cs="15" s="7">
+<C c="2" r="64" cs="15" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds-ent-zcb" columnName="FName"/>
 <Complex/>
@@ -664,13 +769,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="68" cs="2" s="3">
+<C c="0" r="65" cs="2" s="6">
 <O>
 <![CDATA[监理单位]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="68" cs="15" s="7">
+<C c="2" r="65" cs="15" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds-ent-jl" columnName="FName"/>
 <Complex/>
@@ -680,13 +785,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="69" cs="2" s="3">
+<C c="0" r="66" cs="2" s="6">
 <O>
 <![CDATA[施工单位项目负责人]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="69" cs="8" s="8">
+<C c="2" r="66" cs="8" s="11">
 <O t="DSColumn">
 <Attributes dsName="ds-emp-sgdwxmfzr" columnName="FHumanName"/>
 <Complex/>
@@ -696,18 +801,18 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="10" r="69" s="15">
+<C c="10" r="66" s="19">
 <PrivilegeControl/>
 <CellPageAttr/>
 <Expand/>
 </C>
-<C c="11" r="69" cs="3" s="16">
+<C c="11" r="66" cs="3" s="20">
 <O>
 <![CDATA[总监理工程师]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="14" r="69" cs="3" s="7">
+<C c="14" r="66" cs="3" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds-emp-zjlgcs" columnName="FHumanName"/>
 <Complex/>
@@ -717,13 +822,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="70" cs="2" s="3">
+<C c="0" r="67" cs="2" s="6">
 <O>
 <![CDATA[勘察单位]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="70" cs="15" s="7">
+<C c="2" r="67" cs="15" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds-ent-kc" columnName="FName"/>
 <Complex/>
@@ -733,13 +838,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="71" cs="2" s="3">
+<C c="0" r="68" cs="2" s="6">
 <O>
 <![CDATA[设计单位]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="71" cs="15" s="7">
+<C c="2" r="68" cs="15" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds-ent-sj" columnName="FName"/>
 <Complex/>
@@ -749,13 +854,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="72" cs="2" s="3">
+<C c="0" r="69" cs="2" s="6">
 <O>
 <![CDATA[勘察单位项目负责人]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="72" cs="8" s="4">
+<C c="2" r="69" cs="8" s="7">
 <O t="DSColumn">
 <Attributes dsName="ds-emp-kcdwxmfzr" columnName="FHumanName"/>
 <Complex/>
@@ -765,17 +870,17 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="10" r="72" s="9">
+<C c="10" r="69" s="21">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="11" r="72" cs="3" s="3">
+<C c="11" r="69" cs="3" s="6">
 <O>
 <![CDATA[设计单位项目负责人]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="14" r="72" cs="3" s="11">
+<C c="14" r="69" cs="3" s="15">
 <O t="DSColumn">
 <Attributes dsName="ds-emp-sjdwxmfzr" columnName="FHumanName"/>
 <Complex/>
@@ -785,17 +890,53 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="73" cs="2" s="17">
+<C c="0" r="70" cs="2" s="22">
 <O>
 <![CDATA[申请单位：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="73" cs="15" s="18">
+<C c="2" r="70" cs="15" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="74" s="19">
+<C c="0" r="71" s="24">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="71">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="71" s="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="72" s="24">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="72">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="72" s="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="73" s="24">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="73">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="73" s="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="74" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -803,11 +944,11 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="74" s="18">
+<C c="16" r="74" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="75" s="19">
+<C c="0" r="75" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -815,177 +956,141 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="75" s="18">
+<C c="16" r="75" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="76" s="19">
+<C c="0" r="76" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="1" r="76">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="16" r="76" s="18">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="77" s="19">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="1" r="77">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="16" r="77" s="18">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="78" s="19">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="1" r="78">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="16" r="78" s="18">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="79" s="19">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="1" r="79" cs="2" s="13">
+<C c="1" r="76" cs="2" s="17">
 <O>
 <![CDATA[法定代表人（签章）]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="79" cs="3" s="13">
+<C c="13" r="76" cs="3" s="17">
 <O>
 <![CDATA[单位（盖章）]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="79" s="18">
+<C c="16" r="76" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="80" s="19">
+<C c="0" r="77" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="80" s="18">
+<C c="16" r="77" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="81" s="19">
+<C c="0" r="78" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="9" r="81" s="13">
+<C c="9" r="78" s="17">
 <O>
 <![CDATA[年]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="81" s="13">
+<C c="13" r="78" s="17">
 <O>
 <![CDATA[月]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="81" s="20">
+<C c="16" r="78" s="25">
 <O>
 <![CDATA[日]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="82" s="21">
+<C c="0" r="79" s="26">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="1" r="82" s="22">
+<C c="1" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="82" s="22">
+<C c="2" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="82" s="22">
+<C c="3" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="4" r="82" s="22">
+<C c="4" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="5" r="82" s="22">
+<C c="5" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="6" r="82" s="22">
+<C c="6" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="7" r="82" s="22">
+<C c="7" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="8" r="82" s="22">
+<C c="8" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="9" r="82" s="22">
+<C c="9" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="10" r="82" s="22">
+<C c="10" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="11" r="82" s="22">
+<C c="11" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="12" r="82" s="22">
+<C c="12" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="82" s="22">
+<C c="13" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="14" r="82" s="22">
+<C c="14" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="15" r="82" s="22">
+<C c="15" r="79" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="82" s="23">
+<C c="16" r="79" s="28">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="98" cs="17" rs="2" s="24">
+<C c="0" r="95" cs="17" rs="2" s="29">
 <O>
 <![CDATA[建设单位提供的证明材料或文件]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="100" cs="3" s="7">
+<C c="0" r="97" cs="3" s="10">
 <O>
 <![CDATA[用地批准手续]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="100" cs="14" s="7">
+<C c="3" r="97" cs="14" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds31" columnName="YDPZSX"/>
 <Complex/>
@@ -995,19 +1100,19 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="101" cs="3" s="11">
+<C c="0" r="98" cs="3" s="15">
 <O>
 <![CDATA[建设用地规划许可证]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="101" cs="2" s="11">
+<C c="3" r="98" cs="2" s="15">
 <O>
 <![CDATA[用地规划许可证编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="5" r="101" cs="6" s="7">
+<C c="5" r="98" cs="6" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds321" columnName="YDGHXKZBH"/>
 <Complex/>
@@ -1017,13 +1122,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="11" r="101" s="11">
+<C c="11" r="98" s="15">
 <O>
 <![CDATA[核发机关：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="12" r="101" cs="2" s="7">
+<C c="12" r="98" cs="2" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds321" columnName="HFJG"/>
 <Complex/>
@@ -1033,13 +1138,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="14" r="101" cs="2" s="11">
+<C c="14" r="98" cs="2" s="15">
 <O>
 <![CDATA[发证日期：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="101" s="7">
+<C c="16" r="98" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds321" columnName="CreateTime"/>
 <Complex/>
@@ -1049,19 +1154,19 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="102" cs="3" s="11">
+<C c="0" r="99" cs="3" s="15">
 <O>
 <![CDATA[建设工程规划许可证]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="102" cs="2" s="11">
+<C c="3" r="99" cs="2" s="15">
 <O>
 <![CDATA[工程规划许可证编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="5" r="102" cs="6" s="7">
+<C c="5" r="99" cs="6" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds33" columnName="GCGHXKZBH"/>
 <Complex/>
@@ -1071,13 +1176,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="11" r="102" s="11">
+<C c="11" r="99" s="15">
 <O>
 <![CDATA[发证日期：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="12" r="102" cs="2" s="11">
+<C c="12" r="99" cs="2" s="15">
 <O t="DSColumn">
 <Attributes dsName="ds33" columnName="HFJG"/>
 <Complex/>
@@ -1087,13 +1192,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="14" r="102" cs="2" s="11">
+<C c="14" r="99" cs="2" s="15">
 <O>
 <![CDATA[发证日期：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="102" s="7">
+<C c="16" r="99" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds33" columnName="CreateTime"/>
 <Complex/>
@@ -1103,13 +1208,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="103" cs="3" s="11">
+<C c="0" r="100" cs="3" s="15">
 <O>
 <![CDATA[施工现场是否具备施工条件]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="103" cs="14" s="11">
+<C c="3" r="100" cs="14" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds34" columnName="SGTJ"/>
 <Complex/>
@@ -1119,19 +1224,19 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="104" cs="3" s="11">
+<C c="0" r="101" cs="3" s="15">
 <O>
 <![CDATA[中标通知书及施工合同]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="104" cs="3" s="11">
+<C c="3" r="101" cs="3" s="15">
 <O>
 <![CDATA[中标通知书编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="6" r="104" cs="6" s="7">
+<C c="6" r="101" cs="6" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds351" columnName="ZBTZSBH"/>
 <Complex/>
@@ -1141,17 +1246,17 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="12" r="104" s="11">
+<C c="12" r="101" s="15">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="104" cs="2" s="11">
+<C c="13" r="101" cs="2" s="15">
 <O>
 <![CDATA[施工合同编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="15" r="104" cs="2" s="7">
+<C c="15" r="101" cs="2" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds352" columnName="HTBH"/>
 <Complex/>
@@ -1161,13 +1266,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="105" cs="3" s="11">
+<C c="0" r="102" cs="3" s="15">
 <O>
 <![CDATA[施工图设计文件审查合格证明]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="105" cs="14" s="11">
+<C c="3" r="102" cs="14" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds36" columnName="SGTSCHGSBH"/>
 <Complex/>
@@ -1177,19 +1282,19 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="106" cs="3" rs="2" s="11">
+<C c="0" r="103" cs="3" rs="2" s="15">
 <O>
 <![CDATA[监理合同或建设单位工程技术人员情况]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="106" cs="2" s="11">
+<C c="3" r="103" cs="2" s="15">
 <O>
 <![CDATA[监理合同编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="5" r="106" cs="7" s="7">
+<C c="5" r="103" cs="7" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds371" columnName="HTBH"/>
 <Complex/>
@@ -1199,17 +1304,17 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="12" r="106" s="11">
+<C c="12" r="103" s="15">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="106" s="11">
+<C c="13" r="103" s="15">
 <O>
 <![CDATA[建设单位技术负责人：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="14" r="106" cs="3" s="7">
+<C c="14" r="103" cs="3" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds372" columnName="JSFZR"/>
 <Complex/>
@@ -1219,13 +1324,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="3" r="107" cs="2" s="11">
+<C c="3" r="104" cs="2" s="15">
 <O>
 <![CDATA[职称：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="5" r="107" cs="7" s="22">
+<C c="5" r="104" cs="7" s="27">
 <O t="DSColumn">
 <Attributes dsName="ds372" columnName="JSFZRZC"/>
 <Complex/>
@@ -1235,17 +1340,17 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="12" r="107" s="22">
+<C c="12" r="104" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="107" s="11">
+<C c="13" r="104" s="15">
 <O>
 <![CDATA[电话：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="14" r="107" cs="3" s="7">
+<C c="14" r="104" cs="3" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds372" columnName="JSFZRDH"/>
 <Complex/>
@@ -1255,19 +1360,19 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="108" cs="3" s="11">
+<C c="0" r="105" cs="3" s="15">
 <O>
 <![CDATA[质量、安全监督手续]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="108" cs="2" s="11">
+<C c="3" r="105" cs="2" s="15">
 <O>
 <![CDATA[质量备案编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="5" r="108" cs="7" s="7">
+<C c="5" r="105" cs="7" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds38" columnName="ZLBABH"/>
 <Complex/>
@@ -1277,17 +1382,17 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="12" r="108" s="11">
+<C c="12" r="105" s="15">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="108" s="11">
+<C c="13" r="105" s="15">
 <O>
 <![CDATA[安全备案编号：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="14" r="108" cs="3" s="7">
+<C c="14" r="105" cs="3" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds38" columnName="AQBABH"/>
 <Complex/>
@@ -1297,19 +1402,19 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="109" cs="3" s="11">
+<C c="0" r="106" cs="3" s="15">
 <O>
 <![CDATA[资金保函或证明]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="109" cs="3" s="11">
+<C c="3" r="106" cs="3" s="15">
 <O>
 <![CDATA[是否办理保证书：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="6" r="109" s="7">
+<C c="6" r="106" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds39" columnName="ISDBS"/>
 <Complex/>
@@ -1319,29 +1424,33 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="7" r="109">
+<C c="7" r="106" s="27">
 <PrivilegeControl/>
+<Expand/>
 </C>
-<C c="8" r="109">
+<C c="8" r="106" s="27">
 <PrivilegeControl/>
+<Expand/>
 </C>
-<C c="9" r="109">
+<C c="9" r="106" s="27">
 <PrivilegeControl/>
+<Expand/>
 </C>
-<C c="10" r="109">
+<C c="10" r="106" s="27">
 <PrivilegeControl/>
+<Expand/>
 </C>
-<C c="11" r="109" s="22">
+<C c="11" r="106" s="27">
 <O>
 <![CDATA[甲方]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="12" r="109" s="11">
+<C c="12" r="106" s="15">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="109" s="7">
+<C c="13" r="106" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds39" columnName="JF"/>
 <Complex/>
@@ -1351,13 +1460,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="14" r="109" cs="2" s="11">
+<C c="14" r="106" cs="2" s="15">
 <O>
 <![CDATA[乙方：]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="109" s="7">
+<C c="16" r="106" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds39" columnName="YF"/>
 <Complex/>
@@ -1367,13 +1476,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="110" cs="3" s="11">
+<C c="0" r="107" cs="3" s="15">
 <O>
 <![CDATA[无拖欠工程款情形的承诺书]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="110" cs="14" s="25">
+<C c="3" r="107" cs="14" s="30">
 <O t="DSColumn">
 <Attributes dsName="ds40" columnName="CNS"/>
 <Complex/>
@@ -1383,13 +1492,13 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="111" cs="3" s="11">
+<C c="0" r="108" cs="3" s="15">
 <O>
 <![CDATA[其他资料]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="3" r="111" cs="14" s="7">
+<C c="3" r="108" cs="14" s="10">
 <O t="DSColumn">
 <Attributes dsName="ds40" columnName="QTZL"/>
 <Complex/>
@@ -1399,9 +1508,117 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand dir="0"/>
 </C>
-<C c="0" r="112" s="19">
+<C c="0" r="109" s="24">
 <O>
 <![CDATA[审查意见：]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="13" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="109">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="109" s="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="110" s="24">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="13" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="110">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="110" s="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="111" s="24">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="1" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="2" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="4" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="9" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="13" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="15" r="111">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="16" r="111" s="23">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="112" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -1433,11 +1650,11 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="112" s="18">
+<C c="16" r="112" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="113" s="19">
+<C c="0" r="113" s="24">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -1461,55 +1678,71 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="113">
+<C c="13" r="113" cs="3" s="17">
+<O>
+<![CDATA[（发证机关盖章）]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="15" r="113">
+<C c="16" r="113" s="23">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="113" s="18">
+<C c="0" r="114" s="26">
+<O>
+<![CDATA[经办人]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="114" s="19">
+<C c="1" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="1" r="114">
+<C c="2" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="2" r="114">
+<C c="3" r="114" s="27">
+<O>
+<![CDATA[审查人]]></O>
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="4" r="114">
+<C c="4" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="9" r="114">
+<C c="5" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="11" r="114">
+<C c="6" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="114">
+<C c="7" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="15" r="114">
+<C c="8" r="114" s="27">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="114" s="18">
+<C c="9" r="114" s="31">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="115" s="19">
+<C c="10" r="114" s="27">
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="11" r="114" cs="6" s="28">
+<O>
+<![CDATA[            年          月         日]]></O>
+<PrivilegeControl/>
+<Expand/>
+</C>
+<C c="0" r="115">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -1541,11 +1774,11 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="115" s="18">
+<C c="16" r="115">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="116" s="19">
+<C c="0" r="116">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -1569,135 +1802,15 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="13" r="116" cs="3" s="13">
-<O>
-<![CDATA[（发证机关盖章）]]></O>
+<C c="13" r="116">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="16" r="116" s="18">
+<C c="15" r="116">
 <PrivilegeControl/>
 <Expand/>
 </C>
-<C c="0" r="117" s="21">
-<O>
-<![CDATA[经办人]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="1" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="3" r="117" s="22">
-<O>
-<![CDATA[审查人]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="4" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="5" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="6" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="7" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="8" r="117" s="22">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="9" r="117" s="26">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="11" r="117" cs="6" s="23">
-<O>
-<![CDATA[            年          月         日]]></O>
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="1" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="4" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="9" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="11" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="13" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="15" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="16" r="118">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="0" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="1" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="2" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="4" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="9" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="11" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="13" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="15" r="119">
-<PrivilegeControl/>
-<Expand/>
-</C>
-<C c="16" r="119">
+<C c="16" r="116">
 <PrivilegeControl/>
 <Expand/>
 </C>
@@ -1758,12 +1871,29 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 </Parameter>
 </ReportParameterAttr>
 <StyleList>
+<Style horizontal_alignment="4" imageLayout="1">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
 <Style horizontal_alignment="0" imageLayout="1">
 <FRFont name="SimSun" style="1" size="224"/>
 <Background name="NullBackground"/>
 <Border/>
 </Style>
 <Style horizontal_alignment="0" imageLayout="1">
+<FRFont name="SimSun" style="1" size="144"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="1" size="120"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="2" imageLayout="1">
 <FRFont name="SimSun" style="1" size="144"/>
 <Background name="NullBackground"/>
 <Border/>
@@ -1852,6 +1982,14 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <Border>
 <Top style="1"/>
 <Bottom style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
 <Left style="1"/>
 <Right style="1"/>
 </Border>
@@ -1888,6 +2026,16 @@ where a.FEntId = b.qyid and b.FEntType = 6  and a.EmpType = '11220201' and a.FAp
 <Border>
 <Top style="1"/>
 <Right style="1"/>
+</Border>
+</Style>
+<Style imageLayout="1">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left color="-1"/>
+<Right color="-1"/>
 </Border>
 </Style>
 <Style horizontal_alignment="0" imageLayout="1">

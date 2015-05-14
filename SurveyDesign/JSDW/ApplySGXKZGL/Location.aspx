@@ -16,9 +16,9 @@
     <script type="text/javascript" src="../../DateSelect/WdatePicker.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
             txtCss();
-
         });
         function checkInfo() {
             return AutoCheckInfo();
@@ -36,6 +36,7 @@
         }
         function showTr1() {
             $("tr[name=tr1]").show();
+            $("tr[name=tr5]").hide();
             //$(".cc1").removeAttr("disabled");
             $(".cc1").attr("disabled", true);
             //$("input").removeAttr("disabled");
@@ -50,8 +51,10 @@
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
+            $("tr[name=tr5]").show();
             $("tt[name=tt_t1]").empty();
-            $("tt[name=tt_t1]").each(function () {
+            $("tt[name=tt_t1]").each(function ()
+            {
                 var t = $(this).html();
                 $(this).replaceWith(t);
             });
@@ -63,11 +66,14 @@
             $("#t_ProjectBasis").removeAttr("disabled");
             //$("#btnSave").removeAttr("disabled");
         }
+
         function change(value) {
             if (value == "1") {
                 $("tr[name=tr1]").hide();
+                $("tr[name=tr5]").show();
                 $("tt[name=tt_t1]").empty();
-                $("tt[name=tt_t1]").each(function () {
+                $("tt[name=tt_t1]").each(function ()
+                {
                     var t = $(this).html();
                     $(this).replaceWith(t);
                 });
@@ -77,10 +83,19 @@
                 $("#btnReload").removeAttr("disabled");
                 $("#t_Scale").removeAttr("disabled");
                 $("#t_ProjectBasis").removeAttr("disabled");
+                $("#div[id=blxy]").removeAttr("disabled");
                 //$("#btnSave").removeAttr("disabled");
             }
             else {
                 $("tr[name=tr1]").show();
+                $("tr[name=tr5]").hide();
+
+                $("tt[name=tt_t2]").empty();
+                $("tt[name=tt_t2]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
+                });
+
                 $(".cc1").attr("disabled", true);
                 //$("input").removeAttr("disabled");
                 $("#btnAdd").attr("disabled", true);
@@ -106,6 +121,7 @@
         <tr>
             <th colspan="5">
                 项目环节材料
+             
             </th>
         </tr>
     </table>
@@ -150,7 +166,7 @@
                 <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
             </td>
         </tr>
-        <tr>
+        <tr  name="tr5">
             <td class="t_r t_bg" style="width:18.8%;">
                 项目名称：
             </td>
@@ -164,14 +180,14 @@
                 <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="44%" Enabled="false"></asp:TextBox>
             </td>
         </tr>
-        <tr >
+        <tr  name="tr5">
             <td class="t_r t_bg">
                 项目拟选位置： </td>
             <td colspan="3">
                 <asp:TextBox ID="t_LocationAddress" class="cc1" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
             </td>          
         </tr>
-        <tr>
+        <tr  name="tr5">
             <td class="t_r t_bg" style="width:18.8%;">
                 拟用地面积：
             </td>
@@ -179,12 +195,12 @@
                 <asp:TextBox ID="t_Area" class="cc1" onblur="isFloat(this)" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>（m2）
             </td>
             <td class="t_r t_bg">
-                选址意见书证书编号：选字第（ </td>
-            <td colspan="1">
-                <asp:TextBox ID="t_XZYJSZSBH" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
-                ）</td>
+                选址意见书证书编号：</td>
+            <td colspan="1">选字第（ 
+                <asp:TextBox ID="t_XZYJSZSBH" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>）
+                </td>
         </tr>
-        <tr>
+        <tr  name="tr5">
             <td class="t_r t_bg">
                 拟建设规模： </td>
             <td colspan="3">
@@ -192,19 +208,19 @@
             </td>
             
         </tr>
-        <tr>
+        <tr  name="tr5">
             <td class="t_r t_bg">
                 建设项目依据：</td>
             <td colspan="3">
                <asp:TextBox ID="t_ProjectBasis" class="cc1" Height="35px" TextMode="MultiLine" onblur="checkLength(this,1000,'建设项目依据');" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>&nbsp;</td>
         </tr>
-        <tr>
+        <tr name=tr5>
             <td class="t_r t_bg">
                 用地批准手续：</td>
             <td colspan="3">
-               <asp:TextBox ID="t_YDPZSX" class="cc1" Height="35px" TextMode="MultiLine" onblur="checkLength(this,1000,'用地批准手续');" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt>*</tt>&nbsp;</td>
+               <asp:TextBox ID="t_YDPZSX" class="cc1" Height="35px" TextMode="MultiLine" onblur="checkLength(this,1000,'用地批准手续');" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt  name="tt_t2">*</tt>&nbsp;</td>
         </tr>
-        <tr>
+        <tr  name="tr5">
             <td class="t_r t_bg" style="width:18.8%;">
                 发证日期：
             </td>
@@ -217,8 +233,7 @@
                 <asp:TextBox ID="t_HFJG" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
             </td>
         </tr>
-        
-        
+
     </table>
         <table width="98%" align="center" class="m_bar">
             <tr>

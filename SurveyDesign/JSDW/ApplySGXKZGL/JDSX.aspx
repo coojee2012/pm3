@@ -17,7 +17,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            txtCss(); hideTr1();
+            txtCss(); 
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
@@ -43,12 +43,21 @@
         }
         function showTr1() {
             $("tr[name=tr1]").show();
-            $('[cs=cs1]').each(function (i) {
-                $("#" + this.id).attr("disabled", true);
+            $("tr[name=tr5]").hide();
+            $("tt[name=tt_t2]").empty();
+            $("tt[name=tt_t2]").each(function () {
+                var t = $(this).html();
+                $(this).replaceWith(t);
             });
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
+            $("tr[name=tr5]").show();
+            $("tt[name=tt_t1]").empty();
+            $("tt[name=tt_t1]").each(function () {
+                var t = $(this).html();
+                $(this).replaceWith(t);
+            });
             $('[cs=cs1]').each(function (i) {
                 $("#" + this.id).removeAttr("disabled");
             });
@@ -56,12 +65,24 @@
         function change(value) {
             if (value == "1") {
                 $("tr[name=tr1]").hide();
+                $("tr[name=tr5]").show();
                 $('[cs=cs1]').each(function (i) {
                     $("#" + this.id).removeAttr("disabled");
+                });
+                $("tt[name=tt_t1]").empty();
+                $("tt[name=tt_t1]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
                 });
             }
             else {
                 $("tr[name=tr1]").show();
+                $("tr[name=tr5]").hide();
+                $("tt[name=tt_t2]").empty();
+                $("tt[name=tt_t2]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
+                });
                 //$("input").removeAttr("disabled");
                 $('[cs=cs1]').each(function (i) {
                     $("#" + this.id).attr("disabled", true);
@@ -118,10 +139,10 @@
             <tr name="tr1">
                 <td class="t_r t_bg">理由： </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
+                    <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name ="tt_t1">*</tt>
                 </td>
             </tr>
-            <tr>
+            <tr name ="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">项目名称：
                 </td>
                 <td colspan="1" style="width: 29%;">
@@ -133,50 +154,47 @@
                     <asp:TextBox ID="t_PrjItemName" runat="server" CssClass="m_txt" Width="44%" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name ="tr5">
                 <td class="t_r t_bg">建设单位： </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_JSDW" runat="server" CssClass="m_txt" Width="21%" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name ="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">质量监督备案编号：
                 </td>
                 <td colspan="1" style="width: 29%;">
-                    <asp:TextBox ID="t_ZLBABH" cs="cs1" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_ZLBABH" cs="cs1" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox><tt name ="tt_t2">*</tt>
                 </td>
                 <td class="t_r t_bg">质量监督备案机关： </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ZLBAJG" cs="cs1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name ="tr5">
                 <td class="t_r t_bg">质量监督备案时间： </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_ZLBATime" cs="cs1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="21%"></asp:TextBox>
                 </td>
 
             </tr>
-            <tr>
+            <tr name ="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">安全监督备案编号：
                 </td>
                 <td colspan="1" style="width: 29%;">
-                    <asp:TextBox ID="t_AQBABH" cs="cs1" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_AQBABH" cs="cs1" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox><tt name ="tt_t2">*</tt>
                 </td>
                 <td class="t_r t_bg">安全监督备案机关： </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_AQBAJG" cs="cs1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+            <tr name ="tr5">
                 <td class="t_r t_bg">安全监督备案时间： </td>
                 <td colspan="3">
                     <asp:TextBox ID="t_AQBATime" cs="cs1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="21%"></asp:TextBox>
                 </td>
-
             </tr>
-
-
         </table>
         <table width="98%" align="center" class="m_bar">
             <tr>

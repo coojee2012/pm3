@@ -44,25 +44,47 @@
         }
         function showTr1() {
             $("tr[name=tr1]").show();
+            $("tr[name=tr5]").hide();
             $('[cs=cs1]').each(function (i) {
                 $("#" + this.id).attr("disabled", true);
+            });
+            $("tt[name=tt_t2]").empty();
+            $("tt[name=tt_t2]").each(function () {
+                var t = $(this).html();
+                $(this).replaceWith(t);
             });
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
+            $("tr[name=tr5]").show();
             $('[cs=cs1]').each(function (i) {
                 $("#" + this.id).removeAttr("disabled");
             });
+
         }
         function change(value) {
             if (value == "1") {
                 $("tr[name=tr1]").hide();
+                $("tr[name=tr5]").show();
                 $('[cs=cs1]').each(function (i) {
                     $("#" + this.id).removeAttr("disabled");
+                });
+
+                $("tt[name=tt_t1]").empty();
+                $("tt[name=tt_t1]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
                 });
             }
             else {
                 $("tr[name=tr1]").show();
+                $("tr[name=tr5]").hide();
+
+                $("tt[name=tt_t2]").empty();
+                $("tt[name=tt_t2]").each(function () {
+                    var t = $(this).html();
+                    $(this).replaceWith(t);
+                });
                 //$("input").removeAttr("disabled");
                 $('[cs=cs1]').each(function (i) {
                     $("#" + this.id).attr("disabled", true);
@@ -165,14 +187,14 @@
                 <tr name="tr1">
                     <td class="t_r t_bg">理由： </td>
                     <td colspan="3">
-                        <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
+                        <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
                     </td>
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg" style="width: 18.8%;">施工图审查合格书编号：
                     </td>
                     <td colspan="1" style="width: 29%;">
-                        <asp:TextBox ID="t_SGTSCHGSBH" cs="cs1" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_SGTSCHGSBH" cs="cs1" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
                     <td class="t_r t_bg">项目编号：
                     </td>
@@ -182,11 +204,11 @@
                     </td>
                 </tr>
 
-                <tr>
+                <tr name="tr5">
                     <td class="t_r t_bg">施工图审查机构名称：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_SGTSCJGMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_SGTSCJGMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
                         <input type="hidden" runat="server" id="t_SGTSCJGId" value="" />
                         <asp:Button ID="btnAddEnt" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_SGTSCJGId');"
                             UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSC_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
@@ -194,31 +216,31 @@
                     <td class="t_r t_bg">施工图审查机构组织机构代码：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_SGTSCZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_SGTSCZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg">审查完成日期：
                     </td>
                     <td colspan="3">
-                        <asp:TextBox ID="t_SCWCRQ" cs="cs1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_SCWCRQ" cs="cs1" onfocus="WdatePicker()" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
 
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg">建设规模：
                     </td>
                     <td colspan="3">
                         <asp:TextBox ID="t_ConstrScale" cs="cs1" runat="server" CssClass="m_txt" Width="638px" Height="40px" TextMode="MultiLine"></asp:TextBox>
-                        <tt>*</tt>
+                        <tt name="tt_t2">*</tt>
                     </td>
 
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg">勘察单位名称：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_KCDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_KCDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
                         <input type="hidden" runat="server" id="t_KCDWId" value="" />
                         <asp:Button ID="btnAddEnt1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_KCDWId');"
                             UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntKC_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
@@ -226,14 +248,14 @@
                     <td class="t_r t_bg">勘察单位组织机构代码：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_KCDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_KCDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg">设计单位名称：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_SJDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_SJDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
                         <input type="hidden" runat="server" id="t_SJDWId" value="" />
                         <asp:Button ID="btnAddEnt2" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_SJDWId');"
                             UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntSJ_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
@@ -241,30 +263,30 @@
                     <td class="t_r t_bg">设计单位组织机构代码：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_SJDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_SJDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg">一次审查是否通过：
                     </td>
                     <td colspan="1">
                         <asp:DropDownList ID="t_YCSCSFTG" cs="cs1" runat="server" CssClass="m_txt" Width="203px">
                             <asp:ListItem Value="1">通过</asp:ListItem>
                             <asp:ListItem Value="0">不通过</asp:ListItem>
-                        </asp:DropDownList><tt>*</tt>
+                        </asp:DropDownList><tt name="tt_t2">*</tt>
                     </td>
                     <td class="t_r t_bg">一次审查时违反强条数：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_YCSCWFTS" cs="cs1" onblur="isInt(this)" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_YCSCWFTS" cs="cs1" onblur="isInt(this)" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
 
                 </tr>
-                <tr>
+                <tr  name="tr5">
                     <td class="t_r t_bg">一次审查时违反的强条条目：
                     </td>
                     <td colspan="3">
-                        <asp:TextBox ID="t_YCSCWFTM" cs="cs1" runat="server" CssClass="m_txt" Width="638px" Height="40px" TextMode="MultiLine"></asp:TextBox><tt>*</tt>
+                        <asp:TextBox ID="t_YCSCWFTM" cs="cs1" runat="server" CssClass="m_txt" Width="638px" Height="40px" TextMode="MultiLine"></asp:TextBox><tt name="tt_t2">*</tt>
                     </td>
                 </tr>
 

@@ -56,7 +56,7 @@ public partial class Government_AppKJGGL_KGGLList : govBasePage
 
         if (this.govd_FRegistDeptId.FNumber != null)
         {
-            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+            sb.Append(" and qa.PrjAddressDept = '" + this.govd_FRegistDeptId.FNumber + "'");
         }
         else
         {

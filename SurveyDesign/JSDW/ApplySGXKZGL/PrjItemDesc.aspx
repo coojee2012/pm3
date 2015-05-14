@@ -326,7 +326,7 @@
                     <tt>*</tt>
                 </td>
                 <td class="t_r t_bg">
-                    合同价格：
+                    合同价格(万元)：
                 </td>
                 <td >
                     <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="true"></asp:TextBox><tt>*</tt>币种：

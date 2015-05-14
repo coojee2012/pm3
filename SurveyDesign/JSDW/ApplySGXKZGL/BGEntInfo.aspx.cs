@@ -138,7 +138,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             tool.fillPageControl(entInfo);
             h_selEntId.Value = entInfo.QYID;
             //保存老的企业编号和企业名称
-            h_OldQYID.Value = entInfo.QYID;
+            h_OldQYID.Value   = entInfo.QYID;
             h_OldQYName.Value = entInfo.FName;
             var v = from t in dbContext.TC_PrjItem_Emp
                     where t.FAppId == h_AppId.Value && t.FEntId == entInfo.QYID && t.FEntType == Convert.ToInt16(t_FEntType.Value)
@@ -214,38 +214,37 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         CF_Sys_Dic csd = db.CF_Sys_Dic.Where(t => t.FParentId == 112202 && t.FNumber == id).FirstOrDefault();
         if (csd != null)
         {
-            return csd.FName;
+            switch (csd.FNumber)
+            {
+                default:
+                    return "项目负责人";
+                case 11220201:
+                    return "项目负责人";
+                case 11220202:
+                    return "项目技术负责人";
+                case 11220203:
+                    return "安全负责人";
+                case 11220204:
+                    return "施工员";
+                case 11220205:
+                    return "质量员";
+                case 11220206:
+                    return "安全员";
+                case 11220207:
+                    return "材料员";
+                case 11220208:
+                    return "预算员";
+                case 11220209:
+                    return "总监理工程师";
+                case 11220210:
+                    return "专业监理工程师";
+                case 11220211:
+                    return "监理员";
+                case 11220212:
+                    return "其他";
+                case 11220213: return "建造师";	
+            }
         }
-        return "";
-        //switch (id)
-        //{
-        //    default:
-        //        return "项目负责人";
-        //    case "1":
-        //        return "项目负责人";
-        //    case "2":
-        //        return "项目技术负责人";
-        //    case "3":
-        //        return "安全负责人";
-        //    case "4":
-        //        return "施工员";
-        //    case "5":
-        //        return "质量员";
-        //    case "6":
-        //        return "安全员";
-        //    case "7":
-        //        return "材料员";
-        //    case "8":
-        //        return "预算员";
-        //    case "9":
-        //        return "总监理工程师";
-        //    case "10":
-        //        return "专业监理工程师";
-        //    case "11":
-        //        return "监理员";
-        //    case "12":
-        //        return "其他";
-        //}
     }
 
     /*
@@ -332,6 +331,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         //如果企业发生了变更,历史的企业记录退出，新的企业记录新增
         if (!string.IsNullOrEmpty(h_OldQYID.Value) && h_selEntId.Value.Trim() != h_OldQYID.Value.Trim())
         {  
+           #region   多余的
+            /*
                 //删除历史企业
                 TC_PrjItem_Ent oldent = dbContext.TC_PrjItem_Ent.Where(t =>t.FAppId == h_AppId.Value && t.QYID == h_OldQYID.Value && t.FEntType == entType).FirstOrDefault();
                 dbContext.TC_PrjItem_Ent.DeleteOnSubmit(oldent);
@@ -357,18 +358,18 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 newEntInfo.FCreateTime = DateTime.Now;
                 dbContext.TC_PrjItem_Ent.InsertOnSubmit(newEntInfo);
                 pageTool tool = new pageTool(this.Page);              
-                newEntInfo = tool.getPageValue(newEntInfo);
-
-                //记录历史企业退出的记录
+                newEntInfo = tool.getPageValue(newEntInfo);*/
+           #endregion
+            //记录历史企业退出的记录
                 TC_SGXKZ_QYBGJG entity = new TC_SGXKZ_QYBGJG();
                 entity.FId = Guid.NewGuid().ToString();
                 entity.FAppId = this.h_AppId.Value;
                 entity.FPrjItemId = h_ProjectItemId.Value;
                 entity.YQLX = lblTitle.InnerText;
-                entity.YQMC = entInfo.FName;
+                entity.YQMC = h_OldQYName.Value;
                 entity.BGTime = DateTime.Now;
                 //entity.FLinkId = entInfo.FId;
-                entity.FLinkId = entInfo.QYID;
+                entity.FLinkId = h_OldQYID.Value;
                 entity.BGQK = "退出";
                 dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
                 //记录新的企业新增的记录
@@ -378,12 +379,13 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 entity.FPrjItemId = h_ProjectItemId.Value;
                 entity.YQLX = lblTitle.InnerText;
                 entity.YQMC = t_FName.Text;
-                entity.BGTime = DateTime.Now;             
-                entity.FLinkId = newEntInfo.QYID;
+                entity.BGTime = DateTime.Now;
+                entity.FLinkId = h_selEntId.Value;
                 entity.BGQK = "新增";
                 dbContext.TC_SGXKZ_QYBGJG.InsertOnSubmit(entity);
+
                 //历史企业的人员全部退出，历史企业的筛选条件包括appid,fentid,fenttype,并删除历史企业人员                
-                var oldEmpList = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == h_OldQYID.Value && t.FAppId == h_AppId.Value && t.FEntType == Convert.ToInt16(t_FEntType.Value)).ToList();                
+                var oldEmpList = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == h_OldQYID.Value && t.FAppId == h_AppId.Value && t.FPrjItemId == h_ProjectItemId.Value && t.FEntType == Convert.ToInt16(t_FEntType.Value)).ToList();                
                 if (oldEmpList != null && oldEmpList.Count > 0)
                 {
                     oldEmpList.ForEach(q =>
@@ -402,7 +404,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                         sr.QYMC = q.FEntName;
                         sr.BGQK = "退出";
                         sr.BGTime = DateTime.Now;
-                        sr.FLinkId = q.FLinkId;
+                        sr.FLinkId = q.FEmpId;
                         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
                     });
                 }               

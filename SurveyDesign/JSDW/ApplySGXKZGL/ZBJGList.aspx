@@ -97,6 +97,8 @@
                 $("#t_JLZBDWZZJGDM").val("");
                 $("#t_JLZBQYZZDJ").val("");
                 $("#t_JLZBQYZZZSH").val("");
+                $("#t_JLGCS").val("");
+                $("#t_SJId").val("");
             }
 
             document.getElementById("oldzblx").value = value;
@@ -145,8 +147,9 @@
             }
         }
         function selEmp(obj, tagId) {
-            //var qybm = document.getElementById("t_JLId").value;
-            var qybm = document.getElementById("t_SGId").value;            
+            var qybm = document.getElementById("t_JLId").value;
+            
+            //var qybm = document.getElementById("t_SGId").value;
             var url = "../project/EmpListSel.aspx";
             if (qybm != null && qybm != '') {
                 url += "?qybm=" + qybm;
