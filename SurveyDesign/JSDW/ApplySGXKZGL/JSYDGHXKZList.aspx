@@ -209,11 +209,10 @@
                         </asp:DropDownList>&nbsp;</td>
             </tr>
             <tr name="tr5">
-                <td class="t_r t_bg">用地规划许可证编号： 地字第（</td>
-                <td colspan="2">
-                    <asp:TextBox ID="t_YDGHXKZBH" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox><tt name="tt_t2">*</tt>
+                <td class="t_r t_bg">用地规划许可证编号： </td>
+                <td colspan="2">地字第(<asp:TextBox ID="t_YDGHXKZBH" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox>)<tt name="tt_t2">*</tt>
                 </td>
-                <td>）</td>
+                <td>&nbsp;</td>
             </tr>
             <tr name="tr5">
                 <td class="t_r t_bg" style="width: 18.8%;">发证日期：

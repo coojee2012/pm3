@@ -59,7 +59,7 @@ public partial class Government_AppKJGGL_JGGLList:govBasePage
 
         if (this.govd_FRegistDeptId.FNumber != null)
         {
-            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+            sb.Append(" and qa.PrjAddressDept = '" + this.govd_FRegistDeptId.FNumber + "'");   //修改  by zyd
         }
         else
         {

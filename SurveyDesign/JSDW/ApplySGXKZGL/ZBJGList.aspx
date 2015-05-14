@@ -97,6 +97,8 @@
                 $("#t_JLZBDWZZJGDM").val("");
                 $("#t_JLZBQYZZDJ").val("");
                 $("#t_JLZBQYZZZSH").val("");
+                $("#t_JLGCS").val("");
+                $("#t_SJId").val("");
             }
 
             document.getElementById("oldzblx").value = value;
