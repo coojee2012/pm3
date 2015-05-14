@@ -7,9 +7,11 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EgovaDAO;
 
 public partial class Government_AppKJGGL_JGSZ : System.Web.UI.Page
 {
+    EgovaDB dbContext = new EgovaDB();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request["FAppId"] != null && !string.IsNullOrEmpty(Request["FAppId"]))
@@ -54,7 +56,8 @@ public partial class Government_AppKJGGL_JGSZ : System.Web.UI.Page
                 string sql = "UPDATE TC_SGXKZ_PrjInfo SET SJEndDate = '" + t_SJEndDate.Text + " 23:59:59' WHERE FAppId='" + t_fLinkId.Value + "'";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
-
+                //解锁本业务所有锁定人员
+                unlockperson(t_fLinkId.Value);
                 ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('保存成功');", true);
             }
 
@@ -65,6 +68,22 @@ public partial class Government_AppKJGGL_JGSZ : System.Web.UI.Page
             ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('保存失败');", true);
         }
 
+    }
+
+    /// <summary>
+    /// 解锁本业务所有锁定人员
+    /// </summary>
+    private  void  unlockperson(string fappid)
+    {
+        Common cm = new Common();
+        var emplist = dbContext.TC_PrjItem_Emp_Lock.Where(t => t.FAppId == fappid);
+        if (emplist != null)
+        {
+            foreach(TC_PrjItem_Emp_Lock v in emplist)
+            {
+            cm.UnlockPerson(t_fLinkId.Value,v.FPrjItemId,v.FIdCard);
+            }
+        }
     }
 
     protected DataTable GetData(string sql)

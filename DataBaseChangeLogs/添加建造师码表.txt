@@ -1,0 +1,2 @@
+ insert  into CF_Sys_Dic
+ select  newid(),'Ω®‘Ï ¶','11220213','11220213','112202',NULL,4,0,0,'1122',NULL,null,getdate()
