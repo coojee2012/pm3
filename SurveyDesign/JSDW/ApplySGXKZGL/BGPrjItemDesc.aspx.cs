@@ -143,7 +143,7 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         //同时向TC_SGXKZ_PrjInfo表中保存相关信息
         TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == h_FAppId.Value).FirstOrDefault();
-        TC_SGXKZ_PrjInfo tsp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == sbg.FLinkId).FirstOrDefault();
+        TC_SGXKZ_PrjInfo tsp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == h_FAppId.Value).FirstOrDefault();
         tsp.FPrjItemId = Emp.FPrjItemId;
         tsp.PrjId = Emp.PrjId;
         tsp.PrjItemName = Emp.PrjItemName;

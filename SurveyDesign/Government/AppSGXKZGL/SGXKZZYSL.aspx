@@ -15,7 +15,7 @@
     <script type="text/javascript">   
         function appPrint() {
             var FAppId = document.getElementById('t_fLinkId').value;
-            var ffid = document.getElementById('ffid').value;
+            var ffid = document.getElementById('ffid').value;         
             if (!ffid || ffid == "") {
                 alert("请先保存！");
                 return false;

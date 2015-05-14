@@ -32,6 +32,7 @@
             var FPrjItemId = document.getElementById("t_FPrjItemId").value;
             showAddWindow('BGEntInfo.aspx?FAppId=' + FAppId + '&FEntType=' + FEntType + '&FPrjId=' + FPrjId +
                  '&FPrjItemId=' + FPrjItemId, 900, 700);
+            __doPostBack(this.id, '');
         }
     </script>
     <base target="_self">

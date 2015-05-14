@@ -38,9 +38,52 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     }
     void BindControl()
     {
+
+        //人员类型
+        //DataTable dt = rc.getDicTbByFNumber("112202");
+        //t_EmpType.DataSource = dt;
+        //t_EmpType.DataTextField = "FName";
+        //t_EmpType.DataValueField = "FNumber";
+        //t_EmpType.DataBind();
+
         //人员类型
         DataTable dt = rc.getDicTbByFNumber("112202");
-        t_EmpType.DataSource = dt;
+        DataTable dtNew = dt.Clone();
+        DataRow[] drArr;
+        drArr = dt.Select();
+        switch (t_Enttype.Value)
+        {
+            //只有施工总承包企业有项目负责人
+            //施工总承包单位
+            case "2":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220203','11220204','11220205','11220206','11220207','11220208','11220213')");
+                break;
+            //专业承包单位
+            case "3":
+                drArr = dt.Select("FNumber in ('11220202','11220203','11220204','11220205','11220206','11220207','11220208','11220213')");
+                break;
+            //劳动分包
+            case "4":
+                drArr = dt.Select("FNumber in ('11220202','11220203','11220204','11220205','11220206','11220207','11220208','11220213')");
+                break;
+            //勘察单位
+            case "5":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220212')");
+                break;
+            //设计单位
+            case "6":
+                drArr = dt.Select("FNumber in ('11220201','11220202','11220212')");
+                break;
+            //监理单位
+            case "7":
+                drArr = dt.Select("FNumber in ('11220209','11220210','11220211')");
+                break;
+        }
+        for (int i = 0; i < drArr.Length; i++)
+        {
+            dtNew.ImportRow(drArr[i]);
+        }
+        t_EmpType.DataSource = dtNew;
         t_EmpType.DataTextField = "FName";
         t_EmpType.DataValueField = "FNumber";
         t_EmpType.DataBind();
@@ -58,6 +101,13 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         t_ZC.DataTextField = "FName";
         t_ZC.DataValueField = "FNumber";
         t_ZC.DataBind();
+        //证书等级
+        dt = rc.GetTable("select *  from  (select FName,FNumber  from Standard_Dic.dbo.[CF_Dic_Person]  where  FType = 'zcrylx' union select '无' FName,'-1' FNumber) a order by  a.FNumber");
+        t_DJ.DataSource = dt;
+        t_DJ.DataTextField = "FName";
+        t_DJ.DataValueField = "FNumber";
+        t_DJ.DataBind();
+        t_DJ.Items.FindByValue("-1").Selected = true;
 
     }
     private string getEmpType(string id)
@@ -113,11 +163,10 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         pageTool tool = new pageTool(this.Page);
         var manualVal = t_IsManual.Value;
         string fId = txtFId.Value;
-        string zczsbh = t_ZCBH.Text.Trim();
-
-        //string fOldId = fId; 
+        string zczsbh = t_ZCBH.Text.Trim();     
         dbContext = new EgovaDB();
         TC_PrjItem_Emp Emp = new TC_PrjItem_Emp();
+        //如果不是新增
         if (!string.IsNullOrEmpty(fId))
         {
             Emp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == fId).FirstOrDefault();
@@ -252,8 +301,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         sr.QYMC = ent.FEntName;
         sr.BGQK = "增加";
         sr.BGTime = DateTime.Now;
-        sr.fenttype = EConvert.ToInt(t_Enttype.Value);//企业类型
-        //sr.FLinkId = ent.FId;
+        sr.fenttype = EConvert.ToInt(t_Enttype.Value);//企业类型      
         sr.FLinkId = ent.FEmpId;
         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
         dbContext.SubmitChanges();
@@ -268,25 +316,33 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         string selEmpId = h_selEmpId.Value;
         EgovaDB1 db = new EgovaDB1();
         var v = db.RY_RYJBXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
-        //t_EmpType.SelectedValue = v.RYLBBM;
-        if (v != null)
+          if (v != null)
         {
             t_FHumanName.Text = v.XM;
             t_FIdCard.Text = v.SFZH;
-            t_FSex.SelectedValue = v.XB.ToString();
+            if (v.XB == "女")
+            {
+                t_FSex.SelectedValue = "1";
+            }
+            else
+            {
+                t_FSex.SelectedValue = "0";
+            }
             t_FMobile.Text = v.GRDH;
-            t_ZC.SelectedItem.Text = v.ZC;
-            //t_ZW.Text = v.ZW;
-            t_FTel.Text = v.BGDH;
+           t_ZC.SelectedValue = v.ZC;
+           t_FTel.Text = v.BGDH;
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
             if (v1 != null)
             {
-                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? v1.ZCZSH : v1.ZCZSBH;
-                t_DJ.Text = v1.ZSJB;
+                t_ZSBH.Text = string.IsNullOrEmpty(v1.ZCZSBH) ? v1.ZCZSH : v1.ZCZSBH;               
                 t_ZCBH.Text = v1.ZCZSH;
                 t_ZCZY.Text = v1.ZCZY;
                 t_ZCRQ.Text = v1.FZSJ.ToString();
+                if (t_DJ.Items.Contains(new ListItem(v1.ZSLX.ToString())))
+                {
+                    t_DJ.SelectedValue = v1.ZSLX.ToString();
+                }
             }
 
         }

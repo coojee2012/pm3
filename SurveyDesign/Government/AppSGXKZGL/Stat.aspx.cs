@@ -131,6 +131,7 @@ public partial class Government_AppAQJDBA_Stat : govBasePage
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
         Pager1.CurrentPageIndex = e.NewPageIndex;
+        showStatInfo();
     }
     protected void btnBack_Click(object sender, EventArgs e)
     {
