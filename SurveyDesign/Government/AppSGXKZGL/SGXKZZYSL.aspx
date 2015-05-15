@@ -19,9 +19,8 @@
             if (!ffid || ffid == "") {
                 alert("请先保存！");
                 return false;
-            } else {
-               // alert(FAppId);
-                window.open('Print.aspx?FAppId=' + FAppId + "&printType=1", '_blank');
+            } else {              
+                window.open('Print.aspx?FAppId=' + FAppId + "&printType=1", '_blank');                
             }
         }
     </script>

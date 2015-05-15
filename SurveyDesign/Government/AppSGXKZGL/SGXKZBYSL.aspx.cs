@@ -18,6 +18,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
             if (Request["FLinkId"] != null && !string.IsNullOrEmpty(Request["FLinkId"]))
             {
                 t_fLinkId.Value = Request["FLinkId"].ToString();
+                ffid.Value = getBYSLTZSinfo(t_fLinkId.Value);
             }
             if (Request["FId"] != null && !string.IsNullOrEmpty(Request["FId"]))
             {
@@ -27,6 +28,23 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
         }
 
     }
+
+    /// <summary>
+    /// 获取填写的受理通知书主键，并赋值给隐藏字段ffid
+    /// </summary>
+    /// <param name="fappid"></param>
+    /// <returns></returns>
+    private string getBYSLTZSinfo(string fappid)
+    {
+        string sql = @"select  GuidID  from YW_BYSLTZS where YWBM = '+" + fappid + "' ";
+        DataTable dt = GetData(sql);
+        if (dt != null&&dt.Rows.Count >0)
+        {
+            return dt.Rows[0][0].ToString();
+        }
+        return "";
+    }
+
 
     protected void BindData()
     {
@@ -89,6 +107,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
                     sql = "INSERT INTO YW_BYSLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ,DJZQX) VALUES  ( '" + guid + "','";
                     sql += t_fLinkId.Value + "','" + t_BH.Text + "','";
                     sql += t_LXR.Text + "','" + t_LXDH.Text + "','" + t_JDDH.Text + "',getdate()," + ddlMType.SelectedValue + ")";
+                    ffid.Value = guid;
 
                 }
                 else
@@ -127,5 +146,9 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
 
             return dt;
         }
+    }
+    protected void btnPrint_Click(object sender, EventArgs e)
+    {
+
     }
 }
