@@ -15,8 +15,10 @@
     <script type="text/javascript">   
         function appPrint() {
             var FAppId = document.getElementById('t_fLinkId').value;
-            var ffid = document.getElementById('ffid').value;         
-            if (!ffid || ffid == "") {
+            var vffid = $('#t_ffid').val();
+            var vissave = document.getElementById('issave').value;
+
+            if (vissave != "1") {
                 alert("请先保存！");
                 return false;
             } else {              
@@ -29,9 +31,6 @@
             height: 21px;
         }
 
-        .auto-style3 {
-            height: 23px;
-        }
         .m_txt {}
     </style>
 </head>
@@ -68,7 +67,6 @@
                 <asp:TextBox ID="t_NR" ReadOnly="true" runat="server" CssClass="m_txt" Width="400px"></asp:TextBox>
             </td>
             </tr>
-        <tr>
             <tr>
             <td class="t_r">
                 联系人：
@@ -90,13 +88,7 @@
                 <asp:TextBox ID="t_JDDH"  runat="server" CssClass="m_txt" Width="400px"></asp:TextBox>
             </td>
         </tr>
-      
-       
-             
-          
-             
-
-              <tr>
+                <tr>
                 <td class="t_r">
                 </td>
                 <td>
@@ -112,8 +104,7 @@
                             /> 
                         </ContentTemplate>
                     </asp:UpdatePanel>                
-                    <input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" />
-                </td>
+                    &nbsp;<input type="button" id="btnReturn" runat="server" value="返回" class="m_btn_w2" onclick="window.close();" /></td>
                 
             </tr>
     </table>
@@ -128,7 +119,8 @@
         <input id="t_fBaseInfoId" runat="server" type="hidden" />
         <input id="t_fProcessRecordID" runat="server" type="hidden" />
         <input id="t_fProcessInstanceID" runat="server" type="hidden" />
-         <input id="ffid" runat="server" type="hidden" />
+        <input id="t_ffid" runat="server" type="hidden" />
+        <input id="issave" runat="server" type="hidden" />
     </form>
 </body>
 </html>

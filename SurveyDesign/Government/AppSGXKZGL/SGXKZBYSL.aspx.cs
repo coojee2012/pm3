@@ -48,6 +48,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
 
     protected void BindData()
     {
+        ffid.Value = "";
         StringBuilder sb = new StringBuilder();
         sb.Append(" select a.YWLX + a.PrjItemName+'施工许可证' as SLLR,a.FappId,ISNULL(b.GuidID,'') as FFId, a.PrjAddressDept,b.BH,b.LXR,b.LXDH,b.JDDH,ISNULL(b.DJZQX,1) as DJZQX,");
         sb.Append(" (select count(1)+1 from YW_BYSLTZS where DATEDIFF(day,getdate(),SLRQ )=0 ) as SLXH");
@@ -77,6 +78,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
             else
             {
                 t_BH.Text = EConvert.ToString(dt.Rows[i]["BH"]);
+                ffid.Value = EConvert.ToString(dt.Rows[i]["FFId"]);
             }
 
             t_RQ.Text = now.ToString("yyyy-MM-dd");
@@ -85,7 +87,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
             t_LXDH.Text = EConvert.ToString(dt.Rows[i]["LXDH"]);
             t_JDDH.Text = EConvert.ToString(dt.Rows[i]["JDDH"]);
             ddlMType.SelectedValue = EConvert.ToString(dt.Rows[i]["DJZQX"]);
-            ffid.Value = EConvert.ToString(dt.Rows[i]["FFId"]);
+
             break;
         }
     }
@@ -101,17 +103,18 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
                     conn.Open();
 
                 string sql = "";
+                string guid = "";
                 if (string.IsNullOrEmpty(ffid.Value))
                 {
-                    string guid = Guid.NewGuid().ToString();
+                    guid = Guid.NewGuid().ToString();
+                    ffid.Value = guid;
                     sql = "INSERT INTO YW_BYSLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ,DJZQX) VALUES  ( '" + guid + "','";
                     sql += t_fLinkId.Value + "','" + t_BH.Text + "','";
                     sql += t_LXR.Text + "','" + t_LXDH.Text + "','" + t_JDDH.Text + "',getdate()," + ddlMType.SelectedValue + ")";
-                    ffid.Value = guid;
-
                 }
                 else
                 {
+                    guid = ffid.Value;
                     sql = "UPDATE YW_BYSLTZS SET LXR = '" + t_LXR.Text + "',LXDH='";
                     sql += t_LXDH.Text + "',JDDH = '";
                     sql += t_JDDH.Text + "',DJZQX=" + ddlMType.SelectedValue;
@@ -121,7 +124,7 @@ public partial class Government_AppSGXKZGL_SGXKZBYSL : System.Web.UI.Page
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
-                ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('保存成功');", true);
+                ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "$('#ffid').val('" + guid.ToString() + "');alert('保存成功');", true);
             }
 
 

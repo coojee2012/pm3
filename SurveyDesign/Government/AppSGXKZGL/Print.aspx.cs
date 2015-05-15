@@ -25,12 +25,12 @@ public partial class Gov_AppSGXKZGL_Print : System.Web.UI.Page
             if (string.IsNullOrEmpty(Request.QueryString["FAppId"]))
             {
                 fAppId = EConvert.ToString(Session["FAppId"]);
-                Response.Redirect(string.Format("{0}{1}{2}", ReportServer, getFileName(fAppId), "&FAppId=" + fAppId));
+                Response.Redirect(string.Format("{0}{1}{2}", ReportServer, getFileName(fAppId), "&YWBM=" + fAppId));
             }
             else
             {
                 fAppId = EConvert.ToString(Request.QueryString["FAppId"]);
-                Response.Redirect(string.Format("{0}{1}{2}", ReportServer, getFileName(fAppId), "&FAppId=" + fAppId));
+                Response.Redirect(string.Format("{0}{1}{2}", ReportServer, getFileName(fAppId), "&YWBM=" + fAppId));
             }
         }
         
@@ -42,25 +42,5 @@ public partial class Gov_AppSGXKZGL_Print : System.Web.UI.Page
         //EgovaDB db = new EgovaDB();
         string printType = Request.QueryString["printType"];
         return printType == "1" ? "SGXKZSLTZS.cpt" : "SGXKZBSLTZS.cpt";
-        //var record = (from a in db.CF_App_ProcessInstance
-        //             join b in db.CF_App_ProcessRecord
-        //               on a.FID equals b.FProcessinstanceId
-        //             where (a.FID == fAppId)
-        //             select new {a.FState,a.FResult}).FirstOrDefault(); 
-        //.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
-        //if (!string.IsNullOrEmpty(record.FResult))
-        //{
-        //    受理通知书
-        //    if (record.FResult.Equals(1))
-        //    {
-        //        return "SGXKZSLTZS.cpt";
-        //    }
-        //    不受理通知书
-        //    if (record.FResult.Equals(3))
-        //    {
-        //        return "SGXKZBSLTZS.cpt";
-        //    }
-        //}
-        //return "SGXKZBSLTZS.cpt";
     }
 }

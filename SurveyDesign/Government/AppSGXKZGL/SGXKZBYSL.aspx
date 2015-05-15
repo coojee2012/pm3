@@ -16,12 +16,14 @@
         function appPrint() {
             var FAppId = document.getElementById('t_fLinkId').value;
             var ffid = document.getElementById('ffid').value;
-            if (!ffid || ffid == "") {
-                alert("请先保存！");
-                return false;
-            } else {
-                //alert(FAppId);
+            if (ffid != "")
+            {
                 window.open('Print.aspx?FAppId=' + FAppId + "&printType=0", '_blank');
+
+            } else {
+                alert("请先保存！" + ffid);
+                return false;
+
             }
             
         }

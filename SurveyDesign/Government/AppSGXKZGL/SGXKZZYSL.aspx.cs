@@ -14,15 +14,17 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            issave.Value = "0";
             if (Request["FLinkId"] != null && !string.IsNullOrEmpty(Request["FLinkId"]))
             {
                 t_fLinkId.Value = Request["FLinkId"].ToString();
-                ffid.Value = getSLTZSinfo(t_fLinkId.Value);
+                t_ffid.Value = getSLTZSinfo(t_fLinkId.Value);
             }
             if (Request["FId"] != null && !string.IsNullOrEmpty(Request["FId"]))
             {
                 t_fProcessInstanceID.Value = Request["FId"].ToString();
             }
+
             BindData();
         }
         
@@ -75,7 +77,8 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
             else
             {
                 t_BH.Text = EConvert.ToString(dt.Rows[i]["BH"]);
-                ffid.Value = EConvert.ToString(dt.Rows[i]["BH"]);
+                t_ffid.Value = dt.Rows[i]["FFId"].ToString();
+                issave.Value = "1";
             }
         
             t_RQ.Text = now.ToString("yyyy-MM-dd");
@@ -83,7 +86,6 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
             t_LXR.Text = EConvert.ToString(dt.Rows[i]["LXR"]);
             t_LXDH.Text = EConvert.ToString(dt.Rows[i]["LXDH"]);
             t_JDDH.Text = EConvert.ToString(dt.Rows[i]["JDDH"]);
-            ffid.Value = EConvert.ToString(dt.Rows[i]["FFId"]);
             break;
         }
     }
@@ -93,35 +95,37 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
         try
         {
 
-            using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+            string guid = "";
+            string sql = "";
+
+            if (string.IsNullOrEmpty(t_ffid.Value))
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
+                guid = Guid.NewGuid().ToString();
 
-                string sql = "";
-                if (string.IsNullOrEmpty(ffid.Value))
-                {
-                    string guid = Guid.NewGuid().ToString();
-                    sql = "INSERT INTO YW_SLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ) VALUES  ( '" + guid + "','";
-                    sql += t_fLinkId.Value + "','" + t_BH.Text + "','";
-                    sql += t_LXR.Text + "','" + t_LXDH.Text + "','"+t_JDDH.Text+"',getdate())";
-                    ffid.Value = guid;//保存成功把主键写入到ffid.
+                sql = "INSERT INTO YW_SLTZS (GuidID,YWBM,BH,LXR,LXDH,JDDH,SLRQ) VALUES  ( '" + guid + "','";
+                sql += t_fLinkId.Value + "','" + t_BH.Text + "','";
+                sql += t_LXR.Text + "','" + t_LXDH.Text + "','" + t_JDDH.Text + "',getdate())";
 
-                }
-                else
-                {
-                    sql = "UPDATE YW_SLTZS SET LXR = '" + t_LXR.Text + "',LXDH='";
-                    sql += t_LXDH.Text+"',JDDH = '";
-                    sql += t_JDDH.Text + "'";
-                    sql += " WHERE GuidID='" + ffid.Value + "'";
-                  
-                }
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-
-                ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "alert('保存成功');", true);
             }
+            else
+            {
+                guid = t_ffid.Value;
+                sql = "UPDATE YW_SLTZS SET LXR = '" + t_LXR.Text + "',LXDH='";
+                sql += t_LXDH.Text + "',JDDH = '";
+                sql += t_JDDH.Text + "'";
+                sql += " WHERE GuidID='" + t_ffid.Value + "'";
 
+            }
+        using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+        {
+            if (conn.State == ConnectionState.Closed)
+                conn.Open();
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        ScriptManager.RegisterClientScriptBlock(up_Main, up_Main.GetType(), "js", "$('#issave').val(1);$('#t_ffid').val('" + guid.ToString()+ "');alert('保存成功');", true);
 
         }
         catch (Exception ee)
@@ -145,4 +149,5 @@ public partial class Government_AppSGXKZGL_SGXKZZYSL : System.Web.UI.Page
             return dt;
         }
     }
+
 }
