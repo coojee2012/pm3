@@ -114,7 +114,7 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=10 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
@@ -130,7 +130,7 @@ public partial class Government_AppSGXKZGL_CSList : govBasePage
         sb.Append(" where ep.fId = er.FProcessInstanceID and  er.FtypeId=10 ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
         sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
