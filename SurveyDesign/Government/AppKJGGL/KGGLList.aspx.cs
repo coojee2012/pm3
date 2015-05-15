@@ -32,6 +32,9 @@ public partial class Government_AppKJGGL_KGGLList : govBasePage
         sb.Append(" left join CF_App_ProcessRecordBackup er on ep.fId = er.FProcessInstanceID ");
         sb.Append(" left join CF_APP_LIST ap on ep.FLinkId = ap.FId ");
         sb.Append(" where ep.FState = 6 and er.FTypeId=5 and er.FResult=1 ");
+        //加上地区的限制
+        sb.Append(" and qa.PrjAddressDept='" + Session["DFId"].ToString() + "'");
+        //
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
 

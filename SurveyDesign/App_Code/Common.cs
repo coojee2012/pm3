@@ -37,7 +37,7 @@ public class Common
         var v = db.TC_PrjItem_Emp_Lock.Where(t => t.FAppId == fappid && t.FPrjItemId == fprjitemid && t.FIdCard.Contains(personidcard)).FirstOrDefault();
         if (v != null)
         {
-            db.TC_PrjItem_Emp_Lock.DeleteOnSubmit(v);
+            v.IsLock = false;
             db.SubmitChanges();
             return true;
         }

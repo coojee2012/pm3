@@ -72,9 +72,14 @@
                 <ItemTemplate>
                     <asp:Label ID ="lbl_emptype" runat ="server"></asp:Label>
                 </ItemTemplate>
-            </asp:TemplateColumn>
+            </asp:TemplateColumn>            
             <asp:BoundColumn DataField="EmpType" HeaderText="人员类型" Visible ="false"></asp:BoundColumn>
-            <asp:BoundColumn DataField="FEntName" HeaderText="所在企业"></asp:BoundColumn>
+            <asp:BoundColumn DataField="FEntId" HeaderText="所在企业" Visible ="false"></asp:BoundColumn>
+            <asp:TemplateColumn HeaderText ="所在企业">
+                <ItemTemplate>
+                    <asp:Label ID ="lbl_entname" runat ="server"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateColumn> 
             <asp:ButtonColumn HeaderText="选择" CommandName="Sel" Text="选择" >            
             </asp:ButtonColumn>           
         </Columns>
