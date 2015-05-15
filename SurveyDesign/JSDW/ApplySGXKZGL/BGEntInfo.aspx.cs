@@ -242,9 +242,11 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     return "监理员";
                 case 11220212:
                     return "其他";
-                case 11220213: return "建造师";	
+                case 11220213:
+                    return "建造师";	
             }
         }
+        return "";
     }
 
     /*
