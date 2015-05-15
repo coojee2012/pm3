@@ -245,6 +245,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                 case 11220213: return "建造师";	
             }
         }
+        return id.ToString(); 
     }
 
     /*
