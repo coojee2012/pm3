@@ -28,14 +28,22 @@ public partial class Government_AppSGXKZGL_SDRYSC : System.Web.UI.Page
     {
         using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
         {
-            string sql = "SELECT  A.FIdCard,A.FHumanName,A.IsLock,SUM(A.SelectedCount) AS FCount,FAddress=STUFF((select ','+ISNULL([Address],'--') from TC_PrjItem_Info  where fid=A.FPrjItemId for xml path('')),1,1,'') ";
-            sql += " FROM TC_PrjItem_Emp_Lock A ";
-            sql += " WHERE A.FIdCard IN (SELECT  B.FIdCard FROM  TC_PrjItem_Emp AS B WHERE  B.FAppId='" + h_FAppId.Value + "')";
-            sql += " Group BY A.FIdCard,A.FHumanName,A.IsLock,A.FPrjItemId ";
+            //string sql = "SELECT  A.FIdCard,A.FHumanName,A.IsLock,SUM(A.SelectedCount) AS FCount,FAddress=STUFF((select ','+ISNULL([Address],'--') from TC_PrjItem_Info  where fid=A.FPrjItemId for xml path('')),1,1,'') ";
+            //sql += " FROM TC_PrjItem_Emp_Lock A ";
+            //sql += " WHERE A.FIdCard IN (SELECT  B.FIdCard FROM  TC_PrjItem_Emp AS B WHERE  B.FAppId='" + h_FAppId.Value + "')";
+            //sql += " Group BY A.FIdCard,A.FHumanName,A.IsLock,A.FPrjItemId ";
 
-            sql += " union all SELECT  b.FIdCard, B.FHumanName,0 as IsLock ,0 As FCount,(SELECT Address from  TC_PrjItem_Info  where fid=B.FPrjItemId ) as Address";
-            sql += " FROM  TC_PrjItem_Emp B WHERE  B.FAppId='" + h_FAppId.Value + "' AND B.FIdCard NOT IN ";
- sql += " (SELECT FIdCard FROM  TC_PrjItem_Emp_Lock )";
+            //sql += " union all SELECT  b.FIdCard, B.FHumanName,0 as IsLock ,0 As FCount,(SELECT Address from  TC_PrjItem_Info  where fid=B.FPrjItemId ) as Address";
+            //sql += " FROM  TC_PrjItem_Emp B WHERE  B.FAppId='" + h_FAppId.Value + "' AND B.FIdCard NOT IN ";
+            //sql += " (SELECT FIdCard FROM  TC_PrjItem_Emp_Lock )";
+
+            string sql = @"  SELECT  A.FIdCard,A.FHumanName,count(1) AS FCount
+                        ,FAddress=STUFF((select ','+ISNULL([Address],'--') from TC_PrjItem_Info 
+                            where fid=A.FPrjItemId for xml path('')),1,1,'')  
+                            FROM TC_PrjItem_Emp A  
+                            WHERE  a.FAppId = '" + h_FAppId.Value+ "'"
+                            +" Group BY A.FIdCard,A.FHumanName,A.FPrjItemId  ";
+
             if (conn.State == ConnectionState.Closed)
                 conn.Open();
             DataSet ds = new DataSet();
@@ -44,6 +52,7 @@ public partial class Government_AppSGXKZGL_SDRYSC : System.Web.UI.Page
             DataTable dt = ds.Tables[0];
             JustAppInfo_List.DataSource = dt;
             JustAppInfo_List.DataBind();
+
            // SqlCommand cmd = new SqlCommand(sql, conn);
             //conn.Open();
             //int a = cmd.ExecuteNonQuery();

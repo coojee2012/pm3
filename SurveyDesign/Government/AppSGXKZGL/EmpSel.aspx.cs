@@ -10,6 +10,8 @@ using ProjectBLL;
 using System.Text;
 using Approve.RuleCenter;
 using EgovaDAO;
+using ProjectData;
+using System.Data;
 public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
 {
     RCenter rc = new RCenter();
@@ -31,8 +33,10 @@ public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
     {
         EgovaDB dbContext = new EgovaDB();
         IQueryable<TC_PrjItem_Emp> App = dbContext.TC_PrjItem_Emp.Where(t => t.FAppId == t_FAppId.Value).OrderByDescending(t => t.FEntId);
+
         if (!string.IsNullOrEmpty(t_FName.Text.Trim()))
             App = App.Where(t => t.FHumanName.Contains(t_FName.Text.Trim()));
+
         Pager1.RecordCount = App.Count();
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
         dg_List.DataBind();
@@ -42,11 +46,54 @@ public partial class JSDW_APPSGXKZGL_EmpSel : System.Web.UI.Page
         if (e.Item.ItemIndex > -1)
         {
             e.Item.Cells[1].Text = (e.Item.ItemIndex + 1 + this.Pager1.PageSize * (this.Pager1.CurrentPageIndex - 1)).ToString();
-            LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 2].Controls[0] as LinkButton;
+            LinkButton lb = e.Item.Cells[e.Item.Cells.Count - 1].Controls[0] as LinkButton;
             lb.Text = "选择";
             lb.Attributes.Add("onclick", "return confirm('确认要选择该项目吗?');");
+            //获取人员类型
+            string emptype = e.Item.Cells[5].Text;
+            Label lblemptype = e.Item.Cells[4].FindControl("lbl_emptype") as Label;
+            lblemptype.Text = getemptypename(emptype);
+            //获取企业名称
+            string fentid = e.Item.Cells[6].Text;
+            Label lbl_entname = e.Item.Cells[4].FindControl("lbl_entname") as Label;
+            lbl_entname.Text = getentname(fentid);
+
         }
     }
+
+    /// <summary>
+    /// 通过人员类型编码获取名称
+    /// </summary>
+    /// <param name="emptypeid"></param>
+    /// <returns></returns>
+    private string getemptypename(string emptypeid)
+    {
+        DataTable dt = rc.getDicTbByFNumber("112202");
+        for(int i=0;i<dt.Rows.Count;i++)
+        {
+            if (dt.Rows[i]["FNumber"].ToString() == emptypeid)
+            {
+                return dt.Rows[i]["FName"].ToString();
+            }
+        }
+        return "";            
+    }
+
+    /// <summary>
+    /// 获取企业名称
+    /// </summary>
+    /// <returns></returns>
+    private string getentname(string qybm)
+    {
+        string sql = "select  qymc from   jst_xzspbaseinfo.dbo.qy_jbxx  where  qybm = '" + qybm+"'";
+        DataTable dt = rc.GetTable(sql);
+        if(dt != null && dt.Rows.Count > 0)
+        {
+            return dt.Rows[0][0].ToString();
+        }
+        return "";
+    }
+
     //分页面控件翻页事件
     protected void Pager1_PageChanging(object src, Wuqi.Webdiyer.PageChangingEventArgs e)
     {
