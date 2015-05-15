@@ -28,6 +28,10 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
                 tool.ExecuteScript("btnEnable();");
             }
         }
+        else
+        {
+            showInfo();
+        }
     }
     //显示
     private void showTitle()
