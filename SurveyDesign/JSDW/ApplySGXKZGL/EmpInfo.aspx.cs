@@ -31,7 +31,8 @@ public partial class JSDW_APPLYSGXKZGL_EmpInfo : System.Web.UI.Page
             if (EConvert.ToInt(Session["FIsApprove"]) != 0)
             {
                 tool.ExecuteScript("btnEnable();");
-                tool.ExecuteScript("setdisvisable();");     
+                //tool.ExecuteScript("setdisvisable();");     
+                rglr.Visible = false;
             }
         }
     }

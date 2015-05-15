@@ -125,7 +125,7 @@
                          <ContentTemplate>
                         <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
                             />  
-                        <asp:Button ID="btnPrint" runat="server" Text="打印"  OnClientClick="appPrint();" CssClass="m_btn_w2"
+                        <asp:Button ID="btnPrint" runat="server" Text="打印"  OnClientClick="appPrint();" CssClass="m_btn_w2" OnClick="btnPrint_Click"
                             /> 
                         </ContentTemplate>
                     </asp:UpdatePanel>                
