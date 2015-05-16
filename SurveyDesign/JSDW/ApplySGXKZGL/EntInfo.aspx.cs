@@ -76,7 +76,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             h_selEntId.Value = ent.QYID;
         }
         TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_FAppId.Value).FirstOrDefault();
-        t_FPrjItemId.Value = sp.FPrjItemId;
+        if(sp!=null)
+            t_FPrjItemId.Value = sp.FPrjItemId;
 
     }
     //显示
