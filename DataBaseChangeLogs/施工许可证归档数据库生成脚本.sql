@@ -655,8 +655,31 @@ execute sp_addextendedproperty 'MS_Description',
 go
 
 
+CREATE TABLE [dbo].[GD_TC_SGXKZ_PrjDetail](
+	[FId] [varchar](36) NOT NULL,
+	[FAppId] [varchar](36) NOT NULL,
+	[PrjId] [varchar](36) NULL,
+	[PrjItemId] [varchar](36) NULL,
+	[SgxkzInfoID] [varchar](36) NULL,
+	[JSDW] [varchar](200) NULL,
+	[AddressDept] [varchar](50) NULL,
+	[DetailName] [varchar](200) NULL,
+	[Scale] [varchar](100) NULL,
+	[UpScale] [varchar](100) NULL,
+	[DoScale] [varchar](100) NULL,
+	[AbLayerNum] [varchar](200) NULL,
+	[UnLayerNum] [varchar](200) NULL,
+	[ReMark] [varchar](500) NULL,
+ CONSTRAINT [PK_GD_TC_SGXKZ_PRJDETAIL] PRIMARY KEY CLUSTERED 
+(
+	[FId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
+GO
 
+SET ANSI_PADDING OFF
+GO
 
 
 

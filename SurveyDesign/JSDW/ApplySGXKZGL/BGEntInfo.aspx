@@ -72,7 +72,10 @@
             url += "?qylx=" + qylx;
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
+                var oldva = $('#h_selEntId').val();
+                $('#h_OldQYID').val(oldva);
                 $("#" + tagId).val(pid);
+
                 __doPostBack(obj.id, '');
             }
         }

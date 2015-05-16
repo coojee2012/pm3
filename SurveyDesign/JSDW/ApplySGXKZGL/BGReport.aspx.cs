@@ -191,11 +191,11 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                 //先判断不同地区的未竣工的项目当前人员是否参与了
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况
+                    //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况，已经上报的项目，c.FState = 1
                     string sql1 = @"select  1  from  TC_PrjItem_Emp a,TC_PrjItem_Info b,CF_App_List c
                                 where a.FPrjItemId = b.FId
                                 and  c.FId = a.FAppId
-                                and  c.FState !=6
+                                and  c.FState = 1
                                 and  (c.FManageTypeId  = '11223' or c.FManageTypeId  = '11224' or c.FManageTypeId  = '11225')
                                 and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" +
                                     " and b.AddressDept != '" + prjarea + "'";

@@ -74,6 +74,8 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
             tool.fillPageControl(ent);
             txtFId.Value = ent.FId;
             h_selEntId.Value = ent.QYID;
+            hf_oldqyid.Value = ent.QYID;
+            
         }
         TC_SGXKZ_PrjInfo sp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == t_FAppId.Value).FirstOrDefault();
         if(sp!=null)
@@ -151,10 +153,16 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         {
             ent = dbContext.TC_PrjItem_Ent.Where(t => t.FId == fId).FirstOrDefault();
             //如果选择的单位和之前的单位不同，则删除之前单位所有人员
-            if (h_selEntId.Value != ent.QYID)
+
+            if (h_selEntId.Value != ent.QYID)           
             {
                 var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == ent.QYID && t.FAppId == t_FAppId.Value && t.FEntType == EConvert.ToInt(t_FEntType.Value));
-                dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
+                foreach(TC_PrjItem_Emp v in para)
+                {
+                    dbContext.TC_PrjItem_Emp.DeleteOnSubmit(v);
+                    dbContext.SubmitChanges();
+                }
+                //dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
             }
         }
         //新增单位
