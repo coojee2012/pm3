@@ -74,7 +74,10 @@ public partial class JSDW_ApplySGXKZGL_ZTBList : System.Web.UI.Page
             qa.FAppId = EConvert.ToString(ViewState["FAppId"]);
             dbContext.TC_SGXKZ_ZBJGBL.InsertOnSubmit(qa);
         }
-        qa = tool.getPageValue(qa);
+        if (qa != null)
+        {
+            qa = tool.getPageValue(qa);
+        }
         dbContext.SubmitChanges();
         txtFId.Value = fId;
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
