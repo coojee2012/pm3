@@ -201,7 +201,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('人员不允许重复添加');window.returnValue='1';", true);
                 return;
             }
-            else if (count2 > 0)
+            else if (t_EmpType.SelectedValue == "11220209" && count2 > 0)
             {
                 ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('总监理工程师只能添加一位');window.returnValue='1';", true);
                 return;
