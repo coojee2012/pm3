@@ -95,6 +95,8 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
     //显示
     private void showInfo()
     {
+        if (isDel.Value == "1")
+        { return; }
         if (hf_FEntType.Value == "2" || hf_FEntType.Value == "3" || hf_FEntType.Value == "4")
         {
 
@@ -130,6 +132,7 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
         EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
         tool.DelInfoFromGrid(dg_List, dbContext.TC_PrjItem_Ent, tool_Deleting);
+        isDel.Value = "0";
         showInfo();
     }
     //级联删除人员

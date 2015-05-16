@@ -124,6 +124,7 @@
                     <ItemStyle Wrap="False" />
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FId" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="QYID" Visible="false"  HeaderText ="企业id"></asp:BoundColumn>                
             </Columns>
         </asp:DataGrid>
         <div style="padding-left: 1%">

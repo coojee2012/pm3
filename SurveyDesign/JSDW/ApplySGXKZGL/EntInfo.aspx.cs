@@ -146,16 +146,18 @@ public partial class JSDW_APPLYSGXKZGL_EntInfo : System.Web.UI.Page
         string fId = txtFId.Value;
         string oldId = fId;
         TC_PrjItem_Ent ent = new TC_PrjItem_Ent();
+        //修改单位
         if (!string.IsNullOrEmpty(fId))
         {
             ent = dbContext.TC_PrjItem_Ent.Where(t => t.FId == fId).FirstOrDefault();
+            //如果选择的单位和之前的单位不同，则删除之前单位所有人员
             if (h_selEntId.Value != ent.QYID)
             {
-                var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == ent.QYID);
+                var para = dbContext.TC_PrjItem_Emp.Where(t => t.FEntId == ent.QYID && t.FAppId == t_FAppId.Value && t.FEntType == EConvert.ToInt(t_FEntType.Value));
                 dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
-
             }
         }
+        //新增单位
         else
         {
             fId = Guid.NewGuid().ToString();

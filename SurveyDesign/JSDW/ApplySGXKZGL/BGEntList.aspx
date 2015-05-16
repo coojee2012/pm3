@@ -34,6 +34,10 @@
                  '&FPrjItemId=' + FPrjItemId, 900, 700);
             __doPostBack(this.id, '');
         }
+
+        function dellEnt() {
+            $("#isDel").val(1);
+        }
     </script>
     <base target="_self">
     </base>
@@ -49,8 +53,10 @@
         <asp:HiddenField  runat="server" ID="hf_FEntType" Value="0" />
         <asp:HiddenField  runat="server" ID="hf_FAppId" Value="" />
         <asp:HiddenField  runat="server" ID="hf_FId" Value="" />
+        <asp:HiddenField  runat="server" ID="HiddenField1" Value="" />
         <input type="hidden"  runat="server" ID="t_FPrjId" value="" />
         <input type="hidden"  runat="server" ID="t_FPrjItemId" value="" />
+        <input type="hidden"  runat="server" ID="isDel" value="" />
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="up_Main" DisplayAfter="100">
             <ProgressTemplate>
                 <div class="modalDiv" style="display:none;"> 
@@ -83,7 +89,7 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     
-                    <asp:Button ID="btnDel" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="return confirm('确认要删除吗?');"
+                    <asp:Button ID="btnDel" runat="server" Text="删除" CssClass="m_btn_w2" OnClientClick="dellEnt();return confirm('确认要删除吗?');"
                         OnClick="btnDel_Click" />
                     <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click" />
                 </td>
