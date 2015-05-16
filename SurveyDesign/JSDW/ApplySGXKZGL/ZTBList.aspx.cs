@@ -29,6 +29,9 @@ public partial class JSDW_ApplySGXKZGL_ZTBList : System.Web.UI.Page
             DataTable dt = business.QueryData(hf_FAppId.Value, XMHJCL_Business.环节材料信息.招投标信息, out isbz);
 
             pageTool tool1 = new pageTool(this.Page);
+
+            ShowTitle();
+
             if (EConvert.ToInt(Session["FIsApprove"]) != 0 || isbz)
             {
                 ListItem i = new ListItem("已办", "3");
@@ -75,6 +78,17 @@ public partial class JSDW_ApplySGXKZGL_ZTBList : System.Web.UI.Page
         dbContext.SubmitChanges();
         txtFId.Value = fId;
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");
+    }
+
+    private void ShowTitle()
+    {
+        EgovaDB dbContext = new EgovaDB();
+        TC_SGXKZ_ZBJGBL qa = dbContext.TC_SGXKZ_ZBJGBL.Where(t => t.FAppId == EConvert.ToString(ViewState["FAppId"])).FirstOrDefault();
+        if (qa != null)
+        {
+            txtFId.Value = qa.FId;
+        }
+
     }
     //显示
     private void ShowInfo(bool isbz, DataTable sp)
