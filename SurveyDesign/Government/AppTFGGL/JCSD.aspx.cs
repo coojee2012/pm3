@@ -42,7 +42,7 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
         sb.Append(@"select a.*,b.FFullName as DeptName from V_Sgxkz_EmpLock a , CF_Sys_ManageDept b
                      where a.PrjAddressDept = b.FNumber 
                      and  a.IsLock = 1
-                    and a.FidCard = '" + t_FIdCard.Value + "'");
+                    and a.FidCard like '" + t_FIdCard.Value + "%'");
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "dg_List";
@@ -73,7 +73,7 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
     protected void btnJS_Click(object sender, EventArgs e)
     {
         string FId = "";
-        string FDeptId = CurrentEntUser.UpDeptId.ToString();
+        string FDeptId = Session["DFId"].ToString();
         int RowCount = dg_List.Items.Count;
         IList<string> FIdList = new List<string>();
         string FIds = "";
@@ -85,7 +85,8 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
             {
                 FId = dg_List.Items[i].Cells[dg_List.Columns.Count - 1].Text.Trim();
                 string dept = dg_List.Items[i].Cells[dg_List.Columns.Count - 2].Text.Trim();
-                if (dept.Substring(0, FDeptId.Length) == FDeptId)
+ 
+                if (dept == FDeptId)
                 {
                     FIdList.Add(FId);
                     if (string.IsNullOrEmpty(FIds))
