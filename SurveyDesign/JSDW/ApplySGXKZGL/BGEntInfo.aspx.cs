@@ -537,6 +537,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     t_FMobile.Text = v2.FRDBSJH;
                     t_FTel.Text = v2.LXDH;
                     t_FOrgCode.Text = v2.JGDM;
+                    //重新赋值给企业编码，用于选择人员
+                    h_selEntId.Value = v2.QYBM;
                 }
                 //绑定企业资质信息
                 t_mZXZZ.Text = vqyzz.ZZLB + vqyzz.ZZMC + vqyzz.ZZDJ;

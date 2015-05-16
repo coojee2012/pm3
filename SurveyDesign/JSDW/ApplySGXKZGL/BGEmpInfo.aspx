@@ -35,6 +35,7 @@
             //var url = "../project/EmpListSel.aspx";
             var url = "../project/EmpListSelA.aspx";
             url += "?qybm=" + qybm;
+            
             var pid = showWinByReturn( url, 800, 500);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);

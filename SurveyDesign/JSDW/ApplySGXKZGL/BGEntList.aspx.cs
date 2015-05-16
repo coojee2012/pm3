@@ -140,30 +140,83 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
     {
         if (dbContext != null)
         {
-            var para = dbContext.TC_PrjItem_Emp.Where(t => FIdList.ToArray().Contains(t.FEntId));
-            
-            dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
-            dbContext = new EgovaDB();
-            foreach (TC_PrjItem_Emp pe in para)
+            //var para = dbContext.TC_PrjItem_Emp.Where(t => FIdList.ToArray().Contains(t.FEntId));            
+            //dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(para);
+
+            //新的删除方法
+            IList<string> entlist = GetGridCheckIdsnew(this.dg_List);                      //FIdList.ToArray();
+            foreach (string x in entlist)
             {
-                TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
-                sr.FId = Guid.NewGuid().ToString();
-                sr.FAppId = hf_FAppId.Value;
-                sr.FPrjItemId = t_FPrjItemId.Value;
-                sr.RYLX = getEmpType(pe.EmpType.ToString());
-                sr.XM = pe.FHumanName;
-                sr.ZSBH = pe.ZSBH;
-                sr.QYMC = pe.FEntName;
-                sr.FLinkId = pe.FEntId;
-                sr.BGQK = "退出";
-                sr.BGTime = DateTime.Now;
-                dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
-                dbContext.SubmitChanges();                
+                string sql = @"select  FId  from  TC_PrjItem_Emp  where  FAppId = '" + hf_FAppId.Value + "'  and  FEntId = '" + x + "'  and FEntType = '" + hf_FEntType.Value + "'";
+                DataTable dt = rc.GetTable(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        //先记录日志                       
+                        TC_PrjItem_Emp pe = dbContext.TC_PrjItem_Emp.Where(t => t.FId == dt.Rows[i][0].ToString()).FirstOrDefault();
+                        TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
+                        sr.FId = Guid.NewGuid().ToString();
+                        sr.FAppId = hf_FAppId.Value;
+                        sr.FPrjItemId = t_FPrjItemId.Value;
+                        sr.RYLX = getEmpType(pe.EmpType.ToString());
+                        sr.XM = pe.FHumanName;
+                        sr.ZSBH = pe.ZSBH;
+                        sr.QYMC = pe.FEntName;
+                        sr.FLinkId = pe.FEntId;
+                        sr.BGQK = "退出";
+                        sr.BGTime = DateTime.Now;
+                        dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
+                        dbContext.SubmitChanges();
+                        //再删除人员
+                        string sqldel = "delete  from  TC_PrjItem_Emp where  fid = '" + dt.Rows[i][0].ToString() + "'";
+                        rc.PExcute(sqldel);                                       
+                    }
+                }
+                string sqldel2 = "delete from TC_PrjItem_ent  where  FAppId = '" + hf_FAppId.Value + "' and qyid='" + x + "' and FEntType = '" + hf_FEntType.Value + "'";
+                rc.PExcute(sqldel2);
             }
         }
     }
+
+    /// <summary>
+    /// 返回企业的编号队列，不是fid
+    /// </summary>
+    /// <param name="grid"></param>
+    /// <returns></returns>
+    private IList<string> GetGridCheckIdsnew(DataGrid grid)
+    {
+        string FqyId = "";
+
+        int RowCount = grid.Items.Count;
+        IList<string> FqyIdList = new List<string>();
+        for (int i = 0; i < grid.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)grid.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FqyId = grid.Items[i].Cells[grid.Columns.Count - 1].Text.Trim();
+
+                FqyIdList.Add(FqyId);
+            }
+        }
+        return FqyIdList;
+    }
+
     protected void updateBG()
     {
+        //string FId = "";
+        //IList<string> FIdList = new List<string>();
+        //for (int i = 0; i < dg_List.Items.Count; i++)
+        //{
+        //    CheckBox cbx = (CheckBox)dg_List.Items[i].Cells[0].Controls[1];
+        //    if (cbx.Checked)
+        //    {
+        //        FId = dg_List.Items[i].Cells[dg_List.Columns.Count - 1].Text.Trim();
+        //        updateYQBG(FId);
+        //    }
+        //}
+
         string FId = "";
         IList<string> FIdList = new List<string>();
         for (int i = 0; i < dg_List.Items.Count; i++)
@@ -171,7 +224,8 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
             CheckBox cbx = (CheckBox)dg_List.Items[i].Cells[0].Controls[1];
             if (cbx.Checked)
             {
-                FId = dg_List.Items[i].Cells[dg_List.Columns.Count - 1].Text.Trim();
+                //增加了一行名为qyid的列，所以FID向前移动一列
+                FId = dg_List.Items[i].Cells[dg_List.Columns.Count - 2].Text.Trim();
                 updateYQBG(FId);
             }
         }

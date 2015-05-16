@@ -332,7 +332,11 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             t_FMobile.Text = v.GRDH;
             if (v.ZC != null && v.ZC != "")
             {
-                t_ZC.SelectedValue = v.ZC;
+                if (t_ZC.SelectedValue.Contains(v.ZC))
+                {
+                    t_ZC.SelectedValue = v.ZC;
+                }
+                
             }
            t_FTel.Text = v.BGDH;
             t_ZY.Text = v.SXZY;
