@@ -103,7 +103,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                     t_ProjectUse.DataValueField = "FNumber";
                     t_ProjectUse.DataBind();
                 }
-                else if (p.ProjectType == "2000103")
+                else //if (p.ProjectType == "2000103")
                 {
                     DataTable dt = rc.getDicTbByFNumber("2000102");
                     t_ProjectUse.DataSource = dt;
