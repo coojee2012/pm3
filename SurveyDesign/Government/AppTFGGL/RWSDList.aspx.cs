@@ -46,21 +46,18 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         //sb.Append(" ) as ttt where 1=1");
         //sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
 
-        sb.Append("select  *  from  (");
-        sb.Append(@"select a.FId,a.FAppId,a.IsLock,a.SelectedCount, b.XB  FSex, 
-                   b.ZW,b.sfzh FIdCard,b.xm FHumanName,d.qymc FEntName,c.ZCZSBH ZSBH,c.ZCZY,''  EmpType,d.QYMC FName, 
-                 e.PrjItemName,e.ProjectName,dbo.getManageDeptName(e.PrjAddressDept) as DeptName,e.StartDate,e.EndDate
-                 from  TC_PrjItem_Emp_Lock a,JST_XZSPBaseInfo.dbo.ry_ryjbxx b,JST_XZSPBaseInfo.dbo.ry_ryzsxx c,JST_XZSPBaseInfo.dbo.QY_JBXX d,TC_SGXKZ_PrjInfo e
-                 where a.FIdCard = b.SFZH
-                 and b.RYBH = c.RYBH
-                 and a.FEntId = d.QYBM
-                 and a.FPrjItemId = e.FPrjItemId
-                 and a.fentid = c.QYBM");
+        sb.Append("select  *  from  V_Sgxkz_EmpLock where isMainLock=1");  //只查主锁定的人员
         //只能查看本地区的项目锁定人员
-        sb.Append(" and e.PrjAddressDept = '"+Session["DFId"]+"' ");
-        sb.Append(getCondi());
-        sb.Append(" ) as ttt where 1=1");
+        string addCondi = getCondi();
 
+        if (addCondi == "")  //如果有附加条件，则根据条件查询，不限定本地区的，保证主管部门可以查看到人员在其他地区的锁定情况，否则，则只查询本地区项目的人员情况。  by zyd
+        {
+            sb.Append(" and PrjAddressDept = '" + Session["DFId"] + "' ");
+        }
+        else
+        {
+            sb.Append(addCondi);
+        }
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "JustAppInfo_List";
@@ -74,27 +71,27 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         StringBuilder sb = new StringBuilder();
         if (this.txtXM.Text.Trim() != "" && this.txtXM.Text.Trim() != null)
         {
-            sb.Append(" and b.FHumanName like '%" + this.txtXM.Text.Trim() + "%' ");
+            sb.Append(" and FHumanName like '%" + this.txtXM.Text.Trim() + "%' ");
         }
         if (this.txtIDCard.Text.Trim() != "" && this.txtIDCard.Text.Trim() != null)
         {
-            sb.Append(" and b.FIdCard like '%" + this.txtIDCard.Text.Trim() + "%' ");
+            sb.Append(" and FIdCard like '%" + this.txtIDCard.Text.Trim() + "%' ");
         }
         if (this.txtSGXKZBH.Text.Trim() != "" && this.txtSGXKZBH.Text.Trim() != null)
         {
-            sb.Append(" and b.ZSBH like '%" + this.txtSGXKZBH.Text.Trim() + "%' ");
+            sb.Append(" and ZSBH like '%" + this.txtSGXKZBH.Text.Trim() + "%' ");
         }
         if (this.txtQYMC.Text.Trim() != "" && this.txtQYMC.Text.Trim() != null)
         {
-            sb.Append(" and b.FEntName like '%" + this.txtQYMC.Text.Trim() + "%' ");
+            sb.Append(" and FEntName like '%" + this.txtQYMC.Text.Trim() + "%' ");
         }
-        if (this.txtFBZT.SelectedValue != null && this.txtFBZT.SelectedValue != "-1")
-        {
-            //sb.Append(" and b.ZSBH =  " + this.txtSGXKZBH.SelectedValue);
-        }
+        //if (this.txtFBZT.SelectedValue != null && this.txtFBZT.SelectedValue != "-1")
+        //{
+        //    //sb.Append(" and b.ZSBH =  " + this.txtSGXKZBH.SelectedValue);
+        //}
         if (this.tbcyxm.Text != "" && this.tbcyxm.Text.Trim() != null)
         {
-            sb.Append(" and c.ProjectName like '%" + this.tbcyxm.Text.Trim() + "%' ");
+            sb.Append(" and ProjectName like '%" + this.tbcyxm.Text.Trim() + "%' ");
         }
         
 
@@ -122,7 +119,7 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
             box.Attributes["name"] = fAppId;
 
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
-            e.Item.Cells[13].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JCSD.aspx?idCard=" + idCard + "&FAppId=" + fAppId + "',1024,600);\">" + e.Item.Cells[13].Text + "</a>";
+            e.Item.Cells[4].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JCSD.aspx?idCard=" + idCard + "&FAppId=" + fAppId + "',1024,600);\">" + e.Item.Cells[4].Text + "</a>";
           //  e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
 
         }

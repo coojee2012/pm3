@@ -43,10 +43,10 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
                     '' FName,c.ProjectName,c.PrjAddressDept,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,
                     c.StartDate,c.EndDate 
                     from TC_PrjItem_Emp_Lock a  
-                    left join TC_SGXKZ_PrjInfo c on a.FAppId = c.FAppId
+                    join TC_SGXKZ_PrjInfo c on a.FAppId = c.FAppId
                     and a.FPrjItemId = c.FPrjItemId
                     and a.IsLock = 1
-                    and c.PrjAddressDept = '"+Session["DFId"]+"'");
+                    and a.FidCard = '" + t_FIdCard.Value + "'");
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
         this.Pager1.controltopage = "dg_List";

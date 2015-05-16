@@ -47,7 +47,7 @@ public partial class JSDW_ApplyZLJDBA_FileList : Page
         //        join u in dbContext.TC_QA_Record on t.FManageType.ToString() equals u.PrjItemType.ToString()
         var v = from t in dbContext.CF_App_PrjFileList
                 orderby t.FOrder
-                where t.FLinkId ==  FAppId                  //by zyd ,还不全，还要加房建或市政的差异数据
+                where t.FLinkId ==  FAppId                  //by zyd , 
                 select new
                 {
                     t.FId,

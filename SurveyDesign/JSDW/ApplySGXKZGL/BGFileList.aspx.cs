@@ -35,9 +35,9 @@ public partial class JSDW_ApplySGXKZGL_BGFileList : System.Web.UI.Page
         //当前业务类型
         FAppId = EConvert.ToString(Session["FAppId"]);
 
-        var v = from t in dbContext.CF_Sys_PrjList
+        var v = from t in dbContext.CF_App_PrjFileList
                 orderby t.FOrder
-                where t.FManageType == 11225
+                where t.FLinkId == FAppId    
                 select new
                 {
                     t.FId,

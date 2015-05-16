@@ -159,23 +159,16 @@
                     <asp:TextBox ID="txtQYMC" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
                 </td>
             </tr>
-             <td class="t_r">发布状态：
+             <td class="t_r">参与项目名称：
                 </td>
                 <td>
-                    <asp:DropDownList ID="txtFBZT" runat="server" CssClass="m_txt" Width="169px">
-                        <asp:ListItem Value="0" Text="未发布" Selected="True"></asp:ListItem>
-                        <asp:ListItem Value="1" Text="已发布"></asp:ListItem>
-                        <asp:ListItem Value="-1" Text="全部"></asp:ListItem>
-
-                    </asp:DropDownList>
+                <asp:TextBox ID="tbcyxm" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
 
                 </td>
        <td>
-           参与项目名称
-       </td>
+           &nbsp;</td>
             <td>
-                <asp:TextBox ID="tbcyxm" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
-            </td>
+                &nbsp;</td>
 
 
 
@@ -216,6 +209,10 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
+                        <asp:BoundColumn HeaderText="身份证号" DataField="FIdCard">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
                          <asp:BoundColumn HeaderText="注册专业" DataField="ZCZY">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -225,10 +222,6 @@
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
                          <asp:BoundColumn HeaderText="参与在建工程名称" DataField="ProjectName">
-                            <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="项目属地" DataField="DeptName">
                             <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
@@ -248,10 +241,7 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="身份证号" DataField="FIdCard">
-                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
+
                         <asp:TemplateColumn HeaderText="锁定次数">
                             <HeaderTemplate>                               
                                 <asp:Label ID="lbl_lockcount" runat="server"></asp:Label>                                    
