@@ -286,7 +286,7 @@
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="上报日期" DataField="FReportTime" DataFormatString="{0:yyyy-MM-dd}">
+                            <asp:BoundColumn HeaderText="上报日期" DataField="FReportDate" DataFormatString="{0:yyyy-MM-dd}">
                                 <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                                 <HeaderStyle Font-Underline="False" Wrap="False" />
                             </asp:BoundColumn>

@@ -101,7 +101,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                       where b.QYLXBM == qylx
 
                       select new
-                      {
+                     { 
                           c.QYZZID,//企业资质id
                           b.QYBM,
                           b.QYMC,
@@ -336,8 +336,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                 else
                 {
                     tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
-                }
-                
+                }                
                // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
             }
         }

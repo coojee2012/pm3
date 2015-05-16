@@ -25,7 +25,7 @@
         }
         function addEmp() {
             var id = document.getElementById("txtFId").value;
-            var qyid = document.getElementById("h_selEntId").value;
+            var qyid = document.getElementById("h_selEntId").value;         
             var FPrjItemId = document.getElementById("h_ProjectItemId").value; 
             var fenttype = document.getElementById("t_FEntType").value;
             if (id == null || id == '') {
