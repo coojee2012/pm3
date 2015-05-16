@@ -92,12 +92,56 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
         tool.DelInfoFromGrid(dg_List, dbContext.TC_PrjItem_Ent, tool_Deleting);
         showInfo();
     }
+
     //级联删除人员
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
-    {
-        
+    {       
+        if (dbContext != null)
+        {
+            IList<string> entlist = GetGridCheckIdsnew(this.dg_List);                      //FIdList.ToArray();
+            
+            foreach(string x in entlist)
+            {  
+                
+                string sql = @"select  FId  from  TC_PrjItem_Emp  where  FAppId = '"+hf_FAppId.Value+"'  and  FEntId = '"+x+"'  and FEntType = '"+hf_FEntType.Value+"'";
+                DataTable dt = rc.GetTable(sql);
+                if(dt != null && dt.Rows.Count > 0)
+                {
+                    for(int i=0;i<dt.Rows.Count;i++)
+                    {
+                        string sqldel = "delete  from  TC_PrjItem_Emp where  fid = '" + dt.Rows[i][0].ToString() + "'";
+                        rc.PExcute(sqldel);
+                    }
+                }
+                string sqldel2 = "delete from TC_PrjItem_ent  where  FAppId = '" + hf_FAppId.Value + "' and qyid='" + x + "' and FEntType = '" + hf_FEntType.Value + "'";
+                rc.PExcute(sqldel2);
+            }                    
+        }
     }
 
+    /// <summary>
+    /// 返回企业的编号队列，不是fid
+    /// </summary>
+    /// <param name="grid"></param>
+    /// <returns></returns>
+    private IList<string> GetGridCheckIdsnew(DataGrid grid)
+    {
+        string FqyId = "";
+
+        int RowCount = grid.Items.Count;
+        IList<string> FqyIdList = new List<string>();
+        for (int i = 0; i < grid.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)grid.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                FqyId = grid.Items[i].Cells[grid.Columns.Count - 1].Text.Trim();
+
+                FqyIdList.Add(FqyId);
+            }
+        }
+        return FqyIdList;
+    }
 
 
     /// <summary>
@@ -114,7 +158,7 @@ public partial class JSDW_APPLYSGXKZGL_EntList : System.Web.UI.Page
             CheckBox cbx = (CheckBox)grid.Items[i].Cells[0].Controls[1];
             if (cbx.Checked)
             {
-                FId = grid.Items[i].Cells[grid.Columns.Count - 1].Text.Trim();
+                FId = grid.Items[i].Cells[grid.Columns.Count - 2].Text.Trim();
 
                 FIdList.Add(FId);
             }

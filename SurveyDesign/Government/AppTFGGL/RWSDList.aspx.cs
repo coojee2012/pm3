@@ -56,6 +56,8 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
                  and a.FEntId = d.QYBM
                  and a.FPrjItemId = e.FPrjItemId
                  and a.fentid = c.QYBM");
+        //只能查看本地区的项目锁定人员
+        sb.Append(" and e.PrjAddressDept = '"+Session["DFId"]+"' ");
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
 
@@ -94,7 +96,7 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         {
             sb.Append(" and c.ProjectName like '%" + this.tbcyxm.Text.Trim() + "%' ");
         }
-
+        
 
         if (sb.Length > 0)
         {

@@ -330,7 +330,10 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
                 t_FSex.SelectedValue = "0";
             }
             t_FMobile.Text = v.GRDH;
-           t_ZC.SelectedValue = v.ZC;
+            if (v.ZC != null && v.ZC != "")
+            {
+                t_ZC.SelectedValue = v.ZC;
+            }
            t_FTel.Text = v.BGDH;
             t_ZY.Text = v.SXZY;
             var v1 = db.RY_RYZSXX.Where(t => t.RYBH == selEmpId).FirstOrDefault();
