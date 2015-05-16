@@ -369,7 +369,7 @@
     <input type="hidden"  runat="server" id="hf_FId" />
     <input type="hidden"  runat="server" ID="t_FPrjId" />
     <input type="hidden"  runat="server" ID="t_FPrjItemId" />
-    
+    <input type="hidden"  runat="server" ID="hf_oldqyid" />
     </div>
      
     

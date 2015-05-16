@@ -170,11 +170,11 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             //先判断不同地区的未竣工的项目当前人员是否参与了
             foreach (var v in emplist)
             {
-                //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况
+                //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况,已经上报的项目
                 string sql = @"select  1  from  TC_PrjItem_Emp a,TC_PrjItem_Info b,CF_App_List c
                                 where a.FPrjItemId = b.FId
                                 and  c.FId = a.FAppId
-                                and  c.FState !=6
+                                and  c.FState = 1
                                 and  (c.FManageTypeId  = '11223' or c.FManageTypeId  = '11224' or c.FManageTypeId  = '11225')
                                 and  a.FIdCard = '" + v.FIdCard + "'"+
                                 " and b.AddressDept != '"+prjarea+"'";                            
