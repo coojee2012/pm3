@@ -511,10 +511,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                rc.PExcute("UPDATE TC_SGXKZ_PrjInfo SET sgxkzbh='" + sgxkzbh +   "' WHERE FAppId='" + t_fLinkId.Value + "'"); 
 
                #endregion
-
-               //同步到标准库
-               if (!string.IsNullOrEmpty(appid))
-                   SyncBase(appid);
+                              
                //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
 
                rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + appid + "'");

@@ -70,6 +70,8 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             tool.fillPageControl(ent);
         }
         TC_SGXKZ_PrjInfo qa = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
+        if (qa == null)
+            return;
         TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
         govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
         if (!string.IsNullOrEmpty(prjInfo.AddressDept))

@@ -201,8 +201,8 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         h_FId.Value = fId;
         //showInfo();
         //System.Threading.Thread.Sleep(2000);
-        //
-        ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
+        //显示变更结果
+        ScriptManager.RegisterStartupScript(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';$('#Button6').click();", true);
 
         //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
         //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
