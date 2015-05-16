@@ -41,18 +41,15 @@
                         MaxLength="30"></asp:TextBox>
                 </td>
                 <td>
-                           <asp:UpdatePanel ID="up_Main" runat="server" RenderMode="Inline">
-                               <ContentTemplate>
                      <asp:Button ID="btnJS" runat="server" Text="解锁" CssClass="m_btn_w2" OnClick="btnJS_Click"   />
                      <asp:Button ID="btnReload" runat="server" Text="刷新" CssClass="m_btn_w2" OnClick="btnReload_Click"   />
                                   </ContentTemplate>
-                    </asp:UpdatePanel> 
-                </td>
+                 </td>
             </tr>
              </table>
         <asp:DataGrid ID="dg_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
             HorizontalAlign="Center" OnItemDataBound="App_List_ItemDataBound" Style="margin-top: 6px; margin-bottom: 1px;"
-            Width="98%" OnItemCommand="dg_List_ItemCommand">
+            Width="98%" >
             <HeaderStyle CssClass="m_dg1_h" />
             <ItemStyle CssClass="m_dg1_i" />
             <Columns>
@@ -71,11 +68,10 @@
                 </asp:BoundColumn>
                 <asp:BoundColumn DataField="FHumanName" HeaderText="姓名"></asp:BoundColumn>
                 <asp:BoundColumn DataField="ProjectName" HeaderText="项目名称"></asp:BoundColumn>
-     <asp:BoundColumn DataField="DeptName" HeaderText="项目属地"></asp:BoundColumn>
+                <asp:BoundColumn DataField="DeptName" HeaderText="项目属地"></asp:BoundColumn>
                 <asp:BoundColumn DataField="StartDate" HeaderText="开工时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
                 <asp:BoundColumn DataField="EndDate" HeaderText="预计竣工时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
-                  <asp:BoundColumn DataField="EmpType" HeaderText="人员类型"></asp:BoundColumn>
-             
+                <asp:BoundColumn DataField="EmpType" HeaderText="人员类型"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FCreateTime" HeaderText="锁定时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FTime" HeaderText="锁定结束时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn> 
                 <asp:BoundColumn DataField="PrjAddressDept" Visible="False"></asp:BoundColumn>         
@@ -83,7 +79,6 @@
             </Columns>
         </asp:DataGrid>
         <div class="d div1 tcen" style="width: 98%; margin: 0px auto;">
-        <uc1:pager ID="Pager1" runat="server"></uc1:pager>
     </div>
     </form>
 </body>
