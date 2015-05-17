@@ -102,37 +102,60 @@ public partial class JSDW_project_EntListSelSg: System.Web.UI.Page
     void showInfo(string qylx)
     {
         EgovaDB1 db = new EgovaDB1();
+        
+       
         var App = from b in db.QY_JBXX
-                  join c in db.QY_QYZZXX              
-                  on b.QYBM equals c.QYBM
-                  into temp
-                  join d in db.QY_QYZSXX
-                  on b.QYBM equals d.QYBM
-                  into temp1
-                  from tt in temp.DefaultIfEmpty()
-                  from tt1 in temp1.DefaultIfEmpty()
-                  where b.QYLXBM == qylx && tt.SFZX == 1 
-                  
-                  select  new
-                  {
-                      b.QYBM,
-                      b.QYMC,
-                      b.QYLXBM,                      
-                      //b.RegAdrProvinceName,
-                      RegAdrProvinceName = b.RegAdrProvinceName + "-"+b.RegAdrCityName +"-"+ b.RegAdrCountryName,
-                      b.QYXXDZ,
-                      b.FRDB,
-                      b.LXR,
-                      b.LXDH,
-                      ZSBH = tt==null?"":tt.ZSBH,
-                      ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
-                      //AXBH = tt1==null?"":tt1.ZSBH,
-                      AXBH = tt.QY_QYZSXX.ZSLXBM
-                      //AXBH = tt1.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : tt1.ZSLXBM//证书类型为2的是安全许可证
-                   };
-        if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
+                      join c in db.QY_QYZZXX
+                      on b.QYBM equals c.QYBM
+                      into temp
+                      join d in db.QY_QYZSXX
+                      on b.QYBM equals d.QYBM
+                      into temp1
+                      from tt in temp.DefaultIfEmpty()
+                      from tt1 in temp1.DefaultIfEmpty()
+                      where  tt.SFZX == 1 //&&b.QYLXBM == qylx 
+
+                      select new
+                      {
+                          b.QYBM,
+                          b.QYMC,
+                          b.QYLXBM,
+                          //b.RegAdrProvinceName,
+                          RegAdrProvinceName = b.RegAdrProvinceName + "-" + b.RegAdrCityName + "-" + b.RegAdrCountryName,
+                          b.QYXXDZ,
+                          b.FRDB,
+                          b.LXR,
+                          b.LXDH,
+                          ZSBH = tt == null ? "" : tt.ZSBH,
+                          ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
+                          //AXBH = tt1==null?"":tt1.ZSBH,
+                          AXBH = tt.QY_QYZSXX.ZSLXBM
+                          //AXBH = tt1.ZSLXBM == "2" ? tt.QY_QYZSXX.ZSBH : tt1.ZSLXBM//证书类型为2的是安全许可证
+                      };
+               if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
             App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
+        }
+        //修改企业类型条件(包括入川的对应企业)
+        if (qylx == "101")
+        {
+            App = App.Where(t => t.QYLXBM == "101" || t.QYLXBM =="201");
+        }
+        else if(qylx == "102")
+        {
+            App = App.Where(t => t.QYLXBM == "102" || t.QYLXBM == "202");
+        }
+        else if (qylx == "103")
+        {
+            App = App.Where(t => t.QYLXBM == "103" || t.QYLXBM == "203");
+        }
+        else if (qylx == "104")
+        {
+            App = App.Where(t => t.QYLXBM == "104" || t.QYLXBM == "204");
+        }
+        else if (qylx == "105")
+        {
+            App = App.Where(t => t.QYLXBM == "105" || t.QYLXBM == "205");
         }
         Pager1.RecordCount = App.Count();
         dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);

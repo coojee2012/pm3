@@ -98,7 +98,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
                       on b.QYBM equals c.QYBM                     
-                      where b.QYLXBM == qylx
+                      //where b.QYLXBM == qylx
 
                       select new
                      { 
@@ -125,6 +125,19 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             {
                 App = App.Where(t => t.QYMC.Contains(this.t_FName.Text.Trim()));
             }
+            //修改企业类型条件
+            if (qylx == "102")
+            {
+                App = App.Where(t => t.QYLXBM == "102" || t.QYLXBM == "202");
+            }
+            else if (qylx == "103")
+            {
+                App = App.Where(t => t.QYLXBM == "103" || t.QYLXBM == "203");
+            }
+            else if (qylx == "104")
+            {
+                App = App.Where(t => t.QYLXBM == "104" || t.QYLXBM == "204");
+            }           
             Pager1.RecordCount = App.Count();
             dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
             dg_List.DataBind();
@@ -134,7 +147,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZSXX
                       on b.QYBM equals c.QYBM
-                      where b.QYLXBM == qylx
+                      where b.QYLXBM == "105" || b.QYLXBM == "205"  //205是省外入川代理机构
 
                       select new
                       {
@@ -168,7 +181,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                       on b.QYBM equals d.QYBM
                       into temp1
                       from tt1 in temp1.DefaultIfEmpty()
-                      where b.QYLXBM == qylx
+                      where b.QYLXBM == "109" || b.QYLXBM == "209" //209省外入川审图机构
 
                       select new
                       {
@@ -194,7 +207,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
             dg_List.DataSource = App.Skip((Pager1.CurrentPageIndex - 1) * Pager1.PageSize).Take(Pager1.PageSize);
             dg_List.DataBind();
         }
-        else//如果是施工、专业、劳务类企业则列出企业主项资质
+        else//101，则需要把省外入川施工类企业202类型的也加入，如果是施工、专业、劳务类企业则列出企业主项资质
         {
             var App = from b in db.QY_JBXX
                       join c in db.QY_QYZZXX
@@ -205,7 +218,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                       into temp1
                       from tt in temp.DefaultIfEmpty()
                       from tt1 in temp1.DefaultIfEmpty()
-                      where b.QYLXBM == qylx && tt.SFZX == 1
+                      where (b.QYLXBM == "101" || b.QYLXBM == "201") && tt.SFZX == 1
 
                       select new
                       {

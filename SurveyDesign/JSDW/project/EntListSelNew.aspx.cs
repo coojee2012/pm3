@@ -77,7 +77,7 @@ public partial class JSDW_project_EntListSelNew : System.Web.UI.Page
                   into temp1
                   from tt in temp.DefaultIfEmpty()
                   from tt1 in temp1.DefaultIfEmpty()
-                  where b.QYLXBM == qylx
+                  //where b.QYLXBM == qylx
                   select new
                   {
                       b.QYBM,
@@ -92,6 +92,27 @@ public partial class JSDW_project_EntListSelNew : System.Web.UI.Page
                       ZZMC = tt == null ? "" : tt.ZZLB + tt.ZZMC + tt.ZZDJ,
                       AXBH = tt1 == null ? "" : tt1.ZSBH
                   };
+        //修改企业类型条件
+        if (qylx == "101")
+        {
+            App = App.Where(t => t.QYLXBM == "101" || t.QYLXBM == "201");
+        }
+        else if (qylx == "102")
+        {
+            App = App.Where(t => t.QYLXBM == "102" || t.QYLXBM == "202");
+        }
+        else if (qylx == "103")
+        {
+            App = App.Where(t => t.QYLXBM == "103" || t.QYLXBM == "203");
+        }
+        else if (qylx == "104")
+        {
+            App = App.Where(t => t.QYLXBM == "104" || t.QYLXBM == "204");
+        }
+        else if (qylx == "105")
+        {
+            App = App.Where(t => t.QYLXBM == "105" || t.QYLXBM == "205");
+        }
        
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {

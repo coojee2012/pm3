@@ -44,8 +44,8 @@ public partial class EntSelf_MainSelf_zWXTS : System.Web.UI.Page
         if (!string.IsNullOrEmpty(FBaseinfoID))
         {
             lit_EntName.Text = CurrentEntUser.EntName;
-            lit_TS.Text = "欢迎登录四川省建设工程项目综合监管信息平台，我们将竭诚为您服务，请及时更新系统信息。";
-
+            //lit_TS.Text = "欢迎登录四川省建设工程项目综合监管信息平台，我们将竭诚为您服务，请及时更新系统信息。";
+            lit_TS.Text = "欢迎登录四川省建筑市场监管与诚信信息一体化工作平台，我们将竭诚为您服务，请及时更新系统信息。";//
             //显示系统消息
             showMSG("98%","32px");
 
@@ -182,6 +182,7 @@ public partial class EntSelf_MainSelf_zWXTS : System.Web.UI.Page
     private void showAppList()
     {
         ProjectDB db = new ProjectDB();
+        
         string FBaseinfoID = CurrentEntUser.EntId;
         var v = from t in db.CF_App_List
                 where (t.FBaseinfoId == FBaseinfoID || t.FToBaseinfoId == FBaseinfoID)
@@ -215,6 +216,7 @@ public partial class EntSelf_MainSelf_zWXTS : System.Web.UI.Page
         {
             v = v.Where(t => t.FYear.ToString() == drop_FYear.SelectedValue);
         }
+        v = v.Where(t => t.FPrjName.Trim() != "" && t.FPrjName != null);
 
         Pager2.RecordCount = v.Count();
         App_List.DataSource = v.Skip((Pager2.CurrentPageIndex - 1) * Pager2.PageSize).Take(Pager2.PageSize);
@@ -410,11 +412,11 @@ public partial class EntSelf_MainSelf_zWXTS : System.Web.UI.Page
             {
                 ((Literal)e.Item.FindControl("prj_Count")).Text = ("<br/>(第" + prjBG.FCount + "次变更：" + EConvert.ToShortDateString(prjBG.FBGTime) + ")");
             }
-            DateTime dtime = EConvert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "FCreateTime"));
-            if (dtime.AddMonths(3) < DateTime.Now)
-            {
-                ((Literal)e.Item.FindControl("prj_Count")).Text += "<tt>已超过3个月。</tt>";
-            }
+            //DateTime dtime = EConvert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "FCreateTime"));
+            //if (dtime.AddMonths(3) < DateTime.Now)
+            //{
+            //    ((Literal)e.Item.FindControl("prj_Count")).Text += "<tt>已超过3个月。</tt>";
+            //}
         }
     }
     //列表事件
