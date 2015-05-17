@@ -74,7 +74,7 @@
      <asp:BoundColumn DataField="DeptName" HeaderText="项目属地"></asp:BoundColumn>
                 <asp:BoundColumn DataField="StartDate" HeaderText="开工时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
                 <asp:BoundColumn DataField="EndDate" HeaderText="预计竣工时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
-                  <asp:BoundColumn DataField="FName" HeaderText="人员类型"></asp:BoundColumn>
+                  <asp:BoundColumn DataField="EmpType" HeaderText="人员类型"></asp:BoundColumn>
              
                 <asp:BoundColumn DataField="FCreateTime" HeaderText="锁定时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn>
                 <asp:BoundColumn DataField="FTime" HeaderText="锁定结束时间" DataFormatString="{0:yyyy-MM-dd}"></asp:BoundColumn> 

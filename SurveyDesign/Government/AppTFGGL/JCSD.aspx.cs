@@ -39,13 +39,9 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
         //下面的查询备份表
         //sb.AppendLine(" ) ttt where 1=1 ");
         // sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
-        sb.Append(@"select  a.FId, a.lockType,a.FHumanName,c.PrjItemName,a.FCreateTime,a.FTime,
-                    '' FName,c.ProjectName,c.PrjAddressDept,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,
-                    c.StartDate,c.EndDate 
-                    from TC_PrjItem_Emp_Lock a  
-                    join TC_SGXKZ_PrjInfo c on a.FAppId = c.FAppId
-                    and a.FPrjItemId = c.FPrjItemId
-                    and a.IsLock = 1
+        sb.Append(@"select a.*,b.FFullName as DeptName from V_Sgxkz_EmpLock a , CF_Sys_ManageDept b
+                     where a.PrjAddressDept = b.FNumber 
+                     and  a.IsLock = 1
                     and a.FidCard = '" + t_FIdCard.Value + "'");
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";

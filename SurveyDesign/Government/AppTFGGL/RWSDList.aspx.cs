@@ -46,7 +46,7 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         //sb.Append(" ) as ttt where 1=1");
         //sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
 
-        sb.Append("select  *  from  V_Sgxkz_EmpLock where isMainLock=1");  //只查主锁定的人员
+        sb.Append("select  *  from  V_Sgxkz_EmpLock where isMainLock=1 and isLock = 1 ");  //只查主锁定的人员
         //只能查看本地区的项目锁定人员
         string addCondi = getCondi();
 

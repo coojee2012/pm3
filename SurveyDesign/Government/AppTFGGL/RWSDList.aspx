@@ -186,6 +186,21 @@
                     <ItemStyle CssClass="m_dg1_i" />
                    
                     <Columns>
+
+                        
+                       <%-- <asp:BoundColumn HeaderText="锁定次数" DataField="SelectedCount">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>--%>
+                       <%--  <asp:BoundColumn HeaderText="锁在项目" DataField="PrjItemName">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>--%>
+                       
+                       
+                       
+
+                    
                         <asp:TemplateColumn>
                             <ItemStyle Width="20px" />
                             <HeaderTemplate>
@@ -217,7 +232,11 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="证书编号" DataField="ZSBH">
+                         <asp:BoundColumn HeaderText="企业角色" DataField="FentType">
+                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                            <HeaderStyle Font-Underline="False" Wrap="False" />
+                        </asp:BoundColumn>
+                         <asp:BoundColumn HeaderText="人员类型" DataField="EmpType">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
@@ -233,10 +252,6 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="人员类型" DataField="FName">
-                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>
                         <asp:BoundColumn HeaderText="职务" DataField="ZW">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
@@ -249,16 +264,6 @@
                         </asp:TemplateColumn>
 
                         
-                       <%-- <asp:BoundColumn HeaderText="锁定次数" DataField="SelectedCount">
-                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>--%>
-                       <%--  <asp:BoundColumn HeaderText="锁在项目" DataField="PrjItemName">
-                            <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
-                            <HeaderStyle Font-Underline="False" Wrap="False" />
-                        </asp:BoundColumn>--%>
-                       
-                       
                        
 
                     
