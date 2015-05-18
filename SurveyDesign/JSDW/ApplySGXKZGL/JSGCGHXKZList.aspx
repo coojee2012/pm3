@@ -22,7 +22,7 @@
         });
         function checkInfo() {
             var value = document.getElementById("t_BL").value;
-            if (value == "1" || value == "3")
+            if (value == "1" )
             {
                 return AutoCheckInfo();
             } else {
@@ -164,7 +164,7 @@
             <tr name="tr1">
                 <td class="t_r t_bg">理由： </td>
                 <td colspan="3">
-                    <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
+                    <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
                 </td>
             </tr>
             <tr name="tr5">
