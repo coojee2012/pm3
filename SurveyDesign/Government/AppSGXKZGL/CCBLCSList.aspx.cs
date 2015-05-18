@@ -124,7 +124,7 @@ public partial class Government_AppSGXKZGL_CCBLCSList : govBasePage
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId ");
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
+        sb.Append(" and ap.FUpDeptId = '" + Session["DFId"].ToString() + "' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
         //下面的查询备份表
@@ -139,7 +139,7 @@ public partial class Government_AppSGXKZGL_CCBLCSList : govBasePage
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId ");
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
         sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
+        sb.Append(" and ap.FUpDeptId = '" + Session["DFId"].ToString() + "' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
         sb.AppendLine(" ) ttt where 1=1 ");

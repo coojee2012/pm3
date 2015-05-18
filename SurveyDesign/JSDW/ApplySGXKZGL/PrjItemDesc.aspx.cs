@@ -117,13 +117,21 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                 tool.fillPageControl(emp);
                 //从施工许可证信息表中读取，新建的时候由当前登录用户信息导入
                 JSDW_DeptID.fNumber = emp.JSDWAddressDept;  //建设单位所属地
-                PrjGovdeptid.fNumber = p.AddressDept;
-                t_PrjItemType.Text = pi.PrjItemType;
-                t_ProjectLevel.Text = p.ProjectLevel;
-                t_ProjectNumber.Text = p.ProjectNumber;
-                t_ProjectUse.Text = p.ProjectUse;
-                t_BuildType.Text = p.ConstrType;
-                t_ConstrType.Text = pi.ConstrType;
+                PrjGovdeptid.fNumber = emp.PrjAddressDept;
+                t_PrjItemType.Text = emp.PrjItemType;
+                t_ProjectLevel.Text = emp.ProjectLevel;
+                t_ProjectNumber.Text = emp.ProjectNumber;
+                t_ProjectUse.Text = emp.ProjectUse;
+                t_BuildType.Text = emp.BuildType;
+                t_ConstrType.Text = emp.ConstrType;
+
+                //PrjGovdeptid.fNumber = p.AddressDept;
+                //t_PrjItemType.Text = pi.PrjItemType;
+                //t_ProjectLevel.Text = p.ProjectLevel;
+                //t_ProjectNumber.Text = p.ProjectNumber;
+                //t_ProjectUse.Text = p.ProjectUse;
+                //t_BuildType.Text = p.ConstrType;
+                //t_ConstrType.Text = pi.ConstrType;
                 //
                 if (!string.IsNullOrEmpty(emp.LXDH))
                 {
@@ -179,11 +187,11 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                         t_ProjectTime.Text = emp.ProjectTime.Value.ToString("yyyy-MM-dd");
                     }
                 }
-                t_ProjectNo.Value = p.ProjectNo;
-                t_PrjItemId.Value = pi.FId;
-                t_Price.Text = pi.Cost.ToString();
-                t_Area.Text = p.Area.ToString();
-                t_Cost.Text = p.Investment.ToString();
+                t_ProjectNo.Value = emp.ProjectNo;
+                t_PrjItemId.Value = emp.PrjItemId;
+                t_Price.Text = emp.Price.ToString();
+                t_Area.Text = emp.Area.ToString();
+                t_Cost.Text = emp.Cost.ToString();
                 hf_FId.Value = emp.FId;
             }
         }

@@ -198,7 +198,7 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                                 and  c.FState = 1
                                 and  (c.FManageTypeId  = '11223' or c.FManageTypeId  = '11224' or c.FManageTypeId  = '11225')
                                 and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" +
-                                    " and b.AddressDept != '" + prjarea + "'";
+                                    " and b.AddressDept != '" + prjarea + "'" + " and a.FAppId != '" + fAppId + "'";
                     DataTable dt1 = rc.GetTable(sql1);
                     if (dt1 != null && dt1.Rows.Count > 0)
                     {

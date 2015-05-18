@@ -203,7 +203,8 @@
                 </td>
                 <td colspan="1">
                     <input type="hidden" runat="server" ID="t_PrjAddressDept" value="" />
-                    <uc1:govdeptid1 ID="PrjGovdeptid" runat="server" />                   
+                    <%--<uc1:govdeptid1 ID="PrjGovdeptid" runat="server" />--%>                   
+                    <uc2:govdeptid ID="PrjGovdeptid" runat="server" />
                 </td>
             </tr>
             <tr>
