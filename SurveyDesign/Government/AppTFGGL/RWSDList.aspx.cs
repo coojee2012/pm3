@@ -42,7 +42,7 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         }
         else
         {
-            sb.Append(addCondi);
+            sb.Append(addCondi); 
         }
         this.Pager1.sql = sb.ToString();
         this.Pager1.controltype = "DataGrid";
