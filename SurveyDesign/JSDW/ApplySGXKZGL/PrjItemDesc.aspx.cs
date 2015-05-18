@@ -187,11 +187,11 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                         t_ProjectTime.Text = emp.ProjectTime.Value.ToString("yyyy-MM-dd");
                     }
                 }
-                t_ProjectNo.Value = emp.ProjectNo;
-                t_PrjItemId.Value = emp.PrjItemId;
-                t_Price.Text = emp.Price.ToString();
-                t_Area.Text = emp.Area.ToString();
-                t_Cost.Text = emp.Cost.ToString();
+                t_ProjectNo.Value = emp.ProjectNo == null ? "" : emp.ProjectNo;
+                t_PrjItemId.Value = emp.PrjItemId == null?"":emp.PrjItemId;
+                t_Price.Text = emp.Price == null?"":emp.Price.ToString();
+                t_Area.Text = emp.Area == null?"":emp.Area.ToString();
+                t_Cost.Text = emp.Cost==null?"":emp.Cost.ToString();
                 hf_FId.Value = emp.FId;
             }
         }

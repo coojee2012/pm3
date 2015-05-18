@@ -77,14 +77,14 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                 select new
                 {
                     
-                    a.QYBM,
+                    c.QYBM,
                     c.ZSLX,
                     c.RYZSXXID,
                     a.RYBH,
                     a.XM,
                     c.ZSJB,
-                    a.SFZH,
-                    XBStr = a.XB,
+                    c.SFZH,
+                    XBStr = c.XB,
                     c.ZCZSH,
                     c.ZCZY,
                     c.ZSYXQKSSJ,
@@ -129,16 +129,16 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         var v = from a in db.RY_RYJBXX
                 join c in db.RY_RYZSXX
                 on a.RYBH equals c.RYBH
-                where a.QYBM == qybm 
+                where c.QYBM == qybm 
                   select new
                   {
-                      a.QYBM,
+                      c.QYBM,
                       ZSLX =  c.ZSLX,
                       c.RYZSXXID,
-                      a.RYBH,
-                      a.XM,
-                      a.SFZH,
-                      XBStr = a.XB,
+                      c.RYBH,
+                      c.XM,
+                      c.SFZH,
+                      XBStr = c.XB,
                       c.ZCZSH,
                       c.ZCZY,
                       c.ZSYXQKSSJ,

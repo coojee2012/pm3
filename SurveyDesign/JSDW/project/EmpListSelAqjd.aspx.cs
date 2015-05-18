@@ -94,12 +94,12 @@ public partial class JSDW_project_EmpListSelAqjd: System.Web.UI.Page
         //dg_List.DataBind();
 
        
-        string sql = @"select  a.QYBM,
+        string sql = @"select  b.QYBM,
                     b.ZSLX,
-                    a.RYBH,
-                    a.XM,
-                    a.SFZH,
-                    a.xb  as XBStr,
+                    b.RYBH,
+                    b.XM,
+                    b.SFZH,
+                    b.xb  as XBStr,
                     b.ZCZSH,
                     b.ZCZY,
                     b.ZSYXQKSSJ,
@@ -108,14 +108,14 @@ public partial class JSDW_project_EmpListSelAqjd: System.Web.UI.Page
                    convert(date,b.FZSJ) FZSJStr         
                        from  JST_XZSPBaseInfo.dbo.RY_RYJBXX a,JST_XZSPBaseInfo.dbo.RY_RYZSXX b
                         where a.RYBH = b.RYBH
-                        and a.QYBM in (select  QYID   from  TC_AJBA_CJDW  where FAppId = '" + Session["FAppId"].ToString()+"')";
+                        and b.QYBM in (select  QYID   from  TC_AJBA_CJDW  where FAppId = '" + Session["FAppId"].ToString()+"')";
         if (!string.IsNullOrEmpty(this.txtIDCard.Text.Trim()))
         {
-            sql += " and a.SFZH  like '%" + this.txtIDCard.Text.Trim()+"%'";           
+            sql += " and b.SFZH  like '%" + this.txtIDCard.Text.Trim()+"%'";           
         }
         if (!string.IsNullOrEmpty(this.t_FName.Text.Trim()))
         {
-            sql += " and  a.xm  like '%" + this.t_FName.Text.Trim() + "%'";
+            sql += " and  b.xm  like '%" + this.t_FName.Text.Trim() + "%'";
         }
         if (this.ddlEmpType.SelectedIndex > 0)
         {
