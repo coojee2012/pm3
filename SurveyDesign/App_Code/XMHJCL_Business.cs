@@ -254,9 +254,9 @@ public class XMHJCL_Business
         RCenter prjdb = GetRCenter("XM_BaseInfo");
 
         string sql = @"SELECT jsid as FId ,xmbh as FprjItemId ,xmmc ProjectName ,JSDW ,xmdz Address ,JZZMJ Area ,JSGM as ConstrScale ,CSGD Span ,FTJFJMC Others ,
-                              hfrq CreateTime ,fzjg HFJG ,ZSBH GCGHXKZBH ,'3' BL from  XM_BaseInfo.dbo.XM_JSGCGH where xmbh = '" + xmbh + "'";
+                              hfrq CreateTime ,fzjg HFJG ,BH GCGHXKZBH ,'3' BL from  XM_BaseInfo.dbo.XM_JSGCGH where xmbh = '" + xmbh + "'";
         sql = sql + @" union SELECT jsid as FId ,xmbh as FprjItemId ,xmmc ProjectName ,JSDW ,xmdz Address ,'' Area ,JSGM as ConstrScale ,'' Span ,FTJFJMC Others ,
-                             hfrq CreateTime ,fzjg HFJG ,ZSBH GCGHXKZBH ,'3' BL from   XM_BaseInfo.dbo.XM_JSGCGH_SZ where xmbh = '" + xmbh + "'"; 
+                             hfrq CreateTime ,fzjg HFJG ,BH GCGHXKZBH ,'3' BL from   XM_BaseInfo.dbo.XM_JSGCGH_SZ where xmbh = '" + xmbh + "'"; 
         return prjdb.GetTable(sql);
     }
 
