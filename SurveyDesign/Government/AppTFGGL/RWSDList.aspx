@@ -117,6 +117,12 @@
 
     </script>
 
+    <style type="text/css">
+        .auto-style1 {
+            height: 20px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -173,7 +179,7 @@
 
 
 
-
+<tr><td colspan ="5" style="color: #FF0000" class="auto-style1">备注：输入查询条件后可以跨地区查询全省所有符合条件的人员参与在建项目情况。</td></tr>
         </table>
 
 

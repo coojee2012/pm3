@@ -59,6 +59,13 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
     {
         string FId = "";
         string FDeptId = Session["DFId"].ToString();
+        string sJsyy = t_JSYY.Text.ToString();
+
+        if (string.IsNullOrEmpty(sJsyy.Trim()))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "js", "alert('必须填写解锁原因');", true);
+            return;
+        }
         int RowCount = dg_List.Items.Count;
         IList<string> FIdList = new List<string>();
         string FIds = "";
@@ -90,16 +97,23 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
                 
             }
         }
-        //
-        for (int k = 0; k < FIdList.Count(); k++)
+        if (FIdList.Count() > 0)
         {
-            //直接更改锁定状态
-            string newId=Guid.NewGuid().ToString();
-            string sql = "UPDATE TC_PrjItem_Emp_Lock SET IsLock=0,FTime=GETDATE() WHERE FId= '"+FIdList[k]+"';";
-            rc.PExcute(sql);
-           
+            for (int k = 0; k < FIdList.Count(); k++)
+            {
+                //直接更改锁定状态
+                string newId = Guid.NewGuid().ToString();
+                string sql = "UPDATE TC_PrjItem_Emp_Lock SET IsLock=0,FTime=GETDATE() WHERE FId= '" + FIdList[k] + "';";
+                rc.PExcute(sql);
+
+            }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "js", "alert('解锁成功！');", true);
         }
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "js", "alert('解锁成功！');", true);
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "js", "alert('请选择需要解锁的人员信息！');", true);
+            return;
+        }
         showInfo();
     }
     protected void btnReload_Click(object sender, EventArgs e)

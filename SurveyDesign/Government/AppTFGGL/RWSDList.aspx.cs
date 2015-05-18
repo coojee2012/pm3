@@ -31,20 +31,6 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
     private void ShowInfo()
     {
         StringBuilder sb = new StringBuilder();
-        //sb.Append("select * from ( ");
-        //sb.Append(" select a.FId,a.FAppId,a.IsLock,a.SelectedCount,case b.FSex when 1 then '男' else '女' end as FSex,");
-        //sb.Append(" b.ZW,b.FIdCard,b.FHumanName,b.FEntName,b.ZSBH,b.ZCZY,b.EmpType,d.FName, ");
-        //sb.Append(" c.PrjItemName,c.ProjectName,dbo.getManageDeptName(c.PrjAddressDept) as DeptName,c.StartDate,c.EndDate   ");
-  
-        //sb.Append(" from TC_PrjItem_Emp_Lock a ");
-        //sb.Append(" left join TC_PrjItem_Emp b on a.FIdCard=b.FIdCard ");
-        //sb.Append(" left join TC_SGXKZ_PrjInfo c on c.FAppId = a.FAppId ");
-        //sb.Append(" left join CF_Sys_Dic d on b.EmpType = d.FNumber ");
-        //sb.Append(" where not exists (select 1 from TC_PrjItem_Emp_Lock where FIdCard = a.FIdCard  and FCreateTime > a.FCreateTime) ");
-        //sb.Append(" and a.IsLock = 1 ");
-        //sb.Append(getCondi());
-        //sb.Append(" ) as ttt where 1=1");
-        //sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
 
         sb.Append("select  *  from  V_Sgxkz_EmpLock where isMainLock=1 and isLock = 1 ");  //只查主锁定的人员
         //只能查看本地区的项目锁定人员
