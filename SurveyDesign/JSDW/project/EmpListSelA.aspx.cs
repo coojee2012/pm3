@@ -58,15 +58,15 @@ public partial class JSDW_project_EmpListSelA : System.Web.UI.Page
         var v = from a in db.RY_RYJBXX
                 join c in db.RY_RYZSXX
                 on a.RYBH equals c.RYBH
-                where a.QYBM == qybm
+                where c.QYBM == qybm
                 select new
                 {
-                    a.QYBM,
+                    c.QYBM,
                     c.ZSLX,
-                    a.RYBH,
-                    a.XM,                    
-                    a.SFZH,
-                    XBStr = a.XB,
+                    c.RYBH,
+                    c.XM,                    
+                    c.SFZH,
+                    XBStr = c.XB,
                     c.ZCZSH,
                     c.ZCZY,
                     c.ZSYXQKSSJ,
