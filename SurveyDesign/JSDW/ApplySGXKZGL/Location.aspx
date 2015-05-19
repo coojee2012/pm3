@@ -197,7 +197,7 @@
             <td class="t_r t_bg">
                 选址意见书证书编号</td>
             <td colspan="1">选字第（ 
-                <asp:TextBox ID="t_XZYJSZSBH" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>）
+                <asp:TextBox ID="t_XZYJSZSBH" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>）号
                 </td>
         </tr>
         <tr  name="tr5">

@@ -212,8 +212,8 @@
                 </td>
             </tr>
             <tr name="tr5">
-                <td class="t_r t_bg">工程规划许可证编号：</td>
-                <td colspan="2">建地字(<asp:TextBox ID="t_GCGHXKZBH" class="cc1" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox>)<tt name="tt_t2">*</tt>
+                <td class="t_r t_bg">工程规划许可证编号</td>
+                <td colspan="2">建地字(<asp:TextBox ID="t_GCGHXKZBH" class="cc1" runat="server" CssClass="m_txt" Width="21.1%"></asp:TextBox>)号<tt name="tt_t2">*</tt>
                 </td>
                 <td>&nbsp;</td>
             </tr>
