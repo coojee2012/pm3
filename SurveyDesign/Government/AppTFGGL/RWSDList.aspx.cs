@@ -11,13 +11,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Government_AppTFGGL_RWSDList : govBasePage
+public partial class Government_AppTFGGL_RWSDList : govBasePage//System.Web.UI.Page//
 {
-    RCenter rc = new RCenter();
-    SaveAsBase sab = new SaveAsBase();
-    RApp ra = new RApp();
-    RAppBacth rap = new RAppBacth();
-    ProjectDB db = new ProjectDB();
+    //RCenter rc = new RCenter();
+    //SaveAsBase sab = new SaveAsBase();
+    //RApp ra = new RApp();
+    //RAppBacth rap = new RAppBacth();
+    //ProjectDB db = new ProjectDB();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -43,11 +43,13 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage
         else
         {
             sb.Append(addCondi); 
-        }
+        }   
+
+        this.Pager1.className = "dbCenter";
         this.Pager1.sql = sb.ToString();
-        this.Pager1.controltype = "DataGrid";
+        this.Pager1.pagecount = 20;
         this.Pager1.controltopage = "JustAppInfo_List";
-        this.Pager1.pagecount = 15;
+        this.Pager1.controltype = "DataGrid";
         this.Pager1.dataBind();
     }
 
