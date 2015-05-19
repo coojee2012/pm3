@@ -178,20 +178,22 @@
                 <td class="t_r t_bg">
                     联合体承包单位名称：
                 </td>
-                <td colspan="1">
-                    <asp:TextBox ID="t_LHTCBDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                <td colspan="3">
+                    <asp:TextBox ID="t_LHTCBDWMC" runat="server" CssClass="m_txt" Width="85%" Enabled="false" Height="45px" TextMode="MultiLine"></asp:TextBox><tt>*</tt>
                     <input type="hidden"  runat="server" ID="t_LHTDWId" value="" />
                     <asp:Button ID="Button3" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_LHTDWId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntLHT_Click" Style="margin-bottom: 4px;margin-left:5px;" />
                 </td>
+              
+            </tr>
+             <tr>
                 <td class="t_r t_bg">
                     联合体承包单位组织代码：
                 </td>
-                <td colspan="1">
-                     <asp:TextBox ID="t_LHTCBDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                <td colspan="3">
+                     <asp:TextBox ID="t_LHTCBDWZZJGDM" runat="server" CssClass="m_txt" Width="85%" Enabled="false" Height="46px" TextMode="MultiLine"></asp:TextBox><tt>*</tt>
                 </td>
-            </tr>
-            
+            </tr>           
         </table>
         
     </div>

@@ -168,8 +168,18 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
             if (v != null)
             {
-                t_LHTCBDWMC.Text = v.QYMC;
-                t_LHTCBDWZZJGDM.Text = v.JGDM;
+                string sname = t_LHTCBDWMC.Text;
+                string scode = t_LHTCBDWZZJGDM.Text;
+                if (sname.Length > 0)
+                {
+                    t_LHTCBDWMC.Text = t_LHTCBDWMC.Text + "\r\n" + v.QYMC;
+                    t_LHTCBDWZZJGDM.Text = t_LHTCBDWZZJGDM.Text + "\r\n" + v.JGDM;
+                }
+                else
+                {
+                    t_LHTCBDWMC.Text = v.QYMC;
+                    t_LHTCBDWZZJGDM.Text = v.JGDM;
+                }
             }
 
         }

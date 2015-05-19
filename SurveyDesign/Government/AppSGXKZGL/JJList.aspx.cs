@@ -175,6 +175,7 @@ public partial class Government_AppSGXKZGL_JJList : govBasePage
             box.Attributes["fMeasure"] = fMeasure;
             box.Attributes["fManageTypeId"] = fManageTypeId;
             box.Attributes["FStatedesc"] = FStatedesc;
+            e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
            (e.Item.Cells[1].FindControl("projectitmename") as LinkButton).OnClientClick  = "showAddWindow('CCBLJJAuditInfo.aspx?ftype=1&FlinkId=" + FLinkId + "&fSubFlowId="+fSubFlowId+"&fBaseInfoId="+fBaseInfoId+"&fpid="+fid+"&ferid="+ferId+"',900,600);";
             
         }

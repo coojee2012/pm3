@@ -195,7 +195,7 @@
                 <asp:TextBox ID="t_Area" class="cc1" onblur="isFloat(this)" runat="server" CssClass="m_txt" Width="60%"></asp:TextBox>（m2）
             </td>
             <td class="t_r t_bg">
-                选址意见书证书编号：</td>
+                选址意见书证书编号</td>
             <td colspan="1">选字第（ 
                 <asp:TextBox ID="t_XZYJSZSBH" class="cc1" runat="server" CssClass="m_txt" Width="44%"></asp:TextBox>）
                 </td>
