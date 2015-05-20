@@ -257,7 +257,7 @@
                     资质项：
                 </td>
                 <td  colspan ="3">
-                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt"  Width ="95%"  TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
+                    <asp:TextBox ID="t_mZXZZ" runat="server" CssClass="m_txt"  Width ="95%"  TextMode="MultiLine" ReadOnly="false"></asp:TextBox>
                     <tt>*</tt>
                 </td>
             </tr>

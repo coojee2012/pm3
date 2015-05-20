@@ -81,13 +81,14 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
         TC_SGXKZ_PrjInfo emp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
         if (emp != null)
         {
-            TC_PrjItem_Info pi = dbContext.TC_PrjItem_Info.Where(t => t.FId == emp.FPrjItemId).FirstOrDefault();
-            TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == pi.FPrjId).FirstOrDefault();
+            //TC_PrjItem_Info pi = dbContext.TC_PrjItem_Info.Where(t => t.FId == emp.FPrjItemId).FirstOrDefault();
+            //TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == pi.FPrjId).FirstOrDefault();
             CF_App_List a = dbContext.CF_App_List.Where(t => t.FId == hf_FAppId.Value).FirstOrDefault();
-            if (p != null)
-            {
+            //if (p != null)
+            //{
+                
                 //工程用途
-                if (p.ProjectType == "2000101")
+            if (emp.PrjItemType == "2000101")
                 {
                     DataTable dt = rc.getDicTbByFNumber("2000101");
                     t_ProjectUse.DataSource = dt;
@@ -95,7 +96,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                     t_ProjectUse.DataValueField = "FNumber";
                     t_ProjectUse.DataBind();
                 }
-                else if (p.ProjectType == "2000102")
+            else if (emp.PrjItemType == "2000102")
                 {
                     DataTable dt = rc.getDicTbByFNumber("2000102");
                     t_ProjectUse.DataSource = dt;
@@ -137,44 +138,44 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                 {
                     t_LXDH.Text = emp.LXDH;
                 }
-                else
-                {
-                    t_LXDH.Text = p.Mobile;
-                }
+                //else
+                //{
+                //    t_LXDH.Text = p.Mobile;
+                //}
                 if (!string.IsNullOrEmpty(emp.JSDWDZ))
                 {
                     t_JSDWDZ.Text = emp.JSDWDZ;
                 }
-                else
-                {
-                    t_JSDWDZ.Text = p.JSDWDZ;
-                }
+                //else
+                //{
+                //    t_JSDWDZ.Text = p.JSDWDZ;
+                //}
                 if (!string.IsNullOrEmpty(emp.FDDBR))
                 {
                     t_FDDBR.Text = emp.FDDBR;
                 }
-                else
-                {
-                    t_FDDBR.Text = p.JSDWFR;
-                }
+                //else
+                //{
+                //    t_FDDBR.Text = p.JSDWFR;
+                //}
                 if (!string.IsNullOrEmpty(emp.Address))
                 {
                     t_Address.Text = emp.Address;
                 }
-                else
-                {
-                    t_Address.Text = p.Address;
-                }
+                //else
+                //{
+                //    t_Address.Text = p.Address;
+                //}
 
 
                 if (!string.IsNullOrEmpty(emp.ConstrScale))
                 {
                     t_ConstrScale.Text = emp.ConstrScale;
                 }
-                else
-                {
-                    t_ConstrScale.Text = p.ConstrScale;
-                }
+                //else
+                //{
+                //    t_ConstrScale.Text = p.ConstrScale;
+                //}
                 //业务已经办结且通过，报建时间等于申报时间
                 if (a.FState != null && a.FState == 6 && !string.IsNullOrEmpty(a.FResult) && a.FResult == "1")
                 {
@@ -193,7 +194,7 @@ public partial class JSDW_APPLYSGXKZGL_PrjItemDesc : System.Web.UI.Page
                 t_Area.Text = emp.Area == null?"":emp.Area.ToString();
                 t_Cost.Text = emp.Cost==null?"":emp.Cost.ToString();
                 hf_FId.Value = emp.FId;
-            }
+            //}
         }
     }
     //保存

@@ -520,7 +520,7 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
         EgovaDB1 db = new EgovaDB1();
 
         //如果是监理选择单位返回的是企业资质的主键，通过主键再找到企业编号  modify by psq 20150421
-        if (t_FEntType.Value == "7")
+        if (t_FEntType.Value == "7" || t_FEntType.Value == "5" || t_FEntType.Value == "6")
         {
             var vqyzz = db.QY_QYZZXX.Where(t => t.QYZZID == selEntId).FirstOrDefault();
             if (vqyzz != null)

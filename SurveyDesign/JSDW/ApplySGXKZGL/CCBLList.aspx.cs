@@ -53,8 +53,8 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         var v = from t in dbContext.CF_App_List
                 join a in dbContext.TC_SGXKZ_PrjInfo
                 on t.FId equals a.FAppId
-                join b in dbContext.TC_PrjItem_Info
-                on a.FPrjItemId equals b.FId
+                //join b in dbContext.TC_PrjItem_Info
+                //on a.FPrjItemId equals b.FId
                 where t.FBaseinfoId == FBaseinfoID && t.FManageTypeId == fMType
                 orderby t.FReportDate
                 select new
@@ -67,7 +67,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
                     a.FResult,
                     t.FLinkId,
                     a.PrjAddressDept,
-                    PrjAddressDeptName = dbContext.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(b.AddressDept)).Select(d => d.FFullName).FirstOrDefault(),
+                    PrjAddressDeptName = dbContext.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(a.PrjAddressDept)).Select(d => d.FFullName).FirstOrDefault(),
                     a.Address,
                     a.PrjItemName,
                     a.ProjectName
@@ -167,6 +167,7 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
         tju = dbContext.TC_JSDW_USER.Where(t =>t.FID == CurrentEntUser.EntId).FirstOrDefault();  
         if (tju != null)
         {
+
             //添加初次办理信息
             TC_SGXKZ_PrjInfo record = new TC_SGXKZ_PrjInfo
             {
@@ -466,21 +467,27 @@ public partial class JSDW_APPLYSGXKZGL_CCBLList : System.Web.UI.Page
 
     protected void btnSel_Click(object sender, EventArgs e)
     {
-        EgovaDB dbContext = new EgovaDB();
-        var result = (from t in dbContext.TC_PrjItem_Info
-                      where t.FId == this.t_FPriItemId.Value
-                      select t).SingleOrDefault();
-        if (result == null) return;
-        t_FPrjItemName.Text = result.PrjItemName;
-        t_FPrjId.Value = result.FPrjId;
-        t_FJSDW.Text = result.JSDW;
-        t_FPrjName.Value = result.ProjectName;
-        t_AddressDept.Value = result.AddressDept;
-        t_PrjItemType.Value = result.PrjItemType;
-        t_JSDW.Value = result.JSDW;
-        if (EntyRegistDeptId(result.FJSDWID) != "")
+        //EgovaDB dbContext = new EgovaDB();
+        //var result = (from t in dbContext.TC_PrjItem_Info
+        //              where t.FId == this.t_FPriItemId.Value
+        //              select t).SingleOrDefault();
+
+        string sql = @"select  a.DWGCMC,a.XMBH,b.JSDW,b.XMMC,b.XMSD,b.XMLX from   xm_baseinfo.dbo.GC_DWGCXX a, xm_baseinfo.dbo.XM_XMJBXX b
+                     where a.XMBH = b.XMBH
+                     and a.DWGCBH = '"+this.t_FPriItemId.Value+"'";
+        DataTable dt = new DataTable();
+        dt = rc.GetTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
         {
-            t_JSDWAddressDept.Value = EntyRegistDeptId(result.FJSDWID);//MODIFY:YTB 为建设单位所属地赋值到控件
+            t_FPrjItemName.Text = dt.Rows[0]["DWGCMC"].ToString();
+            t_FPrjId.Value = dt.Rows[0]["XMBH"].ToString();
+            t_FJSDW.Text = dt.Rows[0]["JSDW"].ToString();
+            t_FPrjName.Value = dt.Rows[0]["XMMC"].ToString();
+            t_AddressDept.Value = dt.Rows[0]["XMSD"].ToString();
+            t_PrjItemType.Value = dt.Rows[0]["XMLX"].ToString();
+            t_JSDW.Value = CurrentEntUser.EntName.ToString();            
+            t_JSDWAddressDept.Value = CurrentEntUser.EntId.ToString();
+           
         }
     }
 

@@ -335,7 +335,7 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                 //如果是监理企业，返回的是QY_QYZZXX的主键QYZZID,以解决选择同一个企业不同的资质选择的问题。  modify by psq 20150421
                 if (ViewState["qylx"] != null)
                 {
-                    if (ViewState["qylx"].ToString() == "104")
+                    if (ViewState["qylx"].ToString() == "104" || ViewState["qylx"].ToString() == "102" || ViewState["qylx"].ToString() == "103")
                     {
                         HiddenField hfzzxxid = e.Item.FindControl("hfqyzzid") as HiddenField;
                         string szzxxid = hfzzxxid.Value;
