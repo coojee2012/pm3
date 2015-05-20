@@ -122,11 +122,39 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            tool.fillPageControl(info);
        }
        t_FAppSGXKZBH.Text = info.SGXKZBH;
-       t_PrjArea.Value = info.Area.ToString();
+       t_PrjArea.Value = info.PrjAddressDept.ToString();
        t_PrjType.Value = info.PrjItemType.ToString();
        t_FAppFZJG.Text = info.FZJG;
        t_FAppFZRQ.Text = info.FZTime == null ? "" : info.FZTime.Value.ToString("yyyy-MM-dd");
-       
+
+       //生成施工许可证编号,如果不存在施工许可证编号，则打开界面的时候就生成一个编号，并且页面上不能修改，存在则不重新生成
+       #region
+       if(info.SGXKZBH == null || info.SGXKZBH.Trim() == "")
+       {
+           string sPrjArea = "";
+           if (t_PrjArea.Value.Length == 2)
+           {
+               sPrjArea = t_PrjArea.Value + "0000";
+           }
+           else if (t_PrjArea.Value.Length == 4)
+           {
+               sPrjArea = t_PrjArea.Value + "00";
+           }
+           else
+           {
+               sPrjArea = t_PrjArea.Value;
+           }
+
+           string sgxkzbh = BuildSGXKZBH(sPrjArea, t_PrjType.Value);
+           info.SGXKZBH = sgxkzbh;
+           
+           db.SubmitChanges();
+       }
+       else
+       {
+           t_FAppSGXKZBH.Text = info.SGXKZBH;
+       }
+      #endregion
    }
     //绑定项目附件信息
     private void bindFileInfo()
@@ -501,20 +529,12 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
                string appid = t_fLinkId.Value;//EConvert.ToString(Session["FAppId"].ToString());
                DisableButton();
 
-               //生成施工许可证编号
-               #region
-
-               string sgxkzbh = BuildSGXKZBH(t_PrjArea.Value,t_PrjType.Value);
+              
 
                RCenter rc = new RCenter("dbcenter");
-
-               rc.PExcute("UPDATE TC_SGXKZ_PrjInfo SET sgxkzbh='" + sgxkzbh +   "' WHERE FAppId='" + t_fLinkId.Value + "'"); 
-
-               #endregion
-                              
+               //rc.PExcute("UPDATE TC_SGXKZ_PrjInfo SET sgxkzbh='" + this. +this.t_   "' WHERE FAppId='" + t_fLinkId.Value + "'"); 
                //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
-
-               rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + appid + "'");
+           rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + appid + "'");
                //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办理成功！');", true);
            }
@@ -592,7 +612,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    {
 
    }
-   
+
    #endregion
 
 
@@ -636,19 +656,20 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
 
        //获取当天最大的值
        var result = (from t in db.TC_SGXKZ_PrjInfo
-                     where t.SGXKZBH.Substring(6, 6) == datatoday
-                       && t.Area.Equals(prjitemarea)
+                     where t.SGXKZBH.Substring(6, 8) == datatoday
+                       && t.PrjAddressDept.Equals(prjitemarea)
+                       && t.SGXKZBH.Length == 18 //为18位的施工许可证
                      orderby t.SGXKZBH descending
                      select t).FirstOrDefault();
        if (result != null)
        {
-           todayno = Convert.ToInt32(result.SGXKZBH.Substring(12, 2)) + 1;
-           todayxlh = Convert.ToInt32(result.SGXKZBH.Substring(20, 3)) + 1;
+           todayno = Convert.ToInt32(result.SGXKZBH.Substring(14, 2)) + 1;
+           //todayxlh = Convert.ToInt32(result.SGXKZBH.Substring(20, 3)) + 1;
        }
        else
        {
            todayno = 1;
-           todayxlh = 1;
+           //todayxlh = 1;
        }
        //如果项目编号小于10
        if (todayno < 10)
@@ -660,21 +681,21 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            stodayno = todayno.ToString();
        }
        //如果序列号小于10或1000
-       if (todayxlh < 10)
-       {
-           stodayxlh = "00" + todayxlh.ToString();
-       }
-       else if (todayxlh < 100)
-       {
-           stodayxlh = "0" + todayxlh.ToString();
-       }
-       else
-       {
-           stodayxlh = todayxlh.ToString();
-       }
+       //if (todayxlh < 10)
+       //{
+       //    stodayxlh = "00" + todayxlh.ToString();
+       //}
+       //else if (todayxlh < 100)
+       //{
+       //    stodayxlh = "0" + todayxlh.ToString();
+       //}
+       //else
+       //{
+       //    stodayxlh = todayxlh.ToString();
+       //}
 
        //生成编号
-       sgxkbh = prjitemarea + string.Format("{0:yyMMdd}", DateTime.Now) + prjitemtype + stodayno  + bussinesstype + "-" + stodayxlh;
+       sgxkbh = prjitemarea + string.Format("{0:yyyyMMdd}", DateTime.Now) + stodayno + prjitemtype;
        return sgxkbh;
 
    }
