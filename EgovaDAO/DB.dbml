@@ -1827,7 +1827,7 @@
       <Column Name="ProjectType" Type="System.String" DbType="Char(3)" CanBeNull="true" />
       <Column Name="RecordNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="ProjectNo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="true" />
       <Column Name="Contracts" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Mobile" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PlanStartTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />

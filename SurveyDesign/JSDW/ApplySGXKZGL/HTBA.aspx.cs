@@ -141,13 +141,21 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
             string selEntId = t_FBDWId.Value;
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            if (v != null)
+            if (v != null)//先从企业基本信息表中获取，如果不存在再从建设单位信息表中获取 
             {
                 t_FBDWMC.Text = v.QYMC;
                 t_FBDWZZJGDM.Text = v.JGDM;
             }
-
-
+            else
+            { 
+                EgovaDB db2 = new EgovaDB();
+                var jsdw = db2.TC_JSDW_USER.Where(t => t.FID == selEntId).FirstOrDefault();
+                if (jsdw != null)
+                {
+                    t_FBDWMC.Text = jsdw.FCompany;
+                    t_FBDWZZJGDM.Text = jsdw.ZZJGDM ==null?"":jsdw.ZZJGDM;
+                }
+            }
         }
         else if (type == "CB")
         {
@@ -158,6 +166,16 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
             {
                 t_CBDWMC.Text = v.QYMC;
                 t_CBDWZZJGDM.Text = v.JGDM;
+            }
+            else
+            {
+                EgovaDB db2 = new EgovaDB();
+                var jsdw = db2.TC_JSDW_USER.Where(t => t.FID == selEntId).FirstOrDefault();
+                if (jsdw != null)
+                {
+                    t_CBDWMC.Text = jsdw.FCompany;
+                    t_CBDWZZJGDM.Text = jsdw.ZZJGDM == null ? "" : jsdw.ZZJGDM;
+                }
             }
 
         }
@@ -179,6 +197,16 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
                 {
                     t_LHTCBDWMC.Text = v.QYMC;
                     t_LHTCBDWZZJGDM.Text = v.JGDM;
+                }
+            }
+            else
+            {
+                EgovaDB db2 = new EgovaDB();
+                var jsdw = db2.TC_JSDW_USER.Where(t => t.FID == selEntId).FirstOrDefault();
+                if (jsdw != null)
+                {
+                    t_LHTCBDWMC.Text = jsdw.FCompany;
+                    t_LHTCBDWZZJGDM.Text = jsdw.ZZJGDM == null ? "" : jsdw.ZZJGDM;
                 }
             }
 

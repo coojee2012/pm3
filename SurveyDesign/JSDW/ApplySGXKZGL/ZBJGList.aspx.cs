@@ -341,8 +341,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
     //    ShowFile(txtSGId.Value, "SG");
     //}
     protected void btnAddEntSC_Click(object sender, EventArgs e)
-    {
-        string strEntType = t_JLZBLX.Text;
+    {       
 
         //中标单位
         selEnt("SC");
@@ -374,6 +373,10 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             t_SGIdold.Value = t_JLId.Value;
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
+            string strEntType = t_JLZBLX.SelectedValue;
+            if (strEntType == "101")
+            { 
+            }
             if (v != null)
             {
                 t_JLZBDW.Text = v.QYMC;

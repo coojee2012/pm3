@@ -81,7 +81,7 @@
                 <td class="t_r">
                     <asp:UpdatePanel ID="up_Main" runat="server" RenderMode="Inline">
                          <ContentTemplate>
-                        <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="m_btn_w2"
+                        <asp:Button ID="btnSave" runat="server" Text="确认竣工" OnClick="btnSave_Click" CssClass="m_btn_w4"
                             />  
                         </ContentTemplate>
                     </asp:UpdatePanel>                

@@ -110,16 +110,16 @@
             var qylx = "101";
             switch (type) {
                 case "11220801":
-                    qylx = "101";
+                    qylx = "101";//施工类企业
                     break;
                 case "11220802":
-                    qylx = "104";
+                    qylx = "104";//监理
                     break;
                 case "11220803":
-                    qylx = "103";
+                    qylx = "103";//设计
                     break;
                 case "11220804":
-                    qylx = "102";
+                    qylx = "102";//勘察
                     break;
 
                 case "11220805":
@@ -140,6 +140,7 @@
             {
                 url += "&qylx=" + qylx ;
             }
+            alert(url);
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);

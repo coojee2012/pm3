@@ -628,11 +628,9 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
    private string BuildSGXKZBH(string prjitemarea, string prjitemtype)
    {
 
-       int todayno;
-       int todayxlh;
+       int todayno;     
        string sgxkbh = "";
-       string stodayno, stodayxlh;
-       string bussinesstype = "SX";
+       string stodayno;     
        EgovaDB db = new EgovaDB();
        //当天日期
        string datatoday = string.Format("{0:yyMMdd}", DateTime.Now);

@@ -39701,7 +39701,7 @@ namespace EgovaDAO
 		
 		private string _ProjectNo;
 		
-		private System.DateTime _ProjectTime;
+		private System.Nullable<System.DateTime> _ProjectTime;
 		
 		private string _Contracts;
 		
@@ -39815,7 +39815,7 @@ namespace EgovaDAO
     partial void OnRecordNoChanged();
     partial void OnProjectNoChanging(string value);
     partial void OnProjectNoChanged();
-    partial void OnProjectTimeChanging(System.DateTime value);
+    partial void OnProjectTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnProjectTimeChanged();
     partial void OnContractsChanging(string value);
     partial void OnContractsChanged();
@@ -40311,7 +40311,7 @@ namespace EgovaDAO
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTime", DbType="Date NOT NULL")]
-		public System.DateTime ProjectTime
+		public System.Nullable<System.DateTime> ProjectTime
 		{
 			get
 			{

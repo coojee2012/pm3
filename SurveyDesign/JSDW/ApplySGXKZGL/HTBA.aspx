@@ -26,8 +26,9 @@
         function checkInfo() {
             return AutoCheckInfo();
         }
-        function selEnt(obj, tagId) {
-            var url = "../project/EntListSel.aspx?e=1";
+        function selEnt(obj, tagId) {           
+            //var url = "../project/EntListSel.aspx?e=1";
+            var url = "../project/EntListSelsql.aspx?e=1";
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
