@@ -372,6 +372,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="t_FAppFZJG" runat="server" CssClass="m_txt" Width="195px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="请填写发证机关！" ControlToValidate ="t_FAppFZJG"></asp:RequiredFieldValidator>
                 </td>
                 <td class="t_r">发证日期</td>
                 <td>
