@@ -211,7 +211,7 @@
                     <td class="t_r t_bg">勘察单位名称：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_KCDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
+                        <asp:TextBox ID="t_KCDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                         <input type="hidden" runat="server" id="t_KCDWId" value="" />
                         <asp:Button ID="btnAddEnt1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_KCDWId');"
                             UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntKC_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
