@@ -45,50 +45,21 @@
         function showTr1() {
             $("tr[name=tr1]").show();
             $("tr[name=tr5]").hide();
-            $('[cs=cs1]').each(function (i) {
-                $("#" + this.id).attr("disabled", true);
-            });
             $("tt[name=tt_t2]").empty();
-            $("tt[name=tt_t2]").each(function () {
-                var t = $(this).html();
-                $(this).replaceWith(t);
-            });
         }
         function hideTr1() {
             $("tr[name=tr1]").hide();
             $("tr[name=tr5]").show();
-            $('[cs=cs1]').each(function (i) {
-                $("#" + this.id).removeAttr("disabled");
-            });
 
         }
         function change(value) {
             if (value == "1") {
                 $("tr[name=tr1]").hide();
                 $("tr[name=tr5]").show();
-                $('[cs=cs1]').each(function (i) {
-                    $("#" + this.id).removeAttr("disabled");
-                });
-
-                $("tt[name=tt_t1]").empty();
-                $("tt[name=tt_t1]").each(function () {
-                    var t = $(this).html();
-                    $(this).replaceWith(t);
-                });
             }
             else {
                 $("tr[name=tr1]").show();
                 $("tr[name=tr5]").hide();
-
-                $("tt[name=tt_t2]").empty();
-                $("tt[name=tt_t2]").each(function () {
-                    var t = $(this).html();
-                    $(this).replaceWith(t);
-                });
-                //$("input").removeAttr("disabled");
-                $('[cs=cs1]').each(function (i) {
-                    $("#" + this.id).attr("disabled", true);
-                });
             }
         }
         function selEnt(obj, tagId) {
@@ -187,7 +158,7 @@
                 <tr name="tr1">
                     <td class="t_r t_bg">理由： </td>
                     <td colspan="3">
-                        <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox><tt name="tt_t1">*</tt>
+                        <asp:TextBox ID="t_YL" Height="35px" TextMode="MultiLine" runat="server" CssClass="m_txt" Width="72.2%"></asp:TextBox>
                     </td>
                 </tr>
                 <tr  name="tr5">
@@ -240,7 +211,7 @@
                     <td class="t_r t_bg">勘察单位名称：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_KCDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
+                        <asp:TextBox ID="t_KCDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                         <input type="hidden" runat="server" id="t_KCDWId" value="" />
                         <asp:Button ID="btnAddEnt1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_KCDWId');"
                             UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntKC_Click" Style="margin-bottom: 4px; margin-left: 5px;" />
