@@ -155,7 +155,7 @@
                     发包单位组织机构代码：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FBDWZZJGDM"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_FBDWZZJGDM"  runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr>
