@@ -38,7 +38,15 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage//System.Web.UI.P
 
         if (addCondi == "")  //如果有附加条件，则根据条件查询，不限定本地区的，保证主管部门可以查看到人员在其他地区的锁定情况，否则，则只查询本地区项目的人员情况。  by zyd
         {
-            sb.Append(" and PrjAddressDept = '" + Session["DFId"] + "' ");
+            string strdf = Session["DFId"].ToString();
+            if (strdf == "51" || strdf == "510000")
+            {
+                sb.Append(" and PrjAddressDept like  '51%'");
+            }
+            else
+            {
+               sb.Append(" and PrjAddressDept = '" + Session["DFId"] + "' ");
+            }
         }
         else
         {
