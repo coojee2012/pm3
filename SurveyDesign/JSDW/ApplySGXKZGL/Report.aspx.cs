@@ -219,7 +219,8 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             slockperson = slockperson.Substring(0, slockperson.Length - 1);
             tr_lockrow.Visible = true ;
             lbl_lockpsersoncontent.InnerText = slockperson;
-            MyPageTool.showMessage("当前工程项目申报有人员被其他项目锁定，请检查人员信息", this.Page);
+            MyPageTool.showMessage("当前工程项目申报有人员被其他项目锁定，点击确定查询人员冲突信息", this.Page);
+            Response.Redirect("EmpClash.aspx");
             return;
         }
         else
