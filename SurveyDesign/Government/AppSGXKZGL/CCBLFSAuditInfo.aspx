@@ -378,6 +378,7 @@
                 <td>
                     <asp:TextBox ID="t_FAppFZRQ" runat="server" CssClass="m_txt" Width="195px" onblur="isDate(this);"
                         onfocus="WdatePicker()"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="请填写发证日期！" ControlToValidate ="t_FAppFZRQ"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -385,6 +386,7 @@
                 </td>
                 <td colspan="3"  >
                      <asp:TextBox ID="t_FAppSGXKZBH" runat="server" CssClass="m_txt" Width="395px" ReadOnly="true"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="施工许可证编号不能为空，请联系管理人员！" ControlToValidate ="t_FAppSGXKZBH"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>

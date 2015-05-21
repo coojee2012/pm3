@@ -1,0 +1,4 @@
+--增加三个字段,解锁原因、解锁人、解锁时间
+alter  table TC_PrjItem_Emp_Lock  add jsyy  varchar(500) null
+alter  table TC_PrjItem_Emp_Lock  add jsr  varchar(50) null
+alter  table TC_PrjItem_Emp_Lock  add jssj  datetime  null
