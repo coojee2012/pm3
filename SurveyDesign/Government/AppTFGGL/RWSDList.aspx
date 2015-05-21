@@ -234,11 +234,11 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>--%>
-                         <asp:BoundColumn HeaderText="企业角色" DataField="FentType">
+                         <asp:BoundColumn HeaderText="企业类型" DataField="FentType">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="人员类型" DataField="EmpType">
+                         <asp:BoundColumn HeaderText="担任职务" DataField="EmpType">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>

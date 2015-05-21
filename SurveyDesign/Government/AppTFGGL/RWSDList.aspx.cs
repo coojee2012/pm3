@@ -116,8 +116,7 @@ public partial class Government_AppTFGGL_RWSDList : govBasePage//System.Web.UI.P
 
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
             e.Item.Cells[4].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('JCSD.aspx?idCard=" + idCard + "&FAppId=" + fAppId + "',1024,600);\">" + e.Item.Cells[4].Text + "</a>";
-          //  e.Item.Cells[3].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('SGXKZXX.aspx?FId=" + fId + "&FAppId=" + fAppId + "',900,600);\">" + e.Item.Cells[3].Text + "</a>";
-
+            e.Item.Cells[7].Text = "<a href='javascript:void(0)' onclick=\"showAddWindow('../AppKJGGL/SGXKZXX.aspx?FAppId=" + fAppId + "',1024,600);\">" + e.Item.Cells[7].Text + "</a>";
         }
     }
     protected void btnQuery_Click(object sender, EventArgs e)
