@@ -290,22 +290,25 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
             MyPageTool.showMessage("该条业务已经上报或者不符合上报条件，不能继续上报操作",this.Page);
             return;
         }
+        /*
         if (!ValidateCallVideo(fAppId))
         {
             MyPageTool.showMessage("是否点名处未设置或者设置超过1个点位，不能上报", this.Page);
             return;
         }
+       
         if (!ValidateVideo(fAppId))
         {
             MyPageTool.showMessage("摄像头个数如果未达到规定数量，不能上报", this.Page);
             return;
         }
+         * */
         string fSystemId = CurrentEntUser.URSystemId;      
         if(string.IsNullOrEmpty(fSystemId))
         {
             MyPageTool.showMessage("系统出错,获取不到当前登录系统的编码", this.Page);
             return;
-        }
+        }         
         string fNumber = ddlLevel.SelectedValue;
         //if (ddlLevel.SelectedValue == "1")//省级
         //{
