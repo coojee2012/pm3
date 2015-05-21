@@ -69,8 +69,8 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
             pageTool tool = new pageTool(this.Page, "k_");
             tool.fillPageControl(ent);
         }
-        TC_AJBA_Record qa = db.TC_AJBA_Record.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
-        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+        TC_AJBA_Record prjInfo = db.TC_AJBA_Record.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
+        //TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
         if (prjInfo.AddressDept != null)
         {
             govd_FRegistDeptId.fNumber = prjInfo.AddressDept;

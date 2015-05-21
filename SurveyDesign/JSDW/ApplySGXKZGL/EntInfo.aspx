@@ -93,7 +93,8 @@
                     qylx = "102";
                     var url = "../project/EntListSel.aspx";
 
-                    url += "?qylx=" + qylx;                 
+                    //url += "?qylx=" + qylx;           
+                    url += "?qylx=" + qylx+"&iskc=true";   //勘察设计监理多传一个参数
                     var pid = showWinByReturn(url, 1000, 600);
                     if (pid != null && pid != '') {
                         $("#" + tagId).val(pid);
@@ -103,8 +104,8 @@
                 case "6":
                     qylx = "103";
                     var url = "../project/EntListSel.aspx";
-
-                    url += "?qylx=" + qylx;
+                    //
+                    url += "?qylx=" + qylx + "&iskc=true";   //勘察设计监理多传一个参数
                     var pid = showWinByReturn(url, 1000, 600);
                     if (pid != null && pid != '') {
                         $("#" + tagId).val(pid);
@@ -114,7 +115,7 @@
                 case "7":
                     qylx = "104";
                     var url = "../project/EntListSel.aspx";
-                    url += "?qylx=" + qylx;
+                    url += "?qylx=" + qylx + "&iskc=true";   //勘察设计监理多传一个参数
                     var pid = showWinByReturn(url, 1000, 600);
                     if (pid != null && pid != '') {
                         $("#" + tagId).val(pid);

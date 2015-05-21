@@ -16,7 +16,7 @@ using EgovaDAO;
 
 public partial class JSDW_project_EntListSel: System.Web.UI.Page
 {
-    RCenter rc = new RCenter();
+    RCenter rc = new RCenter();   
     //RCenter rctest = new RCenter("JST_XZSPBaseInfo");
 
     ShareTool st = new ShareTool();
@@ -32,6 +32,8 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                 //int rowcount = dt.Rows.Count;
 
                 string qylx = EConvert.ToString(Request.QueryString["qylx"]);
+                string iskc = EConvert.ToString(Request.QueryString["iskc"]);
+                ViewState["iskc"] = iskc;
                 ViewState["qylx"] = qylx;
                 showInfo(qylx);
             }
@@ -335,11 +337,14 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                 //如果是监理企业，返回的是QY_QYZZXX的主键QYZZID,以解决选择同一个企业不同的资质选择的问题。  modify by psq 20150421
                 if (ViewState["qylx"] != null)
                 {
-                    if (ViewState["qylx"].ToString() == "104" || ViewState["qylx"].ToString() == "102" || ViewState["qylx"].ToString() == "103")
+                    if (ViewState["iskc"] != "")
                     {
-                        HiddenField hfzzxxid = e.Item.FindControl("hfqyzzid") as HiddenField;
-                        string szzxxid = hfzzxxid.Value;
-                        tool.ExecuteScript("window.returnValue='" + szzxxid + "';window.close();");
+                        if (ViewState["qylx"].ToString() == "104" || ViewState["qylx"].ToString() == "102" || ViewState["qylx"].ToString() == "103")
+                        {
+                            HiddenField hfzzxxid = e.Item.FindControl("hfqyzzid") as HiddenField;
+                            string szzxxid = hfzzxxid.Value;
+                            tool.ExecuteScript("window.returnValue='" + szzxxid + "';window.close();");
+                        }
                     }
                     else
                     {

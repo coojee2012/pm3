@@ -69,7 +69,13 @@
                     break;
             }
             var url = "../project/EntListSel.aspx";
-            url += "?qylx=" + qylx;
+            if (qylx == "102" || qylx == "103" || qylx == "104")//勘察设计监理类企业
+            {
+                url += "?qylx=" + qylx+"&iskc=true";   //勘察设计监理多传一个参数
+            }
+            else {
+                url += "?qylx=" + qylx;
+            }
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 var oldva = $('#h_selEntId').val();
