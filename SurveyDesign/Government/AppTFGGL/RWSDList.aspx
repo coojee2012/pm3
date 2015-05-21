@@ -242,7 +242,7 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                         <asp:BoundColumn HeaderText="参与在建工程名称" DataField="ProjectName">
+                         <asp:BoundColumn HeaderText="工程名称" DataField="ProjectName">
                             <ItemStyle Wrap="False" HorizontalAlign="Left" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
@@ -254,7 +254,7 @@
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
-                        <asp:BoundColumn HeaderText="职务" DataField="ZW">
+                        <asp:BoundColumn HeaderText="职务" DataField="ZW" Visible="False">
                             <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                             <HeaderStyle Font-Underline="False" Wrap="False" />
                         </asp:BoundColumn>
