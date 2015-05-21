@@ -187,7 +187,7 @@
                     <td class="t_r t_bg">施工图审查机构组织机构代码：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_SGTSCZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
+                        <asp:TextBox ID="t_SGTSCZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     </td>
                 </tr>
                 <tr  name="tr5">
@@ -219,7 +219,7 @@
                     <td class="t_r t_bg">勘察单位组织机构代码：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_KCDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
+                        <asp:TextBox ID="t_KCDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     </td>
                 </tr>
                 <tr  name="tr5">
@@ -234,7 +234,7 @@
                     <td class="t_r t_bg">设计单位组织机构代码：
                     </td>
                     <td colspan="1">
-                        <asp:TextBox ID="t_SJDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt name="tt_t2">*</tt>
+                        <asp:TextBox ID="t_SJDWZZJGDM" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox>
                     </td>
                 </tr>
                 <tr  name="tr5">
