@@ -193,24 +193,33 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             string selEntId = t_SGTSCJGId.Value;
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            t_SGTSCJGMC.Text = v.QYMC;
-            t_SGTSCZZJGDM.Text = v.JGDM;
+            if (v != null)
+            {
+                t_SGTSCJGMC.Text = v.QYMC;
+                t_SGTSCZZJGDM.Text = v.JGDM;
+            }
         }
         else if (type == "KC")
         {
             string selEntId = t_KCDWId.Value;
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            t_KCDWMC.Text = v.QYMC;
-            t_KCDWZZJGDM.Text = v.JGDM;
+            if (v != null)
+            {
+                t_KCDWMC.Text = v.QYMC;
+                t_KCDWZZJGDM.Text = v.JGDM;
+            }
         }
         else if (type == "SJ")
         {
             string selEntId = t_SJDWId.Value;
             EgovaDB1 db = new EgovaDB1();
             var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
-            t_SJDWMC.Text = v.QYMC;
-            t_SJDWZZJGDM.Text = v.JGDM;
+            if (v != null)
+            {
+                t_SJDWMC.Text = v.QYMC;
+                t_SJDWZZJGDM.Text = v.JGDM;
+            }
         }
         if (!string.IsNullOrEmpty(t_BL.SelectedValue))
         {
