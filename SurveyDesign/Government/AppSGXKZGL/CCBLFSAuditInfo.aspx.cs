@@ -147,7 +147,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
 
            string sgxkzbh = BuildSGXKZBH(sPrjArea, t_PrjType.Value);
            info.SGXKZBH = sgxkzbh;
-           
+           t_FAppSGXKZBH.Text = sgxkzbh;
            db.SubmitChanges();
        }
        else
@@ -633,7 +633,7 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
        string stodayno;     
        EgovaDB db = new EgovaDB();
        //当天日期
-       string datatoday = string.Format("{0:yyMMdd}", DateTime.Now);
+       string datatoday = string.Format("{0:yyyyMMdd}", DateTime.Now);
 
        if (prjitemtype == "2000101")
        {
