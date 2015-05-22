@@ -146,7 +146,7 @@
                     发包单位名称：
                 </td>
                 <td colspan="1">
-                    <asp:TextBox ID="t_FBDWMC" runat="server" CssClass="m_txt" Width="200px" Enabled="false"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_FBDWMC" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox><tt>*</tt>
                     <input type="hidden"  runat="server" ID="t_FBDWId" value="" />
                     <asp:Button ID="Button1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_FBDWId');"
                     UseSubmitBehavior="false" CommandName="SGT" OnClick="btnAddEntFB_Click" Style="margin-bottom: 4px;margin-left:5px;" />
