@@ -103,7 +103,7 @@ public partial class Government_AppTFGGL_JCSD : System.Web.UI.Page
             {
                 //直接更改锁定状态
                 string newId = Guid.NewGuid().ToString();
-                string sql = "UPDATE TC_PrjItem_Emp_Lock SET IsLock=0,FTime=GETDATE() WHERE FId= '" + FIdList[k] + "';";
+                string sql = "UPDATE TC_PrjItem_Emp_Lock SET IsLock=0,FTime=GETDATE(),jsyy = '"+this.t_JSYY.Text.Trim() + "'"+",jsr = '"+CurrentEntUser.UserId+"',jssj = '"+DateTime.Now.ToString()+"'  WHERE FId= '" + FIdList[k] + "';";
                 rc.PExcute(sql);
 
             }
