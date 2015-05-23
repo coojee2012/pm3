@@ -404,7 +404,7 @@
                 <td class="t_r t_bg" style="width: 18.8%;">招标代理单位名称：
                 </td>
                 <td colspan="1" style="width: 29%;">
-                    <asp:TextBox ID="t_ZBDLDWMC" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_ZBDLDWMC" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                     <input type="hidden" runat="server" id="t_SGId" value="" />
                     <input type="hidden" runat="server" id="t_SGIdold" value="" />
                     <asp:Button ID="Button1" cs="cs1" runat="server" Text="添加..." CssClass="m_btn_w4" OnClientClick="return selEnt(this,'t_SGId');"
@@ -412,7 +412,7 @@
                 </td>
                 <td class="t_r t_bg">招标代理单位组织机构代码： </td>
                 <td>
-                    <asp:TextBox ID="t_ZBDLDWZZJGDM" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox><tt>*</tt>
+                    <asp:TextBox ID="t_ZBDLDWZZJGDM" cs="cs1" runat="server" CssClass="m_txt" Width="195px" Enabled="false"></asp:TextBox>
                 </td>
             </tr>
             <tr name="tr1">
