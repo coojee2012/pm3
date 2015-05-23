@@ -78,13 +78,13 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
         {
             if (qa.PrjAddressDept.Length == 2)
             {
-                ddlLevel.Items.Clear();
-                ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
+                //ddlLevel.Items.Clear();
+                //ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
             }
             else if (qa.PrjAddressDept.Length == 4)
             {
                 ddlLevel.Items.Clear();
-                ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
+                //ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
                 ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(qa.PrjAddressDept)).Select(d => d.FName).FirstOrDefault(), qa.PrjAddressDept));
             }
             else if (qa.PrjAddressDept.Length == 6)
@@ -92,15 +92,15 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                 string sj = qa.PrjAddressDept.Substring(0, 4);
 
                 ddlLevel.Items.Clear();
-                ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
+                //ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
                 ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(sj)).Select(d => d.FName).FirstOrDefault(), sj));
                 ddlLevel.Items.Insert(0, new ListItem(db.CF_Sys_ManageDept.Where(d => d.FNumber.Equals(qa.PrjAddressDept)).Select(d => d.FName).FirstOrDefault(), qa.PrjAddressDept));
             }
         }
         else
         {
-            ddlLevel.Items.Clear();
-            ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
+            //ddlLevel.Items.Clear();
+            //ddlLevel.Items.Insert(0, new ListItem("四川省", "51"));
         }
     }
     //显示

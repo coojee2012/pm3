@@ -1,0 +1,21 @@
+--创建获取人员角色函数
+USE [dbCenter]
+GO
+/****** Object:  UserDefinedFunction [dbo].[getSYSDicName]    Script Date: 2015/5/24 7:06:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE  FUNCTION  dbo.getemptypename
+( 
+   @emptypeid AS varchar(50),
+   @fparentid  as varchar(50)
+
+)
+RETURNS varchar(200)
+AS
+BEGIN
+    declare @name varchar(20)	
+	select @name = FName from CF_Sys_Dic where FNumber = @emptypeid and FParentId = @fparentid
+  RETURN @name
+END
