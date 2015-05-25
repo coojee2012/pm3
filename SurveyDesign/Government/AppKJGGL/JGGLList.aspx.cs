@@ -59,14 +59,14 @@ public partial class Government_AppKJGGL_JGGLList:govBasePage
             sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
 
-        if (this.govd_FRegistDeptId.FNumber != null)
-        {
-            sb.Append(" and qa.PrjAddressDept = '" + this.govd_FRegistDeptId.FNumber + "'");   //修改  by zyd
-        }
-        else
-        {
-            sb.Append(" and qa.PrjAddressDept <> '' ");
-        }
+        //if (this.govd_FRegistDeptId.FNumber != null)
+        //{
+        //    sb.Append(" and qa.PrjAddressDept = '" + this.govd_FRegistDeptId.FNumber + "'");   //修改  by zyd
+        //}
+        //else
+        //{
+        //    sb.Append(" and qa.PrjAddressDept <> '' ");
+        //}
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
             sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
