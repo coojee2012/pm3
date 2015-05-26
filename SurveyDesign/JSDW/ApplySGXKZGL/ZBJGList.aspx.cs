@@ -208,6 +208,18 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             qa.FId = fId;
             qa.FprjItemId = EConvert.ToString(ViewState["FPrjItemId"]);
             qa.FAppId = EConvert.ToString(ViewState["FAppId"]);
+            if (this.t_JLZBLX.SelectedValue == "11220801")
+            {
+                qa.SGId = this.t_JLId.Value;
+            }
+            else if (this.t_JLZBLX.SelectedValue == "11220802")
+            {
+                qa.JLId = this.t_JLId.Value;
+            }
+            else if (this.t_JLZBLX.SelectedValue == "11220803")
+            {
+                qa.SJId = this.t_JLId.Value;
+            }          
             dbContext.TC_SGXKZ_ZBJG.InsertOnSubmit(qa);
             isNew = true;
         }
@@ -230,7 +242,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             }
         }
         dbContext.SubmitChanges();
-      
+        
        
         ShowFile(t_JLId.Value, "JL");
         ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('保存成功');window.returnValue='1';", true);
@@ -388,6 +400,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                     t_JLZBQYZZZSH.Text = v1.ZSBH;
                 }
             }
+
 
 
         }

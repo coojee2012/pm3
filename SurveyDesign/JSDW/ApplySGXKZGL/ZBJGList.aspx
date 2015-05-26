@@ -139,8 +139,7 @@
             else
             {
                 url += "&qylx=" + qylx ;
-            }
-            alert(url);
+            }        
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
