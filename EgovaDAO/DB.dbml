@@ -2801,7 +2801,7 @@
       <Column Name="SJHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SJHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="SJHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JLId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="JLId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="true" />
       <Column Name="JLZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="JLZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="JLZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
@@ -2818,7 +2818,7 @@
       <Column Name="JLHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="JLHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="JLGCS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="SGId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="true" />
       <Column Name="SGZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SGZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="SGZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />

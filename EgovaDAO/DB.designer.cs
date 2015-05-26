@@ -61939,7 +61939,7 @@ namespace EgovaDAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JLId", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JLId", DbType="VarChar(36) NOT NULL")]
 		public string JLId
 		{
 			get
@@ -62279,7 +62279,7 @@ namespace EgovaDAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SGId", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SGId", DbType="VarChar(36) NOT NULL")]
 		public string SGId
 		{
 			get
