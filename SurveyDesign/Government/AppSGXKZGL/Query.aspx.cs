@@ -119,7 +119,9 @@ public partial class Government_AppAQJDBA_Query : govBasePage
 
     private void ShowInfo()
     {
+
         StringBuilder sb = new StringBuilder();
+        /*
         sb.Append("select * from ( ");
         sb.Append(" select qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,qa.JSDW,ep.FId,er.FId as FprId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,ep.FReportDate,");
         sb.Append(" ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode,");
@@ -131,8 +133,8 @@ public partial class Government_AppAQJDBA_Query : govBasePage
         sb.Append(" where ep.fId = er.FProcessInstanceID  ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        sb.Append(" and ap.FUpDeptId = '" + Session["DFId"].ToString() + "' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
         //下面的查询备份表
@@ -147,12 +149,37 @@ public partial class Government_AppAQJDBA_Query : govBasePage
         sb.Append(" where ep.fId = er.FProcessInstanceID  ");
         //  sb.Append(" and ep.FSubFlowId = er.FSubFlowId "); //去掉这行，表示可以查询已经处理了到了下一阶段的业务
         sb.Append(" and ep.flinkId = er.FLinkId  and ep.flinkId = qa.FAppId ");
-        sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
-        sb.Append(" and ap.FUpDeptId like '" + Session["DFId"].ToString() + "%' ");
+        //sb.Append(" and er.FRoleId in (" + Session["DFRoleId"].ToString() + ")");
+        sb.Append(" and ap.FUpDeptId = '" + Session["DFId"].ToString() + "' ");
         sb.Append(" and ep.FLinkId = ap.FId ");
         sb.Append(getCondi());
         sb.AppendLine(" ) ttt where 1=1 ");
-
+        */
+        sb.Append(@"select * from ( 
+             select  qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,
+             qa.JSDW,ep.FId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,
+             ep.FReportDate, ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode, case ap.FState  when 0 then '待接件' when 1 then '已接件' when 2 then '已退回' 
+              when 6 then '已办结'  end as FStatedesc, 
+              case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType, 
+              ep.FSubFlowId,ep.FYear,ep.FResult,qa.SGXKZBH,qa.FZTime,ap.FReportDate FReporttime
+              from CF_App_ProcessInstance ep , V_SGXKZ_YW qa, CF_APP_LIST ap 
+              where  ep.flinkId = qa.FAppId");
+        sb.Append("  and ap.FUpDeptId = '"+Session["DFId"].ToString()+"'");
+        sb.Append(getCondi());
+        sb.Append("  and ep.FLinkId = ap.FId  ");    
+        sb.Append("  union all   ");    
+        sb.Append(@" select  qa.Address,qa.PrjAddressDept,dbo.getManageDeptName(qa.PrjAddressDept) as PrjAddressDeptName,qa.ProjectName,qa.PrjItemName,
+             qa.JSDW,ep.FId,ep.FBaseInfoId,ep.FEntName,ep.FLinkId,ep.FEmpName,ep.FManageTypeId,ep.FListId,ep.FTypeId,ep.FLevelId,ep.FIsBase FIsPrime,
+             ep.FReportDate, ep.FState,ep.FSeeState,ep.FSeeTime,ep.FBarCode, case ap.FState  when 0 then '待接件' when 1 then '已接件' when 2 then '已退回' 
+              when 6 then '已办结'  end as FStatedesc, 
+              case ep.FManageTypeId when 11223 then '初次办理' when 11224 then '延期办理' when 11225 then '变更办理' end as BisType, 
+              ep.FSubFlowId,ep.FYear,ep.FResult,qa.SGXKZBH,qa.FZTime,ap.FReportDate  FReporttime
+              from CF_App_ProcessInstanceBackup ep , V_SGXKZ_YW qa, CF_APP_LIST ap 
+              where  ep.flinkId = qa.FAppId ");     
+         sb.Append("  and ap.FUpDeptId = '"+Session["DFId"].ToString()+"'");
+         sb.Append(getCondi());
+         sb.Append("  and ep.FLinkId = ap.FId");
+        sb.AppendLine(" ) ttt where 1=1 ");
 
         sb.AppendLine(" order by ttt.FReporttime desc,ttt.FBaseInfoId");
 
@@ -181,18 +208,18 @@ public partial class Government_AppAQJDBA_Query : govBasePage
             string FLinkId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FLinkId"));
             string fSubFlowId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FSubFlowId"));
             string fid = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FId"));
-            string ferId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FprId"));
+            //string ferId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FprId"));
             string fBaseInfoId = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FBaseInfoId"));
-            string fMeasure = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FMeasure"));
+            //string fMeasure = EConvert.ToString(DataBinder.Eval(e.Item.DataItem, "FMeasure"));
             
             CheckBox box = (CheckBox)e.Item.Cells[0].Controls[1];
             box.Attributes["id"] = "span" + box.ClientID;
             box.Attributes["name"] = FLinkId;
             box.Attributes["fpid"] = fid;
-            box.Attributes["ferid"] = ferId;
+            //box.Attributes["ferid"] = ferId;
             box.Attributes["fSubFlowId"] = fSubFlowId;
             box.Attributes["fBaseInfoId"] = fBaseInfoId;
-            box.Attributes["fMeasure"] = fMeasure;
+            //box.Attributes["fMeasure"] = fMeasure;
             e.Item.Cells[1].Text = ((e.Item.ItemIndex + 1) + this.Pager1.pagecount * (this.Pager1.curpage - 1)).ToString();
         }
     }
