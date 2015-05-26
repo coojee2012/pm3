@@ -273,7 +273,7 @@ public class XMHJCL_Business
         //从标准库中读取项目信息
         RCenter prjdb = GetRCenter("dbCenter");
 
-        string sql = @"select a.fid as pid,a.bl,a.yl,b.fid,b.FAppId,b.FprjItemId,b.PrjItemName,b.ProjectName,b.ProjectNo,b.JLZBLX,JLZBDW,ZBTZSBH,Area 
+        string sql = @"select a.fid as pid,a.bl,a.yl,b.fid,b.FAppId,b.FprjItemId,b.PrjItemName,b.ProjectName,b.ProjectNo,dbo.getDicName(b.JLZBLX) JLZBLX,JLZBDW,ZBTZSBH,Area 
                        from TC_SGXKZ_ZBJGBL a, TC_SGXKZ_ZBJG b where a.FAppId = b.FAppId and a.FPrjItemId = b.FprjItemId and a.FAppId = '" + appid + "'";
         return prjdb.GetTable(sql);
     }
