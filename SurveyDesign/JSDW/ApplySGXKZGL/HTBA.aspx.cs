@@ -102,12 +102,12 @@ public partial class JSDW_ApplySGXKZGL_HTBA : System.Web.UI.Page
         Emp = tool.getPageValue(Emp);
         if (isNew)
         {
-            var count = dbContext.TC_SGXKZ_HTBA.Count(t => t.FAppId == hf_FAppId.Value && t.HTBABH == Emp.HTBABH);
-            if (count > 0)
-            {
-                ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('已存在该合同');window.returnValue='1';", true);
-                return;
-            }
+            //var count = dbContext.TC_SGXKZ_HTBA.Count(t => t.FAppId == hf_FAppId.Value && t.HTBABH == Emp.HTBABH);
+            //if (count > 0)
+            //{
+            //    ScriptManager.RegisterClientScriptBlock(up_Main, typeof(UpdatePanel), "js", "alert('已存在该合同');window.returnValue='1';", true);
+            //    return;
+            //}
         }
         dbContext.SubmitChanges();
         hf_FId.Value = fId;
