@@ -49,6 +49,12 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
+                if (t_BL.SelectedItem.Value == "3")
+                {
+                    this.btnAddEnt.Visible = false;
+                    this.btnAddEnt1.Visible = false;
+                    this.btnAddEnt2.Visible = false;
+                }
             }
         }
     }
@@ -83,7 +89,12 @@ public partial class JSDW_ApplySGXKZGL_SGTSC : System.Web.UI.Page
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "hideTr1", "<script>hideTr1();</script>");
-
+                if (strbl == "3")
+                {
+                    this.btnAddEnt.Visible = false;
+                    this.btnAddEnt1.Visible = false;
+                    this.btnAddEnt2.Visible = false;
+                }
             }
 
 
