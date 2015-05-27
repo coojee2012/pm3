@@ -32,8 +32,13 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
                 //int rowcount = dt.Rows.Count;
 
                 string qylx = EConvert.ToString(Request.QueryString["qylx"]);
-                string iskc = EConvert.ToString(Request.QueryString["iskc"]);
-                ViewState["iskc"] = iskc;
+                if (Request.QueryString["iskc"]== null)
+                { ViewState["iskc"] = "false";}
+                else
+                {   string iskc = EConvert.ToString(Request.QueryString["iskc"]);  //是否勘察，控制返回资质ID，否则企业ID
+                    ViewState["iskc"] = iskc;
+                }
+
                 ViewState["qylx"] = qylx;
                 showInfo(qylx);
             }
@@ -328,33 +333,22 @@ public partial class JSDW_project_EntListSel: System.Web.UI.Page
         {
             if (e.CommandName == "Sel")
             {
-                HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
-                string fid = hfFBaseInfoId.Value;
-                //HiddenField hxmjl = new HiddenField();
-                //hxmjl.ID = "q_XMJL";
-                //hxmjl.Value = "";
-                pageTool tool = new pageTool(this.Page);
-                //如果是监理企业，返回的是QY_QYZZXX的主键QYZZID,以解决选择同一个企业不同的资质选择的问题。  modify by psq 20150421
-                if (ViewState["qylx"] != null)
+                string fid = "";
+                if (ViewState["iskc"].ToString().Trim() != "false")
                 {
-                    if (ViewState["iskc"] != "")
-                    {
-                        if (ViewState["qylx"].ToString() == "104" || ViewState["qylx"].ToString() == "102" || ViewState["qylx"].ToString() == "103")
-                        {
-                            HiddenField hfzzxxid = e.Item.FindControl("hfqyzzid") as HiddenField;
-                            string szzxxid = hfzzxxid.Value;
-                            tool.ExecuteScript("window.returnValue='" + szzxxid + "';window.close();");
-                        }
-                    }
-                    else
-                    {
-                        tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
-                    }
+                    HiddenField hfzzxxid = e.Item.FindControl("hfqyzzid") as HiddenField;
+                    fid = hfzzxxid.Value;
                 }
                 else
                 {
-                    tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
-                }                
+                    HiddenField hfFBaseInfoId = e.Item.FindControl("hfFBaseInfoId") as HiddenField;
+                    fid = hfFBaseInfoId.Value;
+                }
+
+                pageTool tool = new pageTool(this.Page);
+                //如果是监理企业，返回的是QY_QYZZXX的主键QYZZID,以解决选择同一个企业不同的资质选择的问题。  modify by psq 20150421
+                tool.ExecuteScript("window.returnValue='" + fid + "';window.close();");
+            
                // tool.ExecuteScript("window.returnValue='" + fid + "|" + fCertiId + "';window.close();");
             }
         }

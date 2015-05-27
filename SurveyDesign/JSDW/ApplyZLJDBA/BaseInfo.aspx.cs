@@ -57,23 +57,44 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
     {
         EgovaDB db = new EgovaDB();
         TC_QA_Record qa = db.TC_QA_Record.Where(t => t.FAppId.Equals(EConvert.ToString(Session["FAppId"]))).FirstOrDefault();
-        //TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
-        //TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
-        //if (prj != null)
-        //{
-            ViewState["FPrjID"] = qa.FPrjId; //prj.FPrjId;
+        ViewState["FPrjID"] = qa.FPrjId; //prj.FPrjId;
+
+        if (qa.RecordNo == null)
+        {
+            TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
+            TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+
+            pageTool tool = new pageTool(this.Page, "p_");
+            tool.fillPageControl(prj);
+            tool = new pageTool(this.Page, "pj_");
+            tool.fillPageControl(prjInfo);
+            govd_FRegistDeptId.fNumber = pj_AddressDept.Value;
+            q_AddressDept.Value = pj_AddressDept.Value;
+
+            string ajbah = BuildAJBAH(pj_AddressDept.Value, qa.PrjItemType);
+            qa.AddressDept = pj_AddressDept.Value;
+            qa.RecordNo = ajbah;
+            p_RecordNo.Text = ajbah;
+            db.SubmitChanges();
+        }
+        else
+        {
             p_RecordNo.Text = qa.RecordNo;
-            //pageTool tool = new pageTool(this.Page, "p_");
-            //tool.fillPageControl(prj);
-            //tool = new pageTool(this.Page, "pj_");
-            //tool.fillPageControl(prjInfo);
-            pageTool tool = new pageTool(this.Page, "q_");
-            tool.fillPageControl(qa);            
+            govd_FRegistDeptId.fNumber = qa.AddressDept;
+            q_AddressDept.Value = qa.AddressDept;
             p_JSDW.Text = qa.JSDW;
             p_ProjectName.Text = qa.ProjectName;
             p_PrjItemName.Text = qa.PrjItemName;
             p_LegalPerson.Text = qa.LegalPerson;
             p_Address.Text = qa.Address;
+            p_Address.Text = qa.Address;
+            if (qa.RegisterTime.HasValue)
+            {
+                pj_ProjectTime.Text = qa.RegisterTime.Value.ToString("yyyy-MM-dd");
+            }
+        }
+            pageTool tool2 = new pageTool(this.Page, "q_");
+            tool2.fillPageControl(qa);
             q_SGDWoldId.Value = qa.SGDWId; 
             sj_FName.Text = qa.SJDW;
             sj_FRegistAddress.Text = qa.SJDWDZ;
@@ -85,51 +106,8 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             q_JLDWId.Value = qa.JLDWId;
             q_SGDWId.Value = qa.SGDWId;
             q_JLDWIdnew.Value = qa.JLDWId;
-            //p_Cost.Text = qa.
-            if (qa.RegisterTime.HasValue)
-            { 
-            pj_ProjectTime.Text = qa.RegisterTime.Value.ToString("yyyy-M-d");
-            }
-            govd_FRegistDeptId.fNumber = qa.AddressDept;
-            q_AddressDept.Value = qa.AddressDept;
-            p_Address.Text = qa.Address;
-            if(qa.RecordNo == null || qa.RecordNo == "")
-            {
-                           string sPrjArea = "";
-                           if (govd_FRegistDeptId.fNumber.Length == 2)
-                           {
-                               sPrjArea = govd_FRegistDeptId.fNumber + "0000";
-                           }
-                           else if (govd_FRegistDeptId.fNumber.Length == 4)
-                           {
-                               sPrjArea = govd_FRegistDeptId.fNumber + "00";
-                           }
-                           else
-                           {
-                               sPrjArea = govd_FRegistDeptId.fNumber;
-                           }
 
-                           string ajbah = BuildAJBAH(sPrjArea, qa.PrjItemType);
-                           qa.RecordNo = ajbah;
-                           p_RecordNo.Text = ajbah;
-                           db.SubmitChanges();
-                      
-                      
-            }
-           else
-            {
-                p_RecordNo.Text = qa.RecordNo;
-            }
-
-            //if (string.IsNullOrEmpty(p_RecordNo.Text))
-            //{
-            //    p_RecordNo.Text = GetPrjNo(qa.);
-            //}
-           
-            //string t = qa.PrjItemType;
-            //tool = new pageTool(this.Page);
             ClientScript.RegisterStartupScript(this.GetType(), "showTr", "<script>showTr();</script>");
-        //}
         showOtherEnt(6);
     }
 
@@ -145,6 +123,16 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
         string sgxkbh = "";
         string stodayno;
         EgovaDB db = new EgovaDB();
+
+        if (prjitemarea.Length == 2)
+        {
+            prjitemarea = prjitemarea + "0000";
+        }
+        else if (prjitemarea.Length == 4)
+        {
+            prjitemarea = prjitemarea + "00";
+        }
+
         //当天日期
         string datatoday = string.Format("{0:yyyyMMdd}", DateTime.Now);
 

@@ -129,7 +129,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
         var v = from a in db.RY_RYJBXX
                 join c in db.RY_RYZSXX
                 on a.RYBH equals c.RYBH
-                where c.QYBM == qybm 
+                where a.QYBM == qybm 
                   select new
                   {
                       c.QYBM,

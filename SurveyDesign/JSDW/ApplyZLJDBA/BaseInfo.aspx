@@ -62,6 +62,7 @@
         }
         function selEnt(obj, tagId, type) {
 
+            var url = "../project/EntListSel.aspx";
             var qylx = "101";
             switch (type) {
                 case "SG":
@@ -74,14 +75,15 @@
                     qylx = "102";
                     break;
                 case "JL":
-                    qylx = "104";
+                    qylx = "104&iskc=true";
                     break;
             }
-            var url = "../project/EntListSel.aspx";
             url += "?qylx=" + qylx;
+
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
+
                 __doPostBack(obj.id, '');
                 //企业变化清空人员
                 if (tagId == "q_SGDWId") {
