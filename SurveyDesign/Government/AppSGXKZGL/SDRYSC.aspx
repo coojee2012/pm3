@@ -27,15 +27,24 @@
                         <HeaderStyle CssClass="m_dg1_h" />
                         <ItemStyle CssClass="m_dg1_i" />
                         <Columns>
-                             <asp:BoundColumn HeaderText="姓名" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataField="FHumanName">
+            <asp:BoundColumn HeaderText="姓名" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataField="FHumanName">
                 <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" Width="100px" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>
-                             <asp:BoundColumn HeaderText="锁定次数" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataField="FCount">
+            <asp:BoundColumn HeaderText="人员类别" HeaderStyle-HorizontalAlign="Center" HeaderStyle-Width="100px" DataField="EmpType">
                 <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" Width="100px" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>
-                            <asp:BoundColumn HeaderText="锁定地区" HeaderStyle-HorizontalAlign="Center" DataField="FAddress">
+             <asp:TemplateColumn HeaderText ="锁定次数" HeaderStyle-HorizontalAlign ="Center">
+                 <ItemTemplate>
+                     <asp:Label runat="server" ID ="lbl_sdcount"></asp:Label>
+                 </ItemTemplate>
+             </asp:TemplateColumn>  
+             <asp:BoundColumn HeaderText="锁定地区" HeaderStyle-HorizontalAlign="Center" DataField="FAddress">
+                <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
+                <HeaderStyle Font-Underline="False" Wrap="False" />
+            </asp:BoundColumn>
+                             <asp:BoundColumn HeaderText="身份证号码" HeaderStyle-HorizontalAlign="Center" DataField="FIdCard" Visible ="false">
                 <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>

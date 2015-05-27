@@ -34,6 +34,7 @@ public partial class Government_AppKJGGL_KGGLList : govBasePage
         sb.Append(" where ep.FState = 6 and er.FTypeId=5 and er.FResult=1 ");
         //加上地区的限制
         sb.Append(" and ap.FUpDeptId='" + Session["DFId"].ToString() + "'");
+        sb.Append("  and  (qa.SJEndDate is null or qa.SJEndDate = '')");
         //
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
@@ -57,14 +58,14 @@ public partial class Government_AppKJGGL_KGGLList : govBasePage
             sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
 
-        if (this.govd_FRegistDeptId.FNumber != null)
-        {
-            sb.Append(" and qa.PrjAddressDept = '" + this.govd_FRegistDeptId.FNumber + "'");
-        }
-        else
-        {
-            sb.Append(" and qa.PrjAddressDept <> '' ");
-        }
+        //if (this.govd_FRegistDeptId.FNumber != null)
+        //{
+        //    sb.Append(" and qa.PrjAddressDept = '" + this.govd_FRegistDeptId.FNumber + "'");
+        //}
+        //else
+        //{
+        //    sb.Append(" and qa.PrjAddressDept <> '' ");
+        //}
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
             sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");

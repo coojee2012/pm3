@@ -260,7 +260,7 @@
                     合同价格：
                 </td>
                 <td >
-                    <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="false"></asp:TextBox><tt>*</tt>币种：
+                    <asp:TextBox ID="t_Price" runat="server" CssClass="m_txt" Width="100px" Enabled="true"></asp:TextBox><tt>*</tt>币种：
                     <asp:DropDownList ID="t_Currency" runat="server" CssClass="m_txt" Width="103px" Enabled="false"></asp:DropDownList><tt>*</tt>
                 </td>
             </tr>

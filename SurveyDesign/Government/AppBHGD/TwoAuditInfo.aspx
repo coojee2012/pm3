@@ -108,7 +108,7 @@
                 项目名称：
             </td>
             <td>
-                <asp:TextBox ID="t_ProjectName" ReadOnly="true" runat="server" CssClass="m_txt"></asp:TextBox>
+                <asp:TextBox ID="t_ProjectName" ReadOnly="true" runat="server" CssClass="m_txt" Width ="80%"></asp:TextBox>
             </td>
             <td class="t_r">
                 工程类别：</td>
@@ -126,7 +126,7 @@
                 &nbsp;建设单位：
             </td>
             <td>
-                <asp:TextBox ID="t_JSDW" ReadOnly="true" runat="server" CssClass="m_txt"></asp:TextBox>
+                <asp:TextBox ID="t_JSDW" ReadOnly="true" runat="server" CssClass="m_txt" Width ="80%"></asp:TextBox>
             </td>
             <td class="t_r">
                 建设地址：

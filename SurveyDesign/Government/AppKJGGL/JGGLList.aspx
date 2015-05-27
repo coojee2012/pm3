@@ -179,15 +179,15 @@
             <td class="t_r">
                 工程名称：
             </td>
-            <td>
-                <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="169px"></asp:TextBox>
+            <td colspan ="3">
+                <asp:TextBox ID="txtFPrjItemName" runat="server" CssClass="m_txt" Width="80%"></asp:TextBox>
             </td>
-            <td class="t_r">
+          <%--  <td class="t_r">
                 工程所属地：
             </td>
             <td>
                 <uc1:govdeptid ID="govd_FRegistDeptId" runat="server" ReadOnly="true" Visible="False"  />  <!--选择不需要-->
-            </td>
+            </td>--%>
             
             <td colspan="2" rowspan="4" style="text-align: center; padding-right: 10px">
                 <asp:Button ID="btnQuery" runat="server" CssClass="m_btn_w2" OnClientClick="return btnQueryClickClient();" OnClick="btnQuery_Click"

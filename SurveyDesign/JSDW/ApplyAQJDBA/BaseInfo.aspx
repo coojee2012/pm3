@@ -75,7 +75,12 @@
             } else if (tagId == "t_JLId") {
                 qylx = "104";
             }
-            url += "?qylx=" + qylx;
+            if (qylx == "104") {
+                url += "?qylx=" + qylx+"&iskc=true";
+            }
+            else {
+                url += "?qylx=" + qylx;
+            }
             var pid = showWinByReturn(url, 1000, 600);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);
@@ -253,7 +258,7 @@
                 结构类型：
             </td>
             <td>
-                <asp:DropDownList ID="q_ConstrType" runat="server" CssClass="m_txt" Enabled="false" Width="202px">
+                <asp:DropDownList ID="q_ConstrType" runat="server" CssClass="m_txt" Enabled="true" Width="202px">
                 </asp:DropDownList>
             </td>
             <td class="t_r t_bg">

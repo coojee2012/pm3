@@ -145,6 +145,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
         EgovaDAO.CF_App_List app = new EgovaDAO.CF_App_List();//业务
         app.FId = FAppId;
         app.FLinkId = t_FPriItemId.Value;
+        app.FPrjId = t_FPrjId.Value;
         app.FManageTypeId = fMType;
         app.FwriteDate = dTime;
         app.FState = 0;

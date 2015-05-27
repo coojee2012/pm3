@@ -36,7 +36,7 @@ public partial class Government_AppKJGGL_XMCXList : govBasePage
         sb.Append(" left join CF_APP_LIST ap on ep.FLinkId = ap.FId ");
         sb.Append(" where ep.FState = 6 and er.FTypeId=5 and er.FResult=1  ");
         //加上地区的限制
-        sb.Append(" and qa.PrjAddressDept='" + Session["DFId"].ToString() + "'");
+        sb.Append(" and ap.FUpDeptId='" + Session["DFId"].ToString() + "'");
         sb.Append(getCondi());
         sb.Append(" ) as ttt where 1=1");
 
@@ -59,14 +59,14 @@ public partial class Government_AppKJGGL_XMCXList : govBasePage
             sb.Append(" and qa.PrjItemName like '%" + this.txtFPrjItemName.Text.Trim() + "%' ");
         }
 
-        if (this.govd_FRegistDeptId.FNumber != null)
-        {
-            sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
-        }
-        else
-        {
-            sb.Append(" and qa.PrjAddressDept <> '' ");
-        }
+        //if (this.govd_FRegistDeptId.FNumber != null)
+        //{
+        //    sb.Append(" and dbo.isSuperDept_new(" + this.govd_FRegistDeptId.FNumber + ",qa.PrjAddressDept" + ") >0 ");
+        //}
+        //else
+        //{
+        //    sb.Append(" and qa.PrjAddressDept <> '' ");
+        //}
         if (this.txtJSDW.Text.Trim() != "" && this.txtJSDW.Text.Trim() != null)
         {
             sb.Append(" and qa.JSDW like '%" + this.txtJSDW.Text.Trim() + "%' ");
