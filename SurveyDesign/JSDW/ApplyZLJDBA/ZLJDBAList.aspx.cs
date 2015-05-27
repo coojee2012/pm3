@@ -145,6 +145,10 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
         //添加备案信息
         TC_QA_Record record = new TC_QA_Record();
         string FRecordId = Guid.NewGuid().ToString();
+        record.JSDW = CurrentEntUser.EntName;//单位名
+        record.FJSDWID = CurrentEntUser.EntId;//单位ID     
+        record.AddressDept = t_AddressDept.Value;
+        record.PrjItemType = this.t_prjitemtype.Value;
         record.FId = FRecordId;
         record.FAppId = FAppId;
         record.FPrjId = t_FPrjId.Value;
@@ -334,14 +338,30 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
 
     protected void btnSel_Click(object sender, EventArgs e)
     {
-        var result = (from t in dbContext.TC_PrjItem_Info
-                      where t.FId == this.t_FPriItemId.Value
-                      select t).SingleOrDefault();
-        t_FPrjItemName.Text = result.PrjItemName;
-        t_FPrjId.Value = result.FPrjId;
-        t_FProjectName.Value = result.ProjectName;
-        t_JSDW.Value = result.JSDW;
-        t_AddressDept.Value = result.AddressDept;
+        //var result = (from t in dbContext.TC_PrjItem_Info
+        //              where t.FId == this.t_FPriItemId.Value
+        //              select t).SingleOrDefault();
+        //t_FPrjItemName.Text = result.PrjItemName;
+        //t_FPrjId.Value = result.FPrjId;
+        //t_FProjectName.Value = result.ProjectName;
+        //t_JSDW.Value = result.JSDW;
+        //t_AddressDept.Value = result.AddressDept;
+        string sql = @"select  a.dwgcmc PrjItemName, a.xmbh FPrjId,b.XMMC ProjectName,b.jsdwid JSDW,b.xmsd AddressDept,b.xmlx,b.xmdz address  from  xm_baseinfo.dbo.GC_DWGCXX a,xm_baseinfo.dbo.XM_XMJBXX b
+                      where  a.xmbh = b.xmbh";
+               sql += "  and a.dwgcbh = '" +this.t_FPriItemId.Value+ "'";
+               DataTable dt = new DataTable();
+               dt = rc.GetTable(sql);
+               if (dt != null && dt.Rows.Count > 0)
+               {
+                   t_FPrjItemName.Text = dt.Rows[0]["PrjItemName"].ToString();
+                   t_FPrjId.Value = dt.Rows[0]["FPrjId"].ToString();
+                   t_FProjectName.Value = dt.Rows[0]["ProjectName"].ToString();
+                   t_JSDW.Value = dt.Rows[0]["JSDW"].ToString();
+                   t_AddressDept.Value = dt.Rows[0]["AddressDept"].ToString();
+                   t_prjitemtype.Value = dt.Rows[0]["xmlx"].ToString();
+                   t_address.Value = dt.Rows[0]["address"].ToString();
+               }
+
     }
     private string getBANumber()
     {

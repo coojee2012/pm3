@@ -224,6 +224,8 @@
                                 <input id="t_FPrjId" type="hidden" runat="server" />
                                 <input id="t_OldFAppId" type="hidden" runat="server" />
                                 <input id="t_FCount" type="hidden" runat="server" />
+                                <input id="t_prjitemtype" type="hidden" runat="server" />
+                                <input id="t_address" type="hidden" runat="server" />
                                 <asp:Button ID="btnSel" runat="server" Text="选择..." CssClass="m_btn_w4" OnClientClick="return selPrj(this);"
                                                 UseSubmitBehavior="false" OnClick="btnSel_Click" />
                             </td>

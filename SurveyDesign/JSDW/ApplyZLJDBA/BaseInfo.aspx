@@ -224,7 +224,7 @@
             </td>
             <td colspan="1">
                 <asp:TextBox ID="p_Address" runat="server" CssClass="m_txt" Width="195px" MaxLength="30"
-                    Enabled="false"></asp:TextBox>
+                    Enabled="true"></asp:TextBox>
                 <tt>*</tt>
             </td>
         </tr>

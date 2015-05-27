@@ -57,18 +57,23 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
     {
         EgovaDB db = new EgovaDB();
         TC_QA_Record qa = db.TC_QA_Record.Where(t => t.FAppId.Equals(EConvert.ToString(Session["FAppId"]))).FirstOrDefault();
-        TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
-        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
-        if (prj != null)
-        {
-            ViewState["FPrjID"] = prj.FPrjId;
+        //TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
+        //TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+        //if (prj != null)
+        //{
+            ViewState["FPrjID"] = qa.FPrjId; //prj.FPrjId;
             p_RecordNo.Text = qa.RecordNo;
-            pageTool tool = new pageTool(this.Page, "p_");
-            tool.fillPageControl(prj);
-            tool = new pageTool(this.Page, "pj_");
-            tool.fillPageControl(prjInfo);
-            tool = new pageTool(this.Page, "q_");
-            tool.fillPageControl(qa);
+            //pageTool tool = new pageTool(this.Page, "p_");
+            //tool.fillPageControl(prj);
+            //tool = new pageTool(this.Page, "pj_");
+            //tool.fillPageControl(prjInfo);
+            pageTool tool = new pageTool(this.Page, "q_");
+            tool.fillPageControl(qa);            
+            p_JSDW.Text = qa.JSDW;
+            p_ProjectName.Text = qa.ProjectName;
+            p_PrjItemName.Text = qa.PrjItemName;
+            p_LegalPerson.Text = qa.LegalPerson;
+            p_Address.Text = qa.Address;
             q_SGDWoldId.Value = qa.SGDWId; 
             sj_FName.Text = qa.SJDW;
             sj_FRegistAddress.Text = qa.SJDWDZ;
@@ -80,23 +85,116 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
             q_JLDWId.Value = qa.JLDWId;
             q_SGDWId.Value = qa.SGDWId;
             q_JLDWIdnew.Value = qa.JLDWId;
+            //p_Cost.Text = qa.
             if (qa.RegisterTime.HasValue)
             { 
             pj_ProjectTime.Text = qa.RegisterTime.Value.ToString("yyyy-M-d");
             }
-            govd_FRegistDeptId.fNumber = pj_AddressDept.Value;
-            q_AddressDept.Value = pj_AddressDept.Value;
-            if (string.IsNullOrEmpty(p_RecordNo.Text))
+            govd_FRegistDeptId.fNumber = qa.AddressDept;
+            q_AddressDept.Value = qa.AddressDept;
+            p_Address.Text = qa.Address;
+            if(qa.RecordNo == null || qa.RecordNo == "")
             {
-                p_RecordNo.Text = GetPrjNo(prjInfo.ProjectNo);
+                           string sPrjArea = "";
+                           if (govd_FRegistDeptId.fNumber.Length == 2)
+                           {
+                               sPrjArea = govd_FRegistDeptId.fNumber + "0000";
+                           }
+                           else if (govd_FRegistDeptId.fNumber.Length == 4)
+                           {
+                               sPrjArea = govd_FRegistDeptId.fNumber + "00";
+                           }
+                           else
+                           {
+                               sPrjArea = govd_FRegistDeptId.fNumber;
+                           }
+
+                           string ajbah = BuildAJBAH(sPrjArea, qa.PrjItemType);
+                           qa.RecordNo = ajbah;
+                           p_RecordNo.Text = ajbah;
+                           db.SubmitChanges();
+                      
+                      
             }
+           else
+            {
+                p_RecordNo.Text = qa.RecordNo;
+            }
+
+            //if (string.IsNullOrEmpty(p_RecordNo.Text))
+            //{
+            //    p_RecordNo.Text = GetPrjNo(qa.);
+            //}
            
-            string t = prj.PrjItemType;
-            tool = new pageTool(this.Page);
+            //string t = qa.PrjItemType;
+            //tool = new pageTool(this.Page);
             ClientScript.RegisterStartupScript(this.GetType(), "showTr", "<script>showTr();</script>");
-        }
+        //}
         showOtherEnt(6);
     }
+
+    /// 生成质量备案证书号码 
+    /// </summary>
+    /// <param name="prjitemarea">项目属地</param>
+    /// <param name="prjitemtype">项目类型</param>
+    /// <param name="bussinesstype">业务节点类型</param>
+    /// <returns>备案号</returns>    
+    private string BuildAJBAH(string prjitemarea, string prjitemtype)
+    {
+        int todayno;
+        string sgxkbh = "";
+        string stodayno;
+        EgovaDB db = new EgovaDB();
+        //当天日期
+        string datatoday = string.Format("{0:yyyyMMdd}", DateTime.Now);
+
+        if (prjitemtype == "1")
+        {
+            prjitemtype = "01";
+        }
+        else
+        {
+            if (prjitemtype == "2")
+            {
+                prjitemtype = "02";
+            }
+            else
+            {
+                prjitemtype = "99";
+            }
+        }
+
+
+        //获取当天最大的值
+        var result = (from t in db.TC_QA_Record
+                      where t.RecordNo.Substring(6, 8) == datatoday
+                        && t.AddressDept.Equals(prjitemarea)
+                        && t.RecordNo.Length == 18 //为18位的安监号码
+                      orderby t.RecordNo descending
+                      select t).FirstOrDefault();
+        if (result != null)
+        {
+            todayno = Convert.ToInt32(result.RecordNo.Substring(14, 2)) + 1;            
+        }
+        else
+        {
+            todayno = 1;           
+        }
+        //如果项目编号小于10
+        if (todayno < 10)
+        {
+            stodayno = "0" + todayno.ToString();
+        }
+        else
+        {
+            stodayno = todayno.ToString();
+        }
+        //生成编号
+        sgxkbh = prjitemarea + string.Format("{0:yyyyMMdd}", DateTime.Now) + stodayno + prjitemtype;
+        return sgxkbh;
+
+    }
+
 
     string GetPrjNo(string projectNo)
     {

@@ -164,21 +164,29 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         // this.AcceptApp();
-        EgovaDB db = new EgovaDB();
-        string userID = Session["DFUSerId"].ToString();
-        int userLevel = int.Parse(Session["DFLevel"].ToString());
-        string idea = t_FAppIdea.Text;
-        CF_Sys_User user = db.CF_Sys_User.Where(t => t.FID == userID).FirstOrDefault();
-        CF_App_ProcessRecord er = db.CF_App_ProcessRecord.Where(t => t.FID == ferid).FirstOrDefault();
-        //CF_App_ProcessRecord
-        er.FAppPerson = user.FName;
-        er.FCompany = user.FCompany;
-        er.FFunction = user.FFunction;
-        er.FIdea = idea;
-        er.FLevel = userLevel;
-        er.FUserId = userID;
+        try
+        {
+            EgovaDB db = new EgovaDB();
+            string userID = Session["DFUSerId"].ToString();
+            int userLevel = int.Parse(Session["DFLevel"].ToString());
+            string idea = t_FAppIdea.Text;
+            CF_Sys_User user = db.CF_Sys_User.Where(t => t.FID == userID).FirstOrDefault();
+            CF_App_ProcessRecord er = db.CF_App_ProcessRecord.Where(t => t.FID == ferid).FirstOrDefault();
+            //CF_App_ProcessRecord
+            er.FAppPerson = user.FName;
+            er.FCompany = user.FCompany;
+            er.FFunction = user.FFunction;
+            er.FIdea = idea;
+            er.FLevel = userLevel;
+            er.FUserId = userID;
 
-        db.SubmitChanges();
+            db.SubmitChanges();
+            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('保存成功');window.returnValue='1';", true);
+        }
+        catch
+        {
+            
+        }
         ShowInfo();
     }
     protected void btnAccept_Click(object sender, EventArgs e)
@@ -187,7 +195,11 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
         string userID = Session["DFUSerId"].ToString();
         int userLevel = int.Parse(Session["DFLevel"].ToString());
         string idea = t_FAppIdea.Text;
-        wf.Accept(ferid, userID, userLevel, idea);
+
+        if(wf.Accept(ferid, userID, userLevel, idea))
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('办结成功');window.returnValue='1';", true);
+        }
         //ShowInfo();
     }
     protected void btnBack_Click(object sender, EventArgs e)
@@ -197,7 +209,10 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
         string id = Session["DFId"].ToString();
         string roleId = Session["DFRoleId"].ToString();
         string idea = t_FAppIdea.Text;
-        wf.Rollback(fLinkId, userID, roleId, id, idea);
+        if(wf.Rollback(fLinkId, userID, roleId, id, idea))
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(Page), "js", "alert('退回成功');window.returnValue='1';", true);
+        }
         //ShowInfo();
     }
     protected void btnEndApp_Click(object sender, EventArgs e)
