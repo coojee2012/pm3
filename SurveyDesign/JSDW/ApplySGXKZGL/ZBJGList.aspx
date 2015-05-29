@@ -278,7 +278,7 @@
                 <td class="t_r t_bg">总面积：
                 </td>
                 <td colspan="1" class="auto-style1">
-                    <asp:TextBox ID="t_Area" runat="server" CssClass="m_txt" Enabled="false"
+                    <asp:TextBox ID="t_Area" runat="server" CssClass="m_txt"
                         Width="195px"></asp:TextBox>（m2）
                 </td>
             </tr>

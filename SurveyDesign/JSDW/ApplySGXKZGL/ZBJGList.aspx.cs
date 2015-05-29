@@ -100,8 +100,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         t_PrjItemName.Text = qa.PrjItemName;
         t_Area.Text = EConvert.ToString(qa.Area);
         t_ConstrScale.Text = qa.ConstrScale;
-        TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
-        t_ProjectNo.Text = p.ProjectNo;
+        //TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == qa.PrjId).FirstOrDefault();
+        t_ProjectNo.Text = qa.ProjectNo;
         //加载附件列表
         //ShowFile(t_JLId.Value, "JL");
 
@@ -188,20 +188,18 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
         var isNew = true;
         //string fId = txtFId.Value;
         string fId = "";
+        TC_SGXKZ_ZBJG qa;
+        pageTool tool = new pageTool(this.Page);
+
         if (ViewState["fid"] != null)
         {
             fId = ViewState["fid"].ToString();
-        }
-        TC_SGXKZ_ZBJG qa = new TC_SGXKZ_ZBJG();
-        pageTool tool = new pageTool(this.Page);
-        if (!string.IsNullOrEmpty(fId))
-        {
             qa = dbContext.TC_SGXKZ_ZBJG.Where(t => t.FId == fId).FirstOrDefault();
             isNew = false;
         }
         else
         {
-
+            qa = new TC_SGXKZ_ZBJG(); 
             fId = Guid.NewGuid().ToString();
             ViewState["fid"] = fId;
             txtFId.Value = fId;
@@ -224,6 +222,8 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
             isNew = true;
         }
         qa = tool.getPageValue(qa);
+
+
         if (qa.JLId != null && qa.JLId.Length > 36)//这里不知道是什么原因 这个长度超出了。暂时这样处理。
         {
             qa.JLId = qa.JLId.Substring(0, 36);
@@ -241,6 +241,7 @@ public partial class JSDW_ApplySGXKZGL_ZBJGList : System.Web.UI.Page
                 return;
             }
         }
+
         dbContext.SubmitChanges();
         
        

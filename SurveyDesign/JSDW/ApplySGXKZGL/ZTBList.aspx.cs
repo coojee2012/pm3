@@ -124,9 +124,45 @@ public partial class JSDW_ApplySGXKZGL_ZTBList : System.Web.UI.Page
 
     protected void btnDel_Click(object sender, EventArgs e)
     {
-        EgovaDB dbContext = new EgovaDB();
+        //EgovaDB dbContext = new EgovaDB();
         pageTool tool = new pageTool(this.Page);
-        tool.DelInfoFromGrid(dg_List, dbContext.TC_SGXKZ_ZBJG, tool_Deleting);
+
+        //tool.DelInfoFromGrid(dg_List, dbContext.TC_SGXKZ_ZBJG, tool_Deleting);
+        bool ishave = false;
+        string FId = "";
+        string fidlist = "('1'";
+        string strSql  = "";
+        int RowCount = dg_List.Items.Count;
+
+        for (int i = 0; i < dg_List.Items.Count; i++)
+        {
+            CheckBox cbx = (CheckBox)dg_List.Items[i].Cells[0].Controls[1];
+            if (cbx.Checked)
+            {
+                if (ishave == false)
+                { ishave = true; }
+
+                FId = dg_List.Items[i].Cells[dg_List.Columns.Count - 1].Text.Trim();
+
+                fidlist = fidlist + ",'" +FId +"'";
+            }
+
+        }
+        fidlist = fidlist + ")";
+        if (ishave == false)
+        { tool.showMessageAndRunFunction("请选择一项要删除的信息", "window.returnValue='1';"); }
+        else
+        {
+            RCenter rc = new RCenter();
+            strSql = "delete TC_SGXKZ_ZBJG where fid in " + fidlist;
+            rc.PExcute(strSql);
+            tool.showMessageAndRunFunction("删除成功！", "window.returnValue='1';");
+
+            bool isbz = false;
+            XMHJCL_Business business = new XMHJCL_Business();
+            DataTable dt = business.QueryData(hf_FAppId.Value, XMHJCL_Business.环节材料信息.招投标信息, out isbz);
+            ShowInfo(isbz, dt);
+        }
     }
     //级联删除人员
     private void tool_Deleting(System.Collections.Generic.IList<string> FIdList, System.Data.Linq.DataContext context)
