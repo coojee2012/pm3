@@ -177,18 +177,22 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             string sql = @" select count(*) from TC_PrjItem_Emp
                             where EmpType='11220201'
                             and FAppId='{0}' and FEntId = '{1}'";
+
             sql = string.Format(sql, t_FAppId.Value, t_qyId.Value);
             int count = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql).FirstOrDefault());
             dbContext = new EgovaDB();
+
             string sql1 = @" select count(*) from TC_PrjItem_Emp
                             where FIdCard='{0}'
                             and FAppId='{1}' and FEntId = '{2}'";
+
             sql1 = string.Format(sql1, t_FIdCard.Text, t_FAppId.Value, t_qyId.Value);
             int count1 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql1).FirstOrDefault());
             dbContext = new EgovaDB();
             string sql2 = @" select count(*) from TC_PrjItem_Emp
                             where EmpType='11220209'
                             and FAppId='{0}' and FEntId = '{1}'";
+
             sql2 = string.Format(sql2, t_FAppId.Value, t_qyId.Value);
             int count2 = SConvert.ToInt(dbContext.ExecuteQuery<int>(sql2).FirstOrDefault());
             if (t_EmpType.SelectedValue == "11220201" && count > 0)
@@ -274,7 +278,7 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
             Emp.FTime = DateTime.Now;
             Emp.FCreateTime = DateTime.Now;
             Emp.FEntId = t_qyId.Value;
-            Emp.FLinkId = t_FEntId.Value;
+            Emp.FLinkId = t_FEntId.Value;//????5.29
             Emp.FEntType = Convert.ToInt16(t_Enttype.Value);
             dbContext.TC_PrjItem_Emp.InsertOnSubmit(Emp);
             dbContext.SubmitChanges();
@@ -287,6 +291,8 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
         //     MyPageTool.showMessageAjax("保存成功ii", up_Main);
         //    MyPageTool.showMessageAndRunFunctionAjax("保存成功", "window.returnValue='1';", up_Main);
     }
+
+
     private void updateRYBG(string FId)
     {
         EgovaDB dbContext = new EgovaDB();
@@ -312,6 +318,8 @@ public partial class JSDW_ApplySGXKZGL_EmpInfoForBG : System.Web.UI.Page
     {
         saveInfo();
     }
+
+
     private void selEmp()
     {
         string selEmpId = h_selEmpId.Value;

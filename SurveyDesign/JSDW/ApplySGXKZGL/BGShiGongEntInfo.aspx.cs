@@ -39,7 +39,9 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
             return;
         }
         h_ProjectItemId.Value = bgProInfo.FPrjItemId;
+
         var oldAppIds = dbContext.CF_App_List.Where(t => t.FLinkId == h_ProjectItemId.Value).OrderByDescending(q => q.FCreateTime).Select(q => q.FId).ToList();
+
         if (oldAppIds == null || oldAppIds.Count < 2)
         {
             ScriptManager.RegisterStartupScript(UpdatePanel1, typeof(UpdatePanel), "js", "alert('业务信息数据存在问题');window.returnValue='1';", true);
@@ -57,8 +59,8 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
         {
             pageTool tool = new pageTool(this.Page, "t_");
             tool.fillPageControl(entInfo);
-            h_selEntId.Value = entInfo.QYID;
-            h_Id.Value = entInfo.FId;
+            t_QYID.Value = entInfo.QYID;  //原来为赋值到 h_selEntId 中
+            h_Id.Value = entInfo.FId;    
         }
 
     }
@@ -178,7 +180,8 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
         //如果企业发生了变更
         if (!string.IsNullOrEmpty(t_QYID.Value) && h_selEntId.Value.Trim() != t_QYID.Value.Trim())
         {
-            //新增一个企业 | 增加一个增加企业 | 把以前企业退出 | 人员全部退出
+            #region 新增一个企业 | 增加一个增加企业 | 把以前企业退出 | 人员全部退出
+
             if (entInfo.FAppId == h_OldAppId.Value)
             {
                 var newEntInfo = new TC_PrjItem_Ent();
@@ -242,13 +245,16 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
                         sr.QYMC = q.FEntName;
                         sr.BGQK = "退出";
                         sr.BGTime = DateTime.Now;
-                        sr.FLinkId = q.FLinkId;
+
+                        //sr.FLinkId = q.FLinkId;
+                        sr.FLinkId = q.FEmpId; ;
                         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
                     });
                 }
 
             }
-            //更新当前企业 | 更新增加企业 | 当前新增人员全部删除
+            #endregion
+            #region 更新当前企业 | 更新增加企业 | 当前新增人员全部删除
             else if (entInfo.FAppId == h_AppId.Value)
             {
                 pageTool tool = new pageTool(this.Page);
@@ -261,9 +267,13 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
 
                 var addEmpList = dbContext.TC_PrjItem_Emp.Where(t => t.FLinkId == entInfo.FId);
                 dbContext.TC_PrjItem_Emp.DeleteAllOnSubmit(addEmpList);
-                var addEmpList1 = dbContext.TC_SGXKZ_RYBGJG.Where(t => t.FLinkId == entInfo.FId && t.BGQK == "新增");
-                dbContext.TC_SGXKZ_RYBGJG.DeleteAllOnSubmit(addEmpList1);
+
+
+                //是否有问题？如何解锁的问题
+                //var addEmpList1 = dbContext.TC_SGXKZ_RYBGJG.Where(t => t.FLinkId == entInfo.FId && t.BGQK == "新增");
+                //dbContext.TC_SGXKZ_RYBGJG.DeleteAllOnSubmit(addEmpList1);
             }
+            #endregion
         }
         else
         {
@@ -312,7 +322,7 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
                     sr.ZSBH = q.ZSBH;
                     sr.QYMC = q.FEntName;
                     sr.BGQK = "退出";
-                    sr.FLinkId = h_Id.Value;
+                    sr.FLinkId = q.FEmpId;  //by zyd 5.29
                     sr.BGTime = DateTime.Now;
                     dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
                 }
@@ -356,7 +366,6 @@ public partial class JSDW_ApplySGXKZGL_BGShiGongEntInfo : System.Web.UI.Page
         var v = db.QY_JBXX.Where(t => t.QYBM == selEntId).FirstOrDefault();
         if (v != null)
         {
-            t_QYID.Value = v.QYBM;
             t_FName.Text = v.QYMC;
             t_FAddress.Text = v.QYXXDZ;
             t_FLegalPerson.Text = v.FRDB;

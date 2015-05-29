@@ -462,13 +462,16 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                DisableButton();
+
+               string fappid = t_fLinkId.Value;
+
                //锁定增加的人员
-               lockperson();
+               lockperson(fappid);
                //解锁退出的人员
                unlockperson();
                //同步信息到归档库中，调用存储过程SP_GD_SGXKZ,add by psq 20150429,传入工程id（PrjItemId）和业务id（Fappid)
                RCenter rc = new RCenter("dbcenter");
-               rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + t_fLinkId.Value + "'");
+               rc.PExcute("exec SP_GD_SGXKZ '" + t_PrjItemId.Value + "','" + fappid + "'");
                //
                ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('办结成功');", true);
            }
@@ -498,11 +501,10 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
            if (conn.State == ConnectionState.Closed)
                conn.Open();
            DataSet ds = new DataSet();
-           sql = @"select  a.FAppId,a.FPrjItemId,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
-                    where a.FPrjItemId = b.FId
-                    and a.FLinkId = c.RYBH
-                    and b.FPrjId = d.FId
-                    and a.BGQK = '退出'  and FAppId  = '" + t_fLinkId.Value + "'";
+           sql = @"select b.FAppId,b.FPrjItemId,b.FIdCard,b.FHumanName  
+                     from TC_PrjItem_Emp b
+                    where b.needDel = 1
+                      and b.FAppId  = '" + t_fLinkId.Value + "'";
            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
            da.Fill(ds, "ds");
            DataTable dt = ds.Tables[0];
@@ -523,39 +525,48 @@ public partial class Government_AppSGXKZGL_BGBLFSAuditInfo : System.Web.UI.Page
    /// 锁定人员
    /// 锁定数据来源是人员变更的增加类型
    /// </summary>
-   protected void  lockperson()
+   protected void  lockperson(string Fappid)
    {
-        Common cm = new Common();
-        string sql = "";    
-        using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
-        {
-            if (conn.State == ConnectionState.Closed)
-                conn.Open();
-            DataSet ds = new DataSet();
-            //只锁定施工总承包、专业承包、劳务分包、监理类企业的人员(2\3\4\7),勘察、设计类人员不锁定(5\6)
-            sql = @"select  a.FAppId,d.FId FPrjId,a.FPrjItemId,b.ProjectName,c.QYBM FEntId,'' FEntName,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
-                    where a.FPrjItemId = b.FId
-                    and a.FLinkId = c.RYBH
-                    and b.FPrjId = d.FId
-                    and a.fenttype  in (2,3,4,7)
-                    and a.BGQK = '增加'  and FAppId  = '" + t_fLinkId.Value+"'";           
-            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-            da.Fill(ds, "ds");
-            DataTable dt = ds.Tables[0];
-            //锁定增加的人员
-            string sappid, fprjid, fprjitemid, fentid, fentname, fhumanname, fidcard;//业务编号，项目编号，工程编号，所在企业编号，企业名称，人员姓名，人员身份证号
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                sappid = dt.Rows[i]["FAppId"].ToString();
-                fprjid = dt.Rows[i]["FPrjId"].ToString();
-                fprjitemid = dt.Rows[i]["FPrjItemId"].ToString();
-                fentid = dt.Rows[i]["FEntId"].ToString();
-                fentname = dt.Rows[i]["FEntName"].ToString();
-                fhumanname = dt.Rows[i]["FHumanName"].ToString();
-                fidcard = dt.Rows[i]["FIdCard"].ToString();
-                cm.lockperson(sappid, fprjid, fprjitemid, fentid, fidcard, fhumanname);
-            }
-        }
+       string errMsg = "";
+       Common cm = new Common();
+       if (cm.lockperson(Fappid, out errMsg) == false)
+       {
+           ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('锁定人员失败！/r/n错误信息：" + errMsg + "');", false);
+       }
+       #region
+       // Common cm = new Common();
+//        string sql = "";    
+//        using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
+//        {
+//            if (conn.State == ConnectionState.Closed)
+//                conn.Open();
+//            DataSet ds = new DataSet();
+//            //只锁定施工总承包、专业承包、劳务分包、监理类企业的人员(2\3\4\7),勘察、设计类人员不锁定(5\6)
+//            sql = @"select  a.FAppId,d.FId FPrjId,a.FPrjItemId,b.ProjectName,c.QYBM FEntId,'' FEntName,c.SFZH FIdCard,c.XM FHumanName 
+//                      from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
+//                    where a.FPrjItemId = b.FId
+//                    and a.FLinkId = c.RYBH
+//                    and b.FPrjId = d.FId
+//                    and a.fenttype  in (2,3,4,7)
+//                    and a.BGQK = '增加'  and FAppId  = '" + t_fLinkId.Value+"'";           
+//            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+//            da.Fill(ds, "ds");
+//            DataTable dt = ds.Tables[0];
+//            //锁定增加的人员
+//            string sappid, fprjid, fprjitemid, fentid, fentname, fhumanname, fidcard;//业务编号，项目编号，工程编号，所在企业编号，企业名称，人员姓名，人员身份证号
+//            for (int i = 0; i < dt.Rows.Count; i++)
+//            {
+//                sappid = dt.Rows[i]["FAppId"].ToString();
+//                fprjid = dt.Rows[i]["FPrjId"].ToString();
+//                fprjitemid = dt.Rows[i]["FPrjItemId"].ToString();
+//                fentid = dt.Rows[i]["FEntId"].ToString();
+//                fentname = dt.Rows[i]["FEntName"].ToString();
+//                fhumanname = dt.Rows[i]["FHumanName"].ToString();
+//                fidcard = dt.Rows[i]["FIdCard"].ToString();
+//                cm.lockperson(sappid, fprjid, fprjitemid, fentid, fidcard, fhumanname);
+//            }
+       // }
+       #endregion
    }
 
 
