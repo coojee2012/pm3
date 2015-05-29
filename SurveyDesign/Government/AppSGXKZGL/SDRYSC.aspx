@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>锁定人员核查</title>
+    <title>该项目参与人员已参加在建工程查询</title>
      <script type="text/javascript" src="../../script/jquery.js"></script>
     <script type="text/javascript" src="../../script/default.js"></script>
     <asp:Link id="skin1" runat="server">
@@ -22,6 +22,7 @@
    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <input type="hidden"  runat="server" ID="h_FAppId" value="" />
         <input type="hidden"  runat="server" ID="h_FPrjItemId" value="" />
+        该项目参与人员已参加其它的在建工程情况查询
                      <asp:DataGrid ID="JustAppInfo_List" runat="server" AutoGenerateColumns="False" CssClass="m_dg1"
                         HorizontalAlign="Center" OnItemDataBound="JustAppInfo_List_ItemDataBound" Width="98%">
                         <HeaderStyle CssClass="m_dg1_h" />
@@ -35,12 +36,7 @@
                 <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" Width="100px" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>
-             <asp:TemplateColumn HeaderText ="锁定次数" HeaderStyle-HorizontalAlign ="Center">
-                 <ItemTemplate>
-                     <asp:Label runat="server" ID ="lbl_sdcount"></asp:Label>
-                 </ItemTemplate>
-             </asp:TemplateColumn>  
-             <asp:BoundColumn HeaderText="锁定地区" HeaderStyle-HorizontalAlign="Center" DataField="FAddress">
+             <asp:BoundColumn HeaderText="工程所属地" HeaderStyle-HorizontalAlign="Center" DataField="FAddress">
                 <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>
@@ -48,6 +44,10 @@
                 <ItemStyle Wrap="False" HorizontalAlign="Center" CssClass="padLeft" />
                 <HeaderStyle Font-Underline="False" Wrap="False" />
             </asp:BoundColumn>
+                            <asp:BoundColumn DataField="PrjItemName" HeaderText="在建工程名称"></asp:BoundColumn>
+                            <asp:BoundColumn DataField="StartDate" HeaderText="预估开工日期"></asp:BoundColumn>
+                            <asp:BoundColumn DataField="EndDate"   HeaderText="预估竣工时间"></asp:BoundColumn>
+                            <asp:BoundColumn DataField="FCreateTime" HeaderText="锁定日期"></asp:BoundColumn>
                             </Columns>
                          </asp:DataGrid>
 

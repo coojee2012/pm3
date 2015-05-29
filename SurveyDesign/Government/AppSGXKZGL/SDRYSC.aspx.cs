@@ -50,12 +50,11 @@ public partial class Government_AppSGXKZGL_SDRYSC : System.Web.UI.Page
 //                            FROM TC_PrjItem_Emp A  
 //                            WHERE  a.FAppId = '" + h_FAppId.Value + "'  and a.FEntType in ('2','3','4','7')"
 //                            +" Group BY A.FIdCard,A.FHumanName,A.FPrjItemId  ";
-            string sql = @"SELECT  A.FIdCard,A.FHumanName,0  FCount,[dbo].[getManageDeptName](B.PrjAddressDept)  FAddress,dbo.getemptypename(A.EmpType,'112202') EmpType 
-                            FROM TC_PrjItem_Emp A,TC_SGXKZ_PrjInfo B
-							WHERE A.FAppId = B.FAppId							
-                            AND  a.FAppId = '" +h_FAppId.Value+"'"+
-							" and a.FEntType in ('2','3','4','7')   Group BY A.FIdCard,A.FHumanName,A.FPrjItemId,B.PrjAddressDept,A.EmpType   ";  //排除勘察、设计的人员，此类人员不用锁定
-
+            string sql = @"select FIdCard, FHumanName,[dbo].[getManageDeptName](a.PrjAddressDept)  FAddress,a.EmpType,PrjItemName,convert(char(10),StartDate,121) as StartDate,convert(char(10),EndDate,121) EndDate, convert(char(10),FCreateTime,121) FCreateTime
+                             from [dbo].[V_Sgxkz_EmpLock] a
+                            where a.isLock = 1 
+                              and exists(select 1 from TC_PrjItem_Emp b where a.FIdCard = b.FIdCard and b.FAppId = '" + h_FAppId.Value+"')";
+                                                    
             if (conn.State == ConnectionState.Closed)
                 conn.Open();
             DataSet ds = new DataSet();
@@ -78,16 +77,16 @@ public partial class Government_AppSGXKZGL_SDRYSC : System.Web.UI.Page
     }
     protected void JustAppInfo_List_ItemDataBound(object sender, DataGridItemEventArgs e)
     {
-        if (e.Item.ItemIndex > -1)
-        {           
-            string fidcard = e.Item.Cells[4].Text;
-            string sql = @"select  count(1)  from  TC_PrjItem_Emp_Lock  where ltrim(rtrim(FIdCard)) = '"+fidcard.Trim()+"' and IsLock = 1";
-            DataTable dt = rc.GetTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                Label lbl_count = e.Item.FindControl("lbl_sdcount") as Label;
-                lbl_count.Text = dt.Rows.Count.ToString();
-            }
-        }
+        //if (e.Item.ItemIndex > -1)
+        //{           
+        //    string fidcard = e.Item.Cells[4].Text;
+        //    string sql = @"select  count(1)  from  TC_PrjItem_Emp_Lock  where ltrim(rtrim(FIdCard)) = '"+fidcard.Trim()+"' and IsLock = 1";
+        //    DataTable dt = rc.GetTable(sql);
+        //    if (dt != null && dt.Rows.Count > 0)
+        //    {
+        //        Label lbl_count = e.Item.FindControl("lbl_sdcount") as Label;
+        //        lbl_count.Text = dt.Rows.Count.ToString();
+        //    }
+        //}
     }
 }
