@@ -75,9 +75,6 @@
                         联系人
                     </th>
                     <th>
-                        联系电话
-                    </th>
-                    <th>
                         选择
                     </th>
                 </tr>
@@ -112,9 +109,6 @@
                         <td>
                             
                             <%# Eval("LXR")%>
-                        </td>
-                        <td>
-                            <%# Eval("LXDH")%>
                         </td>
                         <td>
                             <asp:LinkButton ID="btnSelect" CommandName="Sel" runat="server">选择</asp:LinkButton>
