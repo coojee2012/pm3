@@ -60,16 +60,16 @@ namespace EgovaBLL
             {
                 sql = @"select count(*) from CF_App_List 
                     where FManageTypeId={0} and FLinkId='{1}' 
-                    and FState = 6 and FResult = 3 ";
+                    and FState != 6  and  isnull(fisdeleted,0) ! =1";// and FResult = 3 ";
                 sql = string.Format(sql, manageTypeId, prjItemId);
                 int count1 = SConvert.ToInt(db.ExecuteQuery<int>(sql).FirstOrDefault());
                 if (count1 > 0)
                 {
-                    flag = true;
+                    flag = false;
                 }
                 else
                 {
-                    flag = false;
+                    flag = true;
                 }
             }
             else
