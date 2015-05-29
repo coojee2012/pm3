@@ -178,28 +178,30 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                 conn.Open();
             DataSet ds = new DataSet();
             string sql = "";
-            sql = @"select  a.FAppId,d.FId FPrjId,a.FPrjItemId,b.ProjectName,c.QYBM FEntId,'' FEntName,c.SFZH FIdCard,c.XM FHumanName  from  TC_SGXKZ_RYBGJG a,TC_PrjItem_Info b,JST_XZSPBaseInfo.dbo.RY_RYJBXX c,TC_Prj_Info d
-                    where a.FPrjItemId = b.FId
-                    and a.FLinkId = c.RYBH
-                    and b.FPrjId = d.FId
-                    and a.BGQK = '增加'  and FAppId  = '" + fAppId + "'";
+            sql = @"select a.FAppId,b.FPrjId,a.FPrjItemId,'' ProjectName,b.FEntId,'' FEntName,b.FIdCard,b.FHumanName  
+                      from TC_SGXKZ_RYBGJG a,TC_PrjItem_Emp b 
+                     where a.FPrjItemId = b.FPrjItemId
+                       and a.FAppId = b.FAppId
+                       and a.FLinkId = b.Fempid
+                       and a.BGQK = '增加'  and FAppId  = '" + fAppId + "'";
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(ds, "ds");
             DataTable dt = ds.Tables[0];
 
             if (dt != null)
             {
-                //先判断不同地区的未竣工的项目当前人员是否参与了
+                //先判断不同地区的未竣工的项目当前人员是否参与了  
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况，已经上报的项目，c.FState = 1
-                    string sql1 = @"select  1  from  TC_PrjItem_Emp a,TC_PrjItem_Info b,CF_App_List c
-                                where a.FPrjItemId = b.FId
+                    string sql1 = @"select  1  from  TC_PrjItem_Emp a,TC_SGXKZ_PrjInfo b,CF_App_List c
+                                where a.FPrjItemId = b.FPrjItemId
+                                and  a.FAppId = b.FAppId
                                 and  c.FId = a.FAppId
                                 and  c.FState = 1
                                 and  (c.FManageTypeId  = '11223' or c.FManageTypeId  = '11224' or c.FManageTypeId  = '11225')
                                 and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" +
-                                    " and b.AddressDept != '" + prjarea + "'" + " and a.FAppId != '" + fAppId + "'";
+                                    " and b.PrjAddressDept != '" + prjarea + "'" + " and a.FAppId != '" + fAppId + "'";
                     DataTable dt1 = rc.GetTable(sql1);
                     if (dt1 != null && dt1.Rows.Count > 0)
                     {
@@ -214,9 +216,10 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
-                    string sql2 = @"select  1  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
-                             where a.FPrjItemId = b.FId
-                             and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" + "  and b.AddressDept != '" + prjarea + "'   and a.IsLock = '1'";
+                    string sql2 = @"select  1  from  TC_PrjItem_Emp_Lock a,TC_SGXKZ_PrjInfo b
+                             where a.FPrjItemId = b.FPrjItemId
+                             and   a.FAppId = b.FAppId
+                             and  a.FIdCard = '" + dt.Rows[i]["FIdCard"].ToString() + "'" + "  and b.PrjAddressDept != '" + prjarea + "'   and a.IsLock = '1'";
                     DataTable dt2 = rc.GetTable(sql2);
                     if (dt2 != null && dt2.Rows.Count > 0)
                     {

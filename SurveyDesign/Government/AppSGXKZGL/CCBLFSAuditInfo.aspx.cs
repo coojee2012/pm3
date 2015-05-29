@@ -451,60 +451,14 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
     /// <summary>
     /// 锁定人员
     /// </summary>
-   private void lockEmp()
+   private void lockEmp(string Fappid)
    {
-                   Common cm = new Common();
-                   string sql = "";
-       //try {
-                   using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
-                   {
-                        if (conn.State == ConnectionState.Closed)
-                            conn.Open();
-                        DataSet ds = new DataSet();                     
-                        //modify by psq  20150322  锁定人员限制范围是本业务id的，并且没有被锁定的
-                        sql = @"select * from TC_PrjItem_Emp where    FEntType in ('2','3','4','7') and  FAppId = '" + t_fLinkId.Value + "'"; //勘察、设计单位人员不锁定 ，只有施工类和监理才锁定,锁定人员
-                     
-                        SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                        da.Fill(ds, "ds");
-                        DataTable dt = ds.Tables[0];
-                       //锁定所有的人员
-                       string sappid,fprjid,fprjitemid,fentid,fentname,fhumanname,fidcard;//业务编号，项目编号，工程编号，所在企业编号，企业名称，人员姓名，人员身份证号
-                       for (int i = 0; i < dt.Rows.Count; i++)
-                       {  
-                          sappid = dt.Rows[i]["FAppId"].ToString();
-                          fprjid = dt.Rows[i]["FPrjId"].ToString();
-                          fprjitemid = dt.Rows[i]["FPrjItemId"].ToString();
-                          fentid = dt.Rows[i]["FEntId"].ToString();
-                          fentname = dt.Rows[i]["FEntName"].ToString();
-                          fhumanname = dt.Rows[i]["FHumanName"].ToString();
-                          fidcard = dt.Rows[i]["FIdCard"].ToString();
-                          cm.lockperson(sappid, fprjid, fprjitemid, fentid, fidcard, fhumanname);
-                       }
-
-           
-                        //for (int i = 0; i < dt.Rows.Count; i++)
-                        //{              
-                        //    sql = "INSERT INTO TC_PrjItem_Emp_Lock (FId,FIdCard,FHumanName,FAppId,FPrjId,FPrjItemId,FEntId,FEntName,IsLock,SelectedCount) VALUES ";
-                        //    sql += "('" + Guid.NewGuid().ToString();
-                        //    sql += "','" + dt.Rows[i]["FIdCard"].ToString();
-                        //    sql += "','" + dt.Rows[i]["FHumanName"].ToString();//item.FHumanName;
-                        //    sql += "','" + dt.Rows[i]["FAppId"].ToString();
-                        //    sql += "','" + dt.Rows[i]["FPrjId"].ToString(); 
-                        //    sql += "','" + dt.Rows[i]["FPrjItemId"].ToString(); 
-                        //    sql += "','" + dt.Rows[i]["FEntId"].ToString(); 
-                        //    sql += "','" + dt.Rows[i]["FEntName"].ToString();
-                        //    sql += "',1,1)";
-                        //    SqlCommand cmd = new SqlCommand(sql, conn);
-                        //    int a = cmd.ExecuteNonQuery();
-                        //    sql = "";//每次执行完成sql后清空sql
-                        //}            
-                   }
-       //}
-       //catch(Exception ex)
-       //{
-       //    string test=sql;
-       //    throw ex;
-       //}
+       string errMsg = "";
+        Common cm = new Common();
+        if (cm.lockperson(Fappid, out errMsg) == false)
+        {
+            ScriptManager.RegisterClientScriptBlock(UpdatePanel1, UpdatePanel1.GetType(), "js", "alert('锁定人员失败！/r/n错误信息：" + errMsg + "');", false);
+        }
    }
    /// <summary>
    /// 提交打证
@@ -520,13 +474,14 @@ public partial class Government_AppSGXKZGL_CCBLFSAuditInfo : System.Web.UI.Page
            {
                string dfUserId = this.Session["DFUserId"].ToString();
                //锁定人员
-               lockEmp();
+
                //审核信息
                dResult.SelectedValue = "1";//接件操作强制选中同意项
                WFApp.ReportProcess(t_fLinkId.Value, t_fProcessInstanceID.Value, t_fProcessRecordID.Value, dfUserId,
                    t_FAppIdea.Text, dResult.SelectedValue.Trim(), t_FAppPerson.Text,
                   t_FAppPersonUnit.Text, t_FAppPersonJob.Text, t_FAppDate.Text);
                string appid = t_fLinkId.Value;//EConvert.ToString(Session["FAppId"].ToString());
+               lockEmp(appid);
                DisableButton();
 
               

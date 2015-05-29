@@ -393,7 +393,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
                     {
                         //删除历史企业人员
                         TC_PrjItem_Emp temp = dbContext.TC_PrjItem_Emp.Where(t => t.FId == q.FId).FirstOrDefault();
-                        dbContext.TC_PrjItem_Emp.DeleteOnSubmit(temp);
+                        temp.needDel = 1; //  逻辑删除,等办结时，解锁人员
+//                        dbContext.TC_PrjItem_Emp.DeleteOnSubmit(temp);    只能做逻辑删除，不能做物理删除。  by zyd
                         //记录退出日志
                         TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
                         sr.FId = Guid.NewGuid().ToString();
@@ -452,7 +453,8 @@ public partial class JSDW_ApplySGXKZGL_EntInfoForBG : System.Web.UI.Page
             empList.ForEach(q =>
             {
                 //删除人员
-                dbContext.TC_PrjItem_Emp.DeleteOnSubmit(q);
+                q.needDel = 1;  //逻辑删除，不作物理删除。
+                //dbContext.TC_PrjItem_Emp.DeleteOnSubmit(q);
                 //记录人员删除日志
                 TC_SGXKZ_RYBGJG sr = new TC_SGXKZ_RYBGJG();
                 sr.FId = Guid.NewGuid().ToString();

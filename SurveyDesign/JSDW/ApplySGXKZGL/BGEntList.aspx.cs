@@ -163,13 +163,14 @@ public partial class JSDW_ApplySGXKZGL_EntListForBG : System.Web.UI.Page
                         sr.XM = pe.FHumanName;
                         sr.ZSBH = pe.ZSBH;
                         sr.QYMC = pe.FEntName;
-                        sr.FLinkId = pe.FEntId;
+                        //sr.FLinkId = pe.FEntId;
+                        sr.FLinkId = pe.FEmpId;   // by zyd 5.29
                         sr.BGQK = "退出";
                         sr.BGTime = DateTime.Now;
                         dbContext.TC_SGXKZ_RYBGJG.InsertOnSubmit(sr);
                         dbContext.SubmitChanges();
                         //再删除人员
-                        string sqldel = "delete  from  TC_PrjItem_Emp where  fid = '" + dt.Rows[i][0].ToString() + "'";
+                        string sqldel = "update TC_PrjItem_Emp set needDel = 1 where  fid = '" + dt.Rows[i][0].ToString() + "'";
                         rc.PExcute(sqldel);                                       
                     }
                 }

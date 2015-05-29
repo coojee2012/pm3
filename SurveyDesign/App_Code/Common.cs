@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Approve.RuleCenter;
 using EgovaDAO;
 
 /// <summary>
@@ -51,34 +52,27 @@ public class Common
     /// 锁定人员
     /// </summary>
     /// <param name="fappid">业务流程编号</param>
-    /// <param name="fprjid">项目编号</param>
-    /// <param name="fprjitemid">工程编号</param>
-    /// <param name="fentid">所在企业编号</param>
-    /// <param name="idcard">人员身份证号</param>
-    /// <param name="personname">人员姓名</param>
     /// <returns></returns>
-    public bool lockperson(string fappid,string fprjid,string fprjitemid,string fentid,string idcard,string personname)
+    public bool lockperson(string fappid,out string errMsg)
     {
         try
         {
-            EgovaDB db = new EgovaDB();
-            TC_PrjItem_Emp_Lock el = new TC_PrjItem_Emp_Lock();
-            el.FId = Guid.NewGuid().ToString();
-            el.FAppId = fappid;
-            el.FPrjId = fprjid;
-            el.FPrjItemId = fprjitemid;
-            el.FIdCard = idcard;
-            el.FHumanName = personname;
-            el.IsLock = true;
-            el.SelectedCount = 1;
-            el.FCreateTime = DateTime.Now;
-            el.FTime = DateTime.Now;
-            db.TC_PrjItem_Emp_Lock.InsertOnSubmit(el);
-            db.SubmitChanges();
+            RCenter db = new RCenter();
+            string strsql = @" insert into TC_PrjItem_Emp_Lock(fid,FPrjId,FPrjItemId,FAppId,FEntId,FIdCard,IsLock,FHumanName,FEntName,FCreateTime,FTime,lockType,Fempid)
+                                    select fid,FPrjId,FPrjItemId,FAppId,FEntId,FIdCard,1,FHumanName,FEntName,getdate(),getdate(),0,Fempid
+	                                  from TC_PrjItem_Emp a
+	                                 where FEntType in ('2','3','4','7') 
+                                       and not exists(select 1 from TC_PrjItem_Emp_Lock b where a.FAppId = b.FAppId and b.FIdCard = b.FIdCard)
+                                       and isnull(needDel,0) <> 1
+                                       and FAppId ='" + fappid + "'";
+
+            db.PExcute(strsql);
+            errMsg = "";
             return true;
         }
-        catch
+        catch (Exception e)
         {
+            errMsg = e.Message;
             return false;
         }
     }
