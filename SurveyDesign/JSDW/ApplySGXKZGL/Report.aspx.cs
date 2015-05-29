@@ -163,7 +163,7 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
         //获取到当前工程编号                           
         string prjitemid = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == fAppId).FirstOrDefault().FPrjItemId;
         //当前工程所属地
-        string prjarea = db.TC_PrjItem_Info.Where(t => t.FId == prjitemid).FirstOrDefault().AddressDept;
+        string prjarea = db.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == fAppId).FirstOrDefault().PrjAddressDept;
         //当前工程参与人员列表,只比较施工类(施工总承包、专业承包、劳务分包、监理四类型企业人员(2、3、4、7）,勘察、设计类人员不包括(5、6）)
         var emplist = db.TC_PrjItem_Emp.Where(t => t.FAppId == fAppId && (t.FEntType == 2 ||t.FEntType == 3||t.FEntType == 4||t.FEntType == 7) );
         if (emplist != null)

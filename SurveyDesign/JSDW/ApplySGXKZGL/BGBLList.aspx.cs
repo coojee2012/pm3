@@ -131,7 +131,7 @@ public partial class JSDW_APPLYSGXKZGL_BGBLList : System.Web.UI.Page
         EgovaDB dbContext = new EgovaDB();
         if (!WFApp.ValidateNewBiz(t_FPriItemId.Value, fMType))
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "js", "alert('条件不符合（可能已经办理了），不能创建变更办理业务！');", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "js", "alert('条件不符合，有业务未完成办结，不能创建变更办理业务！');", true);
             return;
         }
         if (string.IsNullOrEmpty(CurrentEntUser.EntId))

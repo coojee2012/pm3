@@ -169,7 +169,8 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                          
         string prjitemid = db.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == fAppId).FirstOrDefault().FPrjItemId;
         //当前工程所属地
-        string prjarea = db.TC_PrjItem_Info.Where(t => t.FId == prjitemid).FirstOrDefault().AddressDept;
+        //string prjarea = db.TC_PrjItem_Info.Where(t => t.FId == prjitemid).FirstOrDefault().AddressDept;
+        string prjarea = db.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == fAppId).FirstOrDefault().PrjAddressDept;
         //当前工程增加的人员
         using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["dbCenter"].ConnectionString))
         {
