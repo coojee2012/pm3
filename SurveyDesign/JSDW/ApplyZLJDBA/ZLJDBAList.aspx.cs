@@ -143,10 +143,15 @@ public partial class JSDW_APPLYZLJDBN_ZLJDBAList : System.Web.UI.Page
         app.FReportCount = 1;
         dbContext.CF_App_List.InsertOnSubmit(app);
         //添加备案信息
+        TC_JSDW_USER tju = dbContext.TC_JSDW_USER.Where(t => t.FID == CurrentEntUser.EntId).FirstOrDefault();
         TC_QA_Record record = new TC_QA_Record();
         string FRecordId = Guid.NewGuid().ToString();
         record.JSDW = CurrentEntUser.EntName;//单位名
-        record.FJSDWID = CurrentEntUser.EntId;//单位ID     
+        record.FJSDWID = CurrentEntUser.EntId;//单位ID 
+        if(tju != null)
+        {
+            record.LegalPerson = tju.FRXM.ToString();
+        }
         record.AddressDept = t_AddressDept.Value;
         record.PrjItemType = this.t_prjitemtype.Value;
         record.FId = FRecordId;

@@ -27,6 +27,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
             string qybm = EConvert.ToString(Request.QueryString["qybm"]).Trim();
             string prjItemid = EConvert.ToString(Request.QueryString["FPrjItemId"]);
             lblRylx.Value = EConvert.ToString(Request.QueryString["rylx"]);
+
             if (lblRylx.Value == "t_SGRYId")
                 ddlEmpType.SelectedValue = "-1";
             if (lblRylx.Value == "t_JLRYId")
@@ -69,6 +70,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
     /// </summary>
     void showInfo()
     {
+
         EgovaDB1 db = new EgovaDB1();
         var v = from a in db.RY_RYJBXX
                 join c in db.RY_RYZSXX
@@ -92,6 +94,7 @@ public partial class JSDW_project_EmpListSel: System.Web.UI.Page
                     ZSYXQJSSJStr = string.Format("{0:d}", c.ZSYXQJSSJ),
                     FZSJStr = string.Format("{0:d}", c.FZSJ)
                 };
+
         if (!string.IsNullOrEmpty(this.txtIDCard.Text.Trim()))
         {
             v = v.Where(t => t.SFZH.Contains(this.txtIDCard.Text.Trim()));

@@ -39,9 +39,12 @@
             if (emptype == '11220201') {
                 url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random() + "&emptype=aqjd";
             }
-            else {
+            else if (emptype == '11220202' || emptype == '11220203')
+            {
                 url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random();
             }
+
+
             var pid = showWinByReturn(url, 800, 500);
             if (pid != null && pid != '') {
                 $("#" + tagId).val(pid);

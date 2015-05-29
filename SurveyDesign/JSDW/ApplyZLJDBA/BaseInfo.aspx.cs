@@ -61,13 +61,16 @@ public partial class JSDW_ApplyZLJDBA_BaseInfo : System.Web.UI.Page
 
         if (qa.RecordNo == null)
         {
-            TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
-            TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+            //TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
+            //TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
 
             pageTool tool = new pageTool(this.Page, "p_");
-            tool.fillPageControl(prj);
+            tool.fillPageControl(qa);
+            
             tool = new pageTool(this.Page, "pj_");
-            tool.fillPageControl(prjInfo);
+            tool.fillPageControl(qa);
+            p_Cost.Text = qa.Cost;
+            
             govd_FRegistDeptId.fNumber = pj_AddressDept.Value;
             q_AddressDept.Value = pj_AddressDept.Value;
 
