@@ -30,9 +30,6 @@ namespace EgovaDAO
 		
     #region 可扩展性方法定义
     partial void OnCreated();
-    partial void InsertQY_JBXX(QY_JBXX instance);
-    partial void UpdateQY_JBXX(QY_JBXX instance);
-    partial void DeleteQY_JBXX(QY_JBXX instance);
     partial void InsertQY_BLXWQK(QY_BLXWQK instance);
     partial void UpdateQY_BLXWQK(QY_BLXWQK instance);
     partial void DeleteQY_BLXWQK(QY_BLXWQK instance);
@@ -108,10 +105,13 @@ namespace EgovaDAO
     partial void InsertRY_RYJBXX(RY_RYJBXX instance);
     partial void UpdateRY_RYJBXX(RY_RYJBXX instance);
     partial void DeleteRY_RYJBXX(RY_RYJBXX instance);
+    partial void InsertQY_JBXX(QY_JBXX instance);
+    partial void UpdateQY_JBXX(QY_JBXX instance);
+    partial void DeleteQY_JBXX(QY_JBXX instance);
     #endregion
 		
 		public DB1DataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.JST_XZSPBaseInfoConnectionString3, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.JST_XZSPBaseInfoConnectionString4, mappingSource)
 		{
 			OnCreated();
 		}
@@ -138,14 +138,6 @@ namespace EgovaDAO
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<QY_JBXX> QY_JBXX
-		{
-			get
-			{
-				return this.GetTable<QY_JBXX>();
-			}
 		}
 		
 		public System.Data.Linq.Table<QY_BLXWQK> QY_BLXWQK
@@ -371,2091 +363,13 @@ namespace EgovaDAO
 				return this.GetTable<RY_RYJBXX>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QY_JBXX")]
-	public partial class QY_JBXX : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _QYBM;
-		
-		private string _QYLXBM;
-		
-		private string _QYMC;
-		
-		private string _QYCYM;
-		
-		private string _JGDM;
-		
-		private string _SSDBM;
-		
-		private string _RegAdrProvince;
-		
-		private string _RegAdrCity;
-		
-		private string _RegAdrCountry;
-		
-		private string _RegAdrProvinceName;
-		
-		private string _RegAdrCityName;
-		
-		private string _RegAdrCountryName;
-		
-		private string _ZCDZ;
-		
-		private string _ZCDZYZBM;
-		
-		private string _QYXXDZ;
-		
-		private string _XXDZYZBM;
-		
-		private string _ZGBM;
-		
-		private string _LSGXBM;
-		
-		private string _LSGXMC;
-		
-		private string _QYCLRQ;
-		
-		private string _GSZCRQ;
-		
-		private string _JJXZBM;
-		
-		private string _JJXZMC;
-		
-		private string _YEZZZCH;
-		
-		private string _YEZZFZJG;
-		
-		private System.Nullable<double> _ZCZBJ;
-		
-		private string _HBLXBM;
-		
-		private string _HBLXMC;
-		
-		private string _KHYH;
-		
-		private string _KHYHZH;
-		
-		private string _QYWZ;
-		
-		private string _DZYJ;
-		
-		private string _CZ;
-		
-		private string _LXR;
-		
-		private string _LXDH;
-		
-		private string _FRDB;
-		
-		private string _FRDBSJH;
-		
-		private System.Nullable<int> _CYRYNMRS;
-		
-		private System.Nullable<int> _JSJJRYZS;
-		
-		private System.Nullable<int> _YZCRYS;
-		
-		private System.Nullable<int> _GJZCRS;
-		
-		private System.Nullable<int> _ZJZCRS;
-		
-		private System.Nullable<int> _ZCRYZS;
-		
-		private System.Nullable<double> _GDZC;
-		
-		private System.Nullable<double> _GDZCNZJE;
-		
-		private System.Nullable<double> _LDZC;
-		
-		private System.Nullable<double> _FZZE;
-		
-		private System.Nullable<double> _JZC;
-		
-		private System.Nullable<double> _QYZSR;
-		
-		private System.Nullable<decimal> _GCJSCB;
-		
-		private System.Nullable<decimal> _GLFY;
-		
-		private System.Nullable<decimal> _LSZE;
-		
-		private System.Nullable<double> _SDS;
-		
-		private System.Nullable<double> _SCSJE;
-		
-		private System.Nullable<double> _LRZE;
-		
-		private System.Nullable<double> _JLR;
-		
-		private System.Nullable<double> _JZCSYL;
-		
-		private System.Nullable<double> _ZBBZZZL;
-		
-		private System.Nullable<double> _YYLR;
-		
-		private System.Nullable<double> _ZCFZL;
-		
-		private System.Nullable<double> _JZYZCZ;
-		
-		private System.Nullable<double> _JZYZJZ;
-		
-		private System.Nullable<double> _LDZBC;
-		
-		private System.Nullable<int> _JXSBZTS;
-		
-		private System.Nullable<double> _JXSBZGL;
-		
-		private System.Nullable<int> _ZLAQFSSGCS;
-		
-		private System.Nullable<double> _JJSS;
-		
-		private System.Nullable<int> _SWRS;
-		
-		private System.Nullable<int> _ZSRS;
-		
-		private EntitySet<QY_BLXWQK> _QY_BLXWQK;
-		
-		private EntitySet<QY_GCYJXX> _QY_GCYJXX;
-		
-		private EntitySet<QY_LHXWQK> _QY_LHXWQK;
-		
-		private EntitySet<QY_QYBGQK> _QY_QYBGQK;
-		
-		private EntitySet<QY_QYCYRYXX> _QY_QYCYRYXX;
-		
-		private EntitySet<QY_QYCZRGDXX> _QY_QYCZRGDXX;
-		
-		private EntitySet<QY_QYHBCZXX> _QY_QYHBCZXX;
-		
-		private EntitySet<QY_QYJL> _QY_QYJL;
-		
-		private EntitySet<QY_QYLSSQXX> _QY_QYLSSQXX;
-		
-		private EntitySet<QY_QYNJQK> _QY_QYNJQK;
-		
-		private EntitySet<QY_QYXYPD> _QY_QYXYPD;
-		
-		private EntitySet<QY_QYZYRYXX> _QY_QYZYRYXX;
-		
-		private EntitySet<QY_ZYJQSB> _QY_ZYJQSB;
-		
-		private EntitySet<QY_QYZSXX> _QY_QYZSXX;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQYBMChanging(string value);
-    partial void OnQYBMChanged();
-    partial void OnQYLXBMChanging(string value);
-    partial void OnQYLXBMChanged();
-    partial void OnQYMCChanging(string value);
-    partial void OnQYMCChanged();
-    partial void OnQYCYMChanging(string value);
-    partial void OnQYCYMChanged();
-    partial void OnJGDMChanging(string value);
-    partial void OnJGDMChanged();
-    partial void OnSSDBMChanging(string value);
-    partial void OnSSDBMChanged();
-    partial void OnRegAdrProvinceChanging(string value);
-    partial void OnRegAdrProvinceChanged();
-    partial void OnRegAdrCityChanging(string value);
-    partial void OnRegAdrCityChanged();
-    partial void OnRegAdrCountryChanging(string value);
-    partial void OnRegAdrCountryChanged();
-    partial void OnRegAdrProvinceNameChanging(string value);
-    partial void OnRegAdrProvinceNameChanged();
-    partial void OnRegAdrCityNameChanging(string value);
-    partial void OnRegAdrCityNameChanged();
-    partial void OnRegAdrCountryNameChanging(string value);
-    partial void OnRegAdrCountryNameChanged();
-    partial void OnZCDZChanging(string value);
-    partial void OnZCDZChanged();
-    partial void OnZCDZYZBMChanging(string value);
-    partial void OnZCDZYZBMChanged();
-    partial void OnQYXXDZChanging(string value);
-    partial void OnQYXXDZChanged();
-    partial void OnXXDZYZBMChanging(string value);
-    partial void OnXXDZYZBMChanged();
-    partial void OnZGBMChanging(string value);
-    partial void OnZGBMChanged();
-    partial void OnLSGXBMChanging(string value);
-    partial void OnLSGXBMChanged();
-    partial void OnLSGXMCChanging(string value);
-    partial void OnLSGXMCChanged();
-    partial void OnQYCLRQChanging(string value);
-    partial void OnQYCLRQChanged();
-    partial void OnGSZCRQChanging(string value);
-    partial void OnGSZCRQChanged();
-    partial void OnJJXZBMChanging(string value);
-    partial void OnJJXZBMChanged();
-    partial void OnJJXZMCChanging(string value);
-    partial void OnJJXZMCChanged();
-    partial void OnYEZZZCHChanging(string value);
-    partial void OnYEZZZCHChanged();
-    partial void OnYEZZFZJGChanging(string value);
-    partial void OnYEZZFZJGChanged();
-    partial void OnZCZBJChanging(System.Nullable<double> value);
-    partial void OnZCZBJChanged();
-    partial void OnHBLXBMChanging(string value);
-    partial void OnHBLXBMChanged();
-    partial void OnHBLXMCChanging(string value);
-    partial void OnHBLXMCChanged();
-    partial void OnKHYHChanging(string value);
-    partial void OnKHYHChanged();
-    partial void OnKHYHZHChanging(string value);
-    partial void OnKHYHZHChanged();
-    partial void OnQYWZChanging(string value);
-    partial void OnQYWZChanged();
-    partial void OnDZYJChanging(string value);
-    partial void OnDZYJChanged();
-    partial void OnCZChanging(string value);
-    partial void OnCZChanged();
-    partial void OnLXRChanging(string value);
-    partial void OnLXRChanged();
-    partial void OnLXDHChanging(string value);
-    partial void OnLXDHChanged();
-    partial void OnFRDBChanging(string value);
-    partial void OnFRDBChanged();
-    partial void OnFRDBSJHChanging(string value);
-    partial void OnFRDBSJHChanged();
-    partial void OnCYRYNMRSChanging(System.Nullable<int> value);
-    partial void OnCYRYNMRSChanged();
-    partial void OnJSJJRYZSChanging(System.Nullable<int> value);
-    partial void OnJSJJRYZSChanged();
-    partial void OnYZCRYSChanging(System.Nullable<int> value);
-    partial void OnYZCRYSChanged();
-    partial void OnGJZCRSChanging(System.Nullable<int> value);
-    partial void OnGJZCRSChanged();
-    partial void OnZJZCRSChanging(System.Nullable<int> value);
-    partial void OnZJZCRSChanged();
-    partial void OnZCRYZSChanging(System.Nullable<int> value);
-    partial void OnZCRYZSChanged();
-    partial void OnGDZCChanging(System.Nullable<double> value);
-    partial void OnGDZCChanged();
-    partial void OnGDZCNZJEChanging(System.Nullable<double> value);
-    partial void OnGDZCNZJEChanged();
-    partial void OnLDZCChanging(System.Nullable<double> value);
-    partial void OnLDZCChanged();
-    partial void OnFZZEChanging(System.Nullable<double> value);
-    partial void OnFZZEChanged();
-    partial void OnJZCChanging(System.Nullable<double> value);
-    partial void OnJZCChanged();
-    partial void OnQYZSRChanging(System.Nullable<double> value);
-    partial void OnQYZSRChanged();
-    partial void OnGCJSCBChanging(System.Nullable<decimal> value);
-    partial void OnGCJSCBChanged();
-    partial void OnGLFYChanging(System.Nullable<decimal> value);
-    partial void OnGLFYChanged();
-    partial void OnLSZEChanging(System.Nullable<decimal> value);
-    partial void OnLSZEChanged();
-    partial void OnSDSChanging(System.Nullable<double> value);
-    partial void OnSDSChanged();
-    partial void OnSCSJEChanging(System.Nullable<double> value);
-    partial void OnSCSJEChanged();
-    partial void OnLRZEChanging(System.Nullable<double> value);
-    partial void OnLRZEChanged();
-    partial void OnJLRChanging(System.Nullable<double> value);
-    partial void OnJLRChanged();
-    partial void OnJZCSYLChanging(System.Nullable<double> value);
-    partial void OnJZCSYLChanged();
-    partial void OnZBBZZZLChanging(System.Nullable<double> value);
-    partial void OnZBBZZZLChanged();
-    partial void OnYYLRChanging(System.Nullable<double> value);
-    partial void OnYYLRChanged();
-    partial void OnZCFZLChanging(System.Nullable<double> value);
-    partial void OnZCFZLChanged();
-    partial void OnJZYZCZChanging(System.Nullable<double> value);
-    partial void OnJZYZCZChanged();
-    partial void OnJZYZJZChanging(System.Nullable<double> value);
-    partial void OnJZYZJZChanged();
-    partial void OnLDZBCChanging(System.Nullable<double> value);
-    partial void OnLDZBCChanged();
-    partial void OnJXSBZTSChanging(System.Nullable<int> value);
-    partial void OnJXSBZTSChanged();
-    partial void OnJXSBZGLChanging(System.Nullable<double> value);
-    partial void OnJXSBZGLChanged();
-    partial void OnZLAQFSSGCSChanging(System.Nullable<int> value);
-    partial void OnZLAQFSSGCSChanged();
-    partial void OnJJSSChanging(System.Nullable<double> value);
-    partial void OnJJSSChanged();
-    partial void OnSWRSChanging(System.Nullable<int> value);
-    partial void OnSWRSChanged();
-    partial void OnZSRSChanging(System.Nullable<int> value);
-    partial void OnZSRSChanged();
-    #endregion
-		
-		public QY_JBXX()
-		{
-			this._QY_BLXWQK = new EntitySet<QY_BLXWQK>(new Action<QY_BLXWQK>(this.attach_QY_BLXWQK), new Action<QY_BLXWQK>(this.detach_QY_BLXWQK));
-			this._QY_GCYJXX = new EntitySet<QY_GCYJXX>(new Action<QY_GCYJXX>(this.attach_QY_GCYJXX), new Action<QY_GCYJXX>(this.detach_QY_GCYJXX));
-			this._QY_LHXWQK = new EntitySet<QY_LHXWQK>(new Action<QY_LHXWQK>(this.attach_QY_LHXWQK), new Action<QY_LHXWQK>(this.detach_QY_LHXWQK));
-			this._QY_QYBGQK = new EntitySet<QY_QYBGQK>(new Action<QY_QYBGQK>(this.attach_QY_QYBGQK), new Action<QY_QYBGQK>(this.detach_QY_QYBGQK));
-			this._QY_QYCYRYXX = new EntitySet<QY_QYCYRYXX>(new Action<QY_QYCYRYXX>(this.attach_QY_QYCYRYXX), new Action<QY_QYCYRYXX>(this.detach_QY_QYCYRYXX));
-			this._QY_QYCZRGDXX = new EntitySet<QY_QYCZRGDXX>(new Action<QY_QYCZRGDXX>(this.attach_QY_QYCZRGDXX), new Action<QY_QYCZRGDXX>(this.detach_QY_QYCZRGDXX));
-			this._QY_QYHBCZXX = new EntitySet<QY_QYHBCZXX>(new Action<QY_QYHBCZXX>(this.attach_QY_QYHBCZXX), new Action<QY_QYHBCZXX>(this.detach_QY_QYHBCZXX));
-			this._QY_QYJL = new EntitySet<QY_QYJL>(new Action<QY_QYJL>(this.attach_QY_QYJL), new Action<QY_QYJL>(this.detach_QY_QYJL));
-			this._QY_QYLSSQXX = new EntitySet<QY_QYLSSQXX>(new Action<QY_QYLSSQXX>(this.attach_QY_QYLSSQXX), new Action<QY_QYLSSQXX>(this.detach_QY_QYLSSQXX));
-			this._QY_QYNJQK = new EntitySet<QY_QYNJQK>(new Action<QY_QYNJQK>(this.attach_QY_QYNJQK), new Action<QY_QYNJQK>(this.detach_QY_QYNJQK));
-			this._QY_QYXYPD = new EntitySet<QY_QYXYPD>(new Action<QY_QYXYPD>(this.attach_QY_QYXYPD), new Action<QY_QYXYPD>(this.detach_QY_QYXYPD));
-			this._QY_QYZYRYXX = new EntitySet<QY_QYZYRYXX>(new Action<QY_QYZYRYXX>(this.attach_QY_QYZYRYXX), new Action<QY_QYZYRYXX>(this.detach_QY_QYZYRYXX));
-			this._QY_ZYJQSB = new EntitySet<QY_ZYJQSB>(new Action<QY_ZYJQSB>(this.attach_QY_ZYJQSB), new Action<QY_ZYJQSB>(this.detach_QY_ZYJQSB));
-			this._QY_QYZSXX = new EntitySet<QY_QYZSXX>(new Action<QY_QYZSXX>(this.attach_QY_QYZSXX), new Action<QY_QYZSXX>(this.detach_QY_QYZSXX));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYBM", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string QYBM
-		{
-			get
-			{
-				return this._QYBM;
-			}
-			set
-			{
-				if ((this._QYBM != value))
-				{
-					this.OnQYBMChanging(value);
-					this.SendPropertyChanging();
-					this._QYBM = value;
-					this.SendPropertyChanged("QYBM");
-					this.OnQYBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYLXBM", DbType="VarChar(10)")]
-		public string QYLXBM
-		{
-			get
-			{
-				return this._QYLXBM;
-			}
-			set
-			{
-				if ((this._QYLXBM != value))
-				{
-					this.OnQYLXBMChanging(value);
-					this.SendPropertyChanging();
-					this._QYLXBM = value;
-					this.SendPropertyChanged("QYLXBM");
-					this.OnQYLXBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYMC", DbType="VarChar(100)")]
-		public string QYMC
-		{
-			get
-			{
-				return this._QYMC;
-			}
-			set
-			{
-				if ((this._QYMC != value))
-				{
-					this.OnQYMCChanging(value);
-					this.SendPropertyChanging();
-					this._QYMC = value;
-					this.SendPropertyChanged("QYMC");
-					this.OnQYMCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYCYM", DbType="VarChar(100)")]
-		public string QYCYM
-		{
-			get
-			{
-				return this._QYCYM;
-			}
-			set
-			{
-				if ((this._QYCYM != value))
-				{
-					this.OnQYCYMChanging(value);
-					this.SendPropertyChanging();
-					this._QYCYM = value;
-					this.SendPropertyChanged("QYCYM");
-					this.OnQYCYMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JGDM", DbType="VarChar(40)")]
-		public string JGDM
-		{
-			get
-			{
-				return this._JGDM;
-			}
-			set
-			{
-				if ((this._JGDM != value))
-				{
-					this.OnJGDMChanging(value);
-					this.SendPropertyChanging();
-					this._JGDM = value;
-					this.SendPropertyChanged("JGDM");
-					this.OnJGDMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSDBM", DbType="VarChar(6)")]
-		public string SSDBM
-		{
-			get
-			{
-				return this._SSDBM;
-			}
-			set
-			{
-				if ((this._SSDBM != value))
-				{
-					this.OnSSDBMChanging(value);
-					this.SendPropertyChanging();
-					this._SSDBM = value;
-					this.SendPropertyChanged("SSDBM");
-					this.OnSSDBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrProvince", DbType="VarChar(6)")]
-		public string RegAdrProvince
-		{
-			get
-			{
-				return this._RegAdrProvince;
-			}
-			set
-			{
-				if ((this._RegAdrProvince != value))
-				{
-					this.OnRegAdrProvinceChanging(value);
-					this.SendPropertyChanging();
-					this._RegAdrProvince = value;
-					this.SendPropertyChanged("RegAdrProvince");
-					this.OnRegAdrProvinceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCity", DbType="VarChar(6)")]
-		public string RegAdrCity
-		{
-			get
-			{
-				return this._RegAdrCity;
-			}
-			set
-			{
-				if ((this._RegAdrCity != value))
-				{
-					this.OnRegAdrCityChanging(value);
-					this.SendPropertyChanging();
-					this._RegAdrCity = value;
-					this.SendPropertyChanged("RegAdrCity");
-					this.OnRegAdrCityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCountry", DbType="VarChar(6)")]
-		public string RegAdrCountry
-		{
-			get
-			{
-				return this._RegAdrCountry;
-			}
-			set
-			{
-				if ((this._RegAdrCountry != value))
-				{
-					this.OnRegAdrCountryChanging(value);
-					this.SendPropertyChanging();
-					this._RegAdrCountry = value;
-					this.SendPropertyChanged("RegAdrCountry");
-					this.OnRegAdrCountryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrProvinceName", DbType="VarChar(50)")]
-		public string RegAdrProvinceName
-		{
-			get
-			{
-				return this._RegAdrProvinceName;
-			}
-			set
-			{
-				if ((this._RegAdrProvinceName != value))
-				{
-					this.OnRegAdrProvinceNameChanging(value);
-					this.SendPropertyChanging();
-					this._RegAdrProvinceName = value;
-					this.SendPropertyChanged("RegAdrProvinceName");
-					this.OnRegAdrProvinceNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCityName", DbType="VarChar(50)")]
-		public string RegAdrCityName
-		{
-			get
-			{
-				return this._RegAdrCityName;
-			}
-			set
-			{
-				if ((this._RegAdrCityName != value))
-				{
-					this.OnRegAdrCityNameChanging(value);
-					this.SendPropertyChanging();
-					this._RegAdrCityName = value;
-					this.SendPropertyChanged("RegAdrCityName");
-					this.OnRegAdrCityNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCountryName", DbType="VarChar(50)")]
-		public string RegAdrCountryName
-		{
-			get
-			{
-				return this._RegAdrCountryName;
-			}
-			set
-			{
-				if ((this._RegAdrCountryName != value))
-				{
-					this.OnRegAdrCountryNameChanging(value);
-					this.SendPropertyChanging();
-					this._RegAdrCountryName = value;
-					this.SendPropertyChanged("RegAdrCountryName");
-					this.OnRegAdrCountryNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCDZ", DbType="VarChar(200)")]
-		public string ZCDZ
-		{
-			get
-			{
-				return this._ZCDZ;
-			}
-			set
-			{
-				if ((this._ZCDZ != value))
-				{
-					this.OnZCDZChanging(value);
-					this.SendPropertyChanging();
-					this._ZCDZ = value;
-					this.SendPropertyChanged("ZCDZ");
-					this.OnZCDZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCDZYZBM", DbType="VarChar(20)")]
-		public string ZCDZYZBM
-		{
-			get
-			{
-				return this._ZCDZYZBM;
-			}
-			set
-			{
-				if ((this._ZCDZYZBM != value))
-				{
-					this.OnZCDZYZBMChanging(value);
-					this.SendPropertyChanging();
-					this._ZCDZYZBM = value;
-					this.SendPropertyChanged("ZCDZYZBM");
-					this.OnZCDZYZBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYXXDZ", DbType="VarChar(200)")]
-		public string QYXXDZ
-		{
-			get
-			{
-				return this._QYXXDZ;
-			}
-			set
-			{
-				if ((this._QYXXDZ != value))
-				{
-					this.OnQYXXDZChanging(value);
-					this.SendPropertyChanging();
-					this._QYXXDZ = value;
-					this.SendPropertyChanged("QYXXDZ");
-					this.OnQYXXDZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XXDZYZBM", DbType="VarChar(20)")]
-		public string XXDZYZBM
-		{
-			get
-			{
-				return this._XXDZYZBM;
-			}
-			set
-			{
-				if ((this._XXDZYZBM != value))
-				{
-					this.OnXXDZYZBMChanging(value);
-					this.SendPropertyChanging();
-					this._XXDZYZBM = value;
-					this.SendPropertyChanged("XXDZYZBM");
-					this.OnXXDZYZBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZGBM", DbType="VarChar(100)")]
-		public string ZGBM
-		{
-			get
-			{
-				return this._ZGBM;
-			}
-			set
-			{
-				if ((this._ZGBM != value))
-				{
-					this.OnZGBMChanging(value);
-					this.SendPropertyChanging();
-					this._ZGBM = value;
-					this.SendPropertyChanged("ZGBM");
-					this.OnZGBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSGXBM", DbType="VarChar(10)")]
-		public string LSGXBM
-		{
-			get
-			{
-				return this._LSGXBM;
-			}
-			set
-			{
-				if ((this._LSGXBM != value))
-				{
-					this.OnLSGXBMChanging(value);
-					this.SendPropertyChanging();
-					this._LSGXBM = value;
-					this.SendPropertyChanged("LSGXBM");
-					this.OnLSGXBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSGXMC", DbType="VarChar(50)")]
-		public string LSGXMC
-		{
-			get
-			{
-				return this._LSGXMC;
-			}
-			set
-			{
-				if ((this._LSGXMC != value))
-				{
-					this.OnLSGXMCChanging(value);
-					this.SendPropertyChanging();
-					this._LSGXMC = value;
-					this.SendPropertyChanged("LSGXMC");
-					this.OnLSGXMCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYCLRQ", DbType="VarChar(19)")]
-		public string QYCLRQ
-		{
-			get
-			{
-				return this._QYCLRQ;
-			}
-			set
-			{
-				if ((this._QYCLRQ != value))
-				{
-					this.OnQYCLRQChanging(value);
-					this.SendPropertyChanging();
-					this._QYCLRQ = value;
-					this.SendPropertyChanged("QYCLRQ");
-					this.OnQYCLRQChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GSZCRQ", DbType="VarChar(19)")]
-		public string GSZCRQ
-		{
-			get
-			{
-				return this._GSZCRQ;
-			}
-			set
-			{
-				if ((this._GSZCRQ != value))
-				{
-					this.OnGSZCRQChanging(value);
-					this.SendPropertyChanging();
-					this._GSZCRQ = value;
-					this.SendPropertyChanged("GSZCRQ");
-					this.OnGSZCRQChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JJXZBM", DbType="VarChar(10)")]
-		public string JJXZBM
-		{
-			get
-			{
-				return this._JJXZBM;
-			}
-			set
-			{
-				if ((this._JJXZBM != value))
-				{
-					this.OnJJXZBMChanging(value);
-					this.SendPropertyChanging();
-					this._JJXZBM = value;
-					this.SendPropertyChanged("JJXZBM");
-					this.OnJJXZBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JJXZMC", DbType="VarChar(50)")]
-		public string JJXZMC
-		{
-			get
-			{
-				return this._JJXZMC;
-			}
-			set
-			{
-				if ((this._JJXZMC != value))
-				{
-					this.OnJJXZMCChanging(value);
-					this.SendPropertyChanging();
-					this._JJXZMC = value;
-					this.SendPropertyChanged("JJXZMC");
-					this.OnJJXZMCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEZZZCH", DbType="VarChar(50)")]
-		public string YEZZZCH
-		{
-			get
-			{
-				return this._YEZZZCH;
-			}
-			set
-			{
-				if ((this._YEZZZCH != value))
-				{
-					this.OnYEZZZCHChanging(value);
-					this.SendPropertyChanging();
-					this._YEZZZCH = value;
-					this.SendPropertyChanged("YEZZZCH");
-					this.OnYEZZZCHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEZZFZJG", DbType="VarChar(100)")]
-		public string YEZZFZJG
-		{
-			get
-			{
-				return this._YEZZFZJG;
-			}
-			set
-			{
-				if ((this._YEZZFZJG != value))
-				{
-					this.OnYEZZFZJGChanging(value);
-					this.SendPropertyChanging();
-					this._YEZZFZJG = value;
-					this.SendPropertyChanged("YEZZFZJG");
-					this.OnYEZZFZJGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZBJ", DbType="Float")]
-		public System.Nullable<double> ZCZBJ
-		{
-			get
-			{
-				return this._ZCZBJ;
-			}
-			set
-			{
-				if ((this._ZCZBJ != value))
-				{
-					this.OnZCZBJChanging(value);
-					this.SendPropertyChanging();
-					this._ZCZBJ = value;
-					this.SendPropertyChanged("ZCZBJ");
-					this.OnZCZBJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HBLXBM", DbType="VarChar(10)")]
-		public string HBLXBM
-		{
-			get
-			{
-				return this._HBLXBM;
-			}
-			set
-			{
-				if ((this._HBLXBM != value))
-				{
-					this.OnHBLXBMChanging(value);
-					this.SendPropertyChanging();
-					this._HBLXBM = value;
-					this.SendPropertyChanged("HBLXBM");
-					this.OnHBLXBMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HBLXMC", DbType="VarChar(20)")]
-		public string HBLXMC
-		{
-			get
-			{
-				return this._HBLXMC;
-			}
-			set
-			{
-				if ((this._HBLXMC != value))
-				{
-					this.OnHBLXMCChanging(value);
-					this.SendPropertyChanging();
-					this._HBLXMC = value;
-					this.SendPropertyChanged("HBLXMC");
-					this.OnHBLXMCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KHYH", DbType="VarChar(100)")]
-		public string KHYH
-		{
-			get
-			{
-				return this._KHYH;
-			}
-			set
-			{
-				if ((this._KHYH != value))
-				{
-					this.OnKHYHChanging(value);
-					this.SendPropertyChanging();
-					this._KHYH = value;
-					this.SendPropertyChanged("KHYH");
-					this.OnKHYHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KHYHZH", DbType="VarChar(50)")]
-		public string KHYHZH
-		{
-			get
-			{
-				return this._KHYHZH;
-			}
-			set
-			{
-				if ((this._KHYHZH != value))
-				{
-					this.OnKHYHZHChanging(value);
-					this.SendPropertyChanging();
-					this._KHYHZH = value;
-					this.SendPropertyChanged("KHYHZH");
-					this.OnKHYHZHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYWZ", DbType="VarChar(60)")]
-		public string QYWZ
-		{
-			get
-			{
-				return this._QYWZ;
-			}
-			set
-			{
-				if ((this._QYWZ != value))
-				{
-					this.OnQYWZChanging(value);
-					this.SendPropertyChanging();
-					this._QYWZ = value;
-					this.SendPropertyChanged("QYWZ");
-					this.OnQYWZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DZYJ", DbType="VarChar(60)")]
-		public string DZYJ
-		{
-			get
-			{
-				return this._DZYJ;
-			}
-			set
-			{
-				if ((this._DZYJ != value))
-				{
-					this.OnDZYJChanging(value);
-					this.SendPropertyChanging();
-					this._DZYJ = value;
-					this.SendPropertyChanged("DZYJ");
-					this.OnDZYJChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CZ", DbType="VarChar(30)")]
-		public string CZ
-		{
-			get
-			{
-				return this._CZ;
-			}
-			set
-			{
-				if ((this._CZ != value))
-				{
-					this.OnCZChanging(value);
-					this.SendPropertyChanging();
-					this._CZ = value;
-					this.SendPropertyChanged("CZ");
-					this.OnCZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXR", DbType="VarChar(50)")]
-		public string LXR
-		{
-			get
-			{
-				return this._LXR;
-			}
-			set
-			{
-				if ((this._LXR != value))
-				{
-					this.OnLXRChanging(value);
-					this.SendPropertyChanging();
-					this._LXR = value;
-					this.SendPropertyChanged("LXR");
-					this.OnLXRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXDH", DbType="VarChar(50)")]
-		public string LXDH
-		{
-			get
-			{
-				return this._LXDH;
-			}
-			set
-			{
-				if ((this._LXDH != value))
-				{
-					this.OnLXDHChanging(value);
-					this.SendPropertyChanging();
-					this._LXDH = value;
-					this.SendPropertyChanged("LXDH");
-					this.OnLXDHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRDB", DbType="VarChar(30)")]
-		public string FRDB
-		{
-			get
-			{
-				return this._FRDB;
-			}
-			set
-			{
-				if ((this._FRDB != value))
-				{
-					this.OnFRDBChanging(value);
-					this.SendPropertyChanging();
-					this._FRDB = value;
-					this.SendPropertyChanged("FRDB");
-					this.OnFRDBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRDBSJH", DbType="VarChar(50)")]
-		public string FRDBSJH
-		{
-			get
-			{
-				return this._FRDBSJH;
-			}
-			set
-			{
-				if ((this._FRDBSJH != value))
-				{
-					this.OnFRDBSJHChanging(value);
-					this.SendPropertyChanging();
-					this._FRDBSJH = value;
-					this.SendPropertyChanged("FRDBSJH");
-					this.OnFRDBSJHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CYRYNMRS", DbType="Int")]
-		public System.Nullable<int> CYRYNMRS
-		{
-			get
-			{
-				return this._CYRYNMRS;
-			}
-			set
-			{
-				if ((this._CYRYNMRS != value))
-				{
-					this.OnCYRYNMRSChanging(value);
-					this.SendPropertyChanging();
-					this._CYRYNMRS = value;
-					this.SendPropertyChanged("CYRYNMRS");
-					this.OnCYRYNMRSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSJJRYZS", DbType="Int")]
-		public System.Nullable<int> JSJJRYZS
-		{
-			get
-			{
-				return this._JSJJRYZS;
-			}
-			set
-			{
-				if ((this._JSJJRYZS != value))
-				{
-					this.OnJSJJRYZSChanging(value);
-					this.SendPropertyChanging();
-					this._JSJJRYZS = value;
-					this.SendPropertyChanged("JSJJRYZS");
-					this.OnJSJJRYZSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YZCRYS", DbType="Int")]
-		public System.Nullable<int> YZCRYS
-		{
-			get
-			{
-				return this._YZCRYS;
-			}
-			set
-			{
-				if ((this._YZCRYS != value))
-				{
-					this.OnYZCRYSChanging(value);
-					this.SendPropertyChanging();
-					this._YZCRYS = value;
-					this.SendPropertyChanged("YZCRYS");
-					this.OnYZCRYSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GJZCRS", DbType="Int")]
-		public System.Nullable<int> GJZCRS
-		{
-			get
-			{
-				return this._GJZCRS;
-			}
-			set
-			{
-				if ((this._GJZCRS != value))
-				{
-					this.OnGJZCRSChanging(value);
-					this.SendPropertyChanging();
-					this._GJZCRS = value;
-					this.SendPropertyChanged("GJZCRS");
-					this.OnGJZCRSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZJZCRS", DbType="Int")]
-		public System.Nullable<int> ZJZCRS
-		{
-			get
-			{
-				return this._ZJZCRS;
-			}
-			set
-			{
-				if ((this._ZJZCRS != value))
-				{
-					this.OnZJZCRSChanging(value);
-					this.SendPropertyChanging();
-					this._ZJZCRS = value;
-					this.SendPropertyChanged("ZJZCRS");
-					this.OnZJZCRSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCRYZS", DbType="Int")]
-		public System.Nullable<int> ZCRYZS
-		{
-			get
-			{
-				return this._ZCRYZS;
-			}
-			set
-			{
-				if ((this._ZCRYZS != value))
-				{
-					this.OnZCRYZSChanging(value);
-					this.SendPropertyChanging();
-					this._ZCRYZS = value;
-					this.SendPropertyChanged("ZCRYZS");
-					this.OnZCRYZSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GDZC", DbType="Float")]
-		public System.Nullable<double> GDZC
-		{
-			get
-			{
-				return this._GDZC;
-			}
-			set
-			{
-				if ((this._GDZC != value))
-				{
-					this.OnGDZCChanging(value);
-					this.SendPropertyChanging();
-					this._GDZC = value;
-					this.SendPropertyChanged("GDZC");
-					this.OnGDZCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GDZCNZJE", DbType="Float")]
-		public System.Nullable<double> GDZCNZJE
-		{
-			get
-			{
-				return this._GDZCNZJE;
-			}
-			set
-			{
-				if ((this._GDZCNZJE != value))
-				{
-					this.OnGDZCNZJEChanging(value);
-					this.SendPropertyChanging();
-					this._GDZCNZJE = value;
-					this.SendPropertyChanged("GDZCNZJE");
-					this.OnGDZCNZJEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LDZC", DbType="Float")]
-		public System.Nullable<double> LDZC
-		{
-			get
-			{
-				return this._LDZC;
-			}
-			set
-			{
-				if ((this._LDZC != value))
-				{
-					this.OnLDZCChanging(value);
-					this.SendPropertyChanging();
-					this._LDZC = value;
-					this.SendPropertyChanged("LDZC");
-					this.OnLDZCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZZE", DbType="Float")]
-		public System.Nullable<double> FZZE
-		{
-			get
-			{
-				return this._FZZE;
-			}
-			set
-			{
-				if ((this._FZZE != value))
-				{
-					this.OnFZZEChanging(value);
-					this.SendPropertyChanging();
-					this._FZZE = value;
-					this.SendPropertyChanged("FZZE");
-					this.OnFZZEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZC", DbType="Float")]
-		public System.Nullable<double> JZC
-		{
-			get
-			{
-				return this._JZC;
-			}
-			set
-			{
-				if ((this._JZC != value))
-				{
-					this.OnJZCChanging(value);
-					this.SendPropertyChanging();
-					this._JZC = value;
-					this.SendPropertyChanged("JZC");
-					this.OnJZCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYZSR", DbType="Float")]
-		public System.Nullable<double> QYZSR
-		{
-			get
-			{
-				return this._QYZSR;
-			}
-			set
-			{
-				if ((this._QYZSR != value))
-				{
-					this.OnQYZSRChanging(value);
-					this.SendPropertyChanging();
-					this._QYZSR = value;
-					this.SendPropertyChanged("QYZSR");
-					this.OnQYZSRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GCJSCB", DbType="Decimal(18,6)")]
-		public System.Nullable<decimal> GCJSCB
-		{
-			get
-			{
-				return this._GCJSCB;
-			}
-			set
-			{
-				if ((this._GCJSCB != value))
-				{
-					this.OnGCJSCBChanging(value);
-					this.SendPropertyChanging();
-					this._GCJSCB = value;
-					this.SendPropertyChanged("GCJSCB");
-					this.OnGCJSCBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GLFY", DbType="Decimal(18,6)")]
-		public System.Nullable<decimal> GLFY
-		{
-			get
-			{
-				return this._GLFY;
-			}
-			set
-			{
-				if ((this._GLFY != value))
-				{
-					this.OnGLFYChanging(value);
-					this.SendPropertyChanging();
-					this._GLFY = value;
-					this.SendPropertyChanged("GLFY");
-					this.OnGLFYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSZE", DbType="Decimal(18,6)")]
-		public System.Nullable<decimal> LSZE
-		{
-			get
-			{
-				return this._LSZE;
-			}
-			set
-			{
-				if ((this._LSZE != value))
-				{
-					this.OnLSZEChanging(value);
-					this.SendPropertyChanging();
-					this._LSZE = value;
-					this.SendPropertyChanged("LSZE");
-					this.OnLSZEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDS", DbType="Float")]
-		public System.Nullable<double> SDS
-		{
-			get
-			{
-				return this._SDS;
-			}
-			set
-			{
-				if ((this._SDS != value))
-				{
-					this.OnSDSChanging(value);
-					this.SendPropertyChanging();
-					this._SDS = value;
-					this.SendPropertyChanged("SDS");
-					this.OnSDSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SCSJE", DbType="Float")]
-		public System.Nullable<double> SCSJE
-		{
-			get
-			{
-				return this._SCSJE;
-			}
-			set
-			{
-				if ((this._SCSJE != value))
-				{
-					this.OnSCSJEChanging(value);
-					this.SendPropertyChanging();
-					this._SCSJE = value;
-					this.SendPropertyChanged("SCSJE");
-					this.OnSCSJEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LRZE", DbType="Float")]
-		public System.Nullable<double> LRZE
-		{
-			get
-			{
-				return this._LRZE;
-			}
-			set
-			{
-				if ((this._LRZE != value))
-				{
-					this.OnLRZEChanging(value);
-					this.SendPropertyChanging();
-					this._LRZE = value;
-					this.SendPropertyChanged("LRZE");
-					this.OnLRZEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JLR", DbType="Float")]
-		public System.Nullable<double> JLR
+		public System.Data.Linq.Table<QY_JBXX> QY_JBXX
 		{
 			get
 			{
-				return this._JLR;
+				return this.GetTable<QY_JBXX>();
 			}
-			set
-			{
-				if ((this._JLR != value))
-				{
-					this.OnJLRChanging(value);
-					this.SendPropertyChanging();
-					this._JLR = value;
-					this.SendPropertyChanged("JLR");
-					this.OnJLRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZCSYL", DbType="Float")]
-		public System.Nullable<double> JZCSYL
-		{
-			get
-			{
-				return this._JZCSYL;
-			}
-			set
-			{
-				if ((this._JZCSYL != value))
-				{
-					this.OnJZCSYLChanging(value);
-					this.SendPropertyChanging();
-					this._JZCSYL = value;
-					this.SendPropertyChanged("JZCSYL");
-					this.OnJZCSYLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZBBZZZL", DbType="Float")]
-		public System.Nullable<double> ZBBZZZL
-		{
-			get
-			{
-				return this._ZBBZZZL;
-			}
-			set
-			{
-				if ((this._ZBBZZZL != value))
-				{
-					this.OnZBBZZZLChanging(value);
-					this.SendPropertyChanging();
-					this._ZBBZZZL = value;
-					this.SendPropertyChanged("ZBBZZZL");
-					this.OnZBBZZZLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YYLR", DbType="Float")]
-		public System.Nullable<double> YYLR
-		{
-			get
-			{
-				return this._YYLR;
-			}
-			set
-			{
-				if ((this._YYLR != value))
-				{
-					this.OnYYLRChanging(value);
-					this.SendPropertyChanging();
-					this._YYLR = value;
-					this.SendPropertyChanged("YYLR");
-					this.OnYYLRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCFZL", DbType="Float")]
-		public System.Nullable<double> ZCFZL
-		{
-			get
-			{
-				return this._ZCFZL;
-			}
-			set
-			{
-				if ((this._ZCFZL != value))
-				{
-					this.OnZCFZLChanging(value);
-					this.SendPropertyChanging();
-					this._ZCFZL = value;
-					this.SendPropertyChanged("ZCFZL");
-					this.OnZCFZLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZYZCZ", DbType="Float")]
-		public System.Nullable<double> JZYZCZ
-		{
-			get
-			{
-				return this._JZYZCZ;
-			}
-			set
-			{
-				if ((this._JZYZCZ != value))
-				{
-					this.OnJZYZCZChanging(value);
-					this.SendPropertyChanging();
-					this._JZYZCZ = value;
-					this.SendPropertyChanged("JZYZCZ");
-					this.OnJZYZCZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZYZJZ", DbType="Float")]
-		public System.Nullable<double> JZYZJZ
-		{
-			get
-			{
-				return this._JZYZJZ;
-			}
-			set
-			{
-				if ((this._JZYZJZ != value))
-				{
-					this.OnJZYZJZChanging(value);
-					this.SendPropertyChanging();
-					this._JZYZJZ = value;
-					this.SendPropertyChanged("JZYZJZ");
-					this.OnJZYZJZChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LDZBC", DbType="Float")]
-		public System.Nullable<double> LDZBC
-		{
-			get
-			{
-				return this._LDZBC;
-			}
-			set
-			{
-				if ((this._LDZBC != value))
-				{
-					this.OnLDZBCChanging(value);
-					this.SendPropertyChanging();
-					this._LDZBC = value;
-					this.SendPropertyChanged("LDZBC");
-					this.OnLDZBCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JXSBZTS", DbType="Int")]
-		public System.Nullable<int> JXSBZTS
-		{
-			get
-			{
-				return this._JXSBZTS;
-			}
-			set
-			{
-				if ((this._JXSBZTS != value))
-				{
-					this.OnJXSBZTSChanging(value);
-					this.SendPropertyChanging();
-					this._JXSBZTS = value;
-					this.SendPropertyChanged("JXSBZTS");
-					this.OnJXSBZTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JXSBZGL", DbType="Float")]
-		public System.Nullable<double> JXSBZGL
-		{
-			get
-			{
-				return this._JXSBZGL;
-			}
-			set
-			{
-				if ((this._JXSBZGL != value))
-				{
-					this.OnJXSBZGLChanging(value);
-					this.SendPropertyChanging();
-					this._JXSBZGL = value;
-					this.SendPropertyChanged("JXSBZGL");
-					this.OnJXSBZGLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZLAQFSSGCS", DbType="Int")]
-		public System.Nullable<int> ZLAQFSSGCS
-		{
-			get
-			{
-				return this._ZLAQFSSGCS;
-			}
-			set
-			{
-				if ((this._ZLAQFSSGCS != value))
-				{
-					this.OnZLAQFSSGCSChanging(value);
-					this.SendPropertyChanging();
-					this._ZLAQFSSGCS = value;
-					this.SendPropertyChanged("ZLAQFSSGCS");
-					this.OnZLAQFSSGCSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JJSS", DbType="Float")]
-		public System.Nullable<double> JJSS
-		{
-			get
-			{
-				return this._JJSS;
-			}
-			set
-			{
-				if ((this._JJSS != value))
-				{
-					this.OnJJSSChanging(value);
-					this.SendPropertyChanging();
-					this._JJSS = value;
-					this.SendPropertyChanged("JJSS");
-					this.OnJJSSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SWRS", DbType="Int")]
-		public System.Nullable<int> SWRS
-		{
-			get
-			{
-				return this._SWRS;
-			}
-			set
-			{
-				if ((this._SWRS != value))
-				{
-					this.OnSWRSChanging(value);
-					this.SendPropertyChanging();
-					this._SWRS = value;
-					this.SendPropertyChanged("SWRS");
-					this.OnSWRSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSRS", DbType="Int")]
-		public System.Nullable<int> ZSRS
-		{
-			get
-			{
-				return this._ZSRS;
-			}
-			set
-			{
-				if ((this._ZSRS != value))
-				{
-					this.OnZSRSChanging(value);
-					this.SendPropertyChanging();
-					this._ZSRS = value;
-					this.SendPropertyChanged("ZSRS");
-					this.OnZSRSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_BLXWQK", Storage="_QY_BLXWQK", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_BLXWQK> QY_BLXWQK
-		{
-			get
-			{
-				return this._QY_BLXWQK;
-			}
-			set
-			{
-				this._QY_BLXWQK.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_GCYJXX", Storage="_QY_GCYJXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_GCYJXX> QY_GCYJXX
-		{
-			get
-			{
-				return this._QY_GCYJXX;
-			}
-			set
-			{
-				this._QY_GCYJXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_LHXWQK", Storage="_QY_LHXWQK", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_LHXWQK> QY_LHXWQK
-		{
-			get
-			{
-				return this._QY_LHXWQK;
-			}
-			set
-			{
-				this._QY_LHXWQK.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYBGQK", Storage="_QY_QYBGQK", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYBGQK> QY_QYBGQK
-		{
-			get
-			{
-				return this._QY_QYBGQK;
-			}
-			set
-			{
-				this._QY_QYBGQK.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYCYRYXX", Storage="_QY_QYCYRYXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYCYRYXX> QY_QYCYRYXX
-		{
-			get
-			{
-				return this._QY_QYCYRYXX;
-			}
-			set
-			{
-				this._QY_QYCYRYXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYCZRGDXX", Storage="_QY_QYCZRGDXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYCZRGDXX> QY_QYCZRGDXX
-		{
-			get
-			{
-				return this._QY_QYCZRGDXX;
-			}
-			set
-			{
-				this._QY_QYCZRGDXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYHBCZXX", Storage="_QY_QYHBCZXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYHBCZXX> QY_QYHBCZXX
-		{
-			get
-			{
-				return this._QY_QYHBCZXX;
-			}
-			set
-			{
-				this._QY_QYHBCZXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYJL", Storage="_QY_QYJL", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYJL> QY_QYJL
-		{
-			get
-			{
-				return this._QY_QYJL;
-			}
-			set
-			{
-				this._QY_QYJL.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYLSSQXX", Storage="_QY_QYLSSQXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYLSSQXX> QY_QYLSSQXX
-		{
-			get
-			{
-				return this._QY_QYLSSQXX;
-			}
-			set
-			{
-				this._QY_QYLSSQXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYNJQK", Storage="_QY_QYNJQK", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYNJQK> QY_QYNJQK
-		{
-			get
-			{
-				return this._QY_QYNJQK;
-			}
-			set
-			{
-				this._QY_QYNJQK.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYXYPD", Storage="_QY_QYXYPD", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYXYPD> QY_QYXYPD
-		{
-			get
-			{
-				return this._QY_QYXYPD;
-			}
-			set
-			{
-				this._QY_QYXYPD.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYZYRYXX", Storage="_QY_QYZYRYXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYZYRYXX> QY_QYZYRYXX
-		{
-			get
-			{
-				return this._QY_QYZYRYXX;
-			}
-			set
-			{
-				this._QY_QYZYRYXX.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_ZYJQSB", Storage="_QY_ZYJQSB", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_ZYJQSB> QY_ZYJQSB
-		{
-			get
-			{
-				return this._QY_ZYJQSB;
-			}
-			set
-			{
-				this._QY_ZYJQSB.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYZSXX", Storage="_QY_QYZSXX", ThisKey="QYBM", OtherKey="QYBM")]
-		public EntitySet<QY_QYZSXX> QY_QYZSXX
-		{
-			get
-			{
-				return this._QY_QYZSXX;
-			}
-			set
-			{
-				this._QY_QYZSXX.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_QY_BLXWQK(QY_BLXWQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_BLXWQK(QY_BLXWQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_GCYJXX(QY_GCYJXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_GCYJXX(QY_GCYJXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_LHXWQK(QY_LHXWQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_LHXWQK(QY_LHXWQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYBGQK(QY_QYBGQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYBGQK(QY_QYBGQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYCYRYXX(QY_QYCYRYXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYCYRYXX(QY_QYCYRYXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYCZRGDXX(QY_QYCZRGDXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYCZRGDXX(QY_QYCZRGDXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYHBCZXX(QY_QYHBCZXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYHBCZXX(QY_QYHBCZXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYJL(QY_QYJL entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYJL(QY_QYJL entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYLSSQXX(QY_QYLSSQXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYLSSQXX(QY_QYLSSQXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYNJQK(QY_QYNJQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYNJQK(QY_QYNJQK entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYXYPD(QY_QYXYPD entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYXYPD(QY_QYXYPD entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYZYRYXX(QY_QYZYRYXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYZYRYXX(QY_QYZYRYXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_ZYJQSB(QY_ZYJQSB entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_ZYJQSB(QY_ZYJQSB entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
-		}
-		
-		private void attach_QY_QYZSXX(QY_QYZSXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = this;
-		}
-		
-		private void detach_QY_QYZSXX(QY_QYZSXX entity)
-		{
-			this.SendPropertyChanging();
-			entity.QY_JBXX = null;
 		}
 	}
 	
@@ -16958,6 +14872,2116 @@ namespace EgovaDAO
 		{
 			this.SendPropertyChanging();
 			entity.RY_RYJBXX = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QY_JBXX")]
+	public partial class QY_JBXX : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _QYBM;
+		
+		private string _QYLXBM;
+		
+		private string _QYMC;
+		
+		private string _QYCYM;
+		
+		private string _JGDM;
+		
+		private string _SSDBM;
+		
+		private string _RegAdrProvince;
+		
+		private string _RegAdrCity;
+		
+		private string _RegAdrCountry;
+		
+		private string _RegAdrProvinceName;
+		
+		private string _RegAdrCityName;
+		
+		private string _RegAdrCountryName;
+		
+		private string _ZCDZ;
+		
+		private string _ZCDZYZBM;
+		
+		private string _QYXXDZ;
+		
+		private string _XXDZYZBM;
+		
+		private string _ZGBM;
+		
+		private string _LSGXBM;
+		
+		private string _LSGXMC;
+		
+		private string _QYCLRQ;
+		
+		private string _GSZCRQ;
+		
+		private string _JJXZBM;
+		
+		private string _JJXZMC;
+		
+		private string _YEZZZCH;
+		
+		private string _YEZZFZJG;
+		
+		private System.Nullable<double> _ZCZBJ;
+		
+		private string _HBLXBM;
+		
+		private string _HBLXMC;
+		
+		private string _KHYH;
+		
+		private string _KHYHZH;
+		
+		private string _QYWZ;
+		
+		private string _DZYJ;
+		
+		private string _CZ;
+		
+		private string _LXR;
+		
+		private string _LXDH;
+		
+		private string _FRDB;
+		
+		private string _FRDBSJH;
+		
+		private System.Nullable<int> _CYRYNMRS;
+		
+		private System.Nullable<int> _JSJJRYZS;
+		
+		private System.Nullable<int> _YZCRYS;
+		
+		private System.Nullable<int> _GJZCRS;
+		
+		private System.Nullable<int> _ZJZCRS;
+		
+		private System.Nullable<int> _ZCRYZS;
+		
+		private System.Nullable<double> _GDZC;
+		
+		private System.Nullable<double> _GDZCNZJE;
+		
+		private System.Nullable<double> _LDZC;
+		
+		private System.Nullable<double> _FZZE;
+		
+		private System.Nullable<double> _JZC;
+		
+		private System.Nullable<double> _QYZSR;
+		
+		private System.Nullable<decimal> _GCJSCB;
+		
+		private System.Nullable<decimal> _GLFY;
+		
+		private System.Nullable<decimal> _LSZE;
+		
+		private System.Nullable<double> _SDS;
+		
+		private System.Nullable<double> _SCSJE;
+		
+		private System.Nullable<double> _LRZE;
+		
+		private System.Nullable<double> _JLR;
+		
+		private System.Nullable<double> _JZCSYL;
+		
+		private System.Nullable<double> _ZBBZZZL;
+		
+		private System.Nullable<double> _YYLR;
+		
+		private System.Nullable<double> _ZCFZL;
+		
+		private System.Nullable<double> _JZYZCZ;
+		
+		private System.Nullable<double> _JZYZJZ;
+		
+		private System.Nullable<double> _LDZBC;
+		
+		private System.Nullable<int> _JXSBZTS;
+		
+		private System.Nullable<double> _JXSBZGL;
+		
+		private System.Nullable<int> _ZLAQFSSGCS;
+		
+		private System.Nullable<double> _JJSS;
+		
+		private System.Nullable<int> _SWRS;
+		
+		private System.Nullable<int> _ZSRS;
+		
+		private string _FCompanyId;
+		
+		private EntitySet<QY_BLXWQK> _QY_BLXWQK;
+		
+		private EntitySet<QY_GCYJXX> _QY_GCYJXX;
+		
+		private EntitySet<QY_LHXWQK> _QY_LHXWQK;
+		
+		private EntitySet<QY_QYBGQK> _QY_QYBGQK;
+		
+		private EntitySet<QY_QYCYRYXX> _QY_QYCYRYXX;
+		
+		private EntitySet<QY_QYCZRGDXX> _QY_QYCZRGDXX;
+		
+		private EntitySet<QY_QYHBCZXX> _QY_QYHBCZXX;
+		
+		private EntitySet<QY_QYJL> _QY_QYJL;
+		
+		private EntitySet<QY_QYLSSQXX> _QY_QYLSSQXX;
+		
+		private EntitySet<QY_QYNJQK> _QY_QYNJQK;
+		
+		private EntitySet<QY_QYXYPD> _QY_QYXYPD;
+		
+		private EntitySet<QY_QYZYRYXX> _QY_QYZYRYXX;
+		
+		private EntitySet<QY_ZYJQSB> _QY_ZYJQSB;
+		
+		private EntitySet<QY_QYZSXX> _QY_QYZSXX;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQYBMChanging(string value);
+    partial void OnQYBMChanged();
+    partial void OnQYLXBMChanging(string value);
+    partial void OnQYLXBMChanged();
+    partial void OnQYMCChanging(string value);
+    partial void OnQYMCChanged();
+    partial void OnQYCYMChanging(string value);
+    partial void OnQYCYMChanged();
+    partial void OnJGDMChanging(string value);
+    partial void OnJGDMChanged();
+    partial void OnSSDBMChanging(string value);
+    partial void OnSSDBMChanged();
+    partial void OnRegAdrProvinceChanging(string value);
+    partial void OnRegAdrProvinceChanged();
+    partial void OnRegAdrCityChanging(string value);
+    partial void OnRegAdrCityChanged();
+    partial void OnRegAdrCountryChanging(string value);
+    partial void OnRegAdrCountryChanged();
+    partial void OnRegAdrProvinceNameChanging(string value);
+    partial void OnRegAdrProvinceNameChanged();
+    partial void OnRegAdrCityNameChanging(string value);
+    partial void OnRegAdrCityNameChanged();
+    partial void OnRegAdrCountryNameChanging(string value);
+    partial void OnRegAdrCountryNameChanged();
+    partial void OnZCDZChanging(string value);
+    partial void OnZCDZChanged();
+    partial void OnZCDZYZBMChanging(string value);
+    partial void OnZCDZYZBMChanged();
+    partial void OnQYXXDZChanging(string value);
+    partial void OnQYXXDZChanged();
+    partial void OnXXDZYZBMChanging(string value);
+    partial void OnXXDZYZBMChanged();
+    partial void OnZGBMChanging(string value);
+    partial void OnZGBMChanged();
+    partial void OnLSGXBMChanging(string value);
+    partial void OnLSGXBMChanged();
+    partial void OnLSGXMCChanging(string value);
+    partial void OnLSGXMCChanged();
+    partial void OnQYCLRQChanging(string value);
+    partial void OnQYCLRQChanged();
+    partial void OnGSZCRQChanging(string value);
+    partial void OnGSZCRQChanged();
+    partial void OnJJXZBMChanging(string value);
+    partial void OnJJXZBMChanged();
+    partial void OnJJXZMCChanging(string value);
+    partial void OnJJXZMCChanged();
+    partial void OnYEZZZCHChanging(string value);
+    partial void OnYEZZZCHChanged();
+    partial void OnYEZZFZJGChanging(string value);
+    partial void OnYEZZFZJGChanged();
+    partial void OnZCZBJChanging(System.Nullable<double> value);
+    partial void OnZCZBJChanged();
+    partial void OnHBLXBMChanging(string value);
+    partial void OnHBLXBMChanged();
+    partial void OnHBLXMCChanging(string value);
+    partial void OnHBLXMCChanged();
+    partial void OnKHYHChanging(string value);
+    partial void OnKHYHChanged();
+    partial void OnKHYHZHChanging(string value);
+    partial void OnKHYHZHChanged();
+    partial void OnQYWZChanging(string value);
+    partial void OnQYWZChanged();
+    partial void OnDZYJChanging(string value);
+    partial void OnDZYJChanged();
+    partial void OnCZChanging(string value);
+    partial void OnCZChanged();
+    partial void OnLXRChanging(string value);
+    partial void OnLXRChanged();
+    partial void OnLXDHChanging(string value);
+    partial void OnLXDHChanged();
+    partial void OnFRDBChanging(string value);
+    partial void OnFRDBChanged();
+    partial void OnFRDBSJHChanging(string value);
+    partial void OnFRDBSJHChanged();
+    partial void OnCYRYNMRSChanging(System.Nullable<int> value);
+    partial void OnCYRYNMRSChanged();
+    partial void OnJSJJRYZSChanging(System.Nullable<int> value);
+    partial void OnJSJJRYZSChanged();
+    partial void OnYZCRYSChanging(System.Nullable<int> value);
+    partial void OnYZCRYSChanged();
+    partial void OnGJZCRSChanging(System.Nullable<int> value);
+    partial void OnGJZCRSChanged();
+    partial void OnZJZCRSChanging(System.Nullable<int> value);
+    partial void OnZJZCRSChanged();
+    partial void OnZCRYZSChanging(System.Nullable<int> value);
+    partial void OnZCRYZSChanged();
+    partial void OnGDZCChanging(System.Nullable<double> value);
+    partial void OnGDZCChanged();
+    partial void OnGDZCNZJEChanging(System.Nullable<double> value);
+    partial void OnGDZCNZJEChanged();
+    partial void OnLDZCChanging(System.Nullable<double> value);
+    partial void OnLDZCChanged();
+    partial void OnFZZEChanging(System.Nullable<double> value);
+    partial void OnFZZEChanged();
+    partial void OnJZCChanging(System.Nullable<double> value);
+    partial void OnJZCChanged();
+    partial void OnQYZSRChanging(System.Nullable<double> value);
+    partial void OnQYZSRChanged();
+    partial void OnGCJSCBChanging(System.Nullable<decimal> value);
+    partial void OnGCJSCBChanged();
+    partial void OnGLFYChanging(System.Nullable<decimal> value);
+    partial void OnGLFYChanged();
+    partial void OnLSZEChanging(System.Nullable<decimal> value);
+    partial void OnLSZEChanged();
+    partial void OnSDSChanging(System.Nullable<double> value);
+    partial void OnSDSChanged();
+    partial void OnSCSJEChanging(System.Nullable<double> value);
+    partial void OnSCSJEChanged();
+    partial void OnLRZEChanging(System.Nullable<double> value);
+    partial void OnLRZEChanged();
+    partial void OnJLRChanging(System.Nullable<double> value);
+    partial void OnJLRChanged();
+    partial void OnJZCSYLChanging(System.Nullable<double> value);
+    partial void OnJZCSYLChanged();
+    partial void OnZBBZZZLChanging(System.Nullable<double> value);
+    partial void OnZBBZZZLChanged();
+    partial void OnYYLRChanging(System.Nullable<double> value);
+    partial void OnYYLRChanged();
+    partial void OnZCFZLChanging(System.Nullable<double> value);
+    partial void OnZCFZLChanged();
+    partial void OnJZYZCZChanging(System.Nullable<double> value);
+    partial void OnJZYZCZChanged();
+    partial void OnJZYZJZChanging(System.Nullable<double> value);
+    partial void OnJZYZJZChanged();
+    partial void OnLDZBCChanging(System.Nullable<double> value);
+    partial void OnLDZBCChanged();
+    partial void OnJXSBZTSChanging(System.Nullable<int> value);
+    partial void OnJXSBZTSChanged();
+    partial void OnJXSBZGLChanging(System.Nullable<double> value);
+    partial void OnJXSBZGLChanged();
+    partial void OnZLAQFSSGCSChanging(System.Nullable<int> value);
+    partial void OnZLAQFSSGCSChanged();
+    partial void OnJJSSChanging(System.Nullable<double> value);
+    partial void OnJJSSChanged();
+    partial void OnSWRSChanging(System.Nullable<int> value);
+    partial void OnSWRSChanged();
+    partial void OnZSRSChanging(System.Nullable<int> value);
+    partial void OnZSRSChanged();
+    partial void OnFCompanyIdChanging(string value);
+    partial void OnFCompanyIdChanged();
+    #endregion
+		
+		public QY_JBXX()
+		{
+			this._QY_BLXWQK = new EntitySet<QY_BLXWQK>(new Action<QY_BLXWQK>(this.attach_QY_BLXWQK), new Action<QY_BLXWQK>(this.detach_QY_BLXWQK));
+			this._QY_GCYJXX = new EntitySet<QY_GCYJXX>(new Action<QY_GCYJXX>(this.attach_QY_GCYJXX), new Action<QY_GCYJXX>(this.detach_QY_GCYJXX));
+			this._QY_LHXWQK = new EntitySet<QY_LHXWQK>(new Action<QY_LHXWQK>(this.attach_QY_LHXWQK), new Action<QY_LHXWQK>(this.detach_QY_LHXWQK));
+			this._QY_QYBGQK = new EntitySet<QY_QYBGQK>(new Action<QY_QYBGQK>(this.attach_QY_QYBGQK), new Action<QY_QYBGQK>(this.detach_QY_QYBGQK));
+			this._QY_QYCYRYXX = new EntitySet<QY_QYCYRYXX>(new Action<QY_QYCYRYXX>(this.attach_QY_QYCYRYXX), new Action<QY_QYCYRYXX>(this.detach_QY_QYCYRYXX));
+			this._QY_QYCZRGDXX = new EntitySet<QY_QYCZRGDXX>(new Action<QY_QYCZRGDXX>(this.attach_QY_QYCZRGDXX), new Action<QY_QYCZRGDXX>(this.detach_QY_QYCZRGDXX));
+			this._QY_QYHBCZXX = new EntitySet<QY_QYHBCZXX>(new Action<QY_QYHBCZXX>(this.attach_QY_QYHBCZXX), new Action<QY_QYHBCZXX>(this.detach_QY_QYHBCZXX));
+			this._QY_QYJL = new EntitySet<QY_QYJL>(new Action<QY_QYJL>(this.attach_QY_QYJL), new Action<QY_QYJL>(this.detach_QY_QYJL));
+			this._QY_QYLSSQXX = new EntitySet<QY_QYLSSQXX>(new Action<QY_QYLSSQXX>(this.attach_QY_QYLSSQXX), new Action<QY_QYLSSQXX>(this.detach_QY_QYLSSQXX));
+			this._QY_QYNJQK = new EntitySet<QY_QYNJQK>(new Action<QY_QYNJQK>(this.attach_QY_QYNJQK), new Action<QY_QYNJQK>(this.detach_QY_QYNJQK));
+			this._QY_QYXYPD = new EntitySet<QY_QYXYPD>(new Action<QY_QYXYPD>(this.attach_QY_QYXYPD), new Action<QY_QYXYPD>(this.detach_QY_QYXYPD));
+			this._QY_QYZYRYXX = new EntitySet<QY_QYZYRYXX>(new Action<QY_QYZYRYXX>(this.attach_QY_QYZYRYXX), new Action<QY_QYZYRYXX>(this.detach_QY_QYZYRYXX));
+			this._QY_ZYJQSB = new EntitySet<QY_ZYJQSB>(new Action<QY_ZYJQSB>(this.attach_QY_ZYJQSB), new Action<QY_ZYJQSB>(this.detach_QY_ZYJQSB));
+			this._QY_QYZSXX = new EntitySet<QY_QYZSXX>(new Action<QY_QYZSXX>(this.attach_QY_QYZSXX), new Action<QY_QYZSXX>(this.detach_QY_QYZSXX));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYBM", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string QYBM
+		{
+			get
+			{
+				return this._QYBM;
+			}
+			set
+			{
+				if ((this._QYBM != value))
+				{
+					this.OnQYBMChanging(value);
+					this.SendPropertyChanging();
+					this._QYBM = value;
+					this.SendPropertyChanged("QYBM");
+					this.OnQYBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYLXBM", DbType="VarChar(10)")]
+		public string QYLXBM
+		{
+			get
+			{
+				return this._QYLXBM;
+			}
+			set
+			{
+				if ((this._QYLXBM != value))
+				{
+					this.OnQYLXBMChanging(value);
+					this.SendPropertyChanging();
+					this._QYLXBM = value;
+					this.SendPropertyChanged("QYLXBM");
+					this.OnQYLXBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYMC", DbType="VarChar(100)")]
+		public string QYMC
+		{
+			get
+			{
+				return this._QYMC;
+			}
+			set
+			{
+				if ((this._QYMC != value))
+				{
+					this.OnQYMCChanging(value);
+					this.SendPropertyChanging();
+					this._QYMC = value;
+					this.SendPropertyChanged("QYMC");
+					this.OnQYMCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYCYM", DbType="VarChar(100)")]
+		public string QYCYM
+		{
+			get
+			{
+				return this._QYCYM;
+			}
+			set
+			{
+				if ((this._QYCYM != value))
+				{
+					this.OnQYCYMChanging(value);
+					this.SendPropertyChanging();
+					this._QYCYM = value;
+					this.SendPropertyChanged("QYCYM");
+					this.OnQYCYMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JGDM", DbType="VarChar(40)")]
+		public string JGDM
+		{
+			get
+			{
+				return this._JGDM;
+			}
+			set
+			{
+				if ((this._JGDM != value))
+				{
+					this.OnJGDMChanging(value);
+					this.SendPropertyChanging();
+					this._JGDM = value;
+					this.SendPropertyChanged("JGDM");
+					this.OnJGDMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SSDBM", DbType="VarChar(6)")]
+		public string SSDBM
+		{
+			get
+			{
+				return this._SSDBM;
+			}
+			set
+			{
+				if ((this._SSDBM != value))
+				{
+					this.OnSSDBMChanging(value);
+					this.SendPropertyChanging();
+					this._SSDBM = value;
+					this.SendPropertyChanged("SSDBM");
+					this.OnSSDBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrProvince", DbType="VarChar(6)")]
+		public string RegAdrProvince
+		{
+			get
+			{
+				return this._RegAdrProvince;
+			}
+			set
+			{
+				if ((this._RegAdrProvince != value))
+				{
+					this.OnRegAdrProvinceChanging(value);
+					this.SendPropertyChanging();
+					this._RegAdrProvince = value;
+					this.SendPropertyChanged("RegAdrProvince");
+					this.OnRegAdrProvinceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCity", DbType="VarChar(6)")]
+		public string RegAdrCity
+		{
+			get
+			{
+				return this._RegAdrCity;
+			}
+			set
+			{
+				if ((this._RegAdrCity != value))
+				{
+					this.OnRegAdrCityChanging(value);
+					this.SendPropertyChanging();
+					this._RegAdrCity = value;
+					this.SendPropertyChanged("RegAdrCity");
+					this.OnRegAdrCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCountry", DbType="VarChar(6)")]
+		public string RegAdrCountry
+		{
+			get
+			{
+				return this._RegAdrCountry;
+			}
+			set
+			{
+				if ((this._RegAdrCountry != value))
+				{
+					this.OnRegAdrCountryChanging(value);
+					this.SendPropertyChanging();
+					this._RegAdrCountry = value;
+					this.SendPropertyChanged("RegAdrCountry");
+					this.OnRegAdrCountryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrProvinceName", DbType="VarChar(50)")]
+		public string RegAdrProvinceName
+		{
+			get
+			{
+				return this._RegAdrProvinceName;
+			}
+			set
+			{
+				if ((this._RegAdrProvinceName != value))
+				{
+					this.OnRegAdrProvinceNameChanging(value);
+					this.SendPropertyChanging();
+					this._RegAdrProvinceName = value;
+					this.SendPropertyChanged("RegAdrProvinceName");
+					this.OnRegAdrProvinceNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCityName", DbType="VarChar(50)")]
+		public string RegAdrCityName
+		{
+			get
+			{
+				return this._RegAdrCityName;
+			}
+			set
+			{
+				if ((this._RegAdrCityName != value))
+				{
+					this.OnRegAdrCityNameChanging(value);
+					this.SendPropertyChanging();
+					this._RegAdrCityName = value;
+					this.SendPropertyChanged("RegAdrCityName");
+					this.OnRegAdrCityNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegAdrCountryName", DbType="VarChar(50)")]
+		public string RegAdrCountryName
+		{
+			get
+			{
+				return this._RegAdrCountryName;
+			}
+			set
+			{
+				if ((this._RegAdrCountryName != value))
+				{
+					this.OnRegAdrCountryNameChanging(value);
+					this.SendPropertyChanging();
+					this._RegAdrCountryName = value;
+					this.SendPropertyChanged("RegAdrCountryName");
+					this.OnRegAdrCountryNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCDZ", DbType="VarChar(200)")]
+		public string ZCDZ
+		{
+			get
+			{
+				return this._ZCDZ;
+			}
+			set
+			{
+				if ((this._ZCDZ != value))
+				{
+					this.OnZCDZChanging(value);
+					this.SendPropertyChanging();
+					this._ZCDZ = value;
+					this.SendPropertyChanged("ZCDZ");
+					this.OnZCDZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCDZYZBM", DbType="VarChar(20)")]
+		public string ZCDZYZBM
+		{
+			get
+			{
+				return this._ZCDZYZBM;
+			}
+			set
+			{
+				if ((this._ZCDZYZBM != value))
+				{
+					this.OnZCDZYZBMChanging(value);
+					this.SendPropertyChanging();
+					this._ZCDZYZBM = value;
+					this.SendPropertyChanged("ZCDZYZBM");
+					this.OnZCDZYZBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYXXDZ", DbType="VarChar(200)")]
+		public string QYXXDZ
+		{
+			get
+			{
+				return this._QYXXDZ;
+			}
+			set
+			{
+				if ((this._QYXXDZ != value))
+				{
+					this.OnQYXXDZChanging(value);
+					this.SendPropertyChanging();
+					this._QYXXDZ = value;
+					this.SendPropertyChanged("QYXXDZ");
+					this.OnQYXXDZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XXDZYZBM", DbType="VarChar(20)")]
+		public string XXDZYZBM
+		{
+			get
+			{
+				return this._XXDZYZBM;
+			}
+			set
+			{
+				if ((this._XXDZYZBM != value))
+				{
+					this.OnXXDZYZBMChanging(value);
+					this.SendPropertyChanging();
+					this._XXDZYZBM = value;
+					this.SendPropertyChanged("XXDZYZBM");
+					this.OnXXDZYZBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZGBM", DbType="VarChar(100)")]
+		public string ZGBM
+		{
+			get
+			{
+				return this._ZGBM;
+			}
+			set
+			{
+				if ((this._ZGBM != value))
+				{
+					this.OnZGBMChanging(value);
+					this.SendPropertyChanging();
+					this._ZGBM = value;
+					this.SendPropertyChanged("ZGBM");
+					this.OnZGBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSGXBM", DbType="VarChar(10)")]
+		public string LSGXBM
+		{
+			get
+			{
+				return this._LSGXBM;
+			}
+			set
+			{
+				if ((this._LSGXBM != value))
+				{
+					this.OnLSGXBMChanging(value);
+					this.SendPropertyChanging();
+					this._LSGXBM = value;
+					this.SendPropertyChanged("LSGXBM");
+					this.OnLSGXBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSGXMC", DbType="VarChar(50)")]
+		public string LSGXMC
+		{
+			get
+			{
+				return this._LSGXMC;
+			}
+			set
+			{
+				if ((this._LSGXMC != value))
+				{
+					this.OnLSGXMCChanging(value);
+					this.SendPropertyChanging();
+					this._LSGXMC = value;
+					this.SendPropertyChanged("LSGXMC");
+					this.OnLSGXMCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYCLRQ", DbType="VarChar(19)")]
+		public string QYCLRQ
+		{
+			get
+			{
+				return this._QYCLRQ;
+			}
+			set
+			{
+				if ((this._QYCLRQ != value))
+				{
+					this.OnQYCLRQChanging(value);
+					this.SendPropertyChanging();
+					this._QYCLRQ = value;
+					this.SendPropertyChanged("QYCLRQ");
+					this.OnQYCLRQChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GSZCRQ", DbType="VarChar(19)")]
+		public string GSZCRQ
+		{
+			get
+			{
+				return this._GSZCRQ;
+			}
+			set
+			{
+				if ((this._GSZCRQ != value))
+				{
+					this.OnGSZCRQChanging(value);
+					this.SendPropertyChanging();
+					this._GSZCRQ = value;
+					this.SendPropertyChanged("GSZCRQ");
+					this.OnGSZCRQChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JJXZBM", DbType="VarChar(10)")]
+		public string JJXZBM
+		{
+			get
+			{
+				return this._JJXZBM;
+			}
+			set
+			{
+				if ((this._JJXZBM != value))
+				{
+					this.OnJJXZBMChanging(value);
+					this.SendPropertyChanging();
+					this._JJXZBM = value;
+					this.SendPropertyChanged("JJXZBM");
+					this.OnJJXZBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JJXZMC", DbType="VarChar(50)")]
+		public string JJXZMC
+		{
+			get
+			{
+				return this._JJXZMC;
+			}
+			set
+			{
+				if ((this._JJXZMC != value))
+				{
+					this.OnJJXZMCChanging(value);
+					this.SendPropertyChanging();
+					this._JJXZMC = value;
+					this.SendPropertyChanged("JJXZMC");
+					this.OnJJXZMCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEZZZCH", DbType="VarChar(50)")]
+		public string YEZZZCH
+		{
+			get
+			{
+				return this._YEZZZCH;
+			}
+			set
+			{
+				if ((this._YEZZZCH != value))
+				{
+					this.OnYEZZZCHChanging(value);
+					this.SendPropertyChanging();
+					this._YEZZZCH = value;
+					this.SendPropertyChanged("YEZZZCH");
+					this.OnYEZZZCHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YEZZFZJG", DbType="VarChar(100)")]
+		public string YEZZFZJG
+		{
+			get
+			{
+				return this._YEZZFZJG;
+			}
+			set
+			{
+				if ((this._YEZZFZJG != value))
+				{
+					this.OnYEZZFZJGChanging(value);
+					this.SendPropertyChanging();
+					this._YEZZFZJG = value;
+					this.SendPropertyChanged("YEZZFZJG");
+					this.OnYEZZFZJGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCZBJ", DbType="Float")]
+		public System.Nullable<double> ZCZBJ
+		{
+			get
+			{
+				return this._ZCZBJ;
+			}
+			set
+			{
+				if ((this._ZCZBJ != value))
+				{
+					this.OnZCZBJChanging(value);
+					this.SendPropertyChanging();
+					this._ZCZBJ = value;
+					this.SendPropertyChanged("ZCZBJ");
+					this.OnZCZBJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HBLXBM", DbType="VarChar(10)")]
+		public string HBLXBM
+		{
+			get
+			{
+				return this._HBLXBM;
+			}
+			set
+			{
+				if ((this._HBLXBM != value))
+				{
+					this.OnHBLXBMChanging(value);
+					this.SendPropertyChanging();
+					this._HBLXBM = value;
+					this.SendPropertyChanged("HBLXBM");
+					this.OnHBLXBMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HBLXMC", DbType="VarChar(20)")]
+		public string HBLXMC
+		{
+			get
+			{
+				return this._HBLXMC;
+			}
+			set
+			{
+				if ((this._HBLXMC != value))
+				{
+					this.OnHBLXMCChanging(value);
+					this.SendPropertyChanging();
+					this._HBLXMC = value;
+					this.SendPropertyChanged("HBLXMC");
+					this.OnHBLXMCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KHYH", DbType="VarChar(100)")]
+		public string KHYH
+		{
+			get
+			{
+				return this._KHYH;
+			}
+			set
+			{
+				if ((this._KHYH != value))
+				{
+					this.OnKHYHChanging(value);
+					this.SendPropertyChanging();
+					this._KHYH = value;
+					this.SendPropertyChanged("KHYH");
+					this.OnKHYHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KHYHZH", DbType="VarChar(50)")]
+		public string KHYHZH
+		{
+			get
+			{
+				return this._KHYHZH;
+			}
+			set
+			{
+				if ((this._KHYHZH != value))
+				{
+					this.OnKHYHZHChanging(value);
+					this.SendPropertyChanging();
+					this._KHYHZH = value;
+					this.SendPropertyChanged("KHYHZH");
+					this.OnKHYHZHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYWZ", DbType="VarChar(60)")]
+		public string QYWZ
+		{
+			get
+			{
+				return this._QYWZ;
+			}
+			set
+			{
+				if ((this._QYWZ != value))
+				{
+					this.OnQYWZChanging(value);
+					this.SendPropertyChanging();
+					this._QYWZ = value;
+					this.SendPropertyChanged("QYWZ");
+					this.OnQYWZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DZYJ", DbType="VarChar(60)")]
+		public string DZYJ
+		{
+			get
+			{
+				return this._DZYJ;
+			}
+			set
+			{
+				if ((this._DZYJ != value))
+				{
+					this.OnDZYJChanging(value);
+					this.SendPropertyChanging();
+					this._DZYJ = value;
+					this.SendPropertyChanged("DZYJ");
+					this.OnDZYJChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CZ", DbType="VarChar(30)")]
+		public string CZ
+		{
+			get
+			{
+				return this._CZ;
+			}
+			set
+			{
+				if ((this._CZ != value))
+				{
+					this.OnCZChanging(value);
+					this.SendPropertyChanging();
+					this._CZ = value;
+					this.SendPropertyChanged("CZ");
+					this.OnCZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXR", DbType="VarChar(50)")]
+		public string LXR
+		{
+			get
+			{
+				return this._LXR;
+			}
+			set
+			{
+				if ((this._LXR != value))
+				{
+					this.OnLXRChanging(value);
+					this.SendPropertyChanging();
+					this._LXR = value;
+					this.SendPropertyChanged("LXR");
+					this.OnLXRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LXDH", DbType="VarChar(50)")]
+		public string LXDH
+		{
+			get
+			{
+				return this._LXDH;
+			}
+			set
+			{
+				if ((this._LXDH != value))
+				{
+					this.OnLXDHChanging(value);
+					this.SendPropertyChanging();
+					this._LXDH = value;
+					this.SendPropertyChanged("LXDH");
+					this.OnLXDHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRDB", DbType="VarChar(30)")]
+		public string FRDB
+		{
+			get
+			{
+				return this._FRDB;
+			}
+			set
+			{
+				if ((this._FRDB != value))
+				{
+					this.OnFRDBChanging(value);
+					this.SendPropertyChanging();
+					this._FRDB = value;
+					this.SendPropertyChanged("FRDB");
+					this.OnFRDBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FRDBSJH", DbType="VarChar(50)")]
+		public string FRDBSJH
+		{
+			get
+			{
+				return this._FRDBSJH;
+			}
+			set
+			{
+				if ((this._FRDBSJH != value))
+				{
+					this.OnFRDBSJHChanging(value);
+					this.SendPropertyChanging();
+					this._FRDBSJH = value;
+					this.SendPropertyChanged("FRDBSJH");
+					this.OnFRDBSJHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CYRYNMRS", DbType="Int")]
+		public System.Nullable<int> CYRYNMRS
+		{
+			get
+			{
+				return this._CYRYNMRS;
+			}
+			set
+			{
+				if ((this._CYRYNMRS != value))
+				{
+					this.OnCYRYNMRSChanging(value);
+					this.SendPropertyChanging();
+					this._CYRYNMRS = value;
+					this.SendPropertyChanged("CYRYNMRS");
+					this.OnCYRYNMRSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSJJRYZS", DbType="Int")]
+		public System.Nullable<int> JSJJRYZS
+		{
+			get
+			{
+				return this._JSJJRYZS;
+			}
+			set
+			{
+				if ((this._JSJJRYZS != value))
+				{
+					this.OnJSJJRYZSChanging(value);
+					this.SendPropertyChanging();
+					this._JSJJRYZS = value;
+					this.SendPropertyChanged("JSJJRYZS");
+					this.OnJSJJRYZSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YZCRYS", DbType="Int")]
+		public System.Nullable<int> YZCRYS
+		{
+			get
+			{
+				return this._YZCRYS;
+			}
+			set
+			{
+				if ((this._YZCRYS != value))
+				{
+					this.OnYZCRYSChanging(value);
+					this.SendPropertyChanging();
+					this._YZCRYS = value;
+					this.SendPropertyChanged("YZCRYS");
+					this.OnYZCRYSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GJZCRS", DbType="Int")]
+		public System.Nullable<int> GJZCRS
+		{
+			get
+			{
+				return this._GJZCRS;
+			}
+			set
+			{
+				if ((this._GJZCRS != value))
+				{
+					this.OnGJZCRSChanging(value);
+					this.SendPropertyChanging();
+					this._GJZCRS = value;
+					this.SendPropertyChanged("GJZCRS");
+					this.OnGJZCRSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZJZCRS", DbType="Int")]
+		public System.Nullable<int> ZJZCRS
+		{
+			get
+			{
+				return this._ZJZCRS;
+			}
+			set
+			{
+				if ((this._ZJZCRS != value))
+				{
+					this.OnZJZCRSChanging(value);
+					this.SendPropertyChanging();
+					this._ZJZCRS = value;
+					this.SendPropertyChanged("ZJZCRS");
+					this.OnZJZCRSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCRYZS", DbType="Int")]
+		public System.Nullable<int> ZCRYZS
+		{
+			get
+			{
+				return this._ZCRYZS;
+			}
+			set
+			{
+				if ((this._ZCRYZS != value))
+				{
+					this.OnZCRYZSChanging(value);
+					this.SendPropertyChanging();
+					this._ZCRYZS = value;
+					this.SendPropertyChanged("ZCRYZS");
+					this.OnZCRYZSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GDZC", DbType="Float")]
+		public System.Nullable<double> GDZC
+		{
+			get
+			{
+				return this._GDZC;
+			}
+			set
+			{
+				if ((this._GDZC != value))
+				{
+					this.OnGDZCChanging(value);
+					this.SendPropertyChanging();
+					this._GDZC = value;
+					this.SendPropertyChanged("GDZC");
+					this.OnGDZCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GDZCNZJE", DbType="Float")]
+		public System.Nullable<double> GDZCNZJE
+		{
+			get
+			{
+				return this._GDZCNZJE;
+			}
+			set
+			{
+				if ((this._GDZCNZJE != value))
+				{
+					this.OnGDZCNZJEChanging(value);
+					this.SendPropertyChanging();
+					this._GDZCNZJE = value;
+					this.SendPropertyChanged("GDZCNZJE");
+					this.OnGDZCNZJEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LDZC", DbType="Float")]
+		public System.Nullable<double> LDZC
+		{
+			get
+			{
+				return this._LDZC;
+			}
+			set
+			{
+				if ((this._LDZC != value))
+				{
+					this.OnLDZCChanging(value);
+					this.SendPropertyChanging();
+					this._LDZC = value;
+					this.SendPropertyChanged("LDZC");
+					this.OnLDZCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FZZE", DbType="Float")]
+		public System.Nullable<double> FZZE
+		{
+			get
+			{
+				return this._FZZE;
+			}
+			set
+			{
+				if ((this._FZZE != value))
+				{
+					this.OnFZZEChanging(value);
+					this.SendPropertyChanging();
+					this._FZZE = value;
+					this.SendPropertyChanged("FZZE");
+					this.OnFZZEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZC", DbType="Float")]
+		public System.Nullable<double> JZC
+		{
+			get
+			{
+				return this._JZC;
+			}
+			set
+			{
+				if ((this._JZC != value))
+				{
+					this.OnJZCChanging(value);
+					this.SendPropertyChanging();
+					this._JZC = value;
+					this.SendPropertyChanged("JZC");
+					this.OnJZCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QYZSR", DbType="Float")]
+		public System.Nullable<double> QYZSR
+		{
+			get
+			{
+				return this._QYZSR;
+			}
+			set
+			{
+				if ((this._QYZSR != value))
+				{
+					this.OnQYZSRChanging(value);
+					this.SendPropertyChanging();
+					this._QYZSR = value;
+					this.SendPropertyChanged("QYZSR");
+					this.OnQYZSRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GCJSCB", DbType="Decimal(18,6)")]
+		public System.Nullable<decimal> GCJSCB
+		{
+			get
+			{
+				return this._GCJSCB;
+			}
+			set
+			{
+				if ((this._GCJSCB != value))
+				{
+					this.OnGCJSCBChanging(value);
+					this.SendPropertyChanging();
+					this._GCJSCB = value;
+					this.SendPropertyChanged("GCJSCB");
+					this.OnGCJSCBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GLFY", DbType="Decimal(18,6)")]
+		public System.Nullable<decimal> GLFY
+		{
+			get
+			{
+				return this._GLFY;
+			}
+			set
+			{
+				if ((this._GLFY != value))
+				{
+					this.OnGLFYChanging(value);
+					this.SendPropertyChanging();
+					this._GLFY = value;
+					this.SendPropertyChanged("GLFY");
+					this.OnGLFYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSZE", DbType="Decimal(18,6)")]
+		public System.Nullable<decimal> LSZE
+		{
+			get
+			{
+				return this._LSZE;
+			}
+			set
+			{
+				if ((this._LSZE != value))
+				{
+					this.OnLSZEChanging(value);
+					this.SendPropertyChanging();
+					this._LSZE = value;
+					this.SendPropertyChanged("LSZE");
+					this.OnLSZEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDS", DbType="Float")]
+		public System.Nullable<double> SDS
+		{
+			get
+			{
+				return this._SDS;
+			}
+			set
+			{
+				if ((this._SDS != value))
+				{
+					this.OnSDSChanging(value);
+					this.SendPropertyChanging();
+					this._SDS = value;
+					this.SendPropertyChanged("SDS");
+					this.OnSDSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SCSJE", DbType="Float")]
+		public System.Nullable<double> SCSJE
+		{
+			get
+			{
+				return this._SCSJE;
+			}
+			set
+			{
+				if ((this._SCSJE != value))
+				{
+					this.OnSCSJEChanging(value);
+					this.SendPropertyChanging();
+					this._SCSJE = value;
+					this.SendPropertyChanged("SCSJE");
+					this.OnSCSJEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LRZE", DbType="Float")]
+		public System.Nullable<double> LRZE
+		{
+			get
+			{
+				return this._LRZE;
+			}
+			set
+			{
+				if ((this._LRZE != value))
+				{
+					this.OnLRZEChanging(value);
+					this.SendPropertyChanging();
+					this._LRZE = value;
+					this.SendPropertyChanged("LRZE");
+					this.OnLRZEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JLR", DbType="Float")]
+		public System.Nullable<double> JLR
+		{
+			get
+			{
+				return this._JLR;
+			}
+			set
+			{
+				if ((this._JLR != value))
+				{
+					this.OnJLRChanging(value);
+					this.SendPropertyChanging();
+					this._JLR = value;
+					this.SendPropertyChanged("JLR");
+					this.OnJLRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZCSYL", DbType="Float")]
+		public System.Nullable<double> JZCSYL
+		{
+			get
+			{
+				return this._JZCSYL;
+			}
+			set
+			{
+				if ((this._JZCSYL != value))
+				{
+					this.OnJZCSYLChanging(value);
+					this.SendPropertyChanging();
+					this._JZCSYL = value;
+					this.SendPropertyChanged("JZCSYL");
+					this.OnJZCSYLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZBBZZZL", DbType="Float")]
+		public System.Nullable<double> ZBBZZZL
+		{
+			get
+			{
+				return this._ZBBZZZL;
+			}
+			set
+			{
+				if ((this._ZBBZZZL != value))
+				{
+					this.OnZBBZZZLChanging(value);
+					this.SendPropertyChanging();
+					this._ZBBZZZL = value;
+					this.SendPropertyChanged("ZBBZZZL");
+					this.OnZBBZZZLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_YYLR", DbType="Float")]
+		public System.Nullable<double> YYLR
+		{
+			get
+			{
+				return this._YYLR;
+			}
+			set
+			{
+				if ((this._YYLR != value))
+				{
+					this.OnYYLRChanging(value);
+					this.SendPropertyChanging();
+					this._YYLR = value;
+					this.SendPropertyChanged("YYLR");
+					this.OnYYLRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZCFZL", DbType="Float")]
+		public System.Nullable<double> ZCFZL
+		{
+			get
+			{
+				return this._ZCFZL;
+			}
+			set
+			{
+				if ((this._ZCFZL != value))
+				{
+					this.OnZCFZLChanging(value);
+					this.SendPropertyChanging();
+					this._ZCFZL = value;
+					this.SendPropertyChanged("ZCFZL");
+					this.OnZCFZLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZYZCZ", DbType="Float")]
+		public System.Nullable<double> JZYZCZ
+		{
+			get
+			{
+				return this._JZYZCZ;
+			}
+			set
+			{
+				if ((this._JZYZCZ != value))
+				{
+					this.OnJZYZCZChanging(value);
+					this.SendPropertyChanging();
+					this._JZYZCZ = value;
+					this.SendPropertyChanged("JZYZCZ");
+					this.OnJZYZCZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JZYZJZ", DbType="Float")]
+		public System.Nullable<double> JZYZJZ
+		{
+			get
+			{
+				return this._JZYZJZ;
+			}
+			set
+			{
+				if ((this._JZYZJZ != value))
+				{
+					this.OnJZYZJZChanging(value);
+					this.SendPropertyChanging();
+					this._JZYZJZ = value;
+					this.SendPropertyChanged("JZYZJZ");
+					this.OnJZYZJZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LDZBC", DbType="Float")]
+		public System.Nullable<double> LDZBC
+		{
+			get
+			{
+				return this._LDZBC;
+			}
+			set
+			{
+				if ((this._LDZBC != value))
+				{
+					this.OnLDZBCChanging(value);
+					this.SendPropertyChanging();
+					this._LDZBC = value;
+					this.SendPropertyChanged("LDZBC");
+					this.OnLDZBCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JXSBZTS", DbType="Int")]
+		public System.Nullable<int> JXSBZTS
+		{
+			get
+			{
+				return this._JXSBZTS;
+			}
+			set
+			{
+				if ((this._JXSBZTS != value))
+				{
+					this.OnJXSBZTSChanging(value);
+					this.SendPropertyChanging();
+					this._JXSBZTS = value;
+					this.SendPropertyChanged("JXSBZTS");
+					this.OnJXSBZTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JXSBZGL", DbType="Float")]
+		public System.Nullable<double> JXSBZGL
+		{
+			get
+			{
+				return this._JXSBZGL;
+			}
+			set
+			{
+				if ((this._JXSBZGL != value))
+				{
+					this.OnJXSBZGLChanging(value);
+					this.SendPropertyChanging();
+					this._JXSBZGL = value;
+					this.SendPropertyChanged("JXSBZGL");
+					this.OnJXSBZGLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZLAQFSSGCS", DbType="Int")]
+		public System.Nullable<int> ZLAQFSSGCS
+		{
+			get
+			{
+				return this._ZLAQFSSGCS;
+			}
+			set
+			{
+				if ((this._ZLAQFSSGCS != value))
+				{
+					this.OnZLAQFSSGCSChanging(value);
+					this.SendPropertyChanging();
+					this._ZLAQFSSGCS = value;
+					this.SendPropertyChanged("ZLAQFSSGCS");
+					this.OnZLAQFSSGCSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JJSS", DbType="Float")]
+		public System.Nullable<double> JJSS
+		{
+			get
+			{
+				return this._JJSS;
+			}
+			set
+			{
+				if ((this._JJSS != value))
+				{
+					this.OnJJSSChanging(value);
+					this.SendPropertyChanging();
+					this._JJSS = value;
+					this.SendPropertyChanged("JJSS");
+					this.OnJJSSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SWRS", DbType="Int")]
+		public System.Nullable<int> SWRS
+		{
+			get
+			{
+				return this._SWRS;
+			}
+			set
+			{
+				if ((this._SWRS != value))
+				{
+					this.OnSWRSChanging(value);
+					this.SendPropertyChanging();
+					this._SWRS = value;
+					this.SendPropertyChanged("SWRS");
+					this.OnSWRSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ZSRS", DbType="Int")]
+		public System.Nullable<int> ZSRS
+		{
+			get
+			{
+				return this._ZSRS;
+			}
+			set
+			{
+				if ((this._ZSRS != value))
+				{
+					this.OnZSRSChanging(value);
+					this.SendPropertyChanging();
+					this._ZSRS = value;
+					this.SendPropertyChanged("ZSRS");
+					this.OnZSRSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FCompanyId", DbType="VarChar(50)")]
+		public string FCompanyId
+		{
+			get
+			{
+				return this._FCompanyId;
+			}
+			set
+			{
+				if ((this._FCompanyId != value))
+				{
+					this.OnFCompanyIdChanging(value);
+					this.SendPropertyChanging();
+					this._FCompanyId = value;
+					this.SendPropertyChanged("FCompanyId");
+					this.OnFCompanyIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_BLXWQK", Storage="_QY_BLXWQK", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_BLXWQK> QY_BLXWQK
+		{
+			get
+			{
+				return this._QY_BLXWQK;
+			}
+			set
+			{
+				this._QY_BLXWQK.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_GCYJXX", Storage="_QY_GCYJXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_GCYJXX> QY_GCYJXX
+		{
+			get
+			{
+				return this._QY_GCYJXX;
+			}
+			set
+			{
+				this._QY_GCYJXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_LHXWQK", Storage="_QY_LHXWQK", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_LHXWQK> QY_LHXWQK
+		{
+			get
+			{
+				return this._QY_LHXWQK;
+			}
+			set
+			{
+				this._QY_LHXWQK.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYBGQK", Storage="_QY_QYBGQK", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYBGQK> QY_QYBGQK
+		{
+			get
+			{
+				return this._QY_QYBGQK;
+			}
+			set
+			{
+				this._QY_QYBGQK.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYCYRYXX", Storage="_QY_QYCYRYXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYCYRYXX> QY_QYCYRYXX
+		{
+			get
+			{
+				return this._QY_QYCYRYXX;
+			}
+			set
+			{
+				this._QY_QYCYRYXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYCZRGDXX", Storage="_QY_QYCZRGDXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYCZRGDXX> QY_QYCZRGDXX
+		{
+			get
+			{
+				return this._QY_QYCZRGDXX;
+			}
+			set
+			{
+				this._QY_QYCZRGDXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYHBCZXX", Storage="_QY_QYHBCZXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYHBCZXX> QY_QYHBCZXX
+		{
+			get
+			{
+				return this._QY_QYHBCZXX;
+			}
+			set
+			{
+				this._QY_QYHBCZXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYJL", Storage="_QY_QYJL", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYJL> QY_QYJL
+		{
+			get
+			{
+				return this._QY_QYJL;
+			}
+			set
+			{
+				this._QY_QYJL.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYLSSQXX", Storage="_QY_QYLSSQXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYLSSQXX> QY_QYLSSQXX
+		{
+			get
+			{
+				return this._QY_QYLSSQXX;
+			}
+			set
+			{
+				this._QY_QYLSSQXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYNJQK", Storage="_QY_QYNJQK", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYNJQK> QY_QYNJQK
+		{
+			get
+			{
+				return this._QY_QYNJQK;
+			}
+			set
+			{
+				this._QY_QYNJQK.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYXYPD", Storage="_QY_QYXYPD", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYXYPD> QY_QYXYPD
+		{
+			get
+			{
+				return this._QY_QYXYPD;
+			}
+			set
+			{
+				this._QY_QYXYPD.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYZYRYXX", Storage="_QY_QYZYRYXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYZYRYXX> QY_QYZYRYXX
+		{
+			get
+			{
+				return this._QY_QYZYRYXX;
+			}
+			set
+			{
+				this._QY_QYZYRYXX.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_ZYJQSB", Storage="_QY_ZYJQSB", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_ZYJQSB> QY_ZYJQSB
+		{
+			get
+			{
+				return this._QY_ZYJQSB;
+			}
+			set
+			{
+				this._QY_ZYJQSB.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="QY_JBXX_QY_QYZSXX", Storage="_QY_QYZSXX", ThisKey="QYBM", OtherKey="QYBM")]
+		public EntitySet<QY_QYZSXX> QY_QYZSXX
+		{
+			get
+			{
+				return this._QY_QYZSXX;
+			}
+			set
+			{
+				this._QY_QYZSXX.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_QY_BLXWQK(QY_BLXWQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_BLXWQK(QY_BLXWQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_GCYJXX(QY_GCYJXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_GCYJXX(QY_GCYJXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_LHXWQK(QY_LHXWQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_LHXWQK(QY_LHXWQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYBGQK(QY_QYBGQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYBGQK(QY_QYBGQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYCYRYXX(QY_QYCYRYXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYCYRYXX(QY_QYCYRYXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYCZRGDXX(QY_QYCZRGDXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYCZRGDXX(QY_QYCZRGDXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYHBCZXX(QY_QYHBCZXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYHBCZXX(QY_QYHBCZXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYJL(QY_QYJL entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYJL(QY_QYJL entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYLSSQXX(QY_QYLSSQXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYLSSQXX(QY_QYLSSQXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYNJQK(QY_QYNJQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYNJQK(QY_QYNJQK entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYXYPD(QY_QYXYPD entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYXYPD(QY_QYXYPD entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYZYRYXX(QY_QYZYRYXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYZYRYXX(QY_QYZYRYXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_ZYJQSB(QY_ZYJQSB entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_ZYJQSB(QY_ZYJQSB entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
+		}
+		
+		private void attach_QY_QYZSXX(QY_QYZSXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = this;
+		}
+		
+		private void detach_QY_QYZSXX(QY_QYZSXX entity)
+		{
+			this.SendPropertyChanging();
+			entity.QY_JBXX = null;
 		}
 	}
 }
