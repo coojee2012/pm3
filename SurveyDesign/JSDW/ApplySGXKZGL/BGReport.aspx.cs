@@ -183,7 +183,7 @@ public partial class JSDW_ApplySGXKZGL_BGReport : System.Web.UI.Page
                      where a.FPrjItemId = b.FPrjItemId
                        and a.FAppId = b.FAppId
                        and a.FLinkId = b.Fempid
-                       and a.BGQK = '增加'  and FAppId  = '" + fAppId + "'";
+                       and a.BGQK = '增加'  and a.FAppId  = '" + fAppId + "'";
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
             da.Fill(ds, "ds");
             DataTable dt = ds.Tables[0];
