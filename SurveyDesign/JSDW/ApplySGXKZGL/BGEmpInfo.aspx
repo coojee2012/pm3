@@ -33,8 +33,20 @@
             //var qybm = document.getElementById("t_FEntId").value;
             var qybm = document.getElementById("t_qyId").value;
             //var url = "../project/EmpListSel.aspx";
+            var emptype = document.getElementById("t_EmpType").value;
             var url = "../project/EmpListSelA.aspx";
-            url += "?qybm=" + qybm;
+            //九大员人员
+            if(emptype == '11220204' || emptype == '11220205' || emptype == '11220206' || emptype == '11220207' || emptype == '11220208' || emptype == '11220212')
+                {
+
+                url += "?qybm=" + qybm + "&isjdy=true";
+            }
+            else
+            {
+                url += "?qybm=" + qybm;
+            }
+            
+            
             
             var pid = showWinByReturn( url, 800, 500);
             if (pid != null && pid != '') {
@@ -199,7 +211,7 @@
                 </td>
                 <td colspan="1">
                     <asp:TextBox ID="t_ZSBH" runat="server" CssClass="m_txt" Width="200px"></asp:TextBox>
-                    <tt>*</tt>
+                   <%-- <tt>*</tt>--%>
                 </td>
             </tr>
             <tr>

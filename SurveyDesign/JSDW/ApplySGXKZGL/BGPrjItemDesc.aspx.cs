@@ -145,34 +145,22 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         TC_SGXKZ_BGPrjInfo sbg = dbContext.TC_SGXKZ_BGPrjInfo.Where(t => t.FAppId == h_FAppId.Value).FirstOrDefault();
         TC_SGXKZ_PrjInfo tsp = dbContext.TC_SGXKZ_PrjInfo.Where(t => t.FAppId == h_FAppId.Value).FirstOrDefault();
         tsp.FPrjItemId = Emp.FPrjItemId;
-        tsp.PrjId = Emp.PrjId;
+        tsp.PrjId = Emp.FPrjInfoId;
         tsp.PrjItemName = Emp.PrjItemName;
         tsp.Address = Emp.Address;
-        //tsp.Area = Emp.Area;
-        //tsp.BuildType = Emp.BuildType;
         tsp.ConstrScale = Emp.ConstrScale;
         tsp.ConstrType = Emp.ConstrType;
-        //tsp.Cost = Emp.Cost;
         tsp.Currency = Emp.Currency;
-        //tsp.DoScale = Emp.DoScale;
-        //tsp.DZZT = Emp.DZZT;
         tsp.EndDate = Emp.EndDate;
         tsp.FDDBR = Emp.FDDBR;
         tsp.FRDH = Emp.FRDH;
         tsp.FResult = Emp.FResult;
-        //tsp.FZJG = Emp.FZJG;
-        //tsp.FZTime = Emp.FZTime;
         tsp.JCity = Emp.JCity;
         tsp.JCounty = Emp.JCounty;
         tsp.JProvince = Emp.JProvince;
         tsp.JSDW = Emp.JSDW;
         tsp.JSDWAddressDept = Emp.JSDWAddressDept;
         tsp.JSDWDZ = Emp.JSDWDZ;
-        //tsp.jsdwid = Emp.jsdwid;
-        //tsp.JSDWXZ = Emp.JSDWXZ;
-        //tsp.JSFZR = Emp.JSFZR;
-        //tsp.JSFZRDH = Emp.JSFZRDH;
-        //tsp.JSFZRZC = Emp.JSFZRZC;
         tsp.LXDH = Emp.LXDH;
         tsp.LZR = Emp.LZR;
         tsp.PCity = Emp.PCity;
@@ -181,6 +169,14 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         tsp.Price = Emp.Price;
         tsp.PrjAddressDept = Emp.PrjAddressDept;
         tsp.PrjItemType = Emp.PrjItemType;
+        tsp.StartDate = Emp.StartDate;       
+
+
+        //tsp.FZJG = Emp.FZJG;
+        //tsp.FZTime = Emp.FZTime;
+        //tsp.DoScale = Emp.DoScale;
+        //tsp.DZZT = Emp.DZZT;
+        //tsp.Cost = Emp.Cost;
         //tsp.ProjectFile = Emp.ProjectFile;
         //tsp.ProjectLevel = Emp.ProjectLevel;
         //tsp.ProjectName = Emp.ProjectName;
@@ -193,8 +189,15 @@ public partial class JSDW_ApplySGXKZGL_BGPrjItemDesc : System.Web.UI.Page
         //tsp.SGXKZBH = Emp.SGXKZBH;
         //tsp.SJEndDate = Emp.SJEndDate;
         //tsp.SJStartDate = Emp.SJStartDate;
-        tsp.StartDate = Emp.StartDate;
+        //tsp.Area = Emp.Area;
+        //tsp.BuildType = Emp.BuildType;
         //tsp.upScale = Emp.upScale;
+        //tsp.jsdwid = Emp.jsdwid;
+        //tsp.JSDWXZ = Emp.JSDWXZ;
+        //tsp.JSFZR = Emp.JSFZR;
+        //tsp.JSFZRDH = Emp.JSFZRDH;
+        //tsp.JSFZRZC = Emp.JSFZRZC;
+      
         dbContext.SubmitChanges();
 
         updateBGJG();
