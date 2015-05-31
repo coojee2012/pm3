@@ -109,6 +109,7 @@ public partial class JSDW_project_EmpListSelAqjd: System.Web.UI.Page
                        from  JST_XZSPBaseInfo.dbo.RY_RYJBXX a,JST_XZSPBaseInfo.dbo.RY_RYZSXX b
                         where a.RYBH = b.RYBH
                         and b.QYBM in (select  QYID   from  TC_AJBA_CJDW  where FAppId = '" + Session["FAppId"].ToString()+"')";
+         //安监人员可以选择所有参与企业的人员
         if (!string.IsNullOrEmpty(this.txtIDCard.Text.Trim()))
         {
             sql += " and b.SFZH  like '%" + this.txtIDCard.Text.Trim()+"%'";           

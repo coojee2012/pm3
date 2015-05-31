@@ -1,92 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JST_XZSPBaseInfo" Class="DB1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.16.0.115;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=jkc115" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="JST_XZSPBaseInfoConnectionString3" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.QY_JBXX" Member="QY_JBXX">
-    <Type Name="QY_JBXX">
-      <Column Name="QYBM" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="QYLXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="QYMC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="QYCYM" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="JGDM" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
-      <Column Name="SSDBM" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
-      <Column Name="RegAdrProvince" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
-      <Column Name="RegAdrCity" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
-      <Column Name="RegAdrCountry" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
-      <Column Name="RegAdrProvinceName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RegAdrCityName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="RegAdrCountryName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ZCDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZCDZYZBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="QYXXDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="XXDZYZBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="ZGBM" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="LSGXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="LSGXMC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="QYCLRQ" Type="System.String" DbType="VarChar(19)" CanBeNull="true" />
-      <Column Name="GSZCRQ" Type="System.String" DbType="VarChar(19)" CanBeNull="true" />
-      <Column Name="JJXZBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="JJXZMC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="YEZZZCH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="YEZZFZJG" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="ZCZBJ" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="HBLXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="HBLXMC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="KHYH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="KHYHZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="QYWZ" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="DZYJ" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
-      <Column Name="CZ" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="LXR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FRDB" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="FRDBSJH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="CYRYNMRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JSJJRYZS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="YZCRYS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GJZCRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZJZCRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZCRYZS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GDZC" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="GDZCNZJE" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="LDZC" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="FZZE" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="JZC" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="QYZSR" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="GCJSCB" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
-      <Column Name="GLFY" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
-      <Column Name="LSZE" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
-      <Column Name="SDS" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SCSJE" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="LRZE" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="JLR" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="JZCSYL" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ZBBZZZL" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="YYLR" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ZCFZL" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="JZYZCZ" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="JZYZJZ" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="LDZBC" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="JXSBZTS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JXSBZGL" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ZLAQFSSGCS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="JJSS" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SWRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ZSRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="QY_JBXX_QY_BLXWQK" Member="QY_BLXWQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_BLXWQK" />
-      <Association Name="QY_JBXX_QY_GCYJXX" Member="QY_GCYJXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_GCYJXX" />
-      <Association Name="QY_JBXX_QY_LHXWQK" Member="QY_LHXWQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_LHXWQK" />
-      <Association Name="QY_JBXX_QY_QYBGQK" Member="QY_QYBGQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYBGQK" />
-      <Association Name="QY_JBXX_QY_QYCYRYXX" Member="QY_QYCYRYXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYCYRYXX" />
-      <Association Name="QY_JBXX_QY_QYCZRGDXX" Member="QY_QYCZRGDXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYCZRGDXX" />
-      <Association Name="QY_JBXX_QY_QYHBCZXX" Member="QY_QYHBCZXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYHBCZXX" />
-      <Association Name="QY_JBXX_QY_QYJL" Member="QY_QYJL" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYJL" />
-      <Association Name="QY_JBXX_QY_QYLSSQXX" Member="QY_QYLSSQXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYLSSQXX" />
-      <Association Name="QY_JBXX_QY_QYNJQK" Member="QY_QYNJQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYNJQK" />
-      <Association Name="QY_JBXX_QY_QYXYPD" Member="QY_QYXYPD" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYXYPD" />
-      <Association Name="QY_JBXX_QY_QYZYRYXX" Member="QY_QYZYRYXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZYRYXX" />
-      <Association Name="QY_JBXX_QY_ZYJQSB" Member="QY_ZYJQSB" ThisKey="QYBM" OtherKey="QYBM" Type="QY_ZYJQSB" />
-      <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_QYZSXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZSXX" />
-    </Type>
-  </Table>
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.16.125.5;Initial Catalog=JST_XZSPBaseInfo;Persist Security Info=True;User ID=scjstdata_01" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="JST_XZSPBaseInfoConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.QY_BLXWQK" Member="QY_BLXWQK">
     <Type Name="QY_BLXWQK">
       <Column Name="BLXWID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -751,6 +664,94 @@
       <Association Name="RY_RYJBXX_RY_RYXYPD" Member="RY_RYXYPD" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYXYPD" />
       <Association Name="RY_RYJBXX_RY_RYYLXWXX" Member="RY_RYYLXWXX" ThisKey="RYBH" OtherKey="RYBH" Type="RY_RYYLXWXX" />
       <Association Name="RY_RYJBXX_RY_ZJGCXM" Member="RY_ZJGCXM" ThisKey="RYBH" OtherKey="RYBH" Type="RY_ZJGCXM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QY_JBXX" Member="QY_JBXX">
+    <Type Name="QY_JBXX">
+      <Column Name="QYBM" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QYLXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="QYMC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="QYCYM" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JGDM" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="SSDBM" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="RegAdrProvince" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="RegAdrCity" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="RegAdrCountry" Type="System.String" DbType="VarChar(6)" CanBeNull="true" />
+      <Column Name="RegAdrProvinceName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RegAdrCityName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RegAdrCountryName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ZCDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ZCDZYZBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="QYXXDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="XXDZYZBM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ZGBM" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LSGXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LSGXMC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QYCLRQ" Type="System.String" DbType="VarChar(19)" CanBeNull="true" />
+      <Column Name="GSZCRQ" Type="System.String" DbType="VarChar(19)" CanBeNull="true" />
+      <Column Name="JJXZBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="JJXZMC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="YEZZZCH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="YEZZFZJG" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ZCZBJ" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HBLXBM" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="HBLXMC" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="KHYH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="KHYHZH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QYWZ" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="DZYJ" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="CZ" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="LXR" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LXDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FRDB" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="FRDBSJH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CYRYNMRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JSJJRYZS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YZCRYS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GJZCRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZJZCRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZCRYZS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GDZC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GDZCNZJE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LDZC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FZZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JZC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="QYZSR" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GCJSCB" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="GLFY" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="LSZE" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="SDS" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SCSJE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LRZE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JLR" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JZCSYL" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ZBBZZZL" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="YYLR" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ZCFZL" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JZYZCZ" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JZYZJZ" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LDZBC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="JXSBZTS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JXSBZGL" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ZLAQFSSGCS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JJSS" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SWRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ZSRS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FCompanyId" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="QY_JBXX_QY_BLXWQK" Member="QY_BLXWQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_BLXWQK" />
+      <Association Name="QY_JBXX_QY_GCYJXX" Member="QY_GCYJXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_GCYJXX" />
+      <Association Name="QY_JBXX_QY_LHXWQK" Member="QY_LHXWQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_LHXWQK" />
+      <Association Name="QY_JBXX_QY_QYBGQK" Member="QY_QYBGQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYBGQK" />
+      <Association Name="QY_JBXX_QY_QYCYRYXX" Member="QY_QYCYRYXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYCYRYXX" />
+      <Association Name="QY_JBXX_QY_QYCZRGDXX" Member="QY_QYCZRGDXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYCZRGDXX" />
+      <Association Name="QY_JBXX_QY_QYHBCZXX" Member="QY_QYHBCZXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYHBCZXX" />
+      <Association Name="QY_JBXX_QY_QYJL" Member="QY_QYJL" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYJL" />
+      <Association Name="QY_JBXX_QY_QYLSSQXX" Member="QY_QYLSSQXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYLSSQXX" />
+      <Association Name="QY_JBXX_QY_QYNJQK" Member="QY_QYNJQK" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYNJQK" />
+      <Association Name="QY_JBXX_QY_QYXYPD" Member="QY_QYXYPD" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYXYPD" />
+      <Association Name="QY_JBXX_QY_QYZYRYXX" Member="QY_QYZYRYXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZYRYXX" />
+      <Association Name="QY_JBXX_QY_ZYJQSB" Member="QY_ZYJQSB" ThisKey="QYBM" OtherKey="QYBM" Type="QY_ZYJQSB" />
+      <Association Name="QY_JBXX_QY_QYZSXX" Member="QY_QYZSXX" ThisKey="QYBM" OtherKey="QYBM" Type="QY_QYZSXX" />
     </Type>
   </Table>
 </Database>

@@ -39,7 +39,12 @@
             if (emptype == '11220201') {
                 url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random() + "&emptype=aqjd";
             }
-            else if (emptype == '11220202' || emptype == '11220203')
+            else if (emptype == '11220204' || emptype == '11220205' || emptype == '11220206' || emptype == '11220207' || emptype == '11220208' || emptype == '11220212')
+            {
+                //九大员传参数isjdy
+                url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&isjdy=true&t=" + Math.random();
+            }
+            else
             {
                 url += "?qybm=" + qybm + "&FPrjItemId=" + prjItemId + "&t=" + Math.random();
             }
