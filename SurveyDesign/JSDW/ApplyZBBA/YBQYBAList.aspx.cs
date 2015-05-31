@@ -226,7 +226,7 @@ public partial class JSDW_APPLYZBBA_YBQYBAList : System.Web.UI.Page
     protected void btnSel_Click(object sender, EventArgs e)
     {
         EgovaDB dbContext = new EgovaDB();
-        var result = (from t in dbContext.TC_PrjItem_Info
+        var result = (from t in dbContext.v_PrjItem_Info
                       where t.FId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
         t_FPrjItemName.Text = result.PrjItemName;

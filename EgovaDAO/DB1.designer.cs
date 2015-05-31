@@ -111,7 +111,7 @@ namespace EgovaDAO
     #endregion
 		
 		public DB1DataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.JST_XZSPBaseInfoConnectionString4, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.JST_XZSPBaseInfoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

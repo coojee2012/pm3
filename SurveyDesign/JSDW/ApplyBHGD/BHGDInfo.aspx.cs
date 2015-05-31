@@ -109,7 +109,7 @@ public partial class JSDW_ApplyBHGD_BHGDInfo : System.Web.UI.Page
         //建设单位
         if (string.IsNullOrEmpty(jsdwid))
         {
-            TC_Prj_Info jsdw = db.TC_Prj_Info.Where(t => t.FId == bh.FPrjId).FirstOrDefault();
+            v_prj_Info jsdw = db.v_prj_Info.Where(t => t.FId == bh.FPrjId).FirstOrDefault();
             if (jsdw != null)
             {
                 jsdwid = jsdw.FJSDWID;

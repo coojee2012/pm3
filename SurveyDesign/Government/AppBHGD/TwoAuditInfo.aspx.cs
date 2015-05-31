@@ -110,7 +110,7 @@ public partial class Government_AppBZGD_TwoAuditInfo : System.Web.UI.Page
         }
         sb.Remove(0, sb.Length);
         sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName, i.JSDW, i.JSDWDZ ");
-        sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
+        sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, v_Prj_Info i, CF_App_ProcessRecord pr ");
         sb.Append(" where pi.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and pi.FID = '" + fpid + "'");
         dt = rc.GetTable(sb.ToString());

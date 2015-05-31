@@ -152,7 +152,7 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
         record.ProjectName = t_FProjectName.Value;
         record.RecordTime = dTime;
         //从项目信息中获取建设单位
-        var re = (from t in dbContext.TC_PrjItem_Info
+        var re = (from t in dbContext.v_PrjItem_Info
                       where t.FId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
         if (re != null)
@@ -164,7 +164,7 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
          //生成备案号
         //record.RecordNo = getBANumber();
         string ProjectType;
-         var result = (from t in dbContext.TC_Prj_Info
+        var result = (from t in dbContext.v_prj_Info
                       where t.FId == t_FPrjId.Value
                            select t).FirstOrDefault();   
         if(result.ProjectType == "2000101")
@@ -435,7 +435,7 @@ public partial class JSDW_APPLYZLJDBN_AQJDBAList : System.Web.UI.Page
 
     protected void btnSel_Click(object sender, EventArgs e)
     {
-        var result = (from t in dbContext.TC_PrjItem_Info
+        var result = (from t in dbContext.v_PrjItem_Info
                       where t.FId == this.t_FPriItemId.Value
                       select t).SingleOrDefault();
         t_FPrjItemName.Text = result.PrjItemName;

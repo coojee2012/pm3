@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbCenter" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.16.125.5;Initial Catalog=dbCenter;Persist Security Info=True;User ID=scjstdata_01" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString9" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=dbCenter;Persist Security Info=True;User ID=sa" SettingsObjectName="EgovaDAO.Properties.Settings" SettingsPropertyName="dbCenterConnectionString6" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CF_App_List" Member="CF_App_List">
     <Type Name="CF_App_List">
       <Column Name="FId" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2890,6 +2890,65 @@
       <Column Name="SGTSJWJSCJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="SGTSJWJSCPZWH" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="Cost" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_prj_Info" Member="v_prj_Info">
+    <Type Name="v_prj_Info">
+      <Column Name="FId" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDWDM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="JSDWDZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Contacts" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectType" Type="System.String" DbType="varchar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ProjectNumber" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ProjectLevel" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProjectTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="IsForeign" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JSYDXKZ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JSGCXKZ" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Investment" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="ConstrType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ProjectUse" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RegisterTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ConstrBasis" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="ConstrContent" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="LandType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="JSDWFR" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.v_PrjItem_Info" Member="v_PrjItem_Info">
+    <Type Name="v_PrjItem_Info">
+      <Column Name="FId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FPrjId" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="Investment" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="LegalPerson" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="JSDWDM" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="PrjItemType" Type="System.String" DbType="varchar(50)" CanBeNull="true" />
+      <Column Name="ConstrType" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(17,6)" CanBeNull="true" />
+      <Column Name="Scale" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
+      <Column Name="PrjItemDesc" Type="System.String" DbType="NVarChar(3000)" CanBeNull="true" />
+      <Column Name="FJSDWID" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
+      <Column Name="AddressDept" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

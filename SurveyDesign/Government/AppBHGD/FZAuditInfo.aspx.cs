@@ -68,7 +68,7 @@ public partial class Government_AppBHGD_FZAuditInfo : System.Web.UI.Page
         StringBuilder sb = new StringBuilder();
         DataTable dt = new DataTable();
         sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName,  i.JSDW, i.JSDWDZ,i.Address  ");
-        sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
+        sb.Append(" from TC_BZGD_Record qa, CF_App_ProcessInstance pi, v_Prj_Info i, CF_App_ProcessRecord pr ");
         sb.Append(" where pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and pi.FID = '" + t_fProcessInstanceID.Value + "'");
         dt = rc.GetTable(sb.ToString());
         if (dt != null && dt.Rows.Count > 0)

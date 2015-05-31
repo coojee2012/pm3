@@ -81,7 +81,7 @@ public partial class Government_AppBHGD_ChooseBatch : System.Web.UI.Page
     /// <returns></returns>
     private string GetPrjItemIdByAppid(string appid) {
         EgovaDB db = new EgovaDB();
-        var prjItem = from item in db.TC_PrjItem_Info
+        var prjItem = from item in db.v_PrjItem_Info
                       join hzgd in db.TC_BZGD_Record
                       on item.FId equals hzgd.FPrjItemId
                       where hzgd.FAppId == appid

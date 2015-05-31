@@ -172,7 +172,7 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             foreach (var v in emplist)
             {
                 //判断锁定表中是否存在不同区域的项目当前项目是否参与了的情况,已经上报的项目
-                string sql = @"select  1  from  TC_PrjItem_Emp a,TC_PrjItem_Info b,CF_App_List c
+                string sql = @"select  1  from  TC_PrjItem_Emp a,v_PrjItem_Info b,CF_App_List c
                                 where a.FPrjItemId = b.FId
                                 and  c.FId = a.FAppId
                                 and  c.FState = 1
@@ -193,7 +193,7 @@ public partial class JSDW_ApplySGXKZGL_Report : System.Web.UI.Page
             foreach(var v in emplist)
             {
                 
-                string sql = @"select  1  from  TC_PrjItem_Emp_Lock a,TC_PrjItem_Info b
+                string sql = @"select  1  from  TC_PrjItem_Emp_Lock a,v_PrjItem_Info b
                              where a.FPrjItemId = b.FId
                              and  a.FIdCard = '" + v.FIdCard + "'" + "  and b.AddressDept != '" + prjarea + "'   and a.IsLock = '1'";
                 DataTable dt = rc.GetTable(sql);

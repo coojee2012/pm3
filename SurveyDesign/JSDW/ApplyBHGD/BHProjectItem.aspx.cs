@@ -78,8 +78,8 @@ public partial class JSDW_APPLYBHGD_BHProjectItem : System.Web.UI.Page
             //标化工地项目信息没有，则取TC_BZGD_Record中的相关数据
             TC_BZGD_Record bh = dbContext.TC_BZGD_Record.Where(t => t.FAppId == hf_FAppId.Value).FirstOrDefault();
 
-            TC_PrjItem_Info pi = dbContext.TC_PrjItem_Info.Where(t => t.FId == bh.FPrjItemId).FirstOrDefault();
-            TC_Prj_Info p = dbContext.TC_Prj_Info.Where(t => t.FId == bh.FPrjId).FirstOrDefault();
+            v_PrjItem_Info pi = dbContext.v_PrjItem_Info.Where(t => t.FId == bh.FPrjItemId).FirstOrDefault();
+            v_prj_Info p = dbContext.v_prj_Info.Where(t => t.FId == bh.FPrjId).FirstOrDefault();
             CF_App_List a = dbContext.CF_App_List.Where(t => t.FPrjId == bh.FPrjId && (t.FManageTypeId == 8080)).FirstOrDefault();
 
             t_PrjId.Value = bh.FPrjId;

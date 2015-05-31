@@ -113,7 +113,7 @@ public partial class Government_AppZLJDBA_OneAuditInfo : System.Web.UI.Page
         }
         sb.Remove(0, sb.Length);
         sb.Append(" select pr.FIdea,qa.FAppID, qa.ProjectName, qa.PrjItemName, qa.ProjectType, qa.RecordNo, i.JSDW, i.JSDWDZ ");
-        sb.Append(" from TC_QA_Record qa, CF_App_ProcessInstance pi, TC_Prj_Info i, CF_App_ProcessRecord pr ");
+        sb.Append(" from TC_QA_Record qa, CF_App_ProcessInstance pi, v_Prj_Info i, CF_App_ProcessRecord pr ");
         sb.Append(" where pi.FManageDeptId like '" + Session["DFId"].ToString() + "%' ");
         sb.Append(" and pi.flinkId = qa.FAppId and i.FId = qa.FPrjId and pi.fId = pr.FProcessInstanceID and qa.FID = '" + fpid + "'");
         dt = rc.GetTable(sb.ToString());

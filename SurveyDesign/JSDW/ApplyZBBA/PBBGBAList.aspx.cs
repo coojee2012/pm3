@@ -152,7 +152,7 @@ public partial class JSDW_APPLYZBBA_ZBDYBAList : System.Web.UI.Page
         record.BDId = t_BDId.Value;
         record.BDMC = t_BDMC.Text;
         record.BDBM = t_BDBM.Value;
-        record.ProjectName = dbContext.TC_Prj_Info.Where(d => d.FId == t_FPrjId.Value).Select(d => d.ProjectName).FirstOrDefault();
+        record.ProjectName = dbContext.v_prj_Info.Where(d => d.FId == t_FPrjId.Value).Select(d => d.ProjectName).FirstOrDefault();
         dbContext.TC_PBBG_Record.InsertOnSubmit(record);
         //提交修改
         dbContext.SubmitChanges();

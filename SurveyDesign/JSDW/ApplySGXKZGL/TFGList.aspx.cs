@@ -49,7 +49,7 @@ public partial class JSDW_ApplySGXKZGL_TFGList : govBasePage
         sb.Append(" select * from ( ");
         sb.Append(" select qa.*,a.FType,a.FTFGRQ,a.FYJSJFGRQ, b.FJSDWID  from TC_SGXKZ_TFG a ");
         sb.Append(" left join TC_SGXKZ_PrjInfo qa on a.FAppId = qa.FAppId");
-        sb.Append(" left join TC_Prj_Info b on qa.PrjId=b.FId ");
+        sb.Append(" left join v_Prj_Info b on qa.PrjId=b.FId ");
         sb.Append(" left join CF_App_ProcessInstanceBackup ep on ep.FLinkId = qa.FAppId ");
         sb.Append(" where a.FCLZT=1 ");
         sb.Append(" and b.FJSDWID = '" + FBaseinfoID + "'");

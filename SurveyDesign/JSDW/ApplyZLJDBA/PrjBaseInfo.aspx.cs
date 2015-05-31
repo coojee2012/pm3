@@ -26,7 +26,7 @@ public partial class JSDW_ApplyZLJDBA_PrjBaseInfo : System.Web.UI.Page
             if (string.IsNullOrEmpty(fPrjItemType))  //备案表的数据没有保存，直接切换到项目基本表中，则取不到相应的类型，则从项目基本信息表中获取。
             {
                
-                var pj = (from t in db.TC_PrjItem_Info
+                var pj = (from t in db.v_PrjItem_Info
                          join a in db.TC_QA_Record on t.FPrjId equals a.FPrjId
                          where (a.FAppId == fAppId)
                          select new 

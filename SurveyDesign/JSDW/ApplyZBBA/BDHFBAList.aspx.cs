@@ -368,7 +368,7 @@ public partial class JSDW_APPLYZBBA_BDHFBAList : System.Web.UI.Page
 
     protected void btnSel_Click(object sender, EventArgs e)
     {
-        var result = (from t in dbContext.TC_Prj_Info
+        var result = (from t in dbContext.v_prj_Info
                       where t.FId == this.t_FPrjId.Value
                       select t).SingleOrDefault();
         t_ProjectName.Text = result.ProjectName;

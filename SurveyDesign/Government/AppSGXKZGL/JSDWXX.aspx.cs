@@ -34,7 +34,7 @@ public partial class Government_AppSGXKZGL_JSDWXX : System.Web.UI.Page
     {
         StringBuilder sb = new StringBuilder();
         sb.Append(" select b.JSDWDM ,c.FName,dbo.getManageDeptName(a.PrjAddressDept) as PrjAddressDeptName, a.*  from TC_SGXKZ_PrjInfo a ");
-        sb.Append(" left join TC_PrjItem_Info b  on a.FPrjItemId = b.FId ");
+        sb.Append(" left join v_PrjItem_Info b  on a.FPrjItemId = b.FId ");
         sb.Append(" left join CF_Sys_Dic c on a.JSDWXZ = c.FCNumber ");
         sb.Append(" where a.FAppId= '");
         sb.Append(t_fLinkId.Value);

@@ -45,7 +45,7 @@ public class XMHJCL_Business
 
         //得到项目编号
         var prjids = from location in db.TC_SGXKZ_PrjInfo
-                     join prjitem in db.TC_PrjItem_Info on location.FPrjItemId equals prjitem.FId
+                     join prjitem in db.v_PrjItem_Info on location.FPrjItemId equals prjitem.FId
                      where location.FAppId == appid
                      select new
                      {

@@ -53,24 +53,33 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
     {
         EgovaDB db = new EgovaDB();
         TC_AJBA_Record qa = db.TC_AJBA_Record.Where(t => t.FAppId == EConvert.ToString(Session["FAppId"])).FirstOrDefault();
-        TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
-        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
-        t_SGId.Value = qa.SGId;
-        //t_JLId.Value = qa.JLId;
-        t_jldwid.Value = qa.JLId;
-        if (prj != null)
+
+
+        if (qa.RecordTime == null)
         {
-            ViewState["FPrjID"] = prj.FPrjId;
-            p_RecordNo.Text = qa.RecordNo;
+            v_PrjItem_Info prj = db.v_PrjItem_Info.Where(t => t.FId == qa.FPrjItemId).FirstOrDefault();
+            v_prj_Info prjInfo = db.v_prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
             pageTool tool = new pageTool(this.Page, "p_");
             tool.fillPageControl(prj);
             tool = new pageTool(this.Page, "pj_");
             tool.fillPageControl(prjInfo);
+            ViewState["FPrjID"] = qa.FPrjId;
+        }
+        else
+        {
+            t_SGId.Value = qa.SGId;
+            t_jldwid.Value = qa.JLId;
+            ViewState["FPrjID"] = qa.FPrjId;
+            p_RecordNo.Text = qa.RecordNo;
+            pageTool tool = new pageTool(this.Page, "p_");
+            tool.fillPageControl(qa);
+            tool = new pageTool(this.Page, "pj_");
+            tool.fillPageControl(qa);
             tool = new pageTool(this.Page, "q_");
             tool.fillPageControl(qa);
             govd_FRegistDeptId.fNumber = pj_AddressDept.Value;
             q_AddressDept.Value = pj_AddressDept.Value;
-            string t = prj.PrjItemType;
+            string t = qa.ProjectType;
             tool = new pageTool(this.Page);
         }
     }
@@ -91,6 +100,7 @@ public partial class JSDW_ApplyAQJDBA_BaseInfo : System.Web.UI.Page
         //qa.JLId = t_JLId.Value; //此处存放的是监理单位的资质id主键，修改为监理单位id
         qa.JLId = t_jldwid.Value;       
         qa.JLRYId = t_JLRYId.Value;
+        if (qa.RecordTime ==null){ qa.RecordTime = System.DateTime.Now; }
         db.SubmitChanges();
       //  showPrjData();
         tool.showMessageAndRunFunction("保存成功", "window.returnValue='1';");

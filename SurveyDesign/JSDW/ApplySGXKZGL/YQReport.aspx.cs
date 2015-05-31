@@ -73,11 +73,11 @@ public partial class JSDW_ApplySGXKZGL_YQReport : System.Web.UI.Page
         //通过项目编号找到施工许可证项目信息
         TC_SGXKZ_PrjInfo sp = db.TC_SGXKZ_PrjInfo.Where(t => t.FId == qa.FPrjInfoId).FirstOrDefault();
         //通过工程编号找到工程信息
-        TC_PrjItem_Info tp = db.TC_PrjItem_Info.Where(t => t.FId == sp.PrjItemId).FirstOrDefault();
+        v_PrjItem_Info tp = db.v_PrjItem_Info.Where(t => t.FId == sp.PrjItemId).FirstOrDefault();
 
         ViewState["PrjItemName"] = sp.PrjItemName;        
         //TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == sp.PrjId).FirstOrDefault();
-        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == tp.FPrjId).FirstOrDefault();
+        v_prj_Info prjInfo = db.v_prj_Info.Where(t => t.FId == tp.FPrjId).FirstOrDefault();
         govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
         if (prjInfo.AddressDept.Length == 2)
         {

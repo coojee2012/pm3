@@ -372,7 +372,7 @@ namespace EgovaDAO
     #endregion
 		
 		public DBDataContext() : 
-				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString9, mappingSource)
+				base(global::EgovaDAO.Properties.Settings.Default.dbCenterConnectionString6, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1326,6 +1326,22 @@ namespace EgovaDAO
 			get
 			{
 				return this.GetTable<TC_QA_Record>();
+			}
+		}
+		
+		public System.Data.Linq.Table<v_prj_Info> v_prj_Info
+		{
+			get
+			{
+				return this.GetTable<v_prj_Info>();
+			}
+		}
+		
+		public System.Data.Linq.Table<v_PrjItem_Info> v_PrjItem_Info
+		{
+			get
+			{
+				return this.GetTable<v_PrjItem_Info>();
 			}
 		}
 	}
@@ -63748,6 +63764,942 @@ namespace EgovaDAO
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.v_prj_Info")]
+	public partial class v_prj_Info
+	{
+		
+		private string _FId;
+		
+		private string _JSDW;
+		
+		private string _JSDWDM;
+		
+		private string _JSDWDZ;
+		
+		private string _Contacts;
+		
+		private string _Mobile;
+		
+		private string _ProjectName;
+		
+		private string _Province;
+		
+		private string _City;
+		
+		private string _County;
+		
+		private string _ProjectType;
+		
+		private string _Address;
+		
+		private string _ProjectNumber;
+		
+		private string _ProjectLevel;
+		
+		private System.Nullable<System.DateTime> _ProjectTime;
+		
+		private string _ProjectNo;
+		
+		private System.Nullable<int> _IsForeign;
+		
+		private string _JSYDXKZ;
+		
+		private string _JSGCXKZ;
+		
+		private System.Nullable<decimal> _Area;
+		
+		private System.Nullable<decimal> _Investment;
+		
+		private string _ConstrType;
+		
+		private string _ProjectUse;
+		
+		private System.Nullable<System.DateTime> _StartDate;
+		
+		private System.Nullable<System.DateTime> _EndDate;
+		
+		private System.Nullable<System.DateTime> _RegisterTime;
+		
+		private string _ConstrBasis;
+		
+		private string _ConstrContent;
+		
+		private string _FJSDWID;
+		
+		private string _AddressDept;
+		
+		private string _ConstrScale;
+		
+		private string _LandType;
+		
+		private string _JSDWFR;
+		
+		public v_prj_Info()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FId", DbType="VarChar(60) NOT NULL", CanBeNull=false)]
+		public string FId
+		{
+			get
+			{
+				return this._FId;
+			}
+			set
+			{
+				if ((this._FId != value))
+				{
+					this._FId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDW", DbType="VarChar(200)")]
+		public string JSDW
+		{
+			get
+			{
+				return this._JSDW;
+			}
+			set
+			{
+				if ((this._JSDW != value))
+				{
+					this._JSDW = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWDM", DbType="VarChar(200)")]
+		public string JSDWDM
+		{
+			get
+			{
+				return this._JSDWDM;
+			}
+			set
+			{
+				if ((this._JSDWDM != value))
+				{
+					this._JSDWDM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWDZ", DbType="VarChar(200)")]
+		public string JSDWDZ
+		{
+			get
+			{
+				return this._JSDWDZ;
+			}
+			set
+			{
+				if ((this._JSDWDZ != value))
+				{
+					this._JSDWDZ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contacts", DbType="VarChar(50)")]
+		public string Contacts
+		{
+			get
+			{
+				return this._Contacts;
+			}
+			set
+			{
+				if ((this._Contacts != value))
+				{
+					this._Contacts = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mobile", DbType="VarChar(200)")]
+		public string Mobile
+		{
+			get
+			{
+				return this._Mobile;
+			}
+			set
+			{
+				if ((this._Mobile != value))
+				{
+					this._Mobile = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(200)")]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this._ProjectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Province", DbType="VarChar(200)")]
+		public string Province
+		{
+			get
+			{
+				return this._Province;
+			}
+			set
+			{
+				if ((this._Province != value))
+				{
+					this._Province = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(200)")]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this._City = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_County", DbType="VarChar(200)")]
+		public string County
+		{
+			get
+			{
+				return this._County;
+			}
+			set
+			{
+				if ((this._County != value))
+				{
+					this._County = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectType", DbType="varchar(50)")]
+		public string ProjectType
+		{
+			get
+			{
+				return this._ProjectType;
+			}
+			set
+			{
+				if ((this._ProjectType != value))
+				{
+					this._ProjectType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(500)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectNumber", DbType="VarChar(200)")]
+		public string ProjectNumber
+		{
+			get
+			{
+				return this._ProjectNumber;
+			}
+			set
+			{
+				if ((this._ProjectNumber != value))
+				{
+					this._ProjectNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectLevel", DbType="VarChar(20)")]
+		public string ProjectLevel
+		{
+			get
+			{
+				return this._ProjectLevel;
+			}
+			set
+			{
+				if ((this._ProjectLevel != value))
+				{
+					this._ProjectLevel = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProjectTime
+		{
+			get
+			{
+				return this._ProjectTime;
+			}
+			set
+			{
+				if ((this._ProjectTime != value))
+				{
+					this._ProjectTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectNo", DbType="VarChar(60)")]
+		public string ProjectNo
+		{
+			get
+			{
+				return this._ProjectNo;
+			}
+			set
+			{
+				if ((this._ProjectNo != value))
+				{
+					this._ProjectNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsForeign", DbType="Int")]
+		public System.Nullable<int> IsForeign
+		{
+			get
+			{
+				return this._IsForeign;
+			}
+			set
+			{
+				if ((this._IsForeign != value))
+				{
+					this._IsForeign = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSYDXKZ", DbType="VarChar(100)")]
+		public string JSYDXKZ
+		{
+			get
+			{
+				return this._JSYDXKZ;
+			}
+			set
+			{
+				if ((this._JSYDXKZ != value))
+				{
+					this._JSYDXKZ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSGCXKZ", DbType="VarChar(100)")]
+		public string JSGCXKZ
+		{
+			get
+			{
+				return this._JSGCXKZ;
+			}
+			set
+			{
+				if ((this._JSGCXKZ != value))
+				{
+					this._JSGCXKZ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Decimal(15,2)")]
+		public System.Nullable<decimal> Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Investment", DbType="Decimal(15,4)")]
+		public System.Nullable<decimal> Investment
+		{
+			get
+			{
+				return this._Investment;
+			}
+			set
+			{
+				if ((this._Investment != value))
+				{
+					this._Investment = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrType", DbType="VarChar(20)")]
+		public string ConstrType
+		{
+			get
+			{
+				return this._ConstrType;
+			}
+			set
+			{
+				if ((this._ConstrType != value))
+				{
+					this._ConstrType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectUse", DbType="VarChar(20)")]
+		public string ProjectUse
+		{
+			get
+			{
+				return this._ProjectUse;
+			}
+			set
+			{
+				if ((this._ProjectUse != value))
+				{
+					this._ProjectUse = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="Date")]
+		public System.Nullable<System.DateTime> StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this._StartDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="Date")]
+		public System.Nullable<System.DateTime> EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegisterTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> RegisterTime
+		{
+			get
+			{
+				return this._RegisterTime;
+			}
+			set
+			{
+				if ((this._RegisterTime != value))
+				{
+					this._RegisterTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrBasis", DbType="NVarChar(3000)")]
+		public string ConstrBasis
+		{
+			get
+			{
+				return this._ConstrBasis;
+			}
+			set
+			{
+				if ((this._ConstrBasis != value))
+				{
+					this._ConstrBasis = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrContent", DbType="NVarChar(3000)")]
+		public string ConstrContent
+		{
+			get
+			{
+				return this._ConstrContent;
+			}
+			set
+			{
+				if ((this._ConstrContent != value))
+				{
+					this._ConstrContent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FJSDWID", DbType="VarChar(36)")]
+		public string FJSDWID
+		{
+			get
+			{
+				return this._FJSDWID;
+			}
+			set
+			{
+				if ((this._FJSDWID != value))
+				{
+					this._FJSDWID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressDept", DbType="VarChar(50)")]
+		public string AddressDept
+		{
+			get
+			{
+				return this._AddressDept;
+			}
+			set
+			{
+				if ((this._AddressDept != value))
+				{
+					this._AddressDept = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrScale", DbType="VarChar(1000)")]
+		public string ConstrScale
+		{
+			get
+			{
+				return this._ConstrScale;
+			}
+			set
+			{
+				if ((this._ConstrScale != value))
+				{
+					this._ConstrScale = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LandType", DbType="VarChar(20)")]
+		public string LandType
+		{
+			get
+			{
+				return this._LandType;
+			}
+			set
+			{
+				if ((this._LandType != value))
+				{
+					this._LandType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWFR", DbType="VarChar(100)")]
+		public string JSDWFR
+		{
+			get
+			{
+				return this._JSDWFR;
+			}
+			set
+			{
+				if ((this._JSDWFR != value))
+				{
+					this._JSDWFR = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.v_PrjItem_Info")]
+	public partial class v_PrjItem_Info
+	{
+		
+		private string _FId;
+		
+		private string _FPrjId;
+		
+		private string _ProjectName;
+		
+		private string _Address;
+		
+		private System.Nullable<decimal> _Area;
+		
+		private System.Nullable<decimal> _Investment;
+		
+		private string _JSDW;
+		
+		private string _LegalPerson;
+		
+		private string _JSDWDM;
+		
+		private string _PrjItemName;
+		
+		private string _PrjItemType;
+		
+		private string _ConstrType;
+		
+		private System.Nullable<decimal> _Cost;
+		
+		private System.Nullable<decimal> _Scale;
+		
+		private string _PrjItemDesc;
+		
+		private string _FJSDWID;
+		
+		private string _AddressDept;
+		
+		private string _ConstrScale;
+		
+		public v_PrjItem_Info()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string FId
+		{
+			get
+			{
+				return this._FId;
+			}
+			set
+			{
+				if ((this._FId != value))
+				{
+					this._FId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FPrjId", DbType="VarChar(60)")]
+		public string FPrjId
+		{
+			get
+			{
+				return this._FPrjId;
+			}
+			set
+			{
+				if ((this._FPrjId != value))
+				{
+					this._FPrjId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(200)")]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this._ProjectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(500)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Decimal(15,2)")]
+		public System.Nullable<decimal> Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Investment", DbType="Decimal(15,4)")]
+		public System.Nullable<decimal> Investment
+		{
+			get
+			{
+				return this._Investment;
+			}
+			set
+			{
+				if ((this._Investment != value))
+				{
+					this._Investment = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDW", DbType="VarChar(200)")]
+		public string JSDW
+		{
+			get
+			{
+				return this._JSDW;
+			}
+			set
+			{
+				if ((this._JSDW != value))
+				{
+					this._JSDW = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LegalPerson", DbType="VarChar(100)")]
+		public string LegalPerson
+		{
+			get
+			{
+				return this._LegalPerson;
+			}
+			set
+			{
+				if ((this._LegalPerson != value))
+				{
+					this._LegalPerson = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JSDWDM", DbType="VarChar(200)")]
+		public string JSDWDM
+		{
+			get
+			{
+				return this._JSDWDM;
+			}
+			set
+			{
+				if ((this._JSDWDM != value))
+				{
+					this._JSDWDM = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemName", DbType="VarChar(200)")]
+		public string PrjItemName
+		{
+			get
+			{
+				return this._PrjItemName;
+			}
+			set
+			{
+				if ((this._PrjItemName != value))
+				{
+					this._PrjItemName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemType", DbType="varchar(50)")]
+		public string PrjItemType
+		{
+			get
+			{
+				return this._PrjItemType;
+			}
+			set
+			{
+				if ((this._PrjItemType != value))
+				{
+					this._PrjItemType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrType", DbType="VarChar(20)")]
+		public string ConstrType
+		{
+			get
+			{
+				return this._ConstrType;
+			}
+			set
+			{
+				if ((this._ConstrType != value))
+				{
+					this._ConstrType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cost", DbType="Decimal(17,6)")]
+		public System.Nullable<decimal> Cost
+		{
+			get
+			{
+				return this._Cost;
+			}
+			set
+			{
+				if ((this._Cost != value))
+				{
+					this._Cost = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Scale", DbType="Decimal(15,2)")]
+		public System.Nullable<decimal> Scale
+		{
+			get
+			{
+				return this._Scale;
+			}
+			set
+			{
+				if ((this._Scale != value))
+				{
+					this._Scale = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrjItemDesc", DbType="NVarChar(3000)")]
+		public string PrjItemDesc
+		{
+			get
+			{
+				return this._PrjItemDesc;
+			}
+			set
+			{
+				if ((this._PrjItemDesc != value))
+				{
+					this._PrjItemDesc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FJSDWID", DbType="VarChar(36)")]
+		public string FJSDWID
+		{
+			get
+			{
+				return this._FJSDWID;
+			}
+			set
+			{
+				if ((this._FJSDWID != value))
+				{
+					this._FJSDWID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressDept", DbType="VarChar(50)")]
+		public string AddressDept
+		{
+			get
+			{
+				return this._AddressDept;
+			}
+			set
+			{
+				if ((this._AddressDept != value))
+				{
+					this._AddressDept = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConstrScale", DbType="VarChar(1000)")]
+		public string ConstrScale
+		{
+			get
+			{
+				return this._ConstrScale;
+			}
+			set
+			{
+				if ((this._ConstrScale != value))
+				{
+					this._ConstrScale = value;
+				}
 			}
 		}
 	}

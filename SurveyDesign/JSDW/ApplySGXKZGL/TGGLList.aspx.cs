@@ -48,7 +48,7 @@ public partial class JSDW_ApplySGXKZGL_TGGLList : govBasePage
         sb.Append("select * from ( ");
         sb.Append(" select b.FJSDWID ,ep.FID as FepId,qa.*,case qa.SJEndDate when qa.SJEndDate then '已竣工' else '已开工'  end as SGState ");
         sb.Append(" from TC_SGXKZ_PrjInfo qa ");
-        sb.Append(" left join TC_Prj_Info b on qa.PrjId=b.FId ");
+        sb.Append(" left join v_Prj_Info b on qa.PrjId=b.FId ");
         sb.Append(" left join CF_App_ProcessInstanceBackup ep on ep.FLinkId = qa.FAppId ");
         sb.Append(" where qa.SJStartDate IS NOT NULL AND qa.SJEndDate IS NULL AND qa.FAppId NOT IN (SELECT FAppId FROM TC_SGXKZ_TFG WHERE FType=0 and FCLZT=1)");
         sb.Append(" and b.FJSDWID = '" + FBaseinfoID.ToUpper() + "'");

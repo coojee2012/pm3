@@ -354,7 +354,7 @@ public partial class JSDW_ApplyAQJDBA_Report : System.Web.UI.Page
         bool flag = false;
         EgovaDB db = new EgovaDB();
         TC_AJBA_Record ar = db.TC_AJBA_Record.Where(t => t.FAppId == fAppId).FirstOrDefault();
-        TC_PrjItem_Info prj = db.TC_PrjItem_Info.Where(t => t.FId == ar.FPrjItemId).FirstOrDefault();
+        v_PrjItem_Info prj = db.v_PrjItem_Info.Where(t => t.FId == ar.FPrjItemId).FirstOrDefault();
         string sql = @" select count(*) from TC_AJBA_Video where FAppId = '{0}' ";
         sql = string.Format(sql, fAppId);
         int count = SConvert.ToInt(db.ExecuteQuery<int>(sql).FirstOrDefault());

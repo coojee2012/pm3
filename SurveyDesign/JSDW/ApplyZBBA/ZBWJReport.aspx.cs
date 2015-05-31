@@ -70,7 +70,7 @@ public partial class JSDW_ApplyZBBA_ZBWJReport : System.Web.UI.Page
         }
         TC_ZBWJ_Record qa = db.TC_ZBWJ_Record.Where(t => t.FAppId.Equals(fAppId)).FirstOrDefault();
         ViewState["ProjectName"] = qa.ProjectName;
-        TC_Prj_Info prjInfo = db.TC_Prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
+        v_prj_Info prjInfo = db.v_prj_Info.Where(t => t.FId == qa.FPrjId).FirstOrDefault();
         govd_FRegistDeptId.fNumber = prjInfo.AddressDept;
         if (prjInfo.AddressDept.Length == 2)
         {
