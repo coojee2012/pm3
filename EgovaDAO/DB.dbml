@@ -1884,95 +1884,95 @@
   <Table Name="dbo.TC_SGXKZ_ZBJG" Member="TC_SGXKZ_ZBJG">
     <Type Name="TC_SGXKZ_ZBJG">
       <Column Name="FId" Type="System.String" DbType="VarChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="KCId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="KCZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="KCZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="KCZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="KCZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="KCZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="KCZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="KCHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="KCHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="KCHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="KCHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="KCHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="KCXMJL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SJId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" />
-      <Column Name="SJZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SJZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SJZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SJZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SJZLBZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SJZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="SJZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SJHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SJHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SJHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SJHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SJHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SJHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JLId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="JLZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="JLZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="JLZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JLZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLZBQYZZDJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLZLBZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JLZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="JLZBJDX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JLHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JLHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JLHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JLHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="JLGCS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="SGZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SGZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SGZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SGZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGZBQYZZDJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGZLBZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="SGZLDJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="SGZBJDX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SGHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FAppId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="FprjItemId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PrjItemName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JSDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="KCXMJL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJId" Type="System.String" DbType="VarChar(36)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZLBZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SJHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="JLZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBQYZZDJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZLBZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBJDX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLGCS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGId" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SGZBFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZZFS" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBDW" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBQYZZZSH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBQYZZDJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZLBZ" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZLDJ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBJ" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBJDX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBGQ" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGHTKGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGHTJGTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="SGZBFW" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="SGJZBM" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" />
-      <Column Name="SGSZSNYL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGXMJL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGXMJLZS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SGHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SGHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SGHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZBTZSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" />
-      <Column Name="ZBDLDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="ZBDLDWZZJGDM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLZBLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="JLZBDWZZJGDM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="JLZBRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JLGCSZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="JLGCSZJHM" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="SGZBLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SGZBDWZZJGDM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SGZBRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SGXMJLZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="SGXMJLZJHM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="SGJZBM" Type="System.Decimal" DbType="Decimal(15,2)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGSZSNYL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGXMJL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGXMJLZS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGHTQDTime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGHTBATime" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGHTBABH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGHTBAJG" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ProjectNo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ZBTZSBH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ConstrScale" Type="System.String" DbType="VarChar(500)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Area" Type="System.Decimal" DbType="Decimal(15,4)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ZBDLDWMC" Type="System.String" DbType="VarChar(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ZBDLDWZZJGDM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBDWZZJGDM" Type="System.String" DbType="VarChar(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLZBRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLGCSZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="JLGCSZJHM" Type="System.String" DbType="VarChar(30)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBDWZZJGDM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGZBRQ" Type="System.DateTime" DbType="Date" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGXMJLZJLX" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SGXMJLZJHM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="BL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="YL" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
   <Table Name="dbo.TC_SGXKZ_HTBA" Member="TC_SGXKZ_HTBA">
